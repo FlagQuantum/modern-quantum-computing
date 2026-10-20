@@ -39,3 +39,15 @@ jobs:
       - run: python examples/omalley2016/reproduce_h2_curve.py
       - run: python examples/omalley2016/train_h2_vqe.py
       - run: python examples/omalley2016/sample_h2_energy.py
+  chemistry-provenance:
+    runs-on: ubuntu-latest
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-provenance.txt
+      - run: python scripts/verify_h2_provenance.py

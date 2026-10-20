@@ -5,6 +5,7 @@ from collections import Counter
 import json
 from pathlib import Path
 import re
+from build_source_evidence import build as build_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -32,6 +33,8 @@ def build():
         assert row['depth'] in levels,id
         assert all(row[k].strip() for k in ('result','assumptions','proof_plan','source_review')),id
         assert row['source_locators'] and all(k in locators for k in row['source_locators']),id
+        if 'Z2018:status' in row['source_locators']:assert 'ZR2021:notice' in row['source_locators'], id
+        if 'L2026:comment' in row['source_locators']:assert 'MR2026:reply' in row['source_locators'], id
         assert row['mathematical_review']=='pending', 'Planning does not certify proofs'
         if row['depth']=='R':
             assert row['local_bridge_requirements'].strip() and row['deferred_proof_ingredients'].strip(), id
@@ -94,8 +97,8 @@ def build():
         outputs[f"docs/proof-plans/{p['path']}.md"]=''.join(doc)
     intro += [
         '\n## Outstanding source acceptance items\n\n',
-        '- 49.2: complete the integral/active-space/symmetry-reduction provenance map; the corrected reduced-model table alone does not supply it.\n',
-        '- 40.7: choose dated primary experiments for each proposed current hardware claim before making the claim; historical theory reviews do not establish current device maturity.\n',
+        '- 49.2: [H2-01–09](references/h2-provenance.md) now pins the integral-to-model chain and independent 324-coefficient audit. Original author integral files were not recovered; mathematical/reader acceptance remains open.\n',
+        '- 40.7: [TOPO-01–09](references/topological-experiments.md) now selects dated primary sources and pairs critique/reply and retraction records. Full subscription comment/reply review and specialist experimental interpretation remain open.\n',
         '- Chapter 50 now selects Fowler et al. v2, Section VII A/Fig. 5 for syndrome ambiguity. The finite memory experiment is a declared textbook extension; Fig. 4 threshold results are outside the reproduction claim. Exact patch/round/decoder choices still require acceptance.\n',
         '- All proof plans require mathematical/source review, source-specific counterexamples and calibrated problem/example budgets before baseline freeze. Locator checks and planned full proofs do not satisfy those gates.\n',
     ]
@@ -103,7 +106,7 @@ def build():
     catalogue=[
         '# Exact sources for the result and proof plan\n\n',
         f"**{len(works)} works / {len(locators)} locators · checked/assigned {sources['revision']}.** ",
-        'The catalogue records the actual manuscript/edition, citation metadata, section or page target, and the SHA-256 of the locally accessed PDF. ',
+        'The catalogue records the actual manuscript/edition, citation metadata, section or page target, and the SHA-256 of the locally accessed source artifact (PDF, publisher HTML or basis JSON). ',
         'The files and extracted source passages are not distributed. Public availability does not confer redistribution permission. ',
         'Historical reviews support stated models, not current performance rankings. An arXiv v1 can have a different title/author order from its journal publication.\n\n',
         '[Section plans](../proof-plan.md) · [Download BibTeX](proof-plan.bib)\n\n',
@@ -117,7 +120,7 @@ def build():
         catalogue += [f'\n<span id="work-{k.lower()}"></span>\n\n## {k}: {w["title"]}\n\n',
                       f"{w['authors']} ({w['year']}). **Accessed version:** {w['revision']}. [Source]({w['url']}).\n\n"]
         if w['note']:catalogue.append(w['note']+'.\n\n')
-        if w.get('sha256'):catalogue.append('**Accessed PDF SHA-256:** '+w['sha256']+'.\n\n')
+        if w.get('sha256'):catalogue.append('**Accessed source SHA-256 ('+w.get('media_type','application/pdf')+'):** '+w['sha256']+'.\n\n')
         for key,l in locators.items():
             if l['work']!=k:continue
             page_text=(str(l['pages'][0]) if l['pages'][0]==l['pages'][1] else f"{l['pages'][0]}–{l['pages'][1]}") if l['pages'] else ''
@@ -169,6 +172,7 @@ def build():
         'Core exercises/selected solutions and independent references remain accessible offline. Runtime/provider instructions stay versioned companions. Exact theorem/source acceptance, reader testing and final page/problem budgets still precede baseline freeze.\n',
     ]
     outputs['docs/volume-plan.md']=''.join(volume)
+    outputs.update(build_evidence(ROOT,sources,{x['ref']:x['link'] for x in sections.values()}))
     return outputs,dict(sections=len(sections),works=len(works),locators=len(locators),volumes=len(volumes),depth_counts=dict(counts),series_pages=totals)
 
 def main():

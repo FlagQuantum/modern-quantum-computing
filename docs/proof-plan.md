@@ -34,7 +34,7 @@
 
 ## Outstanding source acceptance items
 
-- 49.2: complete the integral/active-space/symmetry-reduction provenance map; the corrected reduced-model table alone does not supply it.
-- 40.7: choose dated primary experiments for each proposed current hardware claim before making the claim; historical theory reviews do not establish current device maturity.
+- 49.2: [H2-01–09](references/h2-provenance.md) now pins the integral-to-model chain and independent 324-coefficient audit. Original author integral files were not recovered; mathematical/reader acceptance remains open.
+- 40.7: [TOPO-01–09](references/topological-experiments.md) now selects dated primary sources and pairs critique/reply and retraction records. Full subscription comment/reply review and specialist experimental interpretation remain open.
 - Chapter 50 now selects Fowler et al. v2, Section VII A/Fig. 5 for syndrome ambiguity. The finite memory experiment is a declared textbook extension; Fig. 4 threshold results are outside the reproduction claim. Exact patch/round/decoder choices still require acceptance.
 - All proof plans require mathematical/source review, source-specific counterexamples and calibrated problem/example budgets before baseline freeze. Locator checks and planned full proofs do not satisfy those gates.

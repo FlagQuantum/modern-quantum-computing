@@ -944,11 +944,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Distinguish code, phase of matter and candidate device.
 
-**Proof depth:** P — Postulate / definition / task contract. **Proof obligation:** Define each meaning and explicitly separate theoretical protection from empirical realization.
+**Proof depth:** P — Postulate / definition / task contract. **Proof obligation:** Define each meaning and explicitly separate theoretical protection from empirical realization; distinguish intrinsic phases, engineered defects, digitally prepared states and a protected computational architecture.
 
 **Imported earlier results:** [7.1](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-1), [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2), [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1).
 
-**Exact source targets:** [ANYON:II.A](../references/proof-sources.md#source-anyon-ii-a): Section II A Non-Abelian Anyons.
+**Exact source targets:** [ANYON:II.A](../references/proof-sources.md#source-anyon-ii-a): Section II A Non-Abelian Anyons; [N2020:braiding](../references/proof-sources.md#source-n2020-braiding): Abstract; Fig. 1–3; Extended Data Fig. 2; source data for Fig. 2–3; [G2023:braiding](../references/proof-sources.md#source-g2023-braiding): Braiding non-Abelian anyons; Fig. 3–4; Data availability.
 
 **Independent evidence target:** Classify explicit claims and identify the mathematical versus experimental evidence needed.
 
@@ -1000,11 +1000,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Specified anyon model, allowed measurements and ancillas.
 
-**Proof depth:** R — Precise advanced theorem with proof roadmap. **Proof obligation:** Derive conditional fusion outcomes; state the selected universality/nonuniversality result and its deferred density argument.
+**Proof depth:** R — Precise advanced theorem with proof roadmap. **Proof obligation:** Derive conditional fusion outcomes; state the selected universality/nonuniversality result and its deferred density argument; separate ideal Ising/Fibonacci computational power from what each processor experiment establishes.
 
 **Imported earlier results:** [40.3](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-3), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [32.6](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-6).
 
-**Exact source targets:** [P9:9.14](../references/proof-sources.md#source-p9-9-14): Section 9.14 Fibonacci anyons; [P9:9.17](../references/proof-sources.md#source-p9-9-17): Section 9.17 Simulating a quantum circuit with Fibonacci anyons.
+**Exact source targets:** [P9:9.14](../references/proof-sources.md#source-p9-9-14): Section 9.14 Fibonacci anyons; [P9:9.17](../references/proof-sources.md#source-p9-9-17): Section 9.17 Simulating a quantum circuit with Fibonacci anyons; [G2023:braiding](../references/proof-sources.md#source-g2023-braiding): Braiding non-Abelian anyons; Fig. 3–4; Data availability; [F2024:braiding](../references/proof-sources.md#source-f2024-braiding): Fig. 4; Methods: creation/fusion and braiding; Supplementary Section I.B referenced by the journal; Data and Code availability.
 
 **Independent evidence target:** Verify a small logical operation without assuming braiding is universally sufficient.
 
@@ -1022,11 +1022,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Four ideal Majorana modes with fixed total parity; effective algebra only.
 
-**Proof depth:** M — Complete selected-model derivation. **Proof obligation:** Derive anticommutation, code dimension and braid action; no device-realization claim.
+**Proof depth:** M — Complete selected-model derivation. **Proof obligation:** Derive anticommutation, code dimension and braid action; no device-realization claim; distinguish ideal-chain parity algebra from finite-device readout and limited two-site protection.
 
 **Imported earlier results:** [25.2](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-2), [25.3](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-3), [40.2](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-2).
 
-**Exact source targets:** [ANYON:III.B](../references/proof-sources.md#source-anyon-iii-b): Section III B Superconductors with p+ip pairing symmetry.
+**Exact source targets:** [ANYON:III.B](../references/proof-sources.md#source-anyon-iii-b): Section III B Superconductors with p+ip pairing symmetry; [MS2025:readout](../references/proof-sources.md#source-ms2025-readout): Main text qualification of MZM/Andreev interpretation; Fig. 3 experiment versus Fig. 4 simulation; Data availability; [KITREAD:readout](../references/proof-sources.md#source-kitread-readout): Abstract, main text and Fig. 3–4: capacitance parity readout and charge-sensing comparison.
 
 **Independent evidence target:** Compare an exact finite model with claimed low-energy/parity behavior and finite-size limits.
 
@@ -1040,11 +1040,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Declared perturbations, separation and noise model.
 
-**Proof depth:** M — Complete selected-model derivation. **Proof obligation:** Give a scoped splitting/error argument and a failure example; avoid a universal immunity theorem.
+**Proof depth:** M — Complete selected-model derivation. **Proof obligation:** Give a scoped splitting/error argument and a failure example; avoid a universal immunity theorem; make the competing topological/trivial interpretations explicit and require scaling evidence for protection claims.
 
 **Imported earlier results:** [40.1](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-1), [28.1](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-1), [29.5](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-5).
 
-**Exact source targets:** [ANYON:IV.D](../references/proof-sources.md#source-anyon-iv-d): Section IV D Errors.
+**Exact source targets:** [ANYON:IV.D](../references/proof-sources.md#source-anyon-iv-d): Section IV D Errors; [MS2025:readout](../references/proof-sources.md#source-ms2025-readout): Main text qualification of MZM/Andreev interpretation; Fig. 3 experiment versus Fig. 4 simulation; Data availability; [L2026:comment](../references/proof-sources.md#source-l2026-comment): Publisher opening argument; Fig. 1–2 titles; Data/Code availability; Change history; [MR2026:reply](../references/proof-sources.md#source-mr2026-reply): Publisher opening reply; Data availability; Change history.
 
 **Independent evidence target:** Perturb a tractable model and distinguish conditional robustness from immunity to all errors.
 
@@ -1058,15 +1058,15 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Dated claim-specific primary evidence.
 
-**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Classify signatures, controlled operations and logical claims; historical review supplies context only, current experimental source selection remains open.
+**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Audit TOPO-01 through TOPO-09: Abelian FQH interference; encoded Ising defects, D4 and Fibonacci experiments; semiconductor parity readout; minimal Kitaev-chain readout; paired comment/reply and retraction. Separate measured observables, model attribution and missing protection/computational tests. Record dated source status and full-text access limits; no claim of independently reproducing experimental data.
 
 **Imported earlier results:** [40.5](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-5), [40.6](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-6).
 
-**Exact source targets:** [ANYON:V.A](../references/proof-sources.md#source-anyon-v-a): Section V A Issues for the Immediate Future (circa 2007); [ED:protocol](../references/proof-sources.md#source-ed-protocol): Reader review and acceptance evidence.
+**Exact source targets:** [N2020:braiding](../references/proof-sources.md#source-n2020-braiding): Abstract; Fig. 1–3; Extended Data Fig. 2; source data for Fig. 2–3; [G2023:braiding](../references/proof-sources.md#source-g2023-braiding): Braiding non-Abelian anyons; Fig. 3–4; Data availability; [I2024:braiding](../references/proof-sources.md#source-i2024-braiding): Abstract; Fig. 3–6; Extended Data Fig. 5; Data and Code availability; [IONEXP:braiding](../references/proof-sources.md#source-ionexp-braiding): Main text and Fig. 4–6: fusion, Borromean braiding and torus sectors; [F2024:braiding](../references/proof-sources.md#source-f2024-braiding): Fig. 4; Methods: creation/fusion and braiding; Supplementary Section I.B referenced by the journal; Data and Code availability; [MS2025:readout](../references/proof-sources.md#source-ms2025-readout): Main text qualification of MZM/Andreev interpretation; Fig. 3 experiment versus Fig. 4 simulation; Data availability; [L2026:comment](../references/proof-sources.md#source-l2026-comment): Publisher opening argument; Fig. 1–2 titles; Data/Code availability; Change history; [MR2026:reply](../references/proof-sources.md#source-mr2026-reply): Publisher opening reply; Data availability; Change history; [K2026:readout](../references/proof-sources.md#source-k2026-readout): Abstract; Fig. 1–4 titles; Data and Code availability; [KITREAD:readout](../references/proof-sources.md#source-kitread-readout): Abstract, main text and Fig. 3–4: capacitance parity readout and charge-sensing comparison; [Z2018:status](../references/proof-sources.md#source-z2018-status): Publisher retraction banner and link to the 2021 Retraction Note; [ZR2021:notice](../references/proof-sources.md#source-zr2021-notice): Retraction notice; reanalysis and data repository.
 
-**Independent evidence target:** Build a dated primary-source claim/evidence table without inferring a working universal platform from one signature.
+**Independent evidence target:** Follow TOPO-01–09; record observations, inference, missing tests, data and access scope, paired comment/reply, and retraction status. Full subscription argument review and independent experimental interpretation remain pending.
 
-**Planning budget:** 2–4 pages. **Review status:** current-experimental-claim-source-selection-pending; mathematical and implementation review remain separate.
+**Planning budget:** 2–4 pages. **Review status:** dated-claim-specific-primary-source-ledger-checked; subscription-comment-reply-full-text-review-open; mathematical and implementation review remain separate.
 
 <span id="sec-topological-quantum-computation-and-candidate-physical-realizations-8"></span>
 
@@ -1076,11 +1076,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Specified anyon model and target accuracy.
 
-**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Compare braid matrices to dense logical targets and record approximation/measurement costs.
+**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Compare braid matrices to dense logical targets and record approximation/measurement costs; label ideal braid-matrix calculations as a synthetic model laboratory; obtain data/code versions before planning an experimental reanalysis.
 
 **Imported earlier results:** [40.3](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-3), [40.4](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-4), [40.6](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-6), [40.7](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-7).
 
-**Exact source targets:** [P9:9.17](../references/proof-sources.md#source-p9-9-17): Section 9.17 Simulating a quantum circuit with Fibonacci anyons; [ED:protocol](../references/proof-sources.md#source-ed-protocol): Reader review and acceptance evidence.
+**Exact source targets:** [P9:9.17](../references/proof-sources.md#source-p9-9-17): Section 9.17 Simulating a quantum circuit with Fibonacci anyons; [ED:protocol](../references/proof-sources.md#source-ed-protocol): Reader review and acceptance evidence; [F2024:braiding](../references/proof-sources.md#source-f2024-braiding): Fig. 4; Methods: creation/fusion and braiding; Supplementary Section I.B referenced by the journal; Data and Code availability; [I2024:braiding](../references/proof-sources.md#source-i2024-braiding): Abstract; Fig. 3–6; Extended Data Fig. 5; Data and Code availability.
 
 **Independent evidence target:** Verify a toy encoded operation and its resource/error assumptions; state that it is not a hardware reproduction.
 

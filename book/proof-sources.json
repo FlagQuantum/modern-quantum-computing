@@ -735,6 +735,171 @@
       "note": "Original editorial specifications; not external mathematical authority",
       "url": "https://github.com/FlagQuantum/modern-quantum-computing/tree/ad17637ff3ccc32c32b93994cfe5b589d3c30e53",
       "revision": "ad17637ff3ccc32c32b93994cfe5b589d3c30e53"
+    },
+    "BK2012": {
+      "id": "BK2012",
+      "title": "The Bravyi-Kitaev transformation for quantum computation of electronic structure",
+      "authors": "Seeley, Richard and Love",
+      "year": 2012,
+      "url": "https://arxiv.org/pdf/1208.5986v1",
+      "revision": "1208.5986v1",
+      "note": "J. Chem. Phys. 137, 224109; DOI 10.1063/1.4768229. Table III is a separate historical numerical fixture, not the 2016 STO-6G geometry scan. arXiv submission metadata is 2012; the accessed rebuilt PDF has a later generated date",
+      "sha256": "bf041cde5dcceb75c4bd8c58e4607d7b2317f723c53ccc7e5e025f2792c026b0",
+      "pdf_pages": 38
+    },
+    "IONEXP": {
+      "id": "IONEXP",
+      "title": "Non-Abelian Topological Order and Anyons on a Trapped-Ion Processor",
+      "authors": "Iqbal et al.",
+      "year": 2024,
+      "url": "https://arxiv.org/pdf/2305.03766v2",
+      "revision": "2305.03766v2",
+      "note": "Author manuscript; journal version Nature 626, 505–511 (2024), DOI 10.1038/s41586-023-06934-4; journal figure numbering is recorded separately",
+      "sha256": "87348ee1e7659c140a2f1005a7037a19ddbf65bba146717f8a4778e7830f946b",
+      "pdf_pages": 26
+    },
+    "KITREAD": {
+      "id": "KITREAD",
+      "title": "Single-shot parity readout of a minimal Kitaev chain",
+      "authors": "van Loo et al.",
+      "year": 2026,
+      "url": "https://arxiv.org/pdf/2507.01606v2",
+      "revision": "2507.01606v2",
+      "note": "Author accepted manuscript, revised 6 October 2026; Nature 650, 334–339 (2026); journal publication 11 February 2026 despite the 2025 DOI string",
+      "sha256": "6fe429db566525b5bb59abaf487a61cb97ac534a6a4eb8d16e63792d0d5e2bcc",
+      "pdf_pages": 34
+    },
+    "BSE6": {
+      "id": "BSE6",
+      "title": "STO-6G hydrogen orbital basis, version 1",
+      "authors": "Basis Set Exchange",
+      "year": 2018,
+      "url": "https://www.basissetexchange.org/api/basis/sto-6g/format/json/?elements=1&version=1",
+      "revision": "Data revision 2018-06-19; basis version 1; JSON accessed 2026-10-20",
+      "note": "Hydrogen electron shell: six primitive exponents and coefficients; reference key hehre1969a, Hehre, Stewart and Pople, J. Chem. Phys. 51, 2657–2664 (1969), DOI 10.1063/1.1672392. This database entry, rather than an uninspected original table, supplies the numeric basis fixture",
+      "sha256": "9cf98127d7ea7ac035cc041048ac34ff6308761d63fb3d1dd1ac707f7e526122",
+      "media_type": "application/json"
+    },
+    "N2020": {
+      "id": "N2020",
+      "title": "Direct observation of anyonic braiding statistics",
+      "authors": "Nakamura, Liang, Gardner and Manfra",
+      "year": 2020,
+      "url": "https://www.nature.com/articles/s41567-020-1019-1",
+      "revision": "Version of record; published 3 September 2020; publisher HTML accessed 2026-10-20",
+      "note": "Nature Physics 16, 931–936. Checked journal abstract, figure titles, extended-data captions and source-data links; no independent raw-data reanalysis",
+      "sha256": "b843758f4a7d9f4dd2451fcc64f7d54c15ee69c96b811616bc0328ed42b4d07a",
+      "media_type": "text/html",
+      "checked": "2026-10-20"
+    },
+    "G2023": {
+      "id": "G2023",
+      "title": "Non-Abelian braiding of graph vertices in a superconducting processor",
+      "authors": "Google Quantum AI and Collaborators",
+      "year": 2023,
+      "url": "https://www.nature.com/articles/s41586-023-05954-4",
+      "revision": "Version of record; published 11 May 2023; publisher HTML accessed 2026-10-20",
+      "note": "Nature 618, 264–269. Open journal full text and figure captions checked; engineered graph defects are distinguished from material Majorana modes",
+      "sha256": "66ef51cb4ec25e4289c8a21e6edc8a05b8bf0c2c789a161e44d9fec998961a54",
+      "media_type": "text/html",
+      "checked": "2026-10-20"
+    },
+    "I2024": {
+      "id": "I2024",
+      "title": "Non-Abelian topological order and anyons on a trapped-ion processor",
+      "authors": "Iqbal et al.",
+      "year": 2024,
+      "url": "https://www.nature.com/articles/s41586-023-06934-4",
+      "revision": "Version of record; published 14 February 2024; publisher HTML accessed 2026-10-20",
+      "note": "Nature 626, 505–511. Journal abstract/figure titles/data statement and public author manuscript checked; a prepared D4 model on a processor",
+      "sha256": "b792848552911320003622ab7c76efbacd777d75cc48a606b8743cc69d1c0098",
+      "media_type": "text/html",
+      "checked": "2026-10-20"
+    },
+    "F2024": {
+      "id": "F2024",
+      "title": "Non-Abelian braiding of Fibonacci anyons with a superconducting processor",
+      "authors": "Xu et al.",
+      "year": 2024,
+      "url": "https://www.nature.com/articles/s41567-024-02529-6",
+      "revision": "Version of record; published 1 July 2024; publisher HTML accessed 2026-10-20",
+      "note": "Nature Physics 20, 1469–1475. Open journal text, Methods and Fig. 4 checked; digitally prepared string-net/Fibonacci model",
+      "sha256": "cc5678328a5a0f068cb4a15202713a765fffcbfdd1e17394d0857ac3cb0076d0",
+      "media_type": "text/html",
+      "checked": "2026-10-20"
+    },
+    "MS2025": {
+      "id": "MS2025",
+      "title": "Interferometric single-shot parity measurement in InAs–Al hybrid devices",
+      "authors": "Microsoft Azure Quantum",
+      "year": 2025,
+      "url": "https://www.nature.com/articles/s41586-024-08445-2",
+      "revision": "Version of record; published 19 February 2025; publisher HTML accessed 2026-10-20",
+      "note": "Nature 638, 651–655. Open journal main text and Fig. 3/4 checked. Pair with L2026 and MR2026; a parity measurement alone does not settle topological origin",
+      "sha256": "9fcc9bc978c5089b1fad30ed76329b01f5b3ca78907743665be46dabce992d3c",
+      "media_type": "text/html",
+      "checked": "2026-10-20"
+    },
+    "L2026": {
+      "id": "L2026",
+      "title": "On the robustness of topological gap detection via transport",
+      "authors": "Legg",
+      "year": 2026,
+      "url": "https://www.nature.com/articles/s41586-026-10567-8",
+      "revision": "Version of record; published 24 June 2026; publisher HTML accessed 2026-10-20",
+      "note": "Nature 654, E22–E26. Publisher preview, figure titles, data/code statement and change history checked; full subscription text not accessed. July 2 update adds peer-review file. Interpretive critique, not a new experiment; pair with author reply MR2026",
+      "sha256": "abbafd5831f81b117cd9f7d275ffe34fc4a7d6c2da5ede25271c373a5cdfe73f",
+      "media_type": "text/html",
+      "checked": "2026-10-20"
+    },
+    "MR2026": {
+      "id": "MR2026",
+      "title": "Reply to: On the robustness of topological gap detection via transport",
+      "authors": "Microsoft Quantum",
+      "year": 2026,
+      "url": "https://www.nature.com/articles/s41586-026-10568-7",
+      "revision": "Version of record; published 24 June 2026; publisher HTML accessed 2026-10-20",
+      "note": "Nature 654, E27–E28. Publisher preview, data statement and change history checked; full subscription text not accessed. July 2 update adds peer-review file. Author counterargument to L2026; neither side is treated as an independently resolved verdict",
+      "sha256": "28050fa7d9b14469ea8b16048d2f3ced65338a02a36d98c3ffec7fa1440da88e",
+      "media_type": "text/html",
+      "checked": "2026-10-20"
+    },
+    "K2026": {
+      "id": "K2026",
+      "title": "Single-shot parity readout of a minimal Kitaev chain",
+      "authors": "van Loo et al.",
+      "year": 2026,
+      "url": "https://www.nature.com/articles/s41586-025-09927-7",
+      "revision": "Version of record; published 11 February 2026; publisher HTML accessed 2026-10-20",
+      "note": "Nature 650, 334–339. Journal abstract, figure titles and data/code statement checked alongside accepted manuscript KITREAD; minimal two-site protection is limited",
+      "sha256": "8eace5476bd67fa38ebf534f6b1b2743b02b8fffce03023429b05d3f48256d87",
+      "media_type": "text/html",
+      "checked": "2026-10-20"
+    },
+    "Z2018": {
+      "id": "Z2018",
+      "title": "RETRACTED ARTICLE: Quantized Majorana conductance",
+      "authors": "Zhang et al.",
+      "year": 2018,
+      "url": "https://www.nature.com/articles/nature26142",
+      "revision": "Version of record; published 28 March 2018; publisher HTML accessed 2026-10-20",
+      "note": "Nature 556, 74–79. RETRACTED 8 March 2021; evidence-audit case only. Must be paired with ZR2021; prohibited as positive support for a device claim",
+      "sha256": "094e342d4238422e051a1fc91e70d1438fe8a9a64c3e6b229eed8d65e04ec114",
+      "media_type": "text/html",
+      "checked": "2026-10-20",
+      "publication_status": "retracted"
+    },
+    "ZR2021": {
+      "id": "ZR2021",
+      "title": "Retraction Note: Quantized Majorana conductance",
+      "authors": "Zhang et al.",
+      "year": 2021,
+      "url": "https://www.nature.com/articles/s41586-021-03373-x",
+      "revision": "Version of record; published 8 March 2021; publisher HTML accessed 2026-10-20",
+      "note": "Nature 591, E30. Retraction note checked; reanalysis/calibration invalidated the quantized-conductance claim of Z2018; corrected/raw data linked by authors",
+      "sha256": "4e99b24db4b9b9c5742fb9ed3defff915351bdbf754fdba7d702b917bc99b596",
+      "media_type": "text/html",
+      "checked": "2026-10-20"
     }
   },
   "locators": {
@@ -4781,6 +4946,207 @@
       ],
       "page_unit": "PDF page (1-based)",
       "url": "https://arxiv.org/pdf/quant-ph/9503016v1#page=26",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "BK2012:integrals": {
+      "work": "BK2012",
+      "locator": "Section VII, Eq. (61) and Table III: integral convention and historical RHF fixture",
+      "pages": [
+        24,
+        26
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1208.5986v1#page=24",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "BK2012:mapping": {
+      "work": "BK2012",
+      "locator": "Sections II–III: spin-orbital conventions and alternatives to occupation encoding",
+      "pages": [
+        3,
+        6
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1208.5986v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "BK2012:paulis": {
+      "work": "BK2012",
+      "locator": "Section VII, Eq. (79)–(80): four-qubit Pauli expansions",
+      "pages": [
+        28,
+        28
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1208.5986v1#page=28",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "BSE6:H": {
+      "work": "BSE6",
+      "locator": "elements.1.electron_shells[0]; exponents, coefficients and references",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.basissetexchange.org/api/basis/sto-6g/format/json/?elements=1&version=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "H2:reduction": {
+      "work": "H2",
+      "locator": "Appendix A, Eq. (A1)–(A6) and Fig. 5: molecular model, integrals, BK Hamiltonian and reduction",
+      "pages": [
+        9,
+        10
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1512.06860v2#page=9",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "H2:gauge": {
+      "work": "H2",
+      "locator": "Appendix B: BK gauge freedom and Hartree–Fock preparation; Appendix D: UCC restriction",
+      "pages": [
+        10,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1512.06860v2#page=10",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "N2020:braiding": {
+      "work": "N2020",
+      "locator": "Abstract; Fig. 1–3; Extended Data Fig. 2; source data for Fig. 2–3",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.nature.com/articles/s41567-020-1019-1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "G2023:braiding": {
+      "work": "G2023",
+      "locator": "Braiding non-Abelian anyons; Fig. 3–4; Data availability",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.nature.com/articles/s41586-023-05954-4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "I2024:braiding": {
+      "work": "I2024",
+      "locator": "Abstract; Fig. 3–6; Extended Data Fig. 5; Data and Code availability",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.nature.com/articles/s41586-023-06934-4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "IONEXP:braiding": {
+      "work": "IONEXP",
+      "locator": "Main text and Fig. 4–6: fusion, Borromean braiding and torus sectors",
+      "pages": [
+        4,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2305.03766v2#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "F2024:braiding": {
+      "work": "F2024",
+      "locator": "Fig. 4; Methods: creation/fusion and braiding; Supplementary Section I.B referenced by the journal; Data and Code availability",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.nature.com/articles/s41567-024-02529-6",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MS2025:readout": {
+      "work": "MS2025",
+      "locator": "Main text qualification of MZM/Andreev interpretation; Fig. 3 experiment versus Fig. 4 simulation; Data availability",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.nature.com/articles/s41586-024-08445-2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "L2026:comment": {
+      "work": "L2026",
+      "locator": "Publisher opening argument; Fig. 1–2 titles; Data/Code availability; Change history",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.nature.com/articles/s41586-026-10567-8",
+      "status": "publisher-preview-and-metadata-checked; full-text-review-pending",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MR2026:reply": {
+      "work": "MR2026",
+      "locator": "Publisher opening reply; Data availability; Change history",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.nature.com/articles/s41586-026-10568-7",
+      "status": "publisher-preview-and-metadata-checked; full-text-review-pending",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "K2026:readout": {
+      "work": "K2026",
+      "locator": "Abstract; Fig. 1–4 titles; Data and Code availability",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.nature.com/articles/s41586-025-09927-7",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "KITREAD:readout": {
+      "work": "KITREAD",
+      "locator": "Abstract, main text and Fig. 3–4: capacitance parity readout and charge-sensing comparison",
+      "pages": [
+        1,
+        9
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2507.01606v2#page=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "Z2018:status": {
+      "work": "Z2018",
+      "locator": "Publisher retraction banner and link to the 2021 Retraction Note",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.nature.com/articles/nature26142",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ZR2021:notice": {
+      "work": "ZR2021",
+      "locator": "Retraction notice; reanalysis and data repository",
+      "pages": null,
+      "page_unit": "HTML section / named figure / JSON field",
+      "url": "https://www.nature.com/articles/s41586-021-03373-x",
       "status": "locator-checked",
       "checked": "2026-10-20",
       "proof_review": "pending"

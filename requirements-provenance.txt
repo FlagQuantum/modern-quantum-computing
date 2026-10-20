@@ -1,0 +1,6 @@
+# Optional independent chemistry audit; Python 3.9–3.12.
+# Keep separate from the FlagQuantum examples environment.
+numpy==1.26.4
+scipy==1.13.1
+h5py==3.14.0
+pyscf==2.10.0

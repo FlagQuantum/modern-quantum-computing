@@ -1,6 +1,6 @@
 # Exact sources for the result and proof plan
 
-**67 works / 312 locators · checked/assigned 2026-10-20.** The catalogue records the actual manuscript/edition, citation metadata, section or page target, and the SHA-256 of the locally accessed PDF. The files and extracted source passages are not distributed. Public availability does not confer redistribution permission. Historical reviews support stated models, not current performance rankings. An arXiv v1 can have a different title/author order from its journal publication.
+**81 works / 330 locators · checked/assigned 2026-10-20.** The catalogue records the actual manuscript/edition, citation metadata, section or page target, and the SHA-256 of the locally accessed source artifact (PDF, publisher HTML or basis JSON). The files and extracted source passages are not distributed. Public availability does not confer redistribution permission. Historical reviews support stated models, not current performance rankings. An arXiv v1 can have a different title/author order from its journal publication.
 
 [Section plans](../proof-plan.md) · [Download BibTeX](proof-plan.bib)
 
@@ -17,7 +17,7 @@ Nielsen and Chuang (2010). **Accessed version:** 10th Anniversary, 2010. [Source
 
 10th Anniversary Edition; section and printed-page locators.
 
-**Accessed PDF SHA-256:** d7a7e784cad22e6a039ddd215be6fff27098e5997e9f33a15ed4c9994839949a.
+**Accessed source SHA-256 (application/pdf):** d7a7e784cad22e6a039ddd215be6fff27098e5997e9f33a15ed4c9994839949a.
 
 <span id="source-nc-1-2"></span>
 
@@ -432,7 +432,7 @@ Watrous (2018). **Accessed version:** Author pre-publication manuscript, January
 
 Author pre-publication manuscript, January 2018; printed-page locators.
 
-**Accessed PDF SHA-256:** c8f30116586435fc265273b09ca2d63f4912a5d4b8901db1ada84b03373c6325.
+**Accessed source SHA-256 (application/pdf):** c8f30116586435fc265273b09ca2d63f4912a5d4b8901db1ada84b03373c6325.
 
 <span id="source-tqi-1-1-3"></span>
 
@@ -539,7 +539,7 @@ Boyd and Vandenberghe (2004). **Accessed version:** Author-hosted seventh printi
 
 Author-hosted seventh printing with corrections (2009); printed-page locators.
 
-**Accessed PDF SHA-256:** 40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e.
+**Accessed source SHA-256 (application/pdf):** 40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e.
 
 <span id="source-cvx-4-1"></span>
 
@@ -574,7 +574,7 @@ Preskill (2020). **Accessed version:** Author manuscript updated November 2020; 
 
 Author manuscript updated November 2020; file chap6_20_6A_2022.pdf.
 
-**Accessed PDF SHA-256:** 83afe653105520793ab37a56cfcce606dbec20e2ff67510887ae71dd0c6d6a28.
+**Accessed source SHA-256 (application/pdf):** 83afe653105520793ab37a56cfcce606dbec20e2ff67510887ae71dd0c6d6a28.
 
 <span id="source-p6-6-1"></span>
 
@@ -597,7 +597,7 @@ Preskill (2026). **Accessed version:** Author manuscript linked March 2026; file
 
 Author manuscript linked March 2026; file chap7_26_6A.pdf.
 
-**Accessed PDF SHA-256:** ddb6901c73ca5732272164c03ef91696be01d697bc4c7c55eeeddcee7aafc8bc.
+**Accessed source SHA-256 (application/pdf):** ddb6901c73ca5732272164c03ef91696be01d697bc4c7c55eeeddcee7aafc8bc.
 
 <span id="source-p7-7-10-2"></span>
 
@@ -624,7 +624,7 @@ Preskill (2004). **Accessed version:** Author lecture notes dated 14 June 2004. 
 
 Author lecture notes dated 14 June 2004.
 
-**Accessed PDF SHA-256:** b18e7631222d2fca486a962c63e149c2b6f44e8b51fef7b010112c90a643d18e.
+**Accessed source SHA-256 (application/pdf):** b18e7631222d2fca486a962c63e149c2b6f44e8b51fef7b010112c90a643d18e.
 
 <span id="source-p9-9-12-2"></span>
 
@@ -657,7 +657,7 @@ Author lecture notes dated 14 June 2004.
 
 Gilyén, Su, Low and Wiebe (2018). **Accessed version:** 1806.01838v1. [Source](https://arxiv.org/pdf/1806.01838v1).
 
-**Accessed PDF SHA-256:** 0326a3de56b10c9805074031a827b1ac4c5ee526c5ad362096adfbacc261c60d.
+**Accessed source SHA-256 (application/pdf):** 0326a3de56b10c9805074031a827b1ac4c5ee526c5ad362096adfbacc261c60d.
 
 <span id="source-qsvt-3-1"></span>
 
@@ -710,7 +710,7 @@ Gilyén, Su, Low and Wiebe (2018). **Accessed version:** 1806.01838v1. [Source](
 
 Low and Chuang (2016). **Accessed version:** 1610.06546v1. [Source](https://arxiv.org/pdf/1610.06546v1).
 
-**Accessed PDF SHA-256:** 8e1ca2ad4714b4d08b6ea3dc925f77a4819b37408aa8e35f6f27d26f0a210626.
+**Accessed source SHA-256 (application/pdf):** 8e1ca2ad4714b4d08b6ea3dc925f77a4819b37408aa8e35f6f27d26f0a210626.
 
 <span id="source-qub-3"></span>
 
@@ -727,7 +727,7 @@ Low and Chuang (2016). **Accessed version:** 1610.06546v1. [Source](https://arxi
 
 Suzuki et al. (2019). **Accessed version:** 1904.10246v1. [Source](https://arxiv.org/pdf/1904.10246v1).
 
-**Accessed PDF SHA-256:** 7f103148377e400288bb54591f051b82cf848656fbd2d5d8ae5d5130aaed1c9a.
+**Accessed source SHA-256 (application/pdf):** 7f103148377e400288bb54591f051b82cf848656fbd2d5d8ae5d5130aaed1c9a.
 
 <span id="source-ae-3-1"></span>
 
@@ -744,7 +744,7 @@ Suzuki et al. (2019). **Accessed version:** 1904.10246v1. [Source](https://arxiv
 
 Brassard, Høyer, Mosca and Tapp (2000). **Accessed version:** quant-ph/0005055v1. [Source](https://arxiv.org/pdf/quant-ph/0005055v1).
 
-**Accessed PDF SHA-256:** badedce80b0fe53e6cd93f915ce79c9680e375bb6565f83d2f572bc4114b0278.
+**Accessed source SHA-256 (application/pdf):** badedce80b0fe53e6cd93f915ce79c9680e375bb6565f83d2f572bc4114b0278.
 
 <span id="source-amp-2"></span>
 
@@ -761,7 +761,7 @@ Brassard, Høyer, Mosca and Tapp (2000). **Accessed version:** quant-ph/0005055v
 
 Childs et al. (2002). **Accessed version:** quant-ph/0209131v1. [Source](https://arxiv.org/pdf/quant-ph/0209131v1).
 
-**Accessed PDF SHA-256:** 9504b267e536aa87ab52da004ed35981b5515ed6376e585ef797dae7a013b350.
+**Accessed source SHA-256 (application/pdf):** 9504b267e536aa87ab52da004ed35981b5515ed6376e585ef797dae7a013b350.
 
 <span id="source-walk-construction"></span>
 
@@ -774,7 +774,7 @@ Childs et al. (2002). **Accessed version:** quant-ph/0209131v1. [Source](https:/
 
 Beals et al. (1998). **Accessed version:** quant-ph/9802049v1. [Source](https://arxiv.org/pdf/quant-ph/9802049v1).
 
-**Accessed PDF SHA-256:** dbc5086cd8f75f12bd2f98ad7ce2068b9a0bd0bafd9bebea7a33e3e032417417.
+**Accessed source SHA-256 (application/pdf):** dbc5086cd8f75f12bd2f98ad7ce2068b9a0bd0bafd9bebea7a33e3e032417417.
 
 <span id="source-lb-polynomial"></span>
 
@@ -791,7 +791,7 @@ Beals et al. (1998). **Accessed version:** quant-ph/9802049v1. [Source](https://
 
 Farhi et al. (2000). **Accessed version:** quant-ph/0001106v1. [Source](https://arxiv.org/pdf/quant-ph/0001106v1).
 
-**Accessed PDF SHA-256:** 1009e50c14192e7ccce6be613e8857fd762ba4e063fb59b62a8dec16237116ff.
+**Accessed source SHA-256 (application/pdf):** 1009e50c14192e7ccce6be613e8857fd762ba4e063fb59b62a8dec16237116ff.
 
 <span id="source-adi-adiabatic"></span>
 
@@ -804,7 +804,7 @@ Farhi et al. (2000). **Accessed version:** quant-ph/0001106v1. [Source](https://
 
 Jansen, Ruskai and Seiler (2007). **Accessed version:** quant-ph/0603175v3. [Source](https://arxiv.org/pdf/quant-ph/0603175v3).
 
-**Accessed PDF SHA-256:** b96b67d4c7dae9d3e996d8f39bd8e5a93f4279246956a67a708f80077dc86d7c.
+**Accessed source SHA-256 (application/pdf):** b96b67d4c7dae9d3e996d8f39bd8e5a93f4279246956a67a708f80077dc86d7c.
 
 <span id="source-adbound-theorem"></span>
 
@@ -817,7 +817,7 @@ Jansen, Ruskai and Seiler (2007). **Accessed version:** quant-ph/0603175v3. [Sou
 
 Eastin and Knill (2009). **Accessed version:** 0811.4262v2. [Source](https://arxiv.org/pdf/0811.4262v2).
 
-**Accessed PDF SHA-256:** 7b08440c2cbda17452eb4eac8b6e786379b498eec3de361331a04aaff71e3ef6.
+**Accessed source SHA-256 (application/pdf):** 7b08440c2cbda17452eb4eac8b6e786379b498eec3de361331a04aaff71e3ef6.
 
 <span id="source-ek-theorem"></span>
 
@@ -830,7 +830,7 @@ Eastin and Knill (2009). **Accessed version:** 0811.4262v2. [Source](https://arx
 
 Schuld et al. (2018). **Accessed version:** 1811.11184v1. [Source](https://arxiv.org/pdf/1811.11184v1).
 
-**Accessed PDF SHA-256:** 4f0bad125a39a756d685fd63730150d4e2e517fd297a6f0d6c99b6cded7f653b.
+**Accessed source SHA-256 (application/pdf):** 4f0bad125a39a756d685fd63730150d4e2e517fd297a6f0d6c99b6cded7f653b.
 
 <span id="source-ps-ii"></span>
 
@@ -847,7 +847,7 @@ Schuld et al. (2018). **Accessed version:** 1811.11184v1. [Source](https://arxiv
 
 Wierichs et al. (2021). **Accessed version:** 2107.12390v1. [Source](https://arxiv.org/pdf/2107.12390v1).
 
-**Accessed PDF SHA-256:** 939c3fdea244045c7941fb9abb186658797cda7cc85db36c6f38835dee57fcde.
+**Accessed source SHA-256 (application/pdf):** 939c3fdea244045c7941fb9abb186658797cda7cc85db36c6f38835dee57fcde.
 
 <span id="source-gps-ii-a"></span>
 
@@ -868,7 +868,7 @@ Wierichs et al. (2021). **Accessed version:** 2107.12390v1. [Source](https://arx
 
 Jones and Gacon (2020). **Accessed version:** 2009.02823v1. [Source](https://arxiv.org/pdf/2009.02823v1).
 
-**Accessed PDF SHA-256:** 34d6006b0b66258d5d6ba7ef6976fe3fcdf04cee22d810b96926ab6559e19212.
+**Accessed source SHA-256 (application/pdf):** 34d6006b0b66258d5d6ba7ef6976fe3fcdf04cee22d810b96926ab6559e19212.
 
 <span id="source-adj-2-2"></span>
 
@@ -885,7 +885,7 @@ Jones and Gacon (2020). **Accessed version:** 2009.02823v1. [Source](https://arx
 
 Stokes et al. (2019). **Accessed version:** 1909.02108v1. [Source](https://arxiv.org/pdf/1909.02108v1).
 
-**Accessed PDF SHA-256:** ed521b2b9bcc2e579d41dc129f01bde1ba4a0f8ae6cad8faaedd05288c832d35.
+**Accessed source SHA-256 (application/pdf):** ed521b2b9bcc2e579d41dc129f01bde1ba4a0f8ae6cad8faaedd05288c832d35.
 
 <span id="source-qng-ii-a"></span>
 
@@ -906,7 +906,7 @@ Stokes et al. (2019). **Accessed version:** 1909.02108v1. [Source](https://arxiv
 
 McClean et al. (2018). **Accessed version:** 1803.11173v1. [Source](https://arxiv.org/pdf/1803.11173v1).
 
-**Accessed PDF SHA-256:** 6f6b475fe2dd77c484bc16104b7065e450284121afd173dc1a02c582d41dca6a.
+**Accessed source SHA-256 (application/pdf):** 6f6b475fe2dd77c484bc16104b7065e450284121afd173dc1a02c582d41dca6a.
 
 <span id="source-bp-theorem"></span>
 
@@ -919,7 +919,7 @@ McClean et al. (2018). **Accessed version:** 1803.11173v1. [Source](https://arxi
 
 Berry, Childs and Kothari (2015). **Accessed version:** 1501.01715v1. [Source](https://arxiv.org/pdf/1501.01715v1).
 
-**Accessed PDF SHA-256:** 19f74d0e2b29269721a18455def9d3c584e3a4230694ee81b374ad5e13e60154.
+**Accessed source SHA-256 (application/pdf):** 19f74d0e2b29269721a18455def9d3c584e3a4230694ee81b374ad5e13e60154.
 
 <span id="source-cheb-comparison"></span>
 
@@ -936,7 +936,7 @@ Berry, Childs and Kothari (2015). **Accessed version:** 1501.01715v1. [Source](h
 
 McArdle et al. (2018). **Accessed version:** 1808.10402v1. [Source](https://arxiv.org/pdf/1808.10402v1).
 
-**Accessed PDF SHA-256:** 2304b0319888d4225d1ca218e7261997e9d80095fa182294a5c62447b42a0512.
+**Accessed source SHA-256 (application/pdf):** 2304b0319888d4225d1ca218e7261997e9d80095fa182294a5c62447b42a0512.
 
 <span id="source-chem-iii"></span>
 
@@ -977,7 +977,7 @@ McArdle et al. (2018). **Accessed version:** 1808.10402v1. [Source](https://arxi
 
 Knizia and Chan (2012). **Accessed version:** 1204.5783v1. [Source](https://arxiv.org/pdf/1204.5783v1).
 
-**Accessed PDF SHA-256:** 3724599025bce1bf59c719c5f95c737cfe75d4a1f92d16f8db9375f550a1e09d.
+**Accessed source SHA-256 (application/pdf):** 3724599025bce1bf59c719c5f95c737cfe75d4a1f92d16f8db9375f550a1e09d.
 
 <span id="source-dmet-construction"></span>
 
@@ -990,7 +990,7 @@ Knizia and Chan (2012). **Accessed version:** 1204.5783v1. [Source](https://arxi
 
 Robledo-Moreno et al. (2024). **Accessed version:** 2405.05068v1. [Source](https://arxiv.org/pdf/2405.05068v1).
 
-**Accessed PDF SHA-256:** 6e35f5b6afd810cbee6db52d3bd87b5fe23a4d06da5bf4c498048bdd0901a355.
+**Accessed source SHA-256 (application/pdf):** 6e35f5b6afd810cbee6db52d3bd87b5fe23a4d06da5bf4c498048bdd0901a355.
 
 <span id="source-sqd-methods"></span>
 
@@ -1003,7 +1003,7 @@ Robledo-Moreno et al. (2024). **Accessed version:** 2405.05068v1. [Source](https
 
 Farhi, Goldstone and Gutmann (2014). **Accessed version:** 1411.4028v1. [Source](https://arxiv.org/pdf/1411.4028v1).
 
-**Accessed PDF SHA-256:** 0b8f8649ffa0ae294d74a5d67a2198754283aa397771cc5b8c72161f3d1bb0a3.
+**Accessed source SHA-256 (application/pdf):** 0b8f8649ffa0ae294d74a5d67a2198754283aa397771cc5b8c72161f3d1bb0a3.
 
 <span id="source-qaoa-objective"></span>
 
@@ -1016,7 +1016,7 @@ Farhi, Goldstone and Gutmann (2014). **Accessed version:** 1411.4028v1. [Source]
 
 Hadfield et al. (2017). **Accessed version:** 1709.03489v1. [Source](https://arxiv.org/pdf/1709.03489v1).
 
-**Accessed PDF SHA-256:** d40f3942a5d336f6aff98191f7948fa72e5325e84add2588475222c3ca1b4e86.
+**Accessed source SHA-256 (application/pdf):** d40f3942a5d336f6aff98191f7948fa72e5325e84add2588475222c3ca1b4e86.
 
 <span id="source-mix-mixers"></span>
 
@@ -1029,7 +1029,7 @@ Hadfield et al. (2017). **Accessed version:** 1709.03489v1. [Source](https://arx
 
 Schuld and Killoran (2018). **Accessed version:** 1803.07128v1. [Source](https://arxiv.org/pdf/1803.07128v1).
 
-**Accessed PDF SHA-256:** 249d89ddd5ef9748d3dc97f772ef69b5496b5a90bea50e11b463fc6505e41045.
+**Accessed source SHA-256 (application/pdf):** 249d89ddd5ef9748d3dc97f772ef69b5496b5a90bea50e11b463fc6505e41045.
 
 <span id="source-kernel-ii-a"></span>
 
@@ -1062,7 +1062,7 @@ Schuld and Killoran (2018). **Accessed version:** 1803.07128v1. [Source](https:/
 
 Schuld, Sweke and Meyer (2020). **Accessed version:** 2008.08605v1. [Source](https://arxiv.org/pdf/2008.08605v1).
 
-**Accessed PDF SHA-256:** 68c311e1670cf6dee6c3d817611a5ac2586372b9b9b01ffeefc4f1c2c1346c91.
+**Accessed source SHA-256 (application/pdf):** 68c311e1670cf6dee6c3d817611a5ac2586372b9b9b01ffeefc4f1c2c1346c91.
 
 <span id="source-enc-i"></span>
 
@@ -1083,7 +1083,7 @@ Schuld, Sweke and Meyer (2020). **Accessed version:** 2008.08605v1. [Source](htt
 
 Endo et al. (2020). **Accessed version:** 2011.01382v1. [Source](https://arxiv.org/pdf/2011.01382v1).
 
-**Accessed PDF SHA-256:** d915f6a3ea9d7093188ffcf16ec0240b2b58a73be78a49cf7dd3cad6edb4de50.
+**Accessed source SHA-256 (application/pdf):** d915f6a3ea9d7093188ffcf16ec0240b2b58a73be78a49cf7dd3cad6edb4de50.
 
 <span id="source-noise-mitigation"></span>
 
@@ -1100,7 +1100,7 @@ Endo et al. (2020). **Accessed version:** 2011.01382v1. [Source](https://arxiv.o
 
 Magesan, Gambetta and Emerson (2010). **Accessed version:** 1009.3639v1. [Source](https://arxiv.org/pdf/1009.3639v1).
 
-**Accessed PDF SHA-256:** bba30fb0b3f6cdd9a8d0cfc3a6f48344a8688898b781477fa2595f5cebb26378.
+**Accessed source SHA-256 (application/pdf):** bba30fb0b3f6cdd9a8d0cfc3a6f48344a8688898b781477fa2595f5cebb26378.
 
 <span id="source-rb-decay"></span>
 
@@ -1113,7 +1113,7 @@ Magesan, Gambetta and Emerson (2010). **Accessed version:** 1009.3639v1. [Source
 
 Bravyi et al. (2023). **Accessed version:** 2308.07915v1. [Source](https://arxiv.org/pdf/2308.07915v1).
 
-**Accessed PDF SHA-256:** 5d105ea604ec6c0bb9f4a4417a29c1160508725062fb0ac8d7012e15c5e76bf3.
+**Accessed source SHA-256 (application/pdf):** 5d105ea604ec6c0bb9f4a4417a29c1160508725062fb0ac8d7012e15c5e76bf3.
 
 <span id="source-ldpc-construction"></span>
 
@@ -1126,7 +1126,7 @@ Bravyi et al. (2023). **Accessed version:** 2308.07915v1. [Source](https://arxiv
 
 Albert (2022). **Accessed version:** 2211.05714v1. [Source](https://arxiv.org/pdf/2211.05714v1).
 
-**Accessed PDF SHA-256:** acfc51439dee44185952e5d71a09fd19aa8fa9e3c5d15a609a10b06d43f4c8aa.
+**Accessed source SHA-256 (application/pdf):** acfc51439dee44185952e5d71a09fd19aa8fa9e3c5d15a609a10b06d43f4c8aa.
 
 <span id="source-boson-codes"></span>
 
@@ -1143,7 +1143,7 @@ Albert (2022). **Accessed version:** 2211.05714v1. [Source](https://arxiv.org/pd
 
 Fowler, Mariantoni, Martinis and Cleland (2012). **Accessed version:** 1208.0928v2. [Source](https://arxiv.org/pdf/1208.0928v2).
 
-**Accessed PDF SHA-256:** eaeb6b9d1283fc0fe1040aebb8248a6ea2e7f514ed3981cd8bbfa9e1fb4d4000.
+**Accessed source SHA-256 (application/pdf):** eaeb6b9d1283fc0fe1040aebb8248a6ea2e7f514ed3981cd8bbfa9e1fb4d4000.
 
 <span id="source-surface-case"></span>
 
@@ -1172,7 +1172,7 @@ Fowler, Mariantoni, Martinis and Cleland (2012). **Accessed version:** 1208.0928
 
 Aliferis, Gottesman and Preskill (2005). **Accessed version:** quant-ph/0504218v1. [Source](https://arxiv.org/pdf/quant-ph/0504218v1).
 
-**Accessed PDF SHA-256:** 8dece2bd834a5b155cf41f95d9cea500cdb409b7e7304f765d013f77080c3f62.
+**Accessed source SHA-256 (application/pdf):** 8dece2bd834a5b155cf41f95d9cea500cdb409b7e7304f765d013f77080c3f62.
 
 <span id="source-ft-gadgets"></span>
 
@@ -1191,7 +1191,7 @@ Bravyi and Kitaev (2004). **Accessed version:** quant-ph/0403025v1. [Source](htt
 
 Title follows the accessed v1 manuscript.
 
-**Accessed PDF SHA-256:** 08719155de760685f00787549b351d14ae28a4ae0d5c6e4d8fcf2225f0b416fb.
+**Accessed source SHA-256 (application/pdf):** 08719155de760685f00787549b351d14ae28a4ae0d5c6e4d8fcf2225f0b416fb.
 
 <span id="source-distill-protocol"></span>
 
@@ -1204,7 +1204,7 @@ Title follows the accessed v1 manuscript.
 
 Litinski (2018). **Accessed version:** 1808.02892v1. [Source](https://arxiv.org/pdf/1808.02892v1).
 
-**Accessed PDF SHA-256:** 9344ea854df1626bbe7e2e77b3fdaed667379a5eec2bf57adcfc4f0f01bee941.
+**Accessed source SHA-256 (application/pdf):** 9344ea854df1626bbe7e2e77b3fdaed667379a5eec2bf57adcfc4f0f01bee941.
 
 <span id="source-resource-cost"></span>
 
@@ -1229,7 +1229,7 @@ Litinski (2018). **Accessed version:** 1808.02892v1. [Source](https://arxiv.org/
 
 Krantz et al. (2019). **Accessed version:** 1904.06560v1. [Source](https://arxiv.org/pdf/1904.06560v1).
 
-**Accessed PDF SHA-256:** e5d8ef3edf2614a55f628b9208d8d3489ed7c84aa20aa755ef18b7c4910c8c58.
+**Accessed source SHA-256 (application/pdf):** e5d8ef3edf2614a55f628b9208d8d3489ed7c84aa20aa755ef18b7c4910c8c58.
 
 <span id="source-sc-ii-a"></span>
 
@@ -1278,7 +1278,7 @@ Krantz et al. (2019). **Accessed version:** 1904.06560v1. [Source](https://arxiv
 
 Bruzewicz et al. (2019). **Accessed version:** 1904.04178v1. [Source](https://arxiv.org/pdf/1904.04178v1).
 
-**Accessed PDF SHA-256:** 120774f31a9ca8d6b0644ba7097d5e5ec40707dcdcf27b661825324fe2f60607.
+**Accessed source SHA-256 (application/pdf):** 120774f31a9ca8d6b0644ba7097d5e5ec40707dcdcf27b661825324fe2f60607.
 
 <span id="source-ion-ii-a"></span>
 
@@ -1317,7 +1317,7 @@ Henriet et al. (2020). **Accessed version:** 2006.12326v1. [Source](https://arxi
 
 Historical author whitepaper; not evidence of current platform performance.
 
-**Accessed PDF SHA-256:** eb90c384aa3c7d60cb74c060ced3e6e38b6bcfb60108badec8cfa4e5617ac8c5.
+**Accessed source SHA-256 (application/pdf):** eb90c384aa3c7d60cb74c060ced3e6e38b6bcfb60108badec8cfa4e5617ac8c5.
 
 <span id="source-atom-2-1"></span>
 
@@ -1346,7 +1346,7 @@ Historical author whitepaper; not evidence of current platform performance.
 
 Knill, Laflamme and Milburn (2000). **Accessed version:** quant-ph/0006088v1. [Source](https://arxiv.org/pdf/quant-ph/0006088v1).
 
-**Accessed PDF SHA-256:** bc7bdf8a6a294b54a203ed6f74a0bd07033abce662a062c2c6236493acee6221.
+**Accessed source SHA-256 (application/pdf):** bc7bdf8a6a294b54a203ed6f74a0bd07033abce662a062c2c6236493acee6221.
 
 <span id="source-optics-ii"></span>
 
@@ -1367,7 +1367,7 @@ Knill, Laflamme and Milburn (2000). **Accessed version:** quant-ph/0006088v1. [S
 
 Bartolucci et al. (2021). **Accessed version:** 2101.09310v1. [Source](https://arxiv.org/pdf/2101.09310v1).
 
-**Accessed PDF SHA-256:** f371c3cb467efc093bcc2f9089127490fbb9e106e7f05ac8116822a9608af6e5.
+**Accessed source SHA-256 (application/pdf):** f371c3cb467efc093bcc2f9089127490fbb9e106e7f05ac8116822a9608af6e5.
 
 <span id="source-fusion-ii"></span>
 
@@ -1388,7 +1388,7 @@ Bartolucci et al. (2021). **Accessed version:** 2101.09310v1. [Source](https://a
 
 Burkard et al. (2021). **Accessed version:** 2112.08863v1. [Source](https://arxiv.org/pdf/2112.08863v1).
 
-**Accessed PDF SHA-256:** ae2d529b0e198f73840745305588fcbd452e3f93fe927d164ec71509d92d46cc.
+**Accessed source SHA-256 (application/pdf):** ae2d529b0e198f73840745305588fcbd452e3f93fe927d164ec71509d92d46cc.
 
 <span id="source-spin-ii"></span>
 
@@ -1439,7 +1439,7 @@ Das Sarma, Freedman, Nayak, Simon and Stern (2007). **Accessed version:** 0707.1
 
 Author order follows v1; historical theory and proposals, not current device evidence.
 
-**Accessed PDF SHA-256:** 8c28aae9dad13656c5d6e2afdec08113164c9da9c81d20d3366aa71ce063a897.
+**Accessed source SHA-256 (application/pdf):** 8c28aae9dad13656c5d6e2afdec08113164c9da9c81d20d3366aa71ce063a897.
 
 <span id="source-anyon-ii-a"></span>
 
@@ -1464,7 +1464,7 @@ Author order follows v1; historical theory and proposals, not current device evi
 
 Raussendorf and Briegel (2001). **Accessed version:** quant-ph/0108118v1. [Source](https://arxiv.org/pdf/quant-ph/0108118v1).
 
-**Accessed PDF SHA-256:** f9fad6fc50f37590796e673aac2fa77043634e3a1fa7613211479c9c44ffb179.
+**Accessed source SHA-256 (application/pdf):** f9fad6fc50f37590796e673aac2fa77043634e3a1fa7613211479c9c44ffb179.
 
 <span id="source-mbqc-pattern"></span>
 
@@ -1479,7 +1479,7 @@ Cross et al. (2021). **Accessed version:** 2104.14722v1. [Source](https://arxiv.
 
 Paper v1 describes its own language proposal; it is not a current implementation-support certificate.
 
-**Accessed PDF SHA-256:** 612ec032c3f65bad1123851348474fdd761400a0df1e332d3b762f8bd58552d7.
+**Accessed source SHA-256 (application/pdf):** 612ec032c3f65bad1123851348474fdd761400a0df1e332d3b762f8bd58552d7.
 
 <span id="source-oq3-2-4"></span>
 
@@ -1520,7 +1520,7 @@ Paper v1 describes its own language proposal; it is not a current implementation
 
 Nguyen and McCaskey (2021). **Accessed version:** 2112.10677v1. [Source](https://arxiv.org/pdf/2112.10677v1).
 
-**Accessed PDF SHA-256:** dbe2ee70071c212f97108d9187d6a2e185b754c2f0095021434c67e517c2143e.
+**Accessed source SHA-256 (application/pdf):** dbe2ee70071c212f97108d9187d6a2e185b754c2f0095021434c67e517c2143e.
 
 <span id="source-mlir-ir"></span>
 
@@ -1533,7 +1533,7 @@ Nguyen and McCaskey (2021). **Accessed version:** 2112.10677v1. [Source](https:/
 
 Li, Ding and Xie (2018). **Accessed version:** 1809.02573v1. [Source](https://arxiv.org/pdf/1809.02573v1).
 
-**Accessed PDF SHA-256:** c09efaf1b4759eb734b3f95969cd75bbdd2f4216526dc88e87aa8cc2482fd676.
+**Accessed source SHA-256 (application/pdf):** c09efaf1b4759eb734b3f95969cd75bbdd2f4216526dc88e87aa8cc2482fd676.
 
 <span id="source-sabre-heuristic"></span>
 
@@ -1550,7 +1550,7 @@ Li, Ding and Xie (2018). **Accessed version:** 1809.02573v1. [Source](https://ar
 
 Barenco et al. (1995). **Accessed version:** quant-ph/9503016v1. [Source](https://arxiv.org/pdf/quant-ph/9503016v1).
 
-**Accessed PDF SHA-256:** e329e6e56e234a4c572f8eb2d493b07864e308027fe142985fb76e62229e154d.
+**Accessed source SHA-256 (application/pdf):** e329e6e56e234a4c572f8eb2d493b07864e308027fe142985fb76e62229e154d.
 
 <span id="source-synth-gates"></span>
 
@@ -1567,7 +1567,7 @@ Barenco et al. (1995). **Accessed version:** quant-ph/9503016v1. [Source](https:
 
 Ross and Selinger (2014). **Accessed version:** 1403.2975v1. [Source](https://arxiv.org/pdf/1403.2975v1).
 
-**Accessed PDF SHA-256:** 0029f43668d69a14f131c5c732fa9de49edfed2f37eb54abf1964c172b82d03d.
+**Accessed source SHA-256 (application/pdf):** 0029f43668d69a14f131c5c732fa9de49edfed2f37eb54abf1964c172b82d03d.
 
 <span id="source-ross-synthesis"></span>
 
@@ -1580,7 +1580,7 @@ Ross and Selinger (2014). **Accessed version:** 1403.2975v1. [Source](https://ar
 
 Jones, Brown, Bush and Benjamin (2018). **Accessed version:** 1802.08032v1. [Source](https://arxiv.org/pdf/1802.08032v1).
 
-**Accessed PDF SHA-256:** 58076dec8f4cb64ea658eee88e9b58d02c43b9d81a26bd1eb81af30b7e88d71e.
+**Accessed source SHA-256 (application/pdf):** 58076dec8f4cb64ea658eee88e9b58d02c43b9d81a26bd1eb81af30b7e88d71e.
 
 <span id="source-quest-parallel"></span>
 
@@ -1597,7 +1597,7 @@ Jones, Brown, Bush and Benjamin (2018). **Accessed version:** 1802.08032v1. [Sou
 
 Vidal (2003). **Accessed version:** quant-ph/0301063v1. [Source](https://arxiv.org/pdf/quant-ph/0301063v1).
 
-**Accessed PDF SHA-256:** 0461c1ff4f69b9b3e556e4c2ab3944d629ad26fd74c6955c62d19c35d9d80dfe.
+**Accessed source SHA-256 (application/pdf):** 0461c1ff4f69b9b3e556e4c2ab3944d629ad26fd74c6955c62d19c35d9d80dfe.
 
 <span id="source-mps-rank"></span>
 
@@ -1610,7 +1610,7 @@ Vidal (2003). **Accessed version:** quant-ph/0301063v1. [Source](https://arxiv.o
 
 Schollwöck (2010). **Accessed version:** 1008.3477v1. [Source](https://arxiv.org/pdf/1008.3477v1).
 
-**Accessed PDF SHA-256:** 87ebe6704347adae648eea3697bbbffac07b02cc112abf0bf6c731f8e1879f6e.
+**Accessed source SHA-256 (application/pdf):** 87ebe6704347adae648eea3697bbbffac07b02cc112abf0bf6c731f8e1879f6e.
 
 <span id="source-scholl-3"></span>
 
@@ -1643,7 +1643,7 @@ Schollwöck (2010). **Accessed version:** 1008.3477v1. [Source](https://arxiv.or
 
 Markov and Shi (2005). **Accessed version:** quant-ph/0511069v1. [Source](https://arxiv.org/pdf/quant-ph/0511069v1).
 
-**Accessed PDF SHA-256:** eda6d0d8f3be2c32531afa8b3655513eabf27391232f7a318d066dc31ce90ed2.
+**Accessed source SHA-256 (application/pdf):** eda6d0d8f3be2c32531afa8b3655513eabf27391232f7a318d066dc31ce90ed2.
 
 <span id="source-tn-3"></span>
 
@@ -1660,7 +1660,7 @@ Markov and Shi (2005). **Accessed version:** quant-ph/0511069v1. [Source](https:
 
 Gray and Kourtis (2020). **Accessed version:** 2002.01935v1. [Source](https://arxiv.org/pdf/2002.01935v1).
 
-**Accessed PDF SHA-256:** 187f0c8b5ce1cd30ce5617497496e931c5e66a9c3538fa1af4af0efa18247097.
+**Accessed source SHA-256 (application/pdf):** 187f0c8b5ce1cd30ce5617497496e931c5e66a9c3538fa1af4af0efa18247097.
 
 <span id="source-cotengra-ii"></span>
 
@@ -1677,7 +1677,7 @@ Gray and Kourtis (2020). **Accessed version:** 2002.01935v1. [Source](https://ar
 
 Peng, Harrow, Ozols and Wu (2019). **Accessed version:** 1904.00102v1. [Source](https://arxiv.org/pdf/1904.00102v1).
 
-**Accessed PDF SHA-256:** 9177866bfc2a1278dd8eb5e97ba3298c963ae8802fbde486540e7883c7c92626.
+**Accessed source SHA-256 (application/pdf):** 9177866bfc2a1278dd8eb5e97ba3298c963ae8802fbde486540e7883c7c92626.
 
 <span id="source-cut-identity"></span>
 
@@ -1694,7 +1694,7 @@ Peng, Harrow, Ozols and Wu (2019). **Accessed version:** 1904.00102v1. [Source](
 
 Huang, Kueng and Preskill (2020). **Accessed version:** 2002.08953v1. [Source](https://arxiv.org/pdf/2002.08953v1).
 
-**Accessed PDF SHA-256:** 2b9b3d4631e0d78cc1e55ba2ca88f8e729049417b5b3837d574c2c52e1e52a76.
+**Accessed source SHA-256 (application/pdf):** 2b9b3d4631e0d78cc1e55ba2ca88f8e729049417b5b3837d574c2c52e1e52a76.
 
 <span id="source-shadow-estimator"></span>
 
@@ -1709,7 +1709,7 @@ Scarani et al. (2008). **Accessed version:** 0802.4155v1. [Source](https://arxiv
 
 Title of v1; later revisions/journal publication use The Security of Practical Quantum Key Distribution.
 
-**Accessed PDF SHA-256:** 9e24d52374c9b1137978b491e9c174465dfcdb94a45e0eb38dc93f73c2b4f0c7.
+**Accessed source SHA-256 (application/pdf):** 9e24d52374c9b1137978b491e9c174465dfcdb94a45e0eb38dc93f73c2b4f0c7.
 
 <span id="source-qkd-devices"></span>
 
@@ -1726,7 +1726,7 @@ Title of v1; later revisions/journal publication use The Security of Practical Q
 
 Renner and König (2004). **Accessed version:** quant-ph/0403133v1. [Source](https://arxiv.org/pdf/quant-ph/0403133v1).
 
-**Accessed PDF SHA-256:** 75b967e59c0e068e194bee90d988fe1512d0f0e5a2b117aacbd73ab85a46c919.
+**Accessed source SHA-256 (application/pdf):** 75b967e59c0e068e194bee90d988fe1512d0f0e5a2b117aacbd73ab85a46c919.
 
 <span id="source-privacy-hashing"></span>
 
@@ -1739,7 +1739,7 @@ Renner and König (2004). **Accessed version:** quant-ph/0403133v1. [Source](htt
 
 Müller-Quade and Renner (2010). **Accessed version:** 1006.2215v1. [Source](https://arxiv.org/pdf/1006.2215v1).
 
-**Accessed PDF SHA-256:** fd23030106224ac1b773590b4d0e04f204679a56c6d093979b863cf9cedd73e6.
+**Accessed source SHA-256 (application/pdf):** fd23030106224ac1b773590b4d0e04f204679a56c6d093979b863cf9cedd73e6.
 
 <span id="source-compose-definition"></span>
 
@@ -1752,7 +1752,7 @@ Müller-Quade and Renner (2010). **Accessed version:** 1006.2215v1. [Source](htt
 
 Watrous (2008). **Accessed version:** 0804.3401v1. [Source](https://arxiv.org/pdf/0804.3401v1).
 
-**Accessed PDF SHA-256:** a60cd89068df12aa8a823c238a43d9621ec51a26ce8524281fb702cb841051fe.
+**Accessed source SHA-256 (application/pdf):** a60cd89068df12aa8a823c238a43d9621ec51a26ce8524281fb702cb841051fe.
 
 <span id="source-complex-bqp"></span>
 
@@ -1769,7 +1769,7 @@ Watrous (2008). **Accessed version:** 0804.3401v1. [Source](https://arxiv.org/pd
 
 Lo and Chau (1996). **Accessed version:** quant-ph/9603004v1. [Source](https://arxiv.org/pdf/quant-ph/9603004v1).
 
-**Accessed PDF SHA-256:** d5645770f7b449f6c2a09840c3a418072859f2eaddf443fc961249fd9fc0f1f5.
+**Accessed source SHA-256 (application/pdf):** d5645770f7b449f6c2a09840c3a418072859f2eaddf443fc961249fd9fc0f1f5.
 
 <span id="source-nogo-cheating"></span>
 
@@ -1784,7 +1784,7 @@ O'Malley et al. (2017). **Accessed version:** 1512.06860v2. [Source](https://arx
 
 Corrected arXiv v2 (2017); journal article published 2016.
 
-**Accessed PDF SHA-256:** 79c6db488870611c9020adb2a6fc592a9d821f61266694567aa6c25cd54145c7.
+**Accessed source SHA-256 (application/pdf):** 79c6db488870611c9020adb2a6fc592a9d821f61266694567aa6c25cd54145c7.
 
 <span id="source-h2-vqe"></span>
 
@@ -1794,6 +1794,14 @@ Corrected arXiv v2 (2017); journal article published 2016.
 
 - **H2:data:** [Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes](https://arxiv.org/pdf/1512.06860v2#page=11); PDF page (1-based) 11–13. Locator status: locator-checked; proof review pending.
 
+<span id="source-h2-reduction"></span>
+
+- **H2:reduction:** [Appendix A, Eq. (A1)–(A6) and Fig. 5: molecular model, integrals, BK Hamiltonian and reduction](https://arxiv.org/pdf/1512.06860v2#page=9); PDF page (1-based) 9–10. Locator status: locator-checked; proof review pending.
+
+<span id="source-h2-gauge"></span>
+
+- **H2:gauge:** [Appendix B: BK gauge freedom and Hartree–Fock preparation; Appendix D: UCC restriction](https://arxiv.org/pdf/1512.06860v2#page=10); PDF page (1-based) 10–12. Locator status: locator-checked; proof review pending.
+
 
 <span id="work-magic"></span>
 
@@ -1801,7 +1809,7 @@ Corrected arXiv v2 (2017); journal article published 2016.
 
 Veitch et al. (2013). **Accessed version:** 1307.7171v1. [Source](https://arxiv.org/pdf/1307.7171v1).
 
-**Accessed PDF SHA-256:** 9b67289a01f655d54aaf8d8fb39b219eb9bbe9fc359745a723a15e61518bcf95.
+**Accessed source SHA-256 (application/pdf):** 9b67289a01f655d54aaf8d8fb39b219eb9bbe9fc359745a723a15e61518bcf95.
 
 <span id="source-magic-resource"></span>
 
@@ -1814,7 +1822,7 @@ Veitch et al. (2013). **Accessed version:** 1307.7171v1. [Source](https://arxiv.
 
 Zoller and Gardiner (1997). **Accessed version:** quant-ph/9702030v1. [Source](https://arxiv.org/pdf/quant-ph/9702030v1).
 
-**Accessed PDF SHA-256:** 2778c60999245f1174bf8f46d6549f5a0bdc4e592666f2bbdca208fa2baa95bc.
+**Accessed source SHA-256 (application/pdf):** 2778c60999245f1174bf8f46d6549f5a0bdc4e592666f2bbdca208fa2baa95bc.
 
 <span id="source-traj-unraveling"></span>
 
@@ -1827,7 +1835,7 @@ Zoller and Gardiner (1997). **Accessed version:** quant-ph/9702030v1. [Source](h
 
 Kimble (2008). **Accessed version:** 0806.4195v1. [Source](https://arxiv.org/pdf/0806.4195v1).
 
-**Accessed PDF SHA-256:** f3f60c66074933e09ae19024a1b444e477c694c956caaaa2cc376d6b3b09e775.
+**Accessed source SHA-256 (application/pdf):** f3f60c66074933e09ae19024a1b444e477c694c956caaaa2cc376d6b3b09e775.
 
 <span id="source-net-links"></span>
 
@@ -1840,7 +1848,7 @@ Kimble (2008). **Accessed version:** 0806.4195v1. [Source](https://arxiv.org/pdf
 
 Wilson et al. (2016). **Accessed version:** 1609.00037v2. [Source](https://arxiv.org/pdf/1609.00037v2).
 
-**Accessed PDF SHA-256:** 928cc2796bb98d17c918f17283ac86201038afed6d3e988717979bd726a2bdbe.
+**Accessed source SHA-256 (application/pdf):** 928cc2796bb98d17c918f17283ac86201038afed6d3e988717979bd726a2bdbe.
 
 <span id="source-repro-changes"></span>
 
@@ -1882,4 +1890,222 @@ Original editorial specifications; not external mathematical authority.
 <span id="source-ed-routes"></span>
 
 - **ED:routes:** [Checked prerequisite paths](https://github.com/FlagQuantum/modern-quantum-computing/blob/ad17637ff3ccc32c32b93994cfe5b589d3c30e53/docs/learning-paths.md). Locator status: original-editorial-specification; proof review pending.
+
+
+<span id="work-bk2012"></span>
+
+## BK2012: The Bravyi-Kitaev transformation for quantum computation of electronic structure
+
+Seeley, Richard and Love (2012). **Accessed version:** 1208.5986v1. [Source](https://arxiv.org/pdf/1208.5986v1).
+
+J. Chem. Phys. 137, 224109; DOI 10.1063/1.4768229. Table III is a separate historical numerical fixture, not the 2016 STO-6G geometry scan. arXiv submission metadata is 2012; the accessed rebuilt PDF has a later generated date.
+
+**Accessed source SHA-256 (application/pdf):** bf041cde5dcceb75c4bd8c58e4607d7b2317f723c53ccc7e5e025f2792c026b0.
+
+<span id="source-bk2012-integrals"></span>
+
+- **BK2012:integrals:** [Section VII, Eq. (61) and Table III: integral convention and historical RHF fixture](https://arxiv.org/pdf/1208.5986v1#page=24); PDF page (1-based) 24–26. Locator status: locator-checked; proof review pending.
+
+<span id="source-bk2012-mapping"></span>
+
+- **BK2012:mapping:** [Sections II–III: spin-orbital conventions and alternatives to occupation encoding](https://arxiv.org/pdf/1208.5986v1#page=3); PDF page (1-based) 3–6. Locator status: locator-checked; proof review pending.
+
+<span id="source-bk2012-paulis"></span>
+
+- **BK2012:paulis:** [Section VII, Eq. (79)–(80): four-qubit Pauli expansions](https://arxiv.org/pdf/1208.5986v1#page=28); PDF page (1-based) 28. Locator status: locator-checked; proof review pending.
+
+
+<span id="work-ionexp"></span>
+
+## IONEXP: Non-Abelian Topological Order and Anyons on a Trapped-Ion Processor
+
+Iqbal et al. (2024). **Accessed version:** 2305.03766v2. [Source](https://arxiv.org/pdf/2305.03766v2).
+
+Author manuscript; journal version Nature 626, 505–511 (2024), DOI 10.1038/s41586-023-06934-4; journal figure numbering is recorded separately.
+
+**Accessed source SHA-256 (application/pdf):** 87348ee1e7659c140a2f1005a7037a19ddbf65bba146717f8a4778e7830f946b.
+
+<span id="source-ionexp-braiding"></span>
+
+- **IONEXP:braiding:** [Main text and Fig. 4–6: fusion, Borromean braiding and torus sectors](https://arxiv.org/pdf/2305.03766v2#page=4); PDF page (1-based) 4–7. Locator status: locator-checked; proof review pending.
+
+
+<span id="work-kitread"></span>
+
+## KITREAD: Single-shot parity readout of a minimal Kitaev chain
+
+van Loo et al. (2026). **Accessed version:** 2507.01606v2. [Source](https://arxiv.org/pdf/2507.01606v2).
+
+Author accepted manuscript, revised 6 October 2026; Nature 650, 334–339 (2026); journal publication 11 February 2026 despite the 2025 DOI string.
+
+**Accessed source SHA-256 (application/pdf):** 6fe429db566525b5bb59abaf487a61cb97ac534a6a4eb8d16e63792d0d5e2bcc.
+
+<span id="source-kitread-readout"></span>
+
+- **KITREAD:readout:** [Abstract, main text and Fig. 3–4: capacitance parity readout and charge-sensing comparison](https://arxiv.org/pdf/2507.01606v2#page=1); PDF page (1-based) 1–9. Locator status: locator-checked; proof review pending.
+
+
+<span id="work-bse6"></span>
+
+## BSE6: STO-6G hydrogen orbital basis, version 1
+
+Basis Set Exchange (2018). **Accessed version:** Data revision 2018-06-19; basis version 1; JSON accessed 2026-10-20. [Source](https://www.basissetexchange.org/api/basis/sto-6g/format/json/?elements=1&version=1).
+
+Hydrogen electron shell: six primitive exponents and coefficients; reference key hehre1969a, Hehre, Stewart and Pople, J. Chem. Phys. 51, 2657–2664 (1969), DOI 10.1063/1.1672392. This database entry, rather than an uninspected original table, supplies the numeric basis fixture.
+
+**Accessed source SHA-256 (application/json):** 9cf98127d7ea7ac035cc041048ac34ff6308761d63fb3d1dd1ac707f7e526122.
+
+<span id="source-bse6-h"></span>
+
+- **BSE6:H:** [elements.1.electron_shells[0]; exponents, coefficients and references](https://www.basissetexchange.org/api/basis/sto-6g/format/json/?elements=1&version=1). Locator status: locator-checked; proof review pending.
+
+
+<span id="work-n2020"></span>
+
+## N2020: Direct observation of anyonic braiding statistics
+
+Nakamura, Liang, Gardner and Manfra (2020). **Accessed version:** Version of record; published 3 September 2020; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41567-020-1019-1).
+
+Nature Physics 16, 931–936. Checked journal abstract, figure titles, extended-data captions and source-data links; no independent raw-data reanalysis.
+
+**Accessed source SHA-256 (text/html):** b843758f4a7d9f4dd2451fcc64f7d54c15ee69c96b811616bc0328ed42b4d07a.
+
+<span id="source-n2020-braiding"></span>
+
+- **N2020:braiding:** [Abstract; Fig. 1–3; Extended Data Fig. 2; source data for Fig. 2–3](https://www.nature.com/articles/s41567-020-1019-1). Locator status: locator-checked; proof review pending.
+
+
+<span id="work-g2023"></span>
+
+## G2023: Non-Abelian braiding of graph vertices in a superconducting processor
+
+Google Quantum AI and Collaborators (2023). **Accessed version:** Version of record; published 11 May 2023; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41586-023-05954-4).
+
+Nature 618, 264–269. Open journal full text and figure captions checked; engineered graph defects are distinguished from material Majorana modes.
+
+**Accessed source SHA-256 (text/html):** 66ef51cb4ec25e4289c8a21e6edc8a05b8bf0c2c789a161e44d9fec998961a54.
+
+<span id="source-g2023-braiding"></span>
+
+- **G2023:braiding:** [Braiding non-Abelian anyons; Fig. 3–4; Data availability](https://www.nature.com/articles/s41586-023-05954-4). Locator status: locator-checked; proof review pending.
+
+
+<span id="work-i2024"></span>
+
+## I2024: Non-Abelian topological order and anyons on a trapped-ion processor
+
+Iqbal et al. (2024). **Accessed version:** Version of record; published 14 February 2024; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41586-023-06934-4).
+
+Nature 626, 505–511. Journal abstract/figure titles/data statement and public author manuscript checked; a prepared D4 model on a processor.
+
+**Accessed source SHA-256 (text/html):** b792848552911320003622ab7c76efbacd777d75cc48a606b8743cc69d1c0098.
+
+<span id="source-i2024-braiding"></span>
+
+- **I2024:braiding:** [Abstract; Fig. 3–6; Extended Data Fig. 5; Data and Code availability](https://www.nature.com/articles/s41586-023-06934-4). Locator status: locator-checked; proof review pending.
+
+
+<span id="work-f2024"></span>
+
+## F2024: Non-Abelian braiding of Fibonacci anyons with a superconducting processor
+
+Xu et al. (2024). **Accessed version:** Version of record; published 1 July 2024; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41567-024-02529-6).
+
+Nature Physics 20, 1469–1475. Open journal text, Methods and Fig. 4 checked; digitally prepared string-net/Fibonacci model.
+
+**Accessed source SHA-256 (text/html):** cc5678328a5a0f068cb4a15202713a765fffcbfdd1e17394d0857ac3cb0076d0.
+
+<span id="source-f2024-braiding"></span>
+
+- **F2024:braiding:** [Fig. 4; Methods: creation/fusion and braiding; Supplementary Section I.B referenced by the journal; Data and Code availability](https://www.nature.com/articles/s41567-024-02529-6). Locator status: locator-checked; proof review pending.
+
+
+<span id="work-ms2025"></span>
+
+## MS2025: Interferometric single-shot parity measurement in InAs–Al hybrid devices
+
+Microsoft Azure Quantum (2025). **Accessed version:** Version of record; published 19 February 2025; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41586-024-08445-2).
+
+Nature 638, 651–655. Open journal main text and Fig. 3/4 checked. Pair with L2026 and MR2026; a parity measurement alone does not settle topological origin.
+
+**Accessed source SHA-256 (text/html):** 9fcc9bc978c5089b1fad30ed76329b01f5b3ca78907743665be46dabce992d3c.
+
+<span id="source-ms2025-readout"></span>
+
+- **MS2025:readout:** [Main text qualification of MZM/Andreev interpretation; Fig. 3 experiment versus Fig. 4 simulation; Data availability](https://www.nature.com/articles/s41586-024-08445-2). Locator status: locator-checked; proof review pending.
+
+
+<span id="work-l2026"></span>
+
+## L2026: On the robustness of topological gap detection via transport
+
+Legg (2026). **Accessed version:** Version of record; published 24 June 2026; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41586-026-10567-8).
+
+Nature 654, E22–E26. Publisher preview, figure titles, data/code statement and change history checked; full subscription text not accessed. July 2 update adds peer-review file. Interpretive critique, not a new experiment; pair with author reply MR2026.
+
+**Accessed source SHA-256 (text/html):** abbafd5831f81b117cd9f7d275ffe34fc4a7d6c2da5ede25271c373a5cdfe73f.
+
+<span id="source-l2026-comment"></span>
+
+- **L2026:comment:** [Publisher opening argument; Fig. 1–2 titles; Data/Code availability; Change history](https://www.nature.com/articles/s41586-026-10567-8). Locator status: publisher-preview-and-metadata-checked; full-text-review-pending; proof review pending.
+
+
+<span id="work-mr2026"></span>
+
+## MR2026: Reply to: On the robustness of topological gap detection via transport
+
+Microsoft Quantum (2026). **Accessed version:** Version of record; published 24 June 2026; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41586-026-10568-7).
+
+Nature 654, E27–E28. Publisher preview, data statement and change history checked; full subscription text not accessed. July 2 update adds peer-review file. Author counterargument to L2026; neither side is treated as an independently resolved verdict.
+
+**Accessed source SHA-256 (text/html):** 28050fa7d9b14469ea8b16048d2f3ced65338a02a36d98c3ffec7fa1440da88e.
+
+<span id="source-mr2026-reply"></span>
+
+- **MR2026:reply:** [Publisher opening reply; Data availability; Change history](https://www.nature.com/articles/s41586-026-10568-7). Locator status: publisher-preview-and-metadata-checked; full-text-review-pending; proof review pending.
+
+
+<span id="work-k2026"></span>
+
+## K2026: Single-shot parity readout of a minimal Kitaev chain
+
+van Loo et al. (2026). **Accessed version:** Version of record; published 11 February 2026; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41586-025-09927-7).
+
+Nature 650, 334–339. Journal abstract, figure titles and data/code statement checked alongside accepted manuscript KITREAD; minimal two-site protection is limited.
+
+**Accessed source SHA-256 (text/html):** 8eace5476bd67fa38ebf534f6b1b2743b02b8fffce03023429b05d3f48256d87.
+
+<span id="source-k2026-readout"></span>
+
+- **K2026:readout:** [Abstract; Fig. 1–4 titles; Data and Code availability](https://www.nature.com/articles/s41586-025-09927-7). Locator status: locator-checked; proof review pending.
+
+
+<span id="work-z2018"></span>
+
+## Z2018: RETRACTED ARTICLE: Quantized Majorana conductance
+
+Zhang et al. (2018). **Accessed version:** Version of record; published 28 March 2018; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/nature26142).
+
+Nature 556, 74–79. RETRACTED 8 March 2021; evidence-audit case only. Must be paired with ZR2021; prohibited as positive support for a device claim.
+
+**Accessed source SHA-256 (text/html):** 094e342d4238422e051a1fc91e70d1438fe8a9a64c3e6b229eed8d65e04ec114.
+
+<span id="source-z2018-status"></span>
+
+- **Z2018:status:** [Publisher retraction banner and link to the 2021 Retraction Note](https://www.nature.com/articles/nature26142). Locator status: locator-checked; proof review pending.
+
+
+<span id="work-zr2021"></span>
+
+## ZR2021: Retraction Note: Quantized Majorana conductance
+
+Zhang et al. (2021). **Accessed version:** Version of record; published 8 March 2021; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41586-021-03373-x).
+
+Nature 591, E30. Retraction note checked; reanalysis/calibration invalidated the quantized-conductance claim of Z2018; corrected/raw data linked by authors.
+
+**Accessed source SHA-256 (text/html):** 4e99b24db4b9b9c5742fb9ed3defff915351bdbf754fdba7d702b917bc99b596.
+
+<span id="source-zr2021-notice"></span>
+
+- **ZR2021:notice:** [Retraction notice; reanalysis and data repository](https://www.nature.com/articles/s41586-021-03373-x). Locator status: locator-checked; proof review pending.
 

@@ -20,7 +20,7 @@
 | Physical realization | 34 shared physics/target models; 35 superconducting; 36 trapped ions; 37 neutral atoms; 38 photonics; 39 spins; 40 topological theory/candidates | Shared oscillator/control bridges and optional bosonic correction; choose one platform; theoretical protection, physical candidates and demonstrated operations have separate evidence |
 | Quantum compilation | 41 semantics/IR/optimization; 42 synthesis/mapping/routing/scheduling; 43 control/dynamic/logical/runtime lowering | Basic compilation uses an explicit abstract target, without requiring all hardware physics or QFT; advanced lowering has separate prerequisites |
 | Simulation | 44 exact execution; 45 stabilizer; 46 MPS; 47 general contractions/cutting | Basic executor before differentiation; tableau from stabilizer tools; MPS is not required before generic contractions; cutting is not coherent networking |
-| Research | 48 source/claim/verification methods; 49 H2 VQE; 50 logical memory | H2 integral/reduction provenance remains open; the memory case selects Fowler v2 Section VII A/Fig. 5, with a declared finite-benchmark extension; no invented execution or experimental evidence |
+| Research | 48 source/claim/verification methods; 49 H2 VQE; 50 logical memory | H2 source chain and 324-coefficient regeneration are checked at printed precision, with original author integral files unavailable; the memory case selects Fowler v2 Section VII A/Fig. 5, with a declared finite-benchmark extension; no invented execution or experimental evidence |
 
 Platform installation, provider credentials and evolving API details remain versioned companion laboratories. Essential theory and independent checks remain available offline.
 
@@ -73,6 +73,7 @@ The current phase may refine these specifications and source maps. It does not s
 |---|---|
 | Editorial coverage/ownership | Completed for all 50 chapters/435 sections; exclusions and duplication decisions recorded; specialist assessment pending |
 | Section dependency architecture | Curated direct graph, complete ledger and 19 structurally checked routes completed; prose first-use and actual reader testing pending |
+| Selected source exceptions | [H2 provenance](references/h2-provenance.md) and [topological evidence](references/topological-experiments.md) now have checked claim-level ledgers; full subscription comment/reply review and independent scientific acceptance remain open |
 | Mathematical depth | [435 result/proof/source records](proof-plan.md) assigned; exact statements, deferred lemmas and independent mathematical/source acceptance remain pending |
 | Cross-layer contracts | Planning targets recorded; independent complete programs and actual API verification remain pending |
 | Workload and accessibility | Proof-specific budgets and [seven-volume allocation](volume-plan.md) proposed; examples/problems, reader evidence and final packaging pending |

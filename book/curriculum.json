@@ -8012,8 +8012,8 @@
             {
               "id": "sec-topological-quantum-computation-and-candidate-physical-realizations-7",
               "title": "Experiments, signatures, and unresolved evidence",
-              "theory": "Separate proposed signatures, alternative explanations, demonstrated control and full logical computation.",
-              "evidence": "Build a dated primary-source claim/evidence table without inferring a working universal platform from one signature.",
+              "theory": "Separate Abelian statistics, encoded Ising/D4/Fibonacci braiding, material parity readout and protected logical operation; evaluate competing interpretations with dated primary sources.",
+              "evidence": "Follow TOPO-01–09; record observations, inference, missing tests, data and access scope, paired comment/reply, and retraction status. Full subscription argument review and independent experimental interpretation remain pending.",
               "aliases": [
                 "407-experiments-signatures-and-unresolved-evidence"
               ],
@@ -8052,7 +8052,7 @@
               ]
             }
           ],
-          "architecture_review": "Retain a theory-first, evidence-qualified advanced branch. Majorana/fermionic and protection/logical supplements have separate prerequisites; full tensor-category theory is an explicit exclusion."
+          "architecture_review": "Retain a theory-first, evidence-qualified advanced branch. Majorana/fermionic and protection/logical supplements have separate prerequisites; full tensor-category theory is an explicit exclusion. TOPO-01–09 now pins claim-level experimental and source-status cases; subscription comment/reply full-text and independent interpretation review remain open."
         }
       ],
       "number": 6
@@ -9784,8 +9784,8 @@
             {
               "id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-2",
               "title": "From the molecular model to a reduced Hamiltonian",
-              "theory": "Derive the mapping/reduction steps that are actually supported by the chosen sources.",
-              "evidence": "Compare independent occupation/qubit operators and mark rounded inputs or deferred upstream derivations.",
+              "theory": "Plan the declared STO-6G AO/MO integral conventions, four-mode Fock/BK translation, explicit Z1=Z3=+1 projection and remaining two-electron sector; distinguish original source data from independent reconstruction.",
+              "evidence": "Follow H2-01–09: verify all 324 coefficients at published four-decimal precision, preserve the corrected table/hash, compare the full N=2 spectrum, and disclose unavailable original author integral files.",
               "legacy_anchor": "392-from-the-molecular-model-to-a-reduced-hamiltonian",
               "aliases": [
                 "492-from-the-molecular-model-to-a-reduced-hamiltonian"
@@ -9960,7 +9960,7 @@
               ]
             }
           ],
-          "architecture_review": "Require only the energy/mapping/gradient and research sections needed by the selected H2 calculation. Full molecular reduction/source locators still need review; embedding/learning are not prerequisites."
+          "architecture_review": "Require only the energy/mapping/gradient and research sections needed by the H2 calculation. Source chain and independent reconstruction are checked at printed precision; original author files are unavailable and mathematical/reader review remains open. Embedding/learning are not prerequisites."
         },
         {
           "id": "ch-case-study-logical-memory-and-error-correction-experiments",

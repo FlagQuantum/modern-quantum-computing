@@ -1,0 +1,300 @@
+{
+  "revision": "2026-10-20",
+  "scope": "Planning and source verification only; no new chapter body. Numerical regeneration is distinct from recovery of original author files, and citation selection is distinct from independent experimental validation.",
+  "h2": [
+    {
+      "id": "H2-01",
+      "sections": [
+        "25.2",
+        "49.2"
+      ],
+      "claim": "Fix the molecular and energy model",
+      "source_locators": [
+        "H2:reduction"
+      ],
+      "verified": "Born–Oppenheimer, nonrelativistic clamped nuclei, atomic units; R in angstrom for Table I. Neutral singlet H2, two electrons, no frozen core. Keep nuclear repulsion 1/R_bohr as an explicit scalar.",
+      "acceptance": "Require separate electronic and total energies and an explicit angstrom-to-bohr constant; a minimal basis is a model approximation, not a complete-basis claim."
+    },
+    {
+      "id": "H2-02",
+      "sections": [
+        "25.2",
+        "49.2"
+      ],
+      "claim": "Pin the STO-6G basis instead of importing a familiar STO-3G model",
+      "source_locators": [
+        "H2:reduction",
+        "BSE6:H"
+      ],
+      "verified": "O’Malley Appendix A names STO-6G. BSE hydrogen version 1 identifies six primitives and the Hehre–Stewart–Pople origin; PySCF 2.10.0 primitives agree within 2e-10 absolute.",
+      "acceptance": "Store basis/version, primitive normalization, geometry, RHF convergence, AO ordering and MO phases in the future experiment manifest. The 1969 basis paper is linked through the database, not claimed to have been inspected table by table."
+    },
+    {
+      "id": "H2-03",
+      "sections": [
+        "25.2",
+        "49.2"
+      ],
+      "claim": "Generate and declare AO-to-MO integral conventions",
+      "source_locators": [
+        "BK2012:integrals",
+        "H2:reduction"
+      ],
+      "verified": "Use real RHF bonding g and antibonding u MOs; order spin orbitals g_alpha, g_beta, u_alpha, u_beta. PySCF eri[i,j,k,l] is chemist (ij|kl); spin h_pqrs in the paper uses creation p,q and annihilation r,s with spatial (p s|q r) and the corresponding spin deltas.",
+      "acceptance": "Write the index permutation and the factor 1/2 explicitly; verify Hermiticity, integral symmetries and the negative kinetic-energy operator before drafting. No nuclear scalar may be silently absorbed or added twice."
+    },
+    {
+      "id": "H2-04",
+      "sections": [
+        "25.3",
+        "49.2"
+      ],
+      "claim": "Distinguish a historical mapping reference from the numeric dataset",
+      "source_locators": [
+        "BK2012:integrals",
+        "BK2012:paulis",
+        "H2:data"
+      ],
+      "verified": "Seeley Table III gives one RHF geometry, 1.401 bohr, and cites PyQuante. Independent STO-3G regeneration matches its six reported integrals within 1e-6; STO-6G does not give that fixture. It therefore supports mapping algebra, not a claim of numerical inheritance of the 2016 STO-6G scan.",
+      "acceptance": "Cite Table III only as a separate fixture. Do not present its numbers as the unpublished 2016 integral files or reuse them across geometries."
+    },
+    {
+      "id": "H2-05",
+      "sections": [
+        "25.3",
+        "49.2"
+      ],
+      "claim": "Make the four-mode occupation-to-BK map explicit",
+      "source_locators": [
+        "BK2012:mapping",
+        "BK2012:paulis",
+        "H2:reduction"
+      ],
+      "verified": "Use left-to-right f0,f1,f2,f3 and BK bits b=(f0, f0 xor f1, f2, f0 xor f1 xor f2 xor f3). Construct the full 16-dimensional Fock Hamiltonian with fermionic signs, then a basis permutation B. All 15 four-qubit terms of O’Malley Eq. (A5) / Seeley Eq. (79) are checked against the basis-permuted Fock matrix before projection, with the nuclear scalar added once.",
+      "acceptance": "Require a term-by-term Pauli/matrix comparison in the eventual derivation; do not identify visually similar Pauli expressions without an explicit basis/gauge transformation."
+    },
+    {
+      "id": "H2-06",
+      "sections": [
+        "25.4",
+        "49.2",
+        "49.3"
+      ],
+      "claim": "Identify the exact reduction sector and remaining particle-number condition",
+      "source_locators": [
+        "H2:reduction",
+        "H2:gauge"
+      ],
+      "verified": "HF occupations 1100 map to BK 1000. Fix Z on old qubits 1 and 3 to +1 and retain old 0,2 as new 0,1. Their basis is vacuum, u-pair, g-pair, fully occupied. The two-electron sector is the odd subspace Z0 Z1=-1, spanned by |01> and |10> in q0-left order.",
+      "acceptance": "Require commutation checks for the removed Z operators, a projector/isometry, and comparison with the full N=2 block. The two-qubit matrix alone is not a fixed-N=2 Hamiltonian. Paper register printing and library bit order must be translated explicitly."
+    },
+    {
+      "id": "H2-07",
+      "sections": [
+        "49.2",
+        "49.3"
+      ],
+      "claim": "Bridge the six unique MO integrals to all reduced coefficients",
+      "source_locators": [
+        "H2:reduction",
+        "H2:data"
+      ],
+      "verified": "Verification tooling uses a=h_gg, b=h_uu, u=(gg|gg), v=(uu|uu), w=(gg|uu), k=(gu|gu). Planned algebra must recover g0=E_NN+a+b+(u+v)/2+w-k/2; g1=-a-u/2-w+k/2; g2=-b-v/2-w+k/2; g3=w-k/2; g4=g5=k/2.",
+      "acceptance": "Require agreement between this analytic bridge and the independently constructed Fock/BK projection; these are conventions of the chosen ordering and sector, not a basis-independent coefficient recipe."
+    },
+    {
+      "id": "H2-08",
+      "sections": [
+        "49.1",
+        "49.6",
+        "49.7"
+      ],
+      "claim": "Validate the corrected 54-row table without fitting",
+      "source_locators": [
+        "H2:data"
+      ],
+      "verified": "Independent STO-6G regeneration checks 54 geometries, 0.20–2.85 angstrom in 0.05 increments, and 324 coefficients against the corrected v2 Table I. Every residual is below 5e-5 Hartree. N=2 block minima equal the odd two-qubit block minima throughout the scan.",
+      "acceptance": "Preserve the original transcribed table and its hash. Store regenerated coefficients separately; report rounding error bounds and distinguish rounded-model energy from the unrounded integral calculation."
+    },
+    {
+      "id": "H2-09",
+      "sections": [
+        "49.7",
+        "49.9"
+      ],
+      "claim": "State exactly what provenance has and has not been recovered",
+      "source_locators": [
+        "H2:reduction",
+        "H2:data"
+      ],
+      "verified": "The declared basis, analytic reduction, corrected numerical table and independent regeneration now form a checked source chain. The accessed paper does not supply the original per-geometry AO/MO integral files or a complete author software manifest.",
+      "acceptance": "Acceptance is reconstruction at published precision, not bitwise recovery of the authors’ workflow or a repetition of their superconducting hardware experiment. Full mathematical and reader review remain open."
+    }
+  ],
+  "topology": [
+    {
+      "id": "TOPO-01",
+      "sections": [
+        "40.1",
+        "40.7"
+      ],
+      "claim": "Abelian fractional-quantum-Hall braiding evidence",
+      "source_locators": [
+        "N2020:braiding"
+      ],
+      "observation": "Interference conductance and phase jumps in a filling-1/3 Fabry–Pérot device; Fig. 1–3 and Extended Data Fig. 2.",
+      "interpretation": "Attributed to fractional anyonic statistics under the interferometer model.",
+      "not_established": "This source does not establish non-Abelian computational fusion spaces or universal protected gates.",
+      "data": "Publisher source CSVs for Fig. 2–4 and extended-data figures; Supplementary Discussion 1–4. Journal abstract/figure metadata/captions checked; no full subscription main-text access.",
+      "status": "Selected source checked; no independent experimental reproduction"
+    },
+    {
+      "id": "TOPO-02",
+      "sections": [
+        "40.1",
+        "40.3",
+        "40.4",
+        "40.7"
+      ],
+      "claim": "Engineered Ising-like defect braiding on superconducting qubits",
+      "source_locators": [
+        "G2023:braiding"
+      ],
+      "observation": "Stabilizer-graph defect operations and measured fusion/braiding observables; Fig. 3–4.",
+      "interpretation": "Projective non-Abelian defects and an entangled state of encoded anyon qubits, implemented by programmed operations.",
+      "not_established": "This is not direct evidence of intrinsic semiconductor Majorana zero modes or a hardware logical error rate suppressed by increasing separation.",
+      "data": "https://doi.org/10.5281/zenodo.7869220",
+      "status": "Selected source checked; no independent experimental reproduction"
+    },
+    {
+      "id": "TOPO-03",
+      "sections": [
+        "40.2",
+        "40.3",
+        "40.7"
+      ],
+      "claim": "D4 anyons in a prepared trapped-ion model",
+      "source_locators": [
+        "I2024:braiding",
+        "IONEXP:braiding"
+      ],
+      "observation": "Prepared D4 topological wavefunction, fusion tests and Borromean-ring interferometry; journal Fig. 3–6 and Extended Data Fig. 5.",
+      "interpretation": "Non-Abelian model operations on a gate-based processor, with preparation, heralding and measurement assumptions.",
+      "not_established": "D4 is not the Fibonacci model; preparing this state does not certify a thermally stable intrinsic topological computer.",
+      "data": "https://doi.org/10.5281/zenodo.7848423; journal source data Fig. 3–6.",
+      "status": "Selected source checked; no independent experimental reproduction"
+    },
+    {
+      "id": "TOPO-04",
+      "sections": [
+        "40.3",
+        "40.4",
+        "40.7",
+        "40.8"
+      ],
+      "claim": "Fibonacci F/R operations in a digital string-net experiment",
+      "source_locators": [
+        "F2024:braiding"
+      ],
+      "observation": "Fusion outcomes after five braid sequences; Fig. 4 and Methods.",
+      "interpretation": "Digitally prepared Fibonacci model connects F/R matrices to encoded operations.",
+      "not_established": "The mathematical universality of the ideal anyon model does not imply that this processor experiment demonstrates protected universal hardware.",
+      "data": "https://doi.org/10.6084/m9.figshare.24947646 (data, analysis and simulation code).",
+      "status": "Selected source checked; no independent experimental reproduction"
+    },
+    {
+      "id": "TOPO-05",
+      "sections": [
+        "40.5",
+        "40.6",
+        "40.7"
+      ],
+      "claim": "Interferometric parity measurement in InAs–Al devices",
+      "source_locators": [
+        "MS2025:readout"
+      ],
+      "observation": "Single-shot capacitance readout with bimodal/telegraph signals; Fig. 3 is experiment and Fig. 4 is simulation.",
+      "interpretation": "Authors interpret signals as parity measurement; the paper explicitly limits uniqueness of the topological interpretation.",
+      "not_established": "Parity readout alone does not uniquely distinguish topological Majorana modes from suitably tuned trivial Andreev states; it does not itself demonstrate braiding or protected logical computation.",
+      "data": "https://doi.org/10.5281/zenodo.14804379 (versioned data record family); the comment cites specific record 14804380.",
+      "status": "Published experimental source; interpretation disputed in paired 2026 comment and reply, not labeled retracted."
+    },
+    {
+      "id": "TOPO-06",
+      "sections": [
+        "40.6",
+        "40.7",
+        "48.1"
+      ],
+      "claim": "Transport-data critique attached to the parity experiment",
+      "source_locators": [
+        "L2026:comment"
+      ],
+      "observation": "Legg reanalyses existing transport data; Fig. 1–2 concern coding artefacts and device A2 transport.",
+      "interpretation": "The author argues that disorder/apparent gaplessness undermine the topological interpretation.",
+      "not_established": "This is an attributed critique, not an independent new device experiment or an editorial verdict resolving the dispute. Full subscription text was not accessed; no claims about unseen detailed arguments are accepted.",
+      "data": "https://doi.org/10.5281/zenodo.14804380 (data); https://doi.org/10.5281/zenodo.15008728 (analysis code).",
+      "status": "24 June 2026 Matters Arising; 2 July update adds peer-review file. Must remain paired with TOPO-07."
+    },
+    {
+      "id": "TOPO-07",
+      "sections": [
+        "40.6",
+        "40.7",
+        "48.1"
+      ],
+      "claim": "Author reply to the transport critique",
+      "source_locators": [
+        "MR2026:reply"
+      ],
+      "observation": "The publisher preview gives the authors’ counterargument about flux-periodic capacitance signals and the interpretation of a gapless system.",
+      "interpretation": "Authors defend their interpretation and link corrected TGP maps and a per-pixel delta map.",
+      "not_established": "The reply is not an independently settled certification of topology, braiding or logical protection. Full subscription text was not accessed; re-running the corrected analysis is a later review task.",
+      "data": "https://doi.org/10.5281/zenodo.14804379",
+      "status": "24 June 2026 reply; 2 July update adds peer-review file. Must remain paired with TOPO-06."
+    },
+    {
+      "id": "TOPO-08",
+      "sections": [
+        "40.5",
+        "40.6",
+        "40.7"
+      ],
+      "claim": "Parity readout of a minimal two-site Kitaev chain",
+      "source_locators": [
+        "K2026:readout",
+        "KITREAD:readout"
+      ],
+      "observation": "Time-resolved quantum-capacitance switching and simultaneous charge-sensing comparison; Fig. 3–4.",
+      "interpretation": "Parity-sensitive readout in the poor-man’s-Majorana two-site model; the accepted manuscript explicitly states limited protection relative to longer chains.",
+      "not_established": "A two-site readout does not by itself establish non-Abelian braiding or exponential hardware protection as chain length grows.",
+      "data": "https://doi.org/10.4121/227fd419-fded-4a96-ab62-421a0cd57fa5 (raw data, processing and theory code).",
+      "status": "Published 11 February 2026; DOI contains 2025. Accepted manuscript pinned to arXiv v2, 6 October 2026."
+    },
+    {
+      "id": "TOPO-09",
+      "sections": [
+        "40.7",
+        "48.1",
+        "48.6"
+      ],
+      "claim": "Retraction as a source-status audit example",
+      "source_locators": [
+        "Z2018:status",
+        "ZR2021:notice"
+      ],
+      "observation": "The 2018 quantized-conductance paper was retracted in 2021 after reanalysis/calibration problems.",
+      "interpretation": "Use the notice to teach how provenance and later corrections alter admissible claims.",
+      "not_established": "The retracted conductance claim is excluded from positive experimental evidence.",
+      "data": "https://doi.org/10.5281/zenodo.4545577",
+      "status": "RETRACTED original; cite original and retraction together. No original figure or article content is redistributed."
+    }
+  ],
+  "topology_acceptance": [
+    "Attach every device claim to a dated observation, model inference and explicit missing test; do not turn a theoretical review or a simulation into a device measurement.",
+    "Selected-source status checked against publisher pages on 2026-10-20; this is not an exhaustive survey or a guarantee that no later notice exists. Recheck linked notices, dataset versions and preprint revisions before drafting and before each release.",
+    "Before detailed discussion, obtain and inspect full comment/reply texts through legitimate access, compare raw and corrected TGP maps, and assign independent specialist review. The currently verified preview supports only the limited attributed summaries above.",
+    "For any future protection claim, specify encoding, gap/disorder assumptions, splitting versus size/separation, poisoning and thermal errors, readout/correction overhead, and the measured logical channel. Require controlled scaling evidence for any claimed suppression.",
+    "The planned 40.8 code laboratory will validate ideal braid matrices and measurement protocols with explicit synthetic data. It cannot reproduce a material device or experimentally establish a topological phase."
+  ]
+}

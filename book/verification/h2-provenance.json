@@ -1,0 +1,864 @@
+{
+  "scope": "Independent regeneration to published four-decimal precision; original author integral files not recovered; no hardware claim",
+  "checked": "2026-10-20",
+  "environment": {
+    "python": "3.9.6",
+    "pyscf": "2.10.0",
+    "numpy": "1.26.4",
+    "scipy": "1.13.1",
+    "h5py": "3.14.0",
+    "platform": "macOS-27.0-arm64-arm-64bit"
+  },
+  "input_table_sha256": "1c2bed3d1cd1ef8cf266bf669501752fc5ddfa6f2f86fc19fa381b443b8af477",
+  "basis": "STO-6G hydrogen; built-in primitives checked against Basis Set Exchange version 1 within 2e-10 absolute",
+  "orbital_order": [
+    "g_alpha",
+    "g_beta",
+    "u_alpha",
+    "u_beta"
+  ],
+  "bk_bits": [
+    "f0",
+    "f0 xor f1",
+    "f2",
+    "f0 xor f1 xor f2 xor f3"
+  ],
+  "fixed_bk_z": {
+    "1": 1,
+    "3": 1
+  },
+  "active_qubits": [
+    0,
+    2
+  ],
+  "two_qubit_basis": [
+    "vacuum",
+    "u_alpha u_beta",
+    "g_alpha g_beta",
+    "fully occupied"
+  ],
+  "electron_sector": "Z0 Z1 = -1",
+  "coefficient_count": 324,
+  "tolerance_hartree": 5e-05,
+  "max_coefficient_residual_hartree": 4.9621994113513423e-05,
+  "seeley_table_III_independent_fixture": [
+    -1.2524773039821462,
+    -0.4759344611440737,
+    0.6744931033260079,
+    0.6973979498204212,
+    0.663472044860561,
+    0.18128753581232626
+  ],
+  "rows": [
+    {
+      "R_angstrom": 0.2,
+      "coefficients": {
+        "II": 2.8489024707706676,
+        "ZI": 0.5678139402140432,
+        "IZ": -1.4507698398700453,
+        "ZZ": 0.6799394834853345,
+        "XX": 0.0790693824929187,
+        "YY": 0.0790693824929187
+      },
+      "max_coefficient_residual_hartree": 3.9483485334557145e-05,
+      "nuclear_repulsion_hartree": 2.6458860546,
+      "exact_two_electron_energy_hartree": 0.1441942730342925,
+      "rounded_table_energy_hartree": 0.14421033191099067
+    },
+    {
+      "R_angstrom": 0.25,
+      "coefficients": {
+        "II": 2.1867993779284123,
+        "ZI": 0.5449440678220204,
+        "IZ": -1.2869548221856748,
+        "ZZ": 0.6719202201152423,
+        "XX": 0.0797904692277557,
+        "YY": 0.0797904692277557
+      },
+      "max_coefficient_residual_hartree": 4.5177814325114696e-05,
+      "nuclear_repulsion_hartree": 2.11670884368,
+      "exact_two_electron_energy_hartree": -0.32395732733981053,
+      "rounded_table_energy_hartree": -0.3239392452849164
+    },
+    {
+      "R_angstrom": 0.3,
+      "coefficients": {
+        "II": 1.7251624688303282,
+        "ZI": 0.5215018234478175,
+        "IZ": -1.1458284647733574,
+        "ZZ": 0.6630882088952118,
+        "XX": 0.08060278287870802,
+        "YY": 0.08060278287870802
+      },
+      "max_coefficient_residual_hartree": 3.7531169671867204e-05,
+      "nuclear_repulsion_hartree": 1.7639240364000002,
+      "exact_two_electron_energy_hartree": -0.6130309679389044,
+      "rounded_table_energy_hartree": -0.612974544609881
+    },
+    {
+      "R_angstrom": 0.35,
+      "coefficients": {
+        "II": 1.3827069825969152,
+        "ZI": 0.4981739593804542,
+        "IZ": -1.022598362972476,
+        "ZZ": 0.6536523093379643,
+        "XX": 0.08149795083394654,
+        "YY": 0.08149795083394654
+      },
+      "max_coefficient_residual_hartree": 4.7690662035693165e-05,
+      "nuclear_repulsion_hartree": 1.5119348883428574,
+      "exact_two_electron_energy_hartree": -0.8004276314426283,
+      "rounded_table_energy_hartree": -0.8005102614889511
+    },
+    {
+      "R_angstrom": 0.4,
+      "coefficients": {
+        "II": 1.1182264632244898,
+        "ZI": 0.4753978332872709,
+        "IZ": -0.9144677722881648,
+        "ZZ": 0.6437865030764042,
+        "XX": 0.08246915660959085,
+        "YY": 0.08246915660959085
+      },
+      "max_coefficient_residual_hartree": 3.222771183519768e-05,
+      "nuclear_repulsion_hartree": 1.3229430273,
+      "exact_two_electron_energy_hartree": -0.9251782194741862,
+      "rounded_table_energy_hartree": -0.9252596050468844
+    },
+    {
+      "R_angstrom": 0.45,
+      "coefficients": {
+        "II": 0.9082689413826328,
+        "ZI": 0.45344313310101975,
+        "IZ": -0.8193956729883215,
+        "ZZ": 0.6336329561046689,
+        "XX": 0.08351086097960188,
+        "YY": 0.08351086097960188
+      },
+      "max_coefficient_residual_hartree": 4.313310101972112e-05,
+      "nuclear_repulsion_hartree": 1.1759493576,
+      "exact_two_electron_energy_hartree": -1.0091143338624664,
+      "rounded_table_energy_hartree": -1.0090090168725934
+    },
+    {
+      "R_angstrom": 0.5,
+      "coefficients": {
+        "II": 0.7381082234208387,
+        "ZI": 0.4324663328191087,
+        "IZ": -0.7355249818381211,
+        "ZZ": 0.6233048474381737,
+        "XX": 0.08461870286125411,
+        "YY": 0.08461870286125411
+      },
+      "max_coefficient_residual_hartree": 3.366718089131693e-05,
+      "nuclear_repulsion_hartree": 1.05835442184,
+      "exact_two_electron_energy_hartree": -1.0653851727714772,
+      "rounded_table_energy_hartree": -1.0653917810254399
+    },
+    {
+      "R_angstrom": 0.55,
+      "coefficients": {
+        "II": 0.5978935842878383,
+        "ZI": 0.4125476521980544,
+        "IZ": -0.6611923632616761,
+        "ZZ": 0.6128915102666923,
+        "XX": 0.08578909956436294,
+        "YY": 0.08578909956436294
+      },
+      "max_coefficient_residual_hartree": 4.765219805441534e-05,
+      "nuclear_repulsion_hartree": 0.962140383490909,
+      "exact_two_electron_energy_hartree": -1.1023601927582924,
+      "rounded_table_energy_hartree": -1.102326193007416
+    },
+    {
+      "R_angstrom": 0.6,
+      "coefficients": {
+        "II": 0.4807769839346554,
+        "ZI": 0.393715236146834,
+        "IZ": -0.5949940902102935,
+        "ZZ": 0.6024638883288043,
+        "XX": 0.08701879008380546,
+        "YY": 0.08701879008380546
+      },
+      "max_coefficient_residual_hartree": 3.611167119577097e-05,
+      "nuclear_repulsion_hartree": 0.8819620182000001,
+      "exact_two_electron_energy_hartree": -1.1255968661617182,
+      "rounded_table_energy_hartree": -1.1255942623603348
+    },
+    {
+      "R_angstrom": 0.65,
+      "coefficients": {
+        "II": 0.38186056290641057,
+        "ZI": 0.3759607914940739,
+        "IZ": -0.5357815088586348,
+        "ZZ": 0.5920789404889195,
+        "XX": 0.08830451120417165,
+        "YY": 0.08830451120417165
+      },
+      "max_coefficient_residual_hartree": 3.943709358944503e-05,
+      "nuclear_repulsion_hartree": 0.8141187860307693,
+      "exact_two_electron_energy_hartree": -1.1389081907324539,
+      "rounded_table_energy_hartree": -1.138944744265075
+    },
+    {
+      "R_angstrom": 0.7,
+      "coefficients": {
+        "II": 0.29755226872729984,
+        "ZI": 0.35925109520004966,
+        "IZ": -0.48261869807446245,
+        "ZZ": 0.5817827783185416,
+        "XX": 0.08964283542058905,
+        "YY": 0.08964283542058905
+      },
+      "max_coefficient_residual_hartree": 4.890479995034447e-05,
+      "nuclear_repulsion_hartree": 0.7559674441714287,
+      "exact_two_electron_energy_hartree": -1.1449790794982972,
+      "rounded_table_energy_hartree": -1.1449602744086185
+    },
+    {
+      "R_angstrom": 0.75,
+      "coefficients": {
+        "II": 0.22515515569741618,
+        "ZI": 0.3435373568089478,
+        "IZ": -0.43473572118586407,
+        "ZZ": 0.5716128232395001,
+        "XX": 0.09103012464499201,
+        "YY": 0.09103012464499201
+      },
+      "max_coefficient_residual_hartree": 4.4844302583835205e-05,
+      "nuclear_repulsion_hartree": 0.70556961456,
+      "exact_two_electron_energy_hartree": -1.1457416710746515,
+      "rounded_table_energy_hartree": -1.145599124123644
+    },
+    {
+      "R_angstrom": 0.8,
+      "coefficients": {
+        "II": 0.16259936622182108,
+        "ZI": 0.3287625266593371,
+        "IZ": -0.39148971522887593,
+        "ZZ": 0.5615993359977178,
+        "XX": 0.0924625439810039,
+        "YY": 0.0924625439810039
+      },
+      "max_coefficient_residual_hartree": 3.747334066289687e-05,
+      "nuclear_repulsion_hartree": 0.66147151365,
+      "exact_two_electron_energy_hartree": -1.1426131623046154,
+      "rounded_table_energy_hartree": -1.1426780822372002
+    },
+    {
+      "R_angstrom": 0.85,
+      "coefficients": {
+        "II": 0.1082640751400035,
+        "ZI": 0.3148663529965986,
+        "IZ": -0.3523355867677864,
+        "ZZ": 0.5517665832429491,
+        "XX": 0.09393609524275519,
+        "YY": 0.09393609524275519
+      },
+      "max_coefficient_residual_hartree": 3.6095242755190826e-05,
+      "nuclear_repulsion_hartree": 0.6225614246117648,
+      "exact_two_electron_energy_hartree": -1.1366506801290877,
+      "rounded_table_energy_hartree": -1.1366267416569642
+    },
+    {
+      "R_angstrom": 0.9,
+      "coefficients": {
+        "II": 0.06085753650689282,
+        "ZI": 0.30178846850197016,
+        "IZ": -0.3168051241675464,
+        "ZZ": 0.5421337979586833,
+        "XX": 0.09544664890125035,
+        "YY": 0.09544664890125035
+      },
+      "max_coefficient_residual_hartree": 4.6648901250348485e-05,
+      "nuclear_repulsion_hartree": 0.5879746788,
+      "exact_two_electron_energy_hartree": -1.128654268521612,
+      "rounded_table_energy_hartree": -1.1285566250529921
+    },
+    {
+      "R_angstrom": 0.95,
+      "coefficients": {
+        "II": 0.01933515478058101,
+        "ZI": 0.28947014340152816,
+        "IZ": -0.28449266250688565,
+        "ZZ": 0.5327160073984608,
+        "XX": 0.09698996784338933,
+        "YY": 0.09698996784338933
+      },
+      "max_coefficient_residual_hartree": 3.51547805810086e-05,
+      "nuclear_repulsion_hartree": 0.5570286430736843,
+      "exact_two_electron_energy_hartree": -1.1192368734803502,
+      "rounded_table_energy_hartree": -1.1192976811310635
+    },
+    {
+      "R_angstrom": 1.0,
+      "coefficients": {
+        "II": -0.0171575921406448,
+        "ZI": 0.2778553182225355,
+        "IZ": -0.2550452677925359,
+        "ZZ": 0.5235247526306451,
+        "XX": 0.09856172493457889,
+        "YY": 0.09856172493457889
+      },
+      "max_coefficient_residual_hartree": 4.5267792535885754e-05,
+      "nuclear_repulsion_hartree": 0.52917721092,
+      "exact_two_electron_energy_hartree": -1.1088730601684396,
+      "rounded_table_energy_hartree": -1.108916728018456
+    },
+    {
+      "R_angstrom": 1.05,
+      "coefficients": {
+        "II": -0.049326093582127944,
+        "ZI": 0.26689129103464504,
+        "IZ": -0.22815560387598424,
+        "ZZ": 0.5145687025377529,
+        "XX": 0.10015751961633809,
+        "YY": 0.10015751961633809
+      },
+      "max_coefficient_residual_hartree": 4.439612401574422e-05,
+      "nuclear_repulsion_hartree": 0.5039782961142857,
+      "exact_two_electron_energy_hartree": -1.0979336927401966,
+      "rounded_table_energy_hartree": -1.0980199958810752
+    },
+    {
+      "R_angstrom": 1.1,
+      "coefficients": {
+        "II": -0.07775701090732157,
+        "ZI": 0.25652920407995006,
+        "IZ": -0.20355616351167405,
+        "ZZ": 0.5058541620845001,
+        "XX": 0.10177289838442778,
+        "YY": 0.10177289838442778
+      },
+      "max_coefficient_residual_hartree": 4.5837915499946646e-05,
+      "nuclear_repulsion_hartree": 0.4810701917454545,
+      "exact_two_electron_energy_hartree": -1.0867110009128695,
+      "rounded_table_energy_hartree": -1.08683514089159
+    },
+    {
+      "R_angstrom": 1.15,
+      "coefficients": {
+        "II": -0.10294158751341119,
+        "ZI": 0.24672435218261735,
+        "IZ": -0.18101414813418004,
+        "ZZ": 0.4973854799171479,
+        "XX": 0.10340338186533414,
+        "YY": 0.10340338186533414
+      },
+      "max_coefficient_residual_hartree": 4.1587513411184274e-05,
+      "nuclear_repulsion_hartree": 0.46015409645217403,
+      "exact_two_electron_energy_hartree": -1.0754368044156217,
+      "rounded_table_energy_hartree": -1.0753721313653328
+    },
+    {
+      "R_angstrom": 1.2,
+      "coefficients": {
+        "II": -0.12529391919670868,
+        "ZI": 0.2374363075679246,
+        "IZ": -0.16032674611645237,
+        "ZZ": 0.4891653668452365,
+        "XX": 0.1050444988103952,
+        "YY": 0.1050444988103952
+      },
+      "max_coefficient_residual_hartree": 4.449881039519932e-05,
+      "nuclear_repulsion_hartree": 0.44098100910000004,
+      "exact_two_electron_energy_hartree": -1.064295738319469,
+      "rounded_table_energy_hartree": -1.0642391354996805
+    },
+    {
+      "R_angstrom": 1.25,
+      "coefficients": {
+        "II": -0.14516543628954792,
+        "ZI": 0.2286288716576766,
+        "IZ": -0.1413168076073575,
+        "ZZ": 0.4811951409752288,
+        "XX": 0.10669182549520408,
+        "YY": 0.10669182549520408
+      },
+      "max_coefficient_residual_hartree": 3.4563710452073515e-05,
+      "nuclear_repulsion_hartree": 0.42334176873600005,
+      "exact_two_electron_energy_hartree": -1.0534347957758734,
+      "rounded_table_energy_hartree": -1.053442819867048
+    },
+    {
+      "R_angstrom": 1.3,
+      "coefficients": {
+        "II": -0.16285642183425436,
+        "ZI": 0.22026988464419112,
+        "IZ": -0.12382898620789712,
+        "ZZ": 0.473474916413345,
+        "XX": 0.10834102801892843,
+        "YY": 0.10834102801892843
+      },
+      "max_coefficient_residual_hartree": 4.3578165745628006e-05,
+      "nuclear_repulsion_hartree": 0.40705939301538463,
+      "exact_two_electron_energy_hartree": -1.042970178412278,
+      "rounded_table_energy_hartree": -1.0429960772068516
+    },
+    {
+      "R_angstrom": 1.35,
+      "coefficients": {
+        "II": -0.17862516913749482,
+        "ZI": 0.21233093266413516,
+        "IZ": -0.10772639549291935,
+        "ZZ": 0.46600375116627896,
+        "XX": 0.10998790475985062,
+        "YY": 0.10998790475985062
+      },
+      "max_coefficient_residual_hartree": 3.0932664135174814e-05,
+      "nuclear_repulsion_hartree": 0.39198311919999995,
+      "exact_two_electron_energy_hartree": -1.03299221681991,
+      "rounded_table_energy_hartree": -1.0329297567789522
+    },
+    {
+      "R_angstrom": 1.4,
+      "coefficients": {
+        "II": -0.19269525655581882,
+        "ZI": 0.20478699065413836,
+        "IZ": -0.09288777921858943,
+        "ZZ": 0.4587797672059842,
+        "XX": 0.11162842652405301,
+        "YY": 0.11162842652405301
+      },
+      "max_coefficient_residual_hartree": 2.8426524053007385e-05,
+      "nuclear_repulsion_hartree": 0.37798372208571435,
+      "exact_two_electron_energy_hartree": -1.0235689514893662,
+      "rounded_table_energy_hartree": -1.0235800048376693
+    },
+    {
+      "R_angstrom": 1.45,
+      "coefficients": {
+        "II": -0.20526133008672198,
+        "ZI": 0.19761603217627566,
+        "IZ": -0.0792051540090925,
+        "ZZ": 0.4518002525540216,
+        "XX": 0.11325877247814976,
+        "YY": 0.11325877247814976
+      },
+      "max_coefficient_residual_hartree": 4.122752185023448e-05,
+      "nuclear_repulsion_hartree": 0.3649498006344828,
+      "exact_two_electron_energy_hartree": -1.0147488305181365,
+      "rounded_table_energy_hartree": -1.0148230772539004
+    },
+    {
+      "R_angstrom": 1.5,
+      "coefficients": {
+        "II": -0.21649371251196559,
+        "ZI": 0.1907986303043887,
+        "IZ": -0.06658186280524672,
+        "ZZ": 0.44506175229282363,
+        "XX": 0.11487536059229801,
+        "YY": 0.11487536059229801
+      },
+      "max_coefficient_residual_hartree": 3.8247707176364276e-05,
+      "nuclear_repulsion_hartree": 0.35278480728,
+      "exact_two_electron_energy_hartree": -1.0065628735921963,
+      "rounded_table_energy_hartree": -1.0066547782599162
+    },
+    {
+      "R_angstrom": 1.55,
+      "coefficients": {
+        "II": -0.22654209543659604,
+        "ZI": 0.18431756797146925,
+        "IZ": -0.05493097326368737,
+        "ZZ": 0.43856015293526573,
+        "XX": 0.1164748719147215,
+        "YY": 0.1164748719147215
+      },
+      "max_coefficient_residual_hartree": 4.20954365960291e-05,
+      "nuclear_repulsion_hartree": 0.3414046522064516,
+      "exact_two_electron_energy_hartree": -0.99902656260093,
+      "rounded_table_energy_hartree": -0.9990246022682366
+    },
+    {
+      "R_angstrom": 1.6,
+      "coefficients": {
+        "II": -0.23553851720091717,
+        "ZI": 0.17815747190533987,
+        "IZ": -0.04417396055936623,
+        "ZZ": 0.43229076267994354,
+        "XX": 0.11805426849122402,
+        "YY": 0.11805426849122402
+      },
+      "max_coefficient_residual_hartree": 4.5731508775972984e-05,
+      "nuclear_repulsion_hartree": 0.330735756825,
+      "exact_two_electron_energy_hartree": -0.9921416402647971,
+      "rounded_table_energy_hartree": -0.9922259545720717
+    },
+    {
+      "R_angstrom": 1.65,
+      "coefficients": {
+        "II": -0.2435997855238105,
+        "ZI": 0.17230448062642328,
+        "IZ": -0.03423962266501218,
+        "ZZ": 0.4262483887260358,
+        "XX": 0.11961080511186623,
+        "YY": 0.11961080511186623
+      },
+      "max_coefficient_residual_hartree": 4.838872603579736e-05,
+      "nuclear_repulsion_hartree": 0.3207134611636364,
+      "exact_two_electron_energy_hartree": -0.9858979257170775,
+      "rounded_table_energy_hartree": -0.9858045727517246
+    },
+    {
+      "R_angstrom": 1.7,
+      "coefficients": {
+        "II": -0.25082946826372243,
+        "ZI": 0.166745953341571,
+        "IZ": -0.02506318470942792,
+        "ZZ": 0.42042741193746175,
+        "XX": 0.12114203531718845,
+        "YY": 0.12114203531718845
+      },
+      "max_coefficient_residual_hartree": 4.595334157100894e-05,
+      "nuclear_repulsion_hartree": 0.3112807123058824,
+      "exact_two_electron_energy_hartree": -0.9802751908609748,
+      "rounded_table_energy_hartree": -0.9801467267992978
+    },
+    {
+      "R_angstrom": 1.75,
+      "coefficients": {
+        "II": -0.25731954760482667,
+        "ZI": 0.16147022283787135,
+        "IZ": -0.016585556197519197,
+        "ZZ": 0.414821858633046,
+        "XX": 0.12264581224527364,
+        "YY": 0.12264581224527364
+      },
+      "max_coefficient_residual_hartree": 4.581224527364092e-05,
+      "nuclear_repulsion_hartree": 0.3023869776685715,
+      "exact_two_electron_energy_hartree": -0.9752450873324965,
+      "rounded_table_energy_hartree": -0.975155522965677
+    },
+    {
+      "R_angstrom": 1.8,
+      "coefficients": {
+        "II": -0.26315181087687767,
+        "ZI": 0.15646639195883857,
+        "IZ": -0.008752710719976825,
+        "ZZ": 0.4094254690380159,
+        "XX": 0.12412028497160427,
+        "YY": 0.12412028497160427
+      },
+      "max_coefficient_residual_hartree": 4.818912312232193e-05,
+      "nuclear_repulsion_hartree": 0.2939873394,
+      "exact_two_electron_energy_hartree": -0.9707730754179859,
+      "rounded_table_energy_hartree": -0.9708068577346938
+    },
+    {
+      "R_angstrom": 1.85,
+      "coefficients": {
+        "II": -0.2683990338644705,
+        "ZI": 0.1517241703642205,
+        "IZ": -0.0015151627431807257,
+        "ZZ": 0.40423176187586307,
+        "XX": 0.1255638910084182,
+        "YY": 0.1255638910084182
+      },
+      "max_coefficient_residual_hartree": 3.610899158179581e-05,
+      "nuclear_repulsion_hartree": 0.2860417356324324,
+      "exact_two_electron_energy_hartree": -0.9668202858855404,
+      "rounded_table_energy_hartree": -0.966830657817978
+    },
+    {
+      "R_angstrom": 1.9,
+      "coefficients": {
+        "II": -0.27312599890348,
+        "ZI": 0.14723374635951503,
+        "IZ": 0.005172479444809808,
+        "ZZ": 0.39923409463599735,
+        "XX": 0.126975345609264,
+        "YY": 0.126975345609264
+      },
+      "max_coefficient_residual_hartree": 3.409463599735041e-05,
+      "nuclear_repulsion_hartree": 0.27851432153684214,
+      "exact_two_electron_energy_hartree": -0.9633452428646263,
+      "rounded_table_energy_hartree": -0.9632982817818689
+    },
+    {
+      "R_angstrom": 1.95,
+      "coefficients": {
+        "II": -0.2773903795933073,
+        "ZI": 0.1429856877316999,
+        "IZ": 0.011351901370839801,
+        "ZZ": 0.3944257191676907,
+        "XX": 0.12835362848325194,
+        "YY": 0.12835362848325194
+      },
+      "max_coefficient_residual_hartree": 4.8098629160199524e-05,
+      "nuclear_repulsion_hartree": 0.2713729286769231,
+      "exact_two_electron_energy_hartree": -0.9603053871080062,
+      "rounded_table_energy_hartree": -0.9603564069640457
+    },
+    {
+      "R_angstrom": 2.0,
+      "coefficients": {
+        "II": -0.2812435160180838,
+        "ZI": 0.13897086561723848,
+        "IZ": 0.017061423476197074,
+        "ZZ": 0.3897998323846482,
+        "XX": 0.12969796847380935,
+        "YY": 0.12969796847380935
+      },
+      "max_coefficient_residual_hartree": 4.351601808377792e-05,
+      "nuclear_repulsion_hartree": 0.26458860546,
+      "exact_two_electron_energy_hartree": -0.9576583588053154,
+      "rounded_table_energy_hartree": -0.9576146716412124
+    },
+    {
+      "R_angstrom": 2.05,
+      "coefficients": {
+        "II": -0.28473109849257816,
+        "ZI": 0.1351803961795843,
+        "IZ": 0.02233630515790483,
+        "ZZ": 0.3853496219941135,
+        "XX": 0.13100782670535324,
+        "YY": 0.13100782670535324
+      },
+      "max_coefficient_residual_hartree": 4.9621994113513423e-05,
+      "nuclear_repulsion_hartree": 0.2581352248390244,
+      "exact_two_electron_energy_hartree": -0.9553630219194102,
+      "rounded_table_energy_hartree": -0.955290045392404
+    },
+    {
+      "R_angstrom": 2.1,
+      "coefficients": {
+        "II": -0.28789377359806223,
+        "ZI": 0.1316055959622237,
+        "IZ": 0.02720901841780113,
+        "ZZ": 0.38106830727518026,
+        "XX": 0.13228287865234753,
+        "YY": 0.13228287865234753
+      },
+      "max_coefficient_residual_hartree": 3.1692724819731843e-05,
+      "nuclear_repulsion_hartree": 0.25198914805714284,
+      "exact_two_electron_energy_hartree": -0.953380233144147,
+      "rounded_table_energy_hartree": -0.9534512612030399
+    },
+    {
+      "R_angstrom": 2.15,
+      "coefficients": {
+        "II": -0.29076768325725355,
+        "ZI": 0.12823794792013424,
+        "IZ": 0.03170949562931483,
+        "ZZ": 0.37694917501943237,
+        "XX": 0.133522995539534,
+        "YY": 0.133522995539534
+      },
+      "max_coefficient_residual_hartree": 4.9175019432357026e-05,
+      "nuclear_repulsion_hartree": 0.24612893531162794,
+      "exact_two_electron_energy_hartree": -0.9516733751116807,
+      "rounded_table_energy_hartree": -0.9516035927916375
+    },
+    {
+      "R_angstrom": 2.2,
+      "coefficients": {
+        "II": -0.29338494547530425,
+        "ZI": 0.1250690761156312,
+        "IZ": 0.035865354419880896,
+        "ZZ": 0.37298561081251935,
+        "XX": 0.1347282254397097,
+        "YY": 0.1347282254397097
+      },
+      "max_coefficient_residual_hartree": 3.4645580119105346e-05,
+      "nuclear_repulsion_hartree": 0.24053509587272726,
+      "exact_two_electron_energy_hartree": -0.9502086842497058,
+      "rounded_table_energy_hartree": -0.9501833680820636
+    },
+    {
+      "R_angstrom": 2.25,
+      "coefficients": {
+        "II": -0.29577408386561715,
+        "ZI": 0.12209072778868463,
+        "IZ": 0.03970210171512695,
+        "ZZ": 0.3691711258818056,
+        "XX": 0.1358987743950021,
+        "YY": 0.1358987743950021
+      },
+      "max_coefficient_residual_hartree": 2.8874118194355258e-05,
+      "nuclear_repulsion_hartree": 0.23518987152,
+      "exact_two_electron_energy_hartree": -0.9489554089208736,
+      "rounded_table_energy_hartree": -0.9490158446284291
+    },
+    {
+      "R_angstrom": 2.3,
+      "coefficients": {
+        "II": -0.29796041197524703,
+        "ZI": 0.119294761959196,
+        "IZ": 0.04324331847557786,
+        "ZZ": 0.3654993797665602,
+        "XX": 0.13703498784815693,
+        "YY": 0.13703498784815693
+      },
+      "max_coefficient_residual_hartree": 4.33184755778554e-05,
+      "nuclear_repulsion_hartree": 0.23007704822608702,
+      "exact_two_electron_energy_hartree": -0.9478858342100033,
+      "rounded_table_energy_hartree": -0.9478716054742455
+    },
+    {
+      "R_angstrom": 2.35,
+      "coefficients": {
+        "II": -0.29996637757584976,
+        "ZI": 0.11667314392774736,
+        "IZ": 0.04651082644158572,
+        "ZZ": 0.36196419908736777,
+        "XX": 0.13813733263107889,
+        "YY": 0.13813733263107889
+      },
+      "max_coefficient_residual_hartree": 3.7332631078884626e-05,
+      "nuclear_repulsion_hartree": 0.22518179188085105,
+      "exact_two_electron_energy_hartree": -0.9469752073103256,
+      "rounded_table_energy_hartree": -0.9469815432620154
+    },
+    {
+      "R_angstrom": 2.4,
+      "coefficients": {
+        "II": -0.3018118713991353,
+        "ZI": 0.1142179450812615,
+        "IZ": 0.04952483816408451,
+        "ZZ": 0.35855959270378934,
+        "XX": 0.13920637971841385,
+        "YY": 0.13920637971841385
+      },
+      "max_coefficient_residual_hartree": 4.040729621063166e-05,
+      "nuclear_repulsion_hartree": 0.22049050455000002,
+      "exact_two_electron_energy_hartree": -0.9462015932003067,
+      "rounded_table_energy_hartree": -0.9462192610724478
+    },
+    {
+      "R_angstrom": 2.45,
+      "coefficients": {
+        "II": -0.3035145042149885,
+        "ZI": 0.11192134735366457,
+        "IZ": 0.05230409164011188,
+        "ZZ": 0.35527976355590585,
+        "XX": 0.14024278791457342,
+        "YY": 0.14024278791457342
+      },
+      "max_coefficient_residual_hartree": 4.278791457343334e-05,
+      "nuclear_repulsion_hartree": 0.21599069833469386,
+      "exact_two_electron_energy_hartree": -0.9455456852513022,
+      "rounded_table_energy_hartree": -0.9454641240197315
+    },
+    {
+      "R_angstrom": 2.5,
+      "coefficients": {
+        "II": -0.3050898556477552,
+        "ZI": 0.10977565160235457,
+        "IZ": 0.05486597092572862,
+        "ZZ": 0.352119117487672,
+        "XX": 0.14124728860381325,
+        "YY": 0.14124728860381325
+      },
+      "max_coefficient_residual_hartree": 4.7288603813255836e-05,
+      "nuclear_repulsion_hartree": 0.21167088436800002,
+      "exact_two_electron_energy_hartree": -0.9449905903101952,
+      "rounded_table_energy_hartree": -0.9448869305338705
+    },
+    {
+      "R_angstrom": 2.55,
+      "coefficients": {
+        "II": -0.30655169768820995,
+        "ZI": 0.10777328908350696,
+        "IZ": 0.05722661412651481,
+        "ZZ": 0.3490722693487765,
+        "XX": 0.14222067165559457,
+        "YY": 0.14222067165559457
+      },
+      "max_coefficient_residual_hartree": 4.83023117900383e-05,
+      "nuclear_repulsion_hartree": 0.20752047487058828,
+      "exact_two_electron_energy_hartree": -0.9445216031191835,
+      "rounded_table_energy_hartree": -0.944566266635618
+    },
+    {
+      "R_angstrom": 2.6,
+      "coefficients": {
+        "II": -0.3079121954789027,
+        "ZI": 0.10590683516835368,
+        "IZ": 0.05940101015097146,
+        "ZZ": 0.3461340466672699,
+        "XX": 0.1431637725424016,
+        "YY": 0.1431637725424016
+      },
+      "max_coefficient_residual_hartree": 3.62274575984034e-05,
+      "nuclear_repulsion_hartree": 0.20352969650769231,
+      "exact_two_electron_energy_hartree": -0.9441259808988772,
+      "rounded_table_energy_hartree": -0.944150323108557
+    },
+    {
+      "R_angstrom": 2.65,
+      "coefficients": {
+        "II": -0.309182087626285,
+        "ZI": 0.10416902444821591,
+        "IZ": 0.061403085555006676,
+        "ZZ": 0.3432994911777794,
+        "XX": 0.14407746069521143,
+        "YY": 0.14407746069521143
+      },
+      "max_coefficient_residual_hartree": 3.097555178409317e-05,
+      "nuclear_repulsion_hartree": 0.199689513554717,
+      "exact_two_electron_energy_hartree": -0.9437927256057934,
+      "rounded_table_energy_hartree": -0.9438607386042258
+    },
+    {
+      "R_angstrom": 2.7,
+      "coefficients": {
+        "II": -0.31037084801871556,
+        "ZI": 0.10255276642510643,
+        "IZ": 0.06324578271373521,
+        "ZZ": 0.34056385847987386,
+        "XX": 0.14496262909362617,
+        "YY": 0.14496262909362617
+      },
+      "max_coefficient_residual_hartree": 4.723357489357094e-05,
+      "nuclear_repulsion_hartree": 0.19599155959999998,
+      "exact_two_electron_energy_hartree": -0.9435123787557713,
+      "rounded_table_energy_hartree": -0.9436642444850413
+    },
+    {
+      "R_angstrom": 2.75,
+      "coefficients": {
+        "II": -0.3114868309010648,
+        "ZI": 0.10105116106826134,
+        "IZ": 0.06494113044267485,
+        "ZZ": 0.3379226160883105,
+        "XX": 0.14582018506362757,
+        "YY": 0.14582018506362757
+      },
+      "max_coefficient_residual_hartree": 4.8838931738653946e-05,
+      "nuclear_repulsion_hartree": 0.19242807669818182,
+      "exact_two_electron_energy_hartree": -0.943276831705242,
+      "rounded_table_energy_hartree": -0.9432383909566617
+    },
+    {
+      "R_angstrom": 2.8,
+      "coefficients": {
+        "II": -0.3125374007675459,
+        "ZI": 0.09965751362306585,
+        "IZ": 0.06650030806556606,
+        "ZZ": 0.3353714401217711,
+        "XX": 0.14665104223628084,
+        "YY": 0.14665104223628084
+      },
+      "max_coefficient_residual_hartree": 4.895776371915961e-05,
+      "nuclear_repulsion_hartree": 0.18899186104285717,
+      "exact_two_electron_energy_hartree": -0.9430791528048821,
+      "rounded_table_energy_hartree": -0.9431724165918652
+    },
+    {
+      "R_angstrom": 2.85,
+      "coefficients": {
+        "II": -0.31352904847806706,
+        "ZI": 0.0983653481757557,
+        "IZ": 0.0679337038004999,
+        "ZZ": 0.3329062108597062,
+        "XX": 0.14745611360540634,
+        "YY": 0.14745611360540634
+      },
+      "max_coefficient_residual_hartree": 4.3886394593656286e-05,
+      "nuclear_repulsion_hartree": 0.18567621435789475,
+      "exact_two_electron_energy_hartree": -0.9429134317852976,
+      "rounded_table_energy_hartree": -0.9429725037828018
+    }
+  ]
+}

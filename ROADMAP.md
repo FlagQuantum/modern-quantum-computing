@@ -20,7 +20,8 @@ These are artifacts, not evidence that the complete theory, implementation or te
 - [x] Record editorial dispositions for every section, direct prerequisites and 19 checked learning paths.
 - [ ] Validate actual first-use explanations and transitions with specialists and target readers.
 - [x] Assign core result/role, assumptions, proof depth/obligations and precise source locators for all 435 sections.
-- [ ] Review exact theorem statements, source-specific lemmas and claim/provenance exceptions before acceptance.
+- [x] Trace the H2 STO-6G integral/reduction chain with an independent 324-coefficient audit; select dated topological experiments, critique/reply and retraction records.
+- [ ] Review exact theorem statements, source-specific lemmas, subscription comment/reply full texts and remaining claim/provenance exceptions before acceptance.
 - [ ] Design independent cross-layer reference cases and investigate actual API needs.
 - [x] Compute provisional section, chapter and route page ranges; expose the full-reference workload.
 - [x] Propose seven dependency-compatible volumes and recompute proof-specific page budgets.

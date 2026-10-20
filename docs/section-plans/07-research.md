@@ -161,9 +161,9 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Section level:** advanced. **Required earlier sections:** [25.1](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-1), [25.3](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-3), [25.4](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-4).
 
-**Learning and derivation target:** Derive the mapping/reduction steps that are actually supported by the chosen sources.
+**Learning and derivation target:** Plan the declared STO-6G AO/MO integral conventions, four-mode Fock/BK translation, explicit Z1=Z3=+1 projection and remaining two-electron sector; distinguish original source data from independent reconstruction.
 
-**Implementation and evidence target:** Compare independent occupation/qubit operators and mark rounded inputs or deferred upstream derivations.
+**Implementation and evidence target:** Follow H2-01–09: verify all 324 coefficients at published four-decimal precision, preserve the corrected table/hash, compare the full N=2 spectrum, and disclose unavailable original author integral files.
 
 <span id="sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-3"></span>
 <span id="393-units-offsets-symmetries-and-qubit-labels"></span>

@@ -6,6 +6,10 @@ P. J. J. O'Malley et al., *Scalable Quantum Simulation of Molecular Energies*, P
 
 The examples use the author-corrected [arXiv:1512.06860v2](https://arxiv.org/abs/1512.06860v2), revised February 4, 2017. This version corrects identity coefficients in Table I. `examples/omalley2016/source-provenance.json` records source hashes; `h2-table.csv` contains the transcribed numerical data. Scientific facts and data are attributed here; no paper figures or full article text are redistributed.
 
+## Planning source audits
+
+The [H2 provenance plan](references/h2-provenance.md) separates the STO-6G basis/integral reconstruction from the historical Seeley integral fixture and verifies all 324 reduced coefficients at printed precision. The [topological evidence ledger](references/topological-experiments.md) separates observations, attributed interpretation, source status and missing tests. Source access limits and unavailable author files are explicit; neither ledger is textbook body or independent hardware validation.
+
 ## Origins and scope
 
 The hydrogen scripts were developed for the [FlagQuantum Wiki reproduction tutorial](https://github.com/flagos-ai/FlagQuantum/wiki/Reproducing-Molecular-Hydrogen-VQE), then incorporated into this textbook with a new chapter structure. The Wiki remains an additional detailed reading resource.

@@ -757,9 +757,9 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Section level:** advanced. **Required earlier sections:** [40.5](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-5), [40.6](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-6).
 
-**Learning and derivation target:** Separate proposed signatures, alternative explanations, demonstrated control and full logical computation.
+**Learning and derivation target:** Separate Abelian statistics, encoded Ising/D4/Fibonacci braiding, material parity readout and protected logical operation; evaluate competing interpretations with dated primary sources.
 
-**Implementation and evidence target:** Build a dated primary-source claim/evidence table without inferring a working universal platform from one signature.
+**Implementation and evidence target:** Follow TOPO-01–09; record observations, inference, missing tests, data and access scope, paired comment/reply, and retraction status. Full subscription argument review and independent experimental interpretation remain pending.
 
 <span id="sec-topological-quantum-computation-and-candidate-physical-realizations-8"></span>
 

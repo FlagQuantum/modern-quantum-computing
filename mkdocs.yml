@@ -57,6 +57,8 @@ nav:
       - Hybrid-computing sources: references/hybrid-computing.md
       - Architecture-review sources: references/architecture-review.md
       - Exact proof-plan sources: references/proof-sources.md
+      - H₂ integral-to-model provenance: references/h2-provenance.md
+      - Topological experimental evidence: references/topological-experiments.md
       - Nielsen–Chuang design review: references/nielsen-chuang-design-review.md
       - Quantum Country design review: references/quantum-country-design-review.md
   - Sources and validation: sources.md

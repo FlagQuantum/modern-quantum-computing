@@ -16,6 +16,7 @@ An open English textbook that connects quantum computing equations to executable
 
 - [Book introduction](docs/index.md)
 - [Quantum-classical hybrid patterns and implementations](docs/hybrid-computing.md)
+- [H₂ integral-to-model provenance](docs/references/h2-provenance.md) · [Topological experiment evidence](docs/references/topological-experiments.md)
 - [Core results, proof depth and exact sources](docs/proof-plan.md) · [Seven-volume proposal](docs/volume-plan.md)
 - [Systematic architecture review](docs/architecture-review.md) · [435-section ledger](docs/section-review.md) · [19 learning paths](docs/learning-paths.md)
 - [Curriculum audit and freeze gates](docs/curriculum-audit.md) · [Reader continuity](docs/reader-continuity.md)

@@ -2810,9 +2810,11 @@
       "result": "Fermionic anticommutation in occupation space",
       "depth": "F",
       "assumptions": "Finite ordered modes; explicit occupation-sign convention",
-      "proof_plan": "Define creation/annihilation action and prove canonical anticommutation on basis states",
+      "proof_plan": "Define creation/annihilation action and prove canonical anticommutation on basis states; use the H2 provenance ledger for a concrete convention-sensitive application; retain the general theory in this chapter and avoid duplicating the capstone derivation",
       "source_locators": [
-        "CHEM:III"
+        "CHEM:III",
+        "H2:reduction",
+        "BK2012:integrals"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -2823,9 +2825,11 @@
       "result": "Jordan-Wigner representation preserves anticommutation",
       "depth": "F",
       "assumptions": "Fixed fermionic mode and qubit order",
-      "proof_plan": "Derive parity strings and verify their algebra; map a selected one/two-body term",
+      "proof_plan": "Derive parity strings and verify their algebra; map a selected one/two-body term; use the H2 provenance ledger for a concrete convention-sensitive application; retain the general theory in this chapter and avoid duplicating the capstone derivation",
       "source_locators": [
-        "CHEM:IV.A"
+        "CHEM:IV.A",
+        "H2:reduction",
+        "BK2012:integrals"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -2836,9 +2840,11 @@
       "result": "Symmetry-sector restriction and energy offsets",
       "depth": "F",
       "assumptions": "Exact commuting symmetry; declared target sector",
-      "proof_plan": "Prove invariant blocks and the selected reduction; distinguish sector minimum from global minimum",
+      "proof_plan": "Prove invariant blocks and the selected reduction; distinguish sector minimum from global minimum; use the H2 provenance ledger for a concrete convention-sensitive application; retain the general theory in this chapter and avoid duplicating the capstone derivation",
       "source_locators": [
-        "CHEM:IV.C"
+        "CHEM:IV.C",
+        "H2:reduction",
+        "BK2012:integrals"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -2890,9 +2896,11 @@
       "result": "Chemistry error budget is model dependent",
       "depth": "M",
       "assumptions": "Specified basis, active space, symmetry reduction and target energy",
-      "proof_plan": "Separate model, ansatz, optimizer, sampling and hardware errors; no automatic chemical-accuracy claim",
+      "proof_plan": "Separate model, ansatz, optimizer, sampling and hardware errors; no automatic chemical-accuracy claim; use the H2 provenance ledger for a concrete convention-sensitive application; retain the general theory in this chapter and avoid duplicating the capstone derivation",
       "source_locators": [
-        "CHEM:VIII"
+        "CHEM:VIII",
+        "H2:reduction",
+        "BK2012:integrals"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -4585,9 +4593,11 @@
       "result": "Topological protection is a model-dependent statement",
       "depth": "P",
       "assumptions": "Distinguish code, phase of matter and candidate device",
-      "proof_plan": "Define each meaning and explicitly separate theoretical protection from empirical realization",
+      "proof_plan": "Define each meaning and explicitly separate theoretical protection from empirical realization; distinguish intrinsic phases, engineered defects, digitally prepared states and a protected computational architecture",
       "source_locators": [
-        "ANYON:II.A"
+        "ANYON:II.A",
+        "N2020:braiding",
+        "G2023:braiding"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -4628,10 +4638,12 @@
       "result": "Fibonacci braiding universality with a deferred density proof; conditional fusion correctness",
       "depth": "R",
       "assumptions": "Specified anyon model, allowed measurements and ancillas",
-      "proof_plan": "Derive conditional fusion outcomes; state the selected universality/nonuniversality result and its deferred density argument",
+      "proof_plan": "Derive conditional fusion outcomes; state the selected universality/nonuniversality result and its deferred density argument; separate ideal Ising/Fibonacci computational power from what each processor experiment establishes",
       "source_locators": [
         "P9:9.14",
-        "P9:9.17"
+        "P9:9.17",
+        "G2023:braiding",
+        "F2024:braiding"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -4644,9 +4656,11 @@
       "result": "Majorana parity encoding and exchange representation",
       "depth": "M",
       "assumptions": "Four ideal Majorana modes with fixed total parity; effective algebra only",
-      "proof_plan": "Derive anticommutation, code dimension and braid action; no device-realization claim",
+      "proof_plan": "Derive anticommutation, code dimension and braid action; no device-realization claim; distinguish ideal-chain parity algebra from finite-device readout and limited two-site protection",
       "source_locators": [
-        "ANYON:III.B"
+        "ANYON:III.B",
+        "MS2025:readout",
+        "KITREAD:readout"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -4657,9 +4671,12 @@
       "result": "Protection requires locality, gaps and control assumptions",
       "depth": "M",
       "assumptions": "Declared perturbations, separation and noise model",
-      "proof_plan": "Give a scoped splitting/error argument and a failure example; avoid a universal immunity theorem",
+      "proof_plan": "Give a scoped splitting/error argument and a failure example; avoid a universal immunity theorem; make the competing topological/trivial interpretations explicit and require scaling evidence for protection claims",
       "source_locators": [
-        "ANYON:IV.D"
+        "ANYON:IV.D",
+        "MS2025:readout",
+        "L2026:comment",
+        "MR2026:reply"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -4670,12 +4687,22 @@
       "result": "Experimental signatures do not establish all topological operations",
       "depth": "V",
       "assumptions": "Dated claim-specific primary evidence",
-      "proof_plan": "Classify signatures, controlled operations and logical claims; historical review supplies context only, current experimental source selection remains open",
+      "proof_plan": "Audit TOPO-01 through TOPO-09: Abelian FQH interference; encoded Ising defects, D4 and Fibonacci experiments; semiconductor parity readout; minimal Kitaev-chain readout; paired comment/reply and retraction. Separate measured observables, model attribution and missing protection/computational tests. Record dated source status and full-text access limits; no claim of independently reproducing experimental data",
       "source_locators": [
-        "ANYON:V.A",
-        "ED:protocol"
+        "N2020:braiding",
+        "G2023:braiding",
+        "I2024:braiding",
+        "IONEXP:braiding",
+        "F2024:braiding",
+        "MS2025:readout",
+        "L2026:comment",
+        "MR2026:reply",
+        "K2026:readout",
+        "KITREAD:readout",
+        "Z2018:status",
+        "ZR2021:notice"
       ],
-      "source_review": "current-experimental-claim-source-selection-pending",
+      "source_review": "dated-claim-specific-primary-source-ledger-checked; subscription-comment-reply-full-text-review-open",
       "mathematical_review": "pending",
       "implementation_review": "not performed in this planning pass"
     },
@@ -4684,10 +4711,12 @@
       "result": "Topological compilation acceptance protocol",
       "depth": "V",
       "assumptions": "Specified anyon model and target accuracy",
-      "proof_plan": "Compare braid matrices to dense logical targets and record approximation/measurement costs",
+      "proof_plan": "Compare braid matrices to dense logical targets and record approximation/measurement costs; label ideal braid-matrix calculations as a synthetic model laboratory; obtain data/code versions before planning an experimental reanalysis",
       "source_locators": [
         "P9:9.17",
-        "ED:protocol"
+        "ED:protocol",
+        "F2024:braiding",
+        "I2024:braiding"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -5674,9 +5703,10 @@
       "result": "H2 reproduction claim is limited to the pinned reduced model",
       "depth": "V",
       "assumptions": "Corrected arXiv v2 data and explicit comparison task",
-      "proof_plan": "Freeze the paper/data scope; do not identify synthetic sampling with the hardware experiment",
+      "proof_plan": "Freeze the paper/data scope; do not identify synthetic sampling with the hardware experiment; pin corrected v2, STO-6G basis and table/data hash; preserve original rounded fixture",
       "source_locators": [
-        "H2:data"
+        "H2:data",
+        "H2:reduction"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -5687,24 +5717,31 @@
       "result": "Molecular reduction must be traced term by term",
       "depth": "M",
       "assumptions": "Declared orbitals, fermionic mapping, symmetry sector and offsets",
-      "proof_plan": "Plan the complete source-to-Hamiltonian map; exact molecular integral provenance remains a flagged acceptance item",
+      "proof_plan": "Follow H2-01 through H2-09 in the source-evidence ledger: clamped-nuclei model, versioned STO-6G basis, RHF AO-to-MO integral permutation, four-mode Fock Hamiltonian, explicit BK basis permutation and Z1=Z3=+1 projection; derive all six coefficients and the further Z0Z1=-1 electron sector. Verify all 54 geometries against the corrected table without fitting. Distinguish Seeley Table III historical integrals from the STO-6G scan and disclose unavailable original author integral files",
       "source_locators": [
-        "CHEM:VII.A",
-        "H2:data"
+        "H2:reduction",
+        "H2:gauge",
+        "H2:data",
+        "BK2012:integrals",
+        "BK2012:mapping",
+        "BK2012:paulis",
+        "BSE6:H"
       ],
-      "source_review": "source-to-integral-and-reduction-map-pending",
+      "source_review": "source-chain-and-independent-54-geometry-regeneration-checked; original-author-integral-files-not-recovered",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "Independent PySCF/Fock/BK verification tooling executed; 324 coefficients within 5e-5 Hartree; no new FlagQuantum API or hardware validation"
     },
     {
       "section_id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-3",
       "result": "Offsets and basis maps change the reported energy interpretation",
       "depth": "F",
       "assumptions": "Pinned coefficients, units, sectors and qubit labels",
-      "proof_plan": "Derive sector matrices and all constant shifts; verify at a non-special parameter",
+      "proof_plan": "Derive sector matrices and all constant shifts; verify at a non-special parameter; enforce nuclear scalar once, basis/gauge labels, q0-left translation and the distinction between parity reduction and fixed electron number",
       "source_locators": [
         "H2:data",
-        "H2:VQE"
+        "H2:VQE",
+        "H2:gauge",
+        "H2:reduction"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -5743,10 +5780,11 @@
       "result": "Reachable-sector minimum differs from the full-space minimum",
       "depth": "F",
       "assumptions": "Explicit two-dimensional ansatz sector and full Hermitian model",
-      "proof_plan": "Diagonalize both matrices and prove which bound the ansatz attains",
+      "proof_plan": "Diagonalize both matrices and prove which bound the ansatz attains; compare the odd two-qubit minimum to the full N=2 Fock block at every geometry; other particle-number sectors are separate comparisons",
       "source_locators": [
         "H2:data",
-        "CHEM:V.B"
+        "CHEM:V.B",
+        "H2:reduction"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -5757,10 +5795,11 @@
       "result": "A geometry scan is a repeated model calculation",
       "depth": "V",
       "assumptions": "Every corrected Table I row and one fixed interpretation",
-      "proof_plan": "Specify all-row analytic/dense checks and separate data rounding from program error",
+      "proof_plan": "Specify all-row analytic/dense checks and separate data rounding from program error; require the independent unrounded integral scan and coefficient-rounding perturbation bound alongside the existing rounded-data scan",
       "source_locators": [
         "H2:data",
-        "ED:protocol"
+        "ED:protocol",
+        "BSE6:H"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -5785,10 +5824,11 @@
       "result": "H2 report must delimit reproduced and unreproduced claims",
       "depth": "V",
       "assumptions": "Pinned model/source/execution record",
-      "proof_plan": "Report all geometries, conventions, discrepancies and excluded hardware/molecular claims",
+      "proof_plan": "Report all geometries, conventions, discrepancies and excluded hardware/molecular claims; report reconstruction at published precision, incomplete original software provenance and no hardware reproduction",
       "source_locators": [
         "REPRO:manuscripts",
-        "H2:data"
+        "H2:data",
+        "BK2012:integrals"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",

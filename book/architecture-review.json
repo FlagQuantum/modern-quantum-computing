@@ -96,8 +96,8 @@
     },
     {
       "id": "F19",
-      "finding": "The H2 reduction and logical-memory source selection still have unresolved scholarly scope.",
-      "disposition": "H2 source-to-integral/reduction mapping remains open. Select Fowler et al. v2, Section VII A/Fig. 5 for the memory ambiguity claim; label the finite memory benchmark as an extension, not a threshold reproduction."
+      "finding": "H2 and logical-memory reproduction claims require explicitly bounded scholarly provenance.",
+      "disposition": "H2-01–09 now traces STO-6G integrals, BK projection, electron sector and 324 coefficients at printed precision; original author integral files were not recovered. Select Fowler et al. v2, Section VII A/Fig. 5 for memory ambiguity; the finite memory benchmark is an extension, not threshold reproduction."
     },
     {
       "id": "F20",
@@ -264,7 +264,7 @@
     },
     {
       "chapter": 40,
-      "decision": "Retain a theory-first, evidence-qualified advanced branch. Majorana/fermionic and protection/logical supplements have separate prerequisites; full tensor-category theory is an explicit exclusion."
+      "decision": "Retain a theory-first, evidence-qualified advanced branch. Majorana/fermionic and protection/logical supplements have separate prerequisites; full tensor-category theory is an explicit exclusion. TOPO-01–09 now pins claim-level experimental and source-status cases; subscription comment/reply full-text and independent interpretation review remain open."
     },
     {
       "chapter": 41,
@@ -300,7 +300,7 @@
     },
     {
       "chapter": 49,
-      "decision": "Require only the energy/mapping/gradient and research sections needed by the selected H2 calculation. Full molecular reduction/source locators still need review; embedding/learning are not prerequisites."
+      "decision": "Require only the energy/mapping/gradient and research sections needed by the H2 calculation. Source chain and independent reconstruction are checked at printed precision; original author files are unavailable and mathematical/reader review remains open. Embedding/learning are not prerequisites."
     },
     {
       "chapter": 50,
@@ -2515,5 +2515,5 @@
       "use": "A concrete quantum-LDPC architectural example; no general hardware/cost ranking adopted."
     }
   ],
-  "follow_up": "All-section result/proof/source plan and dependency-compatible seven-volume proposal; no specialist/reader sign-off."
+  "follow_up": "All-section result/proof/source and seven-volume plans assigned. H2 and topology source exceptions now have claim-level ledgers; remaining mathematical, experimental interpretation and reader acceptance gates precede drafting."
 }

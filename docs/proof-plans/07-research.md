@@ -178,11 +178,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Corrected arXiv v2 data and explicit comparison task.
 
-**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Freeze the paper/data scope; do not identify synthetic sampling with the hardware experiment.
+**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Freeze the paper/data scope; do not identify synthetic sampling with the hardware experiment; pin corrected v2, STO-6G basis and table/data hash; preserve original rounded fixture.
 
 **Imported earlier results:** [48.1](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-1), [48.2](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-2).
 
-**Exact source targets:** [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes.
+**Exact source targets:** [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes; [H2:reduction](../references/proof-sources.md#source-h2-reduction): Appendix A, Eq. (A1)–(A6) and Fig. 5: molecular model, integrals, BK Hamiltonian and reduction.
 
 **Independent evidence target:** Validate the transcribed 54-row table and preserve its provenance.
 
@@ -196,15 +196,15 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Declared orbitals, fermionic mapping, symmetry sector and offsets.
 
-**Proof depth:** M — Complete selected-model derivation. **Proof obligation:** Plan the complete source-to-Hamiltonian map; exact molecular integral provenance remains a flagged acceptance item.
+**Proof depth:** M — Complete selected-model derivation. **Proof obligation:** Follow H2-01 through H2-09 in the source-evidence ledger: clamped-nuclei model, versioned STO-6G basis, RHF AO-to-MO integral permutation, four-mode Fock Hamiltonian, explicit BK basis permutation and Z1=Z3=+1 projection; derive all six coefficients and the further Z0Z1=-1 electron sector. Verify all 54 geometries against the corrected table without fitting. Distinguish Seeley Table III historical integrals from the STO-6G scan and disclose unavailable original author integral files.
 
 **Imported earlier results:** [25.1](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-1), [25.3](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-3), [25.4](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-4).
 
-**Exact source targets:** [CHEM:VII.A](../references/proof-sources.md#source-chem-vii-a): Section VII A Hydrogen, including STO-3G example; [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes.
+**Exact source targets:** [H2:reduction](../references/proof-sources.md#source-h2-reduction): Appendix A, Eq. (A1)–(A6) and Fig. 5: molecular model, integrals, BK Hamiltonian and reduction; [H2:gauge](../references/proof-sources.md#source-h2-gauge): Appendix B: BK gauge freedom and Hartree–Fock preparation; Appendix D: UCC restriction; [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes; [BK2012:integrals](../references/proof-sources.md#source-bk2012-integrals): Section VII, Eq. (61) and Table III: integral convention and historical RHF fixture; [BK2012:mapping](../references/proof-sources.md#source-bk2012-mapping): Sections II–III: spin-orbital conventions and alternatives to occupation encoding; [BK2012:paulis](../references/proof-sources.md#source-bk2012-paulis): Section VII, Eq. (79)–(80): four-qubit Pauli expansions; [BSE6:H](../references/proof-sources.md#source-bse6-h): elements.1.electron_shells[0]; exponents, coefficients and references.
 
-**Independent evidence target:** Compare independent occupation/qubit operators and mark rounded inputs or deferred upstream derivations.
+**Independent evidence target:** Follow H2-01–09: verify all 324 coefficients at published four-decimal precision, preserve the corrected table/hash, compare the full N=2 spectrum, and disclose unavailable original author integral files.
 
-**Planning budget:** 3–6 pages. **Review status:** source-to-integral-and-reduction-map-pending; mathematical and implementation review remain separate.
+**Planning budget:** 3–6 pages. **Review status:** source-chain-and-independent-54-geometry-regeneration-checked; original-author-integral-files-not-recovered; mathematical and implementation review remain separate.
 
 <span id="sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-3"></span>
 
@@ -214,11 +214,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Pinned coefficients, units, sectors and qubit labels.
 
-**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Derive sector matrices and all constant shifts; verify at a non-special parameter.
+**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Derive sector matrices and all constant shifts; verify at a non-special parameter; enforce nuclear scalar once, basis/gauge labels, q0-left translation and the distinction between parity reduction and fixed electron number.
 
 **Imported earlier results:** [49.1](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-1), [49.2](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-2), [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2).
 
-**Exact source targets:** [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes; [H2:VQE](../references/proof-sources.md#source-h2-vqe): Section I, Eqs. (1)-(3) and Fig. 1; reduced-Hamiltonian/ansatz convention.
+**Exact source targets:** [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes; [H2:VQE](../references/proof-sources.md#source-h2-vqe): Section I, Eqs. (1)-(3) and Fig. 1; reduced-Hamiltonian/ansatz convention; [H2:gauge](../references/proof-sources.md#source-h2-gauge): Appendix B: BK gauge freedom and Hartree–Fock preparation; Appendix D: UCC restriction; [H2:reduction](../references/proof-sources.md#source-h2-reduction): Appendix A, Eq. (A1)–(A6) and Fig. 5: molecular model, integrals, BK Hamiltonian and reduction.
 
 **Independent evidence target:** Check zero-angle energies and diagnose double-counted constants or swapped labels.
 
@@ -268,11 +268,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Explicit two-dimensional ansatz sector and full Hermitian model.
 
-**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Diagonalize both matrices and prove which bound the ansatz attains.
+**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Diagonalize both matrices and prove which bound the ansatz attains; compare the odd two-qubit minimum to the full N=2 Fock block at every geometry; other particle-number sectors are separate comparisons.
 
 **Imported earlier results:** [49.5](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-5), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
-**Exact source targets:** [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes; [CHEM:V.B](../references/proof-sources.md#source-chem-v-b): Section V B Variational quantum eigensolver.
+**Exact source targets:** [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes; [CHEM:V.B](../references/proof-sources.md#source-chem-v-b): Section V B Variational quantum eigensolver; [H2:reduction](../references/proof-sources.md#source-h2-reduction): Appendix A, Eq. (A1)–(A6) and Fig. 5: molecular model, integrals, BK Hamiltonian and reduction.
 
 **Independent evidence target:** Compare every tabulated geometry with full-matrix eigenvalues.
 
@@ -286,11 +286,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Every corrected Table I row and one fixed interpretation.
 
-**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Specify all-row analytic/dense checks and separate data rounding from program error.
+**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Specify all-row analytic/dense checks and separate data rounding from program error; require the independent unrounded integral scan and coefficient-rounding perturbation bound alongside the existing rounded-data scan.
 
 **Imported earlier results:** [49.6](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-6), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
-**Exact source targets:** [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes; [ED:protocol](../references/proof-sources.md#source-ed-protocol): Reader review and acceptance evidence.
+**Exact source targets:** [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes; [ED:protocol](../references/proof-sources.md#source-ed-protocol): Reader review and acceptance evidence; [BSE6:H](../references/proof-sources.md#source-bse6-h): elements.1.electron_shells[0]; exponents, coefficients and references.
 
 **Independent evidence target:** Reproduce the table-wide curve and compare errors with the bound.
 
@@ -322,11 +322,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Pinned model/source/execution record.
 
-**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Report all geometries, conventions, discrepancies and excluded hardware/molecular claims.
+**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Report all geometries, conventions, discrepancies and excluded hardware/molecular claims; report reconstruction at published precision, incomplete original software provenance and no hardware reproduction.
 
 **Imported earlier results:** [49.1](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-1), [49.3](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-3), [49.5](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-5), [49.6](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-6), [49.7](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-7), [48.9](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-9).
 
-**Exact source targets:** [REPRO:manuscripts](../references/proof-sources.md#source-repro-manuscripts): Section 6 Manuscripts; [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes.
+**Exact source targets:** [REPRO:manuscripts](../references/proof-sources.md#source-repro-manuscripts): Section 6 Manuscripts; [H2:data](../references/proof-sources.md#source-h2-data): Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes; [BK2012:integrals](../references/proof-sources.md#source-bk2012-integrals): Section VII, Eq. (61) and Table III: integral convention and historical RHF fixture.
 
 **Independent evidence target:** Deliver data, plots, manifest, checks and a claim-by-claim evidence summary.
 

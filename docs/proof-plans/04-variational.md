@@ -386,11 +386,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Finite ordered modes; explicit occupation-sign convention.
 
-**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Define creation/annihilation action and prove canonical anticommutation on basis states.
+**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Define creation/annihilation action and prove canonical anticommutation on basis states; use the H2 provenance ledger for a concrete convention-sensitive application; retain the general theory in this chapter and avoid duplicating the capstone derivation.
 
 **Imported earlier results:** [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3).
 
-**Exact source targets:** [CHEM:III](../references/proof-sources.md#source-chem-iii): Section III Classical Computational Chemistry.
+**Exact source targets:** [CHEM:III](../references/proof-sources.md#source-chem-iii): Section III Classical Computational Chemistry; [H2:reduction](../references/proof-sources.md#source-h2-reduction): Appendix A, Eq. (A1)–(A6) and Fig. 5: molecular model, integrals, BK Hamiltonian and reduction; [BK2012:integrals](../references/proof-sources.md#source-bk2012-integrals): Section VII, Eq. (61) and Table III: integral convention and historical RHF fixture.
 
 **Independent evidence target:** Build a tiny occupation-basis Hamiltonian independently.
 
@@ -404,11 +404,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Fixed fermionic mode and qubit order.
 
-**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Derive parity strings and verify their algebra; map a selected one/two-body term.
+**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Derive parity strings and verify their algebra; map a selected one/two-body term; use the H2 provenance ledger for a concrete convention-sensitive application; retain the general theory in this chapter and avoid duplicating the capstone derivation.
 
 **Imported earlier results:** [25.2](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-2), [3.5](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5), [4.3](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-3).
 
-**Exact source targets:** [CHEM:IV.A](../references/proof-sources.md#source-chem-iv-a): Section IV A Fermion-to-qubit mappings.
+**Exact source targets:** [CHEM:IV.A](../references/proof-sources.md#source-chem-iv-a): Section IV A Fermion-to-qubit mappings; [H2:reduction](../references/proof-sources.md#source-h2-reduction): Appendix A, Eq. (A1)–(A6) and Fig. 5: molecular model, integrals, BK Hamiltonian and reduction; [BK2012:integrals](../references/proof-sources.md#source-bk2012-integrals): Section VII, Eq. (61) and Table III: integral convention and historical RHF fixture.
 
 **Independent evidence target:** Compare fermionic and qubit Hamiltonian matrices.
 
@@ -422,11 +422,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Exact commuting symmetry; declared target sector.
 
-**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Prove invariant blocks and the selected reduction; distinguish sector minimum from global minimum.
+**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Prove invariant blocks and the selected reduction; distinguish sector minimum from global minimum; use the H2 provenance ledger for a concrete convention-sensitive application; retain the general theory in this chapter and avoid duplicating the capstone derivation.
 
 **Imported earlier results:** [25.3](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-3), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
-**Exact source targets:** [CHEM:IV.C](../references/proof-sources.md#source-chem-iv-c): Section IV C Hamiltonian reduction.
+**Exact source targets:** [CHEM:IV.C](../references/proof-sources.md#source-chem-iv-c): Section IV C Hamiltonian reduction; [H2:reduction](../references/proof-sources.md#source-h2-reduction): Appendix A, Eq. (A1)–(A6) and Fig. 5: molecular model, integrals, BK Hamiltonian and reduction; [BK2012:integrals](../references/proof-sources.md#source-bk2012-integrals): Section VII, Eq. (61) and Table III: integral convention and historical RHF fixture.
 
 **Independent evidence target:** Compare sector spectra and identify an incorrect reference-state sector.
 
@@ -494,11 +494,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Specified basis, active space, symmetry reduction and target energy.
 
-**Proof depth:** M — Complete selected-model derivation. **Proof obligation:** Separate model, ansatz, optimizer, sampling and hardware errors; no automatic chemical-accuracy claim.
+**Proof depth:** M — Complete selected-model derivation. **Proof obligation:** Separate model, ansatz, optimizer, sampling and hardware errors; no automatic chemical-accuracy claim; use the H2 provenance ledger for a concrete convention-sensitive application; retain the general theory in this chapter and avoid duplicating the capstone derivation.
 
 **Imported earlier results:** [25.3](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-3), [25.4](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-4), [25.6](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-6).
 
-**Exact source targets:** [CHEM:VIII](../references/proof-sources.md#source-chem-viii): Section VIII Discussion and Conclusions.
+**Exact source targets:** [CHEM:VIII](../references/proof-sources.md#source-chem-viii): Section VIII Discussion and Conclusions; [H2:reduction](../references/proof-sources.md#source-h2-reduction): Appendix A, Eq. (A1)–(A6) and Fig. 5: molecular model, integrals, BK Hamiltonian and reduction; [BK2012:integrals](../references/proof-sources.md#source-bk2012-integrals): Section VII, Eq. (61) and Table III: integral convention and historical RHF fixture.
 
 **Independent evidence target:** Record units, constant offsets and independent reference energies.
 
