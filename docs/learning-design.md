@@ -30,11 +30,9 @@ These examples illustrate this book's learning goals. They are not copied from t
 
 ### F2C-ORDER-001: predict an index
 
-**Question:** With two qubits, basis order (00,01,10,11), and qubit 0 the most significant bit, what nonzero statevector entry results from applying X to qubit 0 of (lvert00
-angle)?
+**Question:** With two qubits, basis order $00,01,10,11$, and qubit 0 the most significant bit, what nonzero statevector entry results from applying X to qubit 0 of $\lvert00\rangle$?
 
-**Answer:** Entry 2, corresponding to (lvert10
-angle), using zero-based indexing.
+**Answer:** Entry 2, corresponding to $\lvert10\rangle$, using zero-based indexing.
 
 **Diagnosis:** Entry 1 corresponds to flipping qubit 1 under these conventions. A correct answer must state or use the basis convention.
 
@@ -42,13 +40,13 @@ angle), using zero-based indexing.
 
 **Question:** A computational-basis measurement of one qubit has probabilities 0.8 and 0.2. Predict the expectation and variance of Z.
 
-**Answer:** The expectation is (0.8-0.2=0.6). Since (Z^2=I), the variance is (1-0.6^2=0.64).
+**Answer:** The expectation is $0.8-0.2=0.6$. Since $Z^2=I$, the variance is $1-0.6^2=0.64$.
 
 **Transfer:** For independent shots, derive the variance of the sample mean before running a sampling experiment.
 
 ### F2C-STATE-001: find a missing comparison
 
-**Question:** Two Bell states have amplitudes ((1,0,0,1)/sqrt2) and ((1,0,0,-1)/sqrt2). Their computational-basis probabilities agree. Does that establish that the quantum states are equivalent up to a global phase?
+**Question:** Two Bell states have amplitudes $(1,0,0,1)/\sqrt{2}$ and $(1,0,0,-1)/\sqrt{2}$. Their computational-basis probabilities agree. Does that establish that the quantum states are equivalent up to a global phase?
 
 **Answer:** No. Their relative sign differs. An XX expectation distinguishes them: +1 for the first state and -1 for the second. Equality of one measurement distribution does not establish arbitrary state equivalence.
 
@@ -56,9 +54,9 @@ angle), using zero-based indexing.
 
 ### F2C-GRAD-001: diagnose generator normalization
 
-**Question:** For a single occurrence of (U(	heta)=exp(-i	heta P)), where (P^2=I), can the ordinary RY angle's shift and prefactor be copied without modification?
+**Question:** For a single occurrence of $U(\theta)=\exp(-i\theta P)$, where $P^2=I$, can the ordinary RY angle's shift and prefactor be copied without modification?
 
-**Answer:** No. Here the expectation derivative is (f(	heta+pi/4)-f(	heta-pi/4)). The usual single-occurrence RY rule uses shifts of (pi/2) and a factor of one half because its generator is (Y/2). Shared parameters require the additional chain-rule analysis.
+**Answer:** No. Here the expectation derivative is $f'(\theta)=f(\theta+\pi/4)-f(\theta-\pi/4)$. The usual single-occurrence RY rule uses shifts of $\pi/2$ and a factor of one half because its generator is $Y/2$. Shared parameters require the additional chain-rule analysis.
 
 **Transfer:** Match both conventions to the gradient and hydrogen VQE starter checks.
 
