@@ -1,0 +1,26 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "scope": "Filled authoring brief for 2.1 only; remaining Chapter2 briefs not yet prepared",
+  "sections": [
+    {
+      "ref": "2.1",
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-1",
+      "title": "Complex scalars, vectors, and conjugation",
+      "question": "How do complex coordinates combine, and why must conjugation act on scalar coefficients?",
+      "entry": "No numbered-section prerequisite; real arithmetic, distributivity, square roots and elementary Python lists supplied locally.",
+      "exit": "Derive and implement scalar and finite-vector conjugation/modulus identities; diagnose omitted conjugates and non-real scaling errors.",
+      "worked_case": "z=2-3i,w=-1+4i; v=(1+i,2-i) with squared length7, scaling by i and2-i, and normalization.",
+      "boundary": "Finite complex coordinates, no quantum postulate; entrywise conjugate remains a column, inner products/adjoints deferred to2.2.",
+      "code_plan": "Complete stdlib examples/foundations/complex_coordinates.py; integer-pair reference versus Python complex arithmetic; no FlagQuantum needed.",
+      "independent_check": "Explicit real/imaginary formulas; 25 integer-coordinate scalars and625 pairs; manual vector results, two deliberate wrong rules, zero and unequal-length boundaries.",
+      "transfer_task": "New complex coordinate/inverse, missing-conjugate repair, non-real scaling/normalization, coordinate-shape diagnosis; full answers included.",
+      "source_locators": [
+        "NC:2.1.1"
+      ],
+      "depth": "F",
+      "requires": [],
+      "status": "draft",
+      "next_transition": "Independent mathematical, implementation and reader reviews pending; next planned draft2.2 Inner products, adjoints, and orthogonality."
+    }
+  ]
+}

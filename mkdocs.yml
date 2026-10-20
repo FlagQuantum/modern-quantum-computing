@@ -51,6 +51,7 @@ nav:
   - Conventions: conventions.md
   - Textbook draft:
       - "Chapter 1: What Quantum Computing Computes": chapters/ch-what-quantum-computing-computes.md
+      - "Chapter 2: Complex Vectors, Operators, and Numerical Reasoning": chapters/ch-complex-vectors-operators-and-numerical-reasoning.md
   - Starter chapters:
       - Measurement and expectations: chapters/measurement.md
       - Circuits and gradients: chapters/gradients.md

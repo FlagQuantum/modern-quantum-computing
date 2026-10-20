@@ -1,6 +1,6 @@
 {
   "baseline": "writing-baseline-v1.0",
-  "revision": "2026-10-20",
+  "revision": "2026-10-21",
   "sections": {
     "sec-what-quantum-computing-computes-1": {
       "state": "draft",
@@ -61,6 +61,16 @@
       "body": "docs/chapters/ch-what-quantum-computing-computes.md",
       "record": "book/section-records/1.6.json",
       "author_execution": "passed: Python 3.12.14, standard-library prerequisite closure and ordering checks; no learner-completion, quantum execution or pedagogical validation claim"
+    },
+    "sec-complex-vectors-operators-and-numerical-reasoning-1": {
+      "state": "draft",
+      "brief": "book/briefs/ch02.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "record": "book/section-records/2.1.json",
+      "author_execution": "passed: Python3.12.14, standard-library complex arithmetic versus integer pairs; normalization absolute tolerance1e-12; no quantum execution"
     }
   },
   "existing_pilots": [

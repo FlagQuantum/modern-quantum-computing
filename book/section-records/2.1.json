@@ -1,0 +1,97 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-1",
+  "ref": "2.1",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+  "question": "How do complex coordinates combine, and why must conjugation act on scalar coefficients?",
+  "requires": [],
+  "depth": "F",
+  "result": "Complex-coordinate and conjugation identities, fully derived component by component",
+  "entry": "No numbered-section prerequisite; real arithmetic, distributivity, square roots and elementary Python lists supplied locally.",
+  "exit": "Derive and implement scalar and finite-vector conjugation/modulus identities; diagnose omitted conjugates and non-real scaling errors.",
+  "assumptions": [
+    "Finite positive coordinate dimension n; real a,b,c,d; complex scalar multiplication commutes",
+    "Vector conjugation is entrywise and preserves column shape; no adjoint/inner product or quantum-state postulate imported",
+    "Inverse requires nonzero scalar; normalization requires nonzero vector"
+  ],
+  "symbols": {
+    "z,w,a,b,c,d,i": "Complex scalars, real/imaginary coordinates and i squared=-1",
+    "star": "Complex conjugation; entrywise for vectors",
+    "modulus": "Nonnegative sqrt(a squared+b squared)",
+    "n,k,v,w,lambda": "Positive dimension,1-based coordinate index,finite coordinate vectors and scalar multiplier",
+    "L(v)": "Sum of squared moduli of the coordinates; not an ordinary sum of squares",
+    "u": "Normalized coordinate vector"
+  },
+  "local_start_checks": {
+    "prerequisite": "Canonical requires list is empty; all needed complex/set/coordinate notation introduced locally.",
+    "source": "NC:2.1.1 begins printedp62; companion introduction printedpp61–62 and Figure2.1 inspected from cached local copy of user-supplied PDF. Downloads original inaccessible to this execution environment; no content uploaded.",
+    "independent_reference": "Integer-pair addition/multiplication/conjugation/modulus; hand-expanded vector values and non-real coefficient counterexample.",
+    "scope": "No baseline scope/dependency/depth changes; no new paper audit."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.1.1",
+      "consulted_pages": [
+        61,
+        62
+      ],
+      "edition": "10th Anniversary Edition(2010)",
+      "use": "Assigned locator begins p62; coordinate introduction on pp61–62 and conjugation notation in Figure2.1. Elementary scalar bridge and component derivations are original, not attributed wholesale to the assigned subsection."
+    }
+  ],
+  "proof_obligations": [
+    "Conjugation involution,sum,product derived by real/imaginary expansion",
+    "z conjugate times z equals a squared+b squared; positivity and zero condition",
+    "Conjugate modulus invariance; product modulus by squared identity and nonnegative square roots; includes zeros",
+    "Nonzero inverse checked by multiplication",
+    "Squared modulus of sum includes both cross terms, numerical counterexample to additivity",
+    "Finite vector conjugation sum/scaling/involution proved coordinatewise",
+    "Squared length positivity/zero criterion and scaling derived by finite sum; nonzero normalization"
+  ],
+  "implementation": {
+    "path": "examples/foundations/complex_coordinates.py",
+    "command": "python examples/foundations/complex_coordinates.py",
+    "dependencies": "Python3.12 standard library only",
+    "python": "3.12.14",
+    "platform": "macOS ARM64 CPU",
+    "author_run": "passed",
+    "flagquantum": "Not applicable: mathematical coordinate reference requires no quantum backend.",
+    "checks": [
+      "25 small integer complex coordinates versus independent pair conjugation/modulus",
+      "625 ordered pairs addition/product/conjugation and product-modulus identity",
+      "Explicit vector addition, conjugated addition, non-real coefficient scaling and squared length7",
+      "Unequal-length vector addition rejected; zero vector squared length0",
+      "Deliberately wrong sum of squares3-2i and unchanged-i counterexample detected",
+      "Normalization squared length within1e-12 absolute error of1"
+    ],
+    "limitations": "Finite tests validate implementation, not general theorems. Integer-domain intermediate results exactly representable; square-root normalization rounded; large/tiny-coordinate numerical stability not covered. Conjugate-product imaginary residual checked at absolute1e-12 before taking real parts; exact-zero assertion failed on normalized floating values and was replaced with this bounded-domain tolerance.",
+    "expected_output_check": "Passed exact comparison with chapter block",
+    "script_sha256": "7e6b9640330a70fbf8ee84d759be49b7cbcf2dd2c81a79666a22985619d6cd99"
+  },
+  "assessment": {
+    "checkpoint": "2.1-A",
+    "transfer_coordinate": "2.1-B",
+    "debugging": "2.1-C",
+    "proof_transfer": "2.1-D",
+    "shape_and_evidence": "2.1-E",
+    "answers": "Included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed Python 3.12.14 execution, exact expected-output match, 25-scalar/625-pair integer reference and vector counterexamples, normalized-value tolerance check, frozen brief/source/depth checks, strict MkDocs build, links/anchors across 56 pages, prose scan, and browser inspection of modulus derivations, conjugate-linear vector equations and column matrices; no raw LaTeX or math-error text observed. Independent scholarly/implementation review and reader trials remain pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 1963,
+    "page_status": "Unmeasured planning envelope; no typeset page claim.",
+    "next_draft": "2.2 Inner products, adjoints, and orthogonality",
+    "pdf": "Existing PDF sample and version unchanged."
+  }
+}

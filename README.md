@@ -10,7 +10,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6 and 2.1, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Start reading
 
@@ -21,6 +21,7 @@ An open English textbook that connects quantum computing equations to executable
 - [Read 1.4: Algorithms, simulators, and physical devices](docs/chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-4) · one task and explicit execution evidence
 - [Read 1.5: What computational advantage would require](docs/chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-5) · matched tasks and complete cost accounting
 - [Read 1.6: A map of the learning routes](docs/chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-6) · route selection and executable prerequisite checks
+- [Read 2.1: Complex scalars, vectors, and conjugation](docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-1) · component proofs and independent coordinate checks
 - [Book introduction](docs/index.md)
 - [Quantum-classical hybrid patterns and implementations](docs/hybrid-computing.md)
 - [Core results, proof depth and exact sources](docs/proof-plan.md) · [Adopted seven-volume plan](docs/volume-plan.md)
@@ -55,6 +56,7 @@ python examples/foundations/state_descriptions.py
 python examples/foundations/execution_evidence.py
 python examples/foundations/advantage_ledger.py  # standard library; hypothetical cost ledger
 python examples/foundations/learning_routes.py  # standard library; checks the planned reading graph
+python examples/foundations/complex_coordinates.py  # standard library; complex arithmetic and proofs
 python examples/measurement.py
 python examples/gradients.py
 python examples/omalley2016/verify_h2_vqe.py
