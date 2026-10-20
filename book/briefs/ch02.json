@@ -1,6 +1,6 @@
 {
   "baseline": "writing-baseline-v1.0",
-  "scope": "Filled authoring brief for 2.1 only; remaining Chapter2 briefs not yet prepared",
+  "scope": "Filled authoring briefs for2.1–2.2; remaining Chapter2 briefs not yet prepared",
   "sections": [
     {
       "ref": "2.1",
@@ -20,7 +20,29 @@
       "depth": "F",
       "requires": [],
       "status": "draft",
-      "next_transition": "Independent mathematical, implementation and reader reviews pending; next planned draft2.2 Inner products, adjoints, and orthogonality."
+      "next_transition": "2.2 now has an author-checked draft; independent mathematical, implementation and reader reviews remain pending for both sections. Next production assignment is2.3."
+    },
+    {
+      "ref": "2.2",
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-2",
+      "title": "Inner products, adjoints, and orthogonality",
+      "question": "How does a conjugated overlap determine an orthogonal projection and bound its size?",
+      "entry": "2.1 complex coordinate arithmetic and conjugation; all inner-product, norm and local array notation defined here.",
+      "exit": "Derive Cauchy–Schwarz including equality/zero cases, construct a unique nearest projection, and distinguish conjugation, transpose and adjoint.",
+      "worked_case": "a=(1,i), v=(2,1+i), overlap3-i, projection/residual squared lengths5/1; explicit2-by-2 adjoint identity.",
+      "boundary": "Positive-definite inner products; standard-coordinate matrix bridge defined locally, full linear-map/basis theory owned by2.3. Projection is not a measurement postulate.",
+      "code_plan": "Complete examples/foundations/inner_products.py: PyTorch2.13.0 CPU complex128 versus independent real/imaginary integer arithmetic; no FlagQuantum required.",
+      "independent_check": "81 vectors/6561 ordered inner products; hand-computed half-integer projection, adjoint common scalar2-6i, non-real scaling, dot/conjugation error counterexamples, zero/equality cases.",
+      "transfer_task": "Reverse projection overlap, omit denominator, diagnose missing positive definiteness, rescale direction; accessible full answers.",
+      "source_locators": [
+        "NC:2.1.4"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-1"
+      ],
+      "status": "draft",
+      "next_transition": "Independent mathematical, implementation and target-reader reviews pending; next draft2.3 Linear maps, bases, and changes of coordinates."
     }
   ]
 }

@@ -83,10 +83,17 @@ def build():
     assert all(position[dep]<position[id] for id,s in sections.items() for dep in s['requires'])
     for id,row in progress['sections'].items():
         if row['state']=='accepted':assert all(progress['sections'].get(dep,{}).get('state')=='accepted' for dep in sections[id]['requires']),id
-    for row in brief['sections']:
-        id=row['section_id'];assert row['requires']==sections[id]['requires'] and row['depth']==records[id]['depth']
-        assert row['source_locators']==records[id]['source_locators']
-        assert progress['sections'][id]['state'] in ['brief_ready','draft','review','accepted']
+    brief_ids=set()
+    for brief_path in sorted((ROOT/'book/briefs').glob('*.json')):
+        chapter_brief=json.loads(brief_path.read_text())
+        assert chapter_brief['baseline']==b['id'],brief_path
+        for row in chapter_brief['sections']:
+            id=row['section_id'];assert id not in brief_ids, f'Duplicate authoring brief: {id}'
+            brief_ids.add(id)
+            assert row['requires']==sections[id]['requires'] and row['depth']==records[id]['depth'],id
+            assert row['source_locators']==records[id]['source_locators'],id
+            assert progress['sections'][id]['state'] in ['brief_ready','draft','review','accepted'],id
+            assert progress['sections'][id]['brief']==str(brief_path.relative_to(ROOT)),id
     assert [x['section_id'] for x in brief['sections']]==b['first_batch']
     assert [row['ref'] for row in queue[:6]]==[f'1.{i}' for i in range(1,7)]
     def link(id):return f"[{sections[id]['ref']}]({sections[id]['link']})"
