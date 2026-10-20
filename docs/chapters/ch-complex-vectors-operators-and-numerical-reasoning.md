@@ -1918,7 +1918,7 @@ We now have a connected route from complex coordinates through adjoints, basis c
 
 **Answer.** Require $U$ shape `(2,2)`, real singular-value vector shape `(2,)`, $V^\dagger$ shape `(3,3)`, complex factors `complex128` and singular values `float64` on CPU, all finite. Build a 2-by-3 $\Sigma$, check unitary factors and compare $U\Sigma V^\dagger$ with the independent explicit matrix under a declared budget. Check the last right column is annihilated and its rank-one projector equals the projector onto $e_2$. Compare projectors onto whole degenerate subspaces and reconstructed actions, rather than insisting on identical phases or individual columns. The complete `spectral_svd.py` program supplies these numerical cases; add metadata guards of the kind introduced here to its result contract.
 
-The next drafting assignment is [3.1 The pure-state postulate and physical equivalence](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-1). The mathematics now supports stating a quantum-state postulate and distinguishing physical equivalence from equality of stored coordinate arrays. Chapter 2 has eight working section drafts; independent mathematical, implementation and reader acceptance remain pending.
+Continue with the working draft [3.1 The pure-state postulate and physical equivalence](ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-1). The mathematics now supports stating a quantum-state postulate and distinguishing physical equivalence from equality of stored coordinate arrays. Chapter 2 has eight working section drafts; independent mathematical, implementation and reader acceptance remain pending.
 
 ### Source, status, and limits
 

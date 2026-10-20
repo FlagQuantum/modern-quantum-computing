@@ -1,0 +1,117 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-single-qubit-states-and-rotations-1",
+  "ref": "3.1",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+  "question": "Which normalized vectors describe the same pure qubit state, and what can one computational-basis probability pair establish?",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-2"
+  ],
+  "depth": "P",
+  "result": "Pure-state and Born-probability postulates",
+  "entry": "Exact prerequisite2.2: complex inner products, normalization and Cauchy\u2013Schwarz equality; computational-basis ket notation and physical postulates introduced locally.",
+  "exit": "State pure-state and fixed-basis Born postulates; derive probability normalization and global-phase invariance; compare vectors with phase alignment without equating one probability pair with a state.",
+  "assumptions": [
+    "Ideal pure qubit represented in a fixed orthonormal computational basis",
+    "Unit complex vectors modulo a common unit-modulus scalar",
+    "Computational-basis Born probability rule; no general measurement/update postulate imported",
+    "Phase alignment exact derivation uses normalized finite-dimensional inner products; numerical execution has explicit1e-12 absolute tolerance"
+  ],
+  "symbols": {
+    "alpha,beta": "Complex amplitudes in the fixed basis",
+    "u,theta": "Global unit-modulus scalar and its real phase angle",
+    "a,b,c,z": "Unit coordinate vectors, conjugated overlap and aligning scalar"
+  },
+  "local_start_checks": {
+    "brief": "Filled ch03 brief before prose; canonical2.2 prerequisite, P depth and source locators retained.",
+    "prerequisite": "Author-checked2.2 includes normalization, conjugated overlap and Cauchy\u2013Schwarz equality.",
+    "source": "Consulted cached user-supplied NC printed80\u201381,84\u201385 and supplementary93. No third-party text or images uploaded.",
+    "independent_reference": "Hand complex coordinate/overlap values and scalar complex arithmetic, separate from torch.vdot and simulator.",
+    "scope": "No changes to435-section scope, dependencies, volume allocation or PDF edition."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.2.1",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        80,
+        81
+      ],
+      "use": "Pure-state unit-vector postulate and qubit amplitudes/normalization."
+    },
+    {
+      "locator": "NC:2.2.3",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        84,
+        85
+      ],
+      "use": "Restricted computational-basis probability rule, especially Eq.(2.96); general measurement and updates deferred."
+    },
+    {
+      "supplementary": "NC section2.2.7, printed93",
+      "use": "Global versus relative phase and general observational argument. Supplement does not replace assigned canonical locators."
+    }
+  ],
+  "proof_obligations": [
+    "Physical postulates explicitly distinguished from algebraic consequences",
+    "Orthonormal expansion derives normalization and two probabilities summing to1",
+    "Common phase preserves norm/probabilities; fixed-basis equality has no converse",
+    "Cauchy\u2013Schwarz equality yields exact modulus-one overlap criterion",
+    "Distance expansion proves optimal conjugated alignment and zero-overlap boundary",
+    "Zero vector, relative phase and basis-state zero coordinate cases explained"
+  ],
+  "implementation": {
+    "path": "examples/foundations/pure_states.py",
+    "command": "python examples/foundations/pure_states.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "architecture": "arm64",
+      "system": "Darwin",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_run": "passed",
+    "dependencies": "Pinned requirements-examples.txt; genuine released FlagQuantum wheel in existing mqc-writing-venv; shared installed Torch support as recorded in1.2; no editable FlagQuantum source used.",
+    "checks": [
+      "Three explicit complex unit vectors and hand overlaps i/0",
+      "Global-phase raw/aligned distances sqrt2/0; relative-sign aligned distance sqrt2",
+      "Incorrect unconjugated phase gives distance2",
+      "Released H and H/Z state/probability outputs compared to independent coordinates; probabilities also compared to squared moduli",
+      "Unequal probabilities .75/.25, exact zero-overlap basis inputs",
+      "Six invalid inputs rejected: zero, nonunit, wrong shape/dtype, NaN, infinity"
+    ],
+    "tolerance": "atol1e-12, rtol0 for coordinates, probabilities, norm and reference distances; numerical equivalence is not exact identity",
+    "limitations": "Global phase multiplication is diagnostic array arithmetic, not an executed phase gate; no shots, hardware, tomography or experimental verification of postulates.",
+    "expected_output_check": "Passed exact comparison with published expected-output block",
+    "script_sha256": "8c307ffdc8b28ab1eeed842c1c3feed9c7b3fa334ebc1de7c1c7f88b44486a8c"
+  },
+  "assessment": {
+    "checkpoint": "3.1-A",
+    "normalization": "3.1-B",
+    "debugging": "3.1-C",
+    "transfer": "3.1-D",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed Python3.12.14/released FlagQuantum0.3.1/PyTorch2.13.0 CPU complex128 execution, exact expected-output comparison, scalar references and boundary/counterexample cases; frozen scope/depth/prerequisite/source/brief checks, strict MkDocs build, links/anchors across57 pages, prose scan and actual browser inspection of normalization, global-phase vectors and phase-alignment formulas/code. No raw LaTeX or math-error text observed. Independent reviews and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      2,
+      4
+    ],
+    "word_count_approx": 1840,
+    "page_status": "Unmeasured planning envelope; linked full script limits code duplication. Print density and reader workload require later calibration.",
+    "next_draft": "3.2 Relative phase and interference",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}

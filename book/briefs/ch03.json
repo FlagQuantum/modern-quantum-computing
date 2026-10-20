@@ -1,0 +1,29 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "scope": "Chapter3 authoring briefs, prepared in queue order; independent acceptance pending",
+  "sections": [
+    {
+      "ref": "3.1",
+      "section_id": "sec-single-qubit-states-and-rotations-1",
+      "title": "The pure-state postulate and physical equivalence",
+      "question": "Which normalized vectors describe the same pure qubit state, and what can one computational-basis probability pair establish?",
+      "entry": "Exact prerequisite2.2: complex inner products, normalization and Cauchy\u2013Schwarz equality; computational-basis ket notation and physical postulates introduced locally.",
+      "exit": "State pure-state and fixed-basis Born postulates; derive probability normalization and global-phase invariance; compare vectors with phase alignment without equating one probability pair with a state.",
+      "worked_case": "Normalized(1,i)/sqrt2, its global-i multiple and(1,-i)/sqrt2; same fixed-basis probabilities, only the global multiple is equivalent. Released FlagQuantum H/Z states provide a separate real-amplitude case.",
+      "boundary": "P depth: physical postulates stated, algebraic consequences derived. No general measurement operators, update rules, mixtures, gates theorem or extra numbered prerequisite.",
+      "code_plan": "CPU complex128 released FlagQuantum0.3.1 H and H/Z outputs; explicit scalar-complex reference, global phase applied only to simulator arrays, overlap alignment, strict unit-vector domain and probability checks.",
+      "independent_check": "Hand complex amplitudes, overlap values, raw/aligned distances; exact Cauchy\u2013Schwarz criterion; unequal probabilities, zero/unnormalized/nonfinite/shape/dtype rejection and orthogonal overlap boundary.",
+      "transfer_task": "Distinguish normalization from physical preparation, repair phase-alignment conjugation, refute probability-only equivalence, analyze basis-state phase; full answers.",
+      "source_locators": [
+        "NC:2.2.1",
+        "NC:2.2.3"
+      ],
+      "depth": "P",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-2"
+      ],
+      "status": "draft",
+      "next_transition": "3.2 Relative phase and interference; general measurements deferred to Chapter6."
+    }
+  ]
+}
