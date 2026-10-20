@@ -2,13 +2,13 @@
 
 **Revision: 2026-10-20.** 9 parts, 50 chapters and 435 numbered sections and six appendices. **Writing Baseline 1.0 adopted; chapter acceptance pending.** See the [editorial charter](editorial-charter.md), [curriculum audit](curriculum-audit.md) and [full plan](book-plan.md).
 
-The [numbered section specification](section-plan.md) gives learning, derivation and evidence targets. Only three starter chapters exist, with intended homes in **6, 23 and 49**; they require expansion. The PDF sample keeps independent numbering.
+The [numbered section specification](section-plan.md) gives learning, derivation and evidence targets. Drafted sections are linked in the status column; independent acceptance remains separate. Three earlier starter chapters have intended homes in **6, 23 and 49** and require expansion. The PDF sample keeps independent numbering.
 
 ## Part 1. Foundations and Quantum Information Primitives
 
 | Chapter | Title | Reading level | Status |
 |---|---|---|---|
-| 1 | [What Quantum Computing Computes](section-plans/01-foundations.md#ch-what-quantum-computing-computes) | Core | Planned |
+| 1 | [What Quantum Computing Computes](section-plans/01-foundations.md#ch-what-quantum-computing-computes) | Core | Sections: [1 draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-1); independent acceptance pending |
 | 2 | [Complex Vectors, Operators, and Numerical Reasoning](section-plans/01-foundations.md#ch-complex-vectors-operators-and-numerical-reasoning) | Core | Planned |
 | 3 | [Single-Qubit States and Rotations](section-plans/01-foundations.md#ch-single-qubit-states-and-rotations) | Core | Planned |
 | 4 | [Composite Systems, Tensor Products, and Qubit Ordering](section-plans/01-foundations.md#ch-composite-systems-tensor-products-and-qubit-ordering) | Core | Planned |

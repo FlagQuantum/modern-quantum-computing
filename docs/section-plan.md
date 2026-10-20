@@ -115,6 +115,6 @@ Each section has a learning/derivation target and an implementation/evidence tar
 
 ## Integration and review
 
-The complete plan contains **50 chapters and 435 numbered sections**. A higher count does not establish coverage, depth or readability. The [architecture-review gates](curriculum-audit.md) require coverage, dependency, workload and reader review before sustained drafting.
+The complete plan contains **50 chapters and 435 numbered sections**. A higher count does not establish coverage, depth or readability. The [writing baseline](writing-baseline.md) governs section-local start checks and independent acceptance gates.
 
 Existing starters supply material to 6, 23 and 49 at their scheduled homes. Writing Baseline 1.0 fixes the production queue; subsequent drafts follow its section-local start checks. Provider access and framework availability are tracked separately from theory.

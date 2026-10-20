@@ -50,6 +50,10 @@ def build():
     assert set(progress['sections']) <= set(sections)
     for id,row in progress['sections'].items():
         assert row['state'] in b['states'],id
+        if row.get('body'):
+            body_path=ROOT/row['body']
+            assert row['state'] in ['draft','review','accepted'] and body_path.is_file(),id
+            assert f'id="{id}"' in body_path.read_text(),id
         if row['state']=='accepted':
             assert row['mathematical_review']=='passed' and row['reader_review']=='passed',id
             assert row['implementation_review'] in ['passed','justified-N/A'],id
@@ -90,6 +94,8 @@ def build():
         s=next(s for s in sections.values() if s['chapter']==n)
         return f"[{n}]({s['link'].split('#')[0]}#{chapters[n]['id']})"
     counts=Counter(row['state'] for row in queue);depth=Counter(row['depth'] for row in queue)
+    next_draft=next((row for row in queue if row['state'] in ['not_started','brief_ready']),None)
+    draft_text=(link(next_draft['section_id'])+' '+next_draft['title']) if next_draft else 'All scheduled sections have entered drafting'
     next_row=next((row for row in queue if row['state']!='accepted'),None)
     next_text=(link(next_row['section_id'])+' '+next_row['title']) if next_row else 'All sections accepted; proceed to route/edition release checks'
     main=['# Executable writing baseline 1.0\n\n',
@@ -98,7 +104,7 @@ def build():
           '## Decision and immediate next work\n\n',b['body_policy']+'\n\n',
           'The previous all-series drafting hold is replaced by this baseline plus the local start and acceptance gates below. External mathematical, software and reader review are still required for acceptance; none is being claimed complete. ',
           'A versioned working structure lets that evidence be collected while coherent drafts are written, rather than requiring evidence from an unwritten book before drafting can start.\n\n',
-          f"**Next unfinished section:** {next_text}. The initial writing assignment is 1.1, then 1.2–1.6; all six briefs are prepared. This baseline change itself supplies no new chapter body. ",
+          f"**Next acceptance target:** {next_text}. **Next drafting assignment:** {draft_text}. The initial sequence is 1.1–1.6; all six briefs are prepared. Current body links are in the queue and chapter briefs. ",
           f"Current queue: **{counts.get('brief_ready',0)} brief-ready / {counts.get('draft',0)} drafts / {counts.get('review',0)} in review / {counts.get('accepted',0)} accepted / {counts.get('not_started',0)} not started**. The three previous starters are format pilots and are not counted as accepted sections.\n\n",
           b['research_policy']+'\n\n',
           '## Frozen scope and authoritative records\n\n',
@@ -161,13 +167,17 @@ def build():
         for row in queue:
             if row['batch']!=batch['id']:continue
             id=row['section_id'];deps=', '.join(link(x) for x in row['requires']) or 'Entry/local bridge'
-            order.append(f"| {row['sequence']} | {link(id)} {row['title']} | [{row['depth']}]({sections[id]['proof_link']}) | {deps} | {row['role']} | {row['state']} |\n")
+            body=progress['sections'].get(id,{}).get('body')
+            state_text=f"[{row['state']}]({body.removeprefix('docs/')}#{id})" if body else row['state']
+            order.append(f"| {row['sequence']} | {link(id)} {row['title']} | [{row['depth']}]({sections[id]['proof_link']}) | {deps} | {row['role']} | {state_text} |\n")
         order.append('\n')
-    first=['# First writing assignment: Chapter 1\n\n',f"**{b['id']} · six briefs prepared; no chapter body or execution claim.** [Writing baseline](writing-baseline.md) · [Full queue](writing-order.md).\n\n",
-           'Write 1.1 first, then 1.2–1.6. Chapter 1 is an entry and preview: it must supply its own minimal arithmetic and notation without importing unproved results from later chapters. ',
+    first=['# First writing assignment: Chapter 1\n\n',f"**{b['id']} · six prepared authoring briefs; actual work states and body links below.** [Writing baseline](writing-baseline.md) · [Full queue](writing-order.md).\n\n",
+           'The initial sequence is 1.1–1.6. Use the current queue states to continue from the next undrafted section. Chapter 1 is an entry and preview: it must supply its own minimal arithmetic and notation without importing unproved results from later chapters. ',
            'The formal mathematics, state postulates, gates and measurement theory will be developed in their named owning chapters. The preview must say what is being adopted and what will be derived later.\n\n']
     for row in brief['sections']:
         id=row['section_id'];first += [f"## {row['ref']} {row['title']}\n\n",f"**Stable ID:** `{id}`. **Depth:** {row['depth']}. **State:** {progress['sections'][id]['state']}.\n\n"]
+        body=progress['sections'][id].get('body')
+        if body:first.append(f"[Read the working draft]({body.removeprefix('docs/')}#{id}). Independent acceptance remains separate.\n\n")
         for label,key in [('Concrete question','question'),('Entry knowledge','entry'),('Exit skill','exit'),('Worked-case plan','worked_case'),('Scope/continuity boundary','boundary'),('Formula-to-code plan','code_plan'),('Independent check','independent_check'),('Transfer task','transfer_task')]:first.append(f"**{label}:** {row[key]}\n\n")
         first.append('**Assigned exact sources:** '+', '.join(f"[{k}](references/proof-sources.md#source-{re.sub('[^a-z0-9]+','-',k.lower()).strip('-')})" for k in row['source_locators'])+'. Source assignment is not independent proof review.\n\n')
     output={'docs/writing-baseline.md':''.join(main),'docs/writing-order.md':''.join(order),'docs/writing-first-batch.md':''.join(first),

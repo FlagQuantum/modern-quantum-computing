@@ -6,7 +6,7 @@
 
 How does an equation in a quantum computing paper become a working program? This open textbook follows that translation explicitly: define the conventions, derive a small result, implement it, and check the answer independently.
 
-**Early draft:** three starter chapters are available. The full plan comprises nine parts and 50 chapters; the remaining chapters are proposed material, not completed text.
+**Early draft:** [section 1.1](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-1) begins the foundational course. Three earlier starter chapters remain format pilots. The full plan comprises nine parts and 50 chapters; the plan is not completed text.
 
 <!-- book-metadata:start -->
 **Wei Liu**
@@ -47,7 +47,7 @@ Readers who know basic Python and linear algebra and want to understand quantum 
 5. Change a parameter or deliberately introduce an error.
 6. Record the software version and the limits of the experiment.
 
-The next writing assignment is [Chapter 1, starting at 1.1](writing-first-batch.md); no new body is supplied by the baseline. The existing [measurement](chapters/measurement.md), [gradients](chapters/gradients.md), and [VQE](chapters/vqe.md) pages are format pilots, with assumed background, rather than the first-course reading order. Shared [conventions](conventions.md) apply throughout. The [contents](contents.md) and [detailed book plan](book-plan.md) explain the proposed learning sequence, prerequisites and experiments. The [numbered section plans](section-plan.md) give derivation and verification targets. The [Nielsen–Chuang design review](references/nielsen-chuang-design-review.md) records how reference reading informed the revision.
+Start with [1.1 Problems, inputs, and observable outputs](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-1). It is an author-checked working draft, with independent review pending. The next drafting assignment is [1.2 A first interference experiment](writing-first-batch.md#12-a-first-interference-experiment). The existing [measurement](chapters/measurement.md), [gradients](chapters/gradients.md), and [VQE](chapters/vqe.md) pages are format pilots, with assumed background, rather than the first-course reading order. Shared [conventions](conventions.md) apply throughout. The [contents](contents.md) and [detailed book plan](book-plan.md) explain the proposed learning sequence, prerequisites and experiments. The [numbered section plans](section-plan.md) give derivation and verification targets. The [Nielsen–Chuang design review](references/nielsen-chuang-design-review.md) records how reference reading informed the revision.
 
 ## Scope
 

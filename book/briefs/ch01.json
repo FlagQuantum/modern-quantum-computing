@@ -11,7 +11,7 @@
       "exit": "Specify input representation, observable output, success criterion and resource boundary for one task.",
       "worked_case": "A bitstring task versus a repeated-sampling expectation-estimation task; state which quantities are outputs and which are model internals.",
       "boundary": "No new quantum law is asserted. Distinguish a sample, an estimated statistic and simulator-only state inspection.",
-      "code_plan": "Plan a complete task-record/check script; no quantum backend is needed for the specification itself.",
+      "code_plan": "Complete reference: examples/foundations/task_contracts.py; standard library only, no quantum backend required.",
       "independent_check": "A classical enumerated reference and a deliberately mismatched output contract.",
       "transfer_task": "Give a new task and ask the reader to identify what must be measured and how success would be checked.",
       "source_locators": [
@@ -19,8 +19,8 @@
       ],
       "depth": "P",
       "requires": [],
-      "status": "brief_ready",
-      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+      "status": "draft",
+      "next_transition": "Independent mathematical and target-reader review; the author-checked draft may support drafting 1.2 under local start checks."
     },
     {
       "ref": "1.2",

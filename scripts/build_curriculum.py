@@ -14,6 +14,7 @@ def slug(text):
 
 def render():
     data = json.loads((ROOT / "book/curriculum.json").read_text())
+    progress = json.loads((ROOT / "book/writing-progress.json").read_text())["sections"]
     parts = data["parts"]
     chapters = [c for p in parts for c in p["chapters"]]
     numbers = [c["number"] for c in chapters]
@@ -43,7 +44,7 @@ def render():
     contents = [
         "# Contents and chapter status\n\n",
         f"**Revision: {data['revision']}.** {summary} and six appendices. **Writing Baseline 1.0 adopted; chapter acceptance pending.** See the [editorial charter](editorial-charter.md), [curriculum audit](curriculum-audit.md) and [full plan](book-plan.md).\n\n",
-        "The [numbered section specification](section-plan.md) gives learning, derivation and evidence targets. Only three starter chapters exist, with intended homes in **6, 23 and 49**; they require expansion. The PDF sample keeps independent numbering.\n\n",
+        "The [numbered section specification](section-plan.md) gives learning, derivation and evidence targets. Drafted sections are linked in the status column; independent acceptance remains separate. Three earlier starter chapters have intended homes in **6, 23 and 49** and require expansion. The PDF sample keeps independent numbering.\n\n",
     ]
     book = [(ROOT / "book/curriculum-introduction.md").read_text().rstrip() + "\n"]
     outputs = {}
@@ -65,6 +66,10 @@ def render():
             link = links[n]
             overview += [f"| {n} | {n}.1–{n}.{total} | [{c['title']}]({link}) |\n"]
             status = f"[{starters[n][0]}](chapters/{starters[n][1]}.md)" if n in starters else "Planned"
+            authored = [f"[{i} {progress[s['id']]['state']}]({progress[s['id']]['body'].removeprefix('docs/')}#{s['id']})"
+                        for i, s in enumerate(c['sections'], 1) if progress.get(s['id'], {}).get('body')]
+            if authored:
+                status = 'Sections: ' + ', '.join(authored) + '; independent acceptance pending'
             contents += [f"| {n} | [{c['title']}]({link}) | {c['level']} | {status} |\n"]
             book += [f'\n<span id="{c["id"]}"></span>\n']
             if c.get("legacy_number") and c["legacy_number"] != n:
@@ -115,7 +120,7 @@ def render():
         outputs[f"docs/section-plans/{p['path']}.md"] = "".join(detailed)
     overview += [
         "## Integration and review\n\n",
-        f"The complete plan contains **{len(chapters)} chapters and {count} numbered sections**. A higher count does not establish coverage, depth or readability. The [architecture-review gates](curriculum-audit.md) require coverage, dependency, workload and reader review before sustained drafting.\n\n",
+        f"The complete plan contains **{len(chapters)} chapters and {count} numbered sections**. A higher count does not establish coverage, depth or readability. The [writing baseline](writing-baseline.md) governs section-local start checks and independent acceptance gates.\n\n",
         "Existing starters supply material to 6, 23 and 49 at their scheduled homes. Writing Baseline 1.0 fixes the production queue; subsequent drafts follow its section-local start checks. Provider access and framework availability are tracked separately from theory.\n",
     ]
     notes = (ROOT / "book/curriculum-notes.md").read_text()

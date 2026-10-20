@@ -4,7 +4,7 @@
 
 ## Next writing assignment
 
-Write **1.1 Problems, inputs, and observable outputs**, then **1.2–1.6**, using the [six prepared Chapter 1 briefs](docs/writing-first-batch.md). This baseline change contains no new chapter body. The existing measurement, gradients and H2 pages remain format pilots until expanded at their scheduled chapter homes.
+[1.1 Problems, inputs, and observable outputs](docs/chapters/ch-what-quantum-computing-computes.md) now has a working draft and an author-executed exact reference. Independent mathematical, implementation and target-reader review remain pending. Draft **1.2 A first interference experiment** next, then **1.3–1.6**, using the [Chapter 1 briefs](docs/writing-first-batch.md). The existing measurement, gradients and H2 pages remain format pilots until expanded at their scheduled chapter homes.
 
 The [full queue](docs/writing-order.md) lists every section exactly once, in prerequisite-safe production order. The [reader routes](docs/learning-paths.md) remain separate: a writing batch is not a requirement that students read all earlier production batches.
 

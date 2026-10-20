@@ -1,12 +1,14 @@
 # First writing assignment: Chapter 1
 
-**writing-baseline-v1.0 · six briefs prepared; no chapter body or execution claim.** [Writing baseline](writing-baseline.md) · [Full queue](writing-order.md).
+**writing-baseline-v1.0 · six prepared authoring briefs; actual work states and body links below.** [Writing baseline](writing-baseline.md) · [Full queue](writing-order.md).
 
-Write 1.1 first, then 1.2–1.6. Chapter 1 is an entry and preview: it must supply its own minimal arithmetic and notation without importing unproved results from later chapters. The formal mathematics, state postulates, gates and measurement theory will be developed in their named owning chapters. The preview must say what is being adopted and what will be derived later.
+The initial sequence is 1.1–1.6. Use the current queue states to continue from the next undrafted section. Chapter 1 is an entry and preview: it must supply its own minimal arithmetic and notation without importing unproved results from later chapters. The formal mathematics, state postulates, gates and measurement theory will be developed in their named owning chapters. The preview must say what is being adopted and what will be derived later.
 
 ## 1.1 Problems, inputs, and observable outputs
 
-**Stable ID:** `sec-what-quantum-computing-computes-1`. **Depth:** P. **State:** brief_ready.
+**Stable ID:** `sec-what-quantum-computing-computes-1`. **Depth:** P. **State:** draft.
+
+[Read the working draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-1). Independent acceptance remains separate.
 
 **Concrete question:** What can a computation be asked to return?
 
@@ -18,7 +20,7 @@ Write 1.1 first, then 1.2–1.6. Chapter 1 is an entry and preview: it must supp
 
 **Scope/continuity boundary:** No new quantum law is asserted. Distinguish a sample, an estimated statistic and simulator-only state inspection.
 
-**Formula-to-code plan:** Plan a complete task-record/check script; no quantum backend is needed for the specification itself.
+**Formula-to-code plan:** Complete reference: examples/foundations/task_contracts.py; standard library only, no quantum backend required.
 
 **Independent check:** A classical enumerated reference and a deliberately mismatched output contract.
 

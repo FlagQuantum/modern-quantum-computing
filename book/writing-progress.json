@@ -3,11 +3,14 @@
   "revision": "2026-10-20",
   "sections": {
     "sec-what-quantum-computing-computes-1": {
-      "state": "brief_ready",
+      "state": "draft",
       "brief": "book/briefs/ch01.json",
       "mathematical_review": "pending",
-      "implementation_review": "pending-or-scoped-N/A",
-      "reader_review": "pending"
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-what-quantum-computing-computes.md",
+      "record": "book/section-records/1.1.json",
+      "author_execution": "passed: Python 3.12.14, macOS ARM64 CPU; standard library only"
     },
     "sec-what-quantum-computing-computes-2": {
       "state": "brief_ready",

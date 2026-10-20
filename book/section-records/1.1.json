@@ -1,0 +1,84 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-what-quantum-computing-computes-1",
+  "ref": "1.1",
+  "date": "2026-10-20",
+  "state": "draft",
+  "body": "docs/chapters/ch-what-quantum-computing-computes.md",
+  "question": "What can a computation be asked to return?",
+  "requires": [],
+  "depth": "P",
+  "result": "Computational-task specification; distinguish an instance, representation, requested output and success event.",
+  "entry": "Basic arithmetic and Python lists; all probability and estimator notation needed for the example is introduced locally.",
+  "exit": "Specify given information/access, encoding, output, correctness and resource boundary; distinguish one checked estimate from a probabilistic guarantee.",
+  "symbols": {
+    "x,n,x_j": "bit list, length and entries; math index starts at 1, Python at 0",
+    "f,y": "parity function and requested output bit",
+    "b,z(b)": "outcome bit and assigned score 1-2b",
+    "p_0,p_1,mu": "outcome probabilities and weighted mean score",
+    "N,n_0,n_1,mu_hat": "shot count, outcome counts and sample mean",
+    "epsilon,delta": "allowed absolute error and failure probability"
+  },
+  "local_start_checks": {
+    "prerequisite_bridge": "No imported earlier section; preview of samples and means is supplied locally. No quantum postulate is assumed.",
+    "source": "NC:3.2.1 inspected locally, printed pp. 136–137, for resource-model context only; no external source files distributed.",
+    "independent_reference": "Parity toggling versus remainder on all 16 four-bit inputs; score sum versus count difference; exact weighted enumeration versus zero-count grouping; deliberately incorrect/invalid outputs rejected.",
+    "scope": "Exact synthetic independent-shot model only; no device data, hardware run, FlagQuantum API or general sample-complexity claim."
+  },
+  "sources": [
+    {
+      "locator": "NC:3.2.1",
+      "consulted_pages": [
+        136,
+        137
+      ],
+      "edition": "10th Anniversary Edition (2010)",
+      "use": "Resource accounting depends on problem size and computational model; probability teaching examples are original."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/task_contracts.py",
+    "dependencies": "Python standard library only",
+    "command": "python examples/foundations/task_contracts.py",
+    "author_run": "passed",
+    "python": "3.12.14",
+    "platform": "macOS 27.0 ARM64 CPU",
+    "randomness": "None; constructed eight-shot fixture plus exhaustive weighted enumeration",
+    "arithmetic": "Exact Fraction arithmetic; decimal output is display-only",
+    "expected_success_probability": "12879/16384",
+    "counterexamples": [
+      "Returned bitstring is not a numerical mean estimate",
+      "Empty/nonbinary samples rejected",
+      "All-zero eight-shot record fails despite positive probability"
+    ],
+    "flagquantum": "Not applicable: task specification and independent verifier need no quantum backend.",
+    "expected_output_check": "Passed exact comparison against the fenced expected output in the chapter",
+    "script_sha256": "d569cca2863ed4561c321795219dddcf6142fa03a36bfaf803eb4418aa218f27"
+  },
+  "assessment": {
+    "checkpoints": [
+      "1.1-A",
+      "1.1-B"
+    ],
+    "transfer": "1.1-C",
+    "debugging": "1.1-D",
+    "optional_lab": "1.1-E",
+    "answers": "Included in the same section for web/print access"
+  },
+  "review": {
+    "author_checks": "Passed exact rational arithmetic, complete-script execution and exact expected-output comparison, prose scan, baseline/graph/source-plan checks, strict MkDocs build, links/anchor checks across 55 pages, and browser visual inspection of prose, MathJax equations and formula/code table. These are author checks, not independent review.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no target-reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      2,
+      4
+    ],
+    "word_count_approx": 2200,
+    "page_status": "Not typeset or measured. Includes optional lab and answers; calibrate core versus companion material with first-chapter reader/print review, without changing scope or proof depth.",
+    "next_draft": "1.2 A first interference experiment",
+    "pdf": "Existing three-chapter sample remains unchanged; this section is a web/repository draft."
+  }
+}

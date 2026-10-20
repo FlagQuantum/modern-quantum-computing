@@ -10,11 +10,12 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, and three starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, a working draft of section 1.1, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Start reading
 
 - [Executable writing baseline 1.0](docs/writing-baseline.md) · [Full 435-section writing queue](docs/writing-order.md) · [First-chapter briefs](docs/writing-first-batch.md)
+- [Read 1.1: Problems, inputs, and observable outputs](docs/chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-1) · working draft; independent review pending
 - [Book introduction](docs/index.md)
 - [Quantum-classical hybrid patterns and implementations](docs/hybrid-computing.md)
 - [Core results, proof depth and exact sources](docs/proof-plan.md) · [Adopted seven-volume plan](docs/volume-plan.md)
@@ -43,6 +44,7 @@ python -m venv .venv
 source .venv/bin/activate
 # Windows PowerShell: .venv\Scripts\Activate.ps1
 python -m pip install -r requirements-examples.txt
+python examples/foundations/task_contracts.py  # standard library; no package installation needed
 python examples/measurement.py
 python examples/gradients.py
 python examples/omalley2016/verify_h2_vqe.py
