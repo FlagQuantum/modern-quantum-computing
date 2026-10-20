@@ -18,6 +18,10 @@ The website follows the living Markdown chapters. The PDF is a fixed sample edit
 
 The first edition is **0.1.0-draft.1**, dated **2026-10-20**. It contains three starter chapters plus conventions, reproduction notes and the hydrogen model/verification listing. It is not a complete course or an arXiv submission.
 
+## Download the sample
+
+[PDF sample edition](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.1/modern-quantum-computing.pdf) · [Standalone LaTeX source archive](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.1/modern-quantum-computing-source.tar.gz) · [Versioned release and manifest](https://github.com/FlagQuantum/modern-quantum-computing/releases/tag/v0.1.0-draft.1).
+
 ## Build locally
 
 Validated print tools: **Pandoc 3.12.1** and **Tectonic 0.17.0**. Install them from their official distributions; Tectonic may download TeX resources on its first run. The script itself uses only Python's standard library.

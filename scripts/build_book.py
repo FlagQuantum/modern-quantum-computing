@@ -61,7 +61,7 @@ def chapter(path):
         location, _, anchor = target.partition("#")
         relative = (path.parent / location).resolve().relative_to(ROOT)
         internal = {
-            "docs/conventions.md": "notation-and-implementation-conventions",
+            "docs/conventions.md": "notation-and-conventions",
             "docs/chapters/measurement.md": "measurement-and-expectation-values",
             "docs/chapters/gradients.md": "parameterized-circuits-and-gradients",
             "docs/chapters/vqe.md": "molecular-hydrogen-vqe-from-a-paper-to-code",
@@ -96,19 +96,17 @@ def main():
     # All transformed prose and listings are generated, never edited by hand.
     front = f"""# About this draft {{.unnumbered}}
 
-This is a three-chapter sample of an open English textbook. It is not a complete course or an arXiv submission. The three sample chapters are drawn from different parts of the proposed curriculum.
+This three-chapter sample is an early open-textbook draft, not a complete course or an arXiv submission.
 
 The learning sequence is formula, derivation, FlagQuantum implementation, independent verification, and exercises. Numerical checks supplement mathematical arguments; they do not prove a general identity.
 
-Author: **{META['author']}**. Affiliation: {META['team']}, {META['institution']}, {META['location']}.
+Version: **{META['version']}**, dated {META['date']}. Source revision: `{commit[:12]}` (full revision in the build manifest). Tracked source changes at build time: `{str(dirty).lower()}`.
 
-Version: **{META['version']}**, dated {META['date']}. Source revision: `{commit}`. Tracked source changes at build time: `{str(dirty).lower()}`.
-
-## Abstract
+## Abstract {{.unnumbered}}
 
 This sample connects quantum-computing formulas to executable and independently checked programs. A rotated qubit introduces probabilities and expectation values; a parameterized circuit illustrates analytic, automatic and parameter-shift differentiation; a two-qubit molecular hydrogen model demonstrates source-version selection, wire-order translation, variational energies and numerical verification. Examples target FlagQuantum {META['flagquantum_version']} using the PyTorch CPU backend and complex128 statevectors. The hydrogen case is an ideal calculation using rounded, corrected paper coefficients, not a reproduction of a physical hardware experiment.
 
-## Reproduction environment
+## Reproduction environment {{.unnumbered}}
 
 The examples were checked with Python 3.12.14, FlagQuantum 0.3.1, PyTorch 2.13.0, NumPy 2.5.4 and Matplotlib 3.11.2 on macOS ARM64 CPU. A separate Linux CI runs the example suite. From the repository root:
 
@@ -123,16 +121,16 @@ python examples/omalley2016/verify_h2_vqe.py
 
 On Windows PowerShell, activate with `.venv\\Scripts\\Activate.ps1`. No accelerator or physical hardware configuration is required for these examples.
 
-## Sources, assistance and licensing
+## Sources, assistance and licensing {{.unnumbered}}
 
 Original prose is CC BY 4.0; repository-authored code is MIT. Linked third-party works retain their own rights. The primary hydrogen calculation follows O'Malley et al. [@omalley_2016]; analytic quantum gradients are discussed by Schuld et al. [@schuld_gradients_2019]. General companion references appear in the bibliography and repository reading guide.
 
-This draft was prepared with generative-AI assistance for prose, code and publication tooling. The named author is responsible for reviewing the mathematical claims, source attribution and executable results before scholarly submission. Automated checks and visual inspection are recorded with the release artifacts; they are not a claim of independent peer review.
+Generative AI assisted prose, code and tooling. The named author is responsible for reviewing the mathematics, attribution and results before scholarly submission. Automated checks and visual inspection do not constitute peer review.
 
 Repository: <{META['repository']}>.
 
 """
-    conventions = chapter(ROOT / "docs/conventions.md").replace("# Notation and implementation conventions", "# Notation and implementation conventions {.unnumbered}", 1)
+    conventions = chapter(ROOT / "docs/conventions.md").replace("# Notation and implementation conventions", "# Notation and conventions {.unnumbered}", 1).replace("## Validation policy", "## Validation policy {.unnumbered}")
     pieces = [front, conventions]
     for name, example in [("measurement", "examples/measurement.py"),
                           ("gradients", "examples/gradients.py"), ("vqe", None)]:
@@ -144,19 +142,20 @@ Repository: <{META['repository']}>.
             text += "\nThe single-rotation shift rule is Equation~\\eqref{eq:print-2}.\n"
             text += "\nThe parameter-shift reading is cited as [@schuld_gradients_2019].\n"
         if name == "vqe":
-            text += "\nEquations~\\eqref{eq:print-3} and~\\eqref{eq:print-4} define the Hamiltonian and ansatz; Equations~\\eqref{eq:print-5}--\\eqref{eq:print-7} give the energy, shift rule and analytic reference minimum.\n"
+            text += "\nEquations~\\eqref{eq:print-3} and~\\eqref{eq:print-5} define the Hamiltonian and ansatz; Equations~\\eqref{eq:print-6}--\\eqref{eq:print-8} give the energy, shift rule and analytic reference minimum.\n"
             text += "\nThe paper and corrected data source are cited as [@omalley_2016].\n"
         if example:
-            text += "\n## Complete executable example\n" + listing(example)
+            text += f"\nThe complete `{example}` listing is included in Appendix A.\n"
         pieces.append(text)
-    pieces.append("\\appendix\n\n# Hydrogen implementation and verification\n\nSave these two files in the same directory. The model embeds all 54 corrected table rows. Run `python verify_h2_vqe.py` after installing the pinned example requirements. The repository contains the additional scan, optimizer and sampling programs.\n")
-    pieces += [listing("examples/omalley2016/h2_vqe_model.py"),
+    pieces.append("\\appendix\n\n# Complete core programs\n\nThe first two programs are standalone. Save the two hydrogen files in the same directory; the model embeds all 54 corrected table rows. Run `python verify_h2_vqe.py` after installing the pinned example requirements. The repository contains the additional scan, optimizer and sampling programs.\n")
+    pieces += [listing("examples/measurement.py"), listing("examples/gradients.py"),
+               listing("examples/omalley2016/h2_vqe_model.py"),
                listing("examples/omalley2016/verify_h2_vqe.py")]
-    pieces.append("# References {#refs}\n")
+    pieces.append("# References {#refs}\n\nThe reading guide draws on [@nielsen_chuang_2010; @rieffel_polak_2011; @mermin_2007; @preskill_notes; @schuld_petruccione_2021; @watrous_2018]. Exact editions and official access links are listed below.\n")
     manuscript = WORK / "manuscript.md"
     manuscript.write_text("\n\n".join(pieces))
     cover = WORK / "cover.tex"
-    cover.write_text(r"\begin{titlepage}\thispagestyle{empty}\centering" + "\n" +
+    cover.write_text(r"\hypersetup{pageanchor=false}\begin{titlepage}\thispagestyle{empty}\centering" + "\n" +
         r"\vspace*{1.3cm}{\color{bookteal}\large OPEN TEXTBOOK / SAMPLE EDITION\par}\vspace{1.5cm}" + "\n" +
         r"{\color{booknavy}\Huge\bfseries Modern Quantum Computing\par}\vspace{0.6cm}" + "\n" +
         r"{\LARGE A Formula-to-Code Approach\par}\vspace{1cm}" + "\n" +
@@ -164,10 +163,10 @@ Repository: <{META['repository']}>.
         r"{\Large\bfseries " + tex(META["author"]) + r"\par}\vspace{0.4cm}" + "\n" +
         r"{\large " + tex(META["team"]) + r"\par " + tex(META["institution"]) + r"\par " + tex(META["location"]) + r"\par}" + "\n" +
         r"\vfill{\large Version " + tex(META["version"]) + r"\quad Draft\par}" + "\n" +
-        tex(META["date"]) + r"\par\vspace{0.5cm}{\small Three starter chapters / FlagQuantum " + tex(META["flagquantum_version"]) + r"\par}\end{titlepage}\pagenumbering{arabic}" + "\n")
+        tex(META["date"]) + r"\par\vspace{0.5cm}{\small Three starter chapters / FlagQuantum " + tex(META["flagquantum_version"]) + r"\par}\end{titlepage}\pagenumbering{roman}\hypersetup{pageanchor=true}" + "\n")
     output_tex = OUT / "book.tex"
     run("pandoc", str(manuscript), "--from=markdown", "--to=latex", "--standalone",
-        "--top-level-division=chapter", "--number-sections", "--toc", "--listings", "--citeproc",
+        "--top-level-division=chapter", "--number-sections", "--toc", "--toc-depth=2", "--listings", "--citeproc",
         "--metadata=nocite:@*", f"--metadata=author:{META['author']}",
         "--variable=documentclass:book", "--variable=classoption:oneside,openany",
         "--variable=fontsize:11pt", "--variable=papersize:a4", "--variable=geometry:margin=25mm",
@@ -177,6 +176,8 @@ Repository: <{META['repository']}>.
     # Start text after the contents on a clean page without suppressing chapter numbering.
     source = output_tex.read_text()
     source = source.replace(r"\hypersetup{", r"\hypersetup{pdftitle={" + tex(META["title"]) + "},", 1)
+    source = source.replace(r"\chapter*{About this draft}", r"\chapter*{About this draft}\markboth{About this draft}{}")
+    source = source.replace(r"\chapter*{Notation and conventions}", r"\chapter*{Notation and conventions}\markboth{Notation and conventions}{}")
     output_tex.write_text(source)
     shutil.copy(ROOT / "docs/references/references.bib", OUT / "references.bib")
     instructions = OUT / "README.txt"
@@ -189,6 +190,9 @@ Repository: <{META['repository']}>.
     if not args.tex_only:
         compiler = os.environ.get("TECTONIC", "tectonic")
         run(compiler, "--keep-logs", "--keep-intermediates", "--outdir", str(OUT), str(output_tex))
+        log = (OUT / "book.log").read_text(errors="replace")
+        if re.search(r"Overfull|Missing character|undefined references|Reference .* undefined", log):
+            raise RuntimeError("PDF layout/reference check failed; inspect output/pdf/book.log")
         shutil.copyfile(OUT / "book.pdf", OUT / f"{STEM}.pdf")
     files = [output_tex, OUT / "references.bib", instructions]
     if not args.tex_only:

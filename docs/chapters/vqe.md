@@ -12,7 +12,15 @@ $$
 H=c_I I+c_{ZI}Z_0+c_{IZ}Z_1+c_{ZZ}Z_0Z_1+c_{XX}X_0X_1+c_{YY}Y_0Y_1.
 $$
 
-At $R=0.75$ angstrom, corrected Table I gives $(c_I,c_{ZI},c_{IZ},c_{ZZ},c_{XX},c_{YY})=(0.2252,0.3435,-0.4347,0.5716,0.0910,0.0910)$ hartree. The constant already includes the geometry-dependent offset; do not add another nuclear-repulsion term.
+At $R=0.75$ angstrom, corrected Table I gives the following coefficients in hartree:
+
+$$
+\begin{aligned}
+c_I&=0.2252, & c_{ZI}&=0.3435, & c_{IZ}&=-0.4347,\\
+c_{ZZ}&=0.5716, & c_{XX}&=0.0910, & c_{YY}&=0.0910.
+\end{aligned}
+$$
+ The constant already includes the geometry-dependent offset; do not add another nuclear-repulsion term.
 
 **Formula → code:** `coefficients_at(0.75)` loads this labeled row; `dense_hamiltonian(coefficients)` constructs an independent 4 by 4 matrix. Both functions are in `examples/omalley2016/h2_vqe_model.py`.
 

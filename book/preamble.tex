@@ -3,10 +3,11 @@
 \usepackage{xcolor}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
+\usepackage{needspace}
 \definecolor{booknavy}{HTML}{17324D}
 \definecolor{bookteal}{HTML}{087E8B}
 \definecolor{codebackground}{HTML}{F3F6F8}
-\hypersetup{colorlinks=true,linkcolor=booknavy,urlcolor=bookteal,citecolor=booknavy}
+\AtBeginDocument{\hypersetup{colorlinks=true,linkcolor=booknavy,urlcolor=bookteal,citecolor=booknavy}}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.45em}
 \setlength{\headheight}{15pt}
@@ -17,7 +18,7 @@
 \fancyhead[L]{\small\nouppercase{\leftmark}}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.25pt}
-\titleformat{\chapter}[display]{\normalfont\color{booknavy}}{\large CHAPTER \thechapter}{0.5em}{\Huge\bfseries}
+\titleformat{\chapter}[display]{\normalfont\raggedright\color{booknavy}}{\large CHAPTER \thechapter}{0.5em}{\Huge\bfseries}
 \titlespacing*{\chapter}{0pt}{5pt}{20pt}
 \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,breakatwhitespace=false,
   columns=fullflexible,keepspaces=true,showstringspaces=false,

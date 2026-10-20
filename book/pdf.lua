@@ -16,16 +16,30 @@ function Table(el)
       headings[#headings+1] = pandoc.utils.stringify(cell.contents)
     end
   end
+  if headings[1] == "Concept" then return nil end
   local output = {}
   for _, body in ipairs(el.bodies) do
     for _, row in ipairs(body.body) do
+      output[#output+1] = pandoc.RawBlock("latex", "\\Needspace{7\\baselineskip}\\begin{samepage}")
       for i, cell in ipairs(row.cells) do
         local label = headings[i] or ('Column ' .. i)
         output[#output+1] = pandoc.Para({pandoc.Strong({pandoc.Str(label .. ':')})})
         for _, block in ipairs(cell.contents) do output[#output+1] = block end
       end
-      output[#output+1] = pandoc.RawBlock('latex', '\\medskip')
+      output[#output+1] = pandoc.RawBlock('latex', '\\end{samepage}\\smallskip')
     end
   end
   return output
+end
+
+function Para(el)
+  if pandoc.utils.stringify(el) == 'Expected output:' then
+    return {pandoc.RawBlock('latex', '\\Needspace{9\\baselineskip}'), el}
+  end
+end
+
+function Header(el)
+  if el.level == 2 then
+    return {pandoc.RawBlock('latex', '\\Needspace{10\\baselineskip}'), el}
+  end
 end
