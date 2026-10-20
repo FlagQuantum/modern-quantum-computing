@@ -12,6 +12,7 @@ theme:
 nav:
   - Introduction: index.md
   - Contents and status: contents.md
+  - Full book plan: book-plan.md
   - Conventions: conventions.md
   - Starter chapters:
       - Measurement and expectations: chapters/measurement.md

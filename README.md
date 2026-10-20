@@ -10,12 +10,12 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a book plan, shared conventions, and three starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a six-part, 28-chapter plan, shared conventions, and three starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Start reading
 
 - [Book introduction](docs/index.md)
-- [Contents and chapter status](docs/contents.md)
+- [Full contents: six parts and 28 chapters](docs/contents.md) · [Detailed chapter plan](docs/book-plan.md)
 - [Notation and conventions](docs/conventions.md)
 - [Reference reading guide](docs/references/reading-guide.md) · [Chapter mapping](docs/references/chapter-mapping.md) · [BibTeX bibliography](docs/references/references.bib)
 - [Measurement and expectation values](docs/chapters/measurement.md)

@@ -2,6 +2,10 @@
 
 This is a reading and editorial plan. **Only measurement, gradients and hydrogen VQE are drafted.** Other rows describe proposed chapters from the [contents](../contents.md); they do not add completed material or certify FlagQuantum support for a topic. Abbreviations and access information are defined in the [reading guide](reading-guide.md).
 
+## Book chapter numbers
+
+The [full book plan](../book-plan.md) now assigns the measurement, gradients and hydrogen VQE starters to Chapters **5, 13 and 27** respectively. The mapping below groups related topics for reading; consult the plan for the complete 28-chapter sequence and dependencies. The current sample PDF retains its own three-chapter numbering.
+
 ## Existing starter chapters
 
 | Our chapter | Targeted reading | What to derive and implement | Independent verification |

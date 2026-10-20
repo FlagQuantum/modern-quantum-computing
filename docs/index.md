@@ -6,7 +6,7 @@
 
 How does an equation in a quantum computing paper become a working program? This open textbook follows that translation explicitly: define the conventions, derive a small result, implement it, and check the answer independently.
 
-**Early draft:** three starter chapters are available. The remaining chapters are a proposed curriculum, not completed material.
+**Early draft:** three starter chapters are available. The full plan comprises six parts and 28 chapters; the remaining chapters are proposed material, not completed text.
 
 <!-- book-metadata:start -->
 **Wei Liu**
@@ -35,7 +35,7 @@ Readers who know basic Python and linear algebra and want to understand quantum 
 5. Change a parameter or deliberately introduce an error.
 6. Record the software version and the limits of the experiment.
 
-Start with [conventions](conventions.md), then [measurement](chapters/measurement.md), [gradients](chapters/gradients.md), and [VQE](chapters/vqe.md). The [contents](contents.md) explain the proposed learning sequence.
+Start with [conventions](conventions.md), then [measurement](chapters/measurement.md), [gradients](chapters/gradients.md), and [VQE](chapters/vqe.md). The [contents](contents.md) and [detailed book plan](book-plan.md) explain the proposed learning sequence, prerequisites and experiments.
 
 ## Scope
 
