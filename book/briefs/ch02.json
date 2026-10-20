@@ -1,6 +1,6 @@
 {
   "baseline": "writing-baseline-v1.0",
-  "scope": "Filled authoring briefs for 2.1–2.3; remaining Chapter 2 briefs not yet prepared",
+  "scope": "Filled authoring briefs for 2.1–2.4; remaining Chapter2 briefs not yet prepared",
   "sections": [
     {
       "ref": "2.1",
@@ -20,7 +20,7 @@
       "depth": "F",
       "requires": [],
       "status": "draft",
-      "next_transition": "Sections2.1–2.3 now have author-checked drafts; independent reviews pending. Next production assignment is2.4."
+      "next_transition": "Sections 2.1–2.4 now have author-checked drafts; independent reviews pending. Next production assignment is 2.5."
     },
     {
       "ref": "2.2",
@@ -42,7 +42,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-1"
       ],
       "status": "draft",
-      "next_transition": "Sections2.1–2.3 now have author-checked drafts; independent reviews pending. Next production assignment is2.4."
+      "next_transition": "Sections 2.1–2.4 now have author-checked drafts; independent reviews pending. Next production assignment is 2.5."
     },
     {
       "ref": "2.3",
@@ -64,7 +64,29 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Independent mathematical, implementation and target-reader reviews pending; next draft2.4 Hermitian, unitary, and positive operators."
+      "next_transition": "Sections 2.1–2.4 now have author-checked drafts; independent reviews pending. Next production assignment is 2.5."
+    },
+    {
+      "ref": "2.4",
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-4",
+      "title": "Hermitian, unitary, and positive operators",
+      "question": "Which algebraic properties force real quadratic forms, nonnegative values, or preserved norms?",
+      "entry": "2.3 linear maps and coordinate representations, with2.2 adjoint identity; eigenpair and positive form notation defined locally.",
+      "exit": "Prove real Hermitian eigenvalues, positivity from real nonnegative quadratic forms, and unitary norm preservation; distinguish the classes with counterexamples.",
+      "worked_case": "Complex Hermitian H=[[2,i],[-i,2]], diagonal unitary U=diag(1,i), indefinite Z and semidefinite projector P; non-Hermitian nilpotent counterexample.",
+      "boundary": "Finite-dimensional operators in orthonormal coordinates; no spectral decomposition imported from2.5. Positivity proof uses quadratic forms and entry probes, not sampled certification.",
+      "code_plan": "CPU complex128 PyTorch checks versus scalar real/imaginary form and hand-supplied eigenpairs; no FlagQuantum needed.",
+      "independent_check": "Expanded positive quadratic form, eigenpair residuals, norm identities and explicit failed Hermitian/unitary/positive implications.",
+      "transfer_task": "Diagnose real eigenvalues without Hermiticity, nonorthonormal representations and finite sampled positivity; accessible full answers.",
+      "source_locators": [
+        "NC:2.1.6"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-3"
+      ],
+      "status": "draft",
+      "next_transition": "Independent reviews pending; next draft 2.5 Spectral decomposition and singular values."
     }
   ]
 }

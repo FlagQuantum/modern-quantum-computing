@@ -10,7 +10,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6 and 2.1–2.3, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6 and 2.1–2.4, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Start reading
 
@@ -24,6 +24,7 @@ An open English textbook that connects quantum computing equations to executable
 - [Read 2.1: Complex scalars, vectors, and conjugation](docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-1) · component proofs and independent coordinate checks
 - [Read 2.2: Inner products, adjoints, and orthogonality](docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-2) · full projection/Cauchy–Schwarz proofs and tensor checks
 - [Read 2.3: Linear maps, bases, and changes of coordinates](docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-3) · similarity proof, coordinate contracts and counterexamples
+- [Read 2.4: Hermitian, unitary, and positive operators](docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-4) · quadratic-form proofs, norm preservation and counterexamples
 - [Book introduction](docs/index.md)
 - [Quantum-classical hybrid patterns and implementations](docs/hybrid-computing.md)
 - [Core results, proof depth and exact sources](docs/proof-plan.md) · [Adopted seven-volume plan](docs/volume-plan.md)
@@ -61,6 +62,7 @@ python examples/foundations/learning_routes.py  # standard library; checks the p
 python examples/foundations/complex_coordinates.py  # standard library; complex arithmetic and proofs
 python examples/foundations/inner_products.py
 python examples/foundations/basis_changes.py
+python examples/foundations/operator_classes.py
 python examples/measurement.py
 python examples/gradients.py
 python examples/omalley2016/verify_h2_vqe.py

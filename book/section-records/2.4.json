@@ -1,0 +1,104 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-4",
+  "ref": "2.4",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+  "question": "Which algebraic properties force real quadratic forms, nonnegative values, or preserved norms?",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-3"
+  ],
+  "depth": "F",
+  "result": "Hermitian positivity and unitary norm preservation",
+  "entry": "2.3 linear maps and coordinate representations, with2.2 adjoint identity; eigenpair and positive form notation defined locally.",
+  "exit": "Prove real Hermitian eigenvalues, positivity from real nonnegative quadratic forms, and unitary norm preservation; distinguish the classes with counterexamples.",
+  "assumptions": [
+    "Finite-dimensional complex inner product space; orthonormal coordinates for ordinary conjugate-transpose tests",
+    "Eigenvector nonzero; no spectral decomposition or complete eigenbasis imported from 2.5",
+    "Positive means positive semidefinite; form real/nonnegative for every complex vector; strict form positive at every nonzero vector",
+    "Finite numerical checks separated from all-vector proofs and device evidence"
+  ],
+  "symbols": {
+    "A,H,U,Z,P,N": "Finite square operators and explicit matrices",
+    "C": "Auxiliary finite rectangular matrix",
+    "q_A(v)": "Scalar quadratic form <v,Av>",
+    "D": "A minus its adjoint in the real-form converse proof",
+    "e_j,e_k": "Standard coordinate columns",
+    "lambda,v": "Eigenvalue and nonzero eigenvector",
+    "PSD,PD": "Positive semidefinite and positive definite, distinguished explicitly"
+  },
+  "local_start_checks": {
+    "brief": "Filled before drafting; exact 2.3 prerequisite, depth F and NC:2.1.6 locator preserved.",
+    "prerequisite": "Author-checked 2.3 draft and its adjoint/inner-product bridge usable with no known blocking error.",
+    "source": "Consulted assigned NC:2.1.6 printed pp.69–71 from cached local copy of user-supplied PDF; no source content uploaded.",
+    "independent_reference": "Explicit six-square real-coordinate form for H, diagonal U/P norm forms, hand-supplied eigenpairs and witnesses for false implications.",
+    "scope": "No baseline scope, dependency, depth or volume changes; no paper audit."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.1.6",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        69,
+        70,
+        71
+      ],
+      "use": "Adjoint/Hermitian/unitary/positivity definitions; full original component and norm arguments supplied locally rather than relying on a deferred exercise or spectral theorem."
+    }
+  ],
+  "proof_obligations": [
+    "Hermitian quadratic forms real by conjugate symmetry and adjoint identity",
+    "Nonzero Hermitian eigenpair gives real eigenvalue by dividing real form by positive squared norm",
+    "Real quadratic forms for all complex vectors imply Hermiticity via coordinate probes e_j, e_j+e_k and e_j+i e_k",
+    "Positive semidefinite/definite form definitions and necessary eigenvalue sign; spectral converse explicitly reserved for 2.5",
+    "C-adjoint C gives norm squared and is PSD; strict criterion has zero kernel",
+    "Unitary overlap/norm preservation and unit-modulus eigenvalues",
+    "Complex H positive definite by explicit all-vector sum of squares; counterexamples separate classes",
+    "Nilpotent N only has zero eigenvalue, yet forms refute positivity without Hermiticity"
+  ],
+  "implementation": {
+    "path": "examples/foundations/operator_classes.py",
+    "command": "python examples/foundations/operator_classes.py",
+    "python": "3.12.14",
+    "dependencies": "Pinned requirements-examples.txt; PyTorch 2.13.0; no FlagQuantum API invoked",
+    "platform": "macOS ARM64 CPU",
+    "precision": "torch.complex128",
+    "author_run": "passed",
+    "checks": [
+      "625 two-entry complex vectors compare H forms, U norms and P forms with independent real arithmetic",
+      "Hermitian and unitary defining identities checked separately",
+      "Five hand-supplied nonzero eigenvectors give zero displayed residuals; no eigensolver used as reference",
+      "H stretches e1; U form at e2 non-real; Z negative witness; P zero at nonzero direction",
+      "Nilpotent N squared zero, not Hermitian, with negative and imaginary quadratic-form witnesses"
+    ],
+    "tolerance": "Tensor comparisons rtol=0, atol=1e-12; eigenpair residual <=1e-12",
+    "limitations": "Finite samples/eigenpair residuals are implementation checks, not universal positivity or completeness proofs. Orthogonal coordinates and bounded entries only; no physical execution.",
+    "expected_output_check": "Passed exact comparison with chapter expected-output block",
+    "script_sha256": "ff0923c62bb1b01ae7e1af8138898dd9073e3abba256fe47728c02d8aa8fac96"
+  },
+  "assessment": {
+    "checkpoint": "2.4-A",
+    "entrywise_counterexample": "2.4-B",
+    "strictness_boundary": "2.4-C",
+    "sampling_and_factorization": "2.4-D",
+    "coordinate_transfer": "2.4-E",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python 3.12.14/PyTorch 2.13.0 CPU complex128 execution, exact output match, 625 independent coordinate-form checks, five supplied nonzero eigenpair residuals, class-separating counterexamples, frozen scope/depth/prerequisite/brief and scholarly-plan checks, prose scan, strict MkDocs build, links/anchors across 56 pages, and actual browser inspection of Hermiticity implication, positivity forms and eigenpair matrices. No raw LaTeX or math-error text observed. Independent mathematical/implementation review and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 2208,
+    "page_status": "Unmeasured planning envelope; calibrate print/reader workload without dropping full proof obligations.",
+    "next_draft": "2.5 Spectral decomposition and singular values",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}

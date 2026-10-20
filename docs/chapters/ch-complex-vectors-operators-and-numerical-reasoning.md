@@ -1,6 +1,6 @@
 # 2. Complex Vectors, Operators, and Numerical Reasoning
 
-**Working draft: sections 2.1–2.3 · Writing Baseline 1.0 · October 21, 2026.** Sections 2.4–2.8 remain planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.3 add PyTorch 2.13.0 CPU complex128 tensor checks.
+**Working draft: sections 2.1–2.4 · Writing Baseline 1.0 · October 21, 2026.** Sections 2.5–2.8 remain planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.4 add PyTorch 2.13.0 CPU complex128 tensor checks.
 
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-1"></span>
 
@@ -692,10 +692,246 @@ The output's `B` names the new matrix, which the prose calls $A_B$; its `Q^H` me
 - **D.** The columns are dependent because $2(1,0)-(2,0)=0$, and they do not span $\mathbb C^2$. For instance $(0,1)$ has no expansion; $(1,0)$ has multiple expansions. Thus a unique conversion for every column is impossible.
 - **E.** A consistent passive change preserves the vector and the linear transformation, while changing their coordinate representations. No physical-device modification or execution follows from this algebra. Such a claim needs its own operational meaning and evidence.
 
-Next, [2.4 Hermitian, unitary, and positive operators](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-4) develops operator properties whose definitions must be distinguished from a particular displayed matrix.
+Next, [2.4 Hermitian, unitary, and positive operators](#sec-complex-vectors-operators-and-numerical-reasoning-4) develops operator properties whose definitions must be distinguished from a particular displayed matrix.
 
 ### Source, status, and limits
 
 Assigned companion source: [NC:2.1.2](../references/proof-sources.md#source-nc-2-1-2), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §2.1.2, printed pp. 63–64. Those pages, including the preceding basis discussion, were consulted from the previously supplied local copy. They support the linear-map and matrix-representation conventions. The coordinate-conversion derivation, nonorthogonal and complex-basis checks, active/passive distinction and exercises here provide original worked exposition, rather than attributing every displayed identity to that subsection.
 
 Depth **F**: derive similarity from coordinate conversion, justify invertibility from the basis assumptions, and prove the orthonormal adjoint shortcut. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.3.json) separates author execution from pending independent mathematical, implementation and reader reviews. Numerical checks validate the bounded implementations, not the general theorem or any quantum hardware behavior.
+
+<span id="sec-complex-vectors-operators-and-numerical-reasoning-4"></span>
+
+## 2.4 Hermitian, unitary, and positive operators
+
+A matrix can equal its adjoint, preserve lengths, or give nonnegative quadratic forms. These are different requirements. Confusing them can turn a valid matrix calculation into an invalid interpretation of an observable, a transformation or a probability model. We first establish the algebra, before assigning physical roles in later chapters.
+
+The prerequisite is [2.3](#sec-complex-vectors-operators-and-numerical-reasoning-3), including its distinction between a linear map and its coordinates. All matrix formulas below use a fixed **orthonormal basis** and the standard inner product, conjugate linear in its first argument. Operators act on the same finite-dimensional complex inner product space as their output space. No spectral decomposition is assumed.
+
+### Definitions that do different work
+
+For a square matrix $A$, its adjoint $A^\dagger$ is the conjugate transpose. Conjugating twice and exchanging indices twice returns $A$, so $(A^\dagger)^\dagger=A$. Adjoint also distributes over addition, and conjugates scalar coefficients: these facts follow entry by entry from 2.1.
+
+An operator $H$ is **Hermitian**, or **self-adjoint**, when $H^\dagger=H$. An operator $U$ is **unitary** when $U^\dagger U=UU^\dagger=I$. The identity $I$ leaves each vector unchanged. Section 2.3 introduced this unitary criterion for changes between orthonormal bases; here we study its effect when $U$ acts on vectors.
+
+For any $A$, define its **quadratic form** at $v$ by the scalar
+
+$$
+q_A(v)=\langle v,Av\rangle=v^\dagger Av.
+$$
+
+We call $A$ **positive semidefinite**, written $A\succeq0$, when $q_A(v)$ is real and nonnegative for every vector $v$. “Positive” without a qualifier means semidefinite in this book. It does not mean that every matrix entry is positive. We call $A$ **positive definite** when the same form is strictly positive for every nonzero $v$. The zero vector always gives zero and must be excluded from the strict condition.
+
+We will prove that these positivity definitions imply Hermiticity. A complex scalar has no ordinary ordering compatible with comparing it to zero in this definition; the word **real** is an essential part of the condition.
+
+### Hermitian operators give real quadratic forms
+
+Conjugate symmetry and the adjoint identity from 2.2 give
+
+$$
+\begin{aligned}
+q_H(v)^*
+ &=\langle Hv,v\rangle\\
+ &=\langle v,H^\dagger v\rangle\\
+ &=\langle v,Hv\rangle=q_H(v).
+\end{aligned}
+$$
+
+The middle equality follows by applying the adjoint identity to $H^\dagger$ and using its double adjoint. A scalar equals its conjugate exactly when its imaginary part is zero, so $q_H(v)$ is real. This alone imposes no sign on it.
+
+An **eigenpair** consists of a scalar $\lambda$ and a **nonzero** vector $v$ such that $Av=\lambda v$. The scalar is an eigenvalue and $v$ an eigenvector. The nonzero requirement prevents the meaningless identity $A0=\lambda0$ from making every scalar an eigenvalue.
+
+If $H$ is Hermitian and $Hv=\lambda v$, linearity in the second argument gives
+
+$$
+q_H(v)=\langle v,\lambda v\rangle
+       =\lambda\|v\|^2.
+$$
+
+The left side is real, and $\|v\|^2>0$. Dividing by this positive real number proves that $\lambda$ is real. This argument applies to every eigenpair, but does not yet construct a complete eigenbasis. That existence result belongs to 2.5.
+
+### Why the quadratic-form condition forces Hermiticity
+
+We now prove the converse fact needed for positivity: if $q_A(v)$ is real for every complex vector $v$, then $A$ is Hermitian. Define $D=A-A^\dagger$. By the same adjoint identity,
+
+$$
+v^\dagger Dv=q_A(v)-q_A(v)^*=0
+$$
+
+for every $v$. Let $e_j$ be the coordinate column with a 1 at position $j$ and zeros elsewhere. Taking $v=e_j$ gives $D_{jj}=0$. For distinct indices $j,k$, use two further probes:
+
+$$
+\begin{aligned}
+(e_j+e_k)^\dagger D(e_j+e_k)&=D_{jk}+D_{kj}=0,\\
+(e_j+i e_k)^\dagger D(e_j+i e_k)&=iD_{jk}-iD_{kj}=0.
+\end{aligned}
+$$
+
+The diagonal terms vanished by the first probe. The two remaining equations imply $D_{jk}=-D_{kj}$ and $D_{jk}=D_{kj}$, hence both entries are zero. All diagonal and off-diagonal entries of $D$ therefore vanish, so $A=A^\dagger$.
+
+Thus a real, nonnegative quadratic form for all vectors implies Hermiticity as well as the sign condition. Equivalently, one may define positive semidefiniteness as **Hermitian plus nonnegative quadratic form**. The argument is algebraic for arbitrary finite dimension; it is not a claim that a collection of randomly sampled forms establishes the condition for all vectors. Probing only real vectors would also omit the crucial $i e_k$ information.
+
+For a positive semidefinite $A$, any eigenpair satisfies $\lambda\|v\|^2=q_A(v)\ge0$, so $\lambda\ge0$. For a positive definite $A$, the inequality is strict. The reverse implication from nonnegative eigenvalues will be justified for Hermitian operators using the spectral theorem in 2.5; we do not import that theorem here.
+
+A useful sufficient construction avoids it. If $C$ is any finite rectangular matrix, then
+
+$$
+q_{C^\dagger C}(v)=\langle v,C^\dagger Cv\rangle
+                 =\langle Cv,Cv\rangle=\|Cv\|^2\ge0.
+$$
+
+The value is real, so the preceding proof also makes $C^\dagger C$ Hermitian and positive semidefinite. It is positive definite exactly when $Cv=0$ forces $v=0$. Both directions follow because a squared norm vanishes exactly at the zero vector.
+
+### Unitary operators preserve overlaps and norms
+
+For unitary $U$, the adjoint identity yields
+
+$$
+\begin{aligned}
+\langle Uv,Uw\rangle
+ &=\langle v,U^\dagger Uw\rangle\\
+ &=\langle v,Iw\rangle=\langle v,w\rangle.
+\end{aligned}
+$$
+
+Setting $w=v$ proves $\|Uv\|^2=\|v\|^2$, hence $\|Uv\|=\|v\|$ by nonnegative square roots. This is stronger than checking the length of one test vector: it preserves every pair's inner product.
+
+If $Uv=\lambda v$ with $v\ne0$, then norm scaling from 2.2 gives $\|v\|=\|Uv\|=\lvert\lambda\rvert\|v\|$. Dividing by the positive norm proves $\lvert\lambda\rvert=1$. An eigenvalue of a unitary operator need not be real. Hermiticity and unitarity constrain different aspects of an eigenvalue.
+
+**2.4-A — Predict before testing.** Can an eigenvalue 3 belong to a Hermitian operator? A positive definite operator? A unitary operator? State which proved condition supports each answer.
+
+### One positive definite matrix that stretches a vector
+
+Consider the complex matrix
+
+$$
+H=\begin{pmatrix}2&i\\-i&2\end{pmatrix}.
+$$
+
+Conjugate transpose returns the same matrix. For $v=(a,b)$ as a column, direct expansion gives
+
+$$
+\begin{aligned}
+q_H(v)
+ &=2\lvert a\rvert^2+2\lvert b\rvert^2+i a^*b-i b^*a\\
+ &=\lvert a+i b\rvert^2+\lvert a\rvert^2+\lvert b\rvert^2.
+\end{aligned}
+$$
+
+The second equality follows by multiplying $(a+i b)^*(a+i b)=(a^*-i b^*)(a+i b)$. Every term is nonnegative. If $v\ne0$, at least one of $\lvert a\rvert^2,\lvert b\rvert^2$ is positive, proving positive definiteness for all vectors without sampling or diagonalization.
+
+Two explicit eigenpair checks are
+
+$$
+H\begin{pmatrix}1\\i\end{pmatrix}=\begin{pmatrix}1\\i\end{pmatrix},\qquad
+H\begin{pmatrix}1\\-i\end{pmatrix}=3\begin{pmatrix}1\\-i\end{pmatrix}.
+$$
+
+The eigenvalues 1 and 3 are consistent with Hermiticity and positive definiteness. Yet $He_1=(2,-i)$ has squared norm 5, whereas $e_1=(1,0)$ has squared norm 1. Thus $H$ is not unitary. Real, positive quadratic forms do not require norm preservation.
+
+For an independent coordinate reference, write $a=a_r+i a_i$ and $b=b_r+i b_i$, with real subscripts denoting parts. Since $a+i b=(a_r-b_i)+i(a_i+b_r)$, the form becomes
+
+$$
+q_H(v)=(a_r-b_i)^2+(a_i+b_r)^2+a_r^2+a_i^2+b_r^2+b_i^2.
+$$
+
+The program checks this real-arithmetic expression against the tensor quadratic form.
+
+### Counterexamples that separate the classes
+
+Here are three further operators in standard orthonormal coordinates:
+
+$$
+U=\begin{pmatrix}1&0\\0&i\end{pmatrix},\quad
+Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\quad
+P=\begin{pmatrix}1&0\\0&0\end{pmatrix}.
+$$
+
+For $v=(a,b)$, $Uv=(a,ib)$ has the same squared norm as $v$, and direct multiplication gives $U^\dagger U=UU^\dagger=I$. But $U^\dagger=\operatorname{diag}(1,-i)\ne U$, and $q_U(e_2)=i$ is not real. Here $\operatorname{diag}$ names the matrix with the listed diagonal entries and zeros elsewhere.
+
+Both $Z^\dagger=Z$ and $Z^\dagger Z=ZZ^\dagger=I$ hold, so $Z$ is simultaneously Hermitian and unitary. Nevertheless $q_Z(e_2)=-1$, refuting positivity. For $P$, $q_P(v)=\lvert a\rvert^2\ge0$, so $P$ is positive semidefinite. It is not positive definite because the nonzero vector $e_2$ gives zero. It is not unitary because it maps that vector to zero. This $P$ is also the orthogonal projection onto the first coordinate line, connecting to 2.2.
+
+| Operator | Hermitian | Unitary | Positive semidefinite | Positive definite |
+|---|---|---|---|---|
+| $H$ above | Yes | No | Yes | Yes |
+| $U=\operatorname{diag}(1,i)$ | No | Yes | No | No |
+| $Z=\operatorname{diag}(1,-1)$ | Yes | Yes | No | No |
+| $P=\operatorname{diag}(1,0)$ | Yes | No | Yes | No |
+
+A final warning concerns eigenvalues without Hermiticity. Let
+
+$$
+N=\begin{pmatrix}0&1\\0&0\end{pmatrix}.
+$$
+
+For an eigenpair $N(x,y)=\lambda(x,y)$, the coordinate equations are $y=\lambda x$ and $0=\lambda y$. If $\lambda\ne0$, they force $y=x=0$, contradicting the nonzero eigenvector requirement. The value 0 does occur, with eigenvector $e_1$, so it is the only eigenvalue. Yet $q_N((1,-1))=-1$, and $q_N((1,i))=i$. Thus nonnegative eigenvalues alone do not establish positivity for an arbitrary non-Hermitian matrix.
+
+### Formula to executable evidence
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/operator_classes.py) uses Python 3.12, PyTorch 2.13.0, CPU `complex128`. It supplies eigenvectors and eigenvalues from the hand calculations; an eigensolver is not the source of its expected results.
+
+| Claim or test | Tensor calculation | Independent evidence |
+|---|---|---|
+| Hermiticity | Compare `h.mH` with `h` | Conjugate the displayed entries and transpose |
+| Unitarity | Compare `u.mH @ u` and `u @ u.mH` with identity | The diagonal products are 1 and $(-i)i=1$ |
+| Positive definite $H$ | `torch.vdot(v, h @ v)` | Explicit six-square expression in real coordinates |
+| Norm preservation for $U$ | `torch.vdot(u @ v, u @ v)` | $\lvert a\rvert^2+\lvert ib\rvert^2=\lvert a\rvert^2+\lvert b\rvert^2$ |
+| Supplied eigenpair | Norm of `matrix @ v - value*v` | Nonzero, explicit eigenvectors and scalar products above |
+| Invalid implications | Evaluate forms at the stated witnesses | Negative, zero or non-real values diagnose the exact failed condition |
+
+Run from the repository root in the existing pinned example environment:
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/operator_classes.py
+```
+
+Expected output:
+
+```text
+CPU complex128 checks; algebraic models only.
+H: Hermitian and positive definite; squared norm of H*e1=5, not 1
+U=diag(1,i): unitary, not Hermitian; quadratic form at e2=i
+Z=diag(1,-1): Hermitian and unitary, not positive; form at e2=-1
+P=diag(1,0): positive semidefinite, not positive definite; form at e2=0
+N=[[0,1],[0,0]]: N^2=0; forms -1 and i refute positivity
+5 supplied nonzero eigenvectors: maximum residual=0.0e+00
+625 vectors match independent H/U/P coordinate formulas.
+Defining identities and counterexamples passed; sampled forms are not a proof.
+```
+
+The 625 vectors use real and imaginary coordinates from $-2$ to $2$. Tensor comparisons use zero relative tolerance and $10^{-12}$ absolute tolerance; the supplied eigenpair residuals must also be at most $10^{-12}$. A small residual checks that particular nonzero vector and candidate eigenvalue. It does not establish a complete eigenbasis or a universal property of a different operator. Likewise, a finite set of nonnegative sampled forms is not a positivity certificate. The proofs above, including the explicit all-vector expression for $H$, supply the general claims.
+
+FlagQuantum is not needed for these linear-algebra reference checks. No circuit, quantum measurement or hardware execution is claimed.
+
+### Coordinate and numerical boundaries
+
+The simple tests $A^\dagger=A$ and $U^\dagger U=I$ assume orthonormal coordinates. An operator may acquire a matrix that is not equal to its ordinary conjugate transpose when expressed in a nonorthonormal basis. For example, the swap map in 2.3 is Hermitian in standard coordinates, but its nonorthogonal-basis matrix $\begin{pmatrix}-1&0\\1&1\end{pmatrix}$ is not equal to its plain conjugate transpose. This is a representation issue, not a changed operator. The Gram-weighted inner product from 2.3 must be retained in that coordinate system.
+
+Numerically, an approximate equality within a chosen tolerance differs from an exact identity. A form slightly below zero near the rounding scale requires an error analysis, not an automatic declaration of either positivity or a physical inconsistency. This section uses small exact entries and explicitly scoped checks; conditioning and robust numerical diagnostics follow later.
+
+### Transfer and diagnosis
+
+**2.4-B — Positive entries?** Consider $M=\begin{pmatrix}1&2\\2&1\end{pmatrix}$. All entries are positive. Evaluate its form at $(1,-1)$ and decide whether that establishes positive semidefiniteness or refutes it.
+
+**2.4-C — Zero versus strict positivity.** Why does $q_P(e_2)=0$ refute positive definiteness but not positive semidefiniteness? Why is it insufficient to test only $e_1$?
+
+**2.4-D — Sampling as a claim.** A program tests 100 vectors, obtains real nonnegative forms and declares an unfamiliar matrix positive. Which quantifier has not been justified? What would a verified factorization $A=C^\dagger C$ establish instead?
+
+**2.4-E — A representation trap.** A colleague uses the nonorthogonal basis from 2.3, finds a nonsymmetric representation of the swap and declares the underlying map non-Hermitian. Identify the missing coordinate assumption.
+
+**Answers and reasoning**
+
+- **A.** Yes for Hermitian and positive definite operators: the displayed $H$ has eigenvalue 3. No for a unitary operator, whose eigenvalues must have modulus 1.
+- **B.** $M(1,-1)=(-1,1)$ and the quadratic form is $-2$. This one counterexample refutes the all-vector nonnegativity condition. Entrywise positivity is a different property.
+- **C.** Strict positivity requires a positive value at every nonzero vector, and $e_2\ne0$. Semidefiniteness permits zero. Testing $e_1$ alone misses a different direction in which the form vanishes.
+- **D.** “For every vector” has not been established by those finite samples. An exact, verified factorization gives $q_A(v)=\|Cv\|^2\ge0$ for all $v$, proving positive semidefiniteness. Strict positivity additionally requires that $Cv=0$ only for $v=0$.
+- **E.** Ordinary conjugate-transpose tests represent the adjoint in orthonormal coordinates. That assumption fails for the chosen basis; use its Gram-weighted inner product or convert back consistently before applying those tests.
+
+The next planned lesson, [2.5 Spectral decomposition and singular values](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5), builds the decomposition results needed to turn suitable eigenvalue information into complete operator statements.
+
+### Source, status, and limits
+
+Assigned companion source: [NC:2.1.6](../references/proof-sources.md#source-nc-2-1-6), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §2.1.6, printed pp. 69–71. Those pages were consulted from the previously supplied local copy. They supply the adjoint, Hermitian, unitary and positivity conventions. The proofs here explicitly supply the quadratic-form implication and all-vector worked forms without assuming the spectral theorem or importing an external exercise as a missing step. Examples, counterexamples and answer explanations are original exposition.
+
+Depth **F**: prove real Hermitian eigenvalues, the real nonnegative quadratic-form condition and unitary norm preservation, with assumptions and boundary cases stated. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.4.json) distinguishes author checks from pending independent mathematical, implementation and reader review. Physical meanings are developed in their later owning sections.
