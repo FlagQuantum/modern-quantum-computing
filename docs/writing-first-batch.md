@@ -102,7 +102,9 @@ The initial sequence is 1.1–1.6. Use the current queue states to continue from
 
 ## 1.5 What computational advantage would require
 
-**Stable ID:** `sec-what-quantum-computing-computes-5`. **Depth:** V. **State:** brief_ready.
+**Stable ID:** `sec-what-quantum-computing-computes-5`. **Depth:** V. **State:** draft.
+
+[Read the working draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-5). Independent acceptance remains separate.
 
 **Concrete question:** What would establish a computational advantage?
 
@@ -114,7 +116,7 @@ The initial sequence is 1.1–1.6. Use the current queue states to continue from
 
 **Scope/continuity boundary:** This is an entry-level reasoning contract; formal access/complexity and lower-bound arguments belong to Chapter 14 and later algorithms.
 
-**Formula-to-code plan:** A small cost ledger is appropriate; a quantum circuit is not required merely to populate this section.
+**Formula-to-code plan:** Complete exact-arithmetic cost ledger: examples/foundations/advantage_ledger.py; no quantum backend needed. Component sums, units, omitted-input-cost reversal and repetition sensitivity are checked.
 
 **Independent check:** Change one omitted cost or precision requirement and reassess the hypothetical comparison.
 

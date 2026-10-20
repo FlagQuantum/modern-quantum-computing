@@ -1,0 +1,102 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-what-quantum-computing-computes-5",
+  "ref": "1.5",
+  "date": "2026-10-20",
+  "state": "draft",
+  "body": "docs/chapters/ch-what-quantum-computing-computes.md",
+  "question": "What would establish a computational advantage?",
+  "requires": [
+    "sec-what-quantum-computing-computes-4"
+  ],
+  "depth": "V",
+  "result": "Match task/input access/output/accuracy/reliability and account for complete costs; distinguish hypothetical, measured and asymptotic evidence without a separation claim.",
+  "entry": "Section 1.4 task/program/simulator/device evidence distinction; 1.1 probability/error notation recalled locally.",
+  "exit": "Audit a speedup claim, restore omitted costs, separate kernel and end-to-end ratios, and identify missing accuracy/access/benchmark evidence.",
+  "assumptions": [
+    "Same nonempty classical bit-array instance and input size, numerical mean estimate output",
+    "Shared error <=1/20 and success probability >=19/20 are requirements, not verified guarantees",
+    "Invented per-instance microsecond costs; serial stages, no overlap or amortization, no queue/network costs",
+    "N=100 is an illustrative cost input, not a derived sufficient repetition count",
+    "No candidate solver, quantum circuit, timing benchmark or device experiment implemented"
+  ],
+  "symbols": {
+    "x,n,x_j": "Nonempty classical bit array, positive length and entries",
+    "mu(x),mu_hat": "Exact array mean and requested numerical estimate",
+    "epsilon,delta": "Allowed error and failure probability",
+    "C,Q": "Candidate classical and quantum-containing methods, not gates",
+    "T_C,T_Q": "Whole-task costs in microseconds",
+    "T_in,T_post": "One-time Q input/setup and final post-processing costs",
+    "t_prep,t_exec,t_read,N": "Per-repetition prices and assumed repetition count",
+    "S": "End-to-end time ratio T_C/T_Q"
+  },
+  "local_start_checks": {
+    "prerequisite": "Explained, author-checked 1.4 draft. No new access/complexity theorem is imported.",
+    "source": "NC:3.2.1 consulted from local supplied source, printed pp. 136–137; computational resource/model context only. No new literature audit.",
+    "independent_reference": "Directly expanded component sums versus ledger calculation; exact Fraction ratios; omit the single setup cost to reverse the ranking; independently price 100 added complete repetitions.",
+    "scope": "Ledger is conditional on future task-quality validation. CPU simulation timing is not treated as physical quantum timing; no current performance ranking."
+  },
+  "sources": [
+    {
+      "locator": "NC:3.2.1",
+      "consulted_pages": [
+        136,
+        137
+      ],
+      "edition": "10th Anniversary Edition (2010)",
+      "use": "Problem-size and model assumptions in resource quantification; fictional ledger and exercises are original."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/advantage_ledger.py",
+    "command": "python examples/foundations/advantage_ledger.py",
+    "dependencies": "Python 3.12 standard library only",
+    "python": "3.12.14",
+    "platform": "macOS 27.0 ARM64 CPU",
+    "author_run": "passed",
+    "arithmetic": "Integer microseconds and exact Fraction ratios; decimal output is display-only",
+    "flagquantum": "Not applicable: bookkeeping does not require a quantum backend.",
+    "timing_evidence": "No measured performance data. All component prices are invented teaching assumptions.",
+    "accuracy_evidence": "No solver correctness, accuracy or success probability is validated by this program.",
+    "cases": [
+      "C whole task=10000 us",
+      "Q whole task at N=100 equals11000 us",
+      "Compute-only ratio7 versus end-to-end10/11",
+      "Omitted Q input cost falsely gives7000 us and ratio10/7",
+      "N=200 total16000 us with no accuracy inference"
+    ],
+    "checks": [
+      "Expanded component sums agree with cost functions",
+      "Microseconds-to-milliseconds display conversion",
+      "Exact compute-only and whole-task rational ratios",
+      "Restoring omitted setup reverses the misleading ranking",
+      "100 added repetitions cost100*(20+10+20)"
+    ],
+    "expected_output_check": "Exact match with the chapter expected-output block",
+    "script_sha256": "f3f1080972641d73e682e769e82e2b423dec96b16c26e2b0ecdfad736fb8f863"
+  },
+  "assessment": {
+    "checkpoint": "1.5-A",
+    "omitted_cost": "1.5-B",
+    "accuracy_transfer": "1.5-C",
+    "output_contract": "1.5-D",
+    "evidence_debugging": "1.5-E",
+    "answers": "Included in the section"
+  },
+  "review": {
+    "author_checks": "Passed actual Python execution, exact expected-output comparison, integer/Fraction reference sums and omitted-cost reversal, prose scan, strict MkDocs build, links/anchors across 55 pages, scope/dependency/proof-plan checks, browser inspection of probability/cost/table formulas, and rendered-page checks for raw LaTeX commands and math-error text. Independent review and reader testing remain pending.",
+    "mathematical": "pending independent methodological review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      2,
+      4
+    ],
+    "word_count_approx": 1840,
+    "page_status": "Unmeasured planning envelope; includes evidence discussion, tables, exercises and answers. Calibrate with reader/print review without dropping scope.",
+    "next_draft": "1.6 A map of the learning routes",
+    "pdf": "Existing three-starter PDF sample and version unchanged."
+  }
+}

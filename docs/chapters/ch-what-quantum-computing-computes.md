@@ -1,6 +1,6 @@
 # 1. What Quantum Computing Computes
 
-**Working draft: sections 1.1–1.4 · Writing Baseline 1.0 · October 20, 2026.** Sections 1.5–1.6 remain planned. Independent mathematical and reader review are pending; this is not an accepted chapter. Section 1.1 uses Python 3.12 and the standard library. Sections 1.2–1.4 add pinned FlagQuantum 0.3.1 simulations.
+**Working draft: sections 1.1–1.5 · Writing Baseline 1.0 · October 20, 2026.** Section 1.6 remains planned. Independent mathematical and reader review are pending; this is not an accepted chapter. Section 1.1 uses Python 3.12 and the standard library. Sections 1.2–1.4 add pinned FlagQuantum 0.3.1 simulations; 1.5 uses standard-library cost bookkeeping.
 
 <span id="sec-what-quantum-computing-computes-1"></span>
 
@@ -617,10 +617,175 @@ A simulator may expose internal amplitude coordinates that a physical readout do
 - **D.** No. In this ideal model the wrong label has probability zero, so sampling the exact distribution cannot produce it. A real wrong readout can motivate investigation of the idealization and execution chain. By contrast, a finite record from a half/half distribution need not have equal counts even when the model is correct.
 - **E.** Input 0 predicts $(1,0)$ and input 1 predicts $(0,1)$. Remove the computational $X$, retaining the conditional preparation $X$ for input 1. Otherwise, both circuits would start at label 0 and would not encode the same task inputs.
 
-We now have a common task spanning a mathematical recipe, a program, an executed simulator and an explicitly unexecuted device plan. The next planned section, [1.5 What computational advantage would require](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-5), uses these distinctions to examine resource comparisons.
+We now have a common task spanning a mathematical recipe, a program, an executed simulator and an explicitly unexecuted device plan. The next section, [1.5 What computational advantage would require](#sec-what-quantum-computing-computes-5), uses these distinctions to examine resource comparisons.
 
 ### Validation standard and scope
 
 The assigned methodological source is [ED:protocol](../references/proof-sources.md#source-ed-protocol), the book's original [reader-review and acceptance-evidence standard](../reader-continuity.md#reader-review-and-acceptance-evidence). It requires explicit assumptions, reconstructable steps and independent checks; it is not an external device experiment. The task, program, evidence classification and exercises here are original.
 
 This section has depth **V**: it specifies falsifiable checks and the scope of their evidence, rather than proving a new quantum theorem. Author execution, environment details and outstanding reviews are recorded in [the section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.4.json). Independent mathematical/methodological review, implementation review and reader testing remain pending.
+
+<span id="sec-what-quantum-computing-computes-5"></span>
+
+## 1.5 What computational advantage would require
+
+A computation has a fast central step. Does that make it a faster way to solve the problem? To answer, we need the whole task contract and the costs of completing it. Input preparation, repetitions and reading the answer can reverse a conclusion drawn from the central step alone.
+
+Start from [1.4](#sec-what-quantum-computing-computes-4): an algorithm, an executed simulator and a physical device supply different kinds of evidence. Here we choose **elapsed time** as the resource to compare. Other studies may compare memory or function calls, but the resource and its units must be named. This section establishes a comparison method, not a quantum speedup theorem or a hardware performance result.
+
+### Match the question before comparing the answers
+
+Consider one concrete task. Both candidate methods receive the same nonempty classical array $x$ of $n$ bits, with entries $x_1,\ldots,x_n$. They must return a numerical estimate of its mean,
+
+$$
+\mu(x)=\frac{x_1+\cdots+x_n}{n}.
+$$
+
+The symbol $n$ is the array length; $\mu(x)$ is the fraction of entries equal to 1. Choose an allowed absolute error $\epsilon$ and failure probability $\delta$. With $\widehat\mu$ denoting the returned estimate, the required success condition is
+
+$$
+\Pr\!\left(\lvert\widehat\mu-\mu(x)\rvert\leq\epsilon\right)\geq1-\delta.
+$$
+
+The probability is over a method's randomness, if it uses any. A method that computes the exact mean deterministically also meets this requirement. For the example below, set $\epsilon=1/20$ and $1-\delta=19/20$. Those are shared requirements, not guarantees established by the cost calculation.
+
+Call the candidates $C$ and $Q$: a classical workflow and a proposed workflow containing a quantum component. The letters label methods, not gates. We do not implement either solver here. Instead, we will see how a proposed cost comparison must be audited **even if both methods are eventually shown to meet the task contract**.
+
+| Item to match | Why it matters |
+|---|---|
+| The same instance and input size | An easy small array cannot stand in for a different difficult one |
+| Input representation and access | A classical array and a free callable that provides encoded data are different starting resources; constructing special access must be included |
+| Output | A mean estimate, a sample and a full probability distribution are different requested answers |
+| Error and success probability | A faster answer that misses the required accuracy or reliability does not solve the same task |
+| Resource boundary | A central operation and a full time-to-answer measurement are different costs |
+
+If a callable is used to return a data value, its invocation and construction costs must be specified. Giving one method such a callable for free while charging the other for loading the array changes the comparison. Formal access models are developed in Chapter 14; the immediate requirement is to state what each method is given and what it must build.
+
+**Checkpoint 1.5-A.** Method $C$ computes an exact mean, while $Q$ returns one sampled bit. Can their running times establish a speedup for the stated mean-estimation task without further processing and analysis?
+
+### A hypothetical ledger with explicit units
+
+All numbers in this worked example are **invented costs**, expressed in microseconds for bookkeeping. No benchmark, simulator, quantum device or accuracy experiment produced them. They do not represent typical hardware speeds. Assume the stages run serially, with no overlap or amortization. We compare one task instance at a fixed agreed input size.
+
+For $Q$, assume a one-time input/setup cost, $N$ repetitions, and final classical processing. In each repetition, charge separately for preparing the qubits, executing the computational operations and reading out:
+
+$$
+T_Q=T_{\mathrm{in}}+
+N\bigl(t_{\mathrm{prep}}+t_{\mathrm{exec}}+t_{\mathrm{read}}\bigr)
++T_{\mathrm{post}}.
+$$
+
+Capital $T$ labels a whole-instance cost; lowercase $t$ labels a cost per repetition. Multiplication by $N$ converts each per-repetition cost into a total. Every term is therefore in microseconds. The input/setup term is charged once; preparation is charged anew for every repetition. Any actual input-dependent work repeated during preparation belongs in that repeated cost, not in a conveniently shared setup term.
+
+Take $N=100$, input/setup 4000, preparation 20 per repetition, execution 10 per repetition, readout 20 per repetition and post-processing 2000. Then
+
+$$
+T_Q=4000+100(20+10+20)+2000=11000.
+$$
+
+For $C$, suppose input handling costs 2000, computation costs 7000 and output processing costs 1000:
+
+$$
+T_C=2000+7000+1000=10000.
+$$
+
+The choice $N=100$ is a cost assumption. We have not shown that it suffices for the chosen accuracy and success probability. An accuracy argument would have to determine an adequate repetition count before these numbers could support an actual performance claim.
+
+| Stage | $C$ total, microseconds | $Q$ total, microseconds |
+|---|---|---|
+| Input/setup | 2000 | 4000 |
+| Qubit preparation | Not applicable | $100\times20=2000$ |
+| Computation | 7000 | $100\times10=1000$ |
+| Qubit readout | Not applicable | $100\times20=2000$ |
+| Output/post-processing | 1000 | 2000 |
+| Whole task | 10000 | 11000 |
+
+Ordinary classical input and output costs are included in their named rows. The ledger excludes queues and network delays; an experiment must disclose such exclusions. User time-to-answer may require including them. Shared setup can be amortized only when it is actually reusable, with comparable reuse and caching allowed for the classical baseline too.
+
+### A fast component can belong to a slower workflow
+
+Define the whole-task time ratio
+
+$$
+S=\frac{T_C}{T_Q}.
+$$
+
+If $S>1$, $Q$ takes less time under this boundary; if $S<1$, it takes more. The compute-only ratio is $7000/1000=7$, but the whole-task ratio is
+
+$$
+S=\frac{10000}{11000}=\frac{10}{11}\approx0.909091.
+$$
+
+Thus the faster computational component does not give a faster whole workflow in this ledger. Neither ratio establishes whether the methods meet the accuracy requirement.
+
+Now omit just $Q$'s input/setup cost. Its apparent total becomes $11000-4000=7000$, giving a misleading whole-task ratio $10000/7000=10/7>1$. One omitted cost flips the conclusion. The arithmetic is consistent; the accounting boundary is wrong.
+
+If $N$ changes from 100 to 200 with the same component prices, $Q$'s cost rises by $100(20+10+20)=5000$, to 16000. This is a sensitivity calculation, not a claim that doubling repetitions produces a particular error reduction. A stricter accuracy requirement calls for a fresh accuracy analysis and a fresh cost comparison for both candidates.
+
+### Formula to executable bookkeeping
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/advantage_ledger.py) calculates only the hypothetical ledger. It runs no candidate solver or quantum circuit. Python 3.12 and its standard library suffice.
+
+| Expression or check | Code | Independent check |
+|---|---|---|
+| Classical whole-task cost | `sum(CLASSICAL.values())` | Expanded sum $2000+7000+1000$ |
+| Quantum whole-task cost | `quantum_total(shots)` | Add all three repeated costs separately, plus setup and post-processing |
+| Ratio $T_C/T_Q$ | `Fraction(classical, quantum)` | Exact rational value $10/11$ |
+| Missing-input error | `quantum - QUANTUM["input"]` | Recompute the total as 7000 and observe the reversed conclusion |
+| Additional repetitions | `quantum_total(200)` | Independently add 100 more complete repetitions, not just execution time |
+
+Run from the repository root:
+
+```bash
+python examples/foundations/advantage_ledger.py
+```
+
+Expected output:
+
+```text
+Hypothetical costs only; no performance or accuracy experiment was run.
+Shared target: absolute error <= 1/20, success probability >= 19/20 (not verified here).
+Classical total: 10000 us = 10.000 ms
+Quantum total, N=100: 11000 us = 11.000 ms
+Compute-only ratio C/Q: 7 = 7.000000
+End-to-end ratio C/Q: 10/11 = 0.909091
+If quantum input cost is omitted: 7000 us; misleading ratio C/Q=10/7
+At N=200: quantum total=16000 us (accuracy implications not inferred).
+Expanded sums, units, and omitted-cost counterexample checks passed.
+```
+
+`Fraction` preserves exact ratios; decimals are for display. One millisecond is 1000 microseconds. Passing these checks verifies bookkeeping and the omitted-cost counterexample. It does not validate any invented duration, repetition requirement or device capability. No FlagQuantum API is needed merely to add a proposed cost ledger.
+
+### What evidence would support an advantage claim?
+
+For an empirical comparison, first establish that both implementations meet the same task and accuracy requirements on the stated inputs. Then record their complete costs under the declared boundary, environments, methods, input selection and uncertainty. A credible classical comparison must consider suitable algorithms and implementation quality; an unnecessarily slow baseline can manufacture an apparent advantage.
+
+A fixed-size experiment compares the tested methods on the tested instances. It does not prove that every classical method must be slower. A statement about how resources grow with input size also requires explicit access, precision and success assumptions; one timing ratio cannot establish it. Chapter 14 and the algorithms chapters develop those formal arguments.
+
+Simulator evidence has a further boundary. A fast classical statevector simulation can support a claim about that simulation program or validate a small quantum model. Its elapsed time is not the time a physical quantum device would take. Measured device costs, predicted device costs and simulator costs must remain separately identified.
+
+### Transfer and diagnosis
+
+**1.5-B — Restore a missing cost.** A report uses the ledger's whole-task classical cost but reports $Q$ as 7000 microseconds. Which stage was omitted, and what is the corrected ratio?
+
+**1.5-C — Change precision.** A report halves the permitted error while retaining $N=100$ and its old timing. What must be established before carrying the original comparison over to the new task contract?
+
+**1.5-D — Change the output.** One program returns all ideal probabilities; another returns one sampled bit. Why does the smaller output time not by itself establish an advantage for either original output task?
+
+**1.5-E — Classify the evidence.** An author times a FlagQuantum CPU simulation and calls the result “measured quantum hardware speedup.” What conclusion could the timing support, and what additional evidence is missing?
+
+**Answers and reasoning**
+
+- **A.** No. A bit is not generally a mean estimate with the required error and reliability. The sampling method needs its estimator, repetition count, post-processing and accuracy analysis; those costs belong in the comparison.
+- **B.** The missing stage is the 4000-microsecond input/setup cost. Restore $T_Q=11000$ and obtain $T_C/T_Q=10/11<1$.
+- **C.** Check the estimator's error and success guarantee at the new tolerance, determine a sufficient repetition count and recompute relevant costs for both methods. The ledger alone provides no accuracy law. A genuinely exact classical solver may already meet both tolerances, but its performance still needs evidence.
+- **D.** The requested outputs differ. Construct the same required output, include the cost of doing so and match accuracy and reliability before comparing times. Smaller output volume is not evidence that the original task has been solved faster.
+- **E.** The timing can describe the classical simulator execution under its recorded conditions. It supplies no physical-device timing. A hardware claim needs an actual target/execution record, matched task-quality evidence and the complete comparison boundary.
+
+The next planned section, [1.6 A map of the learning routes](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-6), will connect such questions to the book's different study paths.
+
+### Source, status, and limits
+
+The assigned companion source is Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §3.2.1, printed pp. 136–137; [NC:3.2.1 source record](../references/proof-sources.md#source-nc-3-2-1). Its computational-resource discussion motivates declaring problem size and model. The mean-estimation contract, fictional costs and exercises here are original; no textbook data or measured benchmark is reproduced.
+
+Depth **V**: specify a testable comparison and diagnose invalid evidence; no complexity separation or performance guarantee is proved. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.5.json) separates author execution from pending independent methodological, implementation and reader review.

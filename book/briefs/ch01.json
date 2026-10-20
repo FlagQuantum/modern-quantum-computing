@@ -97,7 +97,7 @@
       "exit": "Ask for matched problem instances, output accuracy, success probability and full resource accounting.",
       "worked_case": "A hypothetical cost comparison that includes preparation, repeated measurements and classical processing, without current performance claims.",
       "boundary": "This is an entry-level reasoning contract; formal access/complexity and lower-bound arguments belong to Chapter 14 and later algorithms.",
-      "code_plan": "A small cost ledger is appropriate; a quantum circuit is not required merely to populate this section.",
+      "code_plan": "Complete exact-arithmetic cost ledger: examples/foundations/advantage_ledger.py; no quantum backend needed. Component sums, units, omitted-input-cost reversal and repetition sensitivity are checked.",
       "independent_check": "Change one omitted cost or precision requirement and reassess the hypothetical comparison.",
       "transfer_task": "Find the missing assumption in a new claimed speedup without requiring an advanced complexity theorem.",
       "source_locators": [
@@ -107,8 +107,8 @@
       "requires": [
         "sec-what-quantum-computing-computes-4"
       ],
-      "status": "brief_ready",
-      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+      "status": "draft",
+      "next_transition": "Independent methodological, implementation and target-reader review remain pending. Next drafting assignment is 1.6, whose canonical prerequisite remains 1.4."
     },
     {
       "ref": "1.6",
