@@ -1,6 +1,6 @@
 # 2. Complex Vectors, Operators, and Numerical Reasoning
 
-**Working draft: sections 2.1–2.5 · Writing Baseline 1.0 · October 21, 2026.** Sections 2.6–2.8 remain planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.5 add PyTorch 2.13.0 CPU complex128 tensor checks.
+**Working draft: sections 2.1–2.6 · Writing Baseline 1.0 · October 21, 2026.** Sections 2.7–2.8 remain planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.6 add PyTorch 2.13.0 CPU complex128 tensor checks.
 
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-1"></span>
 
@@ -1207,10 +1207,283 @@ No FlagQuantum API or quantum hardware execution is needed for this mathematical
 - **D.** $U$ is 3-by-3, $\Sigma$ is 3-by-2, and $V^\dagger$ is 2-by-2. Right kernel dimension is $2-1=1$; unused output dimension is $3-1=2$. For the zero map the factor shapes stay the same, all singular values vanish, and those dimensions become 2 and 3.
 - **E.** Eigenvalues are 1 and $-2$; singular values in decreasing order are 2 and 1. The Hermitian spectral decomposition retains the sign. Singular values alone cannot distinguish this operator from a positive one with the same absolute eigenvalues.
 
-Next, [2.6 Functions of matrices and time evolution](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-6) uses decompositions to define and evaluate functions of operators with their assumptions stated.
+Next, [2.6 Functions of matrices and time evolution](#sec-complex-vectors-operators-and-numerical-reasoning-6) uses decompositions to define and evaluate functions of operators with their assumptions stated.
 
 ### Source, status, and limits
 
 Assigned sources: [NC:2.1.5](../references/proof-sources.md#source-nc-2-1-5), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §2.1.5, printed pp. 68–69, and [NC:2.1.10](../references/proof-sources.md#source-nc-2-1-10), printed pp. 78–79. The companion spectral statement in Box 2.2 on printed p. 72 was also consulted. These pages were read from the previously supplied local copy. The source's normal-operator theorem and square SVD do not replace the local proof obligations here: this section supplies a Rayleigh-maximum/compactness proof for finite Hermitian matrices and a rectangular SVD construction with its kernel, without assuming a polar decomposition. Our convention writes $A=U\Sigma V^\dagger$ with right singular vectors as columns of $V$; the source's square formula names the whole right unitary factor $V$, so its symbol already includes that adjoint.
 
 Depth **F**: full Hermitian diagonalization and rectangular singular-value construction, including their local bridges and zero cases. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.5.json) separates author execution from pending independent mathematical, implementation and reader review. Infinite-dimensional spectral theory and general normal-operator diagonalization are outside this section's asserted theorem.
+
+<span id="sec-complex-vectors-operators-and-numerical-reasoning-6"></span>
+
+## 2.6 Functions of matrices and time evolution
+
+What should the square root or exponential of a matrix mean? Taking a scalar function of each entry usually gives the wrong operation. A matrix represents a transformation, and its function must respect that transformation's spectral structure and its coordinate conventions.
+
+The prerequisite is [2.5](#sec-complex-vectors-operators-and-numerical-reasoning-5): Hermitian spectral projectors and reconstruction. We first define functions on that spectrum, then justify the exponential series and its convergence without assuming the operator-norm material of 2.7. Our evolution example uses a **constant**, finite Hermitian generator and dimensionless real time. It is a mathematical model, not a derivation of a quantum dynamical postulate or a hardware execution.
+
+### Apply a function to spectral values, not entries
+
+Write the Hermitian spectral decomposition using **distinct** eigenvalues $\lambda$ and their full eigenspace projectors:
+
+$$
+H=\sum_\lambda\lambda P_\lambda,\qquad
+P_\lambda P_\mu=0\ (\lambda\ne\mu),\quad
+P_\lambda^2=P_\lambda,\quad \sum_\lambda P_\lambda=I.
+$$
+
+For a scalar function $f$ defined at every eigenvalue, define
+
+$$
+f(H)=\sum_\lambda f(\lambda)P_\lambda.
+$$
+
+There are only finitely many terms. No continuity of $f$ is needed for this definition on a finite spectrum. It is well defined because 2.5 proved that each full eigenspace projector is independent of the orthonormal basis chosen inside that eigenspace. Assigning different function values to two vectors with the same eigenvalue would not be a scalar function of $H$.
+
+If $H=Q\Lambda Q^\dagger$, this definition becomes $f(H)=Q f(\Lambda)Q^\dagger$, where $f(\Lambda)$ is diagonal with entries $f(\lambda_j)$. It does **not** mean apply $f$ to every entry of $\Lambda$: off-diagonal zero entries remain zero even when $f(0)\ne0$.
+
+For example, a positive semidefinite $H$ has a spectral square root
+
+$$
+H^{1/2}=\sum_\lambda\sqrt\lambda\,P_\lambda.
+$$
+
+The nonnegative scalar square roots are defined because $\lambda\ge0$. Multiplying the projector sums gives $(H^{1/2})^2=H$, and its real nonnegative coefficients make it positive semidefinite. An inverse uses $f(\lambda)=1/\lambda$ and therefore requires no zero eigenvalue; its product with $H$ is $I$. A real logarithm on a Hermitian spectrum requires strictly positive eigenvalues if we use the ordinary real scalar logarithm. A domain or branch choice is part of specifying $f$, not something a solver can silently supply.
+
+### Prove the algebra and composition rule
+
+For scalar functions $f,h$ defined on the spectrum, finite projector multiplication gives
+
+$$
+\begin{aligned}
+f(H)h(H)
+ &=\sum_{\lambda,\mu}f(\lambda)h(\mu)P_\lambda P_\mu\\
+ &=\sum_\lambda f(\lambda)h(\lambda)P_\lambda
+ =(fh)(H).
+\end{aligned}
+$$
+
+Here $(fh)(x)=f(x)h(x)$ is pointwise multiplication of scalar values. Addition and scalar multiplication work term by term in the same finite sums. Also $f(H)^\dagger=\sum_\lambda f(\lambda)^*P_\lambda$, because every projector is Hermitian. Thus real-valued $f$ on the spectrum produces a Hermitian matrix.
+
+Composition needs care about the domain of the inner operator. Let $g$ be **real valued** on the spectrum of $H$, so $g(H)$ is Hermitian and our definition can be applied to it. If different values of $\lambda$ give the same number $\nu=g(\lambda)$, its eigenspace projector in $g(H)$ is the grouped sum $\sum_{g(\lambda)=\nu}P_\lambda$. Consequently, when $f$ is defined at every such $\nu$,
+
+$$
+\begin{aligned}
+f(g(H))
+ &=\sum_\nu f(\nu)\sum_{g(\lambda)=\nu}P_\lambda\\
+ &=\sum_\lambda f(g(\lambda))P_\lambda=(f\circ g)(H).
+\end{aligned}
+$$
+
+The notation $f\circ g$ means first apply $g$, then $f$. This proves composition even when $g$ merges eigenvalues. It does not assume $g$ is invertible. A calculus for non-Hermitian intermediate matrices needs additional definitions and is not asserted by this particular proof.
+
+**2.6-A — A merged spectrum.** The previous $H$ has eigenvalues 1 and 3. For $g(x)=(x-2)^2$, what is $g(H)$? If $f(x)=e^x$, what should $f(g(H))$ be? We define this scalar exponential next.
+
+### Define the scalar exponential and justify its products
+
+For any complex scalar $z$, define
+
+$$
+e^z=\sum_{k=0}^{\infty}\frac{z^k}{k!},\qquad 0!=1,
+$$
+
+where $k!$ is the product of positive integers through $k$ for $k\ge1$. The term for $k=0$ is 1, including when $z=0$. For the series of absolute values, the ratio of successive nonzero terms is $\lvert z\rvert/(k+1)$. Past a finite index this is at most $1/2$, so the remaining terms are bounded by a convergent geometric tail. Thus the series is absolutely convergent; the case $z=0$ is immediate.
+
+Absolute convergence allows multiplication and regrouping of its double series. Grouping by total power $k$ and applying the finite binomial expansion gives
+
+$$
+\begin{aligned}
+e^ze^w
+ &=\sum_{k=0}^\infty\sum_{p=0}^k
+      \frac{z^p w^{k-p}}{p!(k-p)!}\\
+ &=\sum_{k=0}^\infty\frac{(z+w)^k}{k!}=e^{z+w}.
+\end{aligned}
+$$
+
+The binomial coefficient is $k!/(p!(k-p)!)$, so the middle sum is precisely the expansion of $(z+w)^k/k!$. The absolute double sum is finite because it is bounded by the product of the two convergent absolute series. This is the reason the regrouping is legitimate.
+
+Termwise conjugation gives $(e^z)^*=e^{z^*}$; also $e^0=1$. Taking $w=-z$ proves $e^ze^{-z}=1$, so an exponential is never zero. For real $\theta$,
+
+$$
+\lvert e^{i\theta}\rvert^2=e^{-i\theta}e^{i\theta}=1.
+$$
+
+This scalar phase identity, rather than an assumed matrix property, will establish unitarity.
+
+### The finite-matrix exponential series converges absolutely
+
+For any square $M\in\mathbb C^{n\times n}$, define
+
+$$
+\exp(M)=\sum_{k=0}^\infty\frac{M^k}{k!},\qquad M^0=I.
+$$
+
+The powers are matrix products; this is not an entrywise scalar series. Let $a=\max_{j,\ell}\lvert M_{j\ell}\rvert$. For $k\ge1$, expanding an entry of $M^k$ gives $n^{k-1}$ products, each with $k$ factors of modulus at most $a$. The scalar triangle inequality therefore gives
+
+$$
+\lvert(M^k)_{j\ell}\rvert\le n^{k-1}a^k\le(na)^k.
+$$
+
+The entrywise absolute series is bounded by the scalar exponential series with nonnegative argument $na$, plus the finite identity term. Hence every entry converges absolutely. If $a=0$, all positive powers vanish and the result is $I$. No operator norm has been assumed.
+
+For Hermitian $H$, induction using projector multiplication gives $H^k=\sum_\lambda\lambda^kP_\lambda$, including $k=0$. Therefore, for any scalar $z$,
+
+$$
+\begin{aligned}
+\exp(zH)
+ &=\sum_{k=0}^\infty\frac{z^k}{k!}
+      \sum_\lambda\lambda^kP_\lambda\\
+ &=\sum_\lambda\left(\sum_{k=0}^\infty\frac{(z\lambda)^k}{k!}\right)P_\lambda\\
+ &=\sum_\lambda e^{z\lambda}P_\lambda.
+\end{aligned}
+$$
+
+The spectral sum is finite and each scalar series is absolutely convergent. These facts justify interchanging the sums and prove agreement between the matrix power series and the spectral definition.
+
+### Constant Hermitian evolution is unitary
+
+For real dimensionless $t$, define
+
+$$
+U(t)=\exp(-itH)=\sum_\lambda e^{-it\lambda}P_\lambda.
+$$
+
+Every $\lambda$ is real. The scalar phase identity and orthogonal projectors give
+
+$$
+U(t)^\dagger U(t)
+ =\sum_\lambda\lvert e^{-it\lambda}\rvert^2P_\lambda=I.
+$$
+
+The reverse product is the same projector sum, so $U(t)$ is unitary. Also
+
+$$
+U(0)=I,\qquad U(t)^\dagger=U(-t),\qquad
+U(t)U(s)=U(t+s).
+$$
+
+The last equality follows from multiplying the same spectral projectors and using $e^{-it\lambda}e^{-is\lambda}=e^{-i(t+s)\lambda}$. Section 2.4 then proves that $U(t)$ preserves all overlaps and norms.
+
+There is also an explicit differential equation. For a fixed complex $c$ and real $h\ne0$, the scalar series gives
+
+$$
+\left|\frac{e^{ch}-1}{h}-c\right|
+ \le\lvert c\rvert^2\lvert h\rvert e^{\lvert c\rvert\lvert h\rvert}
+ \longrightarrow0\quad(h\to0).
+$$
+
+To obtain the bound, sum the absolute terms starting at power 2 and use $1/(j+2)!\le1/j!$. Combining this limit with $e^{c(t+h)}=e^{ct}e^{ch}$ proves the derivative $d e^{ct}/dt=c e^{ct}$. Differentiating the **finite** spectral sum now gives
+
+$$
+\frac{dU(t)}{dt}=-iHU(t),\qquad
+\psi(t)=U(t)\psi(0)\ \Longrightarrow\ i\frac{d\psi(t)}{dt}=H\psi(t).
+$$
+
+A derivative is the limit of a difference quotient; only the scalar limit above and finite sums were needed here. This proves an equation satisfied by the function we constructed. It does not derive the physical law connecting a particular system's Hamiltonian to its dynamics. Physical units and that interpretation are introduced later; in this example both $H$ and $t$ are dimensionless. If a generator depends on time, the constant-generator proof no longer applies as written.
+
+Nor does the same-generator product rule apply automatically to unrelated matrices. Expanding $\exp(\epsilon A)\exp(\epsilon B)$ gives second-order mixed term $\epsilon^2 AB$, whereas $\exp(\epsilon(A+B))$ gives $\epsilon^2(AB+BA)/2$. Without $AB=BA$, these coefficients differ. The example checks a concrete failure instead of assuming a universal product identity.
+
+### A two-by-two calculation with independent scalar phases
+
+Use the earlier Hermitian matrix and its already verified spectral columns:
+
+$$
+H=\begin{pmatrix}2&i\\-i&2\end{pmatrix},\qquad
+Q=\frac1{\sqrt2}\begin{pmatrix}1&1\\i&-i\end{pmatrix},\qquad
+\lambda_1=1,\ \lambda_2=3.
+$$
+
+Set $a(t)=e^{-it}$ and $b(t)=e^{-3it}$. Multiplying $Q\operatorname{diag}(a(t),b(t))Q^\dagger$ gives
+
+$$
+U(t)=\begin{pmatrix}
+(a+b)/2&-i(a-b)/2\\
+i(a-b)/2&(a+b)/2
+\end{pmatrix}.
+$$
+
+For example, entry $(1,2)$ is $a(-i)/2+bi/2=-i(a-b)/2$; entry $(2,1)$ follows from the corresponding row-column product. At $t=0$, both phases are 1, giving $I$. At $t=0.4$, the first diagonal entry is approximately $0.641709374-0.660728714i$. This is a matrix entry, not a sampled measurement outcome.
+
+The same spectral columns give $H^{1/2}=Q\operatorname{diag}(1,\sqrt3)Q^\dagger$ and $H^{-1}=Q\operatorname{diag}(1,1/3)Q^\dagger$. The merged-spectrum example gives $(H-2I)^2=I$, hence $\exp((H-2I)^2)=eI$, with $e=e^1$.
+
+### Formula to code and a bounded series remainder
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/matrix_functions.py) uses Python 3.12 and PyTorch 2.13.0, CPU `complex128`. Its independent series stores two-by-two matrices as Python lists of complex numbers, implements matrix multiplication with explicit sums, and updates the term as `term = term @ M / k` using that list implementation. It does not call a tensor eigensolver or matrix-exponential routine to build its reference.
+
+| Formula or distinction | Executable operation | Independent check |
+|---|---|---|
+| $f(H)$ through eigenvalues | `q @ diag(f(eigenvalues)) @ q.mH` | Previously hand-derived eigenbasis and scalar phases |
+| Full exponential | `torch.linalg.matrix_exp(-1j*t*h)` | Closed scalar-entry formula and pure-Python power series |
+| Matrix powers | List-based `multiply` in `series_exponential` | Explicit entries of $-itH$: $(-2it,t;-t,-2it)$ |
+| Square root and reciprocal | Spectral diagonal square root and reciprocal | Square/product recovers $H$/$I$ |
+| Merged-spectrum composition | `matrix_exp((h-2I) @ (h-2I))` | Independent identity $(H-2I)^2=I$ |
+| Entrywise exponential | `torch.exp(-1j*t*h)` | Deliberately differs from `matrix_exp` |
+| Adjoint, group, norm | Tensor products and inner products | Proven all-vector spectral identities |
+
+A finite series needs a truncation bound. Let $B=na$ be the entry bound above, and retain terms $k=0,\ldots,N$. If $\rho=B/(N+2)<1$, the ratio between successive omitted scalar bounds is at most $\rho$, so every matrix entry has mathematical remainder at most
+
+$$
+\sum_{k=N+1}^\infty\frac{B^k}{k!}
+ \le\frac{B^{N+1}}{(N+1)!}\frac1{1-\rho}.
+$$
+
+For $M=-itH$ with $\lvert t\rvert\le1$, $n=2$ and its largest entry modulus is at most 2, so $B=4$ is valid uniformly. With $N=40$, the bound is about $1.598\times10^{-25}$ per entry, below the conservatively reported $2.0\times10^{-25}$. The program verifies this tail inequality with exact rational arithmetic using `Fraction`. This is a bound on truncating the **exact arithmetic** series, not on floating-point roundoff. Numerical agreement is checked separately at absolute tolerance $10^{-12}$ with zero relative tolerance.
+
+Run in the existing pinned example environment:
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/matrix_functions.py
+```
+
+Expected output:
+
+```text
+CPU complex128; dimensionless constant Hermitian generator, no physical execution.
+Square root squared equals H; reciprocal times H equals identity
+Merged-spectrum composition: exp((H-2I)^2)=e*I
+5 real times: scalar phases, Python series and tensor matrix exponential agree
+At t=0.4: U[0,0]=0.641709374-0.660728714j
+Order-40 series: per-entry mathematical tail < 2.0e-25 for |t|<=1
+Adjoint, group and unit-norm checks passed; first-order Taylor is not unitary
+Entrywise exponential, non-Hermitian norm preservation and unrelated-generator product refuted
+```
+
+The five times are $-1,-0.4,0,0.4,1$. A unit-vector norm check, the group identity and the inverse-time adjoint are additional implementation checks. They do not replace the all-time proof.
+
+The first-order polynomial $T_1(t)=I-itH$ exposes an approximation boundary:
+
+$$
+T_1(t)^\dagger T_1(t)=(I+itH)(I-itH)=I+t^2H^2.
+$$
+
+It is generally not unitary, even though the exact exponential is. The program checks this identity and its failure to equal $I$ for the worked nonzero time. It also uses the non-Hermitian generator $\operatorname{diag}(1,i)$, whose exponential at real $t$ is $\operatorname{diag}(e^{-it},e^t)$; the second direction changes norm. Hermiticity and exact functional evaluation are genuine assumptions, not optional labels.
+
+No FlagQuantum API or quantum hardware execution is needed for these mathematical references. Larger times, large matrix entries and alternative precisions require a fresh error analysis; the small fixed-order series here is not a general-purpose numerical exponentiation algorithm. Pauli-specific exponential identities are derived only after their matrices and algebra are introduced in Chapter 3.
+
+### Transfer, failure analysis, and answers
+
+**2.6-B — A zero eigenvalue.** For $P=\operatorname{diag}(1,0)$, which of the spectral square root, reciprocal and real logarithm are defined under this section's scalar domains? Explain the failed domains rather than silently replacing zero.
+
+**2.6-C — Truncation.** A program uses $I-itH$ and reports exact norm preservation because $H$ is Hermitian. Use the displayed product to identify the missing error term. At what boundary cases can that term vanish?
+
+**2.6-D — Changing generator.** A colleague replaces the constant $H$ by a different Hermitian matrix at each time, but reuses the proof of $U(t+s)=U(t)U(s)$ from this section. Which shared object in that proof is no longer guaranteed?
+
+**2.6-E — The wrong exponential.** An entrywise routine exponentiates every entry of the zero two-by-two matrix. Compare its result with the matrix exponential. Why is this a useful diagnostic even before using complex entries?
+
+**Answers and reasoning**
+
+- **A.** Both eigenvalues map to 1, so $g(H)=I$ and $f(g(H))=eI$. The eigenspaces merge, but grouping their projectors still gives the identity.
+- **B.** The spectral square root exists and equals $P$. The reciprocal is undefined at eigenvalue 0, and the ordinary real logarithm is undefined there. A pseudoinverse or another regularization would be a separately specified function, not the inverse just defined.
+- **C.** The product contains $t^2H^2$. For all-vector norm preservation it vanishes when $t=0$ or, for Hermitian $H$, $H=0$; the latter follows from its real eigenvalues and spectral theorem. On an individual input $v$, the extra squared norm is $t^2\|Hv\|^2$, so it can also vanish in a kernel direction.
+- **D.** The proof multiplied phases on one fixed family of spectral projectors belonging to one fixed $H$. Different generators need not share those projectors or commute. A time-dependent evolution requires a separate construction and analysis.
+- **E.** Entrywise exponentiation returns a matrix of ones because each scalar zero maps to 1. The matrix power series returns $I$, since all positive powers vanish. The two transformations already differ on this zero-input test.
+
+Next, [2.7 Norms, conditioning, and perturbations](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7) develops the numerical tools needed to interpret approximation errors and sensitivity beyond these bounded examples.
+
+### Source, status, and limits
+
+Assigned companion source: [NC:2.1.8](../references/proof-sources.md#source-nc-2-1-8), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §2.1.8, printed p. 75. That page was consulted from the previously supplied local copy. It supplies the spectral-function convention; this section provides its own projector composition proof, scalar exponential bridge, absolute convergence bounds and two-by-two calculation. No Pauli exponential or physical dynamical postulate is assumed from that source.
+
+Depth **F**: prove spectral composition under the stated domains, agreement of the convergent exponential series and spectral formula, and unitary constant-Hermitian evolution. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.6.json) separates author execution from pending independent mathematical, implementation and reader reviews. Time-dependent generators, non-Hermitian spectral calculus and general numerical stability are outside the asserted results here.

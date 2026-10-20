@@ -1,6 +1,6 @@
 {
   "baseline": "writing-baseline-v1.0",
-  "scope": "Filled authoring briefs for 2.1–2.5; remaining Chapter2 briefs not yet prepared",
+  "scope": "Filled authoring briefs for 2.1–2.6; remaining Chapter2 briefs not yet prepared",
   "sections": [
     {
       "ref": "2.1",
@@ -20,7 +20,7 @@
       "depth": "F",
       "requires": [],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.5 now have author-checked drafts; independent reviews pending. Next production assignment is 2.6."
+      "next_transition": "Sections 2.1–2.6 now have author-checked drafts; independent reviews pending. Next production assignment is 2.7."
     },
     {
       "ref": "2.2",
@@ -42,7 +42,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-1"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.5 now have author-checked drafts; independent reviews pending. Next production assignment is 2.6."
+      "next_transition": "Sections 2.1–2.6 now have author-checked drafts; independent reviews pending. Next production assignment is 2.7."
     },
     {
       "ref": "2.3",
@@ -64,7 +64,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.5 now have author-checked drafts; independent reviews pending. Next production assignment is 2.6."
+      "next_transition": "Sections 2.1–2.6 now have author-checked drafts; independent reviews pending. Next production assignment is 2.7."
     },
     {
       "ref": "2.4",
@@ -86,7 +86,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.5 now have author-checked drafts; independent reviews pending. Next production assignment is 2.6."
+      "next_transition": "Sections 2.1–2.6 now have author-checked drafts; independent reviews pending. Next production assignment is 2.7."
     },
     {
       "ref": "2.5",
@@ -109,7 +109,29 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-4"
       ],
       "status": "draft",
-      "next_transition": "Independent reviews pending; next draft 2.6 Functions of matrices and time evolution."
+      "next_transition": "Sections 2.1–2.6 now have author-checked drafts; independent reviews pending. Next production assignment is 2.7."
+    },
+    {
+      "ref": "2.6",
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-6",
+      "title": "Functions of matrices and time evolution",
+      "question": "How do scalar functions define operator functions, and why is a Hermitian exponential unitary?",
+      "entry": "2.5 spectral projectors and decomposition; scalar exponential and absolute-convergence bridges supplied locally without assuming operator norms.",
+      "exit": "Prove spectral function algebra/composition, reconcile exponential spectra and series, and derive unitary constant-generator evolution with explicit assumptions.",
+      "worked_case": "Prior complex Hermitian H with eigenvalues1,3; spectral phases versus pure-Python matrix-power series and PyTorch matrix_exp at bounded real times.",
+      "boundary": "Spectral calculus for Hermitian input; composition explicitly requires real inner function; arbitrary finite square exponential defined by absolute series. No Pauli-specific exponential, time-dependent-generator solution or physical postulate imported.",
+      "code_plan": "Complete CPU complex128 PyTorch spectral/direct exponential checks against independent standard-library complex2-by-2 series and closed scalar phase formula; bound the series tail.",
+      "independent_check": "Degenerate function grouping, square root and reciprocal; group/adjoint/norm identities, short-Taylor and non-Hermitian counterexamples, incorrect entrywise exponential.",
+      "transfer_task": "Domain restrictions, truncated unitarity, constant versus varying generator, scalar phase and missing inverse implications; accessible full answers.",
+      "source_locators": [
+        "NC:2.1.8"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-5"
+      ],
+      "status": "draft",
+      "next_transition": "Independent reviews pending; next draft 2.7 Norms, conditioning, and perturbations."
     }
   ]
 }

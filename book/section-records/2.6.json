@@ -1,0 +1,103 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-6",
+  "ref": "2.6",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+  "question": "How do scalar functions define operator functions, and why is a Hermitian exponential unitary?",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-5"
+  ],
+  "depth": "F",
+  "result": "Spectral functional calculus and exponential unitarity",
+  "entry": "2.5 spectral projectors and decomposition; scalar exponential and absolute-convergence bridges supplied locally without assuming operator norms.",
+  "exit": "Prove spectral function algebra/composition, reconcile exponential spectra and series, and derive unitary constant-generator evolution with explicit assumptions.",
+  "assumptions": [
+    "Finite Hermitian H with complete spectral projectors from 2.5; scalar function defined at its eigenvalues",
+    "Inner function real on H spectrum for composition through a Hermitian intermediate",
+    "Arbitrary finite square matrix exponential defined by absolutely convergent powers, not entrywise exponentiation",
+    "Constant Hermitian generator and dimensionless real t; no physical dynamical postulate or time-dependent solution asserted",
+    "Exact arithmetic series remainder separated from floating-point error"
+  ],
+  "symbols": {
+    "f,h,g,nu": "Scalar functions and merged inner-function spectral values",
+    "H,Q,lambda,P_lambda": "Hermitian generator, eigenbasis, real spectrum and intrinsic eigenspace projectors",
+    "z,w,k,k!": "Scalar exponential arguments, power index and factorial",
+    "M,n,a,B,N,rho": "Finite square matrix, dimension, max entry modulus, n*a bound, truncation degree and geometric tail ratio",
+    "U(t),psi(t),T_1(t)": "Exact evolution, resulting vector path and first-order truncation"
+  },
+  "local_start_checks": {
+    "brief": "Filled before prose; exact 2.5 prerequisite, depth F and NC:2.1.8 locator retained.",
+    "prerequisite": "Author-checked spectral theorem/projector draft supplies all finite spectral identities. Scalar exponential/convergence/difference-quotient bridges supplied locally.",
+    "source": "Consulted NC:2.1.8 printed p.75 from cached local user-supplied PDF; no third-party material uploaded.",
+    "independent_reference": "Closed scalar phase entries plus pure-Python complex matrix-power series; no tensor eigensolver/exponential used in independent reference.",
+    "scope": "No baseline scope/depth/dependency/volume changes; no Pauli-specific exponential or paper audit."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.1.8",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        75
+      ],
+      "use": "Spectral-function conventions; original projector algebra/composition, absolute-convergence bridge and complex2-by-2 example supplied locally."
+    }
+  ],
+  "proof_obligations": [
+    "Spectral function well-defined by grouped intrinsic projectors; domains for square root, reciprocal and real logarithm",
+    "Product/sum/adjoint identities and composition with real inner function, including merged eigenspaces",
+    "Scalar exponential series absolutely convergent via geometric ratio; product identity justified by absolute double sums and binomial regrouping",
+    "Finite matrix exponential entry bound n^(k-1)*a^k; absolute convergence without assuming a matrix norm chapter",
+    "Spectral power-series interchange justified by finite projectors and scalar absolute convergence",
+    "Constant Hermitian exponential unitarity, inverse-time adjoint, group law and norm preservation",
+    "Scalar difference-quotient remainder gives derivative; finite spectral derivative yields the stated mathematical evolution equation",
+    "Independent finite-series truncation bound and nonunitarity of first-order Taylor; noncommuting and non-Hermitian boundaries"
+  ],
+  "implementation": {
+    "path": "examples/foundations/matrix_functions.py",
+    "command": "python examples/foundations/matrix_functions.py",
+    "python": "3.12.14",
+    "dependencies": "Pinned requirements-examples.txt; PyTorch 2.13.0 CPU; independent Python standard-library reference; no FlagQuantum API invoked",
+    "platform": "macOS ARM64 CPU",
+    "precision": "torch.complex128 plus Python complex reference",
+    "author_run": "passed",
+    "checks": [
+      "Five times -1,-0.4,0,0.4,1: scalar closed entry formula, spectral expression, independent Python power series and direct tensor matrix exponential agree",
+      "Spectral square root squared equals H and reciprocal times H equals I",
+      "Merged-spectrum composition exp((H-2I)^2)=eI",
+      "Adjoint/inverse-time, group and unit-vector norm checks",
+      "Order40 exact-arithmetic per-entry tail bound verified by Fraction below2e-25 uniformly for absolute time<=1; floating-point comparison separate",
+      "First-order Taylor product I+t^2H^2 differs from identity",
+      "Entrywise exponential, non-Hermitian norm preservation and unrelated-generator product counterexamples"
+    ],
+    "tolerance": "rtol=0,atol=1e-12; mathematical series truncation bound is not floating-point error certificate",
+    "limitations": "Finite tests are not all-time proofs; bounded fixed-order series not a general exponentiation algorithm. Constant dimensionless H/t only; no physical execution.",
+    "expected_output_check": "Passed exact comparison with chapter expected-output block",
+    "script_sha256": "bd273c3cd3ba4cd3a607f3701f97dab13fff760dff349ff7a203fbccbae0363a"
+  },
+  "assessment": {
+    "checkpoint": "2.6-A",
+    "scalar_domains": "2.6-B",
+    "truncation_boundary": "2.6-C",
+    "varying_generator": "2.6-D",
+    "entrywise_counterexample": "2.6-E",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python 3.12.14/PyTorch 2.13.0 CPU complex128 execution, exact output comparison, independent Python series and scalar phase references at five times, exact rational tail bound, function/group/norm and failure cases, frozen baseline/depth/source/brief and scholarly-plan checks, prose scan, strict MkDocs build, links/anchors across 56 pages, and actual browser inspection of spectral-series interchange, exponential unitarity and derivative formulas. No raw LaTeX or math-error text observed. Independent mathematical/implementation review and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 2266,
+    "page_status": "Unmeasured planning envelope; all scalar convergence/local calculus bridges retained. Calibrate print/reader workload without lowering depth.",
+    "next_draft": "2.7 Norms, conditioning, and perturbations",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}
