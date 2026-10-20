@@ -1,6 +1,6 @@
 # 2. Complex Vectors, Operators, and Numerical Reasoning
 
-**Working draft: sections 2.1–2.6 · Writing Baseline 1.0 · October 21, 2026.** Sections 2.7–2.8 remain planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.6 add PyTorch 2.13.0 CPU complex128 tensor checks.
+**Working draft: sections 2.1–2.7 · Writing Baseline 1.0 · October 21, 2026.** Section 2.8 remains planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.7 add PyTorch 2.13.0 CPU complex128 tensor checks.
 
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-1"></span>
 
@@ -1480,10 +1480,266 @@ No FlagQuantum API or quantum hardware execution is needed for these mathematica
 - **D.** The proof multiplied phases on one fixed family of spectral projectors belonging to one fixed $H$. Different generators need not share those projectors or commute. A time-dependent evolution requires a separate construction and analysis.
 - **E.** Entrywise exponentiation returns a matrix of ones because each scalar zero maps to 1. The matrix power series returns $I$, since all positive powers vanish. The two transformations already differ on this zero-input test.
 
-Next, [2.7 Norms, conditioning, and perturbations](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7) develops the numerical tools needed to interpret approximation errors and sensitivity beyond these bounded examples.
+Next, [2.7 Norms, conditioning, and perturbations](#sec-complex-vectors-operators-and-numerical-reasoning-7) develops the numerical tools needed to interpret approximation errors and sensitivity beyond these bounded examples.
 
 ### Source, status, and limits
 
 Assigned companion source: [NC:2.1.8](../references/proof-sources.md#source-nc-2-1-8), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §2.1.8, printed p. 75. That page was consulted from the previously supplied local copy. It supplies the spectral-function convention; this section provides its own projector composition proof, scalar exponential bridge, absolute convergence bounds and two-by-two calculation. No Pauli exponential or physical dynamical postulate is assumed from that source.
 
 Depth **F**: prove spectral composition under the stated domains, agreement of the convergent exponential series and spectral formula, and unitary constant-Hermitian evolution. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.6.json) separates author execution from pending independent mathematical, implementation and reader reviews. Time-dependent generators, non-Hermitian spectral calculus and general numerical stability are outside the asserted results here.
+
+<span id="sec-complex-vectors-operators-and-numerical-reasoning-7"></span>
+
+## 2.7 Norms, conditioning, and perturbations
+
+A program returns a candidate solution and reports a residual near zero. Is the solution accurate? The answer depends on how strongly the problem amplifies changes in its inputs. A residual measures whether the equations are nearly satisfied; it is not automatically the distance to the exact solution.
+
+The prerequisites are [2.3](#sec-complex-vectors-operators-and-numerical-reasoning-3) and [2.5](#sec-complex-vectors-operators-and-numerical-reasoning-5): linear maps, inverses and singular-value decomposition. This section does not require 2.6. We use Euclidean vector norms and their induced matrix norms in fixed orthonormal coordinates. The relative-error results concern square invertible systems with nonzero right-hand sides; zero and singular cases are identified separately.
+
+### From vector size to the largest possible amplification
+
+For $x\in\mathbb C^n$, write its Euclidean norm as $\|x\|_2=\sqrt{\sum_j\lvert x_j\rvert^2}$. For $A\in\mathbb C^{m\times n}$, define the **induced operator norm** by
+
+$$
+\|A\|_{\mathrm{op}}=\max_{\|x\|_2=1}\|Ax\|_2.
+$$
+
+It measures the largest output length for a unit input, not the size of a particular matrix entry. To see that the maximum exists and compute it, use the SVD from 2.5. If $x=\sum_j c_jv_j$ in its orthonormal right basis, then
+
+$$
+\|Ax\|_2^2=\sum_{j=1}^r\sigma_j^2\lvert c_j\rvert^2
+ \le\sigma_{\max}^2\sum_j\lvert c_j\rvert^2
+ =\sigma_{\max}^2\|x\|_2^2.
+$$
+
+For a nonzero matrix the right singular vector for $\sigma_{\max}$ attains equality. For the zero matrix every output is zero. Therefore $\|A\|_{\mathrm{op}}=\sigma_{\max}$, with value 0 for the zero matrix, and
+
+$$
+\|Ax\|_2\le\|A\|_{\mathrm{op}}\|x\|_2
+$$
+
+for every input, including zero. For nonzero $x$, the same bound also follows directly by applying the definition to $x/\|x\|_2$.
+
+This is a matrix norm: nonnegativity and homogeneity follow from the vector norm, and a nonzero matrix has a nonzero column, so its norm cannot vanish. For addition, apply the vector triangle inequality to $(A+B)x$, bound each term and maximize over unit $x$ to obtain $\|A+B\|_{\mathrm{op}}\le\|A\|_{\mathrm{op}}+\|B\|_{\mathrm{op}}$.
+
+If $B$ maps into the input space of $A$, apply the matrix-vector bound twice:
+
+$$
+\|ABx\|_2\le\|A\|_{\mathrm{op}}\|Bx\|_2
+ \le\|A\|_{\mathrm{op}}\|B\|_{\mathrm{op}}\|x\|_2.
+$$
+
+Maximizing over unit input proves **submultiplicativity**:
+
+$$
+\|AB\|_{\mathrm{op}}\le\|A\|_{\mathrm{op}}\|B\|_{\mathrm{op}}.
+$$
+
+Both the dimensions and the intermediate vector norm must match. More general induced norms can use other consistent vector norms; all numerical constants and condition numbers in this section use the Euclidean choice.
+
+### Do not confuse operator and Frobenius norms
+
+The **Frobenius norm** is $\|A\|_F=\sqrt{\sum_{i,j}\lvert A_{ij}\rvert^2}$, the Euclidean size of the whole entry array. It differs from the induced norm. For the two-by-two identity, $\|I\|_{\mathrm{op}}=1$ because it preserves every vector, while $\|I\|_F=\sqrt2$.
+
+They do satisfy $\|A\|_{\mathrm{op}}\le\|A\|_F$. For each output row, Cauchy–Schwarz gives $\lvert\sum_j A_{ij}x_j\rvert^2\le(\sum_j\lvert A_{ij}\rvert^2)\|x\|_2^2$. Sum over rows and maximize over unit $x$ to obtain that bound. An upper bound is useful, but changing norms midway through an argument changes what its constants mean.
+
+Notation varies across books. The assigned Watrous source calls the spectral/Euclidean-induced norm a Schatten infinity norm, and its Schatten 2-norm is Frobenius. We use the explicit subscript “op” to avoid interpreting its $\|A\|_2$ as our induced norm. In the code, `torch.linalg.matrix_norm(A, ord=2)` computes the induced spectral norm; `ord="fro"` computes Frobenius. The order argument is part of the verification contract.
+
+### Absolute sensitivity and a relative condition number
+
+Let $A$ be an invertible $n$-by-$n$ matrix. All its singular values are positive. The SVD gives the lower bound $\|Ax\|_2\ge\sigma_{\min}\|x\|_2$, and an inverse gain at most $1/\sigma_{\min}$. This gain is attained: $Av_{\min}=\sigma_{\min}u_{\min}$ implies $A^{-1}u_{\min}=v_{\min}/\sigma_{\min}$. Thus
+
+$$
+\|A^{-1}\|_{\mathrm{op}}=\frac1{\sigma_{\min}},\qquad
+\kappa(A)=\|A\|_{\mathrm{op}}\|A^{-1}\|_{\mathrm{op}}
+ =\frac{\sigma_{\max}}{\sigma_{\min}}\ge1.
+$$
+
+This $\kappa(A)$ is the **relative normwise condition number** for the linear system under these norms. “Normwise” means we measure the size of a whole perturbation vector or matrix, rather than prescribing separate relative changes for each entry. If $A$ is singular, this inverse and finite condition number are unavailable; one often records the condition number as infinite by convention.
+
+For $Ax=b$, perturb only the right-hand side by $f$. The solution change is $\Delta x=A^{-1}f$, giving the **absolute** bound
+
+$$
+\|\Delta x\|_2\le\|A^{-1}\|_{\mathrm{op}}\|f\|_2.
+$$
+
+For a relative statement, assume $b\ne0$. Then $x\ne0$, and $\|b\|_2=\|Ax\|_2\le\|A\|_{\mathrm{op}}\|x\|_2$. Dividing the absolute bound and using this relation gives
+
+$$
+\frac{\|\Delta x\|_2}{\|x\|_2}
+ \le\kappa(A)\frac{\|f\|_2}{\|b\|_2}.
+$$
+
+The condition number is a worst-case amplification bound. A particular perturbation may point in a direction with much smaller amplification.
+
+### Turn a residual into a conditional error bound
+
+Let $\widehat x$ be any candidate for the exact solution $x=A^{-1}b$. Define its **residual** by $r=b-A\widehat x$ and its solution error by $e=\widehat x-x$. Subtracting $Ax=b$ gives $Ae=-r$, so
+
+$$
+\|e\|_2\le\|A^{-1}\|_{\mathrm{op}}\|r\|_2,\qquad
+\frac{\|e\|_2}{\|x\|_2}
+ \le\kappa(A)\frac{\|r\|_2}{\|b\|_2}\quad(b\ne0).
+$$
+
+The relative error on the left is called a **forward error**. Holding $A$ fixed, the candidate exactly solves $A\widehat x=b-r$. Thus $-r$ is the required right-hand-side perturbation; $\|r\|_2/\|b\|_2$ is the corresponding **right-hand-side backward error**. Other backward-error models may permit changes in both $A$ and $b$ and use a different normalization. We are stating which model is used.
+
+A small backward error can coexist with a large forward error when $\kappa(A)$ is large. This is a property of the problem's sensitivity, not automatically a failure of the algorithm that produced a candidate. For $b=0$, the exact solution is zero and these relative ratios divide by zero; use the absolute error bound instead.
+
+**2.7-A — Read the bound.** Suppose the relative residual is $10^{-8}$ and $\kappa(A)=10^6$. What upper bound follows for relative forward error? Does it imply that the actual error equals that number?
+
+### A small-residual counterexample with exact arithmetic
+
+Take a positive scalar $\delta<1$ and
+
+$$
+A=\begin{pmatrix}1&0\\0&\delta\end{pmatrix},\qquad
+b=\begin{pmatrix}1\\0\end{pmatrix},\qquad
+x=\begin{pmatrix}1\\0\end{pmatrix},\qquad
+\widehat x=\begin{pmatrix}1\\1\end{pmatrix}.
+$$
+
+The diagonal action gives singular values 1 and $\delta$, so $\kappa(A)=1/\delta$. Direct subtraction gives
+
+$$
+r=b-A\widehat x=\begin{pmatrix}0\\-\delta\end{pmatrix},\qquad
+\frac{\|r\|_2}{\|b\|_2}=\delta,\qquad
+\frac{\|\widehat x-x\|_2}{\|x\|_2}=1.
+$$
+
+The error bound is attained: $(1/\delta)\delta=1$. Making $\delta$ smaller improves the residual without changing this candidate's forward error. The candidate is exactly the solution of the nearby input $b-r=(1,\delta)$. Both statements follow from coordinate arithmetic, independent of any solver.
+
+The code uses $\delta=2^{-4},2^{-12},2^{-20}$, which are exactly representable binary values. For the last case, the relative residual is approximately $9.536743164\times10^{-7}$ and the relative forward error is 1, with $\kappa(A)=1048576$. It also solves both original and perturbed systems and compares them to the explicit solutions. It does **not** claim that a solver returned the constructed inaccurate candidate for the original input.
+
+### Perturb the matrix as well as the input
+
+First consider a general matrix-vector product. If $A$ changes by $E$ and $x$ by $d$, distributing gives the exact identity
+
+$$
+(A+E)(x+d)-Ax=Ad+Ex+Ed.
+$$
+
+The triangle and induced-norm bounds imply
+
+$$
+\|(A+E)(x+d)-Ax\|_2
+ \le\|A\|_{\mathrm{op}}\|d\|_2
+   +\|E\|_{\mathrm{op}}\|x\|_2
+   +\|E\|_{\mathrm{op}}\|d\|_2.
+$$
+
+The last term is part of the exact bound; it should not be silently dropped as if it were zero.
+
+For a changed linear system, suppose
+
+$$
+(A+E)(x+\Delta x)=b+f,\qquad Ax=b.
+$$
+
+Define $\eta=\|A^{-1}\|_{\mathrm{op}}\|E\|_{\mathrm{op}}$ and assume $\eta<1$. This ensures the perturbed square matrix is still invertible. Indeed,
+
+$$
+\|(A+E)z\|_2
+ \ge\|Az\|_2-\|Ez\|_2
+ \ge\left(\frac1{\|A^{-1}\|_{\mathrm{op}}}-\|E\|_{\mathrm{op}}\right)\|z\|_2.
+$$
+
+The bracket is positive. A zero singular value would provide a nonzero vector with zero output, contradicting this inequality. The square SVD therefore has only positive singular values and can be inverted, proving existence of the changed solution.
+
+Subtract the original system, apply $A^{-1}$, and bound all terms:
+
+$$
+\Delta x=A^{-1}(f-Ex-E\Delta x),
+$$
+
+$$
+(1-\eta)\|\Delta x\|_2
+ \le\|A^{-1}\|_{\mathrm{op}}
+       \bigl(\|f\|_2+\|E\|_{\mathrm{op}}\|x\|_2\bigr).
+$$
+
+For $b\ne0$, define relative input sizes $\epsilon_A=\|E\|_{\mathrm{op}}/\|A\|_{\mathrm{op}}$ and $\epsilon_b=\|f\|_2/\|b\|_2$. Then $\eta=\kappa(A)\epsilon_A$, and dividing by $\|x\|_2$ and using $\|b\|_2\le\|A\|_{\mathrm{op}}\|x\|_2$ yields
+
+$$
+\frac{\|\Delta x\|_2}{\|x\|_2}
+ \le\frac{\kappa(A)}{1-\kappa(A)\epsilon_A}
+       (\epsilon_b+\epsilon_A),\qquad
+\kappa(A)\epsilon_A<1.
+$$
+
+This is a sufficient small-perturbation condition. If it fails, this bound is unavailable; it does not say every such perturbed matrix must be singular.
+
+In the diagonal example, choose $E=\operatorname{diag}(0,-\delta/2)$ and $f=(0,\delta)$. The new matrix is $\operatorname{diag}(1,\delta/2)$ and the new exact solution is $(1,2)$, giving relative change 2. Here $\eta=1/2$, $\epsilon_A=\delta/2$ and $\epsilon_b=\delta$; the bound gives $(1/\delta)(3\delta/2)/(1/2)=3$, consistent with 2. By contrast, $E=\operatorname{diag}(0,-\delta)$ gives $\eta=1$ and makes this specific matrix singular. The latter is an example of failure at the boundary, not a theorem about every perturbation with $\eta\ge1$.
+
+### Scale, conditioning and numerical stability
+
+A small singular value by itself does not imply a large **relative** condition number. For $A=\delta I$ with $\delta>0$, every singular value is $\delta$, so $\kappa(A)=1$, while $\|A^{-1}\|_{\mathrm{op}}=1/\delta$ can be large. The absolute and relative sensitivity statements answer different questions. Uniformly rescaling a nonzero matrix changes its absolute gain but leaves the singular-value ratio unchanged.
+
+Conditioning describes sensitivity of the stated mathematical problem under a specified perturbation model. Numerical stability describes how an algorithm's computed result relates to exact solutions of nearby inputs. A small right-hand-side backward error alone does not establish stability under every data model, and a large forward error on an ill-conditioned problem does not by itself locate a faulty implementation. The diagonal example deliberately separates those claims.
+
+Coordinates also matter. These Euclidean formulas refer to orthonormal coordinates and stated input/output scales. A nonorthonormal basis or different physical units can change the appropriate vector norm or require a Gram-weighted one, as in 2.3. Report the representation and perturbation model with a condition number.
+
+### Formula to code and exact reference checks
+
+The [complete example](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/conditioning.py) targets Python 3.12, PyTorch 2.13.0, CPU `complex128`. The diagonal matrices, solutions and bounds are derived above. `Fraction` supplies exact binary-scale values and the rational combined bound; tensor norms and solves are checked against those references.
+
+| Quantity or claim | Code | Independent reference |
+|---|---|---|
+| Induced operator norm | `matrix_norm(A, ord=2)` | Largest singular value; explicit diagonal values |
+| Vector residual | `b - A @ candidate` | $(0,-\delta)$ by direct coordinate subtraction |
+| Condition number | `op(A) * op(inverse)` | Exact $1/\delta$, with diagonal inverse specified independently |
+| Forward error and nearby input | Norm of `candidate-exact`; `solve(A, b-residual)` | Explicit original $(1,0)$ and nearby $(1,1)$ solutions |
+| Combined perturbation | `solve(A+E, b+f)` | Exact solution $(1,2)$ and rational upper bound 3 |
+| Norm convention | Operator and Frobenius norms of $I$ | 1 versus $\sqrt2$ |
+| Submultiplicativity/product change | Compatible matrix products and norm bounds | Explicit reconstructed product and distributed perturbation terms |
+
+Run in the existing pinned example environment:
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/conditioning.py
+```
+
+Expected output:
+
+```text
+CPU complex128; constructed sensitivity cases, not observed solver failures.
+delta=2^-4: kappa=16; relative residual=6.250000000e-02; relative error=1.0
+delta=2^-12: kappa=4096; relative residual=2.441406250e-04; relative error=1.0
+delta=2^-20: kappa=1048576; relative residual=9.536743164e-07; relative error=1.0
+Combined perturbation: eta=1/2; relative solution change=2; proven bound=3
+Specific eta=1 perturbation is singular; zero direction checked
+Uniformly scaled identity: kappa=1 despite small singular values
+Identity norms: operator=1, Frobenius=sqrt(2) (different conventions)
+Exact references, nearby solves, submultiplicativity and perturbation checks passed.
+```
+
+Tensor comparisons use absolute tolerance $10^{-12}$ and zero relative tolerance. The additional product inequalities allow $10^{-12}$ for rounding. Frobenius and operator calculations both explicitly use `complex128`; changing a tensor's default precision can otherwise change an apparently unrelated check. Large problems or different scales need tolerances justified for their own errors, not a universal reuse of this constant.
+
+The proofs establish the norm bounds. Numerical tests establish agreement on the stated cases, not stability of every solver or accuracy of a condition estimate for every near-singular matrix. No FlagQuantum API, quantum circuit or hardware execution is involved.
+
+### Transfer and diagnosis
+
+**2.7-B — A residual-only claim.** A report states “relative residual $10^{-10}$, therefore relative solution error below $10^{-10}$.” What information is missing? How would $\kappa(A)=10^8$ change the guaranteed upper bound?
+
+**2.7-C — Zero right-hand side.** For invertible $A$ and $b=0$, how should one assess a nonzero candidate? Which relative quantities in this section are undefined?
+
+**2.7-D — Change the matrix.** In the diagonal example, a perturbation has $\eta=1.2$. Does the proved bound apply? Does that number alone prove the new matrix singular?
+
+**2.7-E — Absolute versus relative.** For $A=10^{-6}I$, determine $\kappa(A)$ and $\|A^{-1}\|_{\mathrm{op}}$. Explain why the two answers are compatible.
+
+**Answers and reasoning**
+
+- **A.** The bound is $10^{-2}$. It is an upper bound under the stated assumptions, not an assertion that the actual error equals it. Direction matters.
+- **B.** The norm/coordinate convention, invertibility and condition number are missing. Under this section's assumptions the bound becomes $10^{-2}$, not $10^{-10}$. A stronger conclusion needs additional information.
+- **C.** The exact solution is zero. Compute $r=-A\widehat x$ and use $\|\widehat x\|_2\le\|A^{-1}\|_{\mathrm{op}}\|r\|_2$. Both residual divided by $\|b\|_2$ and error divided by $\|x\|_2$ are undefined; their denominators vanish.
+- **D.** The sufficient condition $\eta<1$ fails, so the displayed small-perturbation bound cannot be used. The new matrix may or may not be singular. Inspect it or use another justified argument.
+- **E.** The relative condition number is 1 and the absolute inverse gain is $10^6$. All directions scale equally, so relative perturbations are not amplified by an unequal singular-value ratio, while a fixed absolute input change can produce a large absolute solution change.
+
+Next, [2.8 Floating-point arithmetic and verification contracts](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-8) separates mathematical error bounds, representation/rounding effects and executable correctness claims.
+
+### Source, status, and limits
+
+Assigned companion source: [TQI:1.1.3](../references/proof-sources.md#source-tqi-1-1-3), John Watrous, *The Theory of Quantum Information*, author prepublication copy (2018), §1.1.3, especially printed pp. 32–33, equations (1.166), (1.175)–(1.176) and the spectral/Frobenius discussion. [The author's public PDF](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=40) and its existing local cache were consulted for the norm conventions. The condition-number and residual/perturbation proofs and diagonal cases above are original exposition, not claims that this source presents those same examples or sensitivity bounds. No source text or PDF is redistributed.
+
+Depth **F**: prove the induced norm bound and submultiplicativity, condition-dependent error amplification and the stated matrix-perturbation estimate, with an ill-conditioned counterexample. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.7.json) separates author execution from pending independent mathematical, implementation and reader review. Rectangular least-squares conditioning and componentwise stability are not asserted by these square-system bounds.

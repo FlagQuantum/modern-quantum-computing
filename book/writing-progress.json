@@ -121,6 +121,16 @@
       "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
       "record": "book/section-records/2.6.json",
       "author_execution": "passed: Python 3.12.14, PyTorch 2.13.0 CPU complex128; spectral/scalar phases, independent Python order-40 series and direct matrix exponential at five times; no quantum execution"
+    },
+    "sec-complex-vectors-operators-and-numerical-reasoning-7": {
+      "state": "draft",
+      "brief": "book/briefs/ch02.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "record": "book/section-records/2.7.json",
+      "author_execution": "passed: Python 3.12.14, PyTorch 2.13.0 CPU complex128; three binary scales, exact diagonal/Fraction references, nearby solves and norm/perturbation inequalities; no quantum execution"
     }
   },
   "existing_pilots": [

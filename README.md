@@ -10,7 +10,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6 and 2.1–2.6, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6 and 2.1–2.7, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Start reading
 
@@ -27,6 +27,7 @@ An open English textbook that connects quantum computing equations to executable
 - [Read 2.4: Hermitian, unitary, and positive operators](docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-4) · quadratic-form proofs, norm preservation and counterexamples
 - [Read 2.5: Spectral decomposition and singular values](docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-5) · full Hermitian/SVD proofs, rectangular kernels and reconstruction checks
 - [Read 2.6: Functions of matrices and time evolution](docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-6) · spectral calculus, exponential convergence and unitary evolution
+- [Read 2.7: Norms, conditioning, and perturbations](docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-7) · error amplification, perturbation bounds and small-residual counterexample
 - [Book introduction](docs/index.md)
 - [Quantum-classical hybrid patterns and implementations](docs/hybrid-computing.md)
 - [Core results, proof depth and exact sources](docs/proof-plan.md) · [Adopted seven-volume plan](docs/volume-plan.md)
@@ -67,6 +68,7 @@ python examples/foundations/basis_changes.py
 python examples/foundations/operator_classes.py
 python examples/foundations/spectral_svd.py
 python examples/foundations/matrix_functions.py
+python examples/foundations/conditioning.py
 python examples/measurement.py
 python examples/gradients.py
 python examples/omalley2016/verify_h2_vqe.py

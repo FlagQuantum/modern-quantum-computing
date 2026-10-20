@@ -178,7 +178,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-5"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md"
     },
     {

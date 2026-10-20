@@ -1,0 +1,106 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-7",
+  "ref": "2.7",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+  "question": "When does a small residual imply a small solution error, and which norm controls amplification?",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-3",
+    "sec-complex-vectors-operators-and-numerical-reasoning-5"
+  ],
+  "depth": "F",
+  "result": "Submultiplicativity and condition-number error amplification",
+  "entry": "Exact canonical prerequisites2.3 and2.5: matrix maps/inverses and SVD; no2.6 dependency imported.",
+  "exit": "Prove induced-norm submultiplicativity and condition-dependent residual/data/matrix perturbation bounds; distinguish sensitivity from solver failure.",
+  "assumptions": [
+    "Euclidean vector norms and their induced operator norms in orthonormal coordinates; Frobenius separately labeled",
+    "Square invertible linear system; nonzero b and x for relative ratios, absolute bounds used for zero b",
+    "Combined matrix perturbation requires eta=norm(A inverse)*norm(E)<1; sufficient not necessary condition",
+    "Exact sensitivity cases constructed deliberately, not observed solver failures; no2.6 dependency imported"
+  ],
+  "symbols": {
+    "A,B,x,b": "Matrix maps, solution and right-hand side",
+    "op,F": "Induced spectral norm versus Frobenius norm; TQI convention difference explicit",
+    "kappa,sigma_min,sigma_max": "Relative normwise condition number and extremal singular values",
+    "xhat,e,r": "Candidate, forward error xhat-x and residual b-A*xhat",
+    "E,f,Delta x": "Matrix/right-hand perturbations and exact solution change",
+    "eta,epsilon_A,epsilon_b,delta": "Smallness parameter, relative input norms and binary scale"
+  },
+  "local_start_checks": {
+    "brief": "Filled before prose; exact2.3/2.5 dependencies, depthF and TQI:1.1.3 source locator retained.",
+    "prerequisite": "Author-checked matrix/inverse and SVD drafts usable; no exponential/2.6 result required.",
+    "source": "Opened author public TQI.pdf and consulted existing cache printed pp.32–33 in assigned1.1.3; no redistribution. Condition-number derivations are original, not falsely attributed to source.",
+    "independent_reference": "Explicit diagonal solves and Fraction-scaled residual/condition/combined bound; direct product reconstruction.",
+    "scope": "No baseline scope/depth/dependency/volume changes or paper audit."
+  },
+  "sources": [
+    {
+      "locator": "TQI:1.1.3",
+      "work": "John Watrous, The Theory of Quantum Information, author prepublication copy (2018)",
+      "consulted_pages": [
+        32,
+        33
+      ],
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=40",
+      "use": "Spectral induced norm, Frobenius distinction and submultiplicativity; original residual/condition-number perturbation proofs supplied locally."
+    }
+  ],
+  "proof_obligations": [
+    "Induced operator norm equals largest singular value and bounds every matrix-vector product",
+    "Norm properties and compatible submultiplicativity derived from vector norms",
+    "Frobenius contrast and op<=F via rowwise Cauchy–Schwarz",
+    "Inverse norm1/sigma_min and relative kappa ratio for square invertible matrices",
+    "Absolute and relative right-hand input sensitivity and residual-to-forward-error bound",
+    "Exact binary diagonal counterexample attains kappa times relative residual",
+    "Matrix-vector product perturbation includes cross term",
+    "eta<1 guarantees perturbed invertibility using lower gain and SVD; full combined solution error bound derived",
+    "Uniform scaling, zero right-hand-side and singular threshold boundaries separated"
+  ],
+  "implementation": {
+    "path": "examples/foundations/conditioning.py",
+    "command": "python examples/foundations/conditioning.py",
+    "python": "3.12.14",
+    "dependencies": "Pinned requirements-examples.txt; PyTorch 2.13.0 CPU and standard-library Fraction; no FlagQuantum API invoked",
+    "platform": "macOS ARM64 CPU",
+    "precision": "torch.complex128 explicitly for all norm inputs",
+    "author_run": "passed",
+    "checks": [
+      "Three binary deltas2^-4,2^-12,2^-20: exact diagonal condition/residual/forward error references and tight bound",
+      "Actual original/nearby solves match independently supplied(1,0)/(1,1) solutions",
+      "Combined perturbation yields(1,2), relative change2 and exact rational bound3 at eta1/2",
+      "Specific eta1 perturbation annihilates nonzero direction",
+      "Uniformly small scaled identity has relative condition1; operator/Frobenius identity norms differ",
+      "Explicit complex matrix product and matrix-vector perturbation expansion checked against compatible norm bounds"
+    ],
+    "tolerance": "Tensor equality checks rtol=0,atol=1e-12; product/perturbation inequalities allow1e-12 rounding",
+    "limitations": "Bounded tests do not prove solver stability or reliability of arbitrary near-singular condition estimates. Square inverse-system model only; no hardware or quantum execution.",
+    "expected_output_check": "Passed exact comparison with chapter expected-output block",
+    "script_sha256": "0c31584d4d5935bc8aebce8935ab27da04d9b3b39c3f12fcb5c5c9c6fa43b6bc"
+  },
+  "assessment": {
+    "checkpoint": "2.7-A",
+    "residual_claim": "2.7-B",
+    "zero_rhs": "2.7-C",
+    "matrix_threshold": "2.7-D",
+    "absolute_relative": "2.7-E",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python 3.12.14/PyTorch 2.13.0 CPU complex128 execution, exact output comparison, diagonal/Fraction references and nearby solves, induced/Frobenius distinctions and perturbation cases, frozen baseline/depth/prerequisite/source/brief and scholarly-plan checks, prose scan, strict MkDocs build, links/anchors across 56 pages, and actual browser inspection of residual/condition-number and combined-perturbation formulas. No raw LaTeX or math-error text observed. Independent mathematical/implementation review and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 2189,
+    "page_status": "Unmeasured planning envelope; all induced-norm and combined-perturbation proofs retained. Calibrate print/reader workload without lowering depth.",
+    "next_draft": "2.8 Floating-point arithmetic and verification contracts",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}

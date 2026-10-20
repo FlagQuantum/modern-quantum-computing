@@ -1,6 +1,6 @@
 {
   "baseline": "writing-baseline-v1.0",
-  "scope": "Filled authoring briefs for 2.1–2.6; remaining Chapter2 briefs not yet prepared",
+  "scope": "Filled authoring briefs for 2.1–2.7; remaining Chapter2 brief not yet prepared",
   "sections": [
     {
       "ref": "2.1",
@@ -20,7 +20,7 @@
       "depth": "F",
       "requires": [],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.6 now have author-checked drafts; independent reviews pending. Next production assignment is 2.7."
+      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
     },
     {
       "ref": "2.2",
@@ -42,7 +42,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-1"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.6 now have author-checked drafts; independent reviews pending. Next production assignment is 2.7."
+      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
     },
     {
       "ref": "2.3",
@@ -64,7 +64,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.6 now have author-checked drafts; independent reviews pending. Next production assignment is 2.7."
+      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
     },
     {
       "ref": "2.4",
@@ -86,7 +86,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.6 now have author-checked drafts; independent reviews pending. Next production assignment is 2.7."
+      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
     },
     {
       "ref": "2.5",
@@ -109,7 +109,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-4"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.6 now have author-checked drafts; independent reviews pending. Next production assignment is 2.7."
+      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
     },
     {
       "ref": "2.6",
@@ -131,7 +131,30 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-5"
       ],
       "status": "draft",
-      "next_transition": "Independent reviews pending; next draft 2.7 Norms, conditioning, and perturbations."
+      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
+    },
+    {
+      "ref": "2.7",
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-7",
+      "title": "Norms, conditioning, and perturbations",
+      "question": "When does a small residual imply a small solution error, and which norm controls amplification?",
+      "entry": "Exact canonical prerequisites2.3 and2.5: matrix maps/inverses and SVD; no2.6 dependency imported.",
+      "exit": "Prove induced-norm submultiplicativity and condition-dependent residual/data/matrix perturbation bounds; distinguish sensitivity from solver failure.",
+      "worked_case": "Diagonal A=diag(1,2^-20), b=(1,0), candidate(1,1): residual2^-20 but relative error1; exact nearby solve and combined perturbation example.",
+      "boundary": "Euclidean-induced operator norm and square invertible linear systems; distinguish Frobenius/TQI notation, absolute/relative errors and zero-right-side cases.",
+      "code_plan": "CPU complex128 PyTorch norms/solves checked with explicit diagonal arithmetic and Fraction bounds; no FlagQuantum required.",
+      "independent_check": "Three binary scales, exact residual/error/condition values, singular threshold, uniformly scaled identity and product/perturbation inequalities.",
+      "transfer_task": "Diagnose small residual, changed matrix near singularity, zero denominator and relative versus absolute conditioning; full answers.",
+      "source_locators": [
+        "TQI:1.1.3"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-3",
+        "sec-complex-vectors-operators-and-numerical-reasoning-5"
+      ],
+      "status": "draft",
+      "next_transition": "Independent reviews pending; next draft 2.8 Floating-point arithmetic and verification contracts."
     }
   ]
 }
