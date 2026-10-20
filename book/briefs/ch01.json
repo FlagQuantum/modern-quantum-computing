@@ -31,7 +31,7 @@
       "exit": "Predict recombination and distinguish adding amplitudes from adding probabilities.",
       "worked_case": "A fully displayed two-component, two-step interference calculation with every sum written out; a changed relative sign changes the prediction.",
       "boundary": "Use an explicitly labelled preview model. The formal state postulate is owned by 3.1 and the measurement postulate by 6.1; do not cite those future sections as missing prerequisites or claim to derive a physical postulate.",
-      "code_plan": "Plan a complete two-by-two matrix reference plus a version-checked FlagQuantum comparison; inspect the actual API at drafting time.",
+      "code_plan": "Complete independent real-matrix reference and released FlagQuantum 0.3.1 comparison: examples/foundations/interference.py.",
       "independent_check": "Hand-computed multiplication and cancellation, followed by a deliberate probability-addition error.",
       "transfer_task": "Predict a changed sign or missing recombination step and explain which arithmetic step changes.",
       "source_locators": [
@@ -41,8 +41,8 @@
       "requires": [
         "sec-what-quantum-computing-computes-1"
       ],
-      "status": "brief_ready",
-      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+      "status": "draft",
+      "next_transition": "Independent mathematical and target-reader review; the explained, author-checked draft may support drafting 1.3 under local start checks."
     },
     {
       "ref": "1.3",

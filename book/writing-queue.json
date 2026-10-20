@@ -25,7 +25,7 @@
         "sec-what-quantum-computing-computes-1"
       ],
       "role": "batch target",
-      "state": "brief_ready",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-what-quantum-computing-computes.md"
     },
     {

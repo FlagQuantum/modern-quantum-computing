@@ -30,7 +30,9 @@ The initial sequence is 1.1–1.6. Use the current queue states to continue from
 
 ## 1.2 A first interference experiment
 
-**Stable ID:** `sec-what-quantum-computing-computes-2`. **Depth:** M. **State:** brief_ready.
+**Stable ID:** `sec-what-quantum-computing-computes-2`. **Depth:** M. **State:** draft.
+
+[Read the working draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-2). Independent acceptance remains separate.
 
 **Concrete question:** How can two alternatives cancel?
 
@@ -42,7 +44,7 @@ The initial sequence is 1.1–1.6. Use the current queue states to continue from
 
 **Scope/continuity boundary:** Use an explicitly labelled preview model. The formal state postulate is owned by 3.1 and the measurement postulate by 6.1; do not cite those future sections as missing prerequisites or claim to derive a physical postulate.
 
-**Formula-to-code plan:** Plan a complete two-by-two matrix reference plus a version-checked FlagQuantum comparison; inspect the actual API at drafting time.
+**Formula-to-code plan:** Complete independent real-matrix reference and released FlagQuantum 0.3.1 comparison: examples/foundations/interference.py.
 
 **Independent check:** Hand-computed multiplication and cancellation, followed by a deliberate probability-addition error.
 

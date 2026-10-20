@@ -1,6 +1,6 @@
 # 1. What Quantum Computing Computes
 
-**Working draft: section 1.1 only · Writing Baseline 1.0 · October 20, 2026.** Sections 1.2–1.6 remain planned. Independent mathematical and reader review are pending; this is not an accepted chapter. The accompanying reference program uses Python 3.12 and the standard library. No quantum backend is needed for this opening task specification.
+**Working draft: sections 1.1–1.2 · Writing Baseline 1.0 · October 20, 2026.** Sections 1.3–1.6 remain planned. Independent mathematical and reader review are pending; this is not an accepted chapter. Section 1.1 uses Python 3.12 and the standard library. Section 1.2 adds a pinned FlagQuantum 0.3.1 simulation.
 
 <span id="sec-what-quantum-computing-computes-1"></span>
 
@@ -166,10 +166,187 @@ Likewise, an exact expectation computed from simulated probabilities and an esti
 - **D.** An exact model mean is substituted for a random sample mean. Eight zeros give a sample mean of $+1$ and have nonzero probability $(1/4)^8$ in the supplied independent model. The procedure can satisfy a probability guarantee while some records fail.
 - **E.** Substitution gives $\lvert k/4-1/2\rvert\leq1/4$, or $1\leq k\leq3$. There are $\binom{8}{k}$ records with $k$ zeros: this symbol counts ways to choose their positions. Each has probability $(1/4)^k(3/4)^{8-k}$ by independence. Sum these products for $k=1,2,3$ to obtain $12879/16384$. Python's `comb(8, k)` supplies that position count. Neither equal weighting of all records nor counting successful records alone gives the probability here.
 
-You can now separate an instance from its encoding, specify a requested output and state how its correctness is judged. The next planned section, [1.2 A first interference experiment](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-2), asks how a quantum model changes the probabilities from which outcomes are drawn. It will introduce its preview arithmetic locally.
+You can now separate an instance from its encoding, specify a requested output and state how its correctness is judged. The next section, [1.2 A first interference experiment](#sec-what-quantum-computing-computes-2), asks how a quantum model changes the probabilities from which outcomes are drawn. It will introduce its preview arithmetic locally.
 
 ### Source and validation note
 
 For resource-model context, the assigned companion source is Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §3.2.1, printed pp. 136–137; [source record NC:3.2.1](../references/proof-sources.md#source-nc-3-2-1). That discussion motivates specifying input size and the computational model before comparing costs. The contracts, examples, synthetic data and finite probability verification above are original teaching material, not quotations or reproduced exercises from that book.
 
 Proof-depth role: **P**, a task definition and its consequences; no new physical postulate or complexity theorem. Local execution details and unresolved review status are recorded in [the section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.1.json). Author checks are separate from independent mathematical review and target-reader testing; both remain pending.
+
+<span id="sec-what-quantum-computing-computes-2"></span>
+
+## 1.2 A first interference experiment
+
+A fair coin tossed twice remains random. Can a different kind of two-step operation produce a random-looking intermediate prediction but a certain final outcome? We will calculate a case in which it can. The distinction is that we combine **amplitudes** before converting them to probabilities.
+
+Start from the input/output distinction in [1.1](#sec-what-quantum-computing-computes-1). Our task here is to predict the final probabilities of two possible readouts, labelled 0 and 1. We will compare an explicit arithmetic model with an ideal FlagQuantum simulation. No physical experiment or finite-shot measurement is performed.
+
+### A supplied model, with all arithmetic visible
+
+For this preview, represent one qubit by a column of two **real amplitudes**, $a_0$ and $a_1$. The subscript labels the readout to which an amplitude belongs. Adopt the following rule:
+
+$$
+p_0=a_0^2,\qquad p_1=a_1^2,\qquad a_0^2+a_1^2=1.
+$$
+
+The last condition is **normalization**: the two readout probabilities add to one. An amplitude can be negative even though its squared probability cannot. This is a restricted model supplied for the example, not a derivation of quantum mechanics. General states use complex amplitudes and squared magnitudes; formal state and measurement postulates belong to 3.1 and 6.1. We need neither complex arithmetic nor those later results for this calculation.
+
+We begin with amplitudes $(a_0,a_1)=(1,0)$, which predict readout 0 with certainty. Define an operation called the **Hadamard gate**, written $H$, by
+
+$$
+H=\frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix},
+\qquad
+H\begin{pmatrix}a_0\\a_1\end{pmatrix}
+=\begin{pmatrix}(a_0+a_1)/\sqrt2\\(a_0-a_1)/\sqrt2\end{pmatrix}.
+$$
+
+A matrix is a table of numbers. Its first row produces the new outcome-0 amplitude: multiply the first input by $1/\sqrt2$, the second by $1/\sqrt2$, then add. The second row does the same with coefficients $1/\sqrt2$ and $-1/\sqrt2$. These two row calculations define the displayed multiplication.
+
+This gate preserves normalization in our real model. If the incoming entries are $a_0,a_1$, the sum of squared outgoing entries is
+
+$$
+\frac{(a_0+a_1)^2+(a_0-a_1)^2}{2}
+=\frac{2a_0^2+2a_1^2}{2}
+=a_0^2+a_1^2=1.
+$$
+
+The middle equality follows by expanding the two squares: their $+2a_0a_1$ and $-2a_0a_1$ terms cancel. Thus the operation and probability rule give a consistent normalized prediction for every normalized real input pair. This does not establish the general physical gate postulate.
+
+### Two Hadamard gates: cancellation and reinforcement
+
+Apply the first $H$ to the initial column:
+
+$$
+\begin{pmatrix}1\\0\end{pmatrix}
+\xrightarrow{H}
+\begin{pmatrix}(1+0)/\sqrt2\\(1-0)/\sqrt2\end{pmatrix}
+=\begin{pmatrix}1/\sqrt2\\1/\sqrt2\end{pmatrix}.
+$$
+
+If we read out at this point, the model predicts $p_0=p_1=1/2$. Instead, apply another $H$, **without measuring between the gates**. Write $s=1/\sqrt2$, so $s^2=1/2$. The second gate gives
+
+$$
+a'_0=s(s+s)=s^2+s^2=1,\qquad
+ a'_1=s(s-s)=s^2-s^2=0.
+$$
+
+The prime labels the new amplitudes. For outcome 0, the two contributions reinforce. For outcome 1, they cancel. Squaring only after adding gives
+
+$$
+p'_0=1^2=1,\qquad p'_1=0^2=0.
+$$
+
+This cancellation or reinforcement of amplitude contributions is **interference**. Here the two contributions refer to terms in the calculation; we are not asserting that the qubit followed two measured trajectories.
+
+**Checkpoint 1.2-A.** Before squaring, which two numbers cancel in the outcome-1 amplitude? Why would replacing each number by its square first lose that cancellation?
+
+### Change a relative sign, then recombine
+
+Now insert a gate $Z$ between the two Hadamard gates. Define it by
+
+$$
+Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\qquad
+Z\begin{pmatrix}a_0\\a_1\end{pmatrix}
+=\begin{pmatrix}a_0\\-a_1\end{pmatrix}.
+$$
+
+It leaves the first amplitude unchanged and reverses the second one's sign. After the first $H$ and then $Z$, the amplitudes are $(s,-s)$. Their immediate probabilities are still $(1/2,1/2)$: squaring hides the sign change. Apply the final $H$:
+
+$$
+a'_0=s(s-s)=0,\qquad
+ a'_1=s(s+s)=1.
+$$
+
+Now outcome 0 cancels and outcome 1 reinforces. The final probabilities are $(0,1)$, the reverse of the two-$H$ experiment.
+
+| Operations, in time order | Final amplitude pair | Final probabilities $(p_0,p_1)$ |
+|---|---|---|
+| $H$ | $(s,s)$ | $(1/2,1/2)$ |
+| $H$, then $H$ | $(1,0)$ | $(1,0)$ |
+| $H$, then $Z$, stopping there | $(s,-s)$ | $(1/2,1/2)$ |
+| $H$, then $Z$, then $H$ | $(0,1)$ | $(0,1)$ |
+
+Gate calls in code follow time order. Matrix products act from right to left: “$H$, then $Z$” is the product $ZH$ on the initial column. The final experiment is $HZH$ on that column. No intermediate readout is included in either sequence.
+
+**Checkpoint 1.2-B.** If the final $H$ is omitted, can the immediate probabilities tell apart $(s,s)$ and $(s,-s)$? What changes when recombination is included?
+
+### Locate the term that a probability-only calculation loses
+
+For real amplitudes $a,b$ entering $H$, the outgoing outcome-0 probability is
+
+$$
+\left(\frac{a+b}{\sqrt2}\right)^2
+=\frac{a^2+2ab+b^2}{2}
+=\frac{a^2+b^2}{2}+ab.
+$$
+
+The term $ab$ comes from multiplying the two different amplitude contributions when expanding the square. It is positive for equal signs and negative for opposite signs. Adding only the squared contributions would omit it.
+
+For $a=b=s$, the probability-only part is $1/2$ and $ab=1/2$, giving 1. For $a=s,b=-s$, the probability-only part is still $1/2$, but $ab=-1/2$, giving 0. Both cases have the same incoming probabilities and different outgoing predictions.
+
+A wrong calculation treats the first $H$ as an ordinary coin toss and the second as another independent coin toss. For either final outcome it adds $1/4+1/4=1/2$. This is not our unmeasured amplitude model. An intervening measurement changes the experiment; its formal treatment is deferred to Chapter 6. The missing cross term already identifies the error in the unmeasured calculation.
+
+### Formula to FlagQuantum code
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/interference.py) contains an independent two-by-two matrix implementation using Python arithmetic. It checks the four hand-calculated cases above, then compares their amplitudes and probabilities with FlagQuantum.
+
+| Mathematical step or contract | Code expression | What is checked |
+|---|---|---|
+| Initial column $(1,0)$ | `fq.Circuit(1, dtype=torch.complex128)` | One qubit, initially in the outcome-0 state |
+| Apply $H$ or $Z$ | `circuit.h(0)` or `circuit.z(0)` | Qubit index 0; gate calls are in time order |
+| Multiply a supplied matrix by a pair | `apply(matrix, pair)` | Each row's two contributions are added explicitly |
+| Ideal final probabilities | `fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)` | CPU, PyTorch, statevector mode, complex128; fallback and approximation disabled |
+| Read one circuit's probabilities | `result.probabilities[0]` | Entries are ordered as readouts 0, 1 |
+| Inspect simulated amplitudes | `result.statevector()[0]` | A diagnostic comparison with the independent reference, not a physical readout |
+| Convert amplitudes to probabilities | `state[0].abs().square()` | This release uses complex tensors; squared magnitudes implement the rule |
+
+The state and probability arrays have shape `(1, 2)`: one circuit result and two ordered coordinates. A real negative amplitude is stored as a complex number with zero imaginary part. No sampled shot record is returned.
+
+From the repository root, install the pinned environment and run:
+
+```bash
+python -m venv .venv
+# macOS/Linux:
+source .venv/bin/activate
+# Windows PowerShell instead: .venv\Scripts\Activate.ps1
+python -m pip install -r requirements-examples.txt
+python examples/foundations/interference.py
+```
+
+Expected output:
+
+```text
+H: P(0)=0.500000000, P(1)=0.500000000
+H then H: P(0)=1.000000000, P(1)=0.000000000
+H then Z: P(0)=0.500000000, P(1)=0.500000000
+H then Z then H: P(0)=0.000000000, P(1)=1.000000000
+Probability-only recombination: P(0)=0.500000000, P(1)=0.500000000 (wrong for H then H)
+Hand arithmetic, independent matrices, and FlagQuantum agree (atol=1e-12).
+```
+
+The comparisons use absolute tolerance $10^{-12}$ because a computer approximates $1/\sqrt2$. Nine printed decimal places do not mean that every internal value is exact. The extra checks include normalization, the wrong probability-only model, and a changed real input pair $(3/5,4/5)$, whose outcome-0 probability after $H$ is $49/50$, rather than $1/2$.
+
+These are ideal simulation results for a supplied model. They do not demonstrate a hardware experiment, an arbitrary-precision computation or a computational advantage.
+
+### Practice and accessible answers
+
+**1.2-C — Transfer.** Start with $(0,1)$. Predict the amplitudes after the first $H$ and after the second $H$, showing both row calculations. Does $H$ twice always produce readout 0?
+
+**1.2-D — Debugging.** A program replaces $(s,-s)$ by $(1/2,1/2)$ and then feeds those numbers into the final $H$ as amplitudes. Identify both the meaning error and the normalization error.
+
+**1.2-E — Derivation.** Starting from a real pair $(a,b)$, apply the displayed $H$ rule twice. Show why the result is $(a,b)$, without citing a matrix identity from a later chapter.
+
+**Answers and reasoning**
+
+- **A.** The two terms are $s^2=1/2$ and $-s^2=-1/2$, whose sum is zero. Squaring each first makes both nonnegative and discards the relative sign needed for cancellation.
+- **B.** Immediate probabilities cannot distinguish them. A final $H$ maps them to $(1,0)$ and $(0,1)$, which do have different readout probabilities. The next section will examine what this says about state descriptions and observed data.
+- **C.** The first result is $((0+1)/\sqrt2,(0-1)/\sqrt2)=(s,-s)$. The second is $(s(s-s),s(s+s))=(0,1)$. Two $H$ gates return this input to itself; they do not reset every input to 0.
+- **D.** Squared amplitudes are probabilities, a different kind of object. The replacement also has squared norm $1/4+1/4=1/2$, not 1. Renormalizing it would still lose the sign and give the wrong interference prediction.
+- **E.** The first result is $((a+b)/\sqrt2,(a-b)/\sqrt2)$. Applying the rule again gives $((a+b+a-b)/2,(a+b-a+b)/2)=(a,b)$. Both signs and the factor $1/2$ are required. This proves the identity on the declared real model; general gate theory remains in its owning chapters.
+
+### Sources, scope, and continuation
+
+The supplied $Z$ and $H$ matrices are standard: Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §1.3.1, especially printed p. 19, Eqs. (1.13)–(1.14); [NC:1.3.1 source record](../references/proof-sources.md#source-nc-1-3-1). The row calculations, wrong-model diagnosis and exercises here are original. This section derives predictions within an adopted real-amplitude model; it does not prove physical postulates.
+
+Local execution and unresolved reviews are recorded in [the section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.2.json). Mathematical and reader acceptance remain pending. The next planned section is [1.3 What a quantum state describes](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-3).
