@@ -561,7 +561,7 @@ This distinction matters: for input 1, two $X$ calls appear in the source, but t
 | Request ideal probabilities | `fq.run(..., outputs=[fq.probabilities()], options=OPTIONS)` | Statevector mode, PyTorch backend and CPU; approximation and backend fallback disabled |
 | Read execution information | `result.runtime` and `result.provenance` | The installed release reports the local simulation path and selected device |
 
-The probability tensor has shape `(1, 2)`: one circuit result, with entries ordered as labels 0 and 1. These numbers are predictions, not a physical bit record. The program also verifies that no samples were produced. It never chooses the largest probability and describes that choice as a measured shot.
+The probability tensor has shape `(1, 2)`: one circuit result, with entries ordered as labels 0 and 1. These numbers are predictions, not a physical bit record. The program also verifies that no samples were produced. It never chooses the largest probability and describes that choice as a measured shot. The simulator run is a validation calculation whose requested output is a probability distribution. It does not claim to return an experimental answer bit; in this deterministic model, its prediction identifies what a correct readout would return.
 
 After installing [the pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples), run from the repository root:
 
