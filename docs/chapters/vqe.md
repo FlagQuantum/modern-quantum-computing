@@ -9,7 +9,7 @@ This chapter reproduces a small ideal-state calculation from O'Malley et al., *S
 The reduced STO-6G hydrogen Hamiltonian has six Pauli terms:
 
 $$
-H=c_I I+c_{ZI}Z_0+c_{IZ}Z_1+c_{ZZ}Z_0Z_1+c_{XX}X_0X_1+c_{YY}Y_0Y_1.
+\begin{aligned} H={}&c_I I+c_{ZI}Z_0+c_{IZ}Z_1+c_{ZZ}Z_0Z_1\\ &+c_{XX}X_0X_1+c_{YY}Y_0Y_1. \end{aligned}
 $$
 
 At $R=0.75$ angstrom, corrected Table I gives the following coefficients in hartree:
@@ -52,8 +52,8 @@ The diagonal terms follow by weighting the two basis-state eigenvalues. Both XX 
 Let $a=c_I-c_{ZZ}$, $A=c_{IZ}-c_{ZI}$, and $D=c_{XX}+c_{YY}$. Then
 
 $$
-E(\theta)=a+A\cos(2\theta)+D\sin(2\theta),\qquad
-E'(\theta)=-2A\sin(2\theta)+2D\cos(2\theta).
+\begin{aligned} E(\theta)&=a+A\cos(2\theta)+D\sin(2\theta),\\
+E'(\theta)&=-2A\sin(2\theta)+2D\cos(2\theta). \end{aligned}
 $$
 
 **Formula → code:** `closed_energy(theta, coefficients)` and `closed_gradient(theta, coefficients)` implement these identities. The runtime energy is computed separately from the five measured expectations and their coefficients.
@@ -71,9 +71,9 @@ $$
 In the ordered subspace $(\lvert10\rangle,\lvert01\rangle)$,
 
 $$
-H_{\mathrm{odd}}=\begin{pmatrix}a+A&D\\D&a-A\end{pmatrix},\quad
-E_{\min}=a-\sqrt{A^2+D^2},\quad
-\theta_* = \frac12\mathrm{atan2}(-D,-A).
+\begin{aligned} H_{\mathrm{odd}}&=\begin{pmatrix}a+A&D\\D&a-A\end{pmatrix},\\
+E_{\min}&=a-\sqrt{A^2+D^2},\\
+\theta_* &= \frac12\mathrm{atan2}(-D,-A). \end{aligned}
 $$
 
 **Formula → code:** `analytic_minimum(coefficients)` returns the closed-form result; `torch.linalg.eigvalsh(hamiltonian).min()` checks it against the full Hamiltonian. An odd-sector minimum need not be the global ground energy for arbitrary coefficients, so this comparison is necessary.

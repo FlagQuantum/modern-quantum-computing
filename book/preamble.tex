@@ -1,4 +1,4 @@
-% Shared print styling. The build script generates a standalone TeX document.
+% Reading edition with generous leading and paired formulas/code.
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
@@ -6,25 +6,33 @@
 \usepackage{needspace}
 \definecolor{booknavy}{HTML}{17324D}
 \definecolor{bookteal}{HTML}{087E8B}
-\definecolor{codebackground}{HTML}{F3F6F8}
+\definecolor{codebackground}{HTML}{F1F5F8}
 \AtBeginDocument{\hypersetup{colorlinks=true,linkcolor=booknavy,urlcolor=bookteal,citecolor=booknavy}}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.45em}
-\setlength{\headheight}{15pt}
-\setcounter{secnumdepth}{2}
+\setlength{\parskip}{0.55em}
+\linespread{1.10}
+\setlength{\headheight}{16pt}
+\setcounter{secnumdepth}{1}
 \setcounter{tocdepth}{1}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\nouppercase{\leftmark}}
-\fancyfoot[C]{\thepage}
+\fancyhead[L]{\sffamily\footnotesize\nouppercase{\leftmark}}
+\fancyfoot[R]{\sffamily\small\thepage}
 \renewcommand{\headrulewidth}{0.25pt}
-\titleformat{\chapter}[display]{\normalfont\raggedright\color{booknavy}}{\large CHAPTER \thechapter}{0.5em}{\Huge\bfseries}
-\titlespacing*{\chapter}{0pt}{5pt}{20pt}
-\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,breakatwhitespace=false,
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[R]{\sffamily\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+\titleformat{\chapter}[display]{\normalfont\raggedright\color{booknavy}}{\sffamily\small \MakeUppercase{\chaptertitlename} \thechapter}{0.7em}{\fontsize{28}{33}\selectfont\bfseries}
+\titlespacing*{\chapter}{0pt}{0pt}{22pt}
+\titleformat{\section}{\large\sffamily\bfseries\color{booknavy}}{\thesection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.3em}{0.5em}
+\lstset{basicstyle=\ttfamily\fontsize{10}{13}\selectfont,breaklines=true,breakatwhitespace=false,
   columns=fullflexible,keepspaces=true,showstringspaces=false,
   frame=single,framerule=0pt,backgroundcolor=\color{codebackground},
-  xleftmargin=0.8em,xrightmargin=0.8em,framexleftmargin=0.5em,
-  aboveskip=0.7em,belowskip=0.7em,tabsize=4}
-% Permit page breaks inside long source listings without reducing code size.
+  xleftmargin=0.7em,xrightmargin=0.7em,framexleftmargin=0.5em,
+  aboveskip=0.7em,belowskip=0.7em,tabsize=4,
+  postbreak=\mbox{\textcolor{bookteal}{\(\hookrightarrow\)}\space}}
 \raggedbottom
-\emergencystretch=2em
+\emergencystretch=3em

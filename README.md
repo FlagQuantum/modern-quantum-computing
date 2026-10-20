@@ -6,7 +6,7 @@
 
 FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
-**Version 0.1.0-draft.2 · 2026-10-20**
+**Version 0.1.0-draft.3 · 2026-10-20**
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
@@ -53,7 +53,7 @@ Open the local URL printed by MkDocs. Use `python -m mkdocs build --strict` for 
 
 ## PDF sample edition
 
-[Download PDF](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.2/modern-quantum-computing.pdf) · [LaTeX source bundle](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.2/modern-quantum-computing-source.tar.gz) · [Release and build manifest](https://github.com/FlagQuantum/modern-quantum-computing/releases/tag/v0.1.0-draft.2)
+[Download PDF](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.3/modern-quantum-computing.pdf) · [LaTeX source bundle](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.3/modern-quantum-computing-source.tar.gz) · [Release and build manifest](https://github.com/FlagQuantum/modern-quantum-computing/releases/tag/v0.1.0-draft.3)
 
 The print sample is generated from the same chapters and checked-in Python examples. It includes author information, a versioned cover, contents, numbered display equations, references and complete core code listings. See [editions and publication](docs/publication.md) for build commands and the manual PDF workflow. The generated LaTeX source bundle supports later scholarly preparation; this sample is not an arXiv submission.
 

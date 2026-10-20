@@ -5,6 +5,7 @@ Requires Pandoc 3.12.1 and Tectonic 0.17.0 for the validated print build.
 The chapter Markdown and the example Python files remain canonical.
 """
 import argparse
+import ast
 import hashlib
 import json
 import os
@@ -78,7 +79,7 @@ def chapter(path):
 
 def listing(relative):
     path = ROOT / relative
-    return f"\n## `{relative}`\n\n```python\n{path.read_text().rstrip()}\n```\n"
+    return f"\n\\newpage\n\n## `{relative}`\n\n```python\n{path.read_text().rstrip()}\n```\n"
 
 
 def main():
@@ -100,11 +101,13 @@ This three-chapter sample is an early open-textbook draft, not a complete course
 
 The learning sequence is formula, derivation, FlagQuantum implementation, independent verification, and exercises. Numerical checks supplement mathematical arguments; they do not prove a general identity.
 
-Version: **{META['version']}**, dated {META['date']}. Source revision: `{commit[:12]}` (full revision in the build manifest). Tracked source changes at build time: `{str(dirty).lower()}`.
+Version: **{META['version']}**, dated {META['date']}. Full source provenance and file hashes are recorded in the companion build manifest.
 
 ## Abstract {{.unnumbered}}
 
 This sample connects quantum-computing formulas to executable and independently checked programs. A rotated qubit introduces probabilities and expectation values; a parameterized circuit illustrates analytic, automatic and parameter-shift differentiation; a two-qubit molecular hydrogen model demonstrates source-version selection, wire-order translation, variational energies and numerical verification. Examples target FlagQuantum {META['flagquantum_version']} using the PyTorch CPU backend and complex128 statevectors. The hydrogen case is an ideal calculation using rounded, corrected paper coefficients, not a reproduction of a physical hardware experiment.
+
+\\newpage
 
 ## Reproduction environment {{.unnumbered}}
 
@@ -136,27 +139,30 @@ Correspondence: <{META['email']}>. Repository: <{META['repository']}>.
                           ("gradients", "examples/gradients.py"), ("vqe", None)]:
         text = chapter(ROOT / f"docs/chapters/{name}.md")
         text = re.sub(r"(?m)^## [1-9]\. ", "## ", text)
-        if name == "measurement":
-            text += "\nThe displayed rotation matrix is Equation~\\eqref{eq:print-1}.\n"
-        if name == "gradients":
-            text += "\nThe single-rotation shift rule is Equation~\\eqref{eq:print-2}.\n"
-            text += "\nThe parameter-shift reading is cited as [@schuld_gradients_2019].\n"
         if name == "vqe":
-            text += "\nEquations~\\eqref{eq:print-3} and~\\eqref{eq:print-5} define the Hamiltonian and ansatz; Equations~\\eqref{eq:print-6}--\\eqref{eq:print-8} give the energy, shift rule and analytic reference minimum.\n"
-            text += "\nThe paper and corrected data source are cited as [@omalley_2016].\n"
+            model = ROOT / "examples/omalley2016/h2_vqe_model.py"
+            lines = model.read_text().splitlines()
+            functions = {node.name: "\n".join(lines[node.lineno-1:node.end_lineno])
+                         for node in ast.parse(model.read_text()).body if isinstance(node, ast.FunctionDef)}
+            for heading, names in [
+                ("## Derive the energy and gradient", ["ansatz"]),
+                ("## Independent minimum and verified output", ["energy", "closed_energy"]),
+                ("## Extend the experiment", ["analytic_minimum"]),
+            ]:
+                excerpt = "\n\n".join(functions[name] for name in names)
+                fence = chr(96) * 3
+                text = text.replace(heading, "Implementation excerpt from the companion module (use its complete imports and definitions):\n\n" + fence + "python\n" + excerpt + "\n" + fence + "\n\n" + heading)
         if example:
             text += f"\nThe complete `{example}` listing is included in Appendix A.\n"
         pieces.append(text)
-    pieces.append("\\appendix\n\n# Complete core programs\n\nThe first two programs are standalone. Save the two hydrogen files in the same directory; the model embeds all 54 corrected table rows. Run `python verify_h2_vqe.py` after installing the pinned example requirements. The repository contains the additional scan, optimizer and sampling programs.\n")
-    pieces += [listing("examples/measurement.py"), listing("examples/gradients.py"),
-               listing("examples/omalley2016/h2_vqe_model.py"),
-               listing("examples/omalley2016/verify_h2_vqe.py")]
+    pieces.append('\\appendix\n\n# Companion programs\n\nThe two short programs below are standalone. The source archive includes all example programs, the complete 54-row hydrogen dataset embedded in the model, and pinned requirements. Extract the archive, install `requirements-examples.txt`, and run commands from its root. The long hydrogen model is kept in the companion files so that the reading text stays focused on the derivation.\n')
+    pieces += [listing("examples/measurement.py").replace(r"\newpage", "", 1), listing("examples/gradients.py")]
     pieces.append("# References {#refs .unnumbered}\n\nThe reading guide draws on [@nielsen_chuang_2010; @rieffel_polak_2011; @mermin_2007; @preskill_notes; @schuld_petruccione_2021; @watrous_2018]. Exact editions and official access links are listed below.\n")
     manuscript = WORK / "manuscript.md"
     manuscript.write_text("\n\n".join(pieces))
     cover = WORK / "cover.tex"
-    cover.write_text(r"\hypersetup{pageanchor=false}\begin{titlepage}\thispagestyle{empty}\centering" + "\n" +
-        r"\vspace*{1.3cm}{\color{bookteal}\large OPEN TEXTBOOK / SAMPLE EDITION\par}\vspace{1.5cm}" + "\n" +
+    cover.write_text(r"\hypersetup{pageanchor=false}\begin{titlepage}\thispagestyle{empty}\raggedright" + "\n" +
+        r"\vspace*{0.5cm}{\color{bookteal}\large OPEN TEXTBOOK / SAMPLE EDITION\par}\vspace{1.5cm}" + "\n" +
         r"{\color{booknavy}\Huge\bfseries Modern Quantum Computing\par}\vspace{0.6cm}" + "\n" +
         r"{\LARGE A Formula-to-Code Approach\par}\vspace{1cm}" + "\n" +
         r"{\large " + tex(META["subtitle"]) + r"\par}\vspace{1.6cm}" + "\n" +
@@ -169,7 +175,7 @@ Correspondence: <{META['email']}>. Repository: <{META['repository']}>.
         "--top-level-division=chapter", "--number-sections", "--toc", "--toc-depth=2", "--listings", "--citeproc",
         "--metadata=nocite:@*", f"--metadata=author:{META['author']}",
         "--variable=documentclass:book", "--variable=classoption:oneside,openany",
-        "--variable=fontsize:11pt", "--variable=papersize:a4", "--variable=geometry:margin=25mm",
+        "--variable=fontsize:12pt", "--variable=papersize:a4", "--variable=geometry:margin=28mm",
         f"--include-in-header={ROOT / 'book/preamble.tex'}", f"--include-before-body={cover}",
         f"--lua-filter={ROOT / 'book/pdf.lua'}",
         f"--bibliography={ROOT / 'docs/references/references.bib'}", "--output", str(output_tex))
@@ -183,7 +189,7 @@ Correspondence: <{META['email']}>. Repository: <{META['repository']}>.
     instructions = OUT / "README.txt"
     instructions.write_text("Standalone source generated from the canonical Markdown and Python examples.\n"
         "Compile book.tex with Tectonic 0.17.0 or a compatible XeLaTeX toolchain.\n"
-        "References and code listings are already embedded in book.tex.\n"
+        "References and short code listings are embedded in book.tex; complete examples accompany it.\n"
         f"Version: {META['version']}\nSource revision: {commit}\n"
         f"Tracked modifications at build time: {dirty}\n"
         "This is a sample draft, not a completed textbook or a submitted arXiv work.\n")
@@ -194,16 +200,20 @@ Correspondence: <{META['email']}>. Repository: <{META['repository']}>.
         if re.search(r"Overfull|Missing character|undefined references|Reference .* undefined", log):
             raise RuntimeError("PDF layout/reference check failed; inspect output/pdf/book.log")
         shutil.copyfile(OUT / "book.pdf", OUT / f"{STEM}.pdf")
+    companion = sorted((ROOT / "examples").rglob("*.py")) + [ROOT / "requirements-examples.txt"]
     files = [output_tex, OUT / "references.bib", instructions]
     if not args.tex_only:
         files.append(OUT / f"{STEM}.pdf")
     manifest = dict(META, source_commit=commit, tracked_modifications=dirty,
                     pandoc=subprocess.check_output(["pandoc", "--version"], text=True).splitlines()[0],
-                    files={p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in files})
+                    files={p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
+                    companion_files={str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in companion})
     (OUT / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     with tarfile.open(OUT / f"{STEM}-source.tar.gz", "w:gz") as bundle:
         for p in [output_tex, OUT / "references.bib", instructions, OUT / "manifest.json"]:
             bundle.add(p, arcname=p.name)
+        for p in companion:
+            bundle.add(p, arcname=str(p.relative_to(ROOT)))
     print(f"Built source bundle{' and PDF' if not args.tex_only else ''} under {OUT}")
 
 
