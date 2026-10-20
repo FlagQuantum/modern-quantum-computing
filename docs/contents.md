@@ -8,7 +8,7 @@ The [numbered section specification](section-plan.md) gives learning, derivation
 
 | Chapter | Title | Reading level | Status |
 |---|---|---|---|
-| 1 | [What Quantum Computing Computes](section-plans/01-foundations.md#ch-what-quantum-computing-computes) | Core | Sections: [1 draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-1), [2 draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-2); independent acceptance pending |
+| 1 | [What Quantum Computing Computes](section-plans/01-foundations.md#ch-what-quantum-computing-computes) | Core | Sections: [1 draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-1), [2 draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-2), [3 draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-3); independent acceptance pending |
 | 2 | [Complex Vectors, Operators, and Numerical Reasoning](section-plans/01-foundations.md#ch-complex-vectors-operators-and-numerical-reasoning) | Core | Planned |
 | 3 | [Single-Qubit States and Rotations](section-plans/01-foundations.md#ch-single-qubit-states-and-rotations) | Core | Planned |
 | 4 | [Composite Systems, Tensor Products, and Qubit Ordering](section-plans/01-foundations.md#ch-composite-systems-tensor-products-and-qubit-ordering) | Core | Planned |

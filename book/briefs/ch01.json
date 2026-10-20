@@ -53,7 +53,7 @@
       "exit": "Distinguish the mathematical state description, a measurement choice and data collected over repetitions.",
       "worked_case": "Two preview descriptions with the same immediate outcome frequencies but different later interference.",
       "boundary": "Keep this a conceptual preview; complex-space definitions belong to Chapter 2, formal equivalence to 3.1 and measurement statistics to Chapter 6.",
-      "code_plan": "Reuse the complete interference reference with changed preparation; avoid a privileged simulator statevector being described as a device readout.",
+      "code_plan": "Complete program examples/foundations/state_descriptions.py reuses the 1.2 independent matrix reference, verifies released FlagQuantum predictions and labels data as a constructed fixture.",
       "independent_check": "Predict-first comparison of immediate measurement and subsequent recombination.",
       "transfer_task": "Explain why an output histogram alone need not determine all future predictions.",
       "source_locators": [
@@ -63,8 +63,8 @@
       "requires": [
         "sec-what-quantum-computing-computes-2"
       ],
-      "status": "brief_ready",
-      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+      "status": "draft",
+      "next_transition": "Independent mathematical, implementation and target-reader review remain pending. Next drafting assignment is 1.4, whose exact prerequisite remains 1.1."
     },
     {
       "ref": "1.4",

@@ -54,7 +54,9 @@ The initial sequence is 1.1–1.6. Use the current queue states to continue from
 
 ## 1.3 What a quantum state describes
 
-**Stable ID:** `sec-what-quantum-computing-computes-3`. **Depth:** P. **State:** brief_ready.
+**Stable ID:** `sec-what-quantum-computing-computes-3`. **Depth:** P. **State:** draft.
+
+[Read the working draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-3). Independent acceptance remains separate.
 
 **Concrete question:** What information does a state description contain?
 
@@ -66,7 +68,7 @@ The initial sequence is 1.1–1.6. Use the current queue states to continue from
 
 **Scope/continuity boundary:** Keep this a conceptual preview; complex-space definitions belong to Chapter 2, formal equivalence to 3.1 and measurement statistics to Chapter 6.
 
-**Formula-to-code plan:** Reuse the complete interference reference with changed preparation; avoid a privileged simulator statevector being described as a device readout.
+**Formula-to-code plan:** Complete program examples/foundations/state_descriptions.py reuses the 1.2 independent matrix reference, verifies released FlagQuantum predictions and labels data as a constructed fixture.
 
 **Independent check:** Predict-first comparison of immediate measurement and subsequent recombination.
 

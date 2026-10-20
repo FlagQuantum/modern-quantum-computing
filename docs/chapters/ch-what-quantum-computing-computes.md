@@ -1,6 +1,6 @@
 # 1. What Quantum Computing Computes
 
-**Working draft: sections 1.1–1.2 · Writing Baseline 1.0 · October 20, 2026.** Sections 1.3–1.6 remain planned. Independent mathematical and reader review are pending; this is not an accepted chapter. Section 1.1 uses Python 3.12 and the standard library. Section 1.2 adds a pinned FlagQuantum 0.3.1 simulation.
+**Working draft: sections 1.1–1.3 · Writing Baseline 1.0 · October 20, 2026.** Sections 1.4–1.6 remain planned. Independent mathematical and reader review are pending; this is not an accepted chapter. Section 1.1 uses Python 3.12 and the standard library. Sections 1.2–1.3 add pinned FlagQuantum 0.3.1 simulations.
 
 <span id="sec-what-quantum-computing-computes-1"></span>
 
@@ -349,4 +349,151 @@ These are ideal simulation results for a supplied model. They do not demonstrate
 
 The supplied $Z$ and $H$ matrices are standard: Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §1.3.1, especially printed p. 19, Eqs. (1.13)–(1.14); [NC:1.3.1 source record](../references/proof-sources.md#source-nc-1-3-1). The row calculations, wrong-model diagnosis and exercises here are original. This section derives predictions within an adopted real-amplitude model; it does not prove physical postulates.
 
-Local execution and unresolved reviews are recorded in [the section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.2.json). Mathematical and reader acceptance remain pending. The next planned section is [1.3 What a quantum state describes](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-3).
+Local execution and unresolved reviews are recorded in [the section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.2.json). Mathematical and reader acceptance remain pending. Continue with [1.3 What a quantum state describes](#sec-what-quantum-computing-computes-3).
+
+<span id="sec-what-quantum-computing-computes-3"></span>
+
+## 1.3 What a quantum state describes
+
+Suppose two preparations both give outcome 0 half the time and outcome 1 half the time. Do they prepare the same quantum state? The interference calculation in [1.2](#sec-what-quantum-computing-computes-2) gives us a way to test that conclusion. Equal predictions for one readout need not imply equal predictions for a different experiment.
+
+We will keep the same real-amplitude preview and introduce no new quantum postulate. The goal is to separate three objects: a **state description**, a **measurement setting**, and the **data recorded from repetitions**. Confusing them can turn a valid simulator calculation into an invalid claim about an experiment.
+
+### A state description predicts more than one histogram
+
+Write $s=1/\sqrt2$. Starting from the amplitude pair $(1,0)$, define two preparations:
+
+$$
+A:\ H\quad\longrightarrow\quad(s,s),\qquad
+B:\ H\text{, then }Z\quad\longrightarrow\quad(s,-s).
+$$
+
+Here $A$ and $B$ are labels for preparation procedures, not new gates. The pairs are their mathematical state descriptions within our supplied model. A state description is used, together with the specified operations and readout rule, to calculate predictions. It is not itself the recorded result of a shot.
+
+We will use two **measurement settings**, meaning two specified procedures for obtaining a final outcome:
+
+- **Direct:** prepare the qubit and read out the label 0 or 1 immediately.
+- **Recombined:** prepare the qubit, apply $H$, then use the same 0-or-1 readout.
+
+There is no measurement before the final readout in the recombined setting. Adding $H$ changes the overall measurement procedure even though the final readout labels remain 0 and 1.
+
+For the direct setting, square the two amplitudes:
+
+$$
+A:\ (s^2,s^2)=(1/2,1/2),\qquad
+B:\ (s^2,(-s)^2)=(1/2,1/2).
+$$
+
+For the recombined setting, use the row calculations already derived in 1.2:
+
+$$
+H(s,s)=(1,0),\qquad H(s,-s)=(0,1).
+$$
+
+Squaring these outgoing amplitudes gives the following predictions.
+
+| Preparation | Direct probabilities $(p_0,p_1)$ | Recombined probabilities $(p_0,p_1)$ |
+|---|---|---|
+| $A$: amplitude pair $(s,s)$ | $(1/2,1/2)$ | $(1,0)$ |
+| $B$: amplitude pair $(s,-s)$ | $(1/2,1/2)$ | $(0,1)$ |
+
+The two descriptions contain a relative-sign distinction that the direct setting does not reveal. It matters because recombination can convert it into different readout probabilities. This is why storing only the direct probabilities would lose information needed to predict a later experiment.
+
+**Checkpoint 1.3-A.** A file contains only the exact direct probabilities `(0.5, 0.5)`. Can a program infer whether to predict `(1, 0)` or `(0, 1)` after recombination? Identify the missing information.
+
+### A shot, a record, and a distribution are different objects
+
+For the direct setting, a single shot produces a label such as 1. It does not return `(s, -s)` or the pair `(0.5, 0.5)`. In the model, those are descriptions used to predict outcomes; 1 is one possible outcome.
+
+To collect repeated data, prepare the qubit again for each shot, use the same setting and store each readout. Re-preparation matters: we are not claiming that repeatedly reading the same undisturbed qubit produces independent copies of the original experiment. Assume independent repetitions with the same probabilities, as in 1.1.
+
+Consider the **constructed teaching record**
+
+```text
+0 1 0 1 1 0 0 1
+```
+
+Its histogram has four zeros and four ones. The empirical frequency of zero is therefore
+
+$$
+\widehat p_0=\frac{\text{number of zeros}}{\text{number of shots}}=\frac48=\frac12.
+$$
+
+The hat again marks an estimate computed from data. The value happens to equal the supplied model probability here. Another record need not contain equal counts.
+
+Under either preparation in the direct setting, the probability of this particular **ordered** eight-shot record is
+
+$$
+\frac12\times\frac12\times\cdots\times\frac12
+=\left(\frac12\right)^8=\frac1{256}.
+$$
+
+There are eight factors because independence lets us multiply one probability per shot. This is the probability of that exact sequence, not the probability of every sequence with four zeros. Under both preparations each specified bit has the same probability, so every possible ordered record has the same probability under $A$ as under $B$. Collecting more data using only this direct setting cannot separate these two models. It can improve an estimate of their common direct-readout distribution.
+
+Changing to the recombined setting does separate them: in this ideal example, $A$ predicts only 0 and $B$ predicts only 1. That statement is specific to these two known candidate preparations and our ideal model. It does not establish a method for identifying an arbitrary unknown state from one shot, or a guarantee about noisy hardware.
+
+**Checkpoint 1.3-B.** Eight direct readouts are all 1. Is that impossible under the supplied model? Does it select $B$ over $A$?
+
+### What a simulator exposes
+
+A statevector simulator stores numerical amplitude coordinates. Its software interface may let us inspect them. In contrast, a physical 0-or-1 readout produces the specified outcome label. These are different access contracts, in the sense of 1.1.
+
+Inspecting amplitudes is useful for debugging a simulator program: it lets us check that the preparation applied the intended sign. It does not demonstrate that one device shot revealed that sign. Conversely, returning a sampled label is not a failed attempt to return an amplitude pair; it is the expected output of that readout procedure.
+
+A numerical state description also includes conventions, such as which coordinate refers to outcome 0. We retain the order 0, then 1 throughout this example. We are not yet introducing a general equivalence criterion for state descriptions; Chapter 3 will supply it. The operational distinction needed here is the one we have calculated: these two preparations predict different results in the recombined setting.
+
+### Formula, code, and the evidence boundary
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/state_descriptions.py) reuses the supplied [1.2 matrix reference](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/interference.py). Both files are included in the repository. It evaluates each preparation in each setting, checks the state and probability coordinates against independent arithmetic, and calculates the probability of the constructed record.
+
+| Object or calculation | Code | Interpretation |
+|---|---|---|
+| Preparation $A$ or $B$ | `preparation = ["h"]` or `["h", "z"]` | Gate sequence applied to the initial qubit |
+| Measurement setting | `evaluate(preparation, recombine)` | Append `circuit.h(0)` only when recombination is requested |
+| Predicted distribution | `result.probabilities[0]` | Ideal model probabilities ordered 0, 1; no shot data |
+| Simulator state description | `result.statevector()[0]` | Privileged numerical diagnostic, not device readout |
+| Constructed data | `record = [0, 1, 0, 1, 1, 0, 0, 1]` | Explicit teaching fixture, not a simulated or physical measurement run |
+| Probability of an ordered record | `record_probability(record, model_a)` | Multiply the specified independent-shot probabilities using exact fractions |
+
+After installing [the pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples), run from the repository root:
+
+```bash
+python examples/foundations/state_descriptions.py
+```
+
+Expected output:
+
+```text
+Preparation A: direct P(0)=0.500000000; after H P(0)=1.000000000
+Preparation B: direct P(0)=0.500000000; after H P(0)=0.000000000
+Constructed record: 01011001; zeros=4, ones=4
+Probability of this ordered record: A=1/256, B=1/256
+Fixture's second readout: 1 (not an amplitude pair)
+State, setting, and record checks passed (atol=1e-12).
+```
+
+FlagQuantum 0.3.1 executes the ideal circuits on CPU using the PyTorch backend and complex128, with approximation and backend fallback disabled. State and probability comparisons use absolute tolerance $10^{-12}$. The record probabilities use exact rational arithmetic. There is no random sampling, seed, device execution or state-reconstruction procedure in this program.
+
+### Transfer and debugging
+
+**1.3-C — Choose evidence.** You are given either preparation $A$ or preparation $B$, with those as the only candidates. In the ideal preview, which of our two settings would you choose to distinguish them, and what would each outcome indicate? Explain why a direct-readout histogram cannot serve the same purpose.
+
+**1.3-D — Change both signs.** Compare $(s,s)$ with $(-s,-s)$. Calculate their direct and recombined probabilities. Does our two-setting test distinguish them? Keep the conclusion limited to what you calculated.
+
+**1.3-E — Repair a claim.** A report says: “The simulator printed amplitudes $(s,-s)$, so the physical experiment measured the relative sign in one direct readout.” Rewrite it as a statement supported by the program above, and name the additional setting that gives a sign-sensitive prediction for the supplied candidates.
+
+**Answers and reasoning**
+
+- **A.** No. Both preparations yield that file, but the relative amplitude sign needed for recombination is absent. The program needs the preparation/state description or additional experimental information.
+- **B.** It is possible, with probability $1/256$ for that ordered record under either preparation. Equal probabilities do not force equal finite counts, and this record gives no distinction between $A$ and $B$ in the assumed model.
+- **C.** Choose recombination followed by readout. Outcome 0 identifies $A$ and outcome 1 identifies $B$ within the ideal, two-candidate model. Direct-readout data have the same distribution for both, even with independent repetitions.
+- **D.** Direct probabilities are $(1/2,1/2)$ for both. Recombination gives amplitudes $(1,0)$ and $(-1,0)$; both have probabilities $(1,0)$. These two settings do not distinguish them. Formal equivalence of state descriptions is developed later rather than inferred from this finite test alone.
+- **E.** The simulator's internal amplitude coordinates match preparation $B$ in the supplied ideal model. No physical experiment was executed. Adding $H$ before readout yields the sign-sensitive prediction established above; the claim must specify that setting and its model assumptions.
+
+A state description supplies predictions once the operations and readout are specified. A distribution describes possible outcomes for that procedure; a finite record is data from repetitions, or an explicitly labelled fixture. The next planned section, [1.4 Algorithms, simulators, and physical devices](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-4), will separate the roles of those implementations more systematically.
+
+### Companion source and review status
+
+For the state/observation distinction, see Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §1.2, printed pp. 13–14, especially Eqs. (1.1)–(1.2); [NC:1.2 source record](../references/proof-sources.md#source-nc-1-2). The setting comparison, constructed record and exercises here are original teaching material. This is a conceptual preview with depth **P**; the formal mathematical state space and full measurement theory are taught in their owning chapters.
+
+Execution details and outstanding reviews are in [the section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.3.json). Author checks are distinct from independent mathematical, implementation and reader review; acceptance remains pending.

@@ -36,6 +36,7 @@ jobs:
       - run: python -m pip install -r requirements-examples.txt
       - run: python examples/foundations/task_contracts.py
       - run: python examples/foundations/interference.py
+      - run: python examples/foundations/state_descriptions.py
       - run: python examples/measurement.py
       - run: python examples/gradients.py
       - run: python examples/omalley2016/h2_vqe_model.py
