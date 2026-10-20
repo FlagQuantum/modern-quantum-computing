@@ -88,7 +88,7 @@ def coefficients_at(distance):
     return TABLE[matches][0, 1:].clone()
 
 def ansatz(theta):
-    # Paper Eq. (3), preserving wire labels: HF flips q0, hence |10> here.
+    # Paper Eq. (3), preserving qubit labels: HF flips q0, hence |10> here.
     circuit = fq.Circuit(2, bsz=theta.numel(), dtype=COMPLEX).x(0)
     # B = H_0 Rx_1(pi/2), so B^dagger Z0 Z1 B = X0 Y1.
     circuit.h(0).rx(1, math.pi / 2)

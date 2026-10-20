@@ -59,9 +59,9 @@ Installation and exhaustive API documentation belong in companion material. Code
 
 **Learning focus:** Tensor-product spaces, registers, computational basis indices and subsystem labels.
 
-**Derivation:** Derive the bit-string-to-index map and the action of an operator on a selected wire.
+**Derivation:** Derive the bit-string-to-index map and the action of an operator on a selected qubit.
 
-**Experiment and verification:** Check two- and three-qubit circuits against Kronecker products and deliberately swapped wire conventions.
+**Experiment and verification:** Check two- and three-qubit circuits against Kronecker products and deliberately swapped qubit conventions.
 
 ### Chapter 5: Quantum Gates and Circuit Construction
 
@@ -141,7 +141,7 @@ Installation and exhaustive API documentation belong in companion material. Code
 
 **Learning focus:** Discrete Fourier phases, controlled rotations, inverse transforms and output reversal.
 
-**Derivation:** Derive the product representation of the QFT and the role of final wire swaps.
+**Derivation:** Derive the product representation of the QFT and the role of final qubit swaps.
 
 **Experiment and verification:** Compare the circuit with the dense Fourier matrix for each basis input and quantify a small approximate-QFT error.
 
@@ -307,7 +307,7 @@ Installation and exhaustive API documentation belong in companion material. Code
 
 **Role:** Research capstone; starter available. **Prerequisites:** 4, 6, 16, 17, 19, 22, 27.
 
-**Learning focus:** The O'Malley paper, corrected source data, wire labels, ansatz normalization and energy curves.
+**Learning focus:** The O'Malley paper, corrected source data, qubit labels, ansatz normalization and energy curves.
 
 **Derivation:** Derive the reduced Hamiltonian, ansatz amplitudes, expectations, gradient and exact sector minimum.
 

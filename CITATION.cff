@@ -7,7 +7,7 @@ authors:
     given-names: Wei
     email: liuwei01@baai.ac.cn
     affiliation: "FlagQuantum Team, Beijing Academy of Artificial Intelligence (BAAI)"
-version: 0.1.0-draft.3
+version: 0.1.0-draft.4
 date-released: 2026-10-20
 url: https://github.com/FlagQuantum/modern-quantum-computing
 repository-code: https://github.com/FlagQuantum/modern-quantum-computing

@@ -27,7 +27,7 @@ The constant already includes the geometry-dependent offset; do not add another 
 
 ## 2. Ansatz, ordering, and amplitudes
 
-With this book's wire convention the reference state is $\lvert10\rangle$, prepared using `.x(0)`. Translate the paper's wire order before translating its ket labels.
+With this book's qubit convention the reference state is $\lvert10\rangle$, prepared using `.x(0)`. Translate the paper's qubit order before translating its ket labels.
 
 $$
 \lvert\psi(\theta)\rangle=e^{-i\theta X_0Y_1}\lvert10\rangle

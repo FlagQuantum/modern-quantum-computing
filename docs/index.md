@@ -19,7 +19,7 @@ Beijing, China
 
 Correspondence: [liuwei01@baai.ac.cn](mailto:liuwei01@baai.ac.cn)
 
-**Version 0.1.0-draft.3 · 2026-10-20 · Draft**
+**Version 0.1.0-draft.4 · 2026-10-20 · Draft**
 <!-- book-metadata:end -->
 
 ## Who this book is for

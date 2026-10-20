@@ -14,7 +14,7 @@ See the [Nielsen–Chuang design review](nielsen-chuang-design-review.md) for th
 |---|---|---|---|
 | [Measurement and expectation values](../chapters/measurement.md) | NC Chapter 2; P Chapter 3, *Measurement and Evolution* (July 2015) | Rotation amplitudes, Born probabilities and the expectation of Z | Closed-form probabilities and the probability-weighted eigenvalue sum |
 | [Parameterized circuits and gradients](../chapters/gradients.md) | SP *Variational Circuits as Machine Learning Models*; Schuld et al. (2019), key `schuld_gradients_2019` | Single-Pauli rotation derivatives and the corresponding shift rule | Analytic derivative, autograd, shifted executions and central differences |
-| [Molecular hydrogen VQE](../chapters/vqe.md) | O'Malley et al. (2016), key `omalley_2016`; corrected arXiv v2, Eq. (1), Eq. (3), Appendix A/Table I and Appendix B | Translate Hamiltonian labels, wire order, ansatz and generator normalization | Dense matrix exponential, full Hamiltonian eigenspectrum and closed-form energy/gradient |
+| [Molecular hydrogen VQE](../chapters/vqe.md) | O'Malley et al. (2016), key `omalley_2016`; corrected arXiv v2, Eq. (1), Eq. (3), Appendix A/Table I and Appendix B | Translate Hamiltonian labels, qubit order, ansatz and generator normalization | Dense matrix exponential, full Hamiltonian eigenspectrum and closed-form energy/gradient |
 
 The VQE chapter's Adam optimizer and synthetic-shot sampling are tutorial extensions. They must not be attributed to the paper's 1,000-angle scan or described as reproductions of its hardware experiment.
 

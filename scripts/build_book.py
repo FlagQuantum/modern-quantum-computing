@@ -105,7 +105,7 @@ Version: **{META['version']}**, dated {META['date']}. Full source provenance and
 
 ## Abstract {{.unnumbered}}
 
-This sample connects quantum-computing formulas to executable and independently checked programs. A rotated qubit introduces probabilities and expectation values; a parameterized circuit illustrates analytic, automatic and parameter-shift differentiation; a two-qubit molecular hydrogen model demonstrates source-version selection, wire-order translation, variational energies and numerical verification. Examples target FlagQuantum {META['flagquantum_version']} using the PyTorch CPU backend and complex128 statevectors. The hydrogen case is an ideal calculation using rounded, corrected paper coefficients, not a reproduction of a physical hardware experiment.
+This sample connects quantum-computing formulas to executable and independently checked programs. A rotated qubit introduces probabilities and expectation values; a parameterized circuit illustrates analytic, automatic and parameter-shift differentiation; a two-qubit molecular hydrogen model demonstrates source-version selection, qubit-order translation, variational energies and numerical verification. Examples target FlagQuantum {META['flagquantum_version']} using the PyTorch CPU backend and complex128 statevectors. The hydrogen case is an ideal calculation using rounded, corrected paper coefficients, not a reproduction of a physical hardware experiment.
 
 \\newpage
 

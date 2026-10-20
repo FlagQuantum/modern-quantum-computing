@@ -18,11 +18,11 @@ The canonical author, affiliation, version and date are in `book/metadata.json`.
 
 The website follows the living Markdown chapters. The PDF is a fixed sample edition built from the same chapter text and the executable Python files, with a cover, contents, numbered sections and display equations, references, and short standalone code listings. The reading edition uses 12-point body text with extra leading, 10-point code, and paired formula/implementation columns. Long hydrogen programs and their complete dataset are supplied in the companion source archive; selected implementation excerpts are generated directly from the Python source. Teal arrows indicate visual code wrapping in print; copy executable code from the companion files.
 
-The current sample edition is **0.1.0-draft.3**, dated **2026-10-20**. It contains three starter chapters plus conventions, reproduction notes and selected hydrogen implementation excerpts. It is not a complete course or an arXiv submission.
+The current sample edition is **0.1.0-draft.4**, dated **2026-10-20**. It contains three starter chapters plus conventions, reproduction notes and selected hydrogen implementation excerpts. It is not a complete course or an arXiv submission.
 
 ## Download the sample
 
-[PDF sample edition](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.3/modern-quantum-computing.pdf) · [Standalone LaTeX source archive](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.3/modern-quantum-computing-source.tar.gz) · [Versioned release and manifest](https://github.com/FlagQuantum/modern-quantum-computing/releases/tag/v0.1.0-draft.3).
+[PDF sample edition](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.4/modern-quantum-computing.pdf) · [Standalone LaTeX source archive](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.4/modern-quantum-computing-source.tar.gz) · [Versioned release and manifest](https://github.com/FlagQuantum/modern-quantum-computing/releases/tag/v0.1.0-draft.4).
 
 ## Build locally
 
