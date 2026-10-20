@@ -16,6 +16,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 1.1 Problems, inputs, and observable outputs
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-what-quantum-computing-computes-1).
+
 **Section level:** core. **Required earlier sections:** Entry knowledge / local bridge.
 
 **Learning and derivation target:** Identify a computational task and what an algorithm must return.
@@ -25,6 +27,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-what-quantum-computing-computes-2"></span>
 
 ### 1.2 A first interference experiment
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-what-quantum-computing-computes-2).
 
 **Section level:** core. **Required earlier sections:** [1.1](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-1).
 
@@ -36,6 +40,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 1.3 What a quantum state describes
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-what-quantum-computing-computes-3).
+
 **Section level:** core. **Required earlier sections:** [1.2](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-2).
 
 **Learning and derivation target:** Introduce amplitudes and normalization informally; distinguish a state description from an observed sample.
@@ -45,6 +51,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-what-quantum-computing-computes-4"></span>
 
 ### 1.4 Algorithms, simulators, and physical devices
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-what-quantum-computing-computes-4).
 
 **Section level:** core. **Required earlier sections:** [1.1](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-1).
 
@@ -56,6 +64,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 1.5 What computational advantage would require
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-what-quantum-computing-computes-5).
+
 **Section level:** core. **Required earlier sections:** [1.4](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-4).
 
 **Learning and derivation target:** Introduce fair input/output access and total-resource accounting without requiring complexity theory.
@@ -65,6 +75,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-what-quantum-computing-computes-6"></span>
 
 ### 1.6 A map of the learning routes
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-what-quantum-computing-computes-6).
 
 **Section level:** core. **Required earlier sections:** [1.4](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-4).
 
@@ -84,6 +96,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 2.1 Complex scalars, vectors, and conjugation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-1).
+
 **Section level:** core. **Required earlier sections:** Entry knowledge / local bridge.
 
 **Learning and derivation target:** Define complex arithmetic, conjugation and vector coordinates.
@@ -93,6 +107,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-2"></span>
 
 ### 2.2 Inner products, adjoints, and orthogonality
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-2).
 
 **Section level:** core. **Required earlier sections:** [2.1](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-1).
 
@@ -104,6 +120,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 2.3 Linear maps, bases, and changes of coordinates
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3).
+
 **Section level:** core. **Required earlier sections:** [2.2](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-2).
 
 **Learning and derivation target:** Derive matrix representations and basis-change rules.
@@ -113,6 +131,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-4"></span>
 
 ### 2.4 Hermitian, unitary, and positive operators
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-4).
 
 **Section level:** core. **Required earlier sections:** [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3).
 
@@ -124,6 +144,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 2.5 Spectral decomposition and singular values
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
+
 **Section level:** core. **Required earlier sections:** [2.4](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-4).
 
 **Learning and derivation target:** Derive spectral reconstruction for Hermitian matrices and introduce SVD.
@@ -133,6 +155,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-6"></span>
 
 ### 2.6 Functions of matrices and time evolution
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-6).
 
 **Section level:** core. **Required earlier sections:** [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
@@ -144,6 +168,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 2.7 Norms, conditioning, and perturbations
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
+
 **Section level:** core. **Required earlier sections:** [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
 **Learning and derivation target:** Relate vector/operator norms and explain why a small residual may not imply a small solution error.
@@ -153,6 +179,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-8"></span>
 
 ### 2.8 Floating-point arithmetic and verification contracts
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-8).
 
 **Section level:** core. **Required earlier sections:** [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
@@ -172,6 +200,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 3.1 The pure-state postulate and physical equivalence
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-single-qubit-states-and-rotations-1).
+
 **Section level:** core. **Required earlier sections:** [2.2](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-2).
 
 **Learning and derivation target:** State normalization, global-phase equivalence and the computational-basis probability postulate for one qubit; defer general measurement and state-update rules to Chapter 6.
@@ -181,6 +211,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-single-qubit-states-and-rotations-2"></span>
 
 ### 3.2 Relative phase and interference
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-single-qubit-states-and-rotations-2).
 
 **Section level:** core. **Required earlier sections:** [3.1](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-1), [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3).
 
@@ -192,6 +224,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 3.3 The Bloch-sphere representation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-single-qubit-states-and-rotations-3).
+
 **Section level:** core. **Required earlier sections:** [3.1](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-1), [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3).
 
 **Learning and derivation target:** Introduce the Pauli matrices explicitly, then derive the Bloch coordinates of a pure qubit and their normalization; operator algebra is developed in 3.5.
@@ -201,6 +235,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-single-qubit-states-and-rotations-4"></span>
 
 ### 3.4 Closed-system evolution and generators
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-single-qubit-states-and-rotations-4).
 
 **Section level:** core. **Required earlier sections:** [3.1](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-1), [2.6](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-6).
 
@@ -212,6 +248,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 3.5 Pauli algebra and rotation matrices
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5).
+
 **Section level:** core. **Required earlier sections:** [3.3](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-3), [3.4](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-4).
 
 **Learning and derivation target:** Derive Pauli products and the three axis-rotation matrices.
@@ -222,6 +260,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 3.6 Composing rotations
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-single-qubit-states-and-rotations-6).
+
 **Section level:** core. **Required earlier sections:** [3.5](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5).
 
 **Learning and derivation target:** Explain noncommutativity and parameterize a single-qubit unitary up to phase.
@@ -231,6 +271,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-single-qubit-states-and-rotations-7"></span>
 
 ### 3.7 Physical phase versus numerical equality
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-single-qubit-states-and-rotations-7).
 
 **Section level:** core. **Required earlier sections:** [3.1](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-1), [3.6](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-6), [2.8](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-8).
 
@@ -250,6 +292,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 4.1 Tensor-product spaces and basis states
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1).
+
 **Section level:** core. **Required earlier sections:** [2.2](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-2), [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3), [3.1](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-1).
 
 **Learning and derivation target:** Construct composite spaces and derive product-state amplitudes.
@@ -259,6 +303,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-composite-systems-tensor-products-and-qubit-ordering-2"></span>
 
 ### 4.2 Registers, labels, and basis indices
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2).
 
 **Section level:** core. **Required earlier sections:** [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1).
 
@@ -270,6 +316,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 4.3 Local operators on a composite register
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-3).
+
 **Section level:** core. **Required earlier sections:** [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), [3.4](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-4).
 
 **Learning and derivation target:** Derive an operator acting on one selected subsystem.
@@ -279,6 +327,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-composite-systems-tensor-products-and-qubit-ordering-4"></span>
 
 ### 4.4 Multiple-qubit operators and ordered supports
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-4).
 
 **Section level:** core. **Required earlier sections:** [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2), [4.3](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-3).
 
@@ -290,6 +340,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 4.5 Permutations, SWAP, and relabeling
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-5).
+
 **Section level:** core. **Required earlier sections:** [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2), [4.4](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-4).
 
 **Learning and derivation target:** Distinguish a physical SWAP from changing the description of subsystem labels.
@@ -299,6 +351,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-composite-systems-tensor-products-and-qubit-ordering-6"></span>
 
 ### 4.6 Tensor reshaping as indexed mathematics
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-6).
 
 **Section level:** core. **Required earlier sections:** [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2), [4.4](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-4).
 
@@ -311,6 +365,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 4.7 The no-cloning theorem
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-single-qubit-states-and-rotations-8).
+
 **Section level:** core. **Required earlier sections:** [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), [3.4](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-4).
 
 **Learning and derivation target:** Prove the elementary inner-product argument and state its assumptions.
@@ -321,6 +377,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="47-cross-framework-convention-translation"></span>
 
 ### 4.8 Cross-framework convention translation
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-7).
 
 **Section level:** core. **Required earlier sections:** [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2), [4.5](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-5), [4.6](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-6).
 
@@ -340,6 +398,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 5.1 Circuit composition, inversion, and call order
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1).
+
 **Section level:** core. **Required earlier sections:** [3.4](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-4), [4.3](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-3).
 
 **Learning and derivation target:** Derive the relation between chronological gate calls and matrix multiplication.
@@ -349,6 +409,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-2"></span>
 
 ### 5.2 Controlled operations and ancillas
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
 **Section level:** core. **Required earlier sections:** [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), [4.4](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-4), [5.1](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1).
 
@@ -360,6 +422,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 5.3 Classical logic made reversible
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-3).
+
 **Section level:** core. **Required earlier sections:** [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
 **Learning and derivation target:** Construct reversible Boolean maps and identify information discarded by ordinary gates.
@@ -369,6 +433,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-4"></span>
 
 ### 5.4 Uncomputation and reusable workspace
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4).
 
 **Section level:** core. **Required earlier sections:** [5.3](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-3).
 
@@ -380,6 +446,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 5.5 Universal gate sets
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-5).
+
 **Section level:** core. **Required earlier sections:** [3.6](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-6), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
 **Learning and derivation target:** State exact versus approximate universality and its computational meaning.
@@ -389,6 +457,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-6"></span>
 
 ### 5.6 Decomposing controlled and multi-qubit gates
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-6).
 
 **Section level:** core. **Required earlier sections:** [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2), [5.4](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4).
 
@@ -400,6 +470,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 5.7 Approximation, synthesis, and precision
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-7).
+
 **Section level:** core. **Required earlier sections:** [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7), [5.5](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-5).
 
 **Learning and derivation target:** Define a unitary-error criterion and relate synthesis precision to circuit error.
@@ -409,6 +481,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-8"></span>
 
 ### 5.8 Circuit identities and safe transformations
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-8).
 
 **Section level:** core. **Required earlier sections:** [5.1](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
@@ -428,6 +502,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 6.1 Measurement outcomes and the Born rule
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-1).
+
 **Section level:** core. **Required earlier sections:** [3.1](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-1), [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
 **Learning and derivation target:** State projective measurement probabilities and normalization.
@@ -437,6 +513,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-measurement-expectation-values-and-statistical-estimation-2"></span>
 
 ### 6.2 Conditional states and ignored outcomes
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2).
 
 **Section level:** core. **Required earlier sections:** [6.1](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-1).
 
@@ -448,6 +526,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 6.3 Observables, spectra, and expectations
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-3).
+
 **Section level:** core. **Required earlier sections:** [6.1](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-1), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
 **Learning and derivation target:** Derive an expectation as a probability-weighted eigenvalue sum.
@@ -457,6 +537,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-measurement-expectation-values-and-statistical-estimation-4"></span>
 
 ### 6.4 Measuring in another basis
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-4).
 
 **Section level:** core. **Required earlier sections:** [3.5](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5), [5.1](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1), [6.3](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-3).
 
@@ -468,6 +550,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 6.5 Generalized measurements and instruments [Advanced]
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-5).
+
 **Section level:** advanced. **Required earlier sections:** [6.1](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-1), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [2.4](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-4).
 
 **Learning and derivation target:** Define effects and measurement operators for pure-state inputs; derive probabilities and conditional updates. Full mixed-state instruments and composition belong to 9.7.
@@ -477,6 +561,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-measurement-expectation-values-and-statistical-estimation-6"></span>
 
 ### 6.6 From exact probabilities to samples
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
 
 **Section level:** core. **Required earlier sections:** [6.1](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-1).
 
@@ -488,6 +574,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 6.7 Variance, covariance, and uncertainty
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7).
+
 **Section level:** core. **Required earlier sections:** [6.3](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-3), [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
 
 **Learning and derivation target:** Derive estimator variance and explain covariance in combined observables.
@@ -498,6 +586,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 6.8 Confidence intervals and shot budgets
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
+
 **Section level:** core. **Required earlier sections:** [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7).
 
 **Learning and derivation target:** Specify coverage assumptions and derive one usable concentration bound.
@@ -507,6 +597,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-measurement-expectation-values-and-statistical-estimation-9"></span>
 
 ### 6.9 Measurement laboratory and failure diagnosis
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-9).
 
 **Section level:** core. **Required earlier sections:** [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [6.4](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-4), [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
 
@@ -528,6 +620,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 7.1 Product states and entangled states
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-1).
+
 **Section level:** core. **Required earlier sections:** [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1).
 
 **Learning and derivation target:** Define pure-state separability and show why local amplitudes are insufficient in general.
@@ -537,6 +631,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-entanglement-and-quantum-information-protocols-2"></span>
 
 ### 7.2 Schmidt decomposition
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-2).
 
 **Section level:** core. **Required earlier sections:** [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5), [7.1](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-1).
 
@@ -548,6 +644,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 7.3 Bell states and basis changes
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-3).
+
 **Section level:** core. **Required earlier sections:** [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [7.1](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-1).
 
 **Learning and derivation target:** Derive preparation and measurement in the Bell basis.
@@ -557,6 +655,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-entanglement-and-quantum-information-protocols-4"></span>
 
 ### 7.4 Correlations and the CHSH experiment
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-4).
 
 **Section level:** core. **Required earlier sections:** [6.3](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-3), [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7), [7.3](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-3).
 
@@ -568,6 +668,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 7.5 Teleportation, branch by branch
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-5).
+
 **Section level:** core. **Required earlier sections:** [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [7.3](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-3).
 
 **Learning and derivation target:** Derive all four conditional receiver states and their corrections.
@@ -577,6 +679,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-entanglement-and-quantum-information-protocols-6"></span>
 
 ### 7.6 Superdense coding
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-6).
 
 **Section level:** core. **Required earlier sections:** [7.3](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-3), [5.1](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1).
 
@@ -588,6 +692,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 7.7 No-signalling and classical communication
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-7).
+
 **Section level:** core. **Required earlier sections:** [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [7.3](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-3).
 
 **Learning and derivation target:** Derive unchanged remote marginal probabilities when local outcomes are ignored.
@@ -597,6 +703,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-network-entanglement-primitives"></span>
 
 ### 7.8 Entanglement swapping and quantum-network primitives
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-network-entanglement-primitives).
 
 **Section level:** core. **Required earlier sections:** [7.3](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-3), [7.5](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-5), [7.7](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-7).
 
@@ -608,6 +716,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="78-what-entanglement-alone-does-not-guarantee"></span>
 
 ### 7.9 What entanglement alone does not guarantee
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-8).
 
 **Section level:** core. **Required earlier sections:** [7.5](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-5), [7.6](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-6), [7.7](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-7), [7.8](../section-plans/01-foundations.md#sec-network-entanglement-primitives).
 
@@ -627,6 +737,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 8.1 Statistical ensembles and density operators
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-1).
+
 **Section level:** core. **Required earlier sections:** [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3), [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
 
 **Learning and derivation target:** Derive the density matrix of a mixture and its basic properties.
@@ -636,6 +748,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-density-matrices-reduced-states-and-purification-2"></span>
 
 ### 8.2 Pure states, mixed states, and purity
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2).
 
 **Section level:** core. **Required earlier sections:** [8.1](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-1), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
@@ -647,6 +761,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 8.3 Expectation values and measurement updates
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-3).
+
 **Section level:** core. **Required earlier sections:** [8.1](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-1), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [6.3](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-3).
 
 **Learning and derivation target:** Derive trace expressions for observables and measurement branches.
@@ -656,6 +772,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-density-matrices-reduced-states-and-purification-4"></span>
 
 ### 8.4 Partial trace from operational consistency
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4).
 
 **Section level:** core. **Required earlier sections:** [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), [8.3](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-3).
 
@@ -667,6 +785,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 8.5 Reduced states of entangled systems
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-5).
+
 **Section level:** core. **Required earlier sections:** [7.2](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-2), [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4).
 
 **Learning and derivation target:** Relate reduced spectra to Schmidt coefficients.
@@ -676,6 +796,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-density-matrices-reduced-states-and-purification-6"></span>
 
 ### 8.6 Purification and nonuniqueness
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-6).
 
 **Section level:** core. **Required earlier sections:** [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2), [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4).
 
@@ -687,6 +809,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 8.7 Proper and improper mixtures
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-7).
+
 **Section level:** core. **Required earlier sections:** [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4), [8.6](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-6).
 
 **Learning and derivation target:** Explain what local statistics establish and how joint access can distinguish preparations.
@@ -696,6 +820,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-density-matrices-reduced-states-and-purification-8"></span>
 
 ### 8.8 Density-operator verification laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-8).
 
 **Section level:** core. **Required earlier sections:** [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2), [8.3](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-3), [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4), [8.5](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-5), [2.8](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-8).
 

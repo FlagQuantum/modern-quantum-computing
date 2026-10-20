@@ -6,25 +6,25 @@ These are planned section sequences, not validated syllabi. Each path states its
 
 | Route | New sections | Added prerequisite sections | Planned pages | Assumed route(s) |
 |---|---|---|---|---|
-| [Foundations and a first course](#foundations) | 64 | 0 | 128–256 | Basic Python/entry arithmetic |
-| [Oracle algorithms, estimation, arithmetic and dynamics](#algorithms) | 40 | 0 | 92–172 | foundations |
-| [Block encodings, QSVT, walks and limits](#spectral-algorithms) | 27 | 0 | 81–135 | foundations, algorithms |
-| [Channels, information and security](#information) | 42 | 1 | 104–188 | foundations |
-| [A continuous VQE and optimization path](#variational) | 31 | 3 | 74–136 | foundations |
-| [Fixed quantum features and kernels](#fixed-kernels) | 8 | 1 | 16–32 | foundations |
-| [Trainable classical-quantum models](#hybrid-learning) | 17 | 2 | 38–72 | foundations |
-| [Noise, correction and logical computation](#error-correction) | 61 | 11 | 149–271 | foundations |
-| [Compiler entry without microscopic hardware](#compiler-core) | 24 | 4 | 50–98 | foundations |
-| [Classical simulation and approximation](#simulation) | 33 | 6 | 87–153 | foundations |
-| [Cutting and heterogeneous workflow extension](#cutting-workflows) | 16 | 6 | 40–72 | foundations, compiler-core |
-| [H2 paper-reproduction route](#h2-research) | 30 | 12 | 72–132 | foundations |
-| [Logical-memory research route](#logical-memory) | 47 | 30 | 113–207 | foundations |
-| [Hardware branch: superconducting](#hardware-superconducting) | 39 | 7 | 86–164 | foundations |
-| [Hardware branch: trapped-ion](#hardware-trapped-ion) | 39 | 7 | 86–164 | foundations |
-| [Hardware branch: neutral-atom](#hardware-neutral-atom) | 40 | 8 | 88–168 | foundations |
-| [Hardware branch: photonic](#hardware-photonic) | 44 | 11 | 97–185 | foundations |
-| [Hardware branch: spin](#hardware-spin) | 39 | 7 | 86–164 | foundations |
-| [Hardware branch: topological](#hardware-topological) | 56 | 24 | 123–235 | foundations |
+| [Foundations and a first course](#foundations) | 64 | 0 | 186–368 | Basic Python/entry arithmetic |
+| [Oracle algorithms, estimation, arithmetic and dynamics](#algorithms) | 40 | 0 | 119–236 | foundations |
+| [Block encodings, QSVT, walks and limits](#spectral-algorithms) | 27 | 0 | 88–168 | foundations, algorithms |
+| [Channels, information and security](#information) | 42 | 1 | 147–280 | foundations |
+| [A continuous VQE and optimization path](#variational) | 31 | 3 | 86–172 | foundations |
+| [Fixed quantum features and kernels](#fixed-kernels) | 8 | 1 | 20–40 | foundations |
+| [Trainable classical-quantum models](#hybrid-learning) | 17 | 2 | 45–90 | foundations |
+| [Noise, correction and logical computation](#error-correction) | 61 | 11 | 193–376 | foundations |
+| [Compiler entry without microscopic hardware](#compiler-core) | 24 | 4 | 70–136 | foundations |
+| [Classical simulation and approximation](#simulation) | 33 | 6 | 108–208 | foundations |
+| [Cutting and heterogeneous workflow extension](#cutting-workflows) | 16 | 6 | 40–80 | foundations, compiler-core |
+| [H2 paper-reproduction route](#h2-research) | 30 | 12 | 76–152 | foundations |
+| [Logical-memory research route](#logical-memory) | 43 | 26 | 121–238 | foundations |
+| [Hardware branch: superconducting](#hardware-superconducting) | 39 | 7 | 109–214 | foundations |
+| [Hardware branch: trapped-ion](#hardware-trapped-ion) | 39 | 7 | 109–214 | foundations |
+| [Hardware branch: neutral-atom](#hardware-neutral-atom) | 40 | 8 | 112–220 | foundations |
+| [Hardware branch: photonic](#hardware-photonic) | 44 | 11 | 130–252 | foundations |
+| [Hardware branch: spin](#hardware-spin) | 39 | 7 | 109–214 | foundations |
+| [Hardware branch: topological](#hardware-topological) | 56 | 24 | 165–322 | foundations |
 
 <span id="foundations"></span>
 
@@ -207,7 +207,6 @@ These are planned section sequences, not validated syllabi. Each path states its
 - **Chapter 29:** [29.1](section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-1), [29.2](section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-2), [29.3](section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-3), [29.4](section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-4), [29.5](section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-5), [29.6](section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-6), [29.7](section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-7).
 - **Chapter 30:** [30.1](section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-1), [30.2](section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-2), [30.3](section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-3), [30.4](section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-4), [30.5](section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-5), [30.6](section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-6), [30.7](section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-7), [30.8](section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-8).
 - **Chapter 31:** [31.1](section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-1), [31.2](section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-2), [31.3](section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-3), [31.4](section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-4), [31.5](section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-5), [31.6](section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-6), [31.7](section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-7).
-- **Chapter 45:** [45.1](section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-1), [45.2](section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-2), [45.3](section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-3), [45.4](section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-4).
 - **Chapter 48:** [48.1](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-1), [48.2](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-2), [48.3](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-3), [48.4](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-4), [48.5](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-5), [48.6](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-6), [48.7](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-7), [48.8](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-8), [48.9](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-9).
 - **Chapter 50:** [50.1](section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-1), [50.2](section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-2), [50.3](section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-3), [50.4](section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-4), [50.5](section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-5), [50.6](section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-6), [50.7](section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-7), [50.9](section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-9).
 

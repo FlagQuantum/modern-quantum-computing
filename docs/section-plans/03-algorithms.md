@@ -16,6 +16,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 14.1 Problems, input length, and computational models
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-1).
+
 **Section level:** core. **Required earlier sections:** [5.3](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-3), [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
 
 **Learning and derivation target:** Define families of problems and distinguish finite examples from algorithms.
@@ -25,6 +27,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-computational-models-complexity-and-quantum-advantage-2"></span>
 
 ### 14.2 Reversible computation and uniform circuit families
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-2).
 
 **Section level:** core. **Required earlier sections:** [5.4](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4), [14.1](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-1).
 
@@ -36,6 +40,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 14.3 Complexity classes and bounded error
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-3).
+
 **Section level:** core. **Required earlier sections:** [14.1](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-1), [14.2](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-2), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
 
 **Learning and derivation target:** Introduce P, BPP, BQP and promise problems at the declared level.
@@ -45,6 +51,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-computational-models-complexity-and-quantum-advantage-4"></span>
 
 ### 14.4 Oracle and data-access models
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4).
 
 **Section level:** core. **Required earlier sections:** [14.1](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-1), [5.3](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-3).
 
@@ -56,6 +64,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 14.5 Accuracy, repetition, and success probability
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-5).
+
 **Section level:** core. **Required earlier sections:** [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8), [14.3](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-3).
 
 **Learning and derivation target:** Derive a representative amplification/repetition argument.
@@ -66,6 +76,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 14.6 Complete resource accounting
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
+
 **Section level:** core. **Required earlier sections:** [14.1](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-1), [14.4](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4), [14.5](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-5).
 
 **Learning and derivation target:** Combine gates, depth, ancillas, measurements and classical processing.
@@ -75,6 +87,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-hybrid-interaction-map"></span>
 
 ### 14.7 Quantum-classical interaction patterns
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hybrid-interaction-map).
 
 **Section level:** core. **Required earlier sections:** [5.1](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [14.1](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-1).
 
@@ -87,6 +101,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 14.8 Classical baselines and advantage claims
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-7).
+
 **Section level:** core. **Required earlier sections:** [14.4](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** State what evidence supports an empirical or asymptotic comparison.
@@ -97,6 +113,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="148-resource-audit-laboratory"></span>
 
 ### 14.9 Resource-audit laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-8).
 
 **Section level:** core. **Required earlier sections:** [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6), [14.7](../section-plans/03-algorithms.md#sec-hybrid-interaction-map), [14.8](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-7).
 
@@ -116,6 +134,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 15.1 Boolean functions as reversible oracles
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-1).
+
 **Section level:** core. **Required earlier sections:** [5.3](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-3), [5.4](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4), [14.4](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4).
 
 **Learning and derivation target:** Define a reversible oracle and its clean-workspace assumptions.
@@ -125,6 +145,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-interference-oracles-and-phase-kickback-2"></span>
 
 ### 15.2 Phase kickback
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-2).
 
 **Section level:** core. **Required earlier sections:** [15.1](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-1), [3.5](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5).
 
@@ -136,6 +158,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 15.3 Deutsch's problem
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-3).
+
 **Section level:** core. **Required earlier sections:** [15.2](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-2), [6.1](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-1).
 
 **Learning and derivation target:** Derive exact outcome probabilities and specify the classical comparison.
@@ -145,6 +169,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-interference-oracles-and-phase-kickback-4"></span>
 
 ### 15.4 The Deutsch-Jozsa promise
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-4).
 
 **Section level:** core. **Required earlier sections:** [15.2](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-2), [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1).
 
@@ -156,6 +182,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 15.5 Bernstein-Vazirani and hidden parity
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-5).
+
 **Section level:** core. **Required earlier sections:** [15.2](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-2), [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2).
 
 **Learning and derivation target:** Derive the phase pattern and recovered bit string.
@@ -165,6 +193,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-simon-hidden-structure"></span>
 
 ### 15.6 Simon’s problem and hidden structure
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-simon-hidden-structure).
 
 **Section level:** core. **Required earlier sections:** [15.1](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-1), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [15.2](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-2).
 
@@ -177,6 +207,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 15.7 Oracle synthesis and uncomputation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-6).
+
 **Section level:** core. **Required earlier sections:** [15.1](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-1), [5.4](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4).
 
 **Learning and derivation target:** Connect an abstract function query to a reversible circuit.
@@ -187,6 +219,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="157-interference-algorithm-laboratory"></span>
 
 ### 15.8 Interference-algorithm laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-7).
 
 **Section level:** core. **Required earlier sections:** [15.4](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-4), [15.5](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-5), [15.6](../section-plans/03-algorithms.md#sec-simon-hidden-structure), [15.7](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-6).
 
@@ -208,6 +242,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 16.1 Search promises and marked subspaces
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-1).
+
 **Section level:** core. **Required earlier sections:** [14.4](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4), [15.1](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-1).
 
 **Learning and derivation target:** Define a search oracle, marked fraction and requested outcome.
@@ -217,6 +253,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-grover-search-amplitude-amplification-and-estimation-2"></span>
 
 ### 16.2 Reflections and the invariant plane
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-2).
 
 **Section level:** core. **Required earlier sections:** [16.1](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-1), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
@@ -228,6 +266,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 16.3 Success probability and stopping
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-3).
+
 **Section level:** core. **Required earlier sections:** [16.2](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-2).
 
 **Learning and derivation target:** Derive the iteration-dependent success curve and overshoot.
@@ -237,6 +277,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-grover-search-amplitude-amplification-and-estimation-4"></span>
 
 ### 16.4 General amplitude amplification
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-4).
 
 **Section level:** core. **Required earlier sections:** [16.2](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-2), [5.4](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4).
 
@@ -248,6 +290,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 16.5 Unknown success probabilities [Advanced]
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-5).
+
 **Section level:** advanced. **Required earlier sections:** [16.3](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-3), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
 
 **Learning and derivation target:** Explain a scoped strategy when the marked fraction is unknown.
@@ -257,6 +301,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-amplitude-estimation-phase-free"></span>
 
 ### 16.6 Amplitude estimation without phase estimation [Advanced]
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-amplitude-estimation-phase-free).
 
 **Section level:** advanced. **Required earlier sections:** [16.3](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-3), [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
 
@@ -269,6 +315,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 16.7 Classical estimation, uncertainty, and query comparisons [Advanced]
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-7).
+
 **Section level:** advanced. **Required earlier sections:** [16.4](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-4), [16.6](../section-plans/03-algorithms.md#sec-amplitude-estimation-phase-free), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** Compare ordinary Monte Carlo and the selected phase-free scheme under the same access, accuracy and success criteria; phase-estimation-based derivations are owned by Chapter 17.
@@ -278,6 +326,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-grover-search-amplitude-amplification-and-estimation-8"></span>
 
 ### 16.8 Search-and-estimation laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-8).
 
 **Section level:** core. **Required earlier sections:** [16.3](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-3), [16.4](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-4), [16.6](../section-plans/03-algorithms.md#sec-amplitude-estimation-phase-free), [16.7](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-7).
 
@@ -297,6 +347,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 17.1 The discrete Fourier transform
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-1).
+
 **Section level:** core. **Required earlier sections:** [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3), [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2).
 
 **Learning and derivation target:** Define phases, normalization and basis conventions.
@@ -306,6 +358,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-fourier-transforms-and-quantum-phase-estimation-2"></span>
 
 ### 17.2 Factorizing the QFT
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-2).
 
 **Section level:** core. **Required earlier sections:** [17.1](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-1), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
@@ -317,6 +371,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 17.3 Inverse transforms and qubit reversal
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-3).
+
 **Section level:** core. **Required earlier sections:** [17.2](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-2), [4.5](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-5).
 
 **Learning and derivation target:** Derive the inverse circuit and distinguish output reversal from numerical indexing.
@@ -326,6 +382,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-fourier-transforms-and-quantum-phase-estimation-4"></span>
 
 ### 17.4 Approximate QFT
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-4).
 
 **Section level:** core. **Required earlier sections:** [17.2](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-2), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
@@ -337,6 +395,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 17.5 Controlled powers and phase kickback
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-5).
+
 **Section level:** core. **Required earlier sections:** [15.2](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-2), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
 **Learning and derivation target:** Derive the phase register for a unitary eigenstate.
@@ -347,6 +407,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 17.6 Exact-grid phase estimation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-6).
+
 **Section level:** core. **Required earlier sections:** [17.3](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-3), [17.5](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-5).
 
 **Learning and derivation target:** Derive deterministic outcomes and binary phase conventions.
@@ -356,6 +418,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-fourier-transforms-and-quantum-phase-estimation-7"></span>
 
 ### 17.7 Off-grid phases and superposed eigenstates
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-7).
 
 **Section level:** core. **Required earlier sections:** [17.6](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-6), [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
 
@@ -368,6 +432,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 17.8 Phase-estimation-based amplitude estimation [Advanced]
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-6).
+
 **Section level:** advanced. **Required earlier sections:** [16.2](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-2), [16.4](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-4), [17.7](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-7).
 
 **Learning and derivation target:** Derive the eigenphase connection and state an error/query guarantee.
@@ -378,6 +444,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="178-precision-success-and-algorithmic-cost"></span>
 
 ### 17.9 Precision, success, and algorithmic cost
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-8).
 
 **Section level:** core. **Required earlier sections:** [17.4](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-4), [17.7](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-7), [17.8](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-6), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
@@ -397,6 +465,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 18.1 From factoring to order finding
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-1).
+
 **Section level:** advanced. **Required earlier sections:** [14.4](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4).
 
 **Learning and derivation target:** Provide a local gcd/modular-arithmetic bridge, then derive the factoring-to-order-finding reduction and its success conditions.
@@ -406,6 +476,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-period-finding-factoring-and-algorithmic-arithmetic-2"></span>
 
 ### 18.2 Reversible modular arithmetic
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-2).
 
 **Section level:** advanced. **Required earlier sections:** [5.3](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-3), [5.4](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4), [18.1](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-1).
 
@@ -417,6 +489,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 18.3 Coherent modular exponentiation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-3).
+
 **Section level:** advanced. **Required earlier sections:** [18.2](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-2), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
 **Learning and derivation target:** Derive controlled powers and workspace uncomputation.
@@ -426,6 +500,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-period-finding-factoring-and-algorithmic-arithmetic-4"></span>
 
 ### 18.4 Period information from phase estimation
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-4).
 
 **Section level:** advanced. **Required earlier sections:** [17.7](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-7), [18.3](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-3).
 
@@ -437,6 +513,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 18.5 Continued fractions and candidate verification
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-5).
+
 **Section level:** advanced. **Required earlier sections:** [18.1](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-1), [18.4](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-4).
 
 **Learning and derivation target:** Derive conditions for recovering a denominator and checking an order.
@@ -447,6 +525,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 18.6 Factoring end to end
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-6).
+
 **Section level:** advanced. **Required earlier sections:** [18.4](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-4), [18.5](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-5).
 
 **Learning and derivation target:** Combine quantum samples with randomized classical postprocessing.
@@ -456,6 +536,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-abelian-hidden-subgroups"></span>
 
 ### 18.7 Discrete logarithms and Abelian hidden subgroups [Advanced]
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-abelian-hidden-subgroups).
 
 **Section level:** advanced. **Required earlier sections:** [17.1](../section-plans/03-algorithms.md#sec-fourier-transforms-and-quantum-phase-estimation-1), [15.6](../section-plans/03-algorithms.md#sec-simon-hidden-structure), [18.4](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-4).
 
@@ -468,6 +550,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 18.8 Arithmetic, synthesis, and resource growth
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-7).
+
 **Section level:** advanced. **Required earlier sections:** [18.2](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-2), [18.3](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-3), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** Count gates, ancillas, precision and success amplification under a named construction.
@@ -478,6 +562,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="188-a-reproducible-factoring-laboratory"></span>
 
 ### 18.9 A reproducible factoring laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-8).
 
 **Section level:** advanced. **Required earlier sections:** [18.6](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-6), [18.8](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-7).
 
@@ -497,6 +583,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 19.1 Hamiltonians, evolution, and access models
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-1).
+
 **Section level:** core. **Required earlier sections:** [2.6](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-6), [3.4](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-4).
 
 **Learning and derivation target:** Specify the simulation task, norm scale, time and accuracy.
@@ -506,6 +594,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-hamiltonian-simulation-and-error-bounds-2"></span>
 
 ### 19.2 Commuting terms and exact factorizations
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-2).
 
 **Section level:** core. **Required earlier sections:** [19.1](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-1).
 
@@ -517,6 +607,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 19.3 First-order product formulas
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-3).
+
 **Section level:** core. **Required earlier sections:** [19.2](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-2), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
 **Learning and derivation target:** Derive a finite-system commutator-based error estimate.
@@ -526,6 +618,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-hamiltonian-simulation-and-error-bounds-4"></span>
 
 ### 19.4 Symmetric and higher-order constructions
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-4).
 
 **Section level:** core. **Required earlier sections:** [19.3](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-3).
 
@@ -537,6 +631,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 19.5 Pauli-term exponentiation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-5).
+
 **Section level:** core. **Required earlier sections:** [3.5](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5), [5.4](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4), [19.1](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-1).
 
 **Learning and derivation target:** Translate a Pauli-string exponential into basis changes, parity accumulation and a rotation.
@@ -546,6 +642,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-hamiltonian-simulation-and-error-bounds-6"></span>
 
 ### 19.6 State, observable, and operator error
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-6).
 
 **Section level:** core. **Required earlier sections:** [19.3](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-3), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
@@ -557,6 +655,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 19.7 Alternative simulation paradigms [Advanced]
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-7).
+
 **Section level:** advanced. **Required earlier sections:** [19.1](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-1), [14.4](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4).
 
 **Learning and derivation target:** Explain the access/precision questions that motivate LCU, qubitization and QSP.
@@ -566,6 +666,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-hamiltonian-adiabatic-model"></span>
 
 ### 19.8 Adiabatic computation and gap assumptions [Advanced]
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hamiltonian-adiabatic-model).
 
 **Section level:** advanced. **Required earlier sections:** [19.1](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-1), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
@@ -577,6 +679,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="198-dynamics-laboratory-and-resource-budget"></span>
 
 ### 19.9 Dynamics laboratory and resource budget
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-8).
 
 **Section level:** core. **Required earlier sections:** [19.3](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-3), [19.4](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-4), [19.5](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-5), [19.6](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-6), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
@@ -596,6 +700,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 20.1 Why matrix access must be specified
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-1).
+
 **Section level:** advanced. **Required earlier sections:** [14.4](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
 **Learning and derivation target:** Define the computational input/output task and its normalization.
@@ -605,6 +711,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-block-encodings-and-quantum-linear-algebra-2"></span>
 
 ### 20.2 Block-encoding definitions and ancillas
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-2).
 
 **Section level:** advanced. **Required earlier sections:** [20.1](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-1), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
@@ -616,6 +724,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 20.3 Linear combinations of unitaries
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-3).
+
 **Section level:** advanced. **Required earlier sections:** [20.2](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-2), [5.4](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4).
 
 **Learning and derivation target:** Derive PREPARE/SELECT and the encoded weighted sum.
@@ -625,6 +735,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-block-encodings-and-quantum-linear-algebra-4"></span>
 
 ### 20.4 Composing encoded operations
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-4).
 
 **Section level:** advanced. **Required earlier sections:** [20.2](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-2), [20.3](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-3).
 
@@ -636,6 +748,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 20.5 Postselection and amplification
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-5).
+
 **Section level:** advanced. **Required earlier sections:** [20.3](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-3), [16.4](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-4).
 
 **Learning and derivation target:** Derive success probability and explain input-state dependence.
@@ -646,6 +760,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 20.6 Quantum linear systems and conditioning
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-6).
+
 **Section level:** advanced. **Required earlier sections:** [20.2](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-2), [20.5](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-5), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
 **Learning and derivation target:** Specify a state-output task and derive a representative condition-number/success dependence. A directly constructed tiny inverse block is an explicitly costly reference; scalable spectral transformation is developed in Chapter 21.
@@ -655,6 +771,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-qubitization-invariant-subspaces"></span>
 
 ### 20.7 Qubitization and invariant subspaces [Advanced]
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-qubitization-invariant-subspaces).
 
 **Section level:** advanced. **Required earlier sections:** [20.2](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-2), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
@@ -667,6 +785,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 20.8 Spectral functions and application contracts
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-7).
+
 **Section level:** advanced. **Required earlier sections:** [20.6](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-6), [20.7](../section-plans/03-algorithms.md#sec-qubitization-invariant-subspaces).
 
 **Learning and derivation target:** State the domain, spectral promise and requested matrix function.
@@ -677,6 +797,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="208-linear-algebra-laboratory"></span>
 
 ### 20.9 Linear-algebra laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-8).
 
 **Section level:** advanced. **Required earlier sections:** [20.3](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-3), [20.5](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-5), [20.6](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-6), [20.8](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-7).
 
@@ -696,6 +818,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 21.1 A scalar signal encoded in SU(2)
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-1).
+
 **Section level:** advanced. **Required earlier sections:** [3.5](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5), [20.2](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-2).
 
 **Learning and derivation target:** Fix a QSP convention and derive the elementary signal unitary.
@@ -705,6 +829,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-signal-processing-and-singular-value-transformation-2"></span>
 
 ### 21.2 Phase-controlled polynomial sequences
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-2).
 
 **Section level:** advanced. **Required earlier sections:** [21.1](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-1).
 
@@ -716,6 +842,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 21.3 Admissibility and approximation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-3).
+
 **Section level:** advanced. **Required earlier sections:** [21.2](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-2), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
 **Learning and derivation target:** State parity, boundedness and domain constraints for the selected theorem.
@@ -725,6 +853,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-signal-processing-and-singular-value-transformation-4"></span>
 
 ### 21.4 Phase synthesis and numerical stability
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-4).
 
 **Section level:** advanced. **Required earlier sections:** [21.3](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-3), [2.8](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-8).
 
@@ -736,6 +866,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 21.5 From eigenvalues to singular values
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-5).
+
 **Section level:** advanced. **Required earlier sections:** [20.7](../section-plans/03-algorithms.md#sec-qubitization-invariant-subspaces), [21.2](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-2), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
 **Learning and derivation target:** Derive how a block encoding and projected rotations act on invariant subspaces.
@@ -745,6 +877,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-signal-processing-and-singular-value-transformation-6"></span>
 
 ### 21.6 A precise QSVT theorem [Advanced]
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-6).
 
 **Section level:** advanced. **Required earlier sections:** [21.3](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-3), [21.5](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-5).
 
@@ -756,6 +890,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 21.7 Applications: filtering, inversion, and evolution
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-7).
+
 **Section level:** advanced. **Required earlier sections:** [21.6](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-6), [20.8](../section-plans/03-algorithms.md#sec-block-encodings-and-quantum-linear-algebra-7), [19.1](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-1).
 
 **Learning and derivation target:** Derive one complete application and state spectral-gap/conditioning requirements.
@@ -766,6 +902,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 21.8 Precision and complete complexity
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-8).
+
 **Section level:** advanced. **Required earlier sections:** [21.4](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-4), [21.7](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-7), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** Combine polynomial degree, approximation, synthesis error and oracle costs.
@@ -775,6 +913,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-signal-processing-and-singular-value-transformation-9"></span>
 
 ### 21.9 Signal-processing laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-9).
 
 **Section level:** advanced. **Required earlier sections:** [21.4](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-4), [21.5](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-5), [21.7](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-7), [21.8](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-8).
 
@@ -794,6 +934,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 22.1 Walk models and computational tasks
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-1).
+
 **Section level:** advanced. **Required earlier sections:** [14.4](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
 **Learning and derivation target:** Define a selected discrete-time quantum walk and its classical comparison.
@@ -803,6 +945,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-walks-lower-bounds-and-algorithm-design-2"></span>
 
 ### 22.2 Unitarity, spectra, and dynamics
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-2).
 
 **Section level:** advanced. **Required earlier sections:** [22.1](../section-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-1), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
@@ -814,6 +958,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 22.3 Search and marked vertices
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-3).
+
 **Section level:** advanced. **Required earlier sections:** [22.2](../section-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-2), [16.2](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-2).
 
 **Learning and derivation target:** Specify the promised search task and derive a tractable success example.
@@ -823,6 +969,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-walks-lower-bounds-and-algorithm-design-4"></span>
 
 ### 22.4 Hitting behavior and algorithmic resources
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-4).
 
 **Section level:** advanced. **Required earlier sections:** [22.3](../section-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-3), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
@@ -834,6 +982,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 22.5 The polynomial method [Advanced]
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-5).
+
 **Section level:** advanced. **Required earlier sections:** [14.4](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4), [15.1](../section-plans/03-algorithms.md#sec-interference-oracles-and-phase-kickback-1).
 
 **Learning and derivation target:** Derive how oracle algorithms induce bounded-degree acceptance expressions in a representative setting.
@@ -843,6 +993,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-walks-lower-bounds-and-algorithm-design-6"></span>
 
 ### 22.6 A representative query lower bound
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-6).
 
 **Section level:** advanced. **Required earlier sections:** [22.5](../section-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-5), [16.1](../section-plans/03-algorithms.md#sec-grover-search-amplitude-amplification-and-estimation-1).
 
@@ -854,6 +1006,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 22.7 Choosing an algorithmic framework
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-7).
+
 **Section level:** advanced. **Required earlier sections:** [20.7](../section-plans/03-algorithms.md#sec-qubitization-invariant-subspaces), [21.7](../section-plans/03-algorithms.md#sec-quantum-signal-processing-and-singular-value-transformation-7), [22.4](../section-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-4), [22.6](../section-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-6).
 
 **Learning and derivation target:** Relate walks, amplification and spectral transformations without claiming every method dominates.
@@ -863,6 +1017,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-hamiltonian-complexity-boundary"></span>
 
 ### 22.8 Hamiltonian complexity and limits of optimization [Advanced]
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-hamiltonian-complexity-boundary).
 
 **Section level:** advanced. **Required earlier sections:** [14.3](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-3), [19.1](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-1), [6.3](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-3).
 
@@ -874,6 +1030,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="228-algorithm-design-laboratory"></span>
 
 ### 22.9 Algorithm-design laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-8).
 
 **Section level:** advanced. **Required earlier sections:** [22.3](../section-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-3), [22.6](../section-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-6), [22.7](../section-plans/03-algorithms.md#sec-quantum-walks-lower-bounds-and-algorithm-design-7), [22.8](../section-plans/03-algorithms.md#sec-hamiltonian-complexity-boundary).
 

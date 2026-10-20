@@ -18,6 +18,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 44.1 Requested outputs and exact-simulation cost
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-1).
+
 **Section level:** core. **Required earlier sections:** [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2), [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3).
 
 **Learning and derivation target:** Derive statevector/density storage and distinguish state, amplitude, sample and expectation requests.
@@ -28,6 +30,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="342-applying-local-gates-by-tensor-indices"></span>
 
 ### 44.2 Applying local gates by tensor indices
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-2).
 
 **Section level:** core. **Required earlier sections:** [4.6](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-6), [5.1](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1).
 
@@ -40,6 +44,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 44.3 Observables and measurement execution
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-3).
+
 **Section level:** core. **Required earlier sections:** [44.2](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-2), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [6.3](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-3).
 
 **Learning and derivation target:** Derive exact expectations, probabilities and conditional sampling.
@@ -50,6 +56,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="344-density-matrix-and-channel-execution"></span>
 
 ### 44.4 Density-matrix and channel execution
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-4).
 
 **Section level:** core. **Required earlier sections:** [44.2](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-2), [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4), [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3).
 
@@ -62,6 +70,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 44.5 Batching and differentiation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-5).
+
 **Section level:** core. **Required earlier sections:** [44.2](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-2), [23.6](../section-plans/04-variational.md#sec-parameterized-circuits-quantum-gradients-and-differentiation-6).
 
 **Learning and derivation target:** Explain batch semantics and differentiation through a simulated calculation.
@@ -72,6 +82,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="346-precision-stability-and-normalization-drift"></span>
 
 ### 44.6 Precision, stability, and normalization drift
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-6).
 
 **Section level:** core. **Required earlier sections:** [44.2](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-2), [2.8](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-8).
 
@@ -84,6 +96,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 44.7 Parallel execution and communication
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-7).
+
 **Section level:** core. **Required earlier sections:** [44.1](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-1), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** Derive a simple data distribution and gate-dependent communication model.
@@ -94,6 +108,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="348-exact-executor-laboratory-and-benchmarks"></span>
 
 ### 44.8 Exact-executor laboratory and benchmarks
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-8).
 
 **Section level:** core. **Required earlier sections:** [44.2](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-2), [44.3](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-3), [44.6](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-6), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
@@ -115,6 +131,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 45.1 Clifford operations and stabilizer states
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-1).
+
 **Section level:** advanced. **Required earlier sections:** [30.1](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-1), [30.2](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-2), [5.1](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1).
 
 **Learning and derivation target:** State the allowed operations and efficient-description setting.
@@ -125,6 +143,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="352-tableau-representations-and-phase-conventions"></span>
 
 ### 45.2 Tableau representations and phase conventions
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-2).
 
 **Section level:** advanced. **Required earlier sections:** [45.1](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-1).
 
@@ -137,6 +157,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 45.3 Clifford gate updates
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-3).
+
 **Section level:** advanced. **Required earlier sections:** [45.2](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-2), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
 **Learning and derivation target:** Derive update rules for a selected generating set.
@@ -147,6 +169,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="354-measurement-and-classical-control"></span>
 
 ### 45.4 Measurement and classical control
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-4).
 
 **Section level:** advanced. **Required earlier sections:** [45.3](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-3), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2).
 
@@ -159,6 +183,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 45.5 The Gottesman-Knill theorem
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-5).
+
 **Section level:** advanced. **Required earlier sections:** [45.3](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-3), [45.4](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-4), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** State the simulation claim with input, gate, measurement and output assumptions.
@@ -169,6 +195,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="356-beyond-stabilizers-non-clifford-resources"></span>
 
 ### 45.6 Beyond stabilizers: non-Clifford resources
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-6).
 
 **Section level:** advanced. **Required earlier sections:** [45.3](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-3), [32.6](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-6).
 
@@ -181,7 +209,9 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 45.7 Magic as a computational resource [Advanced]
 
-**Section level:** advanced. **Required earlier sections:** [45.6](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-6).
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-7).
+
+**Section level:** advanced. **Required earlier sections:** [45.6](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-6), [11.3](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-3), [11.5](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-5).
 
 **Learning and derivation target:** State a selected resource notion and its relation to simulation constraints.
 
@@ -191,6 +221,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="358-stabilizer-simulation-laboratory"></span>
 
 ### 45.8 Stabilizer-simulation laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-8).
 
 **Section level:** advanced. **Required earlier sections:** [45.3](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-3), [45.4](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-4), [44.2](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-2).
 
@@ -212,6 +244,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 46.1 Entanglement and compact state representations
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-1).
+
 **Section level:** advanced. **Required earlier sections:** [7.2](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-2).
 
 **Learning and derivation target:** Relate Schmidt rank across cuts to representational requirements.
@@ -222,6 +256,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="362-building-an-mps-by-successive-svds"></span>
 
 ### 46.2 Building an MPS by successive SVDs
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-2).
 
 **Section level:** advanced. **Required earlier sections:** [46.1](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-1), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
@@ -234,6 +270,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 46.3 Gauge freedom and canonical forms
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-3).
+
 **Section level:** advanced. **Required earlier sections:** [46.2](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-2).
 
 **Learning and derivation target:** Derive equivalent tensor descriptions and orthogonality conditions.
@@ -244,6 +282,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="364-single-and-two-qubit-updates"></span>
 
 ### 46.4 Single- and two-qubit updates
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-4).
 
 **Section level:** advanced. **Required earlier sections:** [46.3](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-3), [4.4](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-4).
 
@@ -256,6 +296,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 46.5 Truncation and discarded weight
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-5).
+
 **Section level:** advanced. **Required earlier sections:** [46.2](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-2), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
 **Learning and derivation target:** Derive a scoped error relation with normalization assumptions.
@@ -266,6 +308,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="366-accumulated-error-and-observable-accuracy"></span>
 
 ### 46.6 Accumulated error and observable accuracy
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-6).
 
 **Section level:** advanced. **Required earlier sections:** [46.4](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-4), [46.5](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-5), [10.3](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-3).
 
@@ -278,6 +322,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 46.7 Bond dimension, entanglement, and cost
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-7).
+
 **Section level:** advanced. **Required earlier sections:** [46.4](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-4), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** Derive memory/operation growth for a stated update method.
@@ -288,6 +334,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="368-mps-laboratory"></span>
 
 ### 46.8 MPS laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-8).
 
 **Section level:** advanced. **Required earlier sections:** [46.3](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-3), [46.4](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-4), [46.5](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-5), [46.6](../section-plans/06-simulation.md#sec-matrix-product-states-entanglement-and-truncation-6), [44.2](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-2).
 
@@ -309,6 +357,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 47.1 Circuits as indexed tensor networks
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-1).
+
 **Section level:** advanced. **Required earlier sections:** [4.6](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-6), [5.1](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1).
 
 **Learning and derivation target:** Derive gate/state/measurement tensors and their connected indices.
@@ -319,6 +369,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="372-contraction-order-and-intermediate-size"></span>
 
 ### 47.2 Contraction order and intermediate size
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-2).
 
 **Section level:** advanced. **Required earlier sections:** [47.1](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-1), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
@@ -331,6 +383,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 47.3 Path selection and structural parameters
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-3).
+
 **Section level:** advanced. **Required earlier sections:** [47.2](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-2).
 
 **Learning and derivation target:** Explain a selected path heuristic and graph-based complexity intuition.
@@ -341,6 +395,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="374-slicing-and-recomputation"></span>
 
 ### 47.4 Slicing and recomputation
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-4).
 
 **Section level:** advanced. **Required earlier sections:** [47.2](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-2).
 
@@ -353,6 +409,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 47.5 Amplitudes, expectations, sampling, and full states
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-5).
+
 **Section level:** advanced. **Required earlier sections:** [47.1](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-1), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2).
 
 **Learning and derivation target:** Specify distinct output tasks and their contraction implications.
@@ -363,6 +421,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 47.6 Circuit cutting and classical reconstruction
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-circuit-cutting-reconstruction).
+
 **Section level:** advanced. **Required earlier sections:** [47.1](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-1), [6.5](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-5), [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3).
 
 **Learning and derivation target:** Derive a small cut decomposition with coefficients, fragment preparation/measurement settings and a precisely requested reconstructed observable.
@@ -372,6 +432,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-circuit-cutting-statistics"></span>
 
 ### 47.7 Reconstruction variance and sampling overhead
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-circuit-cutting-statistics).
 
 **Section level:** advanced. **Required earlier sections:** [47.6](../section-plans/06-simulation.md#sec-circuit-cutting-reconstruction), [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7).
 
@@ -385,6 +447,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 47.8 Hybrid and distributed strategies
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-6).
+
 **Section level:** advanced. **Required earlier sections:** [47.4](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-4), [44.7](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-7).
 
 **Learning and derivation target:** Explain partitioning and a selected statevector/network or sliced execution strategy.
@@ -397,6 +461,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 47.9 Approximation and numerical reliability
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-7).
+
 **Section level:** advanced. **Required earlier sections:** [47.2](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-2), [2.8](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-8).
 
 **Learning and derivation target:** State any approximations and contraction/rounding validation criteria.
@@ -408,6 +474,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="478-tensor-network-laboratory"></span>
 
 ### 47.10 Tensor-network laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-8).
 
 **Section level:** advanced. **Required earlier sections:** [47.2](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-2), [47.3](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-3), [47.4](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-4), [47.5](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-5), [47.9](../section-plans/06-simulation.md#sec-tensor-networks-contraction-and-hybrid-simulation-strategies-7).
 

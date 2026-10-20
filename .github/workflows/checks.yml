@@ -17,6 +17,7 @@ jobs:
       - run: git diff --exit-code -- docs/index.md
       - run: python scripts/build_curriculum.py --check
       - run: python scripts/review_curriculum.py --check
+      - run: python scripts/build_scholarly_plan.py --check
       - run: python scripts/check_prose.py
       - run: python -m mkdocs build --strict
   examples:

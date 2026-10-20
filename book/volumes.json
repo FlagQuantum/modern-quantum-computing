@@ -1,0 +1,134 @@
+{
+  "revision": "2026-10-20",
+  "status": "Recommended seven-volume editorial proposal; final packaging and typeset budgets pending",
+  "policy": "Volume allocation is a dependency-compatible presentation overlay. Global chapter numbers and stable IDs remain unchanged. A volume is a reference/teaching resource, not a requirement to finish all previous volumes.",
+  "volumes": [
+    {
+      "id": "I",
+      "title": "Foundations of Quantum Computing",
+      "chapters": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        14
+      ],
+      "role": "Mathematical bridges, states, circuits, measurement and protocols, followed by computational/access/resource models. Chapter 14 is placed here to complete a first-course foundation without requiring advanced information theory.",
+      "front_back_budget": [
+        24,
+        40
+      ]
+    },
+    {
+      "id": "II",
+      "title": "Quantum Information, Communication, and Security",
+      "chapters": [
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "role": "Channels, distinguishability, inference, entropy, compression, entanglement manipulation and security. This advanced information route is optional before the first algorithm or compiler course.",
+      "front_back_budget": [
+        24,
+        40
+      ]
+    },
+    {
+      "id": "III",
+      "title": "Quantum Algorithms and Their Limits",
+      "chapters": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "role": "Oracle algorithms through arithmetic, dynamics, block encodings, QSVT and complexity. Core algorithms precede optional spectral/complexity proofs.",
+      "front_back_budget": [
+        24,
+        40
+      ]
+    },
+    {
+      "id": "IV",
+      "title": "Differentiable and Hybrid Quantum Computing",
+      "chapters": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        48,
+        49
+      ],
+      "role": "Gradients, optimization, chemistry, QAOA and learning, followed by research-method training and the H2 capstone. Chapter 48 is physically placed here before both capstones need it.",
+      "front_back_budget": [
+        24,
+        40
+      ]
+    },
+    {
+      "id": "V",
+      "title": "Noise, Error Correction, and Logical Computation",
+      "chapters": [
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        50
+      ],
+      "role": "Noise and device characterization through code conditions, decoding, fault tolerance and resources; the finite memory case study closes the route.",
+      "front_back_budget": [
+        24,
+        40
+      ]
+    },
+    {
+      "id": "VI",
+      "title": "Physical Realizations of Quantum Computing",
+      "chapters": [
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "role": "Shared physical bridges and six alternative platform branches. Teach one branch in depth; compare the rest through common contracts.",
+      "front_back_budget": [
+        24,
+        40
+      ]
+    },
+    {
+      "id": "VII",
+      "title": "Quantum Programming, Compilation, and Classical Simulation",
+      "chapters": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "role": "Semantics, synthesis, routing, scheduling and control, followed by exact/stabilizer/MPS/tensor-network execution. Core compilation can enter from supplied targets; advanced control/logical branches import selected earlier-volume sections.",
+      "front_back_budget": [
+        24,
+        40
+      ]
+    }
+  ]
+}

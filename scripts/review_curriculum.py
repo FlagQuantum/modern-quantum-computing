@@ -122,7 +122,7 @@ def build():
         f"- Exact prerequisite graph: {sum(len(s['requires']) for s in byid.values())} direct edges, each earlier than its use; no cycles or unresolved section references.\n",
         f"- Learning paths: {len(routes)} explicit routes reconstructed from prerequisites and checked for missing entry knowledge.\n",
         "- Specialist validation, exact theorem/source acceptance, complete cross-layer programs and target-reader testing remain pending.\n",
-        "- Scope/volume choice and a tagged architecture freeze remain pending; no new body chapters are authorized by this audit alone.\n",
+        "- A [seven-volume allocation](volume-plan.md) and [all-section proof/source plan](proof-plan.md) are proposed; final packaging and a tagged architecture freeze remain pending; no new body chapters are authorized by this audit alone.\n",
     ]
     ledger = [
         "# Section-by-section architecture ledger\n\n",

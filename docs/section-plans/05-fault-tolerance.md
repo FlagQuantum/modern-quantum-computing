@@ -16,6 +16,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 28.1 Noise models and system-environment assumptions
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-1).
+
 **Section level:** core. **Required earlier sections:** [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4), [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3).
 
 **Learning and derivation target:** State memory, correlation and initial-state assumptions of a noise description.
@@ -25,6 +27,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-noise-open-systems-and-error-mitigation-2"></span>
 
 ### 28.2 Discrete channels: dephasing and depolarization
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-2).
 
 **Section level:** core. **Required earlier sections:** [28.1](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-1), [3.3](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-3).
 
@@ -36,6 +40,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 28.3 Amplitude damping and relaxation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-3).
+
 **Section level:** core. **Required earlier sections:** [28.1](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-1), [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3).
 
 **Learning and derivation target:** Derive Kraus operators and their physical parameter interpretation.
@@ -45,6 +51,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-noise-open-systems-and-error-mitigation-4"></span>
 
 ### 28.4 Lindblad dynamics
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-4).
 
 **Section level:** core. **Required earlier sections:** [28.1](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-1), [2.6](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-6).
 
@@ -56,6 +64,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 28.5 Quantum trajectories and unravelings
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-5).
+
 **Section level:** core. **Required earlier sections:** [28.4](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-4), [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6), [9.7](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-7).
 
 **Learning and derivation target:** Explain conditional stochastic evolution and averaging over records.
@@ -65,6 +75,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-noise-open-systems-and-error-mitigation-6"></span>
 
 ### 28.6 Correlated and non-Markovian limitations [Advanced]
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-6).
 
 **Section level:** advanced. **Required earlier sections:** [28.1](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-1), [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4).
 
@@ -76,6 +88,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 28.7 Error mitigation: bias, variance, and cost
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-7).
+
 **Section level:** core. **Required earlier sections:** [28.2](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-2), [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7).
 
 **Learning and derivation target:** Derive one scoped mitigation estimator and its noise-model requirements.
@@ -85,6 +99,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-noise-open-systems-and-error-mitigation-8"></span>
 
 ### 28.8 Calibration, drift, and model validation
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-8).
 
 **Section level:** core. **Required earlier sections:** [28.1](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-1), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
 
@@ -96,6 +112,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 28.9 SPAM, gate characterization, and randomized benchmarking [Advanced]
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-device-characterization-benchmarking).
+
 **Section level:** advanced. **Required earlier sections:** [9.5](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-5), [10.5](../section-plans/02-information.md#sec-channel-error-metrics), [10.6](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-5), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
 
 **Learning and derivation target:** Distinguish preparation/measurement error, process tomography and randomized benchmarking. Introduce the needed finite gate-ensemble/twirling bridge locally, derive one decay model, and state stationarity/gate-dependence assumptions.
@@ -106,6 +124,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="289-noise-laboratory-and-evidence-boundaries"></span>
 
 ### 28.10 Noise laboratory and evidence boundaries
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-9).
 
 **Section level:** core. **Required earlier sections:** [28.2](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-2), [28.3](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-3), [28.4](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-4), [28.8](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-8), [28.9](../section-plans/05-fault-tolerance.md#sec-device-characterization-benchmarking).
 
@@ -125,6 +145,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 29.1 The quantum error-correction problem
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-1).
+
 **Section level:** core. **Required earlier sections:** [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2).
 
 **Learning and derivation target:** Explain why copying, direct logical measurement and classical redundancy need care.
@@ -134,6 +156,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-error-correction-conditions-and-recovery-2"></span>
 
 ### 29.2 Encoding and logical information
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-2).
 
 **Section level:** core. **Required earlier sections:** [29.1](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-1), [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3).
 
@@ -145,6 +169,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 29.3 Repetition codes and syndrome extraction
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-3).
+
 **Section level:** core. **Required earlier sections:** [29.2](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-2), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2).
 
 **Learning and derivation target:** Derive bit-flip checks and why syndrome measurement need not reveal the logical state.
@@ -154,6 +180,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-error-correction-conditions-and-recovery-4"></span>
 
 ### 29.4 Error sets and coherent combinations
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-4).
 
 **Section level:** core. **Required earlier sections:** [29.2](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-2), [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3).
 
@@ -165,6 +193,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 29.5 Knill-Laflamme conditions
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-5).
+
 **Section level:** core. **Required earlier sections:** [29.4](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-4), [2.4](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-4).
 
 **Learning and derivation target:** State and prove the finite-dimensional correction condition at the declared level.
@@ -174,6 +204,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-error-correction-conditions-and-recovery-6"></span>
 
 ### 29.6 Constructing a recovery operation
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-6).
 
 **Section level:** core. **Required earlier sections:** [29.5](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-5), [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3).
 
@@ -185,6 +217,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 29.7 Degeneracy, distance, and limitations
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-7).
+
 **Section level:** core. **Required earlier sections:** [29.5](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-5), [29.6](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-6).
 
 **Learning and derivation target:** Explain indistinguishable error actions, uncorrectable errors and the meaning of distance.
@@ -195,6 +229,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 29.8 Beyond bit-flip protection
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-8).
+
 **Section level:** core. **Required earlier sections:** [29.3](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-3), [3.5](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5).
 
 **Learning and derivation target:** Derive a small concatenated bit/phase repetition construction without relying on undeveloped stabilizer or CSS terminology; those generalizations belong to Chapter 30.
@@ -204,6 +240,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-error-correction-conditions-and-recovery-9"></span>
 
 ### 29.9 Recovery laboratory and logical-state verification
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-9).
 
 **Section level:** core. **Required earlier sections:** [29.5](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-5), [29.6](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-6), [29.8](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-8).
 
@@ -223,6 +261,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 30.1 Pauli groups and binary symplectic algebra
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-1).
+
 **Section level:** core. **Required earlier sections:** [3.5](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5), [4.3](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-3).
 
 **Learning and derivation target:** Introduce arithmetic over the binary field, elementary row reduction and group terminology locally; derive Pauli binary/phase representation and the symplectic commutation form.
@@ -232,6 +272,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-stabilizer-codes-logical-operators-and-decoding-2"></span>
 
 ### 30.2 Stabilizer groups and code spaces
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-2).
 
 **Section level:** core. **Required earlier sections:** [30.1](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-1).
 
@@ -243,6 +285,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 30.3 Syndromes as commutation data
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-3).
+
 **Section level:** core. **Required earlier sections:** [30.2](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-2), [29.3](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-3).
 
 **Learning and derivation target:** Derive the syndrome map for Pauli errors.
@@ -252,6 +296,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-stabilizer-codes-logical-operators-and-decoding-4"></span>
 
 ### 30.4 CSS codes from classical checks
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-4).
 
 **Section level:** core. **Required earlier sections:** [30.1](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-1), [30.2](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-2).
 
@@ -263,6 +309,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 30.5 Logical operators and code distance
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-5).
+
 **Section level:** core. **Required earlier sections:** [30.2](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-2), [30.3](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-3), [29.7](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-7).
 
 **Learning and derivation target:** Derive the normalizer quotient interpretation and identify logical representatives.
@@ -272,6 +320,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-stabilizer-codes-logical-operators-and-decoding-6"></span>
 
 ### 30.6 Degeneracy and decoding choices
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-6).
 
 **Section level:** core. **Required earlier sections:** [30.3](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-3), [30.5](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-5).
 
@@ -283,6 +333,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 30.7 Syndrome circuits and fault propagation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-7).
+
 **Section level:** core. **Required earlier sections:** [30.3](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-3), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
 
 **Learning and derivation target:** Derive a check-measurement circuit and track ancilla-induced faults.
@@ -293,6 +345,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 30.8 Decoder interfaces and evidence records
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-8).
+
 **Section level:** core. **Required earlier sections:** [30.5](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-5), [30.6](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-6).
 
 **Learning and derivation target:** Specify syndrome layout, boundaries, correction representation and logical success.
@@ -302,6 +356,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-ldpc-architecture"></span>
 
 ### 30.9 Quantum LDPC families and architectural tradeoffs [Advanced]
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-quantum-ldpc-architecture).
 
 **Section level:** advanced. **Required earlier sections:** [30.4](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-4), [30.5](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-5), [30.7](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-7).
 
@@ -314,6 +370,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 30.10 Graph states and measurement-based computation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-stabilizer-graph-state-mbqc).
+
 **Section level:** core. **Required earlier sections:** [30.1](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-1), [30.2](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-2), [7.5](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-5).
 
 **Learning and derivation target:** Derive a one-step measurement-based gate from teleportation and graph-state stabilizers, including adaptive corrections.
@@ -325,6 +383,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="309-stabilizer-code-laboratory"></span>
 
 ### 30.11 Stabilizer-code laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-9).
 
 **Section level:** core. **Required earlier sections:** [30.3](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-3), [30.4](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-4), [30.5](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-5), [30.7](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-7), [30.8](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-8).
 
@@ -344,6 +404,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 31.1 From stabilizer checks to a surface-code lattice
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-1).
+
 **Section level:** advanced. **Required earlier sections:** [30.4](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-4), [30.5](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-5).
 
 **Learning and derivation target:** Define a chosen patch, qubit layout, checks and boundaries precisely.
@@ -353,6 +415,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-surface-codes-and-repeated-syndrome-measurements-2"></span>
 
 ### 31.2 Logical operators and distance
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-2).
 
 **Section level:** advanced. **Required earlier sections:** [31.1](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-1).
 
@@ -364,6 +428,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 31.3 Syndrome-extraction circuits
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-3).
+
 **Section level:** advanced. **Required earlier sections:** [31.1](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-1), [30.7](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-7).
 
 **Learning and derivation target:** Derive a repeated check schedule and explain scheduling/fault-propagation constraints.
@@ -373,6 +439,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-surface-codes-and-repeated-syndrome-measurements-4"></span>
 
 ### 31.4 Measurement faults and detection events
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-4).
 
 **Section level:** advanced. **Required earlier sections:** [31.3](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-3), [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
 
@@ -384,6 +452,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 31.5 Space-time decoding
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-5).
+
 **Section level:** advanced. **Required earlier sections:** [31.4](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-4), [30.8](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-8).
 
 **Learning and derivation target:** State the noise model, graph and boundary conventions of a selected decoder.
@@ -393,6 +463,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-surface-codes-and-repeated-syndrome-measurements-6"></span>
 
 ### 31.6 Logical memory and failure observables
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-6).
 
 **Section level:** advanced. **Required earlier sections:** [31.2](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-2), [31.3](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-3), [31.5](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-5).
 
@@ -404,6 +476,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 31.7 Finite-size scaling and threshold claims
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-7).
+
 **Section level:** advanced. **Required earlier sections:** [31.6](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-6), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
 
 **Learning and derivation target:** Explain per-round/per-shot metrics, uncertainty and the assumptions behind scaling analysis.
@@ -413,6 +487,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-surface-codes-and-repeated-syndrome-measurements-8"></span>
 
 ### 31.8 Surface-code laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-8).
 
 **Section level:** advanced. **Required earlier sections:** [31.4](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-4), [31.5](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-5), [31.6](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-6), [31.7](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-7).
 
@@ -432,6 +508,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 32.1 Fault tolerance and propagation of errors
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-1).
+
 **Section level:** advanced. **Required earlier sections:** [28.1](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-1), [30.7](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-7).
 
 **Learning and derivation target:** Define a fault model and the containment property of a selected operation.
@@ -441,6 +519,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-fault-tolerant-gates-and-universal-logical-computation-2"></span>
 
 ### 32.2 Fault-tolerant preparation, measurement, and recovery
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-2).
 
 **Section level:** advanced. **Required earlier sections:** [32.1](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-1), [29.6](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-6).
 
@@ -452,6 +532,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 32.3 Transversal operations and their limits
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-3).
+
 **Section level:** advanced. **Required earlier sections:** [32.1](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-1), [30.5](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-5).
 
 **Learning and derivation target:** Derive selected logical actions and state a relevant universality limitation with assumptions.
@@ -461,6 +543,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-fault-tolerant-gates-and-universal-logical-computation-4"></span>
 
 ### 32.4 Threshold reasoning [Advanced]
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-4).
 
 **Section level:** advanced. **Required earlier sections:** [32.1](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-1), [32.2](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-2), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
 
@@ -472,6 +556,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 32.5 Code deformation and lattice surgery
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-5).
+
 **Section level:** advanced. **Required earlier sections:** [31.1](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-1), [31.3](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-3), [32.2](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-2).
 
 **Learning and derivation target:** Derive one logical measurement/operation from changing or merging checks.
@@ -481,6 +567,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-fault-tolerant-gates-and-universal-logical-computation-6"></span>
 
 ### 32.6 Magic states and gate injection
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-6).
 
 **Section level:** advanced. **Required earlier sections:** [7.5](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-5), [30.5](../section-plans/05-fault-tolerance.md#sec-stabilizer-codes-logical-operators-and-decoding-5), [32.3](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-3).
 
@@ -492,6 +580,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 32.7 Distillation and rejection costs
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-7).
+
 **Section level:** advanced. **Required earlier sections:** [32.6](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-6), [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7).
 
 **Learning and derivation target:** Derive a small protocol's acceptance/error mechanism under a specified input model.
@@ -501,6 +591,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-fault-tolerant-gates-and-universal-logical-computation-8"></span>
 
 ### 32.8 Universal logical computation laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-8).
 
 **Section level:** advanced. **Required earlier sections:** [32.2](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-2), [32.3](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-3), [32.6](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-6), [32.7](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-7).
 
@@ -520,6 +612,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 33.1 Define an algorithmic workload and success target
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-1).
+
 **Section level:** advanced. **Required earlier sections:** [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** Specify input/output accuracy, overall failure budget and logical circuit.
@@ -529,6 +623,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-from-logical-algorithms-to-physical-resource-estimates-2"></span>
 
 ### 33.2 Logical synthesis and non-Clifford resources
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-2).
 
 **Section level:** advanced. **Required earlier sections:** [5.7](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-7), [32.6](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-6).
 
@@ -540,6 +636,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 33.3 Distributing an error budget
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-3).
+
 **Section level:** advanced. **Required earlier sections:** [33.1](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-1), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
 **Learning and derivation target:** Use stated bounds to allocate algorithmic, synthesis and logical errors.
@@ -549,6 +647,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-from-logical-algorithms-to-physical-resource-estimates-4"></span>
 
 ### 33.4 Code distance and logical reliability
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-4).
 
 **Section level:** advanced. **Required earlier sections:** [32.4](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-4), [33.3](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-3).
 
@@ -560,6 +660,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 33.5 Magic-state factories and scheduling
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-5).
+
 **Section level:** advanced. **Required earlier sections:** [32.7](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-7), [33.2](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-2).
 
 **Learning and derivation target:** Model production, acceptance, consumption and bottlenecks.
@@ -569,6 +671,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-from-logical-algorithms-to-physical-resource-estimates-6"></span>
 
 ### 33.6 Physical qubits, cycles, and runtime
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-6).
 
 **Section level:** advanced. **Required earlier sections:** [33.4](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-4), [33.5](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-5).
 
@@ -580,6 +684,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 33.7 Sensitivity, uncertainty, and comparison
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-7).
+
 **Section level:** advanced. **Required earlier sections:** [33.6](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-6), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
 
 **Learning and derivation target:** Explain which input assumptions dominate a resource estimate.
@@ -589,6 +695,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-from-logical-algorithms-to-physical-resource-estimates-8"></span>
 
 ### 33.8 Resource-estimation laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-8).
 
 **Section level:** advanced. **Required earlier sections:** [33.1](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-1), [33.3](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-3), [33.6](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-6), [33.7](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-7).
 

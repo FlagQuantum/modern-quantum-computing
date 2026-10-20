@@ -20,7 +20,7 @@
 | Physical realization | 34 shared physics/target models; 35 superconducting; 36 trapped ions; 37 neutral atoms; 38 photonics; 39 spins; 40 topological theory/candidates | Shared oscillator/control bridges and optional bosonic correction; choose one platform; theoretical protection, physical candidates and demonstrated operations have separate evidence |
 | Quantum compilation | 41 semantics/IR/optimization; 42 synthesis/mapping/routing/scheduling; 43 control/dynamic/logical/runtime lowering | Basic compilation uses an explicit abstract target, without requiring all hardware physics or QFT; advanced lowering has separate prerequisites |
 | Simulation | 44 exact execution; 45 stabilizer; 46 MPS; 47 general contractions/cutting | Basic executor before differentiation; tableau from stabilizer tools; MPS is not required before generic contractions; cutting is not coherent networking |
-| Research | 48 source/claim/verification methods; 49 H2 VQE; 50 logical memory | H2 source/reduction mapping and the memory-study primary claim remain open; no invented execution or experimental evidence |
+| Research | 48 source/claim/verification methods; 49 H2 VQE; 50 logical memory | H2 integral/reduction provenance remains open; the memory case selects Fowler v2 Section VII A/Fig. 5, with a declared finite-benchmark extension; no invented execution or experimental evidence |
 
 Platform installation, provider credentials and evolving API details remain versioned companion laboratories. Essential theory and independent checks remain available offline.
 
@@ -57,9 +57,9 @@ These decisions prevent scope from growing through disconnected topical addition
 
 The [review report](architecture-review.md) records 20 findings and their dispositions. Major order repairs include moving no-cloning after tensor products and phase-based amplitude estimation after QPE. Device characterization, network primitives and selected modern algorithm/code topics now have scoped homes. Every section has curated direct prerequisites; transitive closure adds only needed preparation to each selected route.
 
-The graph has **1,042 direct edges**, no forward dependencies or cycles, and **19 checked routes**. Regression checks protect basic compiler, fixed-kernel, general-contraction, H2 and logical-memory entry paths from unrelated advanced prerequisites. These are structural checks; a reader can still encounter an unexplained argument in prose that has not yet been written.
+The graph has **1,045 direct edges**, no forward dependencies or cycles, and **19 checked routes**. Regression checks protect basic compiler, fixed-kernel, general-contraction, H2 and logical-memory entry paths from unrelated advanced prerequisites. These are structural checks; a reader can still encounter an unexplained argument in prose that has not yet been written.
 
-The planned **1,088–1,958 pages before appendices/front matter** make the whole reference unsuitable as one introductory course. Common foundations plus selected branches are the teaching architecture. Coordinated volume packaging, realistic proof/example/problem budgets and learner workload remain acceptance decisions. The range is an editorial estimate, not a rendered page count.
+The proof-depth revision now plans **1,296–2,546 pages before shared appendices/front matter** make the whole reference unsuitable as one introductory course. Common foundations plus selected branches are the teaching architecture. The [seven-volume proposal](volume-plan.md) gives a dependency-compatible allocation and proof-specific budgets; final packaging, examples/problems and learner workload remain acceptance decisions. The range is an editorial estimate, not a rendered page count.
 
 ## Cross-layer validation designs
 
@@ -73,9 +73,9 @@ The current phase may refine these specifications and source maps. It does not s
 |---|---|
 | Editorial coverage/ownership | Completed for all 50 chapters/435 sections; exclusions and duplication decisions recorded; specialist assessment pending |
 | Section dependency architecture | Curated direct graph, complete ledger and 19 structurally checked routes completed; prose first-use and actual reader testing pending |
-| Mathematical depth | Exact central statements, proof/deferred-proof obligations and source locators pending section acceptance |
+| Mathematical depth | [435 result/proof/source records](proof-plan.md) assigned; exact statements, deferred lemmas and independent mathematical/source acceptance remain pending |
 | Cross-layer contracts | Planning targets recorded; independent complete programs and actual API verification remain pending |
-| Workload and accessibility | Provisional section/chapter/route page ranges computed; examples/problems, learner evidence and publication packaging pending |
+| Workload and accessibility | Proof-specific budgets and [seven-volume allocation](volume-plan.md) proposed; examples/problems, reader evidence and final packaging pending |
 | Baseline freeze | Resolve review findings, record specialist/reader scope and tag an architecture baseline; pending |
 
 **No new textbook body or depth-pilot drafting until the architecture baseline gate is satisfied.** The three existing starters remain format evidence. A successful build or a larger table of contents does not pass the outstanding gates.

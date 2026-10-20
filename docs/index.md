@@ -30,6 +30,8 @@ The subject determines the scope. Required missing capabilities are investigated
 
 A [systematic editorial architecture review](architecture-review.md) covers all 50 chapters and 435 sections, with an [exact prerequisite ledger](section-review.md) and [19 learning paths](learning-paths.md). [Specialist/reader validation and baseline freeze](curriculum-audit.md) remain pending. New textbook body drafting is paused until that gate; [reader continuity](reader-continuity.md) is an explicit acceptance standard.
 
+The [all-section result/proof/source plan](proof-plan.md) and [seven-volume proposal](volume-plan.md) specify the scholarly scope and publication structure. These remain planning artifacts; mathematical/source and learner review are pending.
+
 The [quantum-classical hybrid map](hybrid-computing.md) connects eight composable algorithm/runtime patterns, their implementation contracts and their chapter homes.
 
 ## Who this book is for

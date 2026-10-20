@@ -7,7 +7,7 @@
 - Symbols, objects, units and physical assumptions introduced here:
 - Exit skill and the precise bridge to the next section:
 - Core narrative versus optional advanced development:
-- Result/proof obligation, exact primary source and deferred-proof scope:
+- Result/proof obligation, exact primary source and deferred-proof scope (canonical record in book/proof-plan.json; source locator in book/proof-sources.json):
 - Fully worked example, including intermediate transformations and their reasons:
 - Formula-to-code correspondence, dimensions/ordering and complete-program link:
 - Independent reference, counterexample or limiting case:

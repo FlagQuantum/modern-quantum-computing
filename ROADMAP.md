@@ -19,10 +19,12 @@ These are artifacts, not evidence that the complete theory, implementation or te
 - [ ] Obtain specialist coverage/ownership review, including compilation and physical platforms.
 - [x] Record editorial dispositions for every section, direct prerequisites and 19 checked learning paths.
 - [ ] Validate actual first-use explanations and transitions with specialists and target readers.
-- [ ] Select exact central results/proof obligations and primary-source locators for depth pilots.
+- [x] Assign core result/role, assumptions, proof depth/obligations and precise source locators for all 435 sections.
+- [ ] Review exact theorem statements, source-specific lemmas and claim/provenance exceptions before acceptance.
 - [ ] Design independent cross-layer reference cases and investigate actual API needs.
 - [x] Compute provisional section, chapter and route page ranges; expose the full-reference workload.
-- [ ] Calibrate page/example/problem budgets, test routes with readers and decide volume packaging.
+- [x] Propose seven dependency-compatible volumes and recompute proof-specific page budgets.
+- [ ] Calibrate examples/problems and rendered page budgets, test routes with readers and freeze packaging.
 - [ ] Resolve findings and tag an architecture baseline with a public change record.
 
 **New body chapters and depth-pilot drafting are paused until the architecture baseline gate.** Existing pilots remain format evidence; architecture, source mapping and validation design can continue.

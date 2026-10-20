@@ -16,6 +16,18 @@ nav:
   - Systematic architecture review: architecture-review.md
   - Section review ledger: section-review.md
   - Checked learning paths: learning-paths.md
+  - Seven-volume proposal: volume-plan.md
+  - Core results and proof depth:
+      - Overview: proof-plan.md
+      - Foundations: proof-plans/01-foundations.md
+      - Information: proof-plans/02-information.md
+      - Algorithms: proof-plans/03-algorithms.md
+      - Differentiable and hybrid computing: proof-plans/04-variational.md
+      - Noise and fault tolerance: proof-plans/05-fault-tolerance.md
+      - Physical platforms: proof-plans/physical-platforms.md
+      - Compilation and control: proof-plans/quantum-compilation.md
+      - Classical simulation: proof-plans/06-simulation.md
+      - Research and capstones: proof-plans/07-research.md
   - Reader continuity: reader-continuity.md
   - Quantum-classical hybrid computing: hybrid-computing.md
   - Contents and status: contents.md
@@ -44,6 +56,7 @@ nav:
       - Compilation and physical platforms: references/compilation-and-platforms.md
       - Hybrid-computing sources: references/hybrid-computing.md
       - Architecture-review sources: references/architecture-review.md
+      - Exact proof-plan sources: references/proof-sources.md
       - Nielsen–Chuang design review: references/nielsen-chuang-design-review.md
       - Quantum Country design review: references/quantum-country-design-review.md
   - Sources and validation: sources.md

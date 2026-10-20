@@ -1,6 +1,6 @@
 {
   "revision": "2026-10-20",
-  "status": "Full editorial architecture review completed; specialist/reader validation and baseline freeze pending",
+  "status": "All-section result/proof/source planning and seven-volume proposal completed; mathematical/specialist/reader validation and baseline freeze pending",
   "parts": [
     {
       "id": "part-01-foundations",
@@ -53,8 +53,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -168,8 +168,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -188,8 +188,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -208,8 +208,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -228,8 +228,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -248,8 +248,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                6,
+                10
               ]
             },
             {
@@ -268,8 +268,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -289,8 +289,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -309,8 +309,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             }
           ],
@@ -367,8 +367,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -388,8 +388,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -430,8 +430,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -450,8 +450,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -472,8 +472,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             }
           ],
@@ -512,8 +512,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -532,8 +532,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -553,8 +553,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -574,8 +574,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -595,8 +595,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -616,8 +616,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -637,8 +637,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -659,8 +659,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             }
           ],
@@ -698,8 +698,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -720,8 +720,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -741,8 +741,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -761,8 +761,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -782,8 +782,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                6,
+                10
               ]
             },
             {
@@ -803,8 +803,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -824,8 +824,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                4,
+                8
               ]
             },
             {
@@ -845,8 +845,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             }
           ],
@@ -907,8 +907,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -928,8 +928,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -950,8 +950,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -972,8 +972,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -992,8 +992,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1013,8 +1013,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1033,8 +1033,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1096,8 +1096,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1117,8 +1117,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1139,8 +1139,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1161,8 +1161,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1182,8 +1182,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1203,8 +1203,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1224,8 +1224,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1243,8 +1243,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1266,8 +1266,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             }
           ],
@@ -1306,8 +1306,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1327,8 +1327,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1349,8 +1349,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1370,8 +1370,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1391,8 +1391,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1412,8 +1412,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1433,8 +1433,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1503,8 +1503,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1525,8 +1525,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1546,8 +1546,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                6,
+                10
               ]
             },
             {
@@ -1567,8 +1567,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                6,
+                10
               ]
             },
             {
@@ -1589,8 +1589,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1611,8 +1611,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1632,8 +1632,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1693,8 +1693,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1715,8 +1715,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1736,8 +1736,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                6,
+                10
               ]
             },
             {
@@ -1758,8 +1758,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1777,8 +1777,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -1799,8 +1799,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1820,8 +1820,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1841,8 +1841,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -1902,8 +1902,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1923,8 +1923,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1944,8 +1944,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                6,
+                10
               ]
             },
             {
@@ -1965,8 +1965,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -1987,8 +1987,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                4,
+                8
               ]
             },
             {
@@ -2008,8 +2008,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -2029,8 +2029,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2091,8 +2091,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -2113,8 +2113,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -2135,8 +2135,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -2157,8 +2157,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -2179,7 +2179,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -2201,7 +2201,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -2223,8 +2223,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -2246,7 +2246,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -2267,8 +2267,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -2305,8 +2305,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -2328,7 +2328,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -2349,7 +2349,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -2370,7 +2370,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -2391,8 +2391,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -2414,8 +2414,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -2436,7 +2436,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -2453,8 +2453,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -2476,8 +2476,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -2545,8 +2545,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2567,8 +2567,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2609,8 +2609,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2631,8 +2631,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2737,8 +2737,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2758,8 +2758,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2779,8 +2779,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2800,8 +2800,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2821,8 +2821,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2840,8 +2840,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2861,8 +2861,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2946,8 +2946,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2966,8 +2966,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -2987,8 +2987,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3008,8 +3008,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -3028,7 +3028,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3050,7 +3050,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3114,8 +3114,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3135,8 +3135,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3156,8 +3156,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3177,8 +3177,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3198,8 +3198,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3219,8 +3219,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3240,8 +3240,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3263,7 +3263,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3285,8 +3285,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             }
           ],
@@ -3325,7 +3325,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3347,7 +3347,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3368,7 +3368,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3389,7 +3389,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3409,8 +3409,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -3431,7 +3431,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3449,8 +3449,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -3472,7 +3472,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3492,8 +3492,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -3531,8 +3531,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3551,8 +3551,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3572,8 +3572,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3592,8 +3592,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3614,8 +3614,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3635,8 +3635,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -3656,8 +3656,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -3677,8 +3677,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -3741,8 +3741,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -3762,8 +3762,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -3784,7 +3784,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3805,7 +3805,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3826,7 +3826,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3848,7 +3848,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3866,8 +3866,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -3887,8 +3887,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -3910,8 +3910,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -3951,7 +3951,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3971,7 +3971,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -3991,8 +3991,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -4013,7 +4013,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4034,8 +4034,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -4055,8 +4055,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -4077,8 +4077,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -4100,7 +4100,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4122,8 +4122,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -4162,8 +4162,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -4184,7 +4184,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4205,7 +4205,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4226,7 +4226,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4247,7 +4247,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4267,8 +4267,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -4290,8 +4290,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -4309,8 +4309,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -4332,8 +4332,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -4402,8 +4402,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4423,8 +4423,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4444,8 +4444,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -4465,8 +4465,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4486,8 +4486,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4507,8 +4507,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4528,8 +4528,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4549,8 +4549,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4612,8 +4612,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -4634,7 +4634,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4655,7 +4655,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4676,7 +4676,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4698,7 +4698,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4719,7 +4719,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4739,8 +4739,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -4761,7 +4761,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4781,8 +4781,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -4821,8 +4821,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4842,8 +4842,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4864,8 +4864,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4885,8 +4885,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4907,8 +4907,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4929,8 +4929,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4952,7 +4952,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -4973,8 +4973,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -4994,7 +4994,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5015,7 +5015,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5036,7 +5036,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5101,7 +5101,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5122,7 +5122,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5143,7 +5143,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5164,7 +5164,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5185,7 +5185,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5206,7 +5206,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5227,8 +5227,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -5250,8 +5250,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -5311,8 +5311,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5334,7 +5334,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5354,8 +5354,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5375,8 +5375,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5396,8 +5396,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5507,8 +5507,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5528,8 +5528,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5549,8 +5549,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5571,8 +5571,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5593,7 +5593,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -5613,8 +5613,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5634,8 +5634,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5654,8 +5654,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                4,
+                8
               ]
             },
             {
@@ -5741,8 +5741,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5763,8 +5763,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5784,8 +5784,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5805,8 +5805,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                6,
+                10
               ]
             },
             {
@@ -5826,8 +5826,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5847,8 +5847,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5868,8 +5868,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5930,8 +5930,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5950,8 +5950,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5971,8 +5971,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -5992,8 +5992,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -6014,8 +6014,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -6035,8 +6035,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -6056,8 +6056,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -6096,8 +6096,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -6117,8 +6117,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                6,
+                10
               ]
             },
             {
@@ -6182,7 +6182,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6202,7 +6202,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6223,7 +6223,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6244,7 +6244,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6265,7 +6265,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6287,7 +6287,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6307,8 +6307,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -6330,8 +6330,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -6370,8 +6370,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -6392,7 +6392,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6412,8 +6412,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -6434,8 +6434,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -6457,7 +6457,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6479,7 +6479,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6499,8 +6499,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -6522,8 +6522,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -6560,8 +6560,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -6582,7 +6582,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6603,7 +6603,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6624,7 +6624,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6645,7 +6645,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6666,7 +6666,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6687,7 +6687,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6709,8 +6709,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -6758,8 +6758,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -6778,8 +6778,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -6799,8 +6799,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -6860,8 +6860,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -6880,7 +6880,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -6981,7 +6981,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7001,7 +7001,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7021,7 +7021,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7042,7 +7042,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7062,7 +7062,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7083,7 +7083,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7103,8 +7103,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -7126,8 +7126,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -7163,7 +7163,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7184,7 +7184,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7204,7 +7204,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7224,7 +7224,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7245,7 +7245,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7265,7 +7265,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7284,8 +7284,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -7305,8 +7305,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -7342,7 +7342,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7362,7 +7362,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7382,7 +7382,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7402,7 +7402,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7423,7 +7423,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7444,7 +7444,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7463,8 +7463,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -7484,8 +7484,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -7522,7 +7522,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7542,7 +7542,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7562,7 +7562,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7582,7 +7582,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7601,8 +7601,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -7622,7 +7622,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7643,7 +7643,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7663,8 +7663,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -7685,8 +7685,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -7721,7 +7721,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7741,7 +7741,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7761,7 +7761,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7781,7 +7781,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7801,7 +7801,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7822,7 +7822,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7841,8 +7841,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -7863,8 +7863,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -7902,8 +7902,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -7923,7 +7923,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -7942,8 +7942,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -7963,8 +7963,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -7985,7 +7985,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8006,7 +8006,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8025,8 +8025,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -8047,8 +8047,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -8133,8 +8133,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8153,8 +8153,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8173,8 +8173,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8194,8 +8194,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8214,8 +8214,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8314,8 +8314,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8334,8 +8334,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                6,
+                10
               ]
             },
             {
@@ -8354,8 +8354,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -8394,8 +8394,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8413,8 +8413,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8433,8 +8433,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8454,8 +8454,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8516,7 +8516,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8537,7 +8537,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8557,7 +8557,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8578,7 +8578,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8600,7 +8600,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8620,7 +8620,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8642,7 +8642,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8664,7 +8664,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8684,8 +8684,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -8708,8 +8708,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -8757,8 +8757,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8778,8 +8778,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8800,8 +8800,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8822,8 +8822,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8843,8 +8843,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8864,8 +8864,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8885,8 +8885,8 @@
               "reading_level": "core",
               "section_kind": "argument",
               "page_budget": [
-                2,
-                4
+                3,
+                6
               ]
             },
             {
@@ -8950,7 +8950,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8970,7 +8970,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -8991,7 +8991,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9012,7 +9012,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9033,8 +9033,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -9055,7 +9055,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9068,14 +9068,16 @@
                 "457-magic-as-a-computational-resource-advanced"
               ],
               "requires": [
-                "sec-stabilizer-simulation-magic-and-classical-simulability-6"
+                "sec-stabilizer-simulation-magic-and-classical-simulability-6",
+                "sec-entropy-relative-entropy-and-information-processing-3",
+                "sec-entropy-relative-entropy-and-information-processing-5"
               ],
               "planning_review": "retained or revised after full architecture review; not a proof/API/reader validation",
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9096,8 +9098,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -9136,7 +9138,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9157,7 +9159,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9177,7 +9179,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9198,7 +9200,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9218,8 +9220,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                6,
+                10
               ]
             },
             {
@@ -9241,7 +9243,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9262,7 +9264,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9285,8 +9287,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -9326,7 +9328,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9347,7 +9349,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9366,8 +9368,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                4,
+                8
               ]
             },
             {
@@ -9387,7 +9389,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9408,7 +9410,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9429,7 +9431,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9449,7 +9451,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9471,7 +9473,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9493,7 +9495,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9517,8 +9519,8 @@
               "reading_level": "advanced",
               "section_kind": "laboratory",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -9775,8 +9777,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -9798,7 +9800,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9820,7 +9822,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9842,7 +9844,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9865,7 +9867,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9886,7 +9888,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9906,8 +9908,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -9929,7 +9931,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -9953,8 +9955,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
@@ -9965,7 +9967,7 @@
           "number": 50,
           "title": "Case Study: Logical Memory and Error-Correction Experiments",
           "level": "Research capstone",
-          "prerequisites": "Selected 28–31, tableau/reference sections of 45 and 48; 32–33 only for optional resource implications.",
+          "prerequisites": "Selected noise, stabilizer/surface-code and research-method sections; exact dense/error enumeration for the small reference. Universal logical gates, factories and a later tableau simulator are not entry requirements.",
           "requires": [
             28,
             29,
@@ -9982,8 +9984,8 @@
             {
               "id": "sec-case-study-logical-memory-and-error-correction-experiments-1",
               "title": "Select a source and freeze the logical-memory claim",
-              "theory": "Choose a reviewed primary source, model and tractable reproduction scope before coding.",
-              "evidence": "Record the paper version and a precise evidence target; source selection remains pending.",
+              "theory": "Freeze Fowler et al., arXiv:1208.0928v2, Section VII A and Fig. 5 as the primary ambiguity claim: complementary error chains can share a syndrome but differ logically. The finite memory benchmark is a declared textbook extension, not reproduction of Fig. 4 thresholds.",
+              "evidence": "Specify the two complementary chains, verify equal syndromes and their logical difference exactly, then separately freeze the patch/noise/decoder/round conventions for the extension.",
               "legacy_anchor": "401-select-a-source-and-freeze-the-logical-memory-claim",
               "aliases": [
                 "501-select-a-source-and-freeze-the-logical-memory-claim"
@@ -9996,8 +9998,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -10018,8 +10020,8 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             },
             {
@@ -10040,7 +10042,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -10062,28 +10064,29 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
               "id": "sec-case-study-logical-memory-and-error-correction-experiments-5",
               "title": "Build an exact small-instance reference",
-              "theory": "Choose a tractable state, stabilizer or enumerated reference independent of the main path.",
-              "evidence": "Compare complete tiny-instance behavior before large stochastic runs.",
+              "theory": "Derive an exact dense or enumerated tiny-instance reference from the declared finite channel/error model; a later tableau implementation is optional.",
+              "evidence": "Compare complete tiny-instance logical outcomes before stochastic runs, using explicit matrices or exhaustive finite error branches independent of the primary path.",
               "legacy_anchor": "405-build-an-exact-small-instance-reference",
               "aliases": [
                 "505-build-an-exact-small-instance-reference"
               ],
               "requires": [
                 "sec-case-study-logical-memory-and-error-correction-experiments-4",
-                "sec-stabilizer-simulation-magic-and-classical-simulability-4"
+                "sec-complex-vectors-operators-and-numerical-reasoning-5",
+                "sec-quantum-channels-and-their-representations-3"
               ],
               "planning_review": "retained or revised after full architecture review; not a proof/API/reader validation",
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -10104,7 +10107,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -10125,7 +10128,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -10146,7 +10149,7 @@
               "section_kind": "argument",
               "page_budget": [
                 3,
-                5
+                6
               ]
             },
             {
@@ -10170,18 +10173,18 @@
               "reading_level": "advanced",
               "section_kind": "argument",
               "page_budget": [
-                3,
-                5
+                2,
+                4
               ]
             }
           ],
-          "architecture_review": "Remove logical universality/resource-estimation prerequisites from the memory experiment. Resource extrapolation is optional; selecting a primary claim/source remains an explicit unresolved gate."
+          "architecture_review": "Use Fowler et al. v2, Section VII A/Fig. 5 as a precise syndrome-ambiguity source. The finite memory benchmark is a labeled extension, not a threshold reproduction. Dense/enumerated reference avoids a later-tableau prerequisite; resource extrapolation stays optional."
         }
       ],
       "number": 9
     }
   ],
-  "audit_revision": "2026-10-20-systematic-review",
+  "audit_revision": "2026-10-20-proof-depth-and-volume-plan",
   "prerequisite_policy": "Chapter requirements are orientation/entry pointers; exact section prerequisites are authoritative and never imply completing every section of a cited chapter.",
   "learning_routes": [
     {

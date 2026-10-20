@@ -1,5 +1,7 @@
 # Source scope for the systematic architecture review
 
+The subsequent [all-section proof/source plan](../proof-plan.md) and [version-specific source catalogue](proof-sources.md) supply exact source targets. The scoping notes below retain their original review scope; locator assignment is not proof approval.
+
 **Reviewed October 20, 2026.** These comparisons informed coverage and sequencing decisions in the [editorial review](../architecture-review.md). The pass inspected official course/notes indexes and the linked papers' abstracts/metadata. It did not verify every source proof, benchmark or implementation. Exact theorem/equation-level reading is required before section acceptance. No source book, exercise set or page image is redistributed.
 
 ## Official educational scope comparisons

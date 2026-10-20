@@ -4,7 +4,7 @@
 
 This is a curriculum architecture, not a completed manuscript or a claim that every proposed experiment is supported. Three starter chapters currently exist, with intended homes in Chapters **6, 23 and 49**. The three-chapter PDF retains independent sample numbering and its published version.
 
-**Architecture status: full editorial pass completed; specialist/reader review and baseline freeze pending.** The [curriculum audit](curriculum-audit.md) lists coverage, prerequisite bridges, cross-layer laboratories and open review gates. [Reader continuity](reader-continuity.md) defines the no-skipped-steps standard. The [review report](architecture-review.md), [435-section ledger](section-review.md) and [19 learning paths](learning-paths.md) make the review traceable. New textbook body drafting is paused until the architecture baseline gate. Chapter count is not an acceptance criterion.
+**Architecture status: full editorial pass completed; specialist/reader review and baseline freeze pending.** The [curriculum audit](curriculum-audit.md) lists coverage, prerequisite bridges, cross-layer laboratories and open review gates. [Reader continuity](reader-continuity.md) defines the no-skipped-steps standard. The [all-section result/proof/source plan](proof-plan.md) and [seven-volume proposal](volume-plan.md) extend the architecture review. The [review report](architecture-review.md), [435-section ledger](section-review.md) and [19 learning paths](learning-paths.md) make the review traceable. New textbook body drafting is paused until the architecture baseline gate. Chapter count is not an acceptance criterion.
 
 ## Audience, depth and reading levels
 

@@ -16,6 +16,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 41.1 What a quantum compiler must preserve
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-1).
+
 **Section level:** core. **Required earlier sections:** [4.3](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-3), [5.1](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1).
 
 **Learning and derivation target:** Define program inputs/outputs, unitary/channel semantics and classical records.
@@ -25,6 +27,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-programs-intermediate-representations-and-verified-optimization-2"></span>
 
 ### 41.2 Programs, types, and quantum-classical control
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-2).
 
 **Section level:** core. **Required earlier sections:** [41.1](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-1), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2).
 
@@ -36,6 +40,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 41.3 Circuit DAGs and intermediate representations
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-3).
+
 **Section level:** core. **Required earlier sections:** [41.2](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-2), [5.1](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1).
 
 **Learning and derivation target:** Derive a dependency graph and distinguish high-level, gate-level and target-level representations.
@@ -45,6 +51,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-programs-intermediate-representations-and-verified-optimization-4"></span>
 
 ### 41.4 Lowering and reversible computation
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-4).
 
 **Section level:** core. **Required earlier sections:** [41.3](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-3), [5.4](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4).
 
@@ -56,6 +64,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 41.5 Local rewrites, commutation, and optimization
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-5).
+
 **Section level:** core. **Required earlier sections:** [41.3](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-3), [5.8](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-8).
 
 **Learning and derivation target:** Prove selected cancellation/commutation identities with their side conditions.
@@ -65,6 +75,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-programs-intermediate-representations-and-verified-optimization-6"></span>
 
 ### 41.6 Phase, parameters, and controlled contexts
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-6).
 
 **Section level:** core. **Required earlier sections:** [41.5](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-5), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2), [3.2](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-2).
 
@@ -76,6 +88,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 41.7 Channels, measurements, and dynamic programs
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-7).
+
 **Section level:** core. **Required earlier sections:** [41.2](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-2), [9.7](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-7).
 
 **Learning and derivation target:** Define transformation correctness for conditional branches and ignored records.
@@ -86,6 +100,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 41.8 Interchange, export, and capability boundaries
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-8).
+
 **Section level:** core. **Required earlier sections:** [41.2](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-2), [41.3](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-3).
 
 **Learning and derivation target:** Explain OpenQASM/QIR-style representation goals without assuming lossless universal interchange.
@@ -95,6 +111,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-programs-intermediate-representations-and-verified-optimization-9"></span>
 
 ### 41.9 A minimal verified compiler laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-9).
 
 **Section level:** core. **Required earlier sections:** [41.3](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-3), [41.4](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-4), [41.5](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-5), [41.6](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-6).
 
@@ -114,6 +132,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 42.1 Target models and native-operation contracts
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-1).
+
 **Section level:** core. **Required earlier sections:** [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** Specify operation families, parameters, connectivity, directionality, durations and simultaneous-use constraints.
@@ -123,6 +143,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-gate-synthesis-qubit-mapping-routing-and-scheduling-2"></span>
 
 ### 42.2 Single-qubit synthesis
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-2).
 
 **Section level:** core. **Required earlier sections:** [3.6](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-6), [5.5](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-5), [42.1](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-1).
 
@@ -134,6 +156,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 42.3 Two-qubit and multi-qubit synthesis
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-3).
+
 **Section level:** core. **Required earlier sections:** [5.6](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-6), [42.1](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-1).
 
 **Learning and derivation target:** Derive a selected native-entangler decomposition and state ancilla/control assumptions.
@@ -143,6 +167,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-gate-synthesis-qubit-mapping-routing-and-scheduling-4"></span>
 
 ### 42.4 Approximate synthesis and logical gate sets [Advanced]
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-4).
 
 **Section level:** advanced. **Required earlier sections:** [42.2](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-2), [32.6](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-6).
 
@@ -154,6 +180,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 42.5 Initial logical-to-physical placement
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-5).
+
 **Section level:** core. **Required earlier sections:** [4.5](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-5), [42.1](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-1).
 
 **Learning and derivation target:** Formulate a placement objective on an explicit interaction/target model.
@@ -163,6 +191,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-gate-synthesis-qubit-mapping-routing-and-scheduling-6"></span>
 
 ### 42.6 Routing and changing qubit mappings
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-6).
 
 **Section level:** core. **Required earlier sections:** [42.5](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-5), [4.5](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-5).
 
@@ -174,6 +204,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 42.7 Routing search and heuristic limits
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-7).
+
 **Section level:** core. **Required earlier sections:** [42.6](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-6).
 
 **Learning and derivation target:** Explain a selected look-ahead/bidirectional heuristic and its cost function.
@@ -183,6 +215,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-gate-synthesis-qubit-mapping-routing-and-scheduling-8"></span>
 
 ### 42.8 Scheduling with timing and shared resources
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-8).
 
 **Section level:** core. **Required earlier sections:** [41.3](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-3), [42.1](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-1).
 
@@ -194,6 +228,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 42.9 Joint objectives and error-aware compilation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-9).
+
 **Section level:** core. **Required earlier sections:** [42.3](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-3), [42.6](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-6), [42.8](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-8).
 
 **Learning and derivation target:** Separate gate count, depth, duration, error proxies and measurement/postprocessing costs.
@@ -203,6 +239,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-gate-synthesis-qubit-mapping-routing-and-scheduling-10"></span>
 
 ### 42.10 Mapping-and-scheduling laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-10).
 
 **Section level:** core. **Required earlier sections:** [42.3](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-3), [42.6](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-6), [42.8](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-8), [42.9](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-9), [41.5](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-5).
 
@@ -222,6 +260,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 43.1 From native gates to control Hamiltonians
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-1).
+
 **Section level:** advanced. **Required earlier sections:** [34.3](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-3), [42.1](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-1).
 
 **Learning and derivation target:** Specify control amplitude, phase, frames, timing and a target transformation.
@@ -231,6 +271,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-control-level-lowering-dynamic-execution-and-logical-compilation-2"></span>
 
 ### 43.2 Pulse shaping and constrained optimization
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-2).
 
 **Section level:** advanced. **Required earlier sections:** [43.1](../section-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-1), [23.2](../section-plans/04-variational.md#sec-parameterized-circuits-quantum-gradients-and-differentiation-2), [24.3](../section-plans/04-variational.md#sec-optimization-geometry-and-trainability-3).
 
@@ -242,6 +284,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 43.3 Frames, virtual operations, and calibration
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-3).
+
 **Section level:** advanced. **Required earlier sections:** [43.1](../section-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-1), [3.5](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5).
 
 **Learning and derivation target:** Derive a frame update and distinguish a mathematical operation from a calibration-dependent implementation.
@@ -251,6 +295,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-control-level-lowering-dynamic-execution-and-logical-compilation-4"></span>
 
 ### 43.4 Crosstalk, leakage, and robust control
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-4).
 
 **Section level:** advanced. **Required earlier sections:** [43.1](../section-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-1), [28.2](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-2), [34.6](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-6).
 
@@ -263,6 +309,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 43.5 Near-device feedback, decoding, and dynamic execution
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-5).
+
 **Section level:** advanced. **Required earlier sections:** [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [41.2](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-2), [41.7](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-7).
 
 **Learning and derivation target:** Derive measurement-to-classical-decision-to-operation dependencies for dynamic circuits and decoder/Pauli-frame feedback; distinguish a host outer loop from a bounded-latency local controller.
@@ -272,6 +320,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-control-level-lowering-dynamic-execution-and-logical-compilation-6"></span>
 
 ### 43.6 Lowering analog and measurement-based programs
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-6).
 
 **Section level:** advanced. **Required earlier sections:** [34.5](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-5), [42.1](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-1).
 
@@ -283,6 +333,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 43.7 Fault-tolerant logical compilation
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-7).
+
 **Section level:** advanced. **Required earlier sections:** [32.5](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-5), [32.7](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-7), [33.2](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-2), [42.4](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-4).
 
 **Learning and derivation target:** Connect T/Clifford synthesis, Pauli frames, distillation and logical-operation scheduling.
@@ -292,6 +344,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-control-level-lowering-dynamic-execution-and-logical-compilation-8"></span>
 
 ### 43.8 Cross-layer verification and approximate equivalence
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-8).
 
 **Section level:** advanced. **Required earlier sections:** [41.5](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-5), [42.3](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-3), [43.1](../section-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-1), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
@@ -303,6 +357,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 43.9 CPU/GPU/QPU workflows and runtime orchestration
 
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-hybrid-heterogeneous-runtime).
+
 **Section level:** advanced. **Required earlier sections:** [14.7](../section-plans/03-algorithms.md#sec-hybrid-interaction-map), [41.2](../section-plans/quantum-compilation.md#sec-quantum-programs-intermediate-representations-and-verified-optimization-2), [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
 
 **Learning and derivation target:** Specify task graphs, asynchronous execution, parameter binding/batching, checkpointing, result types and failure/retry semantics; distinguish a real QPU from GPU simulation.
@@ -313,6 +369,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="439-hardware-aware-compilation-laboratory"></span>
 
 ### 43.10 Hardware-aware compilation laboratory
+
+**Result/proof/source specification:** [Scholarly plan](../proof-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-9).
 
 **Section level:** advanced. **Required earlier sections:** [42.10](../section-plans/quantum-compilation.md#sec-gate-synthesis-qubit-mapping-routing-and-scheduling-10), [43.3](../section-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-3), [43.4](../section-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-4), [43.8](../section-plans/quantum-compilation.md#sec-control-level-lowering-dynamic-execution-and-logical-compilation-8), [43.9](../section-plans/quantum-compilation.md#sec-hybrid-heterogeneous-runtime).
 

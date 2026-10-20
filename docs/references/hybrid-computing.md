@@ -1,5 +1,7 @@
 # Source anchors for quantum-classical hybrid computing
 
+The subsequent [all-section proof/source plan](../proof-plan.md) and [version-specific source catalogue](proof-sources.md) supply exact source targets. The scoping notes below retain their original review scope; locator assignment is not proof approval.
+
 **Scoping date: October 20, 2026.** These notes support the author's [eight-pattern teaching map](../hybrid-computing.md). The grouping is editorial and composable; the papers do not establish a unique eight-way taxonomy.
 
 This scoping pass checked bibliographic/abstract information and official runtime documentation. Exact method-specific results, assumptions, code contracts and proof locators remain to be reviewed before chapter drafting.

@@ -2,7 +2,7 @@
 
 These resources support the writing and study of *Modern Quantum Computing: A Formula-to-Code Approach*. The reading recommendations below are editorial choices for this book, not claims that the referenced authors endorse FlagQuantum. Core chapters should be understandable without purchasing another textbook.
 
-Use the [chapter mapping](chapter-mapping.md) to choose a reading, or [download the BibTeX bibliography](references.bib). Citation keys are stable identifiers shared by these files. Official resource pages and bibliographic metadata were checked on **October 20, 2026**; access conditions can change.
+Use the [chapter mapping](chapter-mapping.md) to choose a reading, or [download the BibTeX bibliography](references.bib). For exact version/section/page targets, use the [all-section proof/source plan](../proof-plan.md) and its [source catalogue](proof-sources.md); this introductory guide is not the detailed proof map. Citation keys are stable identifiers shared by these files. Official resource pages and bibliographic metadata were checked on **October 20, 2026**; access conditions can change.
 
 ## Textbooks and lecture notes
 

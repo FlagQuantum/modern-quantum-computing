@@ -97,7 +97,7 @@
     {
       "id": "F19",
       "finding": "The H2 reduction and logical-memory source selection still have unresolved scholarly scope.",
-      "disposition": "Keep exact molecular-source/reduction mapping and the Chapter 50 primary-claim selection as explicit outstanding gates; do not write around them with invented evidence."
+      "disposition": "H2 source-to-integral/reduction mapping remains open. Select Fowler et al. v2, Section VII A/Fig. 5 for the memory ambiguity claim; label the finite memory benchmark as an extension, not a threshold reproduction."
     },
     {
       "id": "F20",
@@ -304,7 +304,7 @@
     },
     {
       "chapter": 50,
-      "decision": "Remove logical universality/resource-estimation prerequisites from the memory experiment. Resource extrapolation is optional; selecting a primary claim/source remains an explicit unresolved gate."
+      "decision": "Use Fowler et al. v2, Section VII A/Fig. 5 as a precise syndrome-ambiguity source. The finite memory benchmark is a labeled extension, not a threshold reproduction. Dense/enumerated reference avoids a later-tableau prerequisite; resource extrapolation stays optional."
     }
   ],
   "sections": [
@@ -2441,7 +2441,7 @@
     {
       "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-1",
       "chapter": 50,
-      "disposition": "Retain; ownership/dependencies reviewed"
+      "disposition": "Refine source/benchmark scope and remove later-tool prerequisite"
     },
     {
       "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-2",
@@ -2461,7 +2461,7 @@
     {
       "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-5",
       "chapter": 50,
-      "disposition": "Retain; ownership/dependencies reviewed"
+      "disposition": "Refine source/benchmark scope and remove later-tool prerequisite"
     },
     {
       "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-6",
@@ -2514,5 +2514,6 @@
       "url": "https://arxiv.org/abs/2308.07915",
       "use": "A concrete quantum-LDPC architectural example; no general hardware/cost ranking adopted."
     }
-  ]
+  ],
+  "follow_up": "All-section result/proof/source plan and dependency-compatible seven-volume proposal; no specialist/reader sign-off."
 }

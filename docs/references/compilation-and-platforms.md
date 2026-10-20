@@ -1,5 +1,7 @@
 # Source anchors for compilation and physical platforms
 
+The subsequent [all-section proof/source plan](../proof-plan.md) and [version-specific source catalogue](proof-sources.md) supply exact source targets. The scoping notes below retain their original review scope; locator assignment is not proof approval.
+
 **Scoping date: October 20, 2026.** These author-written notes identify research and official specifications for the added curriculum. The scoping pass checked bibliographic abstracts/overview information and official documentation scope; it is not a complete reading or proof review of these works. Exact chapter-level theorem/equation locators and later evidence remain to be selected.
 
 Historical reviews can establish concepts and models. They cannot establish present device performance or the scientific maturity of a candidate platform.

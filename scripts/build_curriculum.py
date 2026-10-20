@@ -93,7 +93,7 @@ def render():
             if n == 34:
                 detailed += ["\n**Branch design:** use selected common bridges and choose a platform. Basic compilation can instead start with a supplied target contract; microscopic platform physics is a separate branch.\n"]
             if n == 50:
-                detailed += ["\n**Source-selection gate:** select and review a primary paper before fixing the code family, noise model and reproduction claim.\n"]
+                detailed += ["\n**Claim/model acceptance gate:** Fowler et al. v2, Section VII A/Fig. 5 anchors syndrome ambiguity. The finite memory benchmark is a declared extension; exact model choices still need acceptance, and no threshold reproduction is promised.\n"]
             for j, s in enumerate(c["sections"], 1):
                 current = slug(f"{n}.{j} {s['title']}")
                 detailed += [f'\n<span id="{s["id"]}"></span>\n']
@@ -105,6 +105,7 @@ def render():
                 prereqs = ", ".join(f"[{section_links[x][0]}](../{section_links[x][1]})" for x in s["requires"]) or "Entry knowledge / local bridge"
                 detailed += [
                     f"\n### {n}.{j} {s['title']}\n\n",
+                    f"**Result/proof/source specification:** [Scholarly plan](../proof-plans/{p['path']}.md#{s['id']}).\n\n",
                     f"**Section level:** {s['reading_level']}. **Required earlier sections:** {prereqs}.\n\n",
                     f"**Learning and derivation target:** {s['theory']}\n\n",
                     f"**Implementation and evidence target:** {s['evidence']}\n",

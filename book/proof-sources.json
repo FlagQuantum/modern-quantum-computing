@@ -1,0 +1,4789 @@
+{
+  "revision": "2026-10-20",
+  "policy": "Locators identify the accessed version and section/page target. Locator checks are not proof or API verification. No external source files or excerpts are distributed.",
+  "works": {
+    "NC": {
+      "id": "NC",
+      "authors": "Nielsen and Chuang",
+      "title": "Quantum Computation and Quantum Information",
+      "year": 2010,
+      "note": "10th Anniversary Edition; section and printed-page locators",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "revision": "10th Anniversary, 2010",
+      "sha256": "d7a7e784cad22e6a039ddd215be6fff27098e5997e9f33a15ed4c9994839949a"
+    },
+    "TQI": {
+      "id": "TQI",
+      "authors": "Watrous",
+      "title": "The Theory of Quantum Information",
+      "year": 2018,
+      "note": "Author pre-publication manuscript, January 2018; printed-page locators",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "revision": "Author pre-publication manuscript, January 2018; printed-page locators",
+      "sha256": "c8f30116586435fc265273b09ca2d63f4912a5d4b8901db1ada84b03373c6325",
+      "pdf_pages": 598
+    },
+    "CVX": {
+      "id": "CVX",
+      "authors": "Boyd and Vandenberghe",
+      "title": "Convex Optimization",
+      "year": 2004,
+      "note": "Author-hosted seventh printing with corrections (2009); printed-page locators",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+      "revision": "Author-hosted seventh printing with corrections (2009); printed-page locators",
+      "sha256": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e",
+      "pdf_pages": 714
+    },
+    "P6": {
+      "id": "P6",
+      "authors": "Preskill",
+      "title": "Quantum Information, Chapter 6: Quantum Algorithms",
+      "year": 2020,
+      "note": "Author manuscript updated November 2020; file chap6_20_6A_2022.pdf",
+      "url": "https://www.preskill.caltech.edu/ph219/chap6_20_6A_2022.pdf",
+      "revision": "Author manuscript updated November 2020; file chap6_20_6A_2022.pdf",
+      "sha256": "83afe653105520793ab37a56cfcce606dbec20e2ff67510887ae71dd0c6d6a28",
+      "pdf_pages": 64
+    },
+    "P7": {
+      "id": "P7",
+      "authors": "Preskill",
+      "title": "Quantum Information, Chapter 7: Quantum Error Correction",
+      "year": 2026,
+      "note": "Author manuscript linked March 2026; file chap7_26_6A.pdf",
+      "url": "https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf",
+      "revision": "Author manuscript linked March 2026; file chap7_26_6A.pdf",
+      "sha256": "ddb6901c73ca5732272164c03ef91696be01d697bc4c7c55eeeddcee7aafc8bc",
+      "pdf_pages": 92
+    },
+    "P9": {
+      "id": "P9",
+      "authors": "Preskill",
+      "title": "Topological Quantum Computation",
+      "year": 2004,
+      "note": "Author lecture notes dated 14 June 2004",
+      "url": "https://www.preskill.caltech.edu/ph219/topological.pdf",
+      "revision": "Author lecture notes dated 14 June 2004",
+      "sha256": "b18e7631222d2fca486a962c63e149c2b6f44e8b51fef7b010112c90a643d18e",
+      "pdf_pages": 68
+    },
+    "QSVT": {
+      "id": "QSVT",
+      "authors": "Gilyén, Su, Low and Wiebe",
+      "title": "Quantum singular value transformation and beyond: exponential improvements for quantum matrix arithmetics",
+      "year": 2018,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1806.01838v1",
+      "revision": "1806.01838v1",
+      "sha256": "0326a3de56b10c9805074031a827b1ac4c5ee526c5ad362096adfbacc261c60d",
+      "pdf_pages": 67
+    },
+    "QUB": {
+      "id": "QUB",
+      "authors": "Low and Chuang",
+      "title": "Hamiltonian Simulation by Qubitization",
+      "year": 2016,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1610.06546v1",
+      "revision": "1610.06546v1",
+      "sha256": "8e1ca2ad4714b4d08b6ea3dc925f77a4819b37408aa8e35f6f27d26f0a210626",
+      "pdf_pages": 19
+    },
+    "AE": {
+      "id": "AE",
+      "authors": "Suzuki et al.",
+      "title": "Amplitude Estimation without Phase Estimation",
+      "year": 2019,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1904.10246v1",
+      "revision": "1904.10246v1",
+      "sha256": "7f103148377e400288bb54591f051b82cf848656fbd2d5d8ae5d5130aaed1c9a",
+      "pdf_pages": 16
+    },
+    "AMP": {
+      "id": "AMP",
+      "authors": "Brassard, Høyer, Mosca and Tapp",
+      "title": "Quantum Amplitude Amplification and Estimation",
+      "year": 2000,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/0005055v1",
+      "revision": "quant-ph/0005055v1",
+      "sha256": "badedce80b0fe53e6cd93f915ce79c9680e375bb6565f83d2f572bc4114b0278",
+      "pdf_pages": 32
+    },
+    "WALK": {
+      "id": "WALK",
+      "authors": "Childs et al.",
+      "title": "Exponential algorithmic speedup by quantum walk",
+      "year": 2002,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/0209131v1",
+      "revision": "quant-ph/0209131v1",
+      "sha256": "9504b267e536aa87ab52da004ed35981b5515ed6376e585ef797dae7a013b350",
+      "pdf_pages": 23
+    },
+    "LB": {
+      "id": "LB",
+      "authors": "Beals et al.",
+      "title": "Tight Quantum Bounds by Polynomials",
+      "year": 1998,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/9802049v1",
+      "revision": "quant-ph/9802049v1",
+      "sha256": "dbc5086cd8f75f12bd2f98ad7ce2068b9a0bd0bafd9bebea7a33e3e032417417",
+      "pdf_pages": 20
+    },
+    "ADI": {
+      "id": "ADI",
+      "authors": "Farhi et al.",
+      "title": "Quantum Computation by Adiabatic Evolution",
+      "year": 2000,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/0001106v1",
+      "revision": "quant-ph/0001106v1",
+      "sha256": "1009e50c14192e7ccce6be613e8857fd762ba4e063fb59b62a8dec16237116ff",
+      "pdf_pages": 24
+    },
+    "ADBOUND": {
+      "id": "ADBOUND",
+      "authors": "Jansen, Ruskai and Seiler",
+      "title": "Bounds for the adiabatic approximation with applications to quantum computation",
+      "year": 2007,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/0603175v3",
+      "revision": "quant-ph/0603175v3",
+      "sha256": "b96b67d4c7dae9d3e996d8f39bd8e5a93f4279246956a67a708f80077dc86d7c",
+      "pdf_pages": 15
+    },
+    "EK": {
+      "id": "EK",
+      "authors": "Eastin and Knill",
+      "title": "Restrictions on Transversal Encoded Quantum Gate Sets",
+      "year": 2009,
+      "note": "",
+      "url": "https://arxiv.org/pdf/0811.4262v2",
+      "revision": "0811.4262v2",
+      "sha256": "7b08440c2cbda17452eb4eac8b6e786379b498eec3de361331a04aaff71e3ef6",
+      "pdf_pages": 4
+    },
+    "PS": {
+      "id": "PS",
+      "authors": "Schuld et al.",
+      "title": "Evaluating analytic gradients on quantum hardware",
+      "year": 2018,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1811.11184v1",
+      "revision": "1811.11184v1",
+      "sha256": "4f0bad125a39a756d685fd63730150d4e2e517fd297a6f0d6c99b6cded7f653b",
+      "pdf_pages": 8
+    },
+    "GPS": {
+      "id": "GPS",
+      "authors": "Wierichs et al.",
+      "title": "General parameter-shift rules for quantum gradients",
+      "year": 2021,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2107.12390v1",
+      "revision": "2107.12390v1",
+      "sha256": "939c3fdea244045c7941fb9abb186658797cda7cc85db36c6f38835dee57fcde",
+      "pdf_pages": 22
+    },
+    "ADJ": {
+      "id": "ADJ",
+      "authors": "Jones and Gacon",
+      "title": "Efficient calculation of gradients in classical simulations of variational quantum algorithms",
+      "year": 2020,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2009.02823v1",
+      "revision": "2009.02823v1",
+      "sha256": "34d6006b0b66258d5d6ba7ef6976fe3fcdf04cee22d810b96926ab6559e19212",
+      "pdf_pages": 11
+    },
+    "QNG": {
+      "id": "QNG",
+      "authors": "Stokes et al.",
+      "title": "Quantum Natural Gradient",
+      "year": 2019,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1909.02108v1",
+      "revision": "1909.02108v1",
+      "sha256": "ed521b2b9bcc2e579d41dc129f01bde1ba4a0f8ae6cad8faaedd05288c832d35",
+      "pdf_pages": 9
+    },
+    "BP": {
+      "id": "BP",
+      "authors": "McClean et al.",
+      "title": "Barren plateaus in quantum neural network training landscapes",
+      "year": 2018,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1803.11173v1",
+      "revision": "1803.11173v1",
+      "sha256": "6f6b475fe2dd77c484bc16104b7065e450284121afd173dc1a02c582d41dca6a",
+      "pdf_pages": 7
+    },
+    "CHEB": {
+      "id": "CHEB",
+      "authors": "Berry, Childs and Kothari",
+      "title": "Hamiltonian simulation with nearly optimal dependence on all parameters",
+      "year": 2015,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1501.01715v1",
+      "revision": "1501.01715v1",
+      "sha256": "19f74d0e2b29269721a18455def9d3c584e3a4230694ee81b374ad5e13e60154",
+      "pdf_pages": 17
+    },
+    "CHEM": {
+      "id": "CHEM",
+      "authors": "McArdle et al.",
+      "title": "Quantum computational chemistry",
+      "year": 2018,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1808.10402v1",
+      "revision": "1808.10402v1",
+      "sha256": "2304b0319888d4225d1ca218e7261997e9d80095fa182294a5c62447b42a0512",
+      "pdf_pages": 41
+    },
+    "DMET": {
+      "id": "DMET",
+      "authors": "Knizia and Chan",
+      "title": "Density matrix embedding: A simple alternative to dynamical mean-field theory",
+      "year": 2012,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1204.5783v1",
+      "revision": "1204.5783v1",
+      "sha256": "3724599025bce1bf59c719c5f95c737cfe75d4a1f92d16f8db9375f550a1e09d",
+      "pdf_pages": 4
+    },
+    "SQD": {
+      "id": "SQD",
+      "authors": "Robledo-Moreno et al.",
+      "title": "Chemistry Beyond Exact Solutions on a Quantum-Centric Supercomputer",
+      "year": 2024,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2405.05068v1",
+      "revision": "2405.05068v1",
+      "sha256": "6e35f5b6afd810cbee6db52d3bd87b5fe23a4d06da5bf4c498048bdd0901a355",
+      "pdf_pages": 49
+    },
+    "QAOA": {
+      "id": "QAOA",
+      "authors": "Farhi, Goldstone and Gutmann",
+      "title": "A Quantum Approximate Optimization Algorithm",
+      "year": 2014,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1411.4028v1",
+      "revision": "1411.4028v1",
+      "sha256": "0b8f8649ffa0ae294d74a5d67a2198754283aa397771cc5b8c72161f3d1bb0a3",
+      "pdf_pages": 16
+    },
+    "MIX": {
+      "id": "MIX",
+      "authors": "Hadfield et al.",
+      "title": "From the Quantum Approximate Optimization Algorithm to a Quantum Alternating Operator Ansatz",
+      "year": 2017,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1709.03489v1",
+      "revision": "1709.03489v1",
+      "sha256": "d40f3942a5d336f6aff98191f7948fa72e5325e84add2588475222c3ca1b4e86",
+      "pdf_pages": 46
+    },
+    "KERNEL": {
+      "id": "KERNEL",
+      "authors": "Schuld and Killoran",
+      "title": "Quantum machine learning in feature Hilbert spaces",
+      "year": 2018,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1803.07128v1",
+      "revision": "1803.07128v1",
+      "sha256": "249d89ddd5ef9748d3dc97f772ef69b5496b5a90bea50e11b463fc6505e41045",
+      "pdf_pages": 12
+    },
+    "ENC": {
+      "id": "ENC",
+      "authors": "Schuld, Sweke and Meyer",
+      "title": "The effect of data encoding on the expressive power of variational quantum machine learning models",
+      "year": 2020,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2008.08605v1",
+      "revision": "2008.08605v1",
+      "sha256": "68c311e1670cf6dee6c3d817611a5ac2586372b9b9b01ffeefc4f1c2c1346c91",
+      "pdf_pages": 16
+    },
+    "NOISE": {
+      "id": "NOISE",
+      "authors": "Endo et al.",
+      "title": "Hybrid quantum-classical algorithms and quantum error mitigation",
+      "year": 2020,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2011.01382v1",
+      "revision": "2011.01382v1",
+      "sha256": "d915f6a3ea9d7093188ffcf16ec0240b2b58a73be78a49cf7dd3cad6edb4de50",
+      "pdf_pages": 39
+    },
+    "RB": {
+      "id": "RB",
+      "authors": "Magesan, Gambetta and Emerson",
+      "title": "Robust randomized benchmarking of quantum processes",
+      "year": 2010,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1009.3639v1",
+      "revision": "1009.3639v1",
+      "sha256": "bba30fb0b3f6cdd9a8d0cfc3a6f48344a8688898b781477fa2595f5cebb26378",
+      "pdf_pages": 5
+    },
+    "LDPC": {
+      "id": "LDPC",
+      "authors": "Bravyi et al.",
+      "title": "High-threshold and low-overhead fault-tolerant quantum memory",
+      "year": 2023,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2308.07915v1",
+      "revision": "2308.07915v1",
+      "sha256": "5d105ea604ec6c0bb9f4a4417a29c1160508725062fb0ac8d7012e15c5e76bf3",
+      "pdf_pages": 38
+    },
+    "BOSON": {
+      "id": "BOSON",
+      "authors": "Albert",
+      "title": "Bosonic coding: introduction and use cases",
+      "year": 2022,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2211.05714v1",
+      "revision": "2211.05714v1",
+      "sha256": "acfc51439dee44185952e5d71a09fd19aa8fa9e3c5d15a609a10b06d43f4c8aa",
+      "pdf_pages": 31
+    },
+    "SURFACE": {
+      "id": "SURFACE",
+      "authors": "Fowler, Mariantoni, Martinis and Cleland",
+      "title": "Surface codes: Towards practical large-scale quantum computation",
+      "year": 2012,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1208.0928v2",
+      "revision": "1208.0928v2",
+      "sha256": "eaeb6b9d1283fc0fe1040aebb8248a6ea2e7f514ed3981cd8bbfa9e1fb4d4000",
+      "pdf_pages": 54
+    },
+    "FT": {
+      "id": "FT",
+      "authors": "Aliferis, Gottesman and Preskill",
+      "title": "Quantum accuracy threshold for concatenated distance-3 codes",
+      "year": 2005,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/0504218v1",
+      "revision": "quant-ph/0504218v1",
+      "sha256": "8dece2bd834a5b155cf41f95d9cea500cdb409b7e7304f765d013f77080c3f62",
+      "pdf_pages": 53
+    },
+    "DISTILL": {
+      "id": "DISTILL",
+      "authors": "Bravyi and Kitaev",
+      "title": "Universal Quantum Computation Based on a Magic States Distillation",
+      "year": 2004,
+      "note": "Title follows the accessed v1 manuscript",
+      "url": "https://arxiv.org/pdf/quant-ph/0403025v1",
+      "revision": "quant-ph/0403025v1",
+      "sha256": "08719155de760685f00787549b351d14ae28a4ae0d5c6e4d8fcf2225f0b416fb",
+      "pdf_pages": 14
+    },
+    "RESOURCE": {
+      "id": "RESOURCE",
+      "authors": "Litinski",
+      "title": "A Game of Surface Codes: Large-Scale Quantum Computing with Lattice Surgery",
+      "year": 2018,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1808.02892v1",
+      "revision": "1808.02892v1",
+      "sha256": "9344ea854df1626bbe7e2e77b3fdaed667379a5eec2bf57adcfc4f0f01bee941",
+      "pdf_pages": 35
+    },
+    "SC": {
+      "id": "SC",
+      "authors": "Krantz et al.",
+      "title": "A Quantum Engineer's Guide to Superconducting Qubits",
+      "year": 2019,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1904.06560v1",
+      "revision": "1904.06560v1",
+      "sha256": "e5d8ef3edf2614a55f628b9208d8d3489ed7c84aa20aa755ef18b7c4910c8c58",
+      "pdf_pages": 66
+    },
+    "ION": {
+      "id": "ION",
+      "authors": "Bruzewicz et al.",
+      "title": "Trapped-Ion Quantum Computing: Progress and Challenges",
+      "year": 2019,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1904.04178v1",
+      "revision": "1904.04178v1",
+      "sha256": "120774f31a9ca8d6b0644ba7097d5e5ec40707dcdcf27b661825324fe2f60607",
+      "pdf_pages": 56
+    },
+    "ATOM": {
+      "id": "ATOM",
+      "authors": "Henriet et al.",
+      "title": "Quantum computing with neutral atoms",
+      "year": 2020,
+      "note": "Historical author whitepaper; not evidence of current platform performance",
+      "url": "https://arxiv.org/pdf/2006.12326v1",
+      "revision": "2006.12326v1",
+      "sha256": "eb90c384aa3c7d60cb74c060ced3e6e38b6bcfb60108badec8cfa4e5617ac8c5",
+      "pdf_pages": 41
+    },
+    "OPTICS": {
+      "id": "OPTICS",
+      "authors": "Knill, Laflamme and Milburn",
+      "title": "Efficient Linear Optics Quantum Computation",
+      "year": 2000,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/0006088v1",
+      "revision": "quant-ph/0006088v1",
+      "sha256": "bc7bdf8a6a294b54a203ed6f74a0bd07033abce662a062c2c6236493acee6221",
+      "pdf_pages": 8
+    },
+    "FUSION": {
+      "id": "FUSION",
+      "authors": "Bartolucci et al.",
+      "title": "Fusion-based quantum computation",
+      "year": 2021,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2101.09310v1",
+      "revision": "2101.09310v1",
+      "sha256": "f371c3cb467efc093bcc2f9089127490fbb9e106e7f05ac8116822a9608af6e5",
+      "pdf_pages": 25
+    },
+    "SPIN": {
+      "id": "SPIN",
+      "authors": "Burkard et al.",
+      "title": "Semiconductor Spin Qubits",
+      "year": 2021,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2112.08863v1",
+      "revision": "2112.08863v1",
+      "sha256": "ae2d529b0e198f73840745305588fcbd452e3f93fe927d164ec71509d92d46cc",
+      "pdf_pages": 63
+    },
+    "ANYON": {
+      "id": "ANYON",
+      "authors": "Das Sarma, Freedman, Nayak, Simon and Stern",
+      "title": "Non-Abelian Anyons and Topological Quantum Computation",
+      "year": 2007,
+      "note": "Author order follows v1; historical theory and proposals, not current device evidence",
+      "url": "https://arxiv.org/pdf/0707.1889v1",
+      "revision": "0707.1889v1",
+      "sha256": "8c28aae9dad13656c5d6e2afdec08113164c9da9c81d20d3366aa71ce063a897",
+      "pdf_pages": 68
+    },
+    "MBQC": {
+      "id": "MBQC",
+      "authors": "Raussendorf and Briegel",
+      "title": "The one-way quantum computer: a non-network model of quantum computation",
+      "year": 2001,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/0108118v1",
+      "revision": "quant-ph/0108118v1",
+      "sha256": "f9fad6fc50f37590796e673aac2fa77043634e3a1fa7613211479c9c44ffb179",
+      "pdf_pages": 7
+    },
+    "OQ3": {
+      "id": "OQ3",
+      "authors": "Cross et al.",
+      "title": "OpenQASM 3: A broader and deeper quantum assembly language",
+      "year": 2021,
+      "note": "Paper v1 describes its own language proposal; it is not a current implementation-support certificate",
+      "url": "https://arxiv.org/pdf/2104.14722v1",
+      "revision": "2104.14722v1",
+      "sha256": "612ec032c3f65bad1123851348474fdd761400a0df1e332d3b762f8bd58552d7",
+      "pdf_pages": 54
+    },
+    "MLIR": {
+      "id": "MLIR",
+      "authors": "Nguyen and McCaskey",
+      "title": "Quantum Circuit Transformations with a Multi-Level Intermediate Representation Compiler",
+      "year": 2021,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2112.10677v1",
+      "revision": "2112.10677v1",
+      "sha256": "dbe2ee70071c212f97108d9187d6a2e185b754c2f0095021434c67e517c2143e",
+      "pdf_pages": 9
+    },
+    "SABRE": {
+      "id": "SABRE",
+      "authors": "Li, Ding and Xie",
+      "title": "Tackling the Qubit Mapping Problem for NISQ-Era Quantum Devices",
+      "year": 2018,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1809.02573v1",
+      "revision": "1809.02573v1",
+      "sha256": "c09efaf1b4759eb734b3f95969cd75bbdd2f4216526dc88e87aa8cc2482fd676",
+      "pdf_pages": 13
+    },
+    "SYNTH": {
+      "id": "SYNTH",
+      "authors": "Barenco et al.",
+      "title": "Elementary gates for quantum computation",
+      "year": 1995,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/9503016v1",
+      "revision": "quant-ph/9503016v1",
+      "sha256": "e329e6e56e234a4c572f8eb2d493b07864e308027fe142985fb76e62229e154d",
+      "pdf_pages": 31
+    },
+    "ROSS": {
+      "id": "ROSS",
+      "authors": "Ross and Selinger",
+      "title": "Optimal ancilla-free Clifford+T approximation of z-rotations",
+      "year": 2014,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1403.2975v1",
+      "revision": "1403.2975v1",
+      "sha256": "0029f43668d69a14f131c5c732fa9de49edfed2f37eb54abf1964c172b82d03d",
+      "pdf_pages": 36
+    },
+    "QUEST": {
+      "id": "QUEST",
+      "authors": "Jones, Brown, Bush and Benjamin",
+      "title": "QuEST and High Performance Simulation of Quantum Computers",
+      "year": 2018,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1802.08032v1",
+      "revision": "1802.08032v1",
+      "sha256": "58076dec8f4cb64ea658eee88e9b58d02c43b9d81a26bd1eb81af30b7e88d71e",
+      "pdf_pages": 8
+    },
+    "MPS": {
+      "id": "MPS",
+      "authors": "Vidal",
+      "title": "Classical simulation of slightly entangled quantum systems and quantum computations",
+      "year": 2003,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/0301063v1",
+      "revision": "quant-ph/0301063v1",
+      "sha256": "0461c1ff4f69b9b3e556e4c2ab3944d629ad26fd74c6955c62d19c35d9d80dfe",
+      "pdf_pages": 4
+    },
+    "SCHOLL": {
+      "id": "SCHOLL",
+      "authors": "Schollwöck",
+      "title": "The density-matrix renormalization group in the age of matrix product states",
+      "year": 2010,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1008.3477v1",
+      "revision": "1008.3477v1",
+      "sha256": "87ebe6704347adae648eea3697bbbffac07b02cc112abf0bf6c731f8e1879f6e",
+      "pdf_pages": 118
+    },
+    "TN": {
+      "id": "TN",
+      "authors": "Markov and Shi",
+      "title": "Simulating quantum computation by contracting tensor networks",
+      "year": 2005,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/0511069v1",
+      "revision": "quant-ph/0511069v1",
+      "sha256": "eda6d0d8f3be2c32531afa8b3655513eabf27391232f7a318d066dc31ce90ed2",
+      "pdf_pages": 13
+    },
+    "COTENGRA": {
+      "id": "COTENGRA",
+      "authors": "Gray and Kourtis",
+      "title": "Hyper-optimized tensor network contraction",
+      "year": 2020,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2002.01935v1",
+      "revision": "2002.01935v1",
+      "sha256": "187f0c8b5ce1cd30ce5617497496e931c5e66a9c3538fa1af4af0efa18247097",
+      "pdf_pages": 13
+    },
+    "CUT": {
+      "id": "CUT",
+      "authors": "Peng, Harrow, Ozols and Wu",
+      "title": "Simulating large quantum circuits on a small quantum computer",
+      "year": 2019,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1904.00102v1",
+      "revision": "1904.00102v1",
+      "sha256": "9177866bfc2a1278dd8eb5e97ba3298c963ae8802fbde486540e7883c7c92626",
+      "pdf_pages": 18
+    },
+    "SHADOW": {
+      "id": "SHADOW",
+      "authors": "Huang, Kueng and Preskill",
+      "title": "Predicting Many Properties of a Quantum System from Very Few Measurements",
+      "year": 2020,
+      "note": "",
+      "url": "https://arxiv.org/pdf/2002.08953v1",
+      "revision": "2002.08953v1",
+      "sha256": "2b9b3d4631e0d78cc1e55ba2ca88f8e729049417b5b3837d574c2c52e1e52a76",
+      "pdf_pages": 40
+    },
+    "QKD": {
+      "id": "QKD",
+      "authors": "Scarani et al.",
+      "title": "A Framework for Practical Quantum Cryptography",
+      "year": 2008,
+      "note": "Title of v1; later revisions/journal publication use The Security of Practical Quantum Key Distribution",
+      "url": "https://arxiv.org/pdf/0802.4155v1",
+      "revision": "0802.4155v1",
+      "sha256": "9e24d52374c9b1137978b491e9c174465dfcdb94a45e0eb38dc93f73c2b4f0c7",
+      "pdf_pages": 45
+    },
+    "PRIVACY": {
+      "id": "PRIVACY",
+      "authors": "Renner and König",
+      "title": "Universally Composable Privacy Amplification Against Quantum Adversaries",
+      "year": 2004,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/0403133v1",
+      "revision": "quant-ph/0403133v1",
+      "sha256": "75b967e59c0e068e194bee90d988fe1512d0f0e5a2b117aacbd73ab85a46c919",
+      "pdf_pages": 11
+    },
+    "COMPOSE": {
+      "id": "COMPOSE",
+      "authors": "Müller-Quade and Renner",
+      "title": "Composability in Quantum Cryptography",
+      "year": 2010,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1006.2215v1",
+      "revision": "1006.2215v1",
+      "sha256": "fd23030106224ac1b773590b4d0e04f204679a56c6d093979b863cf9cedd73e6",
+      "pdf_pages": 18
+    },
+    "COMPLEX": {
+      "id": "COMPLEX",
+      "authors": "Watrous",
+      "title": "Quantum Computational Complexity",
+      "year": 2008,
+      "note": "",
+      "url": "https://arxiv.org/pdf/0804.3401v1",
+      "revision": "0804.3401v1",
+      "sha256": "a60cd89068df12aa8a823c238a43d9621ec51a26ce8524281fb702cb841051fe",
+      "pdf_pages": 44
+    },
+    "NOGO": {
+      "id": "NOGO",
+      "authors": "Lo and Chau",
+      "title": "Is Quantum Bit Commitment Really Possible?",
+      "year": 1996,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/9603004v1",
+      "revision": "quant-ph/9603004v1",
+      "sha256": "d5645770f7b449f6c2a09840c3a418072859f2eaddf443fc961249fd9fc0f1f5",
+      "pdf_pages": 6
+    },
+    "H2": {
+      "id": "H2",
+      "authors": "O'Malley et al.",
+      "title": "Scalable Quantum Simulation of Molecular Energies",
+      "year": 2017,
+      "note": "Corrected arXiv v2 (2017); journal article published 2016",
+      "url": "https://arxiv.org/pdf/1512.06860v2",
+      "revision": "1512.06860v2",
+      "sha256": "79c6db488870611c9020adb2a6fc592a9d821f61266694567aa6c25cd54145c7",
+      "pdf_pages": 13
+    },
+    "MAGIC": {
+      "id": "MAGIC",
+      "authors": "Veitch et al.",
+      "title": "The Resource Theory of Stabilizer Computation",
+      "year": 2013,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1307.7171v1",
+      "revision": "1307.7171v1",
+      "sha256": "9b67289a01f655d54aaf8d8fb39b219eb9bbe9fc359745a723a15e61518bcf95",
+      "pdf_pages": 23
+    },
+    "TRAJ": {
+      "id": "TRAJ",
+      "authors": "Zoller and Gardiner",
+      "title": "Quantum Noise in Quantum Optics: the Stochastic Schrödinger Equation",
+      "year": 1997,
+      "note": "",
+      "url": "https://arxiv.org/pdf/quant-ph/9702030v1",
+      "revision": "quant-ph/9702030v1",
+      "sha256": "2778c60999245f1174bf8f46d6549f5a0bdc4e592666f2bbdca208fa2baa95bc",
+      "pdf_pages": 61
+    },
+    "NET": {
+      "id": "NET",
+      "authors": "Kimble",
+      "title": "The Quantum Internet",
+      "year": 2008,
+      "note": "",
+      "url": "https://arxiv.org/pdf/0806.4195v1",
+      "revision": "0806.4195v1",
+      "sha256": "f3f60c66074933e09ae19024a1b444e477c694c956caaaa2cc376d6b3b09e775",
+      "pdf_pages": 15
+    },
+    "REPRO": {
+      "id": "REPRO",
+      "authors": "Wilson et al.",
+      "title": "Good Enough Practices in Scientific Computing",
+      "year": 2016,
+      "note": "",
+      "url": "https://arxiv.org/pdf/1609.00037v2",
+      "revision": "1609.00037v2",
+      "sha256": "928cc2796bb98d17c918f17283ac86201038afed6d3e988717979bd726a2bdbe",
+      "pdf_pages": 21
+    },
+    "ED": {
+      "id": "ED",
+      "authors": "FlagQuantum textbook editorial project",
+      "title": "Original curriculum and validation contracts",
+      "year": 2026,
+      "note": "Original editorial specifications; not external mathematical authority",
+      "url": "https://github.com/FlagQuantum/modern-quantum-computing/tree/ad17637ff3ccc32c32b93994cfe5b589d3c30e53",
+      "revision": "ad17637ff3ccc32c32b93994cfe5b589d3c30e53"
+    }
+  },
+  "locators": {
+    "ADBOUND:theorem": {
+      "work": "ADBOUND",
+      "locator": "Section II: Theorems 1-3 and explicit regularity/gap assumptions",
+      "pages": [
+        3,
+        5
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0603175v3#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ADI:adiabatic": {
+      "work": "ADI",
+      "locator": "Proposed adiabatic algorithm and spectral-gap discussion",
+      "pages": [
+        3,
+        8
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0001106v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ADJ:2.2": {
+      "work": "ADJ",
+      "locator": "Section 2.2 Derivation",
+      "pages": [
+        2,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2009.02823v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ADJ:2.3": {
+      "work": "ADJ",
+      "locator": "Section 2.3 Algorithm",
+      "pages": [
+        3,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2009.02823v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "AE:3.1": {
+      "work": "AE",
+      "locator": "Section 3.1 The algorithm",
+      "pages": [
+        4,
+        5
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.10246v1#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "AE:3.2": {
+      "work": "AE",
+      "locator": "Section 3.2 Statistics; Cramer-Rao bound and Fisher information",
+      "pages": [
+        5,
+        8
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.10246v1#page=5",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "AMP:2": {
+      "work": "AMP",
+      "locator": "Section 2 Quantum amplitude amplification",
+      "pages": [
+        4,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0005055v1#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "AMP:4": {
+      "work": "AMP",
+      "locator": "Section 4 Quantum amplitude estimation",
+      "pages": [
+        14,
+        25
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0005055v1#page=14",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ANYON:II.A": {
+      "work": "ANYON",
+      "locator": "Section II A Non-Abelian Anyons",
+      "pages": [
+        3,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/0707.1889v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ANYON:III.B": {
+      "work": "ANYON",
+      "locator": "Section III B Superconductors with p+ip pairing symmetry",
+      "pages": [
+        27,
+        30
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/0707.1889v1#page=27",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ANYON:IV.D": {
+      "work": "ANYON",
+      "locator": "Section IV D Errors",
+      "pages": [
+        57,
+        58
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/0707.1889v1#page=57",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ANYON:V.A": {
+      "work": "ANYON",
+      "locator": "Section V A Issues for the Immediate Future (circa 2007)",
+      "pages": [
+        58,
+        59
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/0707.1889v1#page=58",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ATOM:2.1": {
+      "work": "ATOM",
+      "locator": "Section 2.1 Operating an atomic qubit register",
+      "pages": [
+        5,
+        8
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2006.12326v1#page=5",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ATOM:2.2.1": {
+      "work": "ATOM",
+      "locator": "Section 2.2.1 Digital quantum processing",
+      "pages": [
+        8,
+        14
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2006.12326v1#page=8",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ATOM:2.2.2": {
+      "work": "ATOM",
+      "locator": "Section 2.2.2 Analog quantum processing",
+      "pages": [
+        14,
+        15
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2006.12326v1#page=14",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ATOM:2.2.3": {
+      "work": "ATOM",
+      "locator": "Section 2.2.3 Prospects for improving QPU performance",
+      "pages": [
+        15,
+        17
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2006.12326v1#page=15",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ATOM:4.2": {
+      "work": "ATOM",
+      "locator": "Section 4.2 Hamiltonian control over the device",
+      "pages": [
+        30,
+        32
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2006.12326v1#page=30",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "BOSON:codes": {
+      "work": "BOSON",
+      "locator": "Sections 4.2 GKP, 5.2 Cat, 5.3 Binomial; Section 6 noise",
+      "pages": [
+        8,
+        18
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2211.05714v1#page=8",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "BOSON:modes": {
+      "work": "BOSON",
+      "locator": "Section 3 Bosonic modes and Section 4 finite-energy/precision discussion",
+      "pages": [
+        4,
+        11
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2211.05714v1#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "BP:theorem": {
+      "work": "BP",
+      "locator": "Main-text concentration result and gradient-variance discussion; methods proof",
+      "pages": [
+        2,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1803.11173v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CHEB:comparison": {
+      "work": "CHEB",
+      "locator": "Introduction and query-complexity comparison",
+      "pages": [
+        1,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1501.01715v1#page=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CHEB:theorem": {
+      "work": "CHEB",
+      "locator": "Theorem 1 and Hamiltonian-access assumptions",
+      "pages": [
+        2,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1501.01715v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CHEM:III": {
+      "work": "CHEM",
+      "locator": "Section III Classical Computational Chemistry",
+      "pages": [
+        6,
+        11
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.10402v1#page=6",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CHEM:IV.A": {
+      "work": "CHEM",
+      "locator": "Section IV A Fermion-to-qubit mappings",
+      "pages": [
+        11,
+        16
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.10402v1#page=11",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CHEM:IV.C": {
+      "work": "CHEM",
+      "locator": "Section IV C Hamiltonian reduction",
+      "pages": [
+        16,
+        17
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.10402v1#page=16",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CHEM:V.B": {
+      "work": "CHEM",
+      "locator": "Section V B Variational quantum eigensolver",
+      "pages": [
+        18,
+        23
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.10402v1#page=18",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CHEM:V.B.1": {
+      "work": "CHEM",
+      "locator": "Section V B 1 Implementation",
+      "pages": [
+        18,
+        19
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.10402v1#page=18",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CHEM:V.B.2": {
+      "work": "CHEM",
+      "locator": "Section V B 2 Ansatzes",
+      "pages": [
+        19,
+        21
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.10402v1#page=19",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CHEM:VII.A": {
+      "work": "CHEM",
+      "locator": "Section VII A Hydrogen, including STO-3G example",
+      "pages": [
+        28,
+        32
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.10402v1#page=28",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CHEM:VIII": {
+      "work": "CHEM",
+      "locator": "Section VIII Discussion and Conclusions",
+      "pages": [
+        34,
+        37
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.10402v1#page=34",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "COMPLEX:BQP": {
+      "work": "COMPLEX",
+      "locator": "Polynomial-time quantum computations and BQP definitions",
+      "pages": [
+        13,
+        18
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/0804.3401v1#page=13",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "COMPLEX:QMA": {
+      "work": "COMPLEX",
+      "locator": "Verification of quantum proofs; QMA and local-Hamiltonian examples",
+      "pages": [
+        19,
+        24
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/0804.3401v1#page=19",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "COMPOSE:definition": {
+      "work": "COMPOSE",
+      "locator": "Section 2.2 Security Criteria and 2.3 composition",
+      "pages": [
+        2,
+        6
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1006.2215v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "COTENGRA:II": {
+      "work": "COTENGRA",
+      "locator": "Section II Problem Statement",
+      "pages": [
+        2,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2002.01935v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "COTENGRA:slicing": {
+      "work": "COTENGRA",
+      "locator": "Section on Practical Performance, subsection Slicing",
+      "pages": [
+        9,
+        11
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2002.01935v1#page=9",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CUT:identity": {
+      "work": "CUT",
+      "locator": "Main-text circuit-decomposition identity and Appendix proof",
+      "pages": [
+        2,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.00102v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CUT:variance": {
+      "work": "CUT",
+      "locator": "Sampling/overhead analysis and Appendix proofs",
+      "pages": [
+        3,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.00102v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CVX:4.1": {
+      "work": "CVX",
+      "locator": "Section 4.1 Optimization problems",
+      "pages": [
+        127,
+        127
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CVX:7.4": {
+      "work": "CVX",
+      "locator": "Section 7.4 Chebyshev and Chernoff bounds",
+      "pages": [
+        374,
+        374
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CVX:7.5": {
+      "work": "CVX",
+      "locator": "Section 7.5 Experiment design",
+      "pages": [
+        384,
+        384
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CVX:9.1": {
+      "work": "CVX",
+      "locator": "Section 9.1 Unconstrained minimization problems",
+      "pages": [
+        457,
+        457
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CVX:9.2": {
+      "work": "CVX",
+      "locator": "Section 9.2 Descent methods",
+      "pages": [
+        463,
+        463
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "CVX:9.3": {
+      "work": "CVX",
+      "locator": "Section 9.3 Gradient descent method",
+      "pages": [
+        466,
+        466
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "DISTILL:protocol": {
+      "work": "DISTILL",
+      "locator": "Magic-state injection and selected distillation constructions/proofs",
+      "pages": [
+        2,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0403025v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "DMET:construction": {
+      "work": "DMET",
+      "locator": "Impurity/bath construction, self-consistency and limiting cases",
+      "pages": [
+        1,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1204.5783v1#page=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ED:hybrid": {
+      "work": "ED",
+      "locator": "Eight composable patterns",
+      "pages": null,
+      "page_unit": "PDF page (1-based)",
+      "url": "https://github.com/FlagQuantum/modern-quantum-computing/blob/ad17637ff3ccc32c32b93994cfe5b589d3c30e53/docs/hybrid-computing.md",
+      "status": "original-editorial-specification",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ED:protocol": {
+      "work": "ED",
+      "locator": "Reader review and acceptance evidence",
+      "pages": null,
+      "page_unit": "PDF page (1-based)",
+      "url": "https://github.com/FlagQuantum/modern-quantum-computing/blob/ad17637ff3ccc32c32b93994cfe5b589d3c30e53/docs/reader-continuity.md",
+      "status": "original-editorial-specification",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ED:routes": {
+      "work": "ED",
+      "locator": "Checked prerequisite paths",
+      "pages": null,
+      "page_unit": "PDF page (1-based)",
+      "url": "https://github.com/FlagQuantum/modern-quantum-computing/blob/ad17637ff3ccc32c32b93994cfe5b589d3c30e53/docs/learning-paths.md",
+      "status": "original-editorial-specification",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "EK:theorem": {
+      "work": "EK",
+      "locator": "Theorem 1, product-gate no-go theorem and proof",
+      "pages": [
+        2,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/0811.4262v2#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ENC:I": {
+      "work": "ENC",
+      "locator": "Section I Quantum models as partial Fourier series",
+      "pages": [
+        2,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2008.08605v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ENC:II": {
+      "work": "ENC",
+      "locator": "Section II The expressivity of quantum models",
+      "pages": [
+        4,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2008.08605v1#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ENC:IV": {
+      "work": "ENC",
+      "locator": "Section IV Practical implications for quantum machine learning",
+      "pages": [
+        9,
+        10
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2008.08605v1#page=9",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "FT:gadgets": {
+      "work": "FT",
+      "locator": "Section 2 Fault-tolerant simulation at level 1 and Section 3 correctness",
+      "pages": [
+        4,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0504218v1#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "FT:threshold": {
+      "work": "FT",
+      "locator": "Section 4, Theorem 1: independent stochastic noise threshold",
+      "pages": [
+        12,
+        14
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0504218v1#page=12",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "FUSION:II": {
+      "work": "FUSION",
+      "locator": "Section II Fusion, especially linear-optical fusion",
+      "pages": [
+        3,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2101.09310v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "FUSION:architecture": {
+      "work": "FUSION",
+      "locator": "Section VII C Physical architecture",
+      "pages": [
+        16,
+        18
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2101.09310v1#page=16",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "FUSION:errors": {
+      "work": "FUSION",
+      "locator": "Section VII D Errors in FBQC and Appendix on loss/erasure",
+      "pages": [
+        18,
+        21
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2101.09310v1#page=18",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "GPS:II.A": {
+      "work": "GPS",
+      "locator": "Section II A Cost functions arising from quantum gates",
+      "pages": [
+        2,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2107.12390v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "GPS:II.C": {
+      "work": "GPS",
+      "locator": "Section II C Resource measures for shift rules",
+      "pages": [
+        4,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2107.12390v1#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "GPS:III": {
+      "work": "GPS",
+      "locator": "Section III Univariate Cost Functions",
+      "pages": [
+        4,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2107.12390v1#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "H2:VQE": {
+      "work": "H2",
+      "locator": "Section I, Eqs. (1)-(3) and Fig. 1; reduced-Hamiltonian/ansatz convention",
+      "pages": [
+        2,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1512.06860v2#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "H2:data": {
+      "work": "H2",
+      "locator": "Corrected Supplementary Table I in arXiv v2 and surrounding reduced-model notes",
+      "pages": [
+        11,
+        13
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1512.06860v2#page=11",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ION:II.A": {
+      "work": "ION",
+      "locator": "Section II A Trapping Individual Ions",
+      "pages": [
+        6,
+        10
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.04178v1#page=6",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ION:II.B": {
+      "work": "ION",
+      "locator": "Section II B Internal States: Qubit Levels",
+      "pages": [
+        10,
+        13
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.04178v1#page=10",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ION:II.C": {
+      "work": "ION",
+      "locator": "Section II C Motional States",
+      "pages": [
+        13,
+        15
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.04178v1#page=13",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ION:III.B": {
+      "work": "ION",
+      "locator": "Section III B Qubit Logic",
+      "pages": [
+        16,
+        22
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.04178v1#page=16",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ION:III.C": {
+      "work": "ION",
+      "locator": "Section III C State Detection",
+      "pages": [
+        22,
+        24
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.04178v1#page=22",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ION:IV.A": {
+      "work": "ION",
+      "locator": "Section IV A Architectures and Techniques for Scaling",
+      "pages": [
+        25,
+        30
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.04178v1#page=25",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ION:IV.B": {
+      "work": "ION",
+      "locator": "Section IV B Error Reduction and Mitigation",
+      "pages": [
+        30,
+        34
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.04178v1#page=30",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "KERNEL:II.A": {
+      "work": "KERNEL",
+      "locator": "Section II A Feature maps and kernels",
+      "pages": [
+        2,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1803.07128v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "KERNEL:II.B": {
+      "work": "KERNEL",
+      "locator": "Section II B Reproducing kernel Hilbert spaces",
+      "pages": [
+        3,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1803.07128v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "KERNEL:II.C": {
+      "work": "KERNEL",
+      "locator": "Section II C Input encoding as a feature map",
+      "pages": [
+        3,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1803.07128v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "KERNEL:III.A": {
+      "work": "KERNEL",
+      "locator": "Section III A Feature-encoding circuits",
+      "pages": [
+        4,
+        5
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1803.07128v1#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "KERNEL:III.B": {
+      "work": "KERNEL",
+      "locator": "Section III B Building a quantum classifier",
+      "pages": [
+        5,
+        5
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1803.07128v1#page=5",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "KERNEL:III.D": {
+      "work": "KERNEL",
+      "locator": "Section III D An implicit quantum-assisted classifier",
+      "pages": [
+        6,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1803.07128v1#page=6",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "LB:polynomial": {
+      "work": "LB",
+      "locator": "Section 3 General lower bounds on the number of queries; polynomial lemma",
+      "pages": [
+        6,
+        10
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/9802049v1#page=6",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "LB:search": {
+      "work": "LB",
+      "locator": "Section 5.1 OR, database search, and connectives",
+      "pages": [
+        13,
+        14
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/9802049v1#page=13",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "LDPC:construction": {
+      "work": "LDPC",
+      "locator": "Section 4 Quasi-cyclic quantum LDPC codes; construction and check matrices",
+      "pages": [
+        8,
+        13
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2308.07915v1#page=8",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MAGIC:resource": {
+      "work": "MAGIC",
+      "locator": "Resource/free-operation definitions and discrete-Wigner restrictions; Theorem 5 (relative entropy of magic)",
+      "pages": [
+        2,
+        8
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1307.7171v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MBQC:pattern": {
+      "work": "MBQC",
+      "locator": "Computation by adaptive one-qubit measurements and byproduct operators",
+      "pages": [
+        2,
+        5
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0108118v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MIX:mixers": {
+      "work": "MIX",
+      "locator": "Section II Framework and Section III constrained-mixer constructions",
+      "pages": [
+        3,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1709.03489v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MLIR:IR": {
+      "work": "MLIR",
+      "locator": "Multi-level IR and transformation pipeline descriptions",
+      "pages": [
+        2,
+        6
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.10677v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MPS:rank": {
+      "work": "MPS",
+      "locator": "State decomposition, updates and bounded-Schmidt-rank simulation argument",
+      "pages": [
+        1,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0301063v1#page=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:1.2": {
+      "work": "NC",
+      "locator": "Section 1.2 Quantum bits",
+      "pages": [
+        13,
+        13
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:1.3.1": {
+      "work": "NC",
+      "locator": "Section 1.3.1 Single qubit gates",
+      "pages": [
+        17,
+        17
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:1.3.3": {
+      "work": "NC",
+      "locator": "Section 1.3.3 Measurements in bases other than the computational basis",
+      "pages": [
+        22,
+        22
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:1.3.5": {
+      "work": "NC",
+      "locator": "Section 1.3.5 Qubit copying circuit?",
+      "pages": [
+        24,
+        24
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:1.3.6": {
+      "work": "NC",
+      "locator": "Section 1.3.6 Example: Bell states",
+      "pages": [
+        25,
+        25
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:1.3.7": {
+      "work": "NC",
+      "locator": "Section 1.3.7 Example: quantum teleportation",
+      "pages": [
+        26,
+        26
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:1.4.1": {
+      "work": "NC",
+      "locator": "Section 1.4.1 Classical computations on a quantum computer",
+      "pages": [
+        29,
+        29
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:1.4.3": {
+      "work": "NC",
+      "locator": "Section 1.4.3 Deutsch’s algorithm",
+      "pages": [
+        32,
+        32
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:1.4.4": {
+      "work": "NC",
+      "locator": "Section 1.4.4 The Deutsch–Jozsa algorithm",
+      "pages": [
+        34,
+        34
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.1": {
+      "work": "NC",
+      "locator": "Section 10.1 Introduction",
+      "pages": [
+        426,
+        426
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.1.1": {
+      "work": "NC",
+      "locator": "Section 10.1.1 The three qubit bit ﬂip code",
+      "pages": [
+        427,
+        427
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.2": {
+      "work": "NC",
+      "locator": "Section 10.2 The Shor code",
+      "pages": [
+        432,
+        432
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.3": {
+      "work": "NC",
+      "locator": "Section 10.3 Theory of quantum error-correction",
+      "pages": [
+        435,
+        435
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.3.1": {
+      "work": "NC",
+      "locator": "Section 10.3.1 Discretization of the errors",
+      "pages": [
+        438,
+        438
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.3.3": {
+      "work": "NC",
+      "locator": "Section 10.3.3 Degenerate codes",
+      "pages": [
+        444,
+        444
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.3.4": {
+      "work": "NC",
+      "locator": "Section 10.3.4 The quantum Hamming bound",
+      "pages": [
+        444,
+        444
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.4.1": {
+      "work": "NC",
+      "locator": "Section 10.4.1 Classical linear codes",
+      "pages": [
+        445,
+        445
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.4.2": {
+      "work": "NC",
+      "locator": "Section 10.4.2 Calderbank–Shor–Steane codes",
+      "pages": [
+        450,
+        450
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.5.1": {
+      "work": "NC",
+      "locator": "Section 10.5.1 The stabilizer formalism",
+      "pages": [
+        454,
+        454
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.5.2": {
+      "work": "NC",
+      "locator": "Section 10.5.2 Unitary gates and the stabilizer formalism",
+      "pages": [
+        459,
+        459
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.5.3": {
+      "work": "NC",
+      "locator": "Section 10.5.3 Measurement in the stabilizer formalism",
+      "pages": [
+        463,
+        463
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.5.4": {
+      "work": "NC",
+      "locator": "Section 10.5.4 The Gottesman–Knill theorem",
+      "pages": [
+        464,
+        464
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.5.5": {
+      "work": "NC",
+      "locator": "Section 10.5.5 Stabilizer code constructions",
+      "pages": [
+        464,
+        464
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.5.8": {
+      "work": "NC",
+      "locator": "Section 10.5.8 Quantum circuits for encoding, decoding, and correction",
+      "pages": [
+        472,
+        472
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.6.1": {
+      "work": "NC",
+      "locator": "Section 10.6.1 Fault-tolerance: the big picture",
+      "pages": [
+        475,
+        475
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.6.2": {
+      "work": "NC",
+      "locator": "Section 10.6.2 Fault-tolerant quantum logic",
+      "pages": [
+        482,
+        482
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:10.6.3": {
+      "work": "NC",
+      "locator": "Section 10.6.3 Fault-tolerant measurement",
+      "pages": [
+        489,
+        489
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:11.2.3": {
+      "work": "NC",
+      "locator": "Section 11.2.3 Conditional entropy and mutual information",
+      "pages": [
+        505,
+        505
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:11.3.1": {
+      "work": "NC",
+      "locator": "Section 11.3.1 Quantum relative entropy",
+      "pages": [
+        511,
+        511
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:11.4.1": {
+      "work": "NC",
+      "locator": "Section 11.4.1 Proof of strong subadditivity",
+      "pages": [
+        519,
+        519
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:11.4.2": {
+      "work": "NC",
+      "locator": "Section 11.4.2 Strong subadditivity: elementary applications",
+      "pages": [
+        522,
+        522
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:12.1.1": {
+      "work": "NC",
+      "locator": "Section 12.1.1 The Holevo bound",
+      "pages": [
+        531,
+        531
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:12.2.1": {
+      "work": "NC",
+      "locator": "Section 12.2.1 Shannon’s noiseless channel coding theorem",
+      "pages": [
+        537,
+        537
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:12.2.2": {
+      "work": "NC",
+      "locator": "Section 12.2.2 Schumacher’s quantum noiseless channel coding theorem",
+      "pages": [
+        542,
+        542
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:12.5.2": {
+      "work": "NC",
+      "locator": "Section 12.5.2 Entanglement distillation and dilution",
+      "pages": [
+        578,
+        578
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:12.6.2": {
+      "work": "NC",
+      "locator": "Section 12.6.2 Privacy ampliﬁcation and information reconciliation",
+      "pages": [
+        584,
+        584
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:12.6.3": {
+      "work": "NC",
+      "locator": "Section 12.6.3 Quantum key distribution",
+      "pages": [
+        586,
+        586
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.1.1": {
+      "work": "NC",
+      "locator": "Section 2.1.1 Bases and linear independence",
+      "pages": [
+        62,
+        62
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.1.10": {
+      "work": "NC",
+      "locator": "Section 2.1.10 The polar and singular value decompositions",
+      "pages": [
+        78,
+        78
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.1.2": {
+      "work": "NC",
+      "locator": "Section 2.1.2 Linear operators and matrices",
+      "pages": [
+        63,
+        63
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.1.3": {
+      "work": "NC",
+      "locator": "Section 2.1.3 The Pauli matrices",
+      "pages": [
+        65,
+        65
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.1.4": {
+      "work": "NC",
+      "locator": "Section 2.1.4 Inner products",
+      "pages": [
+        65,
+        65
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.1.5": {
+      "work": "NC",
+      "locator": "Section 2.1.5 Eigenvectors and eigenvalues",
+      "pages": [
+        68,
+        68
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.1.6": {
+      "work": "NC",
+      "locator": "Section 2.1.6 Adjoints and Hermitian operators",
+      "pages": [
+        69,
+        69
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.1.7": {
+      "work": "NC",
+      "locator": "Section 2.1.7 Tensor products",
+      "pages": [
+        71,
+        71
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.1.8": {
+      "work": "NC",
+      "locator": "Section 2.1.8 Operator functions",
+      "pages": [
+        75,
+        75
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.2.1": {
+      "work": "NC",
+      "locator": "Section 2.2.1 State space",
+      "pages": [
+        80,
+        80
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.2.2": {
+      "work": "NC",
+      "locator": "Section 2.2.2 Evolution",
+      "pages": [
+        81,
+        81
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.2.3": {
+      "work": "NC",
+      "locator": "Section 2.2.3 Quantum measurement",
+      "pages": [
+        84,
+        84
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.2.5": {
+      "work": "NC",
+      "locator": "Section 2.2.5 Projective measurements",
+      "pages": [
+        87,
+        87
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.2.6": {
+      "work": "NC",
+      "locator": "Section 2.2.6 POVM measurements",
+      "pages": [
+        90,
+        90
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.2.7": {
+      "work": "NC",
+      "locator": "Section 2.2.7 Phase",
+      "pages": [
+        93,
+        93
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.2.8": {
+      "work": "NC",
+      "locator": "Section 2.2.8 Composite systems",
+      "pages": [
+        93,
+        93
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.3": {
+      "work": "NC",
+      "locator": "Section 2.3 Application: superdense coding",
+      "pages": [
+        97,
+        97
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.4.1": {
+      "work": "NC",
+      "locator": "Section 2.4.1 Ensembles of quantum states",
+      "pages": [
+        99,
+        99
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.4.2": {
+      "work": "NC",
+      "locator": "Section 2.4.2 General properties of the density operator",
+      "pages": [
+        101,
+        101
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.4.3": {
+      "work": "NC",
+      "locator": "Section 2.4.3 The reduced density operator",
+      "pages": [
+        105,
+        105
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.5": {
+      "work": "NC",
+      "locator": "Section 2.5 The Schmidt decomposition and puriﬁcations",
+      "pages": [
+        109,
+        109
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:2.6": {
+      "work": "NC",
+      "locator": "Section 2.6 EPR and the Bell inequality",
+      "pages": [
+        111,
+        111
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:3.1.1": {
+      "work": "NC",
+      "locator": "Section 3.1.1 Turing machines",
+      "pages": [
+        122,
+        122
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:3.1.2": {
+      "work": "NC",
+      "locator": "Section 3.1.2 Circuits",
+      "pages": [
+        129,
+        129
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:3.2.1": {
+      "work": "NC",
+      "locator": "Section 3.2.1 How to quantify computational resources",
+      "pages": [
+        136,
+        136
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:3.2.5": {
+      "work": "NC",
+      "locator": "Section 3.2.5 Energy and computation",
+      "pages": [
+        153,
+        153
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:4.1": {
+      "work": "NC",
+      "locator": "Section 4.1 Quantum algorithms",
+      "pages": [
+        172,
+        172
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:4.2": {
+      "work": "NC",
+      "locator": "Section 4.2 Single qubit operations",
+      "pages": [
+        174,
+        174
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:4.3": {
+      "work": "NC",
+      "locator": "Section 4.3 Controlled operations",
+      "pages": [
+        177,
+        177
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:4.5.1": {
+      "work": "NC",
+      "locator": "Section 4.5.1 Two-level unitary gates are universal",
+      "pages": [
+        189,
+        189
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:4.5.2": {
+      "work": "NC",
+      "locator": "Section 4.5.2 Single qubit and CNOT gates are universal",
+      "pages": [
+        191,
+        191
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:4.7": {
+      "work": "NC",
+      "locator": "Section 4.7 Simulation of quantum systems",
+      "pages": [
+        204,
+        204
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:4.7.1": {
+      "work": "NC",
+      "locator": "Section 4.7.1 Simulation in action",
+      "pages": [
+        204,
+        204
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:4.7.2": {
+      "work": "NC",
+      "locator": "Section 4.7.2 The quantum simulation algorithm",
+      "pages": [
+        206,
+        206
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:4.7.3": {
+      "work": "NC",
+      "locator": "Section 4.7.3 An illustrative example",
+      "pages": [
+        209,
+        209
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:5.1": {
+      "work": "NC",
+      "locator": "Section 5.1 The quantum Fourier transform",
+      "pages": [
+        217,
+        217
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:5.2": {
+      "work": "NC",
+      "locator": "Section 5.2 Phase estimation",
+      "pages": [
+        221,
+        221
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:5.2.1": {
+      "work": "NC",
+      "locator": "Section 5.2.1 Performance and requirements",
+      "pages": [
+        223,
+        223
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:5.3.1": {
+      "work": "NC",
+      "locator": "Section 5.3.1 Application: order-ﬁnding",
+      "pages": [
+        226,
+        226
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:5.3.2": {
+      "work": "NC",
+      "locator": "Section 5.3.2 Application: factoring",
+      "pages": [
+        232,
+        232
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:5.4.2": {
+      "work": "NC",
+      "locator": "Section 5.4.2 Discrete logarithms",
+      "pages": [
+        238,
+        238
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:5.4.3": {
+      "work": "NC",
+      "locator": "Section 5.4.3 The hidden subgroup problem",
+      "pages": [
+        240,
+        240
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:6.1.1": {
+      "work": "NC",
+      "locator": "Section 6.1.1 The oracle",
+      "pages": [
+        248,
+        248
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:6.1.3": {
+      "work": "NC",
+      "locator": "Section 6.1.3 Geometric visualization",
+      "pages": [
+        252,
+        252
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:6.1.4": {
+      "work": "NC",
+      "locator": "Section 6.1.4 Performance",
+      "pages": [
+        253,
+        253
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:6.6": {
+      "work": "NC",
+      "locator": "Section 6.6 Optimality of the search algorithm",
+      "pages": [
+        269,
+        269
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:7.2": {
+      "work": "NC",
+      "locator": "Section 7.2 Conditions for quantum computation",
+      "pages": [
+        279,
+        279
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:7.2.1": {
+      "work": "NC",
+      "locator": "Section 7.2.1 Representation of quantum information",
+      "pages": [
+        279,
+        279
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:7.3.2": {
+      "work": "NC",
+      "locator": "Section 7.3.2 The Hamiltonian",
+      "pages": [
+        284,
+        284
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:8.2.2": {
+      "work": "NC",
+      "locator": "Section 8.2.2 Environments and quantum operations",
+      "pages": [
+        357,
+        357
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:8.2.3": {
+      "work": "NC",
+      "locator": "Section 8.2.3 Operator-sum representation",
+      "pages": [
+        360,
+        360
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:8.3.3": {
+      "work": "NC",
+      "locator": "Section 8.3.3 Bit ﬂip and phase ﬂip channels",
+      "pages": [
+        376,
+        376
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:8.3.4": {
+      "work": "NC",
+      "locator": "Section 8.3.4 Depolarizing channel",
+      "pages": [
+        378,
+        378
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:8.3.5": {
+      "work": "NC",
+      "locator": "Section 8.3.5 Amplitude damping",
+      "pages": [
+        380,
+        380
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:8.4.1": {
+      "work": "NC",
+      "locator": "Section 8.4.1 Master equations",
+      "pages": [
+        386,
+        386
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:8.4.2": {
+      "work": "NC",
+      "locator": "Section 8.4.2 Quantum process tomography",
+      "pages": [
+        389,
+        389
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:8.5": {
+      "work": "NC",
+      "locator": "Section 8.5 Limitations of the quantum operations formalism",
+      "pages": [
+        394,
+        394
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:9.1": {
+      "work": "NC",
+      "locator": "Section 9.1 Distance measures for classical information",
+      "pages": [
+        399,
+        399
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:9.2.1": {
+      "work": "NC",
+      "locator": "Section 9.2.1 Trace distance",
+      "pages": [
+        403,
+        403
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:A1": {
+      "work": "NC",
+      "locator": "Appendix 1: Notes on basic probability theory",
+      "pages": [
+        608,
+        608
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:A3": {
+      "work": "NC",
+      "locator": "Appendix 3: The Solovay-Kitaev theorem",
+      "pages": [
+        617,
+        617
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:A4.3": {
+      "work": "NC",
+      "locator": "Appendix 4, A4.3 Reduction of factoring to order-finding",
+      "pages": [
+        633,
+        633
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:A4.4": {
+      "work": "NC",
+      "locator": "Appendix 4, A4.4 Continued fractions",
+      "pages": [
+        635,
+        635
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NC:A6": {
+      "work": "NC",
+      "locator": "Appendix 6: Proof of Lieb's theorem",
+      "pages": [
+        645,
+        645
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "status": "contents-locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NET:links": {
+      "work": "NET",
+      "locator": "Elementary quantum networks, nodes, channels and entanglement distribution",
+      "pages": [
+        2,
+        6
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/0806.4195v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NOGO:cheating": {
+      "work": "NOGO",
+      "locator": "Purification-based cheating construction in the ideal concealing case",
+      "pages": [
+        2,
+        5
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/9603004v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NOISE:mitigation": {
+      "work": "NOISE",
+      "locator": "Section V A extrapolation and V C quasi-probability methods",
+      "pages": [
+        21,
+        26
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2011.01382v1#page=21",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "NOISE:variational": {
+      "work": "NOISE",
+      "locator": "Section II B real/imaginary time and Section IV variational simulation; Appendix A",
+      "pages": [
+        5,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2011.01382v1#page=5",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OPTICS:II": {
+      "work": "OPTICS",
+      "locator": "Section II Bosonic Modes",
+      "pages": [
+        1,
+        2
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0006088v1#page=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OPTICS:III": {
+      "work": "OPTICS",
+      "locator": "Section III Optical Elements",
+      "pages": [
+        1,
+        2
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0006088v1#page=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OPTICS:conditional": {
+      "work": "OPTICS",
+      "locator": "Sections IV-V conditional operations and selected gate construction",
+      "pages": [
+        2,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0006088v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OQ3:2.4": {
+      "work": "OQ3",
+      "locator": "Section 2.4 Execution model",
+      "pages": [
+        6,
+        6
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2104.14722v1#page=6",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OQ3:4.2": {
+      "work": "OQ3",
+      "locator": "Section 4.2 Gate modifiers",
+      "pages": [
+        14,
+        17
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2104.14722v1#page=14",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OQ3:4.3": {
+      "work": "OQ3",
+      "locator": "Section 4.3 Non-unitary operations",
+      "pages": [
+        17,
+        18
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2104.14722v1#page=17",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OQ3:4.4": {
+      "work": "OQ3",
+      "locator": "Section 4.4 Real-time classical computing",
+      "pages": [
+        18,
+        22
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2104.14722v1#page=18",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OQ3:5.1": {
+      "work": "OQ3",
+      "locator": "Section 5.1 Timing and optimization",
+      "pages": [
+        24,
+        30
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2104.14722v1#page=24",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OQ3:5.2": {
+      "work": "OQ3",
+      "locator": "Section 5.2 Calibrating quantum instructions",
+      "pages": [
+        30,
+        35
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2104.14722v1#page=30",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OQ3:5.3": {
+      "work": "OQ3",
+      "locator": "Section 5.3 Solving the stretch problem",
+      "pages": [
+        35,
+        38
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2104.14722v1#page=35",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "OQ3:6.1": {
+      "work": "OQ3",
+      "locator": "Section 6.1 Target-independent compilation phase",
+      "pages": [
+        40,
+        43
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2104.14722v1#page=40",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P6:6.1": {
+      "work": "P6",
+      "locator": "Section 6.1 Some Quantum Algorithms; Bernstein-Vazirani and Simon passages",
+      "pages": [
+        9,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/chap6_20_6A_2022.pdf#page=9",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P6:6.10": {
+      "work": "P6",
+      "locator": "Section 6.10 QMA-completeness of the local Hamiltonian problem",
+      "pages": [
+        52,
+        64
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/chap6_20_6A_2022.pdf#page=52",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P6:6.8.2": {
+      "work": "P6",
+      "locator": "Section 6.8.2 Estimating energy eigenvalues and preparing energy eigenstates",
+      "pages": [
+        45,
+        47
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/chap6_20_6A_2022.pdf#page=45",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P7:7.10.2": {
+      "work": "P7",
+      "locator": "Section 7.10.2 Symplectic Notation",
+      "pages": [
+        36,
+        37
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf#page=36",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P7:7.18.1": {
+      "work": "P7",
+      "locator": "Section 7.18.1 Code stabilizer and logical operators",
+      "pages": [
+        58,
+        60
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf#page=58",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P7:7.18.4": {
+      "work": "P7",
+      "locator": "Section 7.18.4 Planar surface codes",
+      "pages": [
+        61,
+        62
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf#page=61",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P7:7.18.5": {
+      "work": "P7",
+      "locator": "Section 7.18.5 Surface code accuracy threshold",
+      "pages": [
+        61,
+        64
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/chap7_26_6A.pdf#page=61",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P9:9.12.2": {
+      "work": "P9",
+      "locator": "Section 9.12.2 Fusion spaces",
+      "pages": [
+        41,
+        44
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/topological.pdf#page=41",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P9:9.12.3": {
+      "work": "P9",
+      "locator": "Section 9.12.3 Braiding: the R-matrix",
+      "pages": [
+        44,
+        45
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/topological.pdf#page=44",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P9:9.12.4": {
+      "work": "P9",
+      "locator": "Section 9.12.4 Associativity of fusion: the F-matrix",
+      "pages": [
+        45,
+        46
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/topological.pdf#page=45",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P9:9.12.6": {
+      "work": "P9",
+      "locator": "Section 9.12.6 Braiding in the standard basis: the B-matrix",
+      "pages": [
+        47,
+        48
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/topological.pdf#page=47",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P9:9.14": {
+      "work": "P9",
+      "locator": "Section 9.14 Fibonacci anyons",
+      "pages": [
+        52,
+        53
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/topological.pdf#page=52",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "P9:9.17": {
+      "work": "P9",
+      "locator": "Section 9.17 Simulating a quantum circuit with Fibonacci anyons",
+      "pages": [
+        61,
+        63
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://www.preskill.caltech.edu/ph219/topological.pdf#page=61",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "PRIVACY:hashing": {
+      "work": "PRIVACY",
+      "locator": "Section 4.1, Theorem 4.1 and Corollary 4.2; Section 4.2 applications (source Renyi entropy convention)",
+      "pages": [
+        6,
+        10
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0403133v1#page=6",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "PS:II": {
+      "work": "PS",
+      "locator": "Section II Computing Quantum Gradients",
+      "pages": [
+        2,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1811.11184v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "PS:III.A": {
+      "work": "PS",
+      "locator": "Section III A Parameter-shift rule for gates with generators with two distinct eigenvalues",
+      "pages": [
+        3,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1811.11184v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QAOA:objective": {
+      "work": "QAOA",
+      "locator": "Objective encoding, alternating ansatz and selected low-depth analysis",
+      "pages": [
+        1,
+        6
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1411.4028v1#page=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QKD:devices": {
+      "work": "QKD",
+      "locator": "Section III B 3-5 side channels, hacking and uncalibrated devices",
+      "pages": [
+        19,
+        20
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/0802.4155v1#page=19",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QKD:finite": {
+      "work": "QKD",
+      "locator": "Section VIII A 1 Finite-key analysis (scope discussion, not a modern full finite-key theorem)",
+      "pages": [
+        34,
+        35
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/0802.4155v1#page=34",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QNG:II.A": {
+      "work": "QNG",
+      "locator": "Section II A Quantum Information Geometry",
+      "pages": [
+        2,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1909.02108v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QNG:II.B": {
+      "work": "QNG",
+      "locator": "Section II B Optimization problem",
+      "pages": [
+        3,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1909.02108v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QNG:appendix": {
+      "work": "QNG",
+      "locator": "Appendix: real/imaginary QGT and imaginary-time relationships",
+      "pages": [
+        6,
+        9
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1909.02108v1#page=6",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:3.1": {
+      "work": "QSVT",
+      "locator": "Section 3.1 Parametrized SU(2) unitaries induced by Pauli rotations; Theorems 3-5 (admissibility/completion)",
+      "pages": [
+        7,
+        14
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=7",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:3.2": {
+      "work": "QSVT",
+      "locator": "Section 3.2 Singular value transformation by qubitization; Lemma 14, Theorem 17 and Corollary 18",
+      "pages": [
+        14,
+        21
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=14",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:3.3": {
+      "work": "QSVT",
+      "locator": "Section 3.3 Robustness of singular value transformation",
+      "pages": [
+        21,
+        26
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=21",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:3.5.1": {
+      "work": "QSVT",
+      "locator": "Section 3.5.1 Relationship to quantum walks",
+      "pages": [
+        31,
+        34
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=31",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:3.7": {
+      "work": "QSVT",
+      "locator": "Section 3.7 Direct implementation of the Moore-Penrose pseudoinverse",
+      "pages": [
+        37,
+        38
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=37",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:4.1": {
+      "work": "QSVT",
+      "locator": "Section 4.1 Block-encoding",
+      "pages": [
+        40,
+        41
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=40",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:4.2": {
+      "work": "QSVT",
+      "locator": "Section 4.2 Constructing block-encodings",
+      "pages": [
+        41,
+        46
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=41",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:4.3": {
+      "work": "QSVT",
+      "locator": "Section 4.3 Addition and subtraction",
+      "pages": [
+        46,
+        46
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=46",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:4.4": {
+      "work": "QSVT",
+      "locator": "Section 4.4 Multiplication",
+      "pages": [
+        46,
+        49
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=46",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:5.1": {
+      "work": "QSVT",
+      "locator": "Section 5.1 Optimal Hamiltonian simulation",
+      "pages": [
+        49,
+        53
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=49",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QSVT:5.2": {
+      "work": "QSVT",
+      "locator": "Section 5.2 Bounded polynomial approximations of piecewise smooth functions",
+      "pages": [
+        53,
+        58
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1806.01838v1#page=53",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QUB:3": {
+      "work": "QUB",
+      "locator": "Section 3 Qubitization in a Quantum Signal Processor; Theorems 2-3",
+      "pages": [
+        7,
+        9
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1610.06546v1#page=7",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QUB:5": {
+      "work": "QUB",
+      "locator": "Section 5 Application to Hamiltonian Simulation",
+      "pages": [
+        10,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1610.06546v1#page=10",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QUEST:parallel": {
+      "work": "QUEST",
+      "locator": "Parallelization/distributed execution and benchmark methods",
+      "pages": [
+        3,
+        6
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1802.08032v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "QUEST:representation": {
+      "work": "QUEST",
+      "locator": "Statevector representation and local-gate execution",
+      "pages": [
+        1,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1802.08032v1#page=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "RB:decay": {
+      "work": "RB",
+      "locator": "Twirled decay models and zeroth/first-order fit equations",
+      "pages": [
+        1,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1009.3639v1#page=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "REPRO:changes": {
+      "work": "REPRO",
+      "locator": "Section 5 Keeping Track of Changes",
+      "pages": [
+        9,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1609.00037v2#page=9",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "REPRO:data": {
+      "work": "REPRO",
+      "locator": "Section 1 Data Management",
+      "pages": [
+        2,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1609.00037v2#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "REPRO:manuscripts": {
+      "work": "REPRO",
+      "locator": "Section 6 Manuscripts",
+      "pages": [
+        12,
+        15
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1609.00037v2#page=12",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "REPRO:organization": {
+      "work": "REPRO",
+      "locator": "Section 4 Project Organization",
+      "pages": [
+        7,
+        9
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1609.00037v2#page=7",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "REPRO:software": {
+      "work": "REPRO",
+      "locator": "Section 2 Software",
+      "pages": [
+        5,
+        6
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1609.00037v2#page=5",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "RESOURCE:cost": {
+      "work": "RESOURCE",
+      "locator": "Section 4 tradeoffs, especially 4.3 distance selection, and Section 5",
+      "pages": [
+        16,
+        21
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.02892v1#page=16",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "RESOURCE:factories": {
+      "work": "RESOURCE",
+      "locator": "Section 3 Distillation blocks",
+      "pages": [
+        10,
+        16
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.02892v1#page=10",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "RESOURCE:overview": {
+      "work": "RESOURCE",
+      "locator": "Introduction and Section 1 Clifford+T quantum circuits",
+      "pages": [
+        1,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.02892v1#page=1",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "RESOURCE:surgery": {
+      "work": "RESOURCE",
+      "locator": "Patch operations and Section 1.1 Pauli product measurements",
+      "pages": [
+        2,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1808.02892v1#page=2",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "ROSS:synthesis": {
+      "work": "ROSS",
+      "locator": "Sections 7-8: approximate synthesis algorithm and its analysis",
+      "pages": [
+        11,
+        17
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1403.2975v1#page=11",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SABRE:heuristic": {
+      "work": "SABRE",
+      "locator": "Section IV B-D SWAP heuristic and look-ahead cost",
+      "pages": [
+        5,
+        8
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1809.02573v1#page=5",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SABRE:mapping": {
+      "work": "SABRE",
+      "locator": "Section III A-B mapping problem/objectives",
+      "pages": [
+        3,
+        4
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1809.02573v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SC:II.A": {
+      "work": "SC",
+      "locator": "Section II A From quantum harmonic oscillator to the transmon",
+      "pages": [
+        3,
+        6
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.06560v1#page=3",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SC:II.B": {
+      "work": "SC",
+      "locator": "Section II B Qubit Hamiltonian engineering",
+      "pages": [
+        6,
+        9
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.06560v1#page=6",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SC:II.C": {
+      "work": "SC",
+      "locator": "Section II C Interaction Hamiltonian engineering",
+      "pages": [
+        9,
+        11
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.06560v1#page=9",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SC:III.B": {
+      "work": "SC",
+      "locator": "Section III B Modeling noise and decoherence",
+      "pages": [
+        12,
+        17
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.06560v1#page=12",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SC:III.C": {
+      "work": "SC",
+      "locator": "Section III C Common examples of noise",
+      "pages": [
+        17,
+        20
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.06560v1#page=17",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SC:IV.D": {
+      "work": "SC",
+      "locator": "Section IV D Single-qubit gates",
+      "pages": [
+        27,
+        31
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.06560v1#page=27",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SC:IV.E": {
+      "work": "SC",
+      "locator": "Section IV E The iSWAP two-qubit gate in tunable qubits",
+      "pages": [
+        31,
+        33
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.06560v1#page=31",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SC:IV.H": {
+      "work": "SC",
+      "locator": "Section IV H Gate implementations with tunable coupling",
+      "pages": [
+        38,
+        40
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.06560v1#page=38",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SC:V.A": {
+      "work": "SC",
+      "locator": "Section V A Dispersive readout",
+      "pages": [
+        40,
+        42
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.06560v1#page=40",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SC:V.B": {
+      "work": "SC",
+      "locator": "Section V B Measuring the resonator amplitude and phase",
+      "pages": [
+        42,
+        44
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1904.06560v1#page=42",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SCHOLL:3": {
+      "work": "SCHOLL",
+      "locator": "Section 3 DMRG and entanglement",
+      "pages": [
+        13,
+        15
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1008.3477v1#page=13",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SCHOLL:4.1.1": {
+      "work": "SCHOLL",
+      "locator": "Section 4.1.1 SVD and Schmidt decomposition",
+      "pages": [
+        15,
+        17
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1008.3477v1#page=15",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SCHOLL:4.1.3": {
+      "work": "SCHOLL",
+      "locator": "Section 4.1.3 Decomposition of arbitrary quantum states into MPS",
+      "pages": [
+        18,
+        25
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1008.3477v1#page=18",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SCHOLL:4.4": {
+      "work": "SCHOLL",
+      "locator": "Section 4.4 Bringing an MPS into canonical form",
+      "pages": [
+        43,
+        44
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1008.3477v1#page=43",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SCHOLL:4.5.1": {
+      "work": "SCHOLL",
+      "locator": "Section 4.5.1 Compressing an MPS by SVD",
+      "pages": [
+        45,
+        46
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1008.3477v1#page=45",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SCHOLL:7.3.2": {
+      "work": "SCHOLL",
+      "locator": "Section 7.3.2 Time-evolving block decimation",
+      "pages": [
+        84,
+        85
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1008.3477v1#page=84",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SHADOW:estimator": {
+      "work": "SHADOW",
+      "locator": "Section I B-C estimator; Appendix A, Theorem 3 and its linear-prediction proof; Appendix A Theorem 3 (precise sample bound)",
+      "pages": [
+        11,
+        14
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2002.08953v1#page=11",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SPIN:II": {
+      "work": "SPIN",
+      "locator": "Section II Basics of spin qubits",
+      "pages": [
+        4,
+        10
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.08863v1#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SPIN:III.A": {
+      "work": "SPIN",
+      "locator": "Section III A Quantum confinement",
+      "pages": [
+        10,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.08863v1#page=10",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SPIN:III.D": {
+      "work": "SPIN",
+      "locator": "Section III D Zeeman interactions and spin-orbit coupling",
+      "pages": [
+        15,
+        17
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.08863v1#page=15",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SPIN:III.E": {
+      "work": "SPIN",
+      "locator": "Section III E Valleys",
+      "pages": [
+        17,
+        18
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.08863v1#page=17",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SPIN:IV.A": {
+      "work": "SPIN",
+      "locator": "Section IV A Kinetic exchange in the Fermi-Hubbard hopping model",
+      "pages": [
+        20,
+        21
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.08863v1#page=20",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SPIN:IV.E": {
+      "work": "SPIN",
+      "locator": "Section IV E Pauli spin blockade",
+      "pages": [
+        23,
+        24
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.08863v1#page=23",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SPIN:IV.F": {
+      "work": "SPIN",
+      "locator": "Section IV F Long-range couplers",
+      "pages": [
+        24,
+        25
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.08863v1#page=24",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SPIN:V.A": {
+      "work": "SPIN",
+      "locator": "Section V A Loss-DiVincenzo single spin qubits",
+      "pages": [
+        26,
+        30
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.08863v1#page=26",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SPIN:VI.A": {
+      "work": "SPIN",
+      "locator": "Section VI A Filter function formalism",
+      "pages": [
+        40,
+        43
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.08863v1#page=40",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SPIN:VII": {
+      "work": "SPIN",
+      "locator": "Section VII Hybrid systems",
+      "pages": [
+        46,
+        51
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2112.08863v1#page=46",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SQD:methods": {
+      "work": "SQD",
+      "locator": "Main Methods I; Supplementary Methods II A 1 Eigenstate solver",
+      "pages": [
+        14,
+        16
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2405.05068v1#page=14",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SURFACE:case": {
+      "work": "SURFACE",
+      "locator": "Section VII A, Fig. 5: complementary error chains with the same syndrome; source noise list on p.11",
+      "pages": [
+        11,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1208.0928v2#page=11",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SURFACE:circuits": {
+      "work": "SURFACE",
+      "locator": "Fig. 1 and Sections III-V; gate-level stabilizer cycle",
+      "pages": [
+        5,
+        8
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1208.0928v2#page=5",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SURFACE:decoding": {
+      "work": "SURFACE",
+      "locator": "Section VII Error Detection; Section VII A and Fig. 5; noise list",
+      "pages": [
+        10,
+        13
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1208.0928v2#page=10",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SURFACE:lattice": {
+      "work": "SURFACE",
+      "locator": "Sections III-IV, Fig. 1 and stabilizer description",
+      "pages": [
+        5,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1208.0928v2#page=5",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SURFACE:threshold": {
+      "work": "SURFACE",
+      "locator": "Section VII, Fig. 4 and Eqs. (10)-(13); model-specific empirical scaling",
+      "pages": [
+        11,
+        14
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1208.0928v2#page=11",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SYNTH:gates": {
+      "work": "SYNTH",
+      "locator": "Sections 5-6: two-bit and three-bit networks; selected controlled gates",
+      "pages": [
+        10,
+        17
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/9503016v1#page=10",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TN:3": {
+      "work": "TN",
+      "locator": "Section 3 Tensors and tensor networks",
+      "pages": [
+        5,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0511069v1#page=5",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TN:4": {
+      "work": "TN",
+      "locator": "Section 4 Contraction complexity and treewidth",
+      "pages": [
+        7,
+        9
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0511069v1#page=7",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:1.1.3": {
+      "work": "TQI",
+      "locator": "Section 1.1.3 Operator decompositions and norms",
+      "pages": [
+        24,
+        24
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:2.1.3": {
+      "work": "TQI",
+      "locator": "Section 2.1.3 Reductions and purifications of quantum states",
+      "pages": [
+        67,
+        67
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:2.2.1": {
+      "work": "TQI",
+      "locator": "Section 2.2.1 Definitions and basic notions concerning channels",
+      "pages": [
+        72,
+        72
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:2.2.2": {
+      "work": "TQI",
+      "locator": "Section 2.2.2 Representations and characterizations of channels",
+      "pages": [
+        77,
+        77
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:2.3.2": {
+      "work": "TQI",
+      "locator": "Section 2.3.2 Basic notions concerning measurements",
+      "pages": [
+        105,
+        105
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:3.1.1": {
+      "work": "TQI",
+      "locator": "Section 3.1.1 Discriminating between pairs of quantum states",
+      "pages": [
+        125,
+        125
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:3.2.1": {
+      "work": "TQI",
+      "locator": "Section 3.2.1 Elementary properties of the fidelity function",
+      "pages": [
+        140,
+        140
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:3.2.2": {
+      "work": "TQI",
+      "locator": "Section 3.2.2 Characterizations of the fidelity function",
+      "pages": [
+        144,
+        144
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:3.2.3": {
+      "work": "TQI",
+      "locator": "Section 3.2.3 Further properties of the fidelity function",
+      "pages": [
+        155,
+        155
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:3.3.2": {
+      "work": "TQI",
+      "locator": "Section 3.3.2 The completely bounded trace norm",
+      "pages": [
+        166,
+        166
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:3.3.3": {
+      "work": "TQI",
+      "locator": "Section 3.3.3 Distances between channels",
+      "pages": [
+        175,
+        175
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:3.3.4": {
+      "work": "TQI",
+      "locator": "Section 3.3.4 Characterizations of the completely bounded trace norm",
+      "pages": [
+        185,
+        185
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:5.1.1": {
+      "work": "TQI",
+      "locator": "Section 5.1.1 Definitions of classical entropic functions",
+      "pages": [
+        250,
+        250
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:5.1.2": {
+      "work": "TQI",
+      "locator": "Section 5.1.2 Properties of classical entropic functions",
+      "pages": [
+        253,
+        253
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:5.2.1": {
+      "work": "TQI",
+      "locator": "Section 5.2.1 Definitions of quantum entropic functions",
+      "pages": [
+        265,
+        265
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:5.2.3": {
+      "work": "TQI",
+      "locator": "Section 5.2.3 Joint convexity of quantum relative entropy",
+      "pages": [
+        276,
+        276
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:5.3.2": {
+      "work": "TQI",
+      "locator": "Section 5.3.2 Quantum source coding",
+      "pages": [
+        289,
+        289
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:5.3.3": {
+      "work": "TQI",
+      "locator": "Section 5.3.3 Encoding classical information into quantum states",
+      "pages": [
+        294,
+        294
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:6.1.1": {
+      "work": "TQI",
+      "locator": "Section 6.1.1 Separable operators and states",
+      "pages": [
+        310,
+        310
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:6.2.2": {
+      "work": "TQI",
+      "locator": "Section 6.2.2 Distillable entanglement and entanglement cost",
+      "pages": [
+        345,
+        345
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:6.2.3": {
+      "work": "TQI",
+      "locator": "Section 6.2.3 Bound entanglement and partial transposition",
+      "pages": [
+        352,
+        352
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:8.1.1": {
+      "work": "TQI",
+      "locator": "Section 8.1.1 Classical capacities of quantum channels",
+      "pages": [
+        465,
+        465
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:8.1.2": {
+      "work": "TQI",
+      "locator": "Section 8.1.2 The Holevo-Schumacher-Westmoreland theorem",
+      "pages": [
+        476,
+        476
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TQI:8.2.2": {
+      "work": "TQI",
+      "locator": "Section 8.2.2 The quantum capacity theorem",
+      "pages": [
+        521,
+        521
+      ],
+      "page_unit": "printed page (section begins here)",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TRAJ:unraveling": {
+      "work": "TRAJ",
+      "locator": "Sections 0.3.3 and 0.4.1-0.4.4: master equation, conditional dynamics and quantum jumps",
+      "pages": [
+        13,
+        29
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/9702030v1#page=13",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "WALK:construction": {
+      "work": "WALK",
+      "locator": "Section III A-D Quantum walk, implementation, propagation and hitting-time bound",
+      "pages": [
+        4,
+        16
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/0209131v1#page=4",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "SYNTH:general": {
+      "work": "SYNTH",
+      "locator": "Section 8 Efficient general gate constructions; two-level elimination synthesis",
+      "pages": [
+        26,
+        28
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/quant-ph/9503016v1#page=26",
+      "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    }
+  }
+}
