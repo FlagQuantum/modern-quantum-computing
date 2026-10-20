@@ -4,7 +4,9 @@ This is a reading and editorial plan. **Only measurement, gradients and hydrogen
 
 ## Book chapter numbers
 
-The [full book plan](../book-plan.md) now assigns the measurement, gradients and hydrogen VQE starters to Chapters **5, 13 and 27** respectively. The mapping below groups related topics for reading; consult the plan for the complete 28-chapter sequence and dependencies. The current sample PDF retains its own three-chapter numbering.
+The [full book plan](../book-plan.md) now assigns the measurement, gradients and hydrogen VQE starters to Chapters **6, 16 and 28** respectively. The mapping below groups related topics for reading; consult the plan for the complete 28-chapter sequence and dependencies. The current sample PDF retains its own three-chapter numbering.
+
+See the [Nielsen–Chuang design review](nielsen-chuang-design-review.md) for the reasons behind the revised chapter allocation.
 
 ## Existing starter chapters
 

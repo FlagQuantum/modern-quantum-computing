@@ -16,6 +16,7 @@ An open English textbook that connects quantum computing equations to executable
 
 - [Book introduction](docs/index.md)
 - [Full contents: six parts and 28 chapters](docs/contents.md) · [Detailed chapter plan](docs/book-plan.md)
+- [Design review: learning from Nielsen and Chuang](docs/references/nielsen-chuang-design-review.md)
 - [Notation and conventions](docs/conventions.md)
 - [Reference reading guide](docs/references/reading-guide.md) · [Chapter mapping](docs/references/chapter-mapping.md) · [BibTeX bibliography](docs/references/references.bib)
 - [Measurement and expectation values](docs/chapters/measurement.md)

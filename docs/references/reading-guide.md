@@ -59,6 +59,10 @@ Use as an advanced mathematical reference: Chapters 1–2 for operators, states 
 - **Schuld et al. (2019), *Evaluating analytic gradients on quantum hardware*.** Key: `schuld_gradients_2019`. [Published article](https://doi.org/10.1103/PhysRevA.99.032331). Read alongside the [gradients starter](../chapters/gradients.md). Our elementary cosine derivation illustrates a restricted case; check generator normalization and parameter reuse before applying a shift rule to other circuits.
 - **O'Malley et al. (2016), *Scalable Quantum Simulation of Molecular Energies*.** Key: `omalley_2016`. [Published article](https://doi.org/10.1103/PhysRevX.6.031007) · [Corrected arXiv v2](https://arxiv.org/abs/1512.06860v2). The [VQE starter](../chapters/vqe.md) uses the corrected Table I from v2, revised February 4, 2017. Keep the journal citation and the exact data-source revision together. See [source notes](../sources.md) for hashes and scope.
 
+## Review of textbook design
+
+The [Nielsen–Chuang design review](nielsen-chuang-design-review.md) records the preface, contents and selected passages actually examined, the limitations of that review, and the changes it motivates in our chapter plan.
+
 ## How authors should use a reference
 
 Read the relevant source, derive the result independently, and give the exact section, theorem or equation locator when adapting a particular argument. Then write original explanations and executable checks using this book's conventions. The mapping is a reading and editorial plan; it does not imply that every listed source has already been studied in full or that every planned chapter is implemented.

@@ -1,76 +1,78 @@
 # Contents and chapter status
 
-This is the proposed full-book structure: **six parts, 28 chapters, and six appendices**. It replaces the initial five-part sketch. Chapter numbers identify the intended book sequence; the current PDF is a separate three-chapter sample edition with its own numbering.
+**Reference-informed planning revision: October 20, 2026.** Six parts, 28 chapters and six appendices. This revises the first outline after reading the preface, contents and selected teaching passages of Nielsen and Chuang; see the [design review](references/nielsen-chuang-design-review.md).
 
-**Only three starter chapters currently exist.** Their intended homes are Chapters 5, 13 and 27; each still needs expansion and editorial review. A planned chapter is not evidence of implemented or supported FlagQuantum functionality.
+Only three starter chapters currently exist, with intended homes in Chapters **6, 16 and 28**. They require expansion and editorial review. The versioned three-chapter PDF is a format pilot with its own numbering, not the full manuscript.
 
-See the [detailed book plan](book-plan.md) for prerequisites, derivations, experiments, reading paths and writing order.
+See the [full book plan](book-plan.md) for prerequisites, derivations, experiments, learning paths and writing priorities. Planned topics do not certify the availability of a FlagQuantum API or execution backend.
 
-## Part I. Mathematical and Computational Foundations
-
-| Chapter | Title | Reading role | Status |
-|---|---|---|---|
-| 1 | Complex Vectors, Operators, and Numerical Checks | Core | Planned |
-| 2 | Single-Qubit States and Rotations | Core | Planned |
-| 3 | Composite Systems, Tensor Products, and Qubit Ordering | Core | Planned |
-| 4 | Quantum Gates and Circuit Construction | Core | Planned |
-| 5 | Measurement, Expectation Values, and Sampling | Core | [Measurement starter](chapters/measurement.md) |
-| 6 | Entanglement, Mixed States, and Quantum Channels | Core | Planned |
-
-## Part II. Quantum Algorithms and Hamiltonian Dynamics
+## Part I. Foundations and Quantum Information Primitives
 
 | Chapter | Title | Reading role | Status |
 |---|---|---|---|
-| 7 | Interference, Oracles, and Phase Kickback | Core | Planned |
-| 8 | Grover Search and Amplitude Amplification | Core | Planned |
-| 9 | The Quantum Fourier Transform | Core | Planned |
-| 10 | Quantum Phase Estimation and Algorithmic Cost | Core | Planned |
-| 11 | Hamiltonian Simulation and Product Formulas | Extension | Planned |
+| 1 | What Quantum Computing Computes: A First Formula-to-Code Experiment | Core; opening motivation | Planned |
+| 2 | Complex Vectors, Operators, and Numerical Checks | Core | Planned |
+| 3 | Single-Qubit States and Rotations | Core | Planned |
+| 4 | Composite Systems, Tensor Products, and Qubit Ordering | Core | Planned |
+| 5 | Quantum Gates and Circuit Construction | Core | Planned |
+| 6 | Measurement, Expectation Values, and Sampling | Core | [Measurement starter](chapters/measurement.md) |
+| 7 | Entanglement and Quantum Information Protocols | Core | Planned |
+| 8 | Density Matrices, Reduced States, and Purification | Core | Planned |
 
-## Part III. Differentiable Quantum Computing
-
-| Chapter | Title | Reading role | Status |
-|---|---|---|---|
-| 12 | Parameterized Circuits and Observable Design | Core | Planned |
-| 13 | Quantum Gradients and Automatic Differentiation | Core | [Gradients starter](chapters/gradients.md) |
-| 14 | Loss Functions, Optimization, and Training Diagnostics | Core | Planned |
-| 15 | Hybrid Classical-Quantum Models | Core application | Planned |
-| 16 | Variational Algorithms and Molecular Energy Problems | Core application | Planned |
-
-## Part IV. Simulation Methods and Computational Systems
+## Part II. Computational Models and Quantum Algorithms
 
 | Chapter | Title | Reading role | Status |
 |---|---|---|---|
-| 17 | How a Statevector Simulator Works | Core implementation reading | Planned |
-| 18 | Matrix Product States and Truncation Error | Extension | Planned |
-| 19 | Tensor Networks and Contraction Strategies | Extension | Planned |
-| 20 | Accelerators, Distributed Simulation, and Training | Platform-dependent extension | Planned |
+| 9 | Computational Models, Resource Accounting, and Quantum Advantage | Core | Planned |
+| 10 | Interference, Oracles, and Phase Kickback | Core | Planned |
+| 11 | Grover Search and Amplitude Amplification | Core | Planned |
+| 12 | The Quantum Fourier Transform | Core | Planned |
+| 13 | Quantum Phase Estimation and Algorithmic Cost | Core | Planned |
+| 14 | Hamiltonian Simulation and Product Formulas | Extension | Planned |
 
-## Part V. Compilation, Noise, and Physical Execution
+## Part III. Variational and Differentiable Quantum Computing
 
 | Chapter | Title | Reading role | Status |
 |---|---|---|---|
-| 21 | Circuit Compilation and Interoperability | Extension | Planned |
-| 22 | Noise and Open-System Simulation | Core extension | Planned |
+| 15 | Parameterized Circuits and Observable Design | Core | Planned |
+| 16 | Quantum Gradients and Automatic Differentiation | Core | [Gradients starter](chapters/gradients.md) |
+| 17 | Loss Functions, Optimization, and Training Diagnostics | Core | Planned |
+| 18 | Hybrid Classical-Quantum Models | Core application | Planned |
+| 19 | Variational Algorithms and Molecular Energy Problems | Core application | Planned |
+| 20 | QAOA and Combinatorial Optimization | Application and independent project | Planned |
+
+## Part IV. Noise, Quantitative Comparisons, and Error Correction
+
+| Chapter | Title | Reading role | Status |
+|---|---|---|---|
+| 21 | Noise and Open-System Simulation | Core extension | Planned |
+| 22 | State Distances, Fidelity, and Introductory Quantum Information | Core measurement and validation language | Planned |
 | 23 | Quantum Error Correction and Syndrome Experiments | Extension | Planned |
-| 24 | Quantum Hardware, Calibration, and Digital Twins | Platform-dependent extension | Planned |
+
+## Part V. Classical Simulation of Quantum Systems
+
+| Chapter | Title | Reading role | Status |
+|---|---|---|---|
+| 24 | How a Statevector Simulator Works | Core implementation reading | Planned |
+| 25 | Matrix Product States and Truncation Error | Extension | Planned |
+| 26 | Tensor Networks and Contraction Strategies | Extension | Planned |
 
 ## Part VI. From Papers to Reproducible Research
 
 | Chapter | Title | Reading role | Status |
 |---|---|---|---|
-| 25 | Reproducibility, Uncertainty, and Benchmarks | Core research practice | Planned |
-| 26 | Translating a Paper into an Executable Specification | Core research practice | Planned |
-| 27 | Reproducing Molecular Hydrogen VQE | Research capstone | [Hydrogen VQE starter](chapters/vqe.md) |
-| 28 | From MaxCut to QAOA: An Independent Reproduction Project | Research extension | Planned |
+| 27 | From a Paper to a Reproducible Computational Experiment | Core research method | Planned |
+| 28 | Reproducing Molecular Hydrogen VQE | Research capstone | [Hydrogen VQE starter](chapters/vqe.md) |
 
-## Appendices and back matter
+## Appendices and companion laboratories
 
-- **A. Linear Algebra Reference and Useful Identities** — planned.
+- **A. Mathematical Reference, Probability, and Selected Proofs** — planned.
 - **B. Matrix Calculus and PyTorch Autograd Conventions** — planned.
-- **C. Mathematical Objects and FlagQuantum Runtime Contracts** — planned.
-- **D. Environment Records and Experiment Manifest Templates** — planned.
-- **E. Selected Exercise Solutions and Verification Notes** — planned.
-- **F. Paper-Reproduction Worksheets and Checklists** — planned.
+- **C. FlagQuantum Runtime Contracts, Compilation, and Interoperability** — planned.
+- **D. Experiment Manifests, Uncertainty Records, and Benchmark Protocols** — planned.
+- **E. Platform Laboratories: Accelerators, Distribution, and Hardware Access** — planned.
+- **F. Selected Solutions and Paper-Reproduction Worksheets** — planned.
 
-The bibliography, glossary, symbol index and contributor acknowledgements form the back matter. The [reference guide](references/reading-guide.md) and [source notes](sources.md) are already available.
+Appendix E and linked platform laboratories contain version-dependent installation, device, distributed-launch and cloud-job details. The textbook retains the theory and resource models needed to understand them. The bibliography, symbol index, glossary and acknowledgements are separate back matter.
+
+The [reference reading guide](references/reading-guide.md) and [source notes](sources.md) are already available.

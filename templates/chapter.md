@@ -2,30 +2,46 @@
 
 **Status: draft · Target release: FlagQuantum VERSION · Validation: DATE / PLATFORM**
 
-## Learning objectives and prerequisites
+## Question, outcomes and prerequisites
 
-State what readers will understand and what they must already know.
+State the problem, what readers should learn and which earlier concepts they need.
 
-## Physical question and conventions
+## A motivating worked example
 
-Define basis order, units, parameter normalization and assumptions.
+Show a small physical or computational case and predict a result before presenting the full abstraction.
 
-## Formula, derivation, implementation
+## Definitions, postulates and conventions
 
-Explain each derivation step. Give each important formula a matching code expression or a named function in a complete executable program. Avoid literal vertical bars in Markdown tables; use `\lvert` and `\rvert` in mathematics.
+Specify the mathematical model, basis order, units, generator normalization and assumptions. Distinguish an assumed postulate from a derived proposition.
 
-| Formula | Code expression | Independent check |
+## Derivation and checkpoints
+
+Give the important intermediate steps. State why each step is valid. Insert short checks after new notation or a substantive inference. Identify any deferred proof and its source.
+
+## Formula-to-code correspondence
+
+Match each important expression to an exact code expression or named function in a complete executable program. Avoid literal vertical bars in Markdown table mathematics; use `\lvert` and `\rvert`.
+
+| Formula and assumptions | Implementation | Independent check |
 |---|---|---|
-| Define the expression | Give the exact expression or function | Identify the analytic or matrix reference |
+| State the expression | Give the expression or function | Identify an analytic or matrix reference |
 
-## Run and expected results
+## Run, predict and verify
 
-Provide commands from the repository root, pinned dependencies, expected output, tolerances, seeds and output-file locations. Link the complete script. Do not claim execution until it has been run.
+Provide commands from the repository root, pinned dependencies, expected output, tolerances, seeds and output locations. Link the complete script. Explain the result; do not claim execution until it has been run. Numerical checks do not prove a general theorem.
 
-## Experiments and exercises
+## Limits, error and resources
 
-Include a hand calculation, a parameter change, a debugging exercise and an extension.
+State computational cost and relevant approximation, sampling or model errors. Separate ideal calculations, stochastic simulations and physical experiments.
 
-## Limitations and references
+## Recap
 
-Separate ideal calculations, stochastic simulations and physical experiments. Cite exact paper versions and data provenance. State what the checks do and do not establish.
+Summarize the concepts and derived results the reader should now be able to use.
+
+## Problems and laboratories
+
+Include a short derivation, a substantive proof or extension problem, a programming laboratory and a debugging task. Mark optional research investigations and required extra background.
+
+## History, sources and further reading
+
+Cite the exact edition or paper revision and precise sections/equations actually consulted. Attribute data and distinguish historical claims from present-day evidence.

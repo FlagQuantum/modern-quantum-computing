@@ -21,6 +21,7 @@ nav:
   - References:
       - Reading guide: references/reading-guide.md
       - Chapter mapping: references/chapter-mapping.md
+      - Nielsen–Chuang design review: references/nielsen-chuang-design-review.md
   - Sources and validation: sources.md
   - Editions and publication: publication.md
 markdown_extensions:
