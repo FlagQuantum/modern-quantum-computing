@@ -1,0 +1,123 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-8",
+  "ref": "2.8",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+  "question": "What must an executable numerical comparison establish beyond a True all-close result?",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-7"
+  ],
+  "depth": "M",
+  "result": "Residual, absolute tolerance and relative tolerance contracts",
+  "entry": "Exact canonical prerequisite2.7: norm/condition/residual distinction. Binary precision, rounding model and tolerance predicate defined locally.",
+  "exit": "Design scale-aware finite comparisons with explicit shape/dtype/device and invariant checks; separate rounding, conditioning and model evidence.",
+  "assumptions": [
+    "Finite dense CPU floating/complex tensors with declared metadata and reference scaling",
+    "Local nearest-rounding model for nonzero normal-range real values; overflow/underflow excluded from relative u bound",
+    "Euclidean norm and invertible diagonal system with nonzero b for condition-derived relative target",
+    "Cases and code checks do not certify all inputs, solver stability or bitwise equality across environments"
+  ],
+  "symbols": {
+    "p,e,fl(x),u,epsilon": "Significant binary bits, exponent, rounded value, unit roundoff and spacing above1",
+    "a,b,atol,rtol": "Computed/reference scalar and finite nonnegative comparison tolerances",
+    "delta,r,kappa,tau": "Binary diagonal scale, residual, condition number and target relative error"
+  },
+  "local_start_checks": {
+    "brief": "Filled before prose; exact2.7 prerequisite, depth M and NC:2.1.2/ED:protocol locators retained.",
+    "prerequisite": "Author-checked2.7 supplies residual/forward error and conditioning bounds; no new stability theorem imported.",
+    "source": "Consulted NC printed63–64 and local reader-continuity standard; installed PyTorch2.13.0 docstrings/signatures and actual allclose/assert_close cases inspected. Public stable testing reference redirects to newer docs; not used as pinned-version evidence.",
+    "independent_reference": "Fraction dyadic increment, explicit operation orders and exact binary diagonal residual/error from2.7.",
+    "scope": "No baseline scope/depth/dependency/volume changes or paper audit; unnumbered Chapter2 synthesis added under existing closing-material policy."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.1.2",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        63,
+        64
+      ],
+      "use": "Matrix/map convention only; not attributed as floating-point specification."
+    },
+    {
+      "locator": "ED:protocol",
+      "path": "docs/reader-continuity.md",
+      "use": "Original review/evidence standard; no reviewer or reader trial invented."
+    },
+    {
+      "supplementary": "Installed PyTorch2.13.0 documentation and execution",
+      "use": "torch.testing.assert_close signature/reference-scaled tolerance; allclose broadcasting, finfo spacing and dense CPU cases verified; not a replacement canonical source locator.",
+      "public_reference": "https://docs.pytorch.org/docs/stable/testing.html"
+    }
+  ],
+  "model_obligations": [
+    "Local nearest-rounding half-spacing bound and distinction epsilon=2u; no all-algorithm inference",
+    "Exact dyadic lost-increment/reassociation examples distinguish input precision from output casting",
+    "Absolute/relative expected-scaled predicate defined with zero/tiny/order-one/complex examples",
+    "Strict shape/dtype/device, dense-floating domain, finite entries and finite comparison arithmetic",
+    "Condition-derived sufficient residual budget using exact2.7 diagonal case; uncertainty of general diagnostics qualified",
+    "Chapter synthesis includes unitary norm invariance derivation, shared-conjugation bug and full SVD contract planning"
+  ],
+  "implementation": {
+    "path": "examples/foundations/verification_contracts.py",
+    "command": "python examples/foundations/verification_contracts.py",
+    "environment_command": "python examples/foundations/verification_contracts.py --environment",
+    "environment": {
+      "architecture": "arm64",
+      "deterministic_algorithms": false,
+      "device": "cpu",
+      "dtypes": [
+        "float32",
+        "float64",
+        "complex128"
+      ],
+      "python": "3.12.14",
+      "system": "Darwin",
+      "torch": "2.13.0"
+    },
+    "author_run": "passed",
+    "dependencies": "Pinned requirements-examples.txt; PyTorch2.13.0 and standard-library Fraction; no FlagQuantum API invoked",
+    "checks": [
+      "float32 loses2^-25 increment; float64 retains exact rational reference; later cast cannot restore it",
+      "Specified float32 operation order yields0 versus1 for exact-real equal expressions",
+      "Tiny signal hidden by loose atol; strict relative budget rejects; zero and order-one budgets separately exercised",
+      "Expected-scaled predicate asymmetry demonstrated with roles reversed",
+      "Broadcasting allclose passes wrong shapes while strict comparator rejects; unexpected dtype rejected",
+      "NaN/Inf and complex-modulus failure witnesses rejected; finite arithmetic required",
+      "Condition-derived residual budget around9.5367e-15 rejects small-residual/large-forward-error candidate and accepts exact solution",
+      "Portable environment JSON emitted independently of fixed numerical output"
+    ],
+    "tolerance": "Explicit per-case finite nonnegative atol/rtol; no universal default or post-failure tolerance inflation",
+    "limitations": "Small comparison helper for dense floating/complex cases, not arbitrary layouts/quantization/ranges. Environment metadata does not guarantee platform-independent bits.",
+    "expected_output_check": "Passed exact comparison with chapter expected-output block; environment JSON command also executed",
+    "script_sha256": "3f572abbea68fa28aabb4214ae69874e1c2918850c78eced018f0bfdef3eb2b3"
+  },
+  "assessment": {
+    "checkpoint": "2.8-A",
+    "precision_cast": "2.8-B",
+    "misleading_mask": "2.8-C",
+    "excess_claims": "2.8-D",
+    "chapter_derivation": "2-C1",
+    "chapter_shared_bug": "2-C2",
+    "chapter_svd_contract": "2-C3",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python 3.12.14/PyTorch 2.13.0 CPU float32/float64/complex128 execution, exact expected-output comparison and environment JSON, exact dyadic and conditioned residual references, tolerance/shape/dtype/finiteness/complex counterexamples, chapter synthesis answer checks, frozen baseline/depth/prerequisite/source/brief and scholarly-plan checks, prose scan, strict MkDocs build, links/anchors across 56 pages, and actual browser inspection of rounding and absolute/relative tolerance formulas. No raw LaTeX or math-error text observed. Independent scholarly/implementation review and reader trials pending.",
+    "mathematical": "pending independent model/methodological review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 2701,
+    "page_status": "Unmeasured section envelope; chapter-closing synthesis/problems add workload to calibrate in print and reader review, without downgrading M scope.",
+    "next_draft": "3.1 The pure-state postulate and physical equivalence",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}

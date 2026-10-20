@@ -131,6 +131,16 @@
       "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
       "record": "book/section-records/2.7.json",
       "author_execution": "passed: Python 3.12.14, PyTorch 2.13.0 CPU complex128; three binary scales, exact diagonal/Fraction references, nearby solves and norm/perturbation inequalities; no quantum execution"
+    },
+    "sec-complex-vectors-operators-and-numerical-reasoning-8": {
+      "state": "draft",
+      "brief": "book/briefs/ch02.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "record": "book/section-records/2.8.json",
+      "author_execution": "passed: Python 3.12.14, PyTorch 2.13.0 CPU float32/float64/complex128; exact dyadic references, declared tolerance/metadata/finiteness contracts and conditioned residual check; no quantum execution"
     }
   },
   "existing_pilots": [

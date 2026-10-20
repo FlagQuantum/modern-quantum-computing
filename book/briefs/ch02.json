@@ -1,6 +1,6 @@
 {
   "baseline": "writing-baseline-v1.0",
-  "scope": "Filled authoring briefs for 2.1–2.7; remaining Chapter2 brief not yet prepared",
+  "scope": "Filled authoring briefs for all eight Chapter2 sections; independent acceptance remains pending",
   "sections": [
     {
       "ref": "2.1",
@@ -20,7 +20,7 @@
       "depth": "F",
       "requires": [],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.1."
     },
     {
       "ref": "2.2",
@@ -42,7 +42,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-1"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.1."
     },
     {
       "ref": "2.3",
@@ -64,7 +64,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.1."
     },
     {
       "ref": "2.4",
@@ -86,7 +86,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.1."
     },
     {
       "ref": "2.5",
@@ -109,7 +109,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-4"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.1."
     },
     {
       "ref": "2.6",
@@ -131,7 +131,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-5"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.7 now have author-checked drafts; independent reviews pending. Next production assignment is 2.8."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.1."
     },
     {
       "ref": "2.7",
@@ -154,7 +154,30 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-5"
       ],
       "status": "draft",
-      "next_transition": "Independent reviews pending; next draft 2.8 Floating-point arithmetic and verification contracts."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.1."
+    },
+    {
+      "ref": "2.8",
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-8",
+      "title": "Floating-point arithmetic and verification contracts",
+      "question": "What must an executable numerical comparison establish beyond a True all-close result?",
+      "entry": "Exact canonical prerequisite2.7: norm/condition/residual distinction. Binary precision, rounding model and tolerance predicate defined locally.",
+      "exit": "Design scale-aware finite comparisons with explicit shape/dtype/device and invariant checks; separate rounding, conditioning and model evidence.",
+      "worked_case": "Exact dyadic lost increment and reassociated sum, tiny signal hidden by absolute tolerance, zero/order-one contracts, residual versus forward error at binary-conditioned diagonal system.",
+      "boundary": "Model/verification depth M; nearest-rounding bound scoped to normal finite range; no general solver stability or cross-platform bitwise guarantee. Chapter2 synthesis remains review-pending.",
+      "code_plan": "CPU float32/float64 and complex128 PyTorch checks with Fraction references and a strict custom finite comparison; optional portable environment JSON.",
+      "independent_check": "Exact rational increments, specified operation orders, deliberate rejection of wrong shape/dtype/NaN/Inf/complex modulus and condition-derived residual budget.",
+      "transfer_task": "Choose tolerances for near-zero/nonzero quantities, diagnose casting and shared-bug comparisons, chapter synthesis with derivation/implementation/debugging answers.",
+      "source_locators": [
+        "NC:2.1.2",
+        "ED:protocol"
+      ],
+      "depth": "M",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-7"
+      ],
+      "status": "draft",
+      "next_transition": "Chapter2 has eight working drafts and synthesis problems; independent review and acceptance pending. Next draft 3.1 The pure-state postulate and physical equivalence."
     }
   ]
 }

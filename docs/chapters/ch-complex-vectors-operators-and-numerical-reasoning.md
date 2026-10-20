@@ -1,6 +1,6 @@
 # 2. Complex Vectors, Operators, and Numerical Reasoning
 
-**Working draft: sections 2.1–2.7 · Writing Baseline 1.0 · October 21, 2026.** Section 2.8 remains planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.7 add PyTorch 2.13.0 CPU complex128 tensor checks.
+**Working draft: sections 2.1–2.8 · Writing Baseline 1.0 · October 21, 2026.** All eight sections have working drafts. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.8 add PyTorch 2.13.0 CPU complex128 tensor checks.
 
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-1"></span>
 
@@ -1736,10 +1736,194 @@ The proofs establish the norm bounds. Numerical tests establish agreement on the
 - **D.** The sufficient condition $\eta<1$ fails, so the displayed small-perturbation bound cannot be used. The new matrix may or may not be singular. Inspect it or use another justified argument.
 - **E.** The relative condition number is 1 and the absolute inverse gain is $10^6$. All directions scale equally, so relative perturbations are not amplified by an unequal singular-value ratio, while a fixed absolute input change can produce a large absolute solution change.
 
-Next, [2.8 Floating-point arithmetic and verification contracts](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-8) separates mathematical error bounds, representation/rounding effects and executable correctness claims.
+Next, [2.8 Floating-point arithmetic and verification contracts](#sec-complex-vectors-operators-and-numerical-reasoning-8) separates mathematical error bounds, representation/rounding effects and executable correctness claims.
 
 ### Source, status, and limits
 
 Assigned companion source: [TQI:1.1.3](../references/proof-sources.md#source-tqi-1-1-3), John Watrous, *The Theory of Quantum Information*, author prepublication copy (2018), §1.1.3, especially printed pp. 32–33, equations (1.166), (1.175)–(1.176) and the spectral/Frobenius discussion. [The author's public PDF](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=40) and its existing local cache were consulted for the norm conventions. The condition-number and residual/perturbation proofs and diagonal cases above are original exposition, not claims that this source presents those same examples or sensitivity bounds. No source text or PDF is redistributed.
 
 Depth **F**: prove the induced norm bound and submultiplicativity, condition-dependent error amplification and the stated matrix-perturbation estimate, with an ill-conditioned counterexample. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.7.json) separates author execution from pending independent mathematical, implementation and reader review. Rectangular least-squares conditioning and componentwise stability are not asserted by these square-system bounds.
+
+<span id="sec-complex-vectors-operators-and-numerical-reasoning-8"></span>
+
+## 2.8 Floating-point arithmetic and verification contracts
+
+Suppose an assertion says that a computed result is close to a reference. Before trusting it, ask: close in which units, at which scale, with which shape and precision, and compared with what independent evidence? An assertion can execute correctly while checking a weaker claim than the experiment needs.
+
+The prerequisite is [2.7](#sec-complex-vectors-operators-and-numerical-reasoning-7): conditioning, residuals and error bounds. Here we introduce a bounded rounding model and turn those mathematical distinctions into executable verification contracts. The examples use dense CPU tensors with explicitly declared dtypes; they do not establish the behavior of every numerical kernel or platform.
+
+### What a floating-point dtype can retain
+
+A binary floating-point format stores a sign, a bounded exponent and a finite number of significant binary digits. In a normalized positive interval $[2^e,2^{e+1})$, a format with $p$ significant bits has spacing $2^{e-(p-1)}$. Negative values have the corresponding spacing by magnitude. Not every real number is representable.
+
+With rounding to nearest, and away from overflow and underflow, rounding a nonzero real value $x$ incurs at most half that spacing. Since $\lvert x\rvert\ge2^e$,
+
+$$
+\frac{\lvert\operatorname{fl}(x)-x\rvert}{\lvert x\rvert}
+ \le\frac{2^{e-p}}{2^e}=2^{-p}=u.
+$$
+
+Here $\operatorname{fl}(x)$ denotes the rounded value and $u$ the **unit roundoff** for this model. This local statement is not a bound on an entire algorithm: later arithmetic can propagate earlier errors. The spacing immediately above 1 is $\epsilon=2^{-(p-1)}=2u$, often reported as machine epsilon. Do not confuse spacing with half-spacing.
+
+For the CPU formats used here, `float32` has $p=24$ and `float64` has $p=53$; their spacings above 1 are $2^{-23}$ and $2^{-52}$. `torch.finfo(dtype).eps` reports these values in the tested runtime. `complex128` stores two `float64` components; it does not give each component 128 significant bits. Underflow, overflow, special values and alternative execution modes fall outside the simple normalized-range inequality.
+
+Take the exactly representable increment $d=2^{-25}$. Around 1 it is smaller than half the `float32` spacing, so evaluating $(1+d)-1$ in that dtype returns zero. The same operations in `float64` return exactly $d$ in this case. Converting the already rounded zero to `float64` cannot restore the lost increment; recomputing from suitable inputs is different from casting a result.
+
+Operation order also matters. The program computes, in `float32`, both
+
+$$
+(2^{25}+1)-2^{25}=0\quad\text{in the tested floating arithmetic},
+$$
+
+and
+
+$$
+(2^{25}-2^{25})+1=1.
+$$
+
+The exact real expressions both equal 1. Near $2^{25}$ the `float32` spacing is 4, so the first addition loses the 1 before the subtraction occurs. The example does not require random input or a changing device to produce different answers: changing the arithmetic order is enough. It also shows why one operation's small relative rounding error need not give a small relative error in a later tiny difference.
+
+### Write the comparison as an inequality
+
+For a finite computed scalar $a$ and reference $b$, a common reference-scaled contract is
+
+$$
+\lvert a-b\rvert\le\mathrm{atol}+\mathrm{rtol}\lvert b\rvert.
+$$
+
+The **absolute tolerance** `atol` has the same units as the output. The **relative tolerance** `rtol` is dimensionless. Both must be finite and nonnegative. For complex scalars we use the modulus of the difference, not independent sign checks. For a tensor, the example requires the inequality at every corresponding entry after validating metadata.
+
+The two terms address different scales. When $b=0$, the relative term vanishes, so a nonzero permissible residual needs an absolute budget. For an order-one nonzero reference, a relative budget can express the desired fractional accuracy. Their numerical values must follow from the intended output accuracy, a justified error analysis or an explicitly labeled validation target. Merely choosing a large enough value to make a failure disappear supplies no new evidence.
+
+For a tiny expected signal $b=10^{-12}$ and computed value $a=0$, the absolute error is $10^{-12}$ but the relative error is 1. The pair passes `atol=1e-8, rtol=0`. If the actual task requires relative error at most $10^{-6}$ with no absolute floor, its budget is $10^{-18}$ and the pair fails. The first assertion is not broken; it answered a less demanding question that permits losing the signal entirely.
+
+Conversely, a target value 0 and actual residual $5\times10^{-13}$ pass an explicitly chosen absolute budget $10^{-12}$. A relative-only comparison to zero would demand exact zero regardless of how large `rtol` is. This absolute budget is a declared check for our bounded example, not a universal claim about acceptable physical or numerical error.
+
+The predicate is also reference dependent. With `atol=0, rtol=0.75`, actual 1 compared with expected 2 passes, whereas actual 2 compared with expected 1 fails. The errors are both 1, but the allowed budgets are 1.5 and 0.75. Such loose values illustrate the asymmetry; they are not recommended tolerances. Choose the expected argument as the reference rather than swapping roles until a test passes.
+
+**2.8-A — Preserve a signal.** A nonzero reference is $10^{-9}$ and the task allows at most 1% relative error. With no absolute floor, what budget applies? Would zero be acceptable?
+
+### Metadata and finite values belong in the contract
+
+Numerical proximity alone does not check whether the objects have the required interpretation. The complete program's `assert_finite_close` first requires identical shape, dtype and device, then finite entries, then the stated error inequality. It performs no implicit casting or shape broadcasting. It also rejects non-finite error or budget arithmetic, so overflow in the comparison itself cannot silently certify a result. This is a small comparator for the bounded examples, not a general library for arbitrary tensor types and scales.
+
+A concrete shape trap uses `[1, 1]` with shape `(2,)` and `[[1], [1]]` with shape `(2, 1)`. In the tested runtime, `torch.allclose` broadcasts them and returns true even with zero tolerances. It effectively compares expanded two-by-two arrays of ones. If the intended contract was two columns of the same declared shape, that result does not satisfy it. Our comparator rejects the mismatch before subtraction.
+
+The example also rejects equal infinities: its task requires finite results, even though a generic comparison may legitimately consider matching infinities equal. `NaN`, meaning “not a number,” needs an explicit finite check. Merely testing whether any error is larger than a tolerance can miss it, because a comparison of `NaN` with that threshold is false. Requiring all entries finite before calculating a closeness predicate avoids that failure here.
+
+Dtype is likewise a semantic choice. A `float32` array does not satisfy a `float64` execution contract simply because its printed numbers match. The earlier lost-increment case explains the distinction. A deliberate precision conversion should be recorded and justified; it should not hide an unexpected precision change in the computation under test.
+
+### A residual budget must respect conditioning
+
+Reuse the exact diagonal case from 2.7 with $\delta=2^{-20}$:
+
+$$
+A=\operatorname{diag}(1,\delta),\quad b=x=(1,0),\quad
+\widehat x=(1,1),\quad \kappa(A)=2^{20}.
+$$
+
+All displayed vectors are columns. Its residual norm is $\delta\approx9.536743164\times10^{-7}$, so comparing that norm with zero at `atol=1e-6` passes. Its relative forward error is still 1.
+
+The proved condition-dependent bound gives a different verification target. To guarantee a target relative error $\tau=10^{-8}$ from that bound, a **sufficient** condition is
+
+$$
+\frac{\|r\|_2}{\|b\|_2}\le\frac{\tau}{\kappa(A)}.
+$$
+
+Here $\|b\|_2=1$, giving an absolute residual budget about $9.536743164\times10^{-15}$. The constructed candidate fails this test, while the exact solution has zero residual and passes. Failure of a sufficient bound does not prove that every candidate failing it has excessive forward error; it means that this bound no longer certifies the target. For this particular candidate the independently known forward error confirms the failure.
+
+These binary diagonal inputs make the displayed residual calculation exact in the tested arithmetic. On a general problem, the computed residual and condition estimate have their own errors. A comparison cannot turn uncertain diagnostics into exact bounds without accounting for those uncertainties. This example links a proved mathematical bound to a check under explicitly controlled conditions.
+
+### Match each claim to an independent check
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/verification_contracts.py) uses Python 3.12 and PyTorch 2.13.0, CPU. It deliberately runs `float32`, `float64` and `complex128` cases. Exact rational `Fraction` references establish the dyadic increment and condition-derived budget. Deliberate rejection cases are caught and verified; a silently accepted wrong result makes the program fail.
+
+| Intended claim | Program operation | Independent evidence or counterexample |
+|---|---|---|
+| An increment survives arithmetic | Compare low/high precision evaluation | Exact rational $2^{-25}$; casting the low result cannot restore it |
+| A tiny nonzero signal is preserved | Explicit `atol`, `rtol` inequality | Zero passes a loose absolute check but fails the task's relative budget |
+| A zero residual fits its budget | Absolute comparison with zero | Relative term vanishes at the reference zero |
+| Corresponding outputs have the declared type | Shape/dtype/device checks | Broadcasting and precision mismatch are rejected |
+| The result is finite | `torch.isfinite` before arithmetic | `NaN` and matching infinities are rejected for this finite-output task |
+| Complex proximity uses modulus | `torch.abs(actual-expected)` | $1+i$ is farther than 1.1 from zero although each component is only 1 |
+| Residual supports a forward-error target | Divide target by exact $\kappa(A)$ | Known exact solution and constructed candidate from 2.7 |
+
+Run in the pinned example environment:
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/verification_contracts.py
+```
+
+Expected output:
+
+```text
+Declared CPU dtypes; exact references and finite verification contracts, no quantum execution.
+Increment 2^-25: float32 loses it; float64 retains it; later casting does not restore it
+Float32 operation order: (2^25+1)-2^25=0; (2^25-2^25)+1=1
+Tiny 1e-12 signal: zero passes atol=1e-8, but fails the declared relative-only budget
+Zero and order-one checks use different justified absolute/relative budgets
+Expected-scaled comparison can change when actual and expected are swapped
+Broadcasting allclose passes the wrong shape; strict metadata contract rejects it
+Wrong dtype, NaN, Inf and complex-modulus counterexamples rejected
+Residual below 1e-6 can accompany relative forward error=1
+For target relative error 1e-8: conditioned absolute residual budget=9.536743164e-15
+All declared cases passed; this is not an all-input or cross-platform proof.
+```
+
+The program does not invoke FlagQuantum because these are arithmetic and verification references. Comparing two wrappers around the same mistaken formula would not be independent evidence. Keep a hand calculation, exact rational case or separately derived representation alongside implementation comparisons.
+
+### Record reproducibility without promising identical bits
+
+The optional command
+
+```bash
+python examples/foundations/verification_contracts.py --environment
+```
+
+prints a JSON record instead of the test cases. It reports Python/PyTorch versions, operating-system family, architecture, CPU target, the case dtypes and whether PyTorch's deterministic-algorithm mode is enabled. Values vary by machine; they are environment evidence, not a second fixed expected-output block. The author run used Python 3.12.14 and PyTorch 2.13.0 on macOS ARM64 CPU, with deterministic-algorithm mode disabled; no stronger mode is implied.
+
+A full experiment additionally records the source revision, dependency versions, operation/input specification, precision settings, seeds when randomness is used, reference construction, tolerance rationale and actual checks. A seed controls a random sequence within a specified setup; it does not specify every arithmetic order, backend or software version. Deterministic execution in one setup and bitwise equality across all setups are different claims. Here the reassociated-sum example already shows why changing arithmetic order can change bits.
+
+Reproduce the declared mathematical task and verification contract. If results differ, preserve the differing environment and diagnostic outputs, identify whether metadata, arithmetic, modeling or an input changed, and investigate before changing the error budget. The verification result and the review status remain separate records.
+
+### Transfer and answers
+
+**2.8-B — Upscaling a result.** A calculation loses a small increment in `float32`. A colleague converts only its final result to `float64` and expects the correct digits to return. What does the worked case predict, and what must instead be recomputed?
+
+**2.8-C — A misleading check.** A checker computes `bad = abs(actual-expected) > tol` and accepts when no entry of `bad` is true. What extra checks are needed for the task in this section?
+
+**2.8-D — Correct the conclusion.** A candidate passes a residual threshold of $10^{-6}$ in the diagonal example. An author calls this a proof of $10^{-6}$ relative solution accuracy and deterministic behavior on any hardware. Which two inferences exceed the evidence?
+
+**Answers and reasoning**
+
+- **A.** The budget is $0.01\times10^{-9}=10^{-11}$. Zero has error $10^{-9}$ and fails. A larger absolute floor would change the task's accepted errors.
+- **B.** The final low-precision zero remains zero after conversion. Recompute the relevant operations with inputs and intermediates represented at the intended precision; even then establish that the new budget meets the task, rather than assuming a cast fixes prior rounding.
+- **C.** Validate shape/dtype/device, finite values and finite comparison arithmetic, and define the absolute/relative budget. A `NaN` can evade the oversized-error mask, while broadcasting can compare unintended entries. The complete comparator supplies these guards for the declared dense floating-point cases.
+- **D.** Residual accuracy does not imply equal forward accuracy without conditioning and a justified error bound. One successful run also does not establish hardware-independent bitwise behavior. Record exactly the candidate's checks and environment; neither inference follows from that threshold.
+
+### Chapter 2 synthesis and problems
+
+We now have a connected route from complex coordinates through adjoints, basis changes, operator classes, spectral/SVD reconstructions and numerical error contracts. The mathematical identities and their execution checks answer different questions. Use the following problems to connect the layers rather than treating a passing scalar comparison as the endpoint.
+
+**2-C1 — Derivation and coordinates.** For unitary $Q$, prove that $B=Q^\dagger AQ$ has the same induced Euclidean operator norm as $A$. Explain why the nonorthogonal-basis swap matrix from 2.3 need not preserve that naive coordinate norm.
+
+**Answer.** For every unit $y$, $\|By\|_2=\|AQy\|_2$ because $Q^\dagger$ preserves vector norms. The map $y\mapsto Qy$ bijects the unit sphere, with inverse $Q^\dagger$, so maximizing gives $\|B\|_{\mathrm{op}}=\|A\|_{\mathrm{op}}$. For the nonorthogonal case, $B=\begin{pmatrix}-1&0\\1&1\end{pmatrix}$ sends unit $e_1$ to $(-1,1)$ of length $\sqrt2$, whereas the old swap has operator norm 1. The underlying operator did not change; the appropriate Gram-weighted coordinate norm must be retained.
+
+**2-C2 — Debug two agreeing implementations.** Two implementations use an unconjugated dot product to calculate the squared length of $(1,i)$. Both return zero and agree exactly. Design an independent check and identify which extra metadata checks alone would fail to expose the mathematical defect.
+
+**Answer.** The independent real/imaginary calculation gives $\lvert1\rvert^2+\lvert i\rvert^2=2$. Positive definiteness also forbids zero length for this nonzero vector. Correct shape, dtype, device and finite values would all pass for the wrong scalar zero; those guards are necessary for their own claims but cannot replace the correct conjugation rule and independent reference.
+
+**2-C3 — Implementation contract for an SVD.** Plan verification for the full 2-by-3 example of 2.5. Specify factor shapes, finite/dtype requirements, a reconstruction check and a phase-independent kernel check. Explain what to compare when singular or eigenvalues are degenerate.
+
+**Answer.** Require $U$ shape `(2,2)`, real singular-value vector shape `(2,)`, $V^\dagger$ shape `(3,3)`, complex factors `complex128` and singular values `float64` on CPU, all finite. Build a 2-by-3 $\Sigma$, check unitary factors and compare $U\Sigma V^\dagger$ with the independent explicit matrix under a declared budget. Check the last right column is annihilated and its rank-one projector equals the projector onto $e_2$. Compare projectors onto whole degenerate subspaces and reconstructed actions, rather than insisting on identical phases or individual columns. The complete `spectral_svd.py` program supplies these numerical cases; add metadata guards of the kind introduced here to its result contract.
+
+The next drafting assignment is [3.1 The pure-state postulate and physical equivalence](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-1). The mathematics now supports stating a quantum-state postulate and distinguishing physical equivalence from equality of stored coordinate arrays. Chapter 2 has eight working section drafts; independent mathematical, implementation and reader acceptance remain pending.
+
+### Source, status, and limits
+
+Assigned sources are [NC:2.1.2](../references/proof-sources.md#source-nc-2-1-2), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), printed pp. 63–64, and [ED:protocol](../references/proof-sources.md#source-ed-protocol), the project's original [reader-continuity and acceptance standard](../reader-continuity.md). The specified textbook pages and local protocol were consulted. The first supports the matrix/map distinction; it is not being cited as a floating-point specification. The rounding models, executable contracts and chapter problems here are original exposition.
+
+API behavior was checked against installed PyTorch 2.13.0 documentation and actual execution, including the documented reference-scaled comparison in `torch.testing.assert_close`. Its [official reference](https://docs.pytorch.org/docs/stable/testing.html) may track a newer release; the example's pinned runtime and explicit predicate define the tested behavior. The custom contract deliberately rejects all non-finite values for this finite-output task rather than inheriting every generic comparator policy.
+
+Depth **M**: explain the rounding model and tolerance contracts, and derive the controlled residual-versus-error case using 2.7. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.8.json) distinguishes author execution from pending independent review and reader trials. No general solver-stability theorem, universal tolerance or cross-platform bitwise guarantee is claimed.
