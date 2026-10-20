@@ -14,6 +14,15 @@ nav:
   - Editorial charter: editorial-charter.md
   - Contents and status: contents.md
   - Full book plan: book-plan.md
+  - Detailed section plans:
+      - Overview: section-plan.md
+      - 'Part 1: Foundations and Quantum Information Primitives': section-plans/01-foundations.md
+      - 'Part 2: Quantum Information: Channels, Inference, and Communication': section-plans/02-information.md
+      - 'Part 3: Quantum Algorithms and Computational Resources': section-plans/03-algorithms.md
+      - 'Part 4: Variational and Differentiable Quantum Computing': section-plans/04-variational.md
+      - 'Part 5: Noise, Error Correction, and Fault-Tolerant Computation': section-plans/05-fault-tolerance.md
+      - 'Part 6: Classical Simulation and the Boundary of Tractability': section-plans/06-simulation.md
+      - 'Part 7: From Papers to Reproducible Research': section-plans/07-research.md
   - Learning design: learning-design.md
   - FlagQuantum implementation roadmap: implementation-roadmap.md
   - Conventions: conventions.md

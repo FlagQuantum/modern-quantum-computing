@@ -41,7 +41,7 @@ Readers who know basic Python and linear algebra and want to understand quantum 
 5. Change a parameter or deliberately introduce an error.
 6. Record the software version and the limits of the experiment.
 
-Start with [conventions](conventions.md), then [measurement](chapters/measurement.md), [gradients](chapters/gradients.md), and [VQE](chapters/vqe.md). The [contents](contents.md) and [detailed book plan](book-plan.md) explain the proposed learning sequence, prerequisites and experiments. The [Nielsen–Chuang design review](references/nielsen-chuang-design-review.md) records how reference reading informed the revision.
+Start with [conventions](conventions.md), then [measurement](chapters/measurement.md), [gradients](chapters/gradients.md), and [VQE](chapters/vqe.md). The [contents](contents.md) and [detailed book plan](book-plan.md) explain the proposed learning sequence, prerequisites and experiments. The [numbered section plans](section-plan.md) give derivation and verification targets. The [Nielsen–Chuang design review](references/nielsen-chuang-design-review.md) records how reference reading informed the revision.
 
 ## Scope
 

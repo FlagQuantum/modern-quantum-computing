@@ -16,7 +16,7 @@ An open English textbook that connects quantum computing equations to executable
 
 - [Book introduction](docs/index.md)
 - [Editorial charter](docs/editorial-charter.md) · [FlagQuantum capability-gap workflow](docs/implementation-roadmap.md)
-- [Full contents: seven parts and 40 chapters](docs/contents.md) · [Detailed chapter plan](docs/book-plan.md)
+- [Full contents: seven parts and 40 chapters](docs/contents.md) · [Detailed chapter plan](docs/book-plan.md) · [Numbered section plans](docs/section-plan.md)
 - [Design review: Nielsen and Chuang](docs/references/nielsen-chuang-design-review.md) · [Quantum Country](docs/references/quantum-country-design-review.md)
 - [Learning design: recall, prediction and formula-to-code practice](docs/learning-design.md)
 - [Notation and conventions](docs/conventions.md)

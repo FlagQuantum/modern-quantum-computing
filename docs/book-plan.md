@@ -14,7 +14,7 @@ The theory determines the curriculum. A missing FlagQuantum API becomes a tracke
 
 ## Section architecture and acceptance standard
 
-Each chapter below specifies its section sequence, mathematical outcome and independent check. These are authoring targets, not claims of existing proofs or code.
+Each chapter below specifies its section sequence, mathematical outcome and independent check. The [detailed section plan](section-plan.md) expands all 40 chapters into numbered sections with learning/derivation and implementation/evidence targets. These are authoring targets, not claims of existing proofs or code.
 
 1. Open with a concrete question, prerequisites and a prediction.
 2. State definitions, physical postulates, access models and assumptions.
@@ -33,6 +33,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core. **Prerequisites:** Basic Python.
 
+**Numbered section specification:** [Sections 1.1–1.6](section-plans/01-foundations.md#chapter-1).
+
 **Planned sections:** Problems and outputs; interference experiment; models, simulators and hardware; guide to the book.
 
 **Mathematical outcome:** Derive one interference probability before introducing the general formalism.
@@ -42,6 +44,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 2: Complex Vectors, Operators, and Numerical Reasoning
 
 **Reading level:** Core. **Prerequisites:** 1; introductory linear algebra.
+
+**Numbered section specification:** [Sections 2.1–2.8](section-plans/01-foundations.md#chapter-2).
 
 **Planned sections:** Complex inner products; adjoints and spectra; matrix functions; norms, conditioning and tolerances.
 
@@ -53,6 +57,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core. **Prerequisites:** 2.
 
+**Numbered section specification:** [Sections 3.1–3.8](section-plans/01-foundations.md#chapter-3).
+
 **Planned sections:** State and evolution postulates; relative and global phase; Bloch sphere; Pauli rotations; no-cloning.
 
 **Mathematical outcome:** Derive rotations from their generators and prove the elementary no-cloning statement.
@@ -62,6 +68,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 4: Composite Systems, Tensor Products, and Qubit Ordering
 
 **Reading level:** Core. **Prerequisites:** 2, 3.
+
+**Numbered section specification:** [Sections 4.1–4.7](section-plans/01-foundations.md#chapter-4).
 
 **Planned sections:** Tensor products; register labels and basis indices; local operations; subsystem permutations.
 
@@ -73,6 +81,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core. **Prerequisites:** 3, 4.
 
+**Numbered section specification:** [Sections 5.1–5.8](section-plans/01-foundations.md#chapter-5).
+
 **Planned sections:** Gate composition; controlled operations; reversible Boolean computation; universality; approximation and synthesis cost.
 
 **Mathematical outcome:** Derive controlled-gate matrices and a small reversible construction; state the approximation model.
@@ -82,6 +92,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 6: Measurement, Expectation Values, and Statistical Estimation
 
 **Reading level:** Core. **Prerequisites:** 3–5.
+
+**Numbered section specification:** [Sections 6.1–6.9](section-plans/01-foundations.md#chapter-6).
 
 **Planned sections:** Born rule; conditional states and instruments; generalized measurements; observables; variance and confidence intervals.
 
@@ -93,6 +105,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core. **Prerequisites:** 4–6.
 
+**Numbered section specification:** [Sections 7.1–7.8](section-plans/01-foundations.md#chapter-7).
+
 **Planned sections:** Schmidt decomposition; Bell correlations; teleportation; superdense coding; no-signalling.
 
 **Mathematical outcome:** Derive Schmidt structure and all conditional branches of teleportation.
@@ -102,6 +116,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 8: Density Matrices, Reduced States, and Purification
 
 **Reading level:** Core. **Prerequisites:** 2, 4, 6, 7.
+
+**Numbered section specification:** [Sections 8.1–8.8](section-plans/01-foundations.md#chapter-8).
 
 **Planned sections:** Ensembles; density operators; partial trace; purification; improper and proper mixtures.
 
@@ -115,6 +131,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core. **Prerequisites:** 8.
 
+**Numbered section specification:** [Sections 9.1–9.8](section-plans/02-information.md#chapter-9).
+
 **Planned sections:** Completely positive maps; Kraus representation; Stinespring dilation; Choi representation; channel composition.
 
 **Mathematical outcome:** Establish finite-dimensional representation equivalences and explain why positivity alone is insufficient.
@@ -124,6 +142,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 10: Distinguishability, Fidelity, and Quantum State Inference
 
 **Reading level:** Core. **Prerequisites:** 6, 8, 9.
+
+**Numbered section specification:** [Sections 10.1–10.8](section-plans/02-information.md#chapter-10).
 
 **Planned sections:** Trace distance; fidelity conventions; operational discrimination; tomography; measurement grouping; classical shadows.
 
@@ -135,6 +155,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core with advanced proofs. **Prerequisites:** 8–10.
 
+**Numbered section specification:** [Sections 11.1–11.8](section-plans/02-information.md#chapter-11).
+
 **Planned sections:** Shannon and von Neumann entropy; relative entropy; mutual information; data processing; strong subadditivity.
 
 **Mathematical outcome:** Prove accessible special cases and selected central results; identify the ingredients and source of deferred general proofs.
@@ -145,6 +167,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Advanced. **Prerequisites:** 7–11.
 
+**Numbered section specification:** [Sections 12.1–12.8](section-plans/02-information.md#chapter-12).
+
 **Planned sections:** Typicality; Schumacher compression; entanglement concentration; Holevo bound; channel-capacity formulations.
 
 **Mathematical outcome:** Derive a finite-block compression example and state coding theorems with their operational assumptions.
@@ -154,6 +178,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 13: Quantum Cryptography and Security Reasoning
 
 **Reading level:** Advanced. **Prerequisites:** 6–12.
+
+**Numbered section specification:** [Sections 13.1–13.8](section-plans/02-information.md#chapter-13).
 
 **Planned sections:** BB84; parameter estimation; adversarial models; privacy amplification; finite-size and composable security.
 
@@ -167,6 +193,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core. **Prerequisites:** 4–6.
 
+**Numbered section specification:** [Sections 14.1–14.8](section-plans/03-algorithms.md#chapter-14).
+
 **Planned sections:** Circuit families; reversible models; BQP and promise problems; query versus gate cost; precision; classical baselines.
 
 **Mathematical outcome:** Relate input/output access assumptions to a complete resource expression.
@@ -176,6 +204,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 15: Interference, Oracles, and Phase Kickback
 
 **Reading level:** Core. **Prerequisites:** 5, 14.
+
+**Numbered section specification:** [Sections 15.1–15.7](section-plans/03-algorithms.md#chapter-15).
 
 **Planned sections:** Reversible oracles; phase kickback; Deutsch-Jozsa; Bernstein-Vazirani; oracle promises.
 
@@ -187,6 +217,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core with advanced extensions. **Prerequisites:** 6, 14, 15; revisit after 17.
 
+**Numbered section specification:** [Sections 16.1–16.8](section-plans/03-algorithms.md#chapter-16).
+
 **Planned sections:** Two-dimensional geometry; iteration counts; general amplification; amplitude estimation; query bounds.
 
 **Mathematical outcome:** Derive the success curve and a scoped estimation error/query relation.
@@ -196,6 +228,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 17: Fourier Transforms and Quantum Phase Estimation
 
 **Reading level:** Core. **Prerequisites:** 4–6, 14, 15.
+
+**Numbered section specification:** [Sections 17.1–17.8](section-plans/03-algorithms.md#chapter-17).
 
 **Planned sections:** Discrete Fourier transform; QFT factorization; inverse and approximate QFT; exact/off-grid phase estimation.
 
@@ -207,6 +241,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Advanced. **Prerequisites:** 5, 14, 17.
 
+**Numbered section specification:** [Sections 18.1–18.8](section-plans/03-algorithms.md#chapter-18).
+
 **Planned sections:** Order finding; modular arithmetic; continued fractions; success probabilities; arithmetic and synthesis costs.
 
 **Mathematical outcome:** Derive the reduction from factoring to order finding and its classical postprocessing conditions.
@@ -216,6 +252,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 19: Hamiltonian Simulation and Error Bounds
 
 **Reading level:** Core with advanced extensions. **Prerequisites:** 2, 5, 14, 17.
+
+**Numbered section specification:** [Sections 19.1–19.8](section-plans/03-algorithms.md#chapter-19).
 
 **Planned sections:** Pauli decompositions; first/second-order formulas; commutator error; sparse and oracle models; precision dependence.
 
@@ -227,6 +265,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Advanced. **Prerequisites:** 2, 5, 14, 17, 19.
 
+**Numbered section specification:** [Sections 20.1–20.8](section-plans/03-algorithms.md#chapter-20).
+
 **Planned sections:** Normalization and access models; exact small block encodings; LCU; postselection; linear-system conditioning.
 
 **Mathematical outcome:** Construct a block encoding and derive normalization, success probability and condition-number dependence.
@@ -237,6 +277,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Advanced. **Prerequisites:** 16, 19, 20.
 
+**Numbered section specification:** [Sections 21.1–21.9](section-plans/03-algorithms.md#chapter-21).
+
 **Planned sections:** SU(2) polynomial sequences; parity and boundedness; phase sequences; QSVT; spectral filtering and simulation.
 
 **Mathematical outcome:** Derive low-degree constructions, state a precise transformation theorem and prove a selected application.
@@ -246,6 +288,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 22: Quantum Walks, Lower Bounds, and Algorithm Design
 
 **Reading level:** Advanced. **Prerequisites:** 14–21.
+
+**Numbered section specification:** [Sections 22.1–22.8](section-plans/03-algorithms.md#chapter-22).
 
 **Planned sections:** Walk constructions; search and hitting problems; polynomial method; query lower bounds; algorithm selection.
 
@@ -259,6 +303,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core. **Prerequisites:** 2–6; elementary calculus.
 
+**Numbered section specification:** [Sections 23.1–23.10](section-plans/04-variational.md#chapter-23).
+
 **Planned sections:** Observable-valued models; generator spectra; parameter shift; shared parameters; adjoint differentiation; autograd contracts.
 
 **Mathematical outcome:** Derive spectral shift rules, normalization changes and parameter-reuse chain rules; analyze execution and memory costs.
@@ -268,6 +314,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 24: Optimization, Geometry, and Trainability
 
 **Reading level:** Advanced. **Prerequisites:** 10, 14, 23.
+
+**Numbered section specification:** [Sections 24.1–24.9](section-plans/04-variational.md#chapter-24).
 
 **Planned sections:** Exact and stochastic losses; optimizer diagnostics; quantum geometric tensor; natural gradient; barren plateaus; noise.
 
@@ -279,6 +327,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core application. **Prerequisites:** 8, 14, 19, 23.
 
+**Numbered section specification:** [Sections 25.1–25.9](section-plans/04-variational.md#chapter-25).
+
 **Planned sections:** Variational principle; fermions and Jordan-Wigner mapping; symmetries; ansatz selection; measurement allocation; dynamics.
 
 **Mathematical outcome:** Prove the energy bound and derive a small occupation-to-qubit Hamiltonian with units and offsets.
@@ -289,6 +339,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Advanced application. **Prerequisites:** 14–16, 23, 24.
 
+**Numbered section specification:** [Sections 26.1–26.8](section-plans/04-variational.md#chapter-26).
+
 **Planned sections:** Objective-to-Hamiltonian mapping; mixers; constrained spaces; depth; approximation quality; sampling and optimization cost.
 
 **Mathematical outcome:** Derive MaxCut and one low-depth result under explicit graph and sign conventions.
@@ -298,6 +350,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 27: Quantum Learning, Kernels, and Hybrid Models
 
 **Reading level:** Advanced application. **Prerequisites:** 10, 14, 23, 24; basic machine learning.
+
+**Numbered section specification:** [Sections 27.1–27.8](section-plans/04-variational.md#chapter-27).
 
 **Planned sections:** Data access and encoding; hybrid chain rule; quantum kernels; generalization; classical simulability and baselines.
 
@@ -311,6 +365,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core. **Prerequisites:** 8–10; 19 for dynamics.
 
+**Numbered section specification:** [Sections 28.1–28.9](section-plans/05-fault-tolerance.md#chapter-28).
+
 **Planned sections:** Kraus noise; Lindblad dynamics; trajectories; correlated noise; calibration; mitigation and its overhead.
 
 **Mathematical outcome:** Derive amplitude damping and one master equation; analyze the bias/variance tradeoff of a mitigation example.
@@ -320,6 +376,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 29: Quantum Error Correction: Conditions and Recovery
 
 **Reading level:** Core. **Prerequisites:** 7–10, 28.
+
+**Numbered section specification:** [Sections 29.1–29.9](section-plans/05-fault-tolerance.md#chapter-29).
 
 **Planned sections:** Quantum obstacles; repetition codes; error discretization; Knill-Laflamme conditions; recovery and logical information.
 
@@ -331,6 +389,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core with advanced extensions. **Prerequisites:** 5–8, 29; binary linear algebra.
 
+**Numbered section specification:** [Sections 30.1–30.9](section-plans/05-fault-tolerance.md#chapter-30).
+
 **Planned sections:** Pauli symplectic representation; stabilizer groups; CSS construction; distance; logical operators; decoder interfaces.
 
 **Mathematical outcome:** Derive a code's syndrome map, logical operators and distance; connect binary algebra to quantum operators.
@@ -340,6 +400,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 31: Surface Codes and Repeated Syndrome Measurements
 
 **Reading level:** Advanced. **Prerequisites:** 28–30.
+
+**Numbered section specification:** [Sections 31.1–31.8](section-plans/05-fault-tolerance.md#chapter-31).
 
 **Planned sections:** Lattice checks; boundaries; syndrome circuits; measurement faults; detection events; space-time decoding; logical failure.
 
@@ -351,6 +413,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Advanced. **Prerequisites:** 5, 18, 28–31.
 
+**Numbered section specification:** [Sections 32.1–32.8](section-plans/05-fault-tolerance.md#chapter-32).
+
 **Planned sections:** Fault propagation; transversal operations; threshold logic; lattice surgery; code deformation; magic states and distillation.
 
 **Mathematical outcome:** Derive a fault-propagation example and a small distillation/rejection calculation; state threshold assumptions and explain proof structure.
@@ -360,6 +424,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 33: From Logical Algorithms to Physical Resource Estimates
 
 **Reading level:** Advanced synthesis. **Prerequisites:** 14, 18–21, 28–32.
+
+**Numbered section specification:** [Sections 33.1–33.8](section-plans/05-fault-tolerance.md#chapter-33).
 
 **Planned sections:** Logical gate synthesis; T count/depth; factories; error budgets; code distance; physical qubits; runtime and sensitivity.
 
@@ -373,6 +439,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core. **Prerequisites:** 2, 4–6, 8, 14, 23.
 
+**Numbered section specification:** [Sections 34.1–34.8](section-plans/06-simulation.md#chapter-34).
+
 **Planned sections:** Statevector and density evolution; tensor-axis operations; precision; memory; batching; differentiation; parallel execution.
 
 **Mathematical outcome:** Derive local-gate tensor contractions and storage/time costs, including communication assumptions.
@@ -382,6 +450,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 35: Stabilizer Simulation, Magic, and Classical Simulability
 
 **Reading level:** Advanced. **Prerequisites:** 14, 30, 34.
+
+**Numbered section specification:** [Sections 35.1–35.8](section-plans/06-simulation.md#chapter-35).
 
 **Planned sections:** Tableau updates; Clifford circuits; adaptive measurements; Gottesman-Knill; non-Clifford resources.
 
@@ -393,6 +463,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Advanced. **Prerequisites:** 2, 4, 7, 8, 10, 34.
 
+**Numbered section specification:** [Sections 36.1–36.8](section-plans/06-simulation.md#chapter-36).
+
 **Planned sections:** Successive SVD; canonical forms; gate updates; bond dimensions; entanglement; truncation bounds.
 
 **Mathematical outcome:** Derive MPS construction and discarded-weight error relations with normalization assumptions.
@@ -402,6 +474,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 37: Tensor Networks, Contraction, and Hybrid Simulation Strategies
 
 **Reading level:** Advanced. **Prerequisites:** 14, 34, 36.
+
+**Numbered section specification:** [Sections 37.1–37.8](section-plans/06-simulation.md#chapter-37).
 
 **Planned sections:** Circuit tensors; contraction paths; intermediate sizes; slicing; distributed contraction; amplitudes versus full states.
 
@@ -415,6 +489,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Core research method. **Prerequisites:** 4, 6, 10, 14; application-specific prerequisites.
 
+**Numbered section specification:** [Sections 38.1–38.9](section-plans/07-research.md#chapter-38).
+
 **Planned sections:** Source revisions; symbols and assumptions; equation dependencies; units; independent references; uncertainty; resource records.
 
 **Mathematical outcome:** Turn a source claim into a mathematical specification and distinguish proof, numerical evidence and empirical inference.
@@ -425,6 +501,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 **Reading level:** Research capstone. **Prerequisites:** 23–25, 38.
 
+**Numbered section specification:** [Sections 39.1–39.9](section-plans/07-research.md#chapter-39).
+
 **Planned sections:** Corrected paper data; reduction and qubit mapping; ansatz; closed-form minimum; full curve; optimization; shot uncertainty.
 
 **Mathematical outcome:** Derive the model and parameter conventions, amplitudes, observables, gradients and sector minimum.
@@ -434,6 +512,8 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 ### Chapter 40: Case Study: Logical Memory and Error-Correction Experiments
 
 **Reading level:** Research capstone. **Prerequisites:** 28–33, 35, 38.
+
+**Numbered section specification:** [Sections 40.1–40.9](section-plans/07-research.md#chapter-40).
 
 **Planned sections:** Paper selection and claim specification; repeated syndrome model; decoder; logical observable; scaling; failure analysis.
 

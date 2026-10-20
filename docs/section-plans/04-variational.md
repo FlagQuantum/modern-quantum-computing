@@ -1,0 +1,299 @@
+# Part 4: Variational and Differentiable Quantum Computing
+
+**Detailed section plan · October 20, 2026 · Planned material.** [All section plans](../section-plan.md) · [Curriculum and prerequisites](../book-plan.md)
+
+Each numbered section specifies its intended argument and independent evidence. The unnumbered closing material and authoring rules are defined in the [section-plan guide](../section-plan.md#how-to-read-the-specification). Implementation status remains separate from curriculum status.
+
+## Chapter 23
+
+**Parameterized Circuits, Quantum Gradients, and Differentiation**
+
+**Reading level:** Core. **Chapter prerequisites:** 2–6; elementary calculus.
+
+### 23.1 Parameterized quantum models and tensor contracts
+
+**Learning and derivation target:** Define states, observable-valued outputs, parameter occurrences and batch dimensions.
+
+**Implementation and evidence target:** Check a batched model against separate scalar executions.
+
+### 23.2 Differentiating a unitary expectation
+
+**Learning and derivation target:** Derive the expectation derivative with explicit complex conjugation and real-parameter assumptions.
+
+**Implementation and evidence target:** Compare a generator-based expression with dense derivatives.
+
+### 23.3 The single-Pauli parameter-shift rule
+
+**Learning and derivation target:** Derive the shift and prefactor from the generator's two eigenvalues.
+
+**Implementation and evidence target:** Expand the existing starter with analytic and shifted-execution checks.
+
+### 23.4 Generator spectra and generalized shift rules [Advanced]
+
+**Learning and derivation target:** Explain how spectral gaps determine the frequency structure and valid rules.
+
+**Implementation and evidence target:** Test a multi-eigenvalue example against an independent spectral reference.
+
+### 23.5 Shared parameters and classical reparameterization
+
+**Learning and derivation target:** Derive the sum over occurrences and the classical chain rule.
+
+**Implementation and evidence target:** Check a reused parameter and a scaled angle; diagnose a missing chain-rule factor.
+
+### 23.6 Backpropagation and automatic differentiation
+
+**Learning and derivation target:** Explain the mathematical derivative and the computational graph that carries it.
+
+**Implementation and evidence target:** Check real outputs, complex state tensors and deliberate detach errors.
+
+### 23.7 Adjoint differentiation and memory tradeoffs
+
+**Learning and derivation target:** Derive reverse propagation for a pure-state circuit and state its assumptions.
+
+**Implementation and evidence target:** Compare gradients and operation/memory counts with a simple independent implementation.
+
+### 23.8 Finite differences and numerical diagnostics
+
+**Learning and derivation target:** Analyze truncation, rounding and step-size sensitivity.
+
+**Implementation and evidence target:** Sweep finite-difference steps and compare with an exact analytic derivative.
+
+### 23.9 Finite-shot gradient estimation
+
+**Learning and derivation target:** Derive estimator variance under a declared measurement/allocation model.
+
+**Implementation and evidence target:** Compare exact gradients with repeated stochastic estimates and their uncertainty.
+
+### 23.10 Differentiation laboratory and cost audit
+
+**Learning and derivation target:** Combine parameter structure, derivative method, accuracy and complete execution cost.
+
+**Implementation and evidence target:** Require analytic, dense, shifted and autograd agreement where each method applies.
+
+## Chapter 24
+
+**Optimization, Geometry, and Trainability**
+
+**Reading level:** Advanced. **Chapter prerequisites:** 10, 14, 23.
+
+### 24.1 Objectives and optimization problems
+
+**Learning and derivation target:** Distinguish an expectation model, a loss, constraints and the desired optimum.
+
+**Implementation and evidence target:** Specify a small objective with a known analytic or exhaustive reference.
+
+### 24.2 Exact and stochastic gradients
+
+**Learning and derivation target:** Derive how gradient noise enters a selected update rule.
+
+**Implementation and evidence target:** Compare deterministic and finite-shot trajectories under matched initialization.
+
+### 24.3 Optimizers, initialization, and diagnostics
+
+**Learning and derivation target:** Explain optimizer state, post-update loss, stopping and local minima.
+
+**Implementation and evidence target:** Log reproducible trajectories and compare multiple starts without cherry-picking.
+
+### 24.4 Quantum geometric tensor
+
+**Learning and derivation target:** Derive the state-space metric and identify phase/gauge redundancy.
+
+**Implementation and evidence target:** Compare analytic metric entries with independent state derivatives.
+
+### 24.5 Natural-gradient updates and singular metrics
+
+**Learning and derivation target:** Derive a constrained or regularized update and its assumptions.
+
+**Implementation and evidence target:** Study rank deficiency, regularization and step sensitivity in a tiny model.
+
+### 24.6 Expressivity, identifiability, and trainability
+
+**Learning and derivation target:** Separate representable functions from the ability to identify or optimize parameters.
+
+**Implementation and evidence target:** Construct redundant parameterizations and compare behavior.
+
+### 24.7 Barren plateaus and ensemble assumptions [Advanced]
+
+**Learning and derivation target:** State a selected gradient-concentration theorem and explain its proof structure and scaling assumptions.
+
+**Implementation and evidence target:** Use controlled finite examples as illustrations; do not treat a random-circuit plot as a general proof.
+
+### 24.8 Noise, shot budgets, and mitigation overhead
+
+**Learning and derivation target:** Relate estimator variance and bias to optimization effort.
+
+**Implementation and evidence target:** Compare configurations with a fixed total execution budget.
+
+### 24.9 Optimization laboratory and honest conclusions
+
+**Learning and derivation target:** Distinguish convergence evidence from global optimality and model utility.
+
+**Implementation and evidence target:** Compare an optimizer result with exact references and report failed runs.
+
+## Chapter 25
+
+**Variational Simulation, Chemistry, and Ground-State Problems**
+
+**Reading level:** Core application. **Chapter prerequisites:** 8, 14, 19, 23.
+
+### 25.1 The variational principle and its assumptions
+
+**Learning and derivation target:** Prove the ground-energy upper bound and identify normalization/subspace assumptions.
+
+**Implementation and evidence target:** Check the bound and construct a counterexample from an invalid estimator/model.
+
+### 25.2 Second quantization and occupation states
+
+**Learning and derivation target:** Define fermionic modes, creation/annihilation operators and sign conventions.
+
+**Implementation and evidence target:** Build a tiny occupation-basis Hamiltonian independently.
+
+### 25.3 Jordan-Wigner and fermion-to-qubit translation
+
+**Learning and derivation target:** Derive the parity strings and verify anticommutation relations.
+
+**Implementation and evidence target:** Compare fermionic and qubit Hamiltonian matrices.
+
+### 25.4 Symmetries and reduced models
+
+**Learning and derivation target:** Explain conserved sectors and the conditions for valid reductions.
+
+**Implementation and evidence target:** Compare sector spectra and identify an incorrect reference-state sector.
+
+### 25.5 Ansatz design and reachable states
+
+**Learning and derivation target:** Relate physical structure, circuit expressivity and parameterization.
+
+**Implementation and evidence target:** Compare a chosen ansatz with an exactly solvable tiny subspace.
+
+### 25.6 Measuring an energy objective
+
+**Learning and derivation target:** Derive Pauli-weighted estimates and shot-allocation uncertainty.
+
+**Implementation and evidence target:** Compare exact energy with grouped finite-shot estimators.
+
+### 25.7 Variational dynamics and extensions [Advanced]
+
+**Learning and derivation target:** Derive a selected projected time-evolution principle and its linear system.
+
+**Implementation and evidence target:** Compare a tiny variational trajectory with exact dynamics.
+
+### 25.8 Chemistry model and error budgets
+
+**Learning and derivation target:** Separate basis, mapping, truncation, ansatz, optimization and sampling errors.
+
+**Implementation and evidence target:** Record units, constant offsets and independent reference energies.
+
+### 25.9 Variational-simulation laboratory
+
+**Learning and derivation target:** Connect Hamiltonian construction, circuit model, optimization and evidence.
+
+**Implementation and evidence target:** Verify matrices before training and interpret the final result with all declared limitations.
+
+## Chapter 26
+
+**QAOA, Quantum Optimization, and Classical Comparisons**
+
+**Reading level:** Advanced application. **Chapter prerequisites:** 14–16, 23, 24.
+
+### 26.1 From a discrete objective to a Hamiltonian
+
+**Learning and derivation target:** Derive a small MaxCut cost and state bit/spin/sign conventions.
+
+**Implementation and evidence target:** Compare every bit-string energy with its classical objective.
+
+### 26.2 Cost and mixer evolution
+
+**Learning and derivation target:** Derive the alternating-unitary circuit and identify normalization conventions.
+
+**Implementation and evidence target:** Compare circuit layers with independent matrix exponentials.
+
+### 26.3 Low-depth analytic behavior
+
+**Learning and derivation target:** Derive one selected graph's expectation at small depth.
+
+**Implementation and evidence target:** Check parameter-dependent predictions with exhaustive references.
+
+### 26.4 Constraints and feasible mixers [Advanced]
+
+**Learning and derivation target:** Specify a constrained search space and derive a mixer that preserves it.
+
+**Implementation and evidence target:** Verify invariance and diagnose leakage outside the feasible subspace.
+
+### 26.5 Parameter landscapes and depth
+
+**Learning and derivation target:** Explain parameter periodicity, symmetries and optimization challenges.
+
+**Implementation and evidence target:** Compare grids and optimized results with an exact tiny-instance landscape.
+
+### 26.6 Sampled solutions and approximation quality
+
+**Learning and derivation target:** Define expectation, best observed sample and approximation metric separately.
+
+**Implementation and evidence target:** Report distributions and finite-sample uncertainty rather than only the best sample.
+
+### 26.7 Classical comparisons and total cost
+
+**Learning and derivation target:** State matched objectives, time/budget boundaries and baseline assumptions.
+
+**Implementation and evidence target:** Compare exhaustive and heuristic methods on identical inputs.
+
+### 26.8 Optimization laboratory
+
+**Learning and derivation target:** Require an end-to-end objective mapping, optimizer record and solution interpretation.
+
+**Implementation and evidence target:** Diagnose sign errors, infeasible samples and unsupported advantage claims.
+
+## Chapter 27
+
+**Quantum Learning, Kernels, and Hybrid Models**
+
+**Reading level:** Advanced application. **Chapter prerequisites:** 10, 14, 23, 24; basic machine learning.
+
+### 27.1 Learning tasks and data-access assumptions
+
+**Learning and derivation target:** Specify labels, distributions, encoding access and the desired prediction.
+
+**Implementation and evidence target:** Define a train/validation/test protocol before constructing a quantum model.
+
+### 27.2 Encoding data into quantum states
+
+**Learning and derivation target:** Derive selected angle/amplitude encodings and their resource implications.
+
+**Implementation and evidence target:** Compare input normalization and state preparation with explicit vectors.
+
+### 27.3 Hybrid models and the joint chain rule
+
+**Learning and derivation target:** Derive classical preprocessing, quantum expectation and output-head gradients.
+
+**Implementation and evidence target:** Check every component and their composition independently.
+
+### 27.4 Quantum feature maps and kernels
+
+**Learning and derivation target:** Derive overlap-based kernels and Gram-matrix properties.
+
+**Implementation and evidence target:** Compare explicit feature vectors, circuit estimates and numerical kernel checks.
+
+### 27.5 Training kernels and hybrid models
+
+**Learning and derivation target:** Explain regularization, optimization and estimator noise.
+
+**Implementation and evidence target:** Train tiny models with reproducible splits and inspect failure modes.
+
+### 27.6 Generalization and statistical claims
+
+**Learning and derivation target:** State a selected learning guarantee's assumptions and distinguish empirical evaluation.
+
+**Implementation and evidence target:** Report held-out uncertainty, repeated seeds and data leakage diagnostics.
+
+### 27.7 Classical simulability and meaningful baselines
+
+**Learning and derivation target:** Relate encoding/model structure to possible classical implementations.
+
+**Implementation and evidence target:** Compare like-for-like classical features, kernels and compute/measurement budgets.
+
+### 27.8 Learning laboratory and claim audit
+
+**Learning and derivation target:** Connect mathematical model, data protocol, implementation and evidence.
+
+**Implementation and evidence target:** Require a baseline, gradient verification and a complete cost record before interpreting usefulness.

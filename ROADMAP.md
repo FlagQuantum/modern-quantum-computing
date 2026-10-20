@@ -9,6 +9,7 @@ The [editorial charter](docs/editorial-charter.md) defines the long-term aim: a 
 - [x] Targeted Nielsen–Chuang review and Quantum Country learning-design review.
 - [x] Expanded curriculum covering information theory, modern algorithms, fault tolerance and classical simulability.
 - [x] Mathematical depth, reading-level, review and software-gap authoring standards.
+- [x] [Numbered section specifications](docs/section-plan.md) for all 40 chapters, with derivation and evidence targets.
 
 ## Next: establish depth and continuity
 
