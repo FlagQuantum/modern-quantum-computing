@@ -1,28 +1,30 @@
 # Roadmap
 
-## Phase 1: validate the teaching architecture
+The [editorial charter](docs/editorial-charter.md) defines the long-term aim: a rigorous modern textbook serving present and future learners. The [seven-part, 40-chapter plan](docs/book-plan.md) supplies the curriculum; the [capability-gap workflow](docs/implementation-roadmap.md) connects its needs to FlagQuantum development.
 
-- [x] Build three executable format pilots, a web edition and a versioned PDF sample.
-- [x] Establish conventions, references and chapter-template guidance.
-- [x] Review the preface, complete contents and selected instructional passages of Nielsen and Chuang.
-- [x] Revise the [six-part, 28-chapter plan](docs/contents.md) around conceptual dependencies; record [findings and source locations](docs/references/nielsen-chuang-design-review.md).
-- [x] Review Quantum Country and specify recall, prediction, translation and diagnosis prompts with web/print parity.
-- [ ] Pilot original prompts and the revised plan with target readers; examine dedicated references for specialized topics.
+## Established
 
-## Phase 2: write the missing textbook foundations
+- [x] Three executable format pilots, a live website and versioned PDF samples.
+- [x] Shared conventions, attribution and independently checked examples.
+- [x] Targeted Nielsen–Chuang review and Quantum Country learning-design review.
+- [x] Expanded curriculum covering information theory, modern algorithms, fault tolerance and classical simulability.
+- [x] Mathematical depth, reading-level, review and software-gap authoring standards.
 
-Draft the motivating Chapter 1 and required mathematical review in 2, then Chapters 3–6. Complete protocols, mixed states and resource accounting in 7–9. The measurement pilot belongs in Chapter 6 and must be expanded beyond its short current form.
+## Next: establish depth and continuity
 
-## Phase 3: build a continuous research path
+- [ ] Complete the opening sequence, Chapters 1–8, with substantial problems.
+- [ ] Develop three depth pilots: measurement (6), differentiation (23), correction conditions (29).
+- [ ] Review these with mathematical specialists and target readers; record findings.
+- [ ] Audit actual implementation requirements for drafted sections; file confirmed, deduplicated gaps upstream.
+- [ ] Extend channels/inference and computational resources (9–10, 14), then the algorithm sequence (15–19).
+- [ ] Expand the VQE research route (23–25, 38–39).
 
-Develop Chapters 15–17 and 19, then 27–28. The existing gradient and hydrogen pilots belong in Chapters 16 and 28. Add full explanations, immediate checkpoints, substantive problems and independent validation before treating these as final chapters.
+## Complete the broader curriculum
 
-## Phase 4: complete algorithms, quantitative information and simulation
+Develop information theory/security (11–13), modern algorithms (20–22), logical computing (28–33), advanced applications and simulation (24, 26–27, 34–37), and the error-correction capstone (40). Select exact primary results and proof obligations before specialized sections are authored. Keep pending code accurately labeled while framework work proceeds.
 
-Write Chapters 10–14 and 21–23, then applications in 18 and 20 and simulation in 24–26. Keep detailed platform setup and provider interfaces in companion laboratories. Select primary references and verify supported software paths before implementing specialized examples.
+## Review and freeze an edition
 
-## Phase 5: freeze a reviewed scholarly edition
+Pilot coherent course routes, review proofs and exercise solutions, independently reproduce examples, and inspect web/print output. Preserve source, environment and data provenance; publish errata and migration notes. The current 16-page PDF is a three-chapter sample, not a completed textbook. Curriculum revisions do not retroactively change its versioned contents.
 
-Complete mathematical and reader review, exercise solutions, source attribution and web/print checks. The existing 17-page sample is a format pilot, not the complete textbook or an arXiv submission. Freeze a coherent manuscript and its code revision only after these gates. Choose a custom domain separately; the live web edition uses GitHub Pages.
-
-The [full plan](docs/book-plan.md) defines prerequisites, reading routes and acceptance gates. Progress depends on conceptual completeness, correctness and readability.
+Review the curriculum at least annually and on significant mathematical, scientific or software corrections. No scheduled automation is configured by this roadmap. The detailed writing order and prerequisites are in the [book plan](docs/book-plan.md).

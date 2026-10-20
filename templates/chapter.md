@@ -2,6 +2,8 @@
 
 **Status: draft · Target release: FlagQuantum VERSION · Validation: DATE / PLATFORM**
 
+**Reading level:** Core / Advanced / Research. **Theory review:** pending / scope and date. **Implementation status:** not assessed / reference only / upstream issue / validated release. Use the [capability-gap workflow](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/docs/implementation-roadmap.md) when needed. Do not omit a required topic because an API is missing.
+
 ## Question, outcomes and prerequisites
 
 State the problem, what readers should learn and which earlier concepts they need.
@@ -19,6 +21,10 @@ Specify the mathematical model, basis order, units, generator normalization and 
 Use the [checkpoint template](checkpoint.md) and distinguish brief recall/prediction from proof problems and programming laboratories. Preserve answer access and stable prompt IDs across web and print.
 
 Give the important intermediate steps. State why each step is valid. Insert short checks after new notation or a substantive inference. Identify any deferred proof and its source.
+
+## Results, proofs and scope
+
+State central results with explicit assumptions and quantifiers. Prove them at the declared level, including intermediate reasoning; for a deferred proof, provide a proof roadmap, prerequisites and exact source. Include a limiting case or counterexample. Identify statistical and computational access assumptions. A numerical check does not discharge a proof obligation.
 
 ## Formula-to-code correspondence
 
@@ -43,6 +49,10 @@ Summarize the concepts and derived results the reader should now be able to use.
 ## Problems and laboratories
 
 Include a short derivation, a substantive proof or extension problem, a programming laboratory and a debugging task. Mark optional research investigations and required extra background.
+
+## Review and maintenance record
+
+Record mathematical, implementation and reader review separately; link unresolved findings, upstream capability issues and source corrections. Identify which content is durable theory, which depends on a software release, and which is a dated research claim. Preserve stable problem IDs and previous edition provenance.
 
 ## History, sources and further reading
 

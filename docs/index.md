@@ -6,7 +6,7 @@
 
 How does an equation in a quantum computing paper become a working program? This open textbook follows that translation explicitly: define the conventions, derive a small result, implement it, and check the answer independently.
 
-**Early draft:** three starter chapters are available. The full plan comprises six parts and 28 chapters; the remaining chapters are proposed material, not completed text.
+**Early draft:** three starter chapters are available. The full plan comprises seven parts and 40 chapters; the remaining chapters are proposed material, not completed text.
 
 <!-- book-metadata:start -->
 **Wei Liu**
@@ -21,6 +21,12 @@ Correspondence: [liuwei01@baai.ac.cn](mailto:liuwei01@baai.ac.cn)
 
 **Version 0.1.0-draft.4 · 2026-10-20 · Draft**
 <!-- book-metadata:end -->
+
+## Educational aim
+
+Our aim is a rigorous modern classic that helps present and future learners enter quantum computing. The [editorial charter](editorial-charter.md) sets standards for depth, accessibility, review and long-term maintenance. The curriculum includes foundations, quantum information, modern algorithms, differentiable computing, fault tolerance, simulation and reproducible research.
+
+The subject determines the scope. Required missing capabilities are investigated and reported through the [FlagQuantum capability-gap workflow](implementation-roadmap.md); existing API coverage does not limit the theory. Current sample execution claims remain pinned to their tested release.
 
 ## Who this book is for
 

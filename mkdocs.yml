@@ -11,9 +11,11 @@ theme:
     - content.code.copy
 nav:
   - Introduction: index.md
+  - Editorial charter: editorial-charter.md
   - Contents and status: contents.md
   - Full book plan: book-plan.md
   - Learning design: learning-design.md
+  - FlagQuantum implementation roadmap: implementation-roadmap.md
   - Conventions: conventions.md
   - Starter chapters:
       - Measurement and expectations: chapters/measurement.md
