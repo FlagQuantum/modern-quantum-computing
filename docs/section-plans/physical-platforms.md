@@ -759,7 +759,7 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Learning and derivation target:** Separate Abelian statistics, encoded Ising/D4/Fibonacci braiding, material parity readout and protected logical operation; evaluate competing interpretations with dated primary sources.
 
-**Implementation and evidence target:** Follow TOPO-01–09; record observations, inference, missing tests, data and access scope, paired comment/reply, and retraction status. Full subscription argument review and independent experimental interpretation remain pending.
+**Implementation and evidence target:** Follow TOPO-01–09 and dispute cases D1–D9. Full accepted comment, 2025 response, published supplement and joint author/reviewer record are checked. Exact final-reply matching, versioned raw/corrected data reproduction and specialist interpretation remain pending.
 
 <span id="sec-topological-quantum-computation-and-candidate-physical-realizations-8"></span>
 

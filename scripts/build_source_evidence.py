@@ -2,6 +2,7 @@
 import hashlib
 import json
 import re
+from build_dispute_review import build as build_dispute
 
 
 def build(root, sources, section_refs):
@@ -61,7 +62,7 @@ def build(root, sources, section_refs):
           'The [PySCF 2.10.0 source](https://github.com/pyscf/pyscf/tree/v2.10.0) pins the implementation; [BSE STO-family notes](https://www.basissetexchange.org/family_notes/sto/) identify the basis origin. ',
           'The mathematical proof, first-use explanation and reader acceptance gates remain pending.\n']
     t = ['# Topological routes: primary experimental evidence ledger\n\n',header,
-         '[Chapter 40 proof plan](../proof-plans/physical-platforms.md#chapter-40-topological-quantum-computation-and-candidate-physical-realizations) · [H₂ provenance plan](h2-provenance.md) · [Exact sources](proof-sources.md)\n\n',
+         '[Full comment/reply argument audit](topological-dispute-review.md) · [Chapter 40 proof plan](../proof-plans/physical-platforms.md#chapter-40-topological-quantum-computation-and-candidate-physical-realizations) · [H₂ provenance plan](h2-provenance.md) · [Exact sources](proof-sources.md)\n\n',
          '## Claim-specific experiments and source status\n\n',
          'The same word “braiding” occurs in different physical and encoded settings. Each entry below specifies which observable and interpretation the selected source can support. ',
          'A proposed theoretical operation, simulated ideal model, experimental signature and demonstrated logical protection have separate acceptance obligations.\n\n']
@@ -77,4 +78,6 @@ def build(root, sources, section_refs):
     for x in ledger['topology_acceptance']:t.append('- '+x+'\n')
     t += ['\nNo experimental data analysis is claimed by this planning pass. Citations and source-status checks do not establish a device’s topological phase or logical error protection. ',
           'Original papers, figures and raw datasets are linked rather than redistributed. The section-level mathematical review remains pending.\n']
-    return {'docs/references/h2-provenance.md': ''.join(h), 'docs/references/topological-experiments.md': ''.join(t)}
+    outputs={'docs/references/h2-provenance.md': ''.join(h), 'docs/references/topological-experiments.md': ''.join(t)}
+    outputs.update(build_dispute(root,sources))
+    return outputs

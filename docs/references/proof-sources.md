@@ -1,6 +1,6 @@
 # Exact sources for the result and proof plan
 
-**81 works / 330 locators · checked/assigned 2026-10-20.** The catalogue records the actual manuscript/edition, citation metadata, section or page target, and the SHA-256 of the locally accessed source artifact (PDF, publisher HTML or basis JSON). The files and extracted source passages are not distributed. Public availability does not confer redistribution permission. Historical reviews support stated models, not current performance rankings. An arXiv v1 can have a different title/author order from its journal publication.
+**88 works / 344 locators · checked/assigned 2026-10-20.** The catalogue records the actual manuscript/edition, citation metadata, section or page target, and the SHA-256 of the locally accessed source artifact (PDF, publisher HTML or basis JSON). The files and extracted source passages are not distributed. Public availability does not confer redistribution permission. Historical reviews support stated models, not current performance rankings. An arXiv v1 can have a different title/author order from its journal publication.
 
 [Section plans](../proof-plan.md) · [Download BibTeX](proof-plan.bib)
 
@@ -2041,13 +2041,13 @@ Nature 638, 651–655. Open journal main text and Fig. 3/4 checked. Pair with L2
 
 Legg (2026). **Accessed version:** Version of record; published 24 June 2026; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41586-026-10567-8).
 
-Nature 654, E22–E26. Publisher preview, figure titles, data/code statement and change history checked; full subscription text not accessed. July 2 update adds peer-review file. Interpretive critique, not a new experiment; pair with author reply MR2026.
+Nature 654, E22–E26. Publisher preview/status checked; full accepted manuscript and published supplement now checked as LEGGAAM and LEGNOTES. Preserve their exact page/line locators instead of assigning accepted-manuscript pages to the journal PDF. Pair with MR2026, MSPRE and TPREVIEW.
 
 **Accessed source SHA-256 (text/html):** abbafd5831f81b117cd9f7d275ffe34fc4a7d6c2da5ede25271c373a5cdfe73f.
 
 <span id="source-l2026-comment"></span>
 
-- **L2026:comment:** [Publisher opening argument; Fig. 1–2 titles; Data/Code availability; Change history](https://www.nature.com/articles/s41586-026-10567-8). Locator status: publisher-preview-and-metadata-checked; full-text-review-pending; proof review pending.
+- **L2026:comment:** [Publisher opening argument; Fig. 1–2 titles; Data/Code availability; Change history](https://www.nature.com/articles/s41586-026-10567-8). Locator status: publisher-preview-and-metadata-checked; full-accepted-text-checked-separately-as-LEGGAAM; proof review pending.
 
 
 <span id="work-mr2026"></span>
@@ -2056,13 +2056,13 @@ Nature 654, E22–E26. Publisher preview, figure titles, data/code statement and
 
 Microsoft Quantum (2026). **Accessed version:** Version of record; published 24 June 2026; publisher HTML accessed 2026-10-20. [Source](https://www.nature.com/articles/s41586-026-10568-7).
 
-Nature 654, E27–E28. Publisher preview, data statement and change history checked; full subscription text not accessed. July 2 update adds peer-review file. Author counterargument to L2026; neither side is treated as an independently resolved verdict.
+Nature 654, E27–E28. Publisher preview and July 2 change history checked. The full 2025 response MSPRE and 2026 author rebuttal TPREVIEW were read; neither is silently equated with the final two-page journal reply, whose exact complete text was not retrieved.
 
 **Accessed source SHA-256 (text/html):** 28050fa7d9b14469ea8b16048d2f3ced65338a02a36d98c3ffec7fa1440da88e.
 
 <span id="source-mr2026-reply"></span>
 
-- **MR2026:reply:** [Publisher opening reply; Data availability; Change history](https://www.nature.com/articles/s41586-026-10568-7). Locator status: publisher-preview-and-metadata-checked; full-text-review-pending; proof review pending.
+- **MR2026:reply:** [Publisher opening reply; Data availability; Change history](https://www.nature.com/articles/s41586-026-10568-7). Locator status: publisher-preview-checked; full-2025-response-and-2026-rebuttal-checked-separately; exact-final-reply-text-pending; proof review pending.
 
 
 <span id="work-k2026"></span>
@@ -2108,4 +2108,137 @@ Nature 591, E30. Retraction note checked; reanalysis/calibration invalidated the
 <span id="source-zr2021-notice"></span>
 
 - **ZR2021:notice:** [Retraction notice; reanalysis and data repository](https://www.nature.com/articles/s41586-021-03373-x). Locator status: locator-checked; proof review pending.
+
+
+<span id="work-leggpre"></span>
+
+## LEGGPRE: Comment on Interferometric single-shot parity measurement in InAs-Al hybrid devices, Microsoft Quantum, Nature 638, 651–655 (2025)
+
+Legg (2025). **Accessed version:** arXiv:2503.08944v1, submitted 11 March 2025. [Source](https://arxiv.org/pdf/2503.08944v1).
+
+Full six-page early comment read. Distinct title, scope and figure numbering from the 2026 accepted manuscript; no journal-version identity is assumed.
+
+**Accessed source SHA-256 (application/pdf):** ce68ae5ba05ffddff40aaa00aaa4f3649c9a80329ddfe5b58c46ceaa6ec33fce.
+
+<span id="source-leggpre-argument"></span>
+
+- **LEGGPRE:argument:** [Sections I–III, Fig. 1–6 and conclusions; early comment](https://arxiv.org/pdf/2503.08944v1#page=1); PDF page (1-based) 1–6. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+
+<span id="work-mspre"></span>
+
+## MSPRE: Response to recent comments on Phys. Rev. B 107, 245423 (2023) and Subsection S4.3 of the Supp. Info. for Nature 638, 651–655 (2025)
+
+Microsoft Quantum (2025). **Accessed version:** arXiv:2504.13240v1, submitted 17 April 2025; PDF date 21 April 2025. [Source](https://arxiv.org/pdf/2504.13240v1).
+
+Full eleven-page response read. Explicitly responds to arXiv:2502.19560 and 2503.08944; not identified as the final 2026 two-page Nature reply.
+
+**Accessed source SHA-256 (application/pdf):** 7cf5644a9f81f162a16b0057edd80f37da6ee4a681414d40abd76d0bc76677a2.
+
+<span id="source-mspre-statistics"></span>
+
+- **MSPRE:statistics:** [Introduction and Technical response to Ref. 3; Tables I–II, Fig. 1–4; FDR conditioning and ensemble assumptions](https://arxiv.org/pdf/2504.13240v1#page=2); PDF page (1-based) 2–7. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+<span id="source-mspre-readout"></span>
+
+- **MSPRE:readout:** [Technical response to Ref. 4; bias-cropping admission, conductance interpretation, Fig. 5, Discussion](https://arxiv.org/pdf/2504.13240v1#page=7); PDF page (1-based) 7–10. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+
+<span id="work-leggaam"></span>
+
+## LEGGAAM: On the robustness of topological gap detection via transport — accepted author manuscript
+
+Legg (2026). **Accessed version:** St Andrews author-deposited accepted manuscript, 7 PDF pages; accessed 20 October 2026. [Source](https://pure.st-andrews.ac.uk/ws/portalfiles/portal/337134077/Legg_2026_Nature-On-robustness-topological-gap-detection_AAM_CCBY.pdf).
+
+Institutional record identifies Nature 654, E22–E26, DOI 10.1038/s41586-026-10567-8. Main text, numbered lines and captions read in full. Portal describes this file as CC BY; an unrelated 2025 DOI in the boilerplate rights sentence is not used as the manuscript identity.
+
+**Accessed source SHA-256 (application/pdf):** 0ef9155756a8fec57b4cdb4419049779e65526d5bdd54a33cde07aed08870228.
+
+<span id="source-leggaam-argument"></span>
+
+- **LEGGAAM:argument:** [Main text lines 14–126; coding artefacts, transport interpretation and scope limitation](https://pure.st-andrews.ac.uk/ws/portalfiles/portal/337134077/Legg_2026_Nature-On-robustness-topological-gap-detection_AAM_CCBY.pdf#page=1); PDF page (1-based) 1–3. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+<span id="source-leggaam-figures"></span>
+
+- **LEGGAAM:figures:** [Fig. 1–2 and extended-data captions; figure files and parameter labels](https://pure.st-andrews.ac.uk/ws/portalfiles/portal/337134077/Legg_2026_Nature-On-robustness-topological-gap-detection_AAM_CCBY.pdf#page=4); PDF page (1-based) 4–7. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+
+<span id="work-legnotes"></span>
+
+## LEGNOTES: On the robustness of topological gap detection via transport — Supplementary Information
+
+Legg (2026). **Accessed version:** Publisher supplement linked to DOI 10.1038/s41586-026-10567-8; accessed 20 October 2026. [Source](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10567-8/MediaObjects/41586_2026_10567_MOESM1_ESM.pdf).
+
+Full five-page file read: Supplemental Notes 1–2, Fig. S1–S7. These support the revised comment rather than being silently assigned the 2025 preprint figure numbers.
+
+**Accessed source SHA-256 (application/pdf):** a9c586ea1385c75e2b7bdd2023c59a7a628f2609a372eaf1a10d885d26db198c.
+
+<span id="source-legnotes-protocol"></span>
+
+- **LEGNOTES:protocol:** [Supplemental Note 1, Fig. S1–S3 and code excerpt: parameter dependence, displayed clusters, bias coordinates](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10567-8/MediaObjects/41586_2026_10567_MOESM1_ESM.pdf#page=2); PDF page (1-based) 2–3. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+<span id="source-legnotes-symmetry"></span>
+
+- **LEGNOTES:symmetry:** [Supplemental Note 2, Eq. (S1), Fig. S4–S7: claimed symmetry deviations and negative conductance](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10567-8/MediaObjects/41586_2026_10567_MOESM1_ESM.pdf#page=3); PDF page (1-based) 3–5. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+
+<span id="work-tpreview"></span>
+
+## TPREVIEW: Joint peer-review file for On the robustness of topological gap detection via transport and its Reply
+
+Legg, Microsoft Quantum and Anonymous Referees (2026). **Accessed version:** Publisher public file added 2 July 2026; 21 PDF pages; accessed 20 October 2026. [Source](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf).
+
+Full file read. Identical bytes are linked by the comment as 10567_MOESM2 and reply as 10568_MOESM1. Attribute reviewer positions to Anonymous Referee 1, 2 or 3 and preserve version 0/1. Author rebuttals are not the final reply manuscript; reviewer agreement is not experimental verification.
+
+**Accessed source SHA-256 (application/pdf):** 0f7353d98b27d52d1fbf472923bb4b88ab1fc5bf44a53ceae801f2ac5a08c878.
+
+<span id="source-tpreview-referees"></span>
+
+- **TPREVIEW:referees:** [Anonymous Referees 1–3, versions 0/1 for both submissions; distinct and changing assessments](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf#page=1); PDF page (1-based) 1–3. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+<span id="source-tpreview-legg"></span>
+
+- **TPREVIEW:legg:** [Legg response to referees, clarifications and claimed modifications; appendix](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf#page=4); PDF page (1-based) 4–15. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+<span id="source-tpreview-revised-assessments"></span>
+
+- **TPREVIEW:revised-assessments:** [Anonymous Referees 1–3, reply version 1; no unanimous verdict](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf#page=18); PDF page (1-based) 18. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+<span id="source-tpreview-microsoft"></span>
+
+- **TPREVIEW:microsoft:** [Microsoft response to referees: existing ROI2s, one-pixel shift, controls and configuration change](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf#page=19); PDF page (1-based) 19–21. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+
+<span id="work-ms2025si"></span>
+
+## MS2025SI: Interferometric single-shot parity measurement in InAs-Al hybrid devices — Supplementary Information
+
+Microsoft Azure Quantum (2025). **Accessed version:** Publisher supplement linked to DOI 10.1038/s41586-024-08445-2; accessed 20 October 2026. [Source](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08445-2/MediaObjects/41586_2024_8445_MOESM1_ESM.pdf).
+
+Targeted full-text checks of S2.7 and S4.1–S4.4; not a claim that every model or experimental appendix was independently reproduced.
+
+**Accessed source SHA-256 (application/pdf):** 03f03babeff44c20a3f4a1676073a9f19252506d3b66bbe8ca0a62e787252b75.
+
+<span id="source-ms2025si-quasi"></span>
+
+- **MS2025SI:quasi:** [Section S2.7, Eq. (S21)–(S24), Fig. S4: four-Majorana model and equilibration assumptions](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08445-2/MediaObjects/41586_2024_8445_MOESM1_ESM.pdf#page=10); PDF page (1-based) 10–12. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+<span id="source-ms2025si-configuration"></span>
+
+- **MS2025SI:configuration:** [Sections S4.1–S4.4: tunnelling transport, lead isolation, tuning and cross-capacitance/hysteresis](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08445-2/MediaObjects/41586_2024_8445_MOESM1_ESM.pdf#page=14); PDF page (1-based) 14–15. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
+
+
+<span id="work-danon"></span>
+
+## DANON: Nonlocal conductance spectroscopy of Andreev bound states: Symmetry relations and BCS charges
+
+Danon et al. (2019). **Accessed version:** arXiv:1905.05438v1, 14 May 2019. [Source](https://arxiv.org/pdf/1905.05438v1).
+
+Eq. (1)–(8) and associated assumptions checked. Journal publication Phys. Rev. Lett. 124, 036801 (2020), DOI 10.1103/PhysRevLett.124.036801. Version-specific proof imports must preserve current signs and the grounded-superconductor subgap setting.
+
+**Accessed source SHA-256 (application/pdf):** d8067a863742a43d99b50998fd593395cd0c039aab571c0781081ac42e278e26.
+
+<span id="source-danon-symmetry"></span>
+
+- **DANON:symmetry:** [Eq. (1)–(8), especially Eq. (7)–(8), and subgap/bias-independent-scattering assumptions](https://arxiv.org/pdf/1905.05438v1#page=1); PDF page (1-based) 1–2. Locator status: full-target-text-checked; independent-device-reanalysis-not-performed; proof review pending.
 

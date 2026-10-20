@@ -1,0 +1,247 @@
+{
+  "revision": "2026-10-20",
+  "scope": "Source and argument planning only. Full accessible manuscripts and the joint review record were read; this is not a new chapter, a referee verdict or an independent reanalysis of the device data.",
+  "versions": [
+    {
+      "id": "V1",
+      "label": "Legg early comment (11 March 2025)",
+      "url": "https://arxiv.org/pdf/2503.08944v1",
+      "access": "Full six-page v1 read",
+      "relation": "Earlier argument and figure numbering; the later accepted comment is separately pinned.",
+      "source_locators": [
+        "LEGGPRE:argument"
+      ]
+    },
+    {
+      "id": "V2",
+      "label": "Microsoft broad response (17 April 2025)",
+      "url": "https://arxiv.org/pdf/2504.13240v1",
+      "access": "Full eleven-page v1 read",
+      "relation": "Explicit response to two 2025 comments. Its journal identity with the narrower 2026 reply is not established.",
+      "source_locators": [
+        "MSPRE:statistics",
+        "MSPRE:readout"
+      ]
+    },
+    {
+      "id": "V3",
+      "label": "Legg Nature accepted manuscript (2026)",
+      "url": "https://pure.st-andrews.ac.uk/ws/portalfiles/portal/337134077/Legg_2026_Nature-On-robustness-topological-gap-detection_AAM_CCBY.pdf",
+      "access": "Full seven-page author manuscript read via the university public-file endpoint",
+      "relation": "Institutional title/author/journal/DOI record and manuscript title agree; contains revised main text and captions, including significant-disorder concerns.",
+      "source_locators": [
+        "LEGGAAM:argument",
+        "LEGGAAM:figures"
+      ]
+    },
+    {
+      "id": "V4",
+      "label": "Legg published supplement (2026)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10567-8/MediaObjects/41586_2026_10567_MOESM1_ESM.pdf",
+      "access": "All five pages read",
+      "relation": "Version-specific Supplemental Notes 1–2 and Fig. S1–S7; sensitivity arguments persist here even when condensed or moved out of the main text.",
+      "source_locators": [
+        "LEGNOTES:protocol",
+        "LEGNOTES:symmetry"
+      ]
+    },
+    {
+      "id": "V5",
+      "label": "Nature joint review and author rebuttals (2 July 2026)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf",
+      "access": "All 21 pages read; two publisher links have identical SHA-256",
+      "relation": "Includes both submissions, version 0/1 reports, Legg rebuttal and Microsoft rebuttal. Review labels are not arXiv revision labels and the file is not a substitute for the final reply.",
+      "source_locators": [
+        "TPREVIEW:referees",
+        "TPREVIEW:legg",
+        "TPREVIEW:revised-assessments",
+        "TPREVIEW:microsoft"
+      ]
+    },
+    {
+      "id": "V6",
+      "label": "Microsoft final Nature reply (24 June 2026)",
+      "url": "https://www.nature.com/articles/s41586-026-10568-7",
+      "access": "Publisher preview, references, data statement and update checked; exact complete final text not retrieved",
+      "relation": "No public manuscript was verified as word-for-word identical to Nature 654, E27–E28. Keep this narrow version-comparison gate open.",
+      "source_locators": [
+        "MR2026:reply"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "D1",
+      "title": "Bias-coordinate antisymmetrisation and a single-pixel shift",
+      "source_locators": [
+        "LEGNOTES:protocol",
+        "MSPRE:readout",
+        "TPREVIEW:microsoft"
+      ],
+      "challenge": "Legg identifies array reversal on a bias grid not symmetric about zero; dropping one endpoint changes extracted maps.",
+      "response": "Microsoft acknowledges asymmetric cropping. Its 2026 rebuttal describes a single bias-pixel shift, not an analogous magnetic-field shift.",
+      "assessment": "The coordinate condition is mathematically checkable: reversing indices represents V to -V only on an antisymmetric coordinate grid. The two sides disagree about the physical and cluster-level consequences, not the existence of the cropping problem.",
+      "authoring_obligation": "Show the actual bias coordinates, units and zero calibration; keep cropping, interpolation and plotting changes separate. Report per-pixel and cluster changes. A synthetic counterexample verifies the coordinate issue, not the published device maps.",
+      "status": "Acknowledged processing issue; device-map effect not independently recomputed"
+    },
+    {
+      "id": "D2",
+      "title": "Existing clusters, per-cutter subregions and displayed regions",
+      "source_locators": [
+        "LEGGAAM:argument",
+        "LEGNOTES:protocol",
+        "MSPRE:readout",
+        "TPREVIEW:microsoft"
+      ],
+      "challenge": "The displayed single cluster omitted other candidate regions and limited the scope of readout comparisons.",
+      "response": "The 2026 Microsoft rebuttal says three ROI2s existed before and after correction; one grew after a per-cutter SOI2 changed, and the plot highlighted the readout ROI only. It also narrows its earlier statement to the fixed-field readout slice.",
+      "assessment": "A new displayed region, a newly merged per-cutter SOI2 and a newly created multi-cutter ROI2 are different claims. The final rebuttal is more specific than the 2025 response; do not merge their wording into one conclusion.",
+      "authoring_obligation": "Track every ROI/SOI label before/after correction, each cutter and the fixed-field slice. Publish an explicit distinction between changes to classifications and changes to what a plot highlights.",
+      "status": "Argument compared; empirical resolution pending"
+    },
+    {
+      "id": "D3",
+      "title": "Window and cutter sensitivity versus a statistical classifier",
+      "source_locators": [
+        "LEGGPRE:argument",
+        "LEGNOTES:protocol",
+        "MSPRE:statistics"
+      ],
+      "challenge": "The same neighborhood can be labelled differently when the field window or cutter changes, undermining a unique gap diagnosis.",
+      "response": "Microsoft treats TGP as model-calibrated tune-up with possible false negatives; its simulated statistics are intended to bound false discoveries rather than guarantee identical masks.",
+      "assessment": "A changed threshold mask alone proves neither that a device became physically gapless nor that false discoveries remain small. Changing a cutter can also change the physical contact configuration. The comparison must separate classifier sensitivity from model validity.",
+      "authoring_obligation": "Predefine parameter windows and contact settings; sweep thresholds and label stability on fixed data, then separately test the false-discovery claim on independently validated ensembles.",
+      "status": "Argument compared; empirical resolution pending"
+    },
+    {
+      "id": "D4",
+      "title": "False discovery, false positive rate and the operating-point claim",
+      "source_locators": [
+        "MSPRE:statistics",
+        "TPREVIEW:microsoft"
+      ],
+      "challenge": "Legg challenges how protocol sensitivity and definitions of an accepted region affect reliability.",
+      "response": "The 2025 response defends a small simulation-conditioned false-discovery bound and allows missed regions; its quoted transfer condition assumes simulated and real data share the relevant distribution.",
+      "assessment": "FDR = FP/(TP+FP) differs from FPR = FP/(FP+TN). A low simulated FDR is not a model-independent probability for one real device or every pixel in an accepted region. ROI-level existence of a qualifying pixel does not certify a chosen readout point.",
+      "authoring_obligation": "Specify population, label definition, numerator/denominator, confidence method, device/disorder sampling and out-of-distribution limits. Do not silently replace “some qualifying point in a region” with “the measured point is topological”.",
+      "status": "Argument compared; empirical resolution pending"
+    },
+    {
+      "id": "D5",
+      "title": "Which gap, and which measurement configuration?",
+      "source_locators": [
+        "LEGGAAM:argument",
+        "MSPRE:readout",
+        "MS2025SI:configuration",
+        "TPREVIEW:microsoft"
+      ],
+      "challenge": "Legg reads structured low-bias transport as evidence against a robust superconducting gap and questions the use of an Andreev-enhanced regime.",
+      "response": "Microsoft invokes coupling-dependent local conductance and finite-wire transmission. The original supplement documents a transition from transport to isolated-dot readout, including changed gates and cross-capacitance/hysteresis shifts.",
+      "assessment": "A parent-superconductor gap, induced spectral gap, threshold-defined transport gap and isolation of a readout mode are not interchangeable. Finite subgap conductance is not by itself a density-of-states measurement outside its stated tunnelling assumptions.",
+      "authoring_obligation": "Record gate values and mappings between configurations. State the energy quantity inferred at every step, lead coupling, temperature and voltage-divider assumptions; compare device-specific alternatives rather than generic signatures.",
+      "status": "Argument compared; empirical resolution pending"
+    },
+    {
+      "id": "D6",
+      "title": "Particle-hole symmetry and negative differential conductance",
+      "source_locators": [
+        "LEGNOTES:symmetry",
+        "TPREVIEW:legg",
+        "MSPRE:readout",
+        "DANON:symmetry"
+      ],
+      "challenge": "The revised comment tests a relation between antisymmetric local and nonlocal conductances and presents negative local conductance as a possible quantum-dot signature.",
+      "response": "Microsoft notes that a three-terminal device can have odd local and even nonlocal conductance without violating the relevant symmetry.",
+      "assessment": "Danon Eq. (7)–(8) relates a sum of conductances under explicit subgap, grounded-terminal and bias-independent-scattering assumptions. It does not require every element to be even. Violations require checking those assumptions, signs, voltages and device configuration; negative differential conductance is not a unique microscopic diagnosis.",
+      "authoring_obligation": "Import the exact conductance relation with its current directions and voltage arguments. Distinguish Bogoliubov particle-hole redundancy from observed bias symmetry. Test complete matrix relations and nuisance mechanisms before assigning an alternative device explanation.",
+      "status": "Argument compared; empirical resolution pending"
+    },
+    {
+      "id": "D7",
+      "title": "Capacitance contrast and the four-Majorana alternative model",
+      "source_locators": [
+        "MSPRE:readout",
+        "MR2026:reply",
+        "MS2025SI:quasi"
+      ],
+      "challenge": "Legg questions whether transport establishes the prerequisites for the interpreted parity signal; the accepted comment does not directly fit or refute the capacitance trace.",
+      "response": "Microsoft argues that extra thermally accessible modes reduce contrast. S2.7 supplies a four-Majorana model, perturbative and numerical analysis, and a constraint on equilibration and slow switching.",
+      "assessment": "The supplement is substantive model evidence: its assumptions include intra-parity equilibration faster than measurement/switching and specified couplings/noise. It is not an unrestricted theorem excluding every trivial interacting or nonequilibrium device model, nor a direct measurement of topological protection.",
+      "authoring_obligation": "List the Hamiltonian, parity sectors, drive, thermal/noise assumptions and quantitative observations being fitted. Reproduce model-specific contrast and switching predictions before judging whether a proposed alternative explains the same data.",
+      "status": "Argument compared; empirical resolution pending"
+    },
+    {
+      "id": "D8",
+      "title": "Evidence hierarchy, controls and non-TGP regions",
+      "source_locators": [
+        "LEGGAAM:argument",
+        "TPREVIEW:legg",
+        "TPREVIEW:revised-assessments",
+        "TPREVIEW:microsoft",
+        "MS2025SI:configuration"
+      ],
+      "challenge": "Legg and Anonymous Referee 2 question circular support between tune-up and readout interpretation and ask for broader controls.",
+      "response": "Microsoft treats readout as additional evidence and states in the later rebuttal that some non-TGP readouts were performed, without claiming an exhaustive scan.",
+      "assessment": "Mutual consistency is not automatically independent validation; conversely a model that predicts a new observable can add evidence without a logical circle. The review record does not justify saying that no non-TGP controls were ever taken. No self-consistent alternative quantitative fit is supplied by the accepted comment.",
+      "authoring_obligation": "Draw an assumption/data/inference graph; identify reused data, independent predictions and held-out controls. Pin the actual control configurations and outcomes rather than infer their absence or completeness from a reviewer request.",
+      "status": "Argument compared; empirical resolution pending"
+    },
+    {
+      "id": "D9",
+      "title": "Version drift and non-unanimous peer review",
+      "source_locators": [
+        "LEGGAAM:argument",
+        "LEGNOTES:protocol",
+        "TPREVIEW:referees",
+        "TPREVIEW:revised-assessments",
+        "TPREVIEW:microsoft"
+      ],
+      "challenge": "The accepted comment narrows its stated task to transport evidence and moves some detail to the supplement while retaining concerns about significant disorder and a poorly defined gap.",
+      "response": "Microsoft’s rebuttal characterizes some claims as removed. Anonymous Referee 1 finds the revised reply convincing; Referee 2 retains concerns; Referee 3 remains unconvinced that the critique supplies a quantitative alternative.",
+      "assessment": "Do not treat an author’s summary of the other text as its exact contents. Check the accepted text and supplement directly. Publication of both pieces and disagreement among referees do not resolve the device physics.",
+      "authoring_obligation": "Preserve version-specific citations and attribute reviewer judgments to the numbered Anonymous Referee and review version. Compare the exact final journal reply when available; do not present the 2025 preprint or 2026 rebuttal as that final text.",
+      "status": "Argument compared; empirical resolution pending"
+    }
+  ],
+  "data_versions": [
+    {
+      "role": "Original transport data",
+      "url": "https://zenodo.org/records/14804380",
+      "version": "1.0; published 4 February 2025",
+      "artifact": "tgp2_tuneup.zip",
+      "publisher_md5": "52e10ebaa6a76d6d8b60785cca5be91f",
+      "access": "Version page and file listing checked; binary download returned HTTP 403; archive not reanalysed"
+    },
+    {
+      "role": "Corrected transport data",
+      "url": "https://zenodo.org/records/21847809",
+      "version": "v2; published 8 August 2026; record created 10 August 2026",
+      "artifact": "tgp2_tuneup.zip",
+      "publisher_md5": "be4a40667fde91284bcec41a2bedabd6",
+      "access": "Version page/file listing checked; binary download returned HTTP 403. Publisher reports 4.6% classification changes; this number was not independently recomputed"
+    },
+    {
+      "role": "Original comment notebook",
+      "url": "https://zenodo.org/records/15008728",
+      "version": "0; published 13 March 2025",
+      "artifact": "Comment_figs.ipynb",
+      "publisher_md5": "1a97d6cb34beb0ae2bb75c998c3efeee",
+      "access": "Version page/file listing checked; not run"
+    },
+    {
+      "role": "Updated comment notebooks",
+      "url": "https://zenodo.org/records/16732479",
+      "version": "v2; published 3 August 2025",
+      "artifact": "comment_figures.py and three device notebooks",
+      "publisher_md5": "64c2749f7cd9895451033565223adae2 (comment_figures.py)",
+      "access": "Version page/file listing checked; not run. Do not assume automatic identity with every final 2026 figure"
+    }
+  ],
+  "release_gates": [
+    "The accessible argument corpus has been read: two full 2025 preprints, Legg’s full 2026 accepted manuscript and supplement, and the complete 21-page joint review file. Keep final-journal-reply text comparison separate and open.",
+    "Reacquire the exact original and corrected transport archives and match their publisher checksums before re-running the published workflows. Resolve data/code version selection, complete ROI/SOI identity maps and numerical differences; the present pass does not reproduce the 4.6% dataset claim.",
+    "Verify the empirical model-transfer assumptions behind FDR estimates and identify the precise readout operating point within the selected region; source reading and synthetic checks do not establish a device probability.",
+    "Independently review the three-terminal symmetry assumptions and the capacitance/quasi-Majorana model, including configuration changes, temperatures, equilibration and nuisance mechanisms. No side’s interpretation or a reviewer vote is accepted as proof of topology.",
+    "Before chapter drafting, obtain specialist assessment of the bounded evidence claims. Preserve the no-body-writing architecture gate and record reader/proof/API acceptance separately."
+  ]
+}

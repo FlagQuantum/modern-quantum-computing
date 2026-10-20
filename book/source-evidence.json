@@ -228,13 +228,18 @@
       ],
       "claim": "Transport-data critique attached to the parity experiment",
       "source_locators": [
-        "L2026:comment"
+        "L2026:comment",
+        "LEGGPRE:argument",
+        "LEGGAAM:argument",
+        "LEGNOTES:protocol",
+        "LEGNOTES:symmetry",
+        "TPREVIEW:legg"
       ],
-      "observation": "Legg reanalyses existing transport data; Fig. 1–2 concern coding artefacts and device A2 transport.",
-      "interpretation": "The author argues that disorder/apparent gaplessness undermine the topological interpretation.",
-      "not_established": "This is an attributed critique, not an independent new device experiment or an editorial verdict resolving the dispute. Full subscription text was not accessed; no claims about unseen detailed arguments are accepted.",
-      "data": "https://doi.org/10.5281/zenodo.14804380 (data); https://doi.org/10.5281/zenodo.15008728 (analysis code).",
-      "status": "24 June 2026 Matters Arising; 2 July update adds peer-review file. Must remain paired with TOPO-07."
+      "observation": "Reanalysis of existing transport data, not a new device experiment. The full accepted comment and supplement identify a bias-coordinate/cropping problem, selectively displayed clusters and disputed conductance interpretations.",
+      "interpretation": "The accepted comment challenges the transport-based prerequisites of the topological interpretation; it explicitly does not directly assess the capacitance RTS. See D1–D9 in the full argument audit.",
+      "not_established": "No quantitative alternative reproducing the entire RF measurement is supplied by this comment. Its conclusion about the device is disputed, and a classifier failure is not by itself proof of physical gaplessness.",
+      "data": "Full 2025 preprint, full 2026 accepted manuscript, published supplement and joint review record read. Comment notebook versions 15008728 and 16732479 are distinct; raw archive reanalysis remains pending.",
+      "status": "2026 accepted-comment argument reviewed against public full texts; mathematical/device interpretation acceptance pending. Pair with TOPO-07."
     },
     {
       "id": "TOPO-07",
@@ -245,13 +250,19 @@
       ],
       "claim": "Author reply to the transport critique",
       "source_locators": [
-        "MR2026:reply"
+        "MR2026:reply",
+        "MSPRE:statistics",
+        "MSPRE:readout",
+        "TPREVIEW:microsoft",
+        "TPREVIEW:revised-assessments",
+        "MS2025SI:quasi",
+        "MS2025SI:configuration"
       ],
-      "observation": "The publisher preview gives the authors’ counterargument about flux-periodic capacitance signals and the interpretation of a gapless system.",
-      "interpretation": "Authors defend their interpretation and link corrected TGP maps and a per-pixel delta map.",
-      "not_established": "The reply is not an independently settled certification of topology, braiding or logical protection. Full subscription text was not accessed; re-running the corrected analysis is a later review task.",
-      "data": "https://doi.org/10.5281/zenodo.14804379",
-      "status": "24 June 2026 reply; 2 July update adds peer-review file. Must remain paired with TOPO-06."
+      "observation": "Full 2025 response and 2026 public author rebuttal defend a statistical tune-up interpretation, acknowledge the cropping problem and argue for model-constrained RF parity evidence.",
+      "interpretation": "The rebuttal distinguishes pre-existing ROI2s from changed per-cutter SOI2s, and RF measurements from transport configuration. Model-transfer, conductance and control arguments remain disputed.",
+      "not_established": "The exact complete final two-page Nature reply was not retrieved; neither the broad 2025 response nor the review rebuttal is silently identified with it. These arguments do not independently certify topology, braiding or logical protection.",
+      "data": "The final reply preview and data statement are checked; full public supporting arguments are pinned separately. Corrected dataset v2 is record 21847809; publisher reports a 4.6% status change, not independently recomputed here.",
+      "status": "Full accessible response/rebuttal corpus read; exact-final-reply comparison and empirical reanalysis remain open. Pair with TOPO-06."
     },
     {
       "id": "TOPO-08",
@@ -293,7 +304,7 @@
   "topology_acceptance": [
     "Attach every device claim to a dated observation, model inference and explicit missing test; do not turn a theoretical review or a simulation into a device measurement.",
     "Selected-source status checked against publisher pages on 2026-10-20; this is not an exhaustive survey or a guarantee that no later notice exists. Recheck linked notices, dataset versions and preprint revisions before drafting and before each release.",
-    "Before detailed discussion, obtain and inspect full comment/reply texts through legitimate access, compare raw and corrected TGP maps, and assign independent specialist review. The currently verified preview supports only the limited attributed summaries above.",
+    "The full public argument audit now distinguishes 2025 preprints, the accepted 2026 comment, published supplement and joint review record. Final journal-reply text matching, raw/corrected archive reproduction and specialist interpretation remain explicit gates; see topological-dispute-review.",
     "For any future protection claim, specify encoding, gap/disorder assumptions, splitting versus size/separation, poisoning and thermal errors, readout/correction overhead, and the measured logical channel. Require controlled scaling evidence for any claimed suppression.",
     "The planned 40.8 code laboratory will validate ideal braid matrices and measurement protocols with explicit synthetic data. It cannot reproduce a material device or experimentally establish a topological phase."
   ]

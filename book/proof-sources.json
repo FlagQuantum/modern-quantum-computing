@@ -847,7 +847,7 @@
       "year": 2026,
       "url": "https://www.nature.com/articles/s41586-026-10567-8",
       "revision": "Version of record; published 24 June 2026; publisher HTML accessed 2026-10-20",
-      "note": "Nature 654, E22–E26. Publisher preview, figure titles, data/code statement and change history checked; full subscription text not accessed. July 2 update adds peer-review file. Interpretive critique, not a new experiment; pair with author reply MR2026",
+      "note": "Nature 654, E22–E26. Publisher preview/status checked; full accepted manuscript and published supplement now checked as LEGGAAM and LEGNOTES. Preserve their exact page/line locators instead of assigning accepted-manuscript pages to the journal PDF. Pair with MR2026, MSPRE and TPREVIEW",
       "sha256": "abbafd5831f81b117cd9f7d275ffe34fc4a7d6c2da5ede25271c373a5cdfe73f",
       "media_type": "text/html",
       "checked": "2026-10-20"
@@ -859,7 +859,7 @@
       "year": 2026,
       "url": "https://www.nature.com/articles/s41586-026-10568-7",
       "revision": "Version of record; published 24 June 2026; publisher HTML accessed 2026-10-20",
-      "note": "Nature 654, E27–E28. Publisher preview, data statement and change history checked; full subscription text not accessed. July 2 update adds peer-review file. Author counterargument to L2026; neither side is treated as an independently resolved verdict",
+      "note": "Nature 654, E27–E28. Publisher preview and July 2 change history checked. The full 2025 response MSPRE and 2026 author rebuttal TPREVIEW were read; neither is silently equated with the final two-page journal reply, whose exact complete text was not retrieved",
       "sha256": "28050fa7d9b14469ea8b16048d2f3ced65338a02a36d98c3ffec7fa1440da88e",
       "media_type": "text/html",
       "checked": "2026-10-20"
@@ -899,6 +899,90 @@
       "note": "Nature 591, E30. Retraction note checked; reanalysis/calibration invalidated the quantized-conductance claim of Z2018; corrected/raw data linked by authors",
       "sha256": "4e99b24db4b9b9c5742fb9ed3defff915351bdbf754fdba7d702b917bc99b596",
       "media_type": "text/html",
+      "checked": "2026-10-20"
+    },
+    "LEGGPRE": {
+      "id": "LEGGPRE",
+      "title": "Comment on Interferometric single-shot parity measurement in InAs-Al hybrid devices, Microsoft Quantum, Nature 638, 651–655 (2025)",
+      "authors": "Legg",
+      "year": 2025,
+      "url": "https://arxiv.org/pdf/2503.08944v1",
+      "revision": "arXiv:2503.08944v1, submitted 11 March 2025",
+      "note": "Full six-page early comment read. Distinct title, scope and figure numbering from the 2026 accepted manuscript; no journal-version identity is assumed",
+      "sha256": "ce68ae5ba05ffddff40aaa00aaa4f3649c9a80329ddfe5b58c46ceaa6ec33fce",
+      "pdf_pages": 6,
+      "checked": "2026-10-20"
+    },
+    "MSPRE": {
+      "id": "MSPRE",
+      "title": "Response to recent comments on Phys. Rev. B 107, 245423 (2023) and Subsection S4.3 of the Supp. Info. for Nature 638, 651–655 (2025)",
+      "authors": "Microsoft Quantum",
+      "year": 2025,
+      "url": "https://arxiv.org/pdf/2504.13240v1",
+      "revision": "arXiv:2504.13240v1, submitted 17 April 2025; PDF date 21 April 2025",
+      "note": "Full eleven-page response read. Explicitly responds to arXiv:2502.19560 and 2503.08944; not identified as the final 2026 two-page Nature reply",
+      "sha256": "7cf5644a9f81f162a16b0057edd80f37da6ee4a681414d40abd76d0bc76677a2",
+      "pdf_pages": 11,
+      "checked": "2026-10-20"
+    },
+    "LEGGAAM": {
+      "id": "LEGGAAM",
+      "title": "On the robustness of topological gap detection via transport — accepted author manuscript",
+      "authors": "Legg",
+      "year": 2026,
+      "url": "https://pure.st-andrews.ac.uk/ws/portalfiles/portal/337134077/Legg_2026_Nature-On-robustness-topological-gap-detection_AAM_CCBY.pdf",
+      "revision": "St Andrews author-deposited accepted manuscript, 7 PDF pages; accessed 20 October 2026",
+      "note": "Institutional record identifies Nature 654, E22–E26, DOI 10.1038/s41586-026-10567-8. Main text, numbered lines and captions read in full. Portal describes this file as CC BY; an unrelated 2025 DOI in the boilerplate rights sentence is not used as the manuscript identity",
+      "sha256": "0ef9155756a8fec57b4cdb4419049779e65526d5bdd54a33cde07aed08870228",
+      "pdf_pages": 7,
+      "checked": "2026-10-20"
+    },
+    "LEGNOTES": {
+      "id": "LEGNOTES",
+      "title": "On the robustness of topological gap detection via transport — Supplementary Information",
+      "authors": "Legg",
+      "year": 2026,
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10567-8/MediaObjects/41586_2026_10567_MOESM1_ESM.pdf",
+      "revision": "Publisher supplement linked to DOI 10.1038/s41586-026-10567-8; accessed 20 October 2026",
+      "note": "Full five-page file read: Supplemental Notes 1–2, Fig. S1–S7. These support the revised comment rather than being silently assigned the 2025 preprint figure numbers",
+      "sha256": "a9c586ea1385c75e2b7bdd2023c59a7a628f2609a372eaf1a10d885d26db198c",
+      "pdf_pages": 5,
+      "checked": "2026-10-20"
+    },
+    "TPREVIEW": {
+      "id": "TPREVIEW",
+      "title": "Joint peer-review file for On the robustness of topological gap detection via transport and its Reply",
+      "authors": "Legg, Microsoft Quantum and Anonymous Referees",
+      "year": 2026,
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf",
+      "revision": "Publisher public file added 2 July 2026; 21 PDF pages; accessed 20 October 2026",
+      "note": "Full file read. Identical bytes are linked by the comment as 10567_MOESM2 and reply as 10568_MOESM1. Attribute reviewer positions to Anonymous Referee 1, 2 or 3 and preserve version 0/1. Author rebuttals are not the final reply manuscript; reviewer agreement is not experimental verification",
+      "sha256": "0f7353d98b27d52d1fbf472923bb4b88ab1fc5bf44a53ceae801f2ac5a08c878",
+      "pdf_pages": 21,
+      "checked": "2026-10-20"
+    },
+    "MS2025SI": {
+      "id": "MS2025SI",
+      "title": "Interferometric single-shot parity measurement in InAs-Al hybrid devices — Supplementary Information",
+      "authors": "Microsoft Azure Quantum",
+      "year": 2025,
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08445-2/MediaObjects/41586_2024_8445_MOESM1_ESM.pdf",
+      "revision": "Publisher supplement linked to DOI 10.1038/s41586-024-08445-2; accessed 20 October 2026",
+      "note": "Targeted full-text checks of S2.7 and S4.1–S4.4; not a claim that every model or experimental appendix was independently reproduced",
+      "sha256": "03f03babeff44c20a3f4a1676073a9f19252506d3b66bbe8ca0a62e787252b75",
+      "pdf_pages": 29,
+      "checked": "2026-10-20"
+    },
+    "DANON": {
+      "id": "DANON",
+      "title": "Nonlocal conductance spectroscopy of Andreev bound states: Symmetry relations and BCS charges",
+      "authors": "Danon et al.",
+      "year": 2019,
+      "url": "https://arxiv.org/pdf/1905.05438v1",
+      "revision": "arXiv:1905.05438v1, 14 May 2019",
+      "note": "Eq. (1)–(8) and associated assumptions checked. Journal publication Phys. Rev. Lett. 124, 036801 (2020), DOI 10.1103/PhysRevLett.124.036801. Version-specific proof imports must preserve current signs and the grounded-superconductor subgap setting",
+      "sha256": "d8067a863742a43d99b50998fd593395cd0c039aab571c0781081ac42e278e26",
+      "pdf_pages": 7,
       "checked": "2026-10-20"
     }
   },
@@ -5094,7 +5178,7 @@
       "pages": null,
       "page_unit": "HTML section / named figure / JSON field",
       "url": "https://www.nature.com/articles/s41586-026-10567-8",
-      "status": "publisher-preview-and-metadata-checked; full-text-review-pending",
+      "status": "publisher-preview-and-metadata-checked; full-accepted-text-checked-separately-as-LEGGAAM",
       "checked": "2026-10-20",
       "proof_review": "pending"
     },
@@ -5104,7 +5188,7 @@
       "pages": null,
       "page_unit": "HTML section / named figure / JSON field",
       "url": "https://www.nature.com/articles/s41586-026-10568-7",
-      "status": "publisher-preview-and-metadata-checked; full-text-review-pending",
+      "status": "publisher-preview-checked; full-2025-response-and-2026-rebuttal-checked-separately; exact-final-reply-text-pending",
       "checked": "2026-10-20",
       "proof_review": "pending"
     },
@@ -5148,6 +5232,188 @@
       "page_unit": "HTML section / named figure / JSON field",
       "url": "https://www.nature.com/articles/s41586-021-03373-x",
       "status": "locator-checked",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "LEGGPRE:argument": {
+      "work": "LEGGPRE",
+      "locator": "Sections I–III, Fig. 1–6 and conclusions; early comment",
+      "pages": [
+        1,
+        6
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2503.08944v1#page=1",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MSPRE:statistics": {
+      "work": "MSPRE",
+      "locator": "Introduction and Technical response to Ref. 3; Tables I–II, Fig. 1–4; FDR conditioning and ensemble assumptions",
+      "pages": [
+        2,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2504.13240v1#page=2",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MSPRE:readout": {
+      "work": "MSPRE",
+      "locator": "Technical response to Ref. 4; bias-cropping admission, conductance interpretation, Fig. 5, Discussion",
+      "pages": [
+        7,
+        10
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/2504.13240v1#page=7",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "LEGGAAM:argument": {
+      "work": "LEGGAAM",
+      "locator": "Main text lines 14–126; coding artefacts, transport interpretation and scope limitation",
+      "pages": [
+        1,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://pure.st-andrews.ac.uk/ws/portalfiles/portal/337134077/Legg_2026_Nature-On-robustness-topological-gap-detection_AAM_CCBY.pdf#page=1",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "LEGGAAM:figures": {
+      "work": "LEGGAAM",
+      "locator": "Fig. 1–2 and extended-data captions; figure files and parameter labels",
+      "pages": [
+        4,
+        7
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://pure.st-andrews.ac.uk/ws/portalfiles/portal/337134077/Legg_2026_Nature-On-robustness-topological-gap-detection_AAM_CCBY.pdf#page=4",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "LEGNOTES:protocol": {
+      "work": "LEGNOTES",
+      "locator": "Supplemental Note 1, Fig. S1–S3 and code excerpt: parameter dependence, displayed clusters, bias coordinates",
+      "pages": [
+        2,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10567-8/MediaObjects/41586_2026_10567_MOESM1_ESM.pdf#page=2",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "LEGNOTES:symmetry": {
+      "work": "LEGNOTES",
+      "locator": "Supplemental Note 2, Eq. (S1), Fig. S4–S7: claimed symmetry deviations and negative conductance",
+      "pages": [
+        3,
+        5
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10567-8/MediaObjects/41586_2026_10567_MOESM1_ESM.pdf#page=3",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TPREVIEW:referees": {
+      "work": "TPREVIEW",
+      "locator": "Anonymous Referees 1–3, versions 0/1 for both submissions; distinct and changing assessments",
+      "pages": [
+        1,
+        3
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf#page=1",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TPREVIEW:legg": {
+      "work": "TPREVIEW",
+      "locator": "Legg response to referees, clarifications and claimed modifications; appendix",
+      "pages": [
+        4,
+        15
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf#page=4",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TPREVIEW:revised-assessments": {
+      "work": "TPREVIEW",
+      "locator": "Anonymous Referees 1–3, reply version 1; no unanimous verdict",
+      "pages": [
+        18,
+        18
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf#page=18",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "TPREVIEW:microsoft": {
+      "work": "TPREVIEW",
+      "locator": "Microsoft response to referees: existing ROI2s, one-pixel shift, controls and configuration change",
+      "pages": [
+        19,
+        21
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10568-7/MediaObjects/41586_2026_10568_MOESM1_ESM.pdf#page=19",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MS2025SI:quasi": {
+      "work": "MS2025SI",
+      "locator": "Section S2.7, Eq. (S21)–(S24), Fig. S4: four-Majorana model and equilibration assumptions",
+      "pages": [
+        10,
+        12
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08445-2/MediaObjects/41586_2024_8445_MOESM1_ESM.pdf#page=10",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "MS2025SI:configuration": {
+      "work": "MS2025SI",
+      "locator": "Sections S4.1–S4.4: tunnelling transport, lead isolation, tuning and cross-capacitance/hysteresis",
+      "pages": [
+        14,
+        15
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08445-2/MediaObjects/41586_2024_8445_MOESM1_ESM.pdf#page=14",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
+      "checked": "2026-10-20",
+      "proof_review": "pending"
+    },
+    "DANON:symmetry": {
+      "work": "DANON",
+      "locator": "Eq. (1)–(8), especially Eq. (7)–(8), and subgap/bias-independent-scattering assumptions",
+      "pages": [
+        1,
+        2
+      ],
+      "page_unit": "PDF page (1-based)",
+      "url": "https://arxiv.org/pdf/1905.05438v1#page=1",
+      "status": "full-target-text-checked; independent-device-reanalysis-not-performed",
       "checked": "2026-10-20",
       "proof_review": "pending"
     }

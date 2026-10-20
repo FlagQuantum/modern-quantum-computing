@@ -19,6 +19,7 @@ jobs:
       - run: python scripts/review_curriculum.py --check
       - run: python scripts/build_scholarly_plan.py --check
       - run: python scripts/check_prose.py
+      - run: python scripts/verify_topology_logic.py
       - run: python -m mkdocs build --strict
   examples:
     runs-on: ubuntu-latest

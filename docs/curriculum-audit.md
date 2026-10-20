@@ -73,7 +73,7 @@ The current phase may refine these specifications and source maps. It does not s
 |---|---|
 | Editorial coverage/ownership | Completed for all 50 chapters/435 sections; exclusions and duplication decisions recorded; specialist assessment pending |
 | Section dependency architecture | Curated direct graph, complete ledger and 19 structurally checked routes completed; prose first-use and actual reader testing pending |
-| Selected source exceptions | [H2 provenance](references/h2-provenance.md) and [topological evidence](references/topological-experiments.md) now have checked claim-level ledgers; full subscription comment/reply review and independent scientific acceptance remain open |
+| Selected source exceptions | [H2 provenance](references/h2-provenance.md) and [topological evidence](references/topological-experiments.md) now have checked claim-level ledgers; [full public arguments](references/topological-dispute-review.md) reviewed; exact final-reply matching, device-data/model reanalysis and independent scientific acceptance remain open |
 | Mathematical depth | [435 result/proof/source records](proof-plan.md) assigned; exact statements, deferred lemmas and independent mathematical/source acceptance remain pending |
 | Cross-layer contracts | Planning targets recorded; independent complete programs and actual API verification remain pending |
 | Workload and accessibility | Proof-specific budgets and [seven-volume allocation](volume-plan.md) proposed; examples/problems, reader evidence and final packaging pending |

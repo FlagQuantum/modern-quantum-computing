@@ -1,0 +1,20 @@
+{
+  "scope": "Five synthetic logical checks; no device data, TGP reproduction or topological diagnosis",
+  "checks_passed": 5,
+  "asymmetric_grid_false_odd_at_zero": -0.5,
+  "threshold_at_fixed_point": {
+    "signal": 0.4,
+    "full_range": 0.5,
+    "cropped_range": 0.30000000000000004
+  },
+  "confusion_matrix": {
+    "TP": 90,
+    "FP": 10,
+    "TN": 990,
+    "FN": 10,
+    "FDR": 0.1,
+    "FPR": 0.01
+  },
+  "existential_region_is_not_pointwise_certificate": true,
+  "pairwise_conductance_relation_does_not_require_even_local_trace": true
+}

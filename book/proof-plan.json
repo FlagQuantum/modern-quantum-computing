@@ -4671,12 +4671,15 @@
       "result": "Protection requires locality, gaps and control assumptions",
       "depth": "M",
       "assumptions": "Declared perturbations, separation and noise model",
-      "proof_plan": "Give a scoped splitting/error argument and a failure example; avoid a universal immunity theorem; make the competing topological/trivial interpretations explicit and require scaling evidence for protection claims",
+      "proof_plan": "Give a scoped splitting/error argument and a failure example; avoid a universal immunity theorem; make the competing topological/trivial interpretations explicit and require scaling evidence for protection claims; Use D3–D8 to distinguish model-conditioned FDR, transport versus spectral/readout gaps, bias-symmetry assumptions and configuration changes; require quantitative model/measurement comparison before accepting a protection claim",
       "source_locators": [
         "ANYON:IV.D",
         "MS2025:readout",
         "L2026:comment",
-        "MR2026:reply"
+        "MR2026:reply",
+        "DANON:symmetry",
+        "MS2025SI:quasi",
+        "MS2025SI:configuration"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -4687,7 +4690,7 @@
       "result": "Experimental signatures do not establish all topological operations",
       "depth": "V",
       "assumptions": "Dated claim-specific primary evidence",
-      "proof_plan": "Audit TOPO-01 through TOPO-09: Abelian FQH interference; encoded Ising defects, D4 and Fibonacci experiments; semiconductor parity readout; minimal Kitaev-chain readout; paired comment/reply and retraction. Separate measured observables, model attribution and missing protection/computational tests. Record dated source status and full-text access limits; no claim of independently reproducing experimental data",
+      "proof_plan": "Audit TOPO-01 through TOPO-09: Abelian FQH interference; encoded Ising defects, D4 and Fibonacci experiments; semiconductor parity readout; minimal Kitaev-chain readout; paired comment/reply and retraction. Separate measured observables, model attribution and missing protection/computational tests. Record dated source status and full-text access limits; no claim of independently reproducing experimental data; Compare version-specific public arguments using D1–D9. Separate acknowledged cropping from disputed ROI/SOI consequences, statistics from a single operating-point claim, and measured signals from topological inference. Attribute conflicting referee assessments rather than infer consensus",
       "source_locators": [
         "N2020:braiding",
         "G2023:braiding",
@@ -4700,11 +4703,23 @@
         "K2026:readout",
         "KITREAD:readout",
         "Z2018:status",
-        "ZR2021:notice"
+        "ZR2021:notice",
+        "LEGGPRE:argument",
+        "MSPRE:statistics",
+        "MSPRE:readout",
+        "LEGGAAM:argument",
+        "LEGGAAM:figures",
+        "LEGNOTES:protocol",
+        "LEGNOTES:symmetry",
+        "TPREVIEW:referees",
+        "TPREVIEW:legg",
+        "TPREVIEW:revised-assessments",
+        "TPREVIEW:microsoft",
+        "DANON:symmetry"
       ],
-      "source_review": "dated-claim-specific-primary-source-ledger-checked; subscription-comment-reply-full-text-review-open",
+      "source_review": "full-public-argument-corpus-reviewed; exact-final-journal-reply-comparison-and-device-reanalysis-open",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "Five synthetic logical checks executed; no raw TGP maps or RF device fits reproduced"
     },
     {
       "section_id": "sec-topological-quantum-computation-and-candidate-physical-realizations-8",
@@ -5596,10 +5611,14 @@
       "result": "Source/data/environment provenance is part of the experiment",
       "depth": "V",
       "assumptions": "Pinned versions, hashes and permitted data use",
-      "proof_plan": "Specify immutable inputs and transformations without redistributing restricted sources",
+      "proof_plan": "Specify immutable inputs and transformations without redistributing restricted sources; Use the controversy version ledger as a source-freeze example: preprint, accepted manuscript, author rebuttal and final publication are separate objects; pin original/corrected dataset versions",
       "source_locators": [
         "REPRO:data",
-        "REPRO:changes"
+        "REPRO:changes",
+        "LEGGPRE:argument",
+        "MSPRE:readout",
+        "LEGGAAM:argument",
+        "TPREVIEW:microsoft"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -5623,9 +5642,11 @@
       "result": "Equation dependence distinguishes assumptions from derived claims",
       "depth": "V",
       "assumptions": "Exact source version and result locators",
-      "proof_plan": "Record an argument graph, imported lemmas and approximation steps; no new theorem",
+      "proof_plan": "Record an argument graph, imported lemmas and approximation steps; no new theorem; Trace explicit imported assumptions and changed measurement configurations before treating an observed conductance or RF signal as evidence for a phase",
       "source_locators": [
-        "ED:protocol"
+        "ED:protocol",
+        "DANON:symmetry",
+        "MS2025SI:quasi"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
@@ -5676,9 +5697,11 @@
       "result": "A discrepancy is evidence to investigate",
       "depth": "V",
       "assumptions": "Independent references and declared acceptance threshold",
-      "proof_plan": "Design a diagnostic decision record and include negative results without a theorem claim",
+      "proof_plan": "Design a diagnostic decision record and include negative results without a theorem claim; Distinguish a reproduced processing bug from a unique device diagnosis; preserve failed downloads and unperformed data/model analyses in the verification record",
       "source_locators": [
-        "REPRO:software"
+        "REPRO:software",
+        "TPREVIEW:revised-assessments",
+        "TPREVIEW:microsoft"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",

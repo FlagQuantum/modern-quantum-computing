@@ -32,11 +32,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Pinned versions, hashes and permitted data use.
 
-**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Specify immutable inputs and transformations without redistributing restricted sources.
+**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Specify immutable inputs and transformations without redistributing restricted sources; Use the controversy version ledger as a source-freeze example: preprint, accepted manuscript, author rebuttal and final publication are separate objects; pin original/corrected dataset versions.
 
 **Imported earlier results:** [48.1](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-1).
 
-**Exact source targets:** [REPRO:data](../references/proof-sources.md#source-repro-data): Section 1 Data Management; [REPRO:changes](../references/proof-sources.md#source-repro-changes): Section 5 Keeping Track of Changes.
+**Exact source targets:** [REPRO:data](../references/proof-sources.md#source-repro-data): Section 1 Data Management; [REPRO:changes](../references/proof-sources.md#source-repro-changes): Section 5 Keeping Track of Changes; [LEGGPRE:argument](../references/proof-sources.md#source-leggpre-argument): Sections I–III, Fig. 1–6 and conclusions; early comment; [MSPRE:readout](../references/proof-sources.md#source-mspre-readout): Technical response to Ref. 4; bias-cropping admission, conductance interpretation, Fig. 5, Discussion; [LEGGAAM:argument](../references/proof-sources.md#source-leggaam-argument): Main text lines 14–126; coding artefacts, transport interpretation and scope limitation; [TPREVIEW:microsoft](../references/proof-sources.md#source-tpreview-microsoft): Microsoft response to referees: existing ROI2s, one-pixel shift, controls and configuration change.
 
 **Independent evidence target:** Record exact source versions, locators, data origin and hashes.
 
@@ -68,11 +68,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Exact source version and result locators.
 
-**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Record an argument graph, imported lemmas and approximation steps; no new theorem.
+**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Record an argument graph, imported lemmas and approximation steps; no new theorem; Trace explicit imported assumptions and changed measurement configurations before treating an observed conductance or RF signal as evidence for a phase.
 
 **Imported earlier results:** [48.3](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-3).
 
-**Exact source targets:** [ED:protocol](../references/proof-sources.md#source-ed-protocol): Reader review and acceptance evidence.
+**Exact source targets:** [ED:protocol](../references/proof-sources.md#source-ed-protocol): Reader review and acceptance evidence; [DANON:symmetry](../references/proof-sources.md#source-danon-symmetry): Eq. (1)–(8), especially Eq. (7)–(8), and subgap/bias-independent-scattering assumptions; [MS2025SI:quasi](../references/proof-sources.md#source-ms2025si-quasi): Section S2.7, Eq. (S21)–(S24), Fig. S4: four-Majorana model and equilibration assumptions.
 
 **Independent evidence target:** Build a small dependency record before implementing the final calculation.
 
@@ -140,11 +140,11 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Independent references and declared acceptance threshold.
 
-**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Design a diagnostic decision record and include negative results without a theorem claim.
+**Proof depth:** V — Validation / methodology specification. **Proof obligation:** Design a diagnostic decision record and include negative results without a theorem claim; Distinguish a reproduced processing bug from a unique device diagnosis; preserve failed downloads and unperformed data/model analyses in the verification record.
 
 **Imported earlier results:** [48.5](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-5), [48.7](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-7).
 
-**Exact source targets:** [REPRO:software](../references/proof-sources.md#source-repro-software): Section 2 Software.
+**Exact source targets:** [REPRO:software](../references/proof-sources.md#source-repro-software): Section 2 Software; [TPREVIEW:revised-assessments](../references/proof-sources.md#source-tpreview-revised-assessments): Anonymous Referees 1–3, reply version 1; no unanimous verdict; [TPREVIEW:microsoft](../references/proof-sources.md#source-tpreview-microsoft): Microsoft response to referees: existing ROI2s, one-pixel shift, controls and configuration change.
 
 **Independent evidence target:** Preserve a failing example and explain the evidence for its cause.
 
