@@ -92,7 +92,7 @@
     {
       "id": "F18",
       "finding": "Chapter titles had been treated as sufficient evidence of coverage and learning continuity.",
-      "disposition": "Publish the all-section ledger, chapter-specific decisions and prerequisite-closed routes; require independent specialist/source and reader validation before freeze."
+      "disposition": "Publish the all-section ledger, chapter-specific decisions and prerequisite-closed routes. Writing Baseline 1.0 fixes the operational architecture; independent specialist/source and reader evidence is required for section/route acceptance, not claimed by the baseline."
     },
     {
       "id": "F19",
@@ -102,7 +102,7 @@
     {
       "id": "F20",
       "finding": "The roadmap still allowed new depth/body pilots before the user’s architecture-first requirement was met.",
-      "disposition": "Pause new body drafting. Continue architecture, source mapping and validation design only until the baseline gate is satisfied."
+      "disposition": "The initial planning-only hold is superseded by Writing Baseline 1.0, with a checked 435-section queue and local start/acceptance gates. This baseline change writes no body; future writing starts at 1.1. Do not restart unrelated paper audits."
     }
   ],
   "chapters": [
@@ -2515,5 +2515,5 @@
       "use": "A concrete quantum-LDPC architectural example; no general hardware/cost ranking adopted."
     }
   ],
-  "follow_up": "All-section result/proof/source and seven-volume plans assigned. H2 source reconstruction and topology claim/argument ledgers are checked within declared scope; final-journal-reply matching, empirical model/data review, mathematical and reader gates precede drafting."
+  "follow_up": "Execute writing-baseline-v1.0: 16 dependency-safe batches covering all 435 sections. Start with the six prepared Chapter 1 briefs. Collect exact proof, software and reader acceptance evidence as each section is authored; no standalone paper-audit expansion."
 }

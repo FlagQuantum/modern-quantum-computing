@@ -1,6 +1,6 @@
 # Curriculum architecture audit and freeze gates
 
-**October 20, 2026: full editorial architecture pass completed; external validation and freeze pending.** All 50 chapters and the earlier 423 sections were reviewed; 12 scoped additions give 435 sections. New textbook body drafting is paused until the baseline gate. This is an editorial review, not an assertion of exhaustive coverage or specialist approval.
+**October 20, 2026: Writing Baseline 1.0 adopted for editorial execution; independent chapter acceptance pending.** All 50 chapters and the earlier 423 sections were reviewed; 12 scoped additions give 435 sections. The [writing baseline](writing-baseline.md) fixes scope, depth, volumes and order; no new body is written in this change. This is an editorial review, not an assertion of exhaustive coverage or specialist approval.
 
 - [Review report: findings, 50 chapter decisions and workload](architecture-review.md)
 - [All 435 sections: direct prerequisites and editorial dispositions](section-review.md)
@@ -59,26 +59,27 @@ The [review report](architecture-review.md) records 20 findings and their dispos
 
 The graph has **1,045 direct edges**, no forward dependencies or cycles, and **19 checked routes**. Regression checks protect basic compiler, fixed-kernel, general-contraction, H2 and logical-memory entry paths from unrelated advanced prerequisites. These are structural checks; a reader can still encounter an unexplained argument in prose that has not yet been written.
 
-The proof-depth revision now plans **1,296–2,546 pages before shared appendices/front matter** make the whole reference unsuitable as one introductory course. Common foundations plus selected branches are the teaching architecture. The [seven-volume proposal](volume-plan.md) gives a dependency-compatible allocation and proof-specific budgets; final packaging, examples/problems and learner workload remain acceptance decisions. The range is an editorial estimate, not a rendered page count.
+The proof-depth revision now plans **1,296–2,546 pages before shared appendices/front matter** make the whole reference unsuitable as one introductory course. Common foundations plus selected branches are the teaching architecture. The [seven-volume plan](volume-plan.md) gives a dependency-compatible allocation and proof-specific budgets; chapter allocation is adopted; typeset trim, examples/problems and learner workload are calibrated during authoring. The range is an editorial estimate, not a rendered page count.
 
 ## Cross-layer validation designs
 
-After the baseline, recurring tasks will test circuit-to-target compilation, dynamic correction, a host-driven hybrid loop, cut/reconstructed expectation, logical rotation and physical control. Their specifications must state inputs/outputs, branch probabilities, units, semantics, error/sampling costs and independent references. Confirmed implementation gaps follow the [upstream workflow](implementation-roadmap.md); missing APIs do not remove required theory.
+As their queue batches are authored, recurring tasks will test circuit-to-target compilation, dynamic correction, a host-driven hybrid loop, cut/reconstructed expectation, logical rotation and physical control. Their specifications must state inputs/outputs, branch probabilities, units, semantics, error/sampling costs and independent references. Confirmed implementation gaps follow the [upstream workflow](implementation-roadmap.md); missing APIs do not remove required theory.
 
-The current phase may refine these specifications and source maps. It does not start new body chapters or depth-pilot prose.
+This change completes the operational planning baseline without writing body. Future drafts follow the [ordered queue](writing-order.md); exact sources and API checks are investigated when the section requires them, without expanding unrelated paper audits.
 
-## Freeze gates and change control
+## Operational baseline and acceptance gates
 
-| Gate | Evidence and present status |
+| Gate | Present decision |
 |---|---|
-| Editorial coverage/ownership | Completed for all 50 chapters/435 sections; exclusions and duplication decisions recorded; specialist assessment pending |
-| Section dependency architecture | Curated direct graph, complete ledger and 19 structurally checked routes completed; prose first-use and actual reader testing pending |
-| Selected source exceptions | [H2 provenance](references/h2-provenance.md) and [topological evidence](references/topological-experiments.md) now have checked claim-level ledgers; [full public arguments](references/topological-dispute-review.md) reviewed; exact final-reply matching, device-data/model reanalysis and independent scientific acceptance remain open |
-| Mathematical depth | [435 result/proof/source records](proof-plan.md) assigned; exact statements, deferred lemmas and independent mathematical/source acceptance remain pending |
-| Cross-layer contracts | Planning targets recorded; independent complete programs and actual API verification remain pending |
-| Workload and accessibility | Proof-specific budgets and [seven-volume allocation](volume-plan.md) proposed; examples/problems, reader evidence and final packaging pending |
-| Baseline freeze | Resolve review findings, record specialist/reader scope and tag an architecture baseline; pending |
+| Editorial structure | Adopted: nine parts, 50 chapters and 435 stable sections, with ownership and intentional exclusions retained |
+| Dependency architecture | Adopted: 1,045 direct edges, 19 reader routes and one prerequisite-safe writing queue |
+| Mathematical depth | Adopted: all 435 P/F/M/R/V obligations; exact source/proof review remains section-local before acceptance |
+| Seven-volume allocation | Adopted; global chapter IDs/numbers remain stable; physical trim and measured page budgets are calibrated later |
+| First writing work | Six Chapter 1 briefs prepared; next is 1.1, then 1.2–1.6; no new body in this planning change |
+| Independent quality review | Pending per authored section/route: mathematical, implementation or justified N/A, reader attempts and web/print QA |
+| Research exceptions | Existing source audits are archived references. Local limitations are qualified or an optional disputed claim is omitted; no continuing standalone audit is scheduled |
+| Scholarly release | Pending accepted content and its prerequisites; baseline adoption is not a publication or completeness claim |
 
-**No new textbook body or depth-pilot drafting until the architecture baseline gate is satisfied.** The three existing starters remain format evidence. A successful build or a larger table of contents does not pass the outstanding gates.
+The [writing baseline](writing-baseline.md) replaces the earlier blanket drafting pause. It distinguishes starting a coherent working draft from accepting a chapter for publication. Stable IDs, depth obligations and prerequisites cannot be silently changed; use a versioned impact record and regenerate the queue after material amendments.
 
-Stable IDs are held in book/curriculum.json and review dispositions in book/architecture-review.json. Regenerate both sets of views after structural edits, validate routes and preserve public anchors. A split/merge needs an explicit mapping and rationale; published editions keep their frozen sources. Reassess scope at least annually and on significant corrections, without pretending any curriculum is permanently complete.
+Correct a known substantive error promptly, record the affected sections/examples and revalidate. Do not defer every chapter until all future specialist or reader evidence exists, and do not report such evidence before it is collected.

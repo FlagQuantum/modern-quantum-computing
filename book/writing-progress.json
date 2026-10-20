@@ -1,0 +1,65 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "revision": "2026-10-20",
+  "sections": {
+    "sec-what-quantum-computing-computes-1": {
+      "state": "brief_ready",
+      "brief": "book/briefs/ch01.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-or-scoped-N/A",
+      "reader_review": "pending"
+    },
+    "sec-what-quantum-computing-computes-2": {
+      "state": "brief_ready",
+      "brief": "book/briefs/ch01.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-or-scoped-N/A",
+      "reader_review": "pending"
+    },
+    "sec-what-quantum-computing-computes-3": {
+      "state": "brief_ready",
+      "brief": "book/briefs/ch01.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-or-scoped-N/A",
+      "reader_review": "pending"
+    },
+    "sec-what-quantum-computing-computes-4": {
+      "state": "brief_ready",
+      "brief": "book/briefs/ch01.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-or-scoped-N/A",
+      "reader_review": "pending"
+    },
+    "sec-what-quantum-computing-computes-5": {
+      "state": "brief_ready",
+      "brief": "book/briefs/ch01.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-or-scoped-N/A",
+      "reader_review": "pending"
+    },
+    "sec-what-quantum-computing-computes-6": {
+      "state": "brief_ready",
+      "brief": "book/briefs/ch01.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-or-scoped-N/A",
+      "reader_review": "pending"
+    }
+  },
+  "existing_pilots": [
+    {
+      "chapter": 6,
+      "path": "docs/chapters/measurement.md",
+      "status": "format-pilot-only; expansion-and-review-required"
+    },
+    {
+      "chapter": 23,
+      "path": "docs/chapters/gradients.md",
+      "status": "format-pilot-only; expansion-and-review-required"
+    },
+    {
+      "chapter": 49,
+      "path": "docs/chapters/vqe.md",
+      "status": "format-pilot-only; expansion-and-review-required"
+    }
+  ]
+}

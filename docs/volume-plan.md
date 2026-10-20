@@ -1,6 +1,6 @@
-# A dependency-compatible seven-volume proposal
+# Adopted seven-volume writing plan
 
-**Editorial recommendation · 2026-10-20 · packaging not frozen.** Volume allocation is a dependency-compatible presentation overlay. Global chapter numbers and stable IDs remain unchanged. A volume is a reference/teaching resource, not a requirement to finish all previous volumes.
+**Writing Baseline 1.0 · 2026-10-20 · chapter allocation adopted; final trim/pages pending.** Volume allocation is a dependency-compatible presentation overlay. Global chapter numbers and stable IDs remain unchanged. A volume is a reference/teaching resource, not a requirement to finish all previous volumes.
 
 The proof-depth pass changes the earlier uniform budgets. Foundations and information together would reach an estimated 738 pages with closing/front material; splitting them keeps distinct entry and advanced-information courses usable. Seven subject volumes avoid compressing proofs to fit an arbitrary chapter/page count. These are planned ranges, not rendered pages or promised release dates.
 
@@ -155,8 +155,8 @@ Semantics, synthesis, routing, scheduling and control, followed by exact/stabili
 
 ## Alternatives and publishing sequence
 
-One/three large books would create long mixed courses and oversized manuscripts. Five/six books reduce bindings but either merge distinct specialization routes or leave the opening volume especially long. Seven is the present editorial recommendation, with related volumes also distributable as a series bundle and one searchable website. Reassess against actual typesetting and reader workload before freezing; do not trade away central proof obligations to preserve a chosen volume count.
+One/three large books would create long mixed courses and oversized manuscripts. Five/six books reduce bindings but either merge distinct specialization routes or leave the opening volume especially long. Seven volumes are adopted by the [writing baseline](writing-baseline.md), with related volumes also distributable as a series bundle and one searchable website. Calibrate typesetting and reader workload while writing; a later volume reassignment needs an explicit baseline amendment. Do not trade away central proof obligations.
 
-After the architecture gate, build coherent accepted routes incrementally. Start with Volume I’s opening route; develop one complete algorithm route and a gradient-to-H2 route next. Advanced information, fault tolerance, platforms and systems follow their required specialist review. This is an eventual publication architecture, not authorization to draft seven volumes now.
+Follow the [16 writing batches](writing-baseline.md#writing-order-and-batch-exit-targets): first the opening chapters and Volume I, then the executor bridge, algorithm and gradient-to-H2 routes. Advanced information, fault tolerance, platforms and systems have explicit later batches. Mathematical and specialist review is required for their acceptance; it is not a reason to defer unrelated first drafts.
 
-Shared appendices A–F, glossary, symbol index and bibliography use one canonical source and stable links; print includes locally required bridges and sufficient notation. Core exercises/selected solutions and independent references remain accessible offline. Runtime/provider instructions stay versioned companions. Exact theorem/source acceptance, reader testing and final page/problem budgets still precede baseline freeze.
+Shared appendices A–F, glossary, symbol index and bibliography use one canonical source and stable links; print includes locally required bridges and sufficient notation. Core exercises/selected solutions and independent references remain accessible offline. Runtime/provider instructions stay versioned companions. Exact theorem/source acceptance, reader testing and final page/problem budgets precede chapter/route publication acceptance; the operational allocation is already fixed.

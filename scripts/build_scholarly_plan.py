@@ -100,7 +100,7 @@ def build():
         '- 49.2: [H2-01–09](references/h2-provenance.md) now pins the integral-to-model chain and independent 324-coefficient audit. Original author integral files were not recovered; mathematical/reader acceptance remains open.\n',
         '- 40.7: [TOPO-01–09](references/topological-experiments.md) now selects dated primary sources and pairs critique/reply and retraction records. The [full public argument audit](references/topological-dispute-review.md) now compares nine disputes. Exact final-journal-reply text matching, raw/corrected data analysis and specialist interpretation remain open.\n',
         '- Chapter 50 now selects Fowler et al. v2, Section VII A/Fig. 5 for syndrome ambiguity. The finite memory experiment is a declared textbook extension; Fig. 4 threshold results are outside the reproduction claim. Exact patch/round/decoder choices still require acceptance.\n',
-        '- All proof plans require mathematical/source review, source-specific counterexamples and calibrated problem/example budgets before baseline freeze. Locator checks and planned full proofs do not satisfy those gates.\n',
+        '- All proof plans require mathematical/source review, source-specific counterexamples and calibrated problem/example budgets before section/route acceptance. Writing Baseline 1.0 freezes operational scope, not scientific acceptance.\n',
     ]
     outputs['docs/proof-plan.md']=''.join(intro)
     catalogue=[
@@ -134,8 +134,8 @@ def build():
     outputs['docs/references/proof-sources.md']=''.join(catalogue)
     outputs['docs/references/proof-plan.bib']='\n'.join(bib)
     volume=[
-        '# A dependency-compatible seven-volume proposal\n\n',
-        '**Editorial recommendation · '+allocation['revision']+' · packaging not frozen.** '+allocation['policy']+'\n\n',
+        '# Adopted seven-volume writing plan\n\n',
+        '**Writing Baseline 1.0 · '+allocation['revision']+' · chapter allocation adopted; final trim/pages pending.** '+allocation['policy']+'\n\n',
         'The proof-depth pass changes the earlier uniform budgets. Foundations and information together would reach an estimated 738 pages with closing/front material; splitting them keeps distinct entry and advanced-information courses usable. ',
         'Seven subject volumes avoid compressing proofs to fit an arbitrary chapter/page count. These are planned ranges, not rendered pages or promised release dates.\n\n',
         '| Volume | Title | Global chapters | Sections | Planned pages including 24–40 pages of volume front/back matter |\n|---|---|---|---|---|\n',
@@ -165,11 +165,11 @@ def build():
     volume += [
         '\n## Alternatives and publishing sequence\n\n',
         'One/three large books would create long mixed courses and oversized manuscripts. Five/six books reduce bindings but either merge distinct specialization routes or leave the opening volume especially long. ',
-        'Seven is the present editorial recommendation, with related volumes also distributable as a series bundle and one searchable website. Reassess against actual typesetting and reader workload before freezing; do not trade away central proof obligations to preserve a chosen volume count.\n\n',
-        'After the architecture gate, build coherent accepted routes incrementally. Start with Volume I’s opening route; develop one complete algorithm route and a gradient-to-H2 route next. ',
-        'Advanced information, fault tolerance, platforms and systems follow their required specialist review. This is an eventual publication architecture, not authorization to draft seven volumes now.\n\n',
+        'Seven volumes are adopted by the [writing baseline](writing-baseline.md), with related volumes also distributable as a series bundle and one searchable website. Calibrate typesetting and reader workload while writing; a later volume reassignment needs an explicit baseline amendment. Do not trade away central proof obligations.\n\n',
+        'Follow the [16 writing batches](writing-baseline.md#writing-order-and-batch-exit-targets): first the opening chapters and Volume I, then the executor bridge, algorithm and gradient-to-H2 routes. ',
+        'Advanced information, fault tolerance, platforms and systems have explicit later batches. Mathematical and specialist review is required for their acceptance; it is not a reason to defer unrelated first drafts.\n\n',
         'Shared appendices A–F, glossary, symbol index and bibliography use one canonical source and stable links; print includes locally required bridges and sufficient notation. ',
-        'Core exercises/selected solutions and independent references remain accessible offline. Runtime/provider instructions stay versioned companions. Exact theorem/source acceptance, reader testing and final page/problem budgets still precede baseline freeze.\n',
+        'Core exercises/selected solutions and independent references remain accessible offline. Runtime/provider instructions stay versioned companions. Exact theorem/source acceptance, reader testing and final page/problem budgets precede chapter/route publication acceptance; the operational allocation is already fixed.\n',
     ]
     outputs['docs/volume-plan.md']=''.join(volume)
     outputs.update(build_evidence(ROOT,sources,{x['ref']:x['link'] for x in sections.values()}))

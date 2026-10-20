@@ -1,6 +1,6 @@
 {
   "revision": "2026-10-20",
-  "status": "All-section result/proof/source planning and seven-volume proposal completed; mathematical/specialist/reader validation and baseline freeze pending",
+  "status": "Writing Baseline 1.0 adopted for editorial execution; section/route mathematical, implementation and reader acceptance remains pending",
   "parts": [
     {
       "id": "part-01-foundations",
@@ -10502,5 +10502,5 @@
       "scope": "One physical branch and an explicit compiler target; cross-branch advanced assumptions are listed by closure. Other platform chapters are not required."
     }
   ],
-  "authoring_policy": "Architecture and learning-path work only. Do not start new textbook body chapters until the architecture baseline gate is satisfied; existing pilots are evidence, not permission to draft."
+  "authoring_policy": "Follow writing-baseline-v1.0 and its dependency-safe queue. This change writes planning only; future body drafts use section-local start checks. Independent proof, implementation and reader reviews are chapter/route acceptance gates, not an all-series prerequisite for starting the first draft. No standalone paper-audit expansion."
 }

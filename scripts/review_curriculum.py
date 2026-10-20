@@ -96,7 +96,7 @@ def build():
         "# Systematic editorial architecture review\n\n",
         f"**Review date: {audit['date']}. Scope: all {len(chapters)} chapters and {len(byid)} sections.** ",
         "This is a completed editorial architecture pass, not external specialist, mathematical-proof, API or reader validation. ",
-        "**New textbook body drafting is paused until the architecture baseline gate is satisfied.**\n\n",
+        "**[Writing Baseline 1.0](writing-baseline.md) is adopted for execution; chapter acceptance remains pending.**\n\n",
         "[Findings and scope decisions](curriculum-audit.md) · [Exact section ledger](section-review.md) · [Checked learning paths](learning-paths.md)\n\n",
         "## Findings and dispositions\n\n| ID | Finding | Repair or explicit disposition |\n|---|---|---|\n",
     ]
@@ -116,13 +116,13 @@ def build():
         report.append(f"| {c['number']} | {len(c['sections'])} | {low}–{high} | {c['architecture_review']} |\n")
     report += [
         f"\nThe whole reference architecture budgets **{total_min}–{total_max} pages before appendices/front matter**. ",
-        "This does not fit a single introductory course. Use the route-specific selections; assess coordinated volume packaging before freezing publication scope.\n\n",
+        "This does not fit a single introductory course. Use the route-specific selections and the adopted seven-volume allocation; calibrate final typeset lengths while writing.\n\n",
         "## What has and has not passed\n\n",
         f"- Editorial coverage/ownership pass: all {len(chapters)} chapters and {len(byid)} sections recorded.\n",
         f"- Exact prerequisite graph: {sum(len(s['requires']) for s in byid.values())} direct edges, each earlier than its use; no cycles or unresolved section references.\n",
         f"- Learning paths: {len(routes)} explicit routes reconstructed from prerequisites and checked for missing entry knowledge.\n",
         "- Specialist validation, exact theorem/source acceptance, complete cross-layer programs and target-reader testing remain pending.\n",
-        "- A [seven-volume allocation](volume-plan.md) and [all-section proof/source plan](proof-plan.md) are proposed; final packaging and a tagged architecture freeze remain pending; no new body chapters are authorized by this audit alone.\n",
+        "- The [seven-volume allocation](volume-plan.md) and [proof/source scope](proof-plan.md) are fixed by [Writing Baseline 1.0](writing-baseline.md). This historical audit alone does not certify a chapter; use the current queue and local gates.\n",
     ]
     ledger = [
         "# Section-by-section architecture ledger\n\n",

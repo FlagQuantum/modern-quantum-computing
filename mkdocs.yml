@@ -11,12 +11,15 @@ theme:
     - content.code.copy
 nav:
   - Introduction: index.md
+  - Writing baseline 1.0: writing-baseline.md
+  - Full writing queue: writing-order.md
+  - First writing assignment: writing-first-batch.md
   - Editorial charter: editorial-charter.md
   - Curriculum audit: curriculum-audit.md
   - Systematic architecture review: architecture-review.md
   - Section review ledger: section-review.md
   - Checked learning paths: learning-paths.md
-  - Seven-volume proposal: volume-plan.md
+  - Adopted seven-volume plan: volume-plan.md
   - Core results and proof depth:
       - Overview: proof-plan.md
       - Foundations: proof-plans/01-foundations.md

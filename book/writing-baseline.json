@@ -1,0 +1,254 @@
+{
+  "id": "writing-baseline-v1.0",
+  "revision": "2026-10-20",
+  "status": "adopted-for-editorial-execution",
+  "scope": "Operational writing baseline for the existing 50 chapters, 435 sections, 19 reader routes and seven volumes; not a claim of completed prose, proof review, reader validation or a scholarly edition.",
+  "parent_revision": "2ca8c143c6e04d77744c64c95c7590424a22ef91",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "body_policy": "This baseline change writes planning only. Subsequent body work follows the queue and section-local start checks; all-series external review is not a condition for starting the first draft. Publication acceptance remains separate.",
+  "research_policy": "No new standalone paper audits. Existing source-audit records are archived reference material. Verify only the exact claims needed for the section being drafted; a disputed optional hardware claim is qualified or omitted without blocking unrelated chapters.",
+  "appendices": [
+    {
+      "id": "A",
+      "title": "Mathematical and Physical Bridges"
+    },
+    {
+      "id": "B",
+      "title": "Matrix Calculus and Differentiation Conventions"
+    },
+    {
+      "id": "C",
+      "title": "FlagQuantum Runtime Contracts and Interoperability"
+    },
+    {
+      "id": "D",
+      "title": "Experiment Records and Benchmark Protocols"
+    },
+    {
+      "id": "E",
+      "title": "Platform Access Laboratories"
+    },
+    {
+      "id": "F",
+      "title": "Problems, Selected Solutions and Reproduction Worksheets"
+    }
+  ],
+  "batches": [
+    {
+      "id": "B01",
+      "title": "The opening: tasks, mathematical language, states and registers",
+      "targets": [
+        "1.1-6",
+        "2.1-8",
+        "3.1-7",
+        "4.1-8"
+      ],
+      "exit": "A continuous first four chapters with no undeclared mathematics; predictions and ordering checks are explained before the reader uses them."
+    },
+    {
+      "id": "B02",
+      "title": "Complete the foundational course",
+      "targets": [
+        "5.1-8",
+        "6.1-9",
+        "7.1-9",
+        "8.1-8",
+        "14.1-9"
+      ],
+      "exit": "A coherent Volume I draft: gates, measurement, entanglement, mixtures and resource/access models; expand the existing measurement starter in its proper context."
+    },
+    {
+      "id": "B03",
+      "title": "Independent exact-execution bridge",
+      "targets": [
+        "44.1-3",
+        "44.6",
+        "44.8"
+      ],
+      "exit": "A small independently checked executor and measurement reference, used by later labs. This does not require writing all of Volume VII."
+    },
+    {
+      "id": "B04",
+      "title": "Interference, oracles and search",
+      "targets": [
+        "15.1-8",
+        "16.1-8"
+      ],
+      "exit": "One complete oracle/search route with query assumptions, amplitude geometry and precision/error accounting."
+    },
+    {
+      "id": "B05",
+      "title": "Fourier, arithmetic and dynamics",
+      "targets": [
+        "17.1-9",
+        "18.1-9",
+        "19.1-9"
+      ],
+      "exit": "Complete the QFT/QPE/arithmetic/Hamiltonian route and its local algebra/error bridges before advanced spectral methods."
+    },
+    {
+      "id": "B06",
+      "title": "Gradients to a verified H2 capstone",
+      "targets": [
+        "23.1-3",
+        "23.5-6",
+        "23.8-10",
+        "24.1-3",
+        "24.6",
+        "24.9",
+        "25.1-6",
+        "25.8",
+        "25.12",
+        "48.1-9",
+        "49.1-9"
+      ],
+      "exit": "An end-to-end derivative/energy/optimization/research route; expand the gradients and H2 starters without counting their current form as accepted chapters."
+    },
+    {
+      "id": "B07",
+      "title": "Basic quantum programming and compilation",
+      "targets": [
+        "41.1-9",
+        "42.1-3",
+        "42.5-10",
+        "43.5",
+        "43.9"
+      ],
+      "exit": "A complete program-to-target core compiler route on an explicit abstract target; no requirement to finish all physical-platform chapters."
+    },
+    {
+      "id": "B08",
+      "title": "Complete information, communication and security",
+      "targets": [
+        "9.1-8",
+        "10.1-9",
+        "11.1-8",
+        "12.1-9",
+        "13.1-9"
+      ],
+      "exit": "Complete Volume II, including the later general channels/inference/information proofs; previously written prerequisite bridges remain in their owning chapters."
+    },
+    {
+      "id": "B09",
+      "title": "Complete differentiable and hybrid methods",
+      "targets": [
+        "23.1-10",
+        "24.1-9",
+        "25.1-12",
+        "26.1-8",
+        "27.1-8"
+      ],
+      "exit": "Complete gradient variants, geometry/trainability, embedding, QAOA and quantum learning; all eight hybrid patterns retain their mathematical/system owners."
+    },
+    {
+      "id": "B10",
+      "title": "Complete modern spectral algorithms and limits",
+      "targets": [
+        "20.1-9",
+        "21.1-9",
+        "22.1-9"
+      ],
+      "exit": "Block encodings, qubitization/QSVT, walks and scoped lower-bound/complexity results with declared advanced proof roadmaps."
+    },
+    {
+      "id": "B11",
+      "title": "Noise, correction and finite logical memory",
+      "targets": [
+        "28.1-10",
+        "29.1-9",
+        "30.1-11",
+        "31.1-8",
+        "50.1-7",
+        "50.9"
+      ],
+      "exit": "A finite logical-memory route with code conditions, stabilizers, syndromes and decoding; it precedes universal fault tolerance and factory/resource claims."
+    },
+    {
+      "id": "B12",
+      "title": "Universal logical computation and resources",
+      "targets": [
+        "32.1-8",
+        "33.1-8",
+        "50.8"
+      ],
+      "exit": "Complete fault-tolerant operations and scoped resource estimation; add the memory-to-resource interpretation only after these imports."
+    },
+    {
+      "id": "B13",
+      "title": "Shared physical models and a superconducting route",
+      "targets": [
+        "34.1-10",
+        "35.1-8"
+      ],
+      "exit": "One complete hardware-to-program/control thread with local oscillator/circuit bridges; benchmark the shared platform comparison contract."
+    },
+    {
+      "id": "B14",
+      "title": "Complete control, dynamic and logical lowering",
+      "targets": [
+        "41.1-9",
+        "42.1-10",
+        "43.1-10"
+      ],
+      "exit": "Complete remaining compiler/control branches after physical and logical prerequisites, reusing the already written core compiler material."
+    },
+    {
+      "id": "B15",
+      "title": "Alternative physical realizations",
+      "targets": [
+        "36.1-8",
+        "37.1-8",
+        "38.1-9",
+        "39.1-8",
+        "40.1-8"
+      ],
+      "exit": "Complete ion, atom, photon, spin and topology branches using the shared comparison contract. Topological theory is retained; a contested device claim may be qualified or omitted locally without restarting a paper audit."
+    },
+    {
+      "id": "B16",
+      "title": "Complete classical simulation and series integration",
+      "targets": [
+        "44.1-8",
+        "45.1-8",
+        "46.1-8",
+        "47.1-10"
+      ],
+      "exit": "Complete stabilizer, MPS and general tensor/cutting routes, batching/parallel execution and volume integration; finish indices, shared appendices and cross-volume links."
+    }
+  ],
+  "states": [
+    "not_started",
+    "brief_ready",
+    "draft",
+    "review",
+    "accepted"
+  ],
+  "change_policy": [
+    "Editorial clarification, typo fixes and improved examples may preserve the baseline when scope, prerequisites, proof obligations and volume placement remain unchanged.",
+    "A dependency, section split/merge, depth change, central-result/scope change, new topic or volume reassignment needs an impact record, stable-ID/anchor migration if relevant, a new baseline version and regenerated queue. Never silently downgrade a proof to meet a page budget.",
+    "Priority changes need a versioned batch amendment and a fresh dependency check. Page ranges are planning envelopes, not typeset promises; significant expansion is assessed against reader workload and proof completeness.",
+    "Correct mathematical or safety-critical claims immediately, record affected sections/examples and revalidation; do not preserve a known error merely to keep the baseline unchanged."
+  ],
+  "section_acceptance": [
+    "A filled brief names the concrete question, entry/exit skills, exact prerequisite IDs, result/scope and P/F/M/R/V obligation, local notation, complete-example or justified non-code role, independent check, source target and problem/answer plan.",
+    "The draft defines every new symbol before use, supplies local mathematical/physical bridges, explains central intermediate steps, and points to the exact imported result. A central argument cannot be hidden in an exercise or dismissed as obvious.",
+    "Mathematical review checks the exact result and assumptions at the frozen depth. Numerical tests validate an implementation, not a theorem. An R section must include its local special-case proof/lemmas and name what is deferred.",
+    "Code-bearing sections have a complete executable program, formula-to-code correspondence, pinned environment, expected output/tolerance and an independent reference. Actual FlagQuantum support and execution are recorded; missing APIs use the upstream gap workflow and never remove required theory. A non-code section records why code is not appropriate.",
+    "Each section includes at least one worked example or justified conceptual/model case, one local comprehension/prediction checkpoint and one transfer/failure-analysis task with an accessible answer/hint path. A chapter closes with conceptual, derivation/proof, implementation and debugging problems as appropriate; exact counts are calibrated after the opening batch.",
+    "A target reader attempts the argument and a transfer task. Record the missing step, repair and recheck. Before acceptance record mathematical, implementation or justified N/A, and reader reviews separately with evidence. Accepted prerequisites are required for publication; an explained working draft can support the next draft."
+  ],
+  "section_start_checks": [
+    "Use the next scheduled stable section ID and its existing result/proof/source record; complete the brief before writing prose.",
+    "Every imported earlier result has a usable draft with definitions and matching conventions, or a bounded local bridge is supplied and scheduled. Known blocking errors in an imported result are resolved first.",
+    "Inspect the exact source target needed for this section; fix or qualify a material uncertainty locally. A generic whole-book source review is not required.",
+    "Choose the independent small reference and the worked/transfer cases; investigate an API only when its actual use is imminent. No new validated-execution claim is made without a run."
+  ],
+  "first_batch": [
+    "sec-what-quantum-computing-computes-1",
+    "sec-what-quantum-computing-computes-2",
+    "sec-what-quantum-computing-computes-3",
+    "sec-what-quantum-computing-computes-4",
+    "sec-what-quantum-computing-computes-5",
+    "sec-what-quantum-computing-computes-6"
+  ]
+}

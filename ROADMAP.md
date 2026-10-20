@@ -1,46 +1,47 @@
-# Roadmap
+# Writing roadmap
 
-The [editorial charter](docs/editorial-charter.md) defines the educational mission. The current [nine-part, 50-chapter architecture](docs/book-plan.md) has **435 numbered sections**. A complete editorial architecture pass is recorded; external validation and baseline freeze remain pending. The [curriculum audit](docs/curriculum-audit.md) records remaining gates.
+[Writing Baseline 1.0](docs/writing-baseline.md) is adopted for editorial execution: **50 chapters, 435 stable sections, 19 reader routes, seven volumes and 16 ordered writing batches**. The full theory and proof obligations remain in their owning sections. Baseline adoption is not a claim that prose, proofs, API support or reader validation are complete.
 
-## Established planning artifacts
+## Next writing assignment
 
-- [x] Three executable format pilots, a live website and versioned PDF samples.
-- [x] Shared conventions, attribution and independently checked starter examples.
-- [x] Targeted Nielsen–Chuang and Quantum Country design reviews.
-- [x] Main-text routes for information theory, algorithms, differentiation, fault tolerance, physical platforms, compilation, simulation and research.
-- [x] Numbered learning/derivation and evidence targets, stable IDs and reproducible generation of planning views.
-- [x] Reader-continuity, review and confirmed-capability-gap reporting standards.
-- [x] [Eight quantum-classical hybrid patterns](docs/hybrid-computing.md), including method-specific sections and host/controller/device boundaries.
+Write **1.1 Problems, inputs, and observable outputs**, then **1.2–1.6**, using the [six prepared Chapter 1 briefs](docs/writing-first-batch.md). This baseline change contains no new chapter body. The existing measurement, gradients and H2 pages remain format pilots until expanded at their scheduled chapter homes.
 
-These are artifacts, not evidence that the complete theory, implementation or teaching architecture has passed review.
+The [full queue](docs/writing-order.md) lists every section exactly once, in prerequisite-safe production order. The [reader routes](docs/learning-paths.md) remain separate: a writing batch is not a requirement that students read all earlier production batches.
 
-## Before sustained drafting: review and freeze the architecture
+## Adopted production order
 
-- [ ] Obtain specialist coverage/ownership review, including compilation and physical platforms.
-- [x] Record editorial dispositions for every section, direct prerequisites and 19 checked learning paths.
-- [ ] Validate actual first-use explanations and transitions with specialists and target readers.
-- [x] Assign core result/role, assumptions, proof depth/obligations and precise source locators for all 435 sections.
-- [x] Trace the H2 STO-6G integral/reduction chain with an independent 324-coefficient audit; select dated topological experiments, critique/reply and retraction records.
-- [x] Read the full public topology-controversy corpus and record nine version-specific argument/assumption audits, without treating reviewer agreement as experimental validation.
-- [ ] Review exact theorem statements, source-specific lemmas, the exact final journal reply against the now-read public response/rebuttals and remaining claim/provenance exceptions before acceptance.
-- [ ] Design independent cross-layer reference cases and investigate actual API needs.
-- [x] Compute provisional section, chapter and route page ranges; expose the full-reference workload.
-- [x] Propose seven dependency-compatible volumes and recompute proof-specific page budgets.
-- [ ] Calibrate examples/problems and rendered page budgets, test routes with readers and freeze packaging.
-- [ ] Resolve findings and tag an architecture baseline with a public change record.
+| Batches | Work |
+|---|---|
+| B01–B02 | Chapters 1–8 and 14: a continuous foundational course and Volume I |
+| B03 | The independent exact-execution/measurement bridge |
+| B04–B05 | Oracles/search, Fourier/arithmetic and Hamiltonian dynamics |
+| B06 | Gradients, optimization, molecular modelling and a complete H2 route |
+| B07 | Core programming and compilation on explicit abstract targets |
+| B08–B10 | Complete information/security, hybrid methods and spectral algorithms |
+| B11–B12 | Noise, code conditions, decoding and finite memory, then fault tolerance/resources |
+| B13–B15 | Shared physical models/superconducting branch, remaining compiler/control and alternative platforms |
+| B16 | Remaining exact/stabilizer/MPS/tensor methods and series integration |
 
-**New body chapters and depth-pilot drafting are paused until the architecture baseline gate.** Existing pilots remain format evidence; architecture, source mapping and validation design can continue.
+Exact section targets, automatically inserted prerequisite bridges and exit targets are in the baseline and queue. Never silently skip an imported section or turn an optional specialization into a prerequisite for a core route.
 
-## Depth and cross-layer pilots
+## Start, draft and accept
 
-After the baseline, develop measurement (6), differentiation (23), correction conditions (29), and one hardware-to-compiler thread (34, a selected branch in 35–40, then 41–42). Expand the existing H2 reproduction toward Chapter 49 only with its prerequisite path in place. Confirmed software gaps go to the [upstream workflow](docs/implementation-roadmap.md).
+- Before drafting a section, complete its brief, establish usable prerequisite explanations, inspect the exact local source target and define an independent check.
+- A working draft may support the next draft when its imported results and conventions are explained and no known blocking error remains. This does not make either section accepted.
+- Before publication acceptance, record separate mathematical, implementation or justified N/A, and target-reader evidence. Complete examples, formula-to-code correspondence, expected outputs, transfer tasks and accessible answers are part of acceptance.
+- Follow the existing P/F/M/R/V depth contracts. Do not compress a central proof to fit a preferred page count or claim a theorem was proved by numerical agreement.
+- Missing FlagQuantum APIs use the [confirmed-capability-gap workflow](docs/implementation-roadmap.md). Required theory and independent references continue; unsupported framework execution stays pending.
 
-## Draft and validate coherent learning routes
+## Scope and change control
 
-After the baseline gate, complete the opening sequence and selected information/algorithm routes. Develop hardware/compiler branches, advanced theory, simulation and research with exact sources and explicit proof obligations. Use stable identifiers rather than renumbering concepts as an implicit editorial operation.
+The operational baseline replaces the previous all-series drafting pause. Pending specialist or reader evidence is gathered on actual sections and routes; it does not require the entire unwritten series to pass review before Chapter 1 can begin.
 
-## Freeze a scholarly edition
+Keep the existing nine-part curriculum and seven-volume chapter allocation. Any material scope, depth, dependency, priority or placement change needs an impact record, a baseline revision and regenerated views. Preserve stable IDs and public anchors. Physical trim and empirical page/problem budgets are calibrated during authoring.
 
-Review proofs, exercises, code, references and reader observations; inspect web/print output and preserve source/data/environment records. The current 16-page PDF remains a versioned three-chapter sample. A revised curriculum does not retroactively change it.
+**No further standalone paper audit is scheduled.** Existing source-audit records remain archived references. Inspect only the exact source claims needed by the section being authored; qualify or omit an optional disputed hardware example without blocking unrelated work.
 
-Review significant scientific/software corrections when reported and assess the curriculum at least annually. No scheduled automation is configured by this roadmap.
+## Release milestones
+
+A batch first produces a coherent working route, then passes its acceptance checks. Volume publication follows accepted content and accepted prerequisite imports, not the completion of every unrelated specialization. Website and PDF must tell the same scientific argument; the current 16-page sample keeps its existing draft version until an explicit publication build.
+
+Use [book/writing-progress.json](book/writing-progress.json) for actual work states and review evidence. Do not advance a state by counting planned headings, source links or synthetic checks as finished prose or independent review.

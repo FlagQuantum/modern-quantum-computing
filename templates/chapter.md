@@ -6,7 +6,7 @@
 
 ## Continuity and planning record
 
-Follow the [reader-continuity standard](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/docs/reader-continuity.md). Use the [section brief](section-brief.md) to list entry knowledge, newly introduced symbols, intermediate reasons, exit skills and the next-section bridge. Replace explanatory shortcuts with actual steps or a precise established result. Record the architecture-review status and stable IDs. New body drafting remains paused until the architecture baseline gate; the template is not approval to start a chapter.
+Follow the [reader-continuity standard](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/docs/reader-continuity.md). Use the [section brief](section-brief.md) to list entry knowledge, newly introduced symbols, intermediate reasons, exit skills and the next-section bridge. Replace explanatory shortcuts with actual steps or a precise established result. Record the architecture-review status and stable IDs. Follow [Writing Baseline 1.0](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/docs/writing-baseline.md) and the generated queue. Complete local start checks and record the draft in book/writing-progress.json; acceptance requires separate proof/software/reader evidence.
 
 Use the [result/proof/source plan](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/docs/proof-plan.md) and its P/F/M/R/V depth contract. Keep section IDs, assumptions, proof obligations and source locators synchronized; volume placement does not remove required earlier results.
 

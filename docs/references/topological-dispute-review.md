@@ -1,6 +1,8 @@
 # Topological parity-readout controversy: version and argument audit
 
-**Checked 2026-10-20 · planning only.** Source and argument planning only. Full accessible manuscripts and the joint review record were read; this is not a new chapter, a referee verdict or an independent reanalysis of the device data.
+**Checked 2026-10-20 · archived source-planning reference.** Source and argument planning only. Full accessible manuscripts and the joint review record were read; this is not a new chapter, a referee verdict or an independent reanalysis of the device data.
+
+**Workstream paused:** no further standalone paper audit is scheduled. The [writing baseline](../writing-baseline.md) governs authoring; these local claim limits do not block unrelated chapters.
 
 [Experimental evidence ledger](topological-experiments.md) · [Chapter 40 proof plan](../proof-plans/physical-platforms.md#chapter-40-topological-quantum-computation-and-candidate-physical-realizations) · [Exact sources and hashes](proof-sources.md)
 

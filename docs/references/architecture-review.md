@@ -26,6 +26,6 @@ Earlier targeted [Nielsen–Chuang](nielsen-chuang-design-review.md) and [Quantu
 | [Kimble, The Quantum Internet](https://arxiv.org/abs/0806.4195) | Shared entanglement/link/network primitives should connect protocol and modular-hardware discussions. | Exact swapping/distillation models and costs; not a commitment to a full network engineering stack. |
 | [Albert, Bosonic coding: introduction and use cases](https://arxiv.org/abs/2211.05714) | Oscillator encodings and bosonic protection need an explicit optional bridge. | Truncation, finite-energy/error assumptions, syndrome models and precise code claims. |
 
-## Acceptance record to add before body drafting
+## Section-local source record before drafting and acceptance
 
 For each central claim, record the section's stable ID, source edition/revision, exact theorem/equation/page locator, assumptions, proof versus deferred-proof scope, locally supplied bridges, independent small check and source-review date. Hardware maturity comparisons need dated claim-specific evidence. A source title or abstract supports planning, not a completed derivation or an execution claim.

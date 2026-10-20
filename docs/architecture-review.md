@@ -1,6 +1,6 @@
 # Systematic editorial architecture review
 
-**Review date: 2026-10-20. Scope: all 50 chapters and 435 sections.** This is a completed editorial architecture pass, not external specialist, mathematical-proof, API or reader validation. **New textbook body drafting is paused until the architecture baseline gate is satisfied.**
+**Review date: 2026-10-20. Scope: all 50 chapters and 435 sections.** This is a completed editorial architecture pass, not external specialist, mathematical-proof, API or reader validation. **[Writing Baseline 1.0](writing-baseline.md) is adopted for execution; chapter acceptance remains pending.**
 
 [Findings and scope decisions](curriculum-audit.md) · [Exact section ledger](section-review.md) · [Checked learning paths](learning-paths.md)
 
@@ -25,9 +25,9 @@
 | F15 | The full plan’s workload had no quantitative planning bound. | Assign provisional section page ranges and compute chapter/route totals. Recommend modular/volume packaging review rather than advertising 50 chapters as a single introductory course. |
 | F16 | Basic mathematical/physical tools were sometimes assumed under a broad audience promise. | Assign local probability, calculus, binary algebra, arithmetic/group, oscillator and rotating-frame bridges before use, with exact section dependencies. |
 | F17 | Small algorithm demonstrations could imply stronger preparation, verification or complexity claims. | State eigenstate-overlap cost in QPE, scoped promise/QMA limits in 22 and the expensive tiny-reference boundary in linear-system examples. |
-| F18 | Chapter titles had been treated as sufficient evidence of coverage and learning continuity. | Publish the all-section ledger, chapter-specific decisions and prerequisite-closed routes; require independent specialist/source and reader validation before freeze. |
+| F18 | Chapter titles had been treated as sufficient evidence of coverage and learning continuity. | Publish the all-section ledger, chapter-specific decisions and prerequisite-closed routes. Writing Baseline 1.0 fixes the operational architecture; independent specialist/source and reader evidence is required for section/route acceptance, not claimed by the baseline. |
 | F19 | H2 and logical-memory reproduction claims require explicitly bounded scholarly provenance. | H2-01–09 now traces STO-6G integrals, BK projection, electron sector and 324 coefficients at printed precision; original author integral files were not recovered. Select Fowler et al. v2, Section VII A/Fig. 5 for memory ambiguity; the finite memory benchmark is an extension, not threshold reproduction. |
-| F20 | The roadmap still allowed new depth/body pilots before the user’s architecture-first requirement was met. | Pause new body drafting. Continue architecture, source mapping and validation design only until the baseline gate is satisfied. |
+| F20 | The roadmap still allowed new depth/body pilots before the user’s architecture-first requirement was met. | The initial planning-only hold is superseded by Writing Baseline 1.0, with a checked 435-section queue and local start/acceptance gates. This baseline change writes no body; future writing starts at 1.1. Do not restart unrelated paper audits. |
 
 ## Every-chapter review and provisional workload
 
@@ -86,7 +86,7 @@ Ranges are editorial planning estimates for explanatory text, examples and exerc
 | 49 | 9 | 24–48 | Require only the energy/mapping/gradient and research sections needed by the H2 calculation. Source chain and independent reconstruction are checked at printed precision; original author files are unavailable and mathematical/reader review remains open. Embedding/learning are not prerequisites. |
 | 50 | 9 | 24–48 | Use Fowler et al. v2, Section VII A/Fig. 5 as a precise syndrome-ambiguity source. The finite memory benchmark is a labeled extension, not a threshold reproduction. Dense/enumerated reference avoids a later-tableau prerequisite; resource extrapolation stays optional. |
 
-The whole reference architecture budgets **1296–2546 pages before appendices/front matter**. This does not fit a single introductory course. Use the route-specific selections; assess coordinated volume packaging before freezing publication scope.
+The whole reference architecture budgets **1296–2546 pages before appendices/front matter**. This does not fit a single introductory course. Use the route-specific selections and the adopted seven-volume allocation; calibrate final typeset lengths while writing.
 
 ## What has and has not passed
 
@@ -94,4 +94,4 @@ The whole reference architecture budgets **1296–2546 pages before appendices/f
 - Exact prerequisite graph: 1045 direct edges, each earlier than its use; no cycles or unresolved section references.
 - Learning paths: 19 explicit routes reconstructed from prerequisites and checked for missing entry knowledge.
 - Specialist validation, exact theorem/source acceptance, complete cross-layer programs and target-reader testing remain pending.
-- A [seven-volume allocation](volume-plan.md) and [all-section proof/source plan](proof-plan.md) are proposed; final packaging and a tagged architecture freeze remain pending; no new body chapters are authorized by this audit alone.
+- The [seven-volume allocation](volume-plan.md) and [proof/source scope](proof-plan.md) are fixed by [Writing Baseline 1.0](writing-baseline.md). This historical audit alone does not certify a chapter; use the current queue and local gates.

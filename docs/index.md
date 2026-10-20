@@ -28,9 +28,9 @@ Our aim is a rigorous modern classic that helps present and future learners ente
 
 The subject determines the scope. Required missing capabilities are investigated and reported through the [FlagQuantum capability-gap workflow](implementation-roadmap.md); existing API coverage does not limit the theory. Current sample execution claims remain pinned to their tested release.
 
-A [systematic editorial architecture review](architecture-review.md) covers all 50 chapters and 435 sections, with an [exact prerequisite ledger](section-review.md) and [19 learning paths](learning-paths.md). [Specialist/reader validation and baseline freeze](curriculum-audit.md) remain pending. New textbook body drafting is paused until that gate; [reader continuity](reader-continuity.md) is an explicit acceptance standard.
+A [systematic editorial architecture review](architecture-review.md) covers all 50 chapters and 435 sections, with an [exact prerequisite ledger](section-review.md) and [19 learning paths](learning-paths.md). [Writing Baseline 1.0](writing-baseline.md) now fixes scope, depth, volumes and a [435-section production queue](writing-order.md). Independent section/route acceptance remains pending; [reader continuity](reader-continuity.md) is an explicit acceptance standard.
 
-The [all-section result/proof/source plan](proof-plan.md) and [seven-volume proposal](volume-plan.md) specify the scholarly scope and publication structure. These remain planning artifacts; mathematical/source and learner review are pending.
+The [all-section result/proof/source plan](proof-plan.md) and [adopted seven-volume plan](volume-plan.md) specify the scholarly scope and publication structure. These remain planning artifacts; mathematical/source and learner review are pending.
 
 The [quantum-classical hybrid map](hybrid-computing.md) connects eight composable algorithm/runtime patterns, their implementation contracts and their chapter homes.
 
@@ -47,7 +47,7 @@ Readers who know basic Python and linear algebra and want to understand quantum 
 5. Change a parameter or deliberately introduce an error.
 6. Record the software version and the limits of the experiment.
 
-Start with [conventions](conventions.md), then [measurement](chapters/measurement.md), [gradients](chapters/gradients.md), and [VQE](chapters/vqe.md). The [contents](contents.md) and [detailed book plan](book-plan.md) explain the proposed learning sequence, prerequisites and experiments. The [numbered section plans](section-plan.md) give derivation and verification targets. The [Nielsen–Chuang design review](references/nielsen-chuang-design-review.md) records how reference reading informed the revision.
+The next writing assignment is [Chapter 1, starting at 1.1](writing-first-batch.md); no new body is supplied by the baseline. The existing [measurement](chapters/measurement.md), [gradients](chapters/gradients.md), and [VQE](chapters/vqe.md) pages are format pilots, with assumed background, rather than the first-course reading order. Shared [conventions](conventions.md) apply throughout. The [contents](contents.md) and [detailed book plan](book-plan.md) explain the proposed learning sequence, prerequisites and experiments. The [numbered section plans](section-plan.md) give derivation and verification targets. The [Nielsen–Chuang design review](references/nielsen-chuang-design-review.md) records how reference reading informed the revision.
 
 ## Scope
 

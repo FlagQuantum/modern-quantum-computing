@@ -18,7 +18,8 @@ def build(root, sources):
     def refs(row):
         return ', '.join('['+k+'](proof-sources.md#source-'+re.sub('[^a-z0-9]+','-',k.lower()).strip('-')+')' for k in row['source_locators'])
     out=['# Topological parity-readout controversy: version and argument audit\n\n',
-         f"**Checked {plan['revision']} · planning only.** {plan['scope']}\n\n",
+         f"**Checked {plan['revision']} · archived source-planning reference.** {plan['scope']}\n\n",
+         '**Workstream paused:** no further standalone paper audit is scheduled. The [writing baseline](../writing-baseline.md) governs authoring; these local claim limits do not block unrelated chapters.\n\n',
          '[Experimental evidence ledger](topological-experiments.md) · [Chapter 40 proof plan](../proof-plans/physical-platforms.md#chapter-40-topological-quantum-computation-and-candidate-physical-realizations) · [Exact sources and hashes](proof-sources.md)\n\n',
          '## Accessed versions and identity boundaries\n\n',
          'The full public comment, early response and later rebuttals have different roles. The accepted manuscript is identified by the university record, title/author and matching journal DOI; ',

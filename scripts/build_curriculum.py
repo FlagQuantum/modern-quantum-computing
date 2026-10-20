@@ -28,7 +28,7 @@ def render():
     summary = f"{len(parts)} parts, {len(chapters)} chapters and {count} numbered sections"
     overview = [
         "# Detailed chapter and section plan\n\n",
-        f"**Revision: {data['revision']}.** {summary}. **Architecture status: editorial pass completed; external validation/freeze pending.**\n\n",
+        f"**Revision: {data['revision']}.** {summary}. **Writing Baseline 1.0 adopted; section acceptance pending.**\n\n",
         "Each section has a learning/derivation target and an implementation/evidence target. These are authoring specifications, not completed sections or validated APIs. See the [curriculum audit](curriculum-audit.md), [reader-continuity standard](reader-continuity.md), and [full book plan](book-plan.md).\n\n",
         "## How to read the specification\n\n",
         "- Section numbers are display labels; stable chapter/section anchors preserve references when numbering changes.\n",
@@ -37,12 +37,12 @@ def render():
         "- Each chapter has unnumbered closing material: recap, conceptual checks, substantial derivation/proof and transfer problems, programming/debugging laboratories, selected answers, source locators and review records.\n",
         "- Exact section prerequisites are authoritative; chapter-level entry guidance does not require completing whole chapters. Read local bridges before use. Core/advanced labels apply within specialized chapters too.\n",
         "- [Framework gaps](implementation-roadmap.md) do not remove a theoretical topic. Unsupported examples stay explicitly pending.\n",
-        "- Exact result/proof-source maps, workload validation and specialist/reader assessment precede baseline freeze. New body drafting is paused until that gate.\n\n",
+        "- The [writing baseline](writing-baseline.md) fixes scope, depth, volumes and production order. Future drafts use local start checks; proof/software/reader review remains required for acceptance.\n\n",
         "[Full editorial review](architecture-review.md) · [All-section ledger](section-review.md) · [Checked learning paths](learning-paths.md)\n\n## Parts and chapters\n\n",
     ]
     contents = [
         "# Contents and chapter status\n\n",
-        f"**Revision: {data['revision']}.** {summary} and six appendices. **Editorial architecture pass completed; external validation/freeze pending.** See the [editorial charter](editorial-charter.md), [curriculum audit](curriculum-audit.md) and [full plan](book-plan.md).\n\n",
+        f"**Revision: {data['revision']}.** {summary} and six appendices. **Writing Baseline 1.0 adopted; chapter acceptance pending.** See the [editorial charter](editorial-charter.md), [curriculum audit](curriculum-audit.md) and [full plan](book-plan.md).\n\n",
         "The [numbered section specification](section-plan.md) gives learning, derivation and evidence targets. Only three starter chapters exist, with intended homes in **6, 23 and 49**; they require expansion. The PDF sample keeps independent numbering.\n\n",
     ]
     book = [(ROOT / "book/curriculum-introduction.md").read_text().rstrip() + "\n"]
@@ -56,7 +56,7 @@ def render():
         book += [f"\n## {heading}\n"]
         detailed = [
             f"# {heading}\n\n",
-            f"**Detailed plan · {data['revision']} · Planned material; editorial pass completed, external validation/freeze pending.** [All sections](../section-plan.md) · [Full plan](../book-plan.md) · [Reader continuity](../reader-continuity.md)\n\n",
+            f"**Detailed plan · {data['revision']} · Scope fixed by Writing Baseline 1.0; prose and independent acceptance pending.** [All sections](../section-plan.md) · [Full plan](../book-plan.md) · [Reader continuity](../reader-continuity.md)\n\n",
             "Each section specifies its argument and independent evidence. Framework implementation, mathematical review and reader review have separate status. Closing materials follow the [section-plan guide](../section-plan.md#how-to-read-the-specification).\n",
         ]
         for c in p["chapters"]:
@@ -116,7 +116,7 @@ def render():
     overview += [
         "## Integration and review\n\n",
         f"The complete plan contains **{len(chapters)} chapters and {count} numbered sections**. A higher count does not establish coverage, depth or readability. The [architecture-review gates](curriculum-audit.md) require coverage, dependency, workload and reader review before sustained drafting.\n\n",
-        "Existing starters supply material to 6, 23 and 49. New body and depth-pilot drafting is paused until the architecture baseline. Provider access and framework availability are tracked separately from theory.\n",
+        "Existing starters supply material to 6, 23 and 49 at their scheduled homes. Writing Baseline 1.0 fixes the production queue; subsequent drafts follow its section-local start checks. Provider access and framework availability are tracked separately from theory.\n",
     ]
     notes = (ROOT / "book/curriculum-notes.md").read_text()
     outputs["docs/book-plan.md"] = re.sub(r"\n{3,}", "\n\n", "".join(book) + "\n\n" + notes).rstrip() + "\n"

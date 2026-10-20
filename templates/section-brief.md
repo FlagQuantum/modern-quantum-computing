@@ -1,5 +1,6 @@
 # Section brief
 
+- Writing baseline ID, queue position/batch and current progress state:
 - Stable chapter and section IDs:
 - Current display number and title:
 - One concrete question and one observable learning outcome:

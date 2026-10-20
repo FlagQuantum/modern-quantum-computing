@@ -1,0 +1,136 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "scope": "First chapter authoring briefs only; no textbook body or execution claim",
+  "sections": [
+    {
+      "ref": "1.1",
+      "section_id": "sec-what-quantum-computing-computes-1",
+      "title": "Problems, inputs, and observable outputs",
+      "question": "What can a computation be asked to return?",
+      "entry": "Basic Python variables, lists and the distinction between a question and one input instance.",
+      "exit": "Specify input representation, observable output, success criterion and resource boundary for one task.",
+      "worked_case": "A bitstring task versus a repeated-sampling expectation-estimation task; state which quantities are outputs and which are model internals.",
+      "boundary": "No new quantum law is asserted. Distinguish a sample, an estimated statistic and simulator-only state inspection.",
+      "code_plan": "Plan a complete task-record/check script; no quantum backend is needed for the specification itself.",
+      "independent_check": "A classical enumerated reference and a deliberately mismatched output contract.",
+      "transfer_task": "Give a new task and ask the reader to identify what must be measured and how success would be checked.",
+      "source_locators": [
+        "NC:3.2.1"
+      ],
+      "depth": "P",
+      "requires": [],
+      "status": "brief_ready",
+      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+    },
+    {
+      "ref": "1.2",
+      "section_id": "sec-what-quantum-computing-computes-2",
+      "title": "A first interference experiment",
+      "question": "How can two alternatives cancel?",
+      "entry": "1.1 and arithmetic on two real numbers; all preview notation is introduced locally.",
+      "exit": "Predict recombination and distinguish adding amplitudes from adding probabilities.",
+      "worked_case": "A fully displayed two-component, two-step interference calculation with every sum written out; a changed relative sign changes the prediction.",
+      "boundary": "Use an explicitly labelled preview model. The formal state postulate is owned by 3.1 and the measurement postulate by 6.1; do not cite those future sections as missing prerequisites or claim to derive a physical postulate.",
+      "code_plan": "Plan a complete two-by-two matrix reference plus a version-checked FlagQuantum comparison; inspect the actual API at drafting time.",
+      "independent_check": "Hand-computed multiplication and cancellation, followed by a deliberate probability-addition error.",
+      "transfer_task": "Predict a changed sign or missing recombination step and explain which arithmetic step changes.",
+      "source_locators": [
+        "NC:1.3.1"
+      ],
+      "depth": "M",
+      "requires": [
+        "sec-what-quantum-computing-computes-1"
+      ],
+      "status": "brief_ready",
+      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+    },
+    {
+      "ref": "1.3",
+      "section_id": "sec-what-quantum-computing-computes-3",
+      "title": "What a quantum state describes",
+      "question": "What information does a state description contain?",
+      "entry": "1.2, including the locally introduced two-component preview.",
+      "exit": "Distinguish the mathematical state description, a measurement choice and data collected over repetitions.",
+      "worked_case": "Two preview descriptions with the same immediate outcome frequencies but different later interference.",
+      "boundary": "Keep this a conceptual preview; complex-space definitions belong to Chapter 2, formal equivalence to 3.1 and measurement statistics to Chapter 6.",
+      "code_plan": "Reuse the complete interference reference with changed preparation; avoid a privileged simulator statevector being described as a device readout.",
+      "independent_check": "Predict-first comparison of immediate measurement and subsequent recombination.",
+      "transfer_task": "Explain why an output histogram alone need not determine all future predictions.",
+      "source_locators": [
+        "NC:1.2"
+      ],
+      "depth": "P",
+      "requires": [
+        "sec-what-quantum-computing-computes-2"
+      ],
+      "status": "brief_ready",
+      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+    },
+    {
+      "ref": "1.4",
+      "section_id": "sec-what-quantum-computing-computes-4",
+      "title": "Algorithms, simulators, and physical devices",
+      "question": "How do an algorithm, simulator and physical device differ?",
+      "entry": "1.1; recall the task/output contract rather than importing hardware engineering.",
+      "exit": "Identify which object specifies a calculation, emulates it and physically executes a measurement.",
+      "worked_case": "The same task contract expressed as a program, a tiny numerical calculation and an explicitly proposed physical experiment.",
+      "boundary": "No hardware execution, provider support or speed ranking is claimed. Statevector inspection is a simulator capability with a separate cost.",
+      "code_plan": "Plan a complete classical reference and a versioned simulator run when appropriate; hardware access remains optional.",
+      "independent_check": "A claim checklist that detects substitution of simulator output for measured data.",
+      "transfer_task": "Classify a changed result or failure as model, numerical, sampling or device evidence.",
+      "source_locators": [
+        "ED:protocol"
+      ],
+      "depth": "V",
+      "requires": [
+        "sec-what-quantum-computing-computes-1"
+      ],
+      "status": "brief_ready",
+      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+    },
+    {
+      "ref": "1.5",
+      "section_id": "sec-what-quantum-computing-computes-5",
+      "title": "What computational advantage would require",
+      "question": "What would establish a computational advantage?",
+      "entry": "1.4 and the explicit task/output contract.",
+      "exit": "Ask for matched problem instances, output accuracy, success probability and full resource accounting.",
+      "worked_case": "A hypothetical cost comparison that includes preparation, repeated measurements and classical processing, without current performance claims.",
+      "boundary": "This is an entry-level reasoning contract; formal access/complexity and lower-bound arguments belong to Chapter 14 and later algorithms.",
+      "code_plan": "A small cost ledger is appropriate; a quantum circuit is not required merely to populate this section.",
+      "independent_check": "Change one omitted cost or precision requirement and reassess the hypothetical comparison.",
+      "transfer_task": "Find the missing assumption in a new claimed speedup without requiring an advanced complexity theorem.",
+      "source_locators": [
+        "NC:3.2.1"
+      ],
+      "depth": "V",
+      "requires": [
+        "sec-what-quantum-computing-computes-4"
+      ],
+      "status": "brief_ready",
+      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+    },
+    {
+      "ref": "1.6",
+      "section_id": "sec-what-quantum-computing-computes-6",
+      "title": "A map of the learning routes",
+      "question": "Which learning route serves my question?",
+      "entry": "1.4 and the task/model distinction.",
+      "exit": "Choose a route and identify its entry knowledge and first concrete deliverable.",
+      "worked_case": "Three bounded destinations: an algorithm prediction, a trainable circuit objective and a program-to-target transformation.",
+      "boundary": "Present the existing reader routes and core/advanced distinctions, without pretending every volume is a prerequisite for the next.",
+      "code_plan": "Use linked complete examples only as previews, with their actual draft/validation status.",
+      "independent_check": "Resolve the selected route against canonical prerequisites and label unstudied advanced branches.",
+      "transfer_task": "Choose a route for a new task and explain why an unrelated specialization is not required.",
+      "source_locators": [
+        "ED:routes"
+      ],
+      "depth": "V",
+      "requires": [
+        "sec-what-quantum-computing-computes-4"
+      ],
+      "status": "brief_ready",
+      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+    }
+  ]
+}

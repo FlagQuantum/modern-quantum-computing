@@ -4,7 +4,7 @@
 
 This is a curriculum architecture, not a completed manuscript or a claim that every proposed experiment is supported. Three starter chapters currently exist, with intended homes in Chapters **6, 23 and 49**. The three-chapter PDF retains independent sample numbering and its published version.
 
-**Architecture status: full editorial pass completed; specialist/reader review and baseline freeze pending.** The [curriculum audit](curriculum-audit.md) lists coverage, prerequisite bridges, cross-layer laboratories and open review gates. [Reader continuity](reader-continuity.md) defines the no-skipped-steps standard. The [all-section result/proof/source plan](proof-plan.md) and [seven-volume proposal](volume-plan.md) extend the architecture review. The [review report](architecture-review.md), [435-section ledger](section-review.md) and [19 learning paths](learning-paths.md) make the review traceable. New textbook body drafting is paused until the architecture baseline gate. Chapter count is not an acceptance criterion.
+**Architecture status: [Writing Baseline 1.0](writing-baseline.md) adopted for editorial execution; independent section/route acceptance pending.** The [curriculum audit](curriculum-audit.md) lists coverage, prerequisite bridges, cross-layer laboratories and open review gates. [Reader continuity](reader-continuity.md) defines the no-skipped-steps standard. The [all-section result/proof/source plan](proof-plan.md) and [adopted seven-volume plan](volume-plan.md) extend the architecture review. The [review report](architecture-review.md), [435-section ledger](section-review.md) and [19 learning paths](learning-paths.md) make the review traceable. The [writing queue](writing-order.md) now fixes production order. This baseline change writes no body; subsequent drafts follow local start checks and retain separate acceptance gates. Chapter count is not an acceptance criterion.
 
 ## Audience, depth and reading levels
 
@@ -30,7 +30,7 @@ Each chapter below specifies its section sequence, mathematical outcome and inde
 6. Verify small cases independently; include a counterexample or failure diagnosis that tests the assumptions.
 7. End with conceptual, derivation/proof, implementation and transfer problems, plus sources and a recap.
 
-Short recall prompts follow the [learning design](learning-design.md); substantial problems develop mathematical and research ability. Numerical agreement supplies evidence about implementation, not a proof of a general theorem. Every specialized chapter needs a reviewed primary-source map before drafting.
+Short recall prompts follow the [learning design](learning-design.md); substantial problems develop mathematical and research ability. Numerical agreement supplies evidence about implementation, not a proof of a general theorem. Before drafting a specialized section, inspect its assigned exact sources and resolve material local uncertainties; before accepting it, obtain independent review. Source work serves the current teaching obligation, without creating a new standalone literature-audit project.
 
 ## Part 1. Foundations and Quantum Information Primitives
 
@@ -788,31 +788,27 @@ The additions from this pass give scoped homes to entanglement swapping, channel
 
 ## Workload and publication architecture
 
-The [seven-volume proposal](volume-plan.md) is the recommended packaging overlay. It preserves global chapter numbers, stable IDs and web links while placing Chapter 14 after the foundational sequence, Chapter 48 before the capstones, and 49/50 in their application volumes. Direct prerequisites fit the proposed volume and internal chapter order; no section requires a later volume.
+The [adopted seven-volume plan](volume-plan.md) is the packaging overlay. It preserves global chapter numbers, stable IDs and web links while placing Chapter 14 after the foundational sequence, Chapter 48 before the capstones, and 49/50 in their application volumes. Direct prerequisites fit the adopted volume and internal chapter order; no section requires a later volume.
 
 The [proof-depth plan](proof-plan.md) replaces uniform page allowances with result-specific budgets. The reference argument now budgets **1,296–2,546 pages before shared appendices/front matter**; adding 24–40 pages per volume gives **1,464–2,826 pages**, excluding substantial shared appendices/solutions. These are editorial ranges, not measured typeset lengths. They do not authorize scope compression or imply a one-semester course.
 
-The foundation/information split avoids a combined opening volume of up to 738 planned pages. Volumes follow coherent subjects: foundations; information; algorithms; hybrid scientific computing; noise/correction; physical realizations; programming/compilation/simulation. Select one complete learning route rather than reading every specialization in sequence. The detailed proposal specifies all chapter allocations, cross-volume imports and alternatives; final packaging needs reader/typesetting calibration.
+The foundation/information split avoids a combined opening volume of up to 738 planned pages. Volumes follow coherent subjects: foundations; information; algorithms; hybrid scientific computing; noise/correction; physical realizations; programming/compilation/simulation. Select one complete learning route rather than reading every specialization in sequence. The adopted plan specifies all chapter allocations, cross-volume imports and alternatives; final packaging needs reader/typesetting calibration.
 
 ## Architecture-first acceptance gates
 
 A complete editorial architecture pass is recorded in the [review report](architecture-review.md): 50 chapter decisions, 435 section dispositions, 1,045 direct prerequisite edges and 19 checked routes. These checks establish record consistency and expose prerequisite burden; they do not prove the explanations teach successfully.
 
-Before new body drafting:
+Writing Baseline 1.0 fixes the 50-chapter/435-section scope, exact prerequisite graph, proof-depth contracts, seven-volume allocation and 16 writing batches. The [full queue](writing-order.md) and [first-chapter briefs](writing-first-batch.md) make the next task explicit: 1.1, then 1.2–1.6.
 
-1. Review the assigned central-result/proof obligations and exact source locators; transcribe/check the precise statements and deferred lemmas before acceptance.
-2. Obtain specialist review of coverage, ownership and mathematical/physical assumptions; record the actual sections reviewed.
-3. Test representative routes and bridge/transition specifications with target readers. Record the precise missing steps and required repairs.
-4. Set workable page, example and substantial-problem budgets; resolve volume and course packaging.
-5. Resolve findings and tag a versioned architecture baseline with a public change record.
+The previous all-series planning hold is replaced by local start and acceptance gates. A draft needs its brief, explained prerequisite results, exact local source targets and independent-check plan. A published section additionally needs mathematical, implementation or justified N/A, and reader review evidence. These reviews are pending; adoption of the operational baseline does not claim they happened.
 
-**No new textbook body or depth-pilot drafting while these architecture gates remain open.** Existing three starter chapters remain available as evidence of the format. Source mapping, architectural repairs and validation design can continue; they do not constitute authorization to write new chapters. After the baseline, prioritize a continuous opening and selected complete routes, not isolated topical additions.
+No new body is written in this baseline change. Subsequent writing follows the queue. Existing starters are expanded only at their scheduled homes. Standalone paper audits are paused; a disputed optional example can be qualified or omitted without blocking unrelated material.
 
 ## Research anchors and source work
 
 The [reading guide](references/reading-guide.md), [compilation/platform sources](references/compilation-and-platforms.md), [hybrid sources](references/hybrid-computing.md) and [systematic-review source notes](references/architecture-review.md) document consulted scope. Course outlines and paper abstracts support coverage comparisons; they do not certify proofs, API support or experimental results. Every authored result needs exact edition/revision and theorem/equation locators plus its independent verification plan.
 
-The [H2 integral-to-reduced-model provenance plan](references/h2-provenance.md) now records nine checked stages and an independent 54-geometry, 324-coefficient reconstruction at published rounding precision. Original author integral files were not recovered. The [topological experimental evidence ledger](references/topological-experiments.md) selects nine claim-specific cases, including paired critique/reply and retraction records; the [full public argument audit](references/topological-dispute-review.md) now compares nine disputes across preprint, accepted-manuscript and public-rebuttal versions. Exact final-journal-reply matching and independent interpretation remain open. Chapter 50 now selects Fowler et al. v2, Section VII A/Fig. 5 for syndrome ambiguity; its finite memory benchmark is an explicitly labeled extension, not reproduction of the paper's threshold curves. A rounded small-model reproduction cannot stand in for all molecular data or a hardware experiment.
+The [H2 integral-to-reduced-model provenance plan](references/h2-provenance.md) now records nine checked stages and an independent 54-geometry, 324-coefficient reconstruction at published rounding precision. Original author integral files were not recovered. The [topological experimental evidence ledger](references/topological-experiments.md) selects nine claim-specific cases, including paired critique/reply and retraction records; the [full public argument audit](references/topological-dispute-review.md) now compares nine disputes across preprint, accepted-manuscript and public-rebuttal versions. Those archived source limits remain attached to the relevant optional claims and do not block the writing queue. Chapter 50 now selects Fowler et al. v2, Section VII A/Fig. 5 for syndrome ambiguity; its finite memory benchmark is an explicitly labeled extension, not reproduction of the paper's threshold curves. A rounded small-model reproduction cannot stand in for all molecular data or a hardware experiment.
 
 ## Stable identifiers and history
 
