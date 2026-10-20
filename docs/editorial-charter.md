@@ -40,6 +40,12 @@ Readers should progress from intuition to precise statements, from worked cases 
 
 Use **qubit** consistently for the quantum information carrier and circuit indices, labels and ordering. Essential teaching material remains readable without an account, paid hardware, a network session or an interactive widget. Web and print communicate the same scientific argument.
 
+## Planning and explanatory continuity
+
+The [curriculum audit](curriculum-audit.md) sets coverage, prerequisite, workload, specialist-review and reader-test gates before the architecture is frozen. Physical models and quantum compilation are substantive main-text routes. Stable identifiers and a change record control later reorganizations.
+
+The [reader-continuity standard](reader-continuity.md) requires local bridges, defined symbols, justified intermediate steps and clear section transitions. Phrases such as “obviously” or “well known” cannot discharge an explanation or proof. A central argument is not silently assigned to the reader.
+
 ## Longevity, review and editions
 
 1. Before accepting a chapter, obtain mathematical, implementation and reader review. Record the review scope; automated checks alone are insufficient.

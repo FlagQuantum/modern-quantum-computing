@@ -10,13 +10,14 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a seven-part, 40-chapter plan, shared conventions, and three starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, and three starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Start reading
 
 - [Book introduction](docs/index.md)
+- [Curriculum audit and freeze gates](docs/curriculum-audit.md) · [Reader continuity](docs/reader-continuity.md)
 - [Editorial charter](docs/editorial-charter.md) · [FlagQuantum capability-gap workflow](docs/implementation-roadmap.md)
-- [Full contents: seven parts and 40 chapters](docs/contents.md) · [Detailed chapter plan](docs/book-plan.md) · [Numbered section plans](docs/section-plan.md)
+- [Full contents: nine parts and 50 chapters](docs/contents.md) · [Detailed chapter plan](docs/book-plan.md) · [Numbered section plans](docs/section-plan.md)
 - [Design review: Nielsen and Chuang](docs/references/nielsen-chuang-design-review.md) · [Quantum Country](docs/references/quantum-country-design-review.md)
 - [Learning design: recall, prediction and formula-to-code practice](docs/learning-design.md)
 - [Notation and conventions](docs/conventions.md)
@@ -27,7 +28,7 @@ An open English textbook that connects quantum computing equations to executable
 
 Every starter chapter connects **equation → derivation → implementation → verification → exercises**. Expected values come from analytical expressions or independent dense linear algebra, rather than from the simulator alone.
 
-The curriculum follows the subject, including modern algorithms, information theory and fault-tolerant computation. Required missing FlagQuantum capabilities are investigated and tracked upstream; they do not restrict the theoretical scope. Existing runnable examples retain their explicit validation status.
+The curriculum follows the subject, including modern algorithms, information theory, fault-tolerant computation, quantum compilation and physical-platform branches. Required missing FlagQuantum capabilities are investigated and tracked upstream; they do not restrict the theoretical scope. Existing runnable examples retain their explicit validation status.
 
 ## Run the examples
 
@@ -59,6 +60,15 @@ Open the local URL printed by MkDocs. Use `python -m mkdocs build --strict` for 
 [Download PDF](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.4/modern-quantum-computing.pdf) · [LaTeX source bundle](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.4/modern-quantum-computing-source.tar.gz) · [Release and build manifest](https://github.com/FlagQuantum/modern-quantum-computing/releases/tag/v0.1.0-draft.4)
 
 The print sample is generated from the same chapters and checked-in Python examples. It includes author information, a versioned cover, contents, numbered display equations, references, paired formulas/code and selected implementation listings. Complete examples accompany the source archive. See [editions and publication](docs/publication.md) for build commands and the manual PDF workflow. The generated LaTeX source bundle supports later scholarly preparation; this sample is not an arXiv submission.
+
+## Check planning and explanatory prose
+
+Run the following checks after changing the plan or drafted chapters. The prose scan requires human review and cannot establish that all derivations are complete.
+
+```bash
+python scripts/build_curriculum.py --check
+python scripts/check_prose.py
+```
 
 ## Contribute
 

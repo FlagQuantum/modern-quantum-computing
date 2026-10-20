@@ -34,9 +34,11 @@ These are **unassessed curriculum requirements**, not confirmed software deficie
 | 10 | Measurement estimators, basis changes and shadow-style workflows | Seeded estimators with declared measurement ensemble, uncertainty and independent state reference | Not assessed |
 | 18–22 | Modular arithmetic, controlled operations, block encodings and signal-processing sequences | Check tiny exact blocks/distributions and polynomial constraints before resource experiments | Not assessed |
 | 23–27 | Shared-parameter derivatives, differentiation modes, geometry and hybrid models | Multiple parameter occurrences; dense/analytic gradient checks; execution and memory accounting | Not assessed |
-| 29–33, 35, 40 | Stabilizers, adaptive/repeated syndrome measurements, decoder interchange and logical observables | Small-code dense equivalence, enumerated faults and repeated-round detection events | Not assessed |
-| 34, 36–37 | Exact/approximate executors, truncation records and contraction/resource reporting | Known exact states, explicit approximation settings and independently checked error/cost metrics | Not assessed |
-| 38–40 | Experiment records, deterministic replay and result/uncertainty export | Reproduce a declared claim from pinned inputs with provenance and discrepancy reporting | Not assessed |
+| 29–33, 45, 50 | Stabilizers, adaptive/repeated syndrome measurements, decoder interchange and logical observables | Small-code dense equivalence, enumerated faults and repeated-round detection events | Not assessed |
+| 34–40 | Physical levels/modes, effective Hamiltonians, driven controls, readout, leakage/loss and constraint records | Truncation convergence, frame/unit checks and complete model-to-observable references | Not assessed |
+| 41–43 | Program/IR semantics, compiler passes, synthesis, mapping/routing, timing, dynamic control and target lowering | Exact/conditional-map equivalence, legality, output mapping and explicit approximate-error contracts | Not assessed |
+| 44, 46–47 | Exact/approximate executors, truncation records and contraction/resource reporting | Known exact states, explicit approximation settings and independently checked error/cost metrics | Not assessed |
+| 48–50 | Experiment records, deterministic replay and result/uncertainty export | Reproduce a declared claim from pinned inputs with provenance and discrepancy reporting | Not assessed |
 
 Issue granularity follows the actual architecture. A high-level scientific protocol may use existing composable operations and need only a textbook implementation. Do not request a new framework API for every chapter.
 

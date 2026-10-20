@@ -1,31 +1,39 @@
 # Roadmap
 
-The [editorial charter](docs/editorial-charter.md) defines the long-term aim: a rigorous modern textbook serving present and future learners. The [seven-part, 40-chapter plan](docs/book-plan.md) supplies the curriculum; the [capability-gap workflow](docs/implementation-roadmap.md) connects its needs to FlagQuantum development.
+The [editorial charter](docs/editorial-charter.md) defines the educational mission. The current [nine-part, 50-chapter architecture](docs/book-plan.md) has **416 numbered sections** and is **under review, not frozen**. The [curriculum audit](docs/curriculum-audit.md) records remaining gates.
 
-## Established
+## Established planning artifacts
 
 - [x] Three executable format pilots, a live website and versioned PDF samples.
-- [x] Shared conventions, attribution and independently checked examples.
-- [x] Targeted Nielsen–Chuang review and Quantum Country learning-design review.
-- [x] Expanded curriculum covering information theory, modern algorithms, fault tolerance and classical simulability.
-- [x] Mathematical depth, reading-level, review and software-gap authoring standards.
-- [x] [Numbered section specifications](docs/section-plan.md) for all 40 chapters, with derivation and evidence targets.
+- [x] Shared conventions, attribution and independently checked starter examples.
+- [x] Targeted Nielsen–Chuang and Quantum Country design reviews.
+- [x] Main-text routes for information theory, algorithms, differentiation, fault tolerance, physical platforms, compilation, simulation and research.
+- [x] Numbered learning/derivation and evidence targets, stable IDs and reproducible generation of planning views.
+- [x] Reader-continuity, review and confirmed-capability-gap reporting standards.
 
-## Next: establish depth and continuity
+These are artifacts, not evidence that the complete theory, implementation or teaching architecture has passed review.
 
-- [ ] Complete the opening sequence, Chapters 1–8, with substantial problems.
-- [ ] Develop three depth pilots: measurement (6), differentiation (23), correction conditions (29).
-- [ ] Review these with mathematical specialists and target readers; record findings.
-- [ ] Audit actual implementation requirements for drafted sections; file confirmed, deduplicated gaps upstream.
-- [ ] Extend channels/inference and computational resources (9–10, 14), then the algorithm sequence (15–19).
-- [ ] Expand the VQE research route (23–25, 38–39).
+## Before sustained drafting: review and freeze the architecture
 
-## Complete the broader curriculum
+- [ ] Obtain specialist coverage/ownership review, including compilation and physical platforms.
+- [ ] Audit concept first use, prerequisite bridges, transitions and optional branches.
+- [ ] Select exact central results/proof obligations and primary-source locators for depth pilots.
+- [ ] Design independent cross-layer reference cases and investigate actual API needs.
+- [ ] Set provisional page/problem budgets and test complete routes with target readers.
+- [ ] Resolve findings and tag an architecture baseline with a public change record.
 
-Develop information theory/security (11–13), modern algorithms (20–22), logical computing (28–33), advanced applications and simulation (24, 26–27, 34–37), and the error-correction capstone (40). Select exact primary results and proof obligations before specialized sections are authored. Keep pending code accurately labeled while framework work proceeds.
+Small pilots can inform this review. They do not constitute approval of the full plan.
 
-## Review and freeze an edition
+## Depth and cross-layer pilots
 
-Pilot coherent course routes, review proofs and exercise solutions, independently reproduce examples, and inspect web/print output. Preserve source, environment and data provenance; publish errata and migration notes. The current 16-page PDF is a three-chapter sample, not a completed textbook. Curriculum revisions do not retroactively change its versioned contents.
+Develop measurement (6), differentiation (23), correction conditions (29), and one hardware-to-compiler thread (34, a selected branch in 35–40, then 41–42). Expand the existing H2 reproduction toward Chapter 49 only with its prerequisite path in place. Confirmed software gaps go to the [upstream workflow](docs/implementation-roadmap.md).
 
-Review the curriculum at least annually and on significant mathematical, scientific or software corrections. No scheduled automation is configured by this roadmap. The detailed writing order and prerequisites are in the [book plan](docs/book-plan.md).
+## Draft and validate coherent learning routes
+
+After the baseline gate, complete the opening sequence and selected information/algorithm routes. Develop hardware/compiler branches, advanced theory, simulation and research with exact sources and explicit proof obligations. Use stable identifiers rather than renumbering concepts as an implicit editorial operation.
+
+## Freeze a scholarly edition
+
+Review proofs, exercises, code, references and reader observations; inspect web/print output and preserve source/data/environment records. The current 16-page PDF remains a versioned three-chapter sample. A revised curriculum does not retroactively change it.
+
+Review significant scientific/software corrections when reported and assess the curriculum at least annually. No scheduled automation is configured by this roadmap.

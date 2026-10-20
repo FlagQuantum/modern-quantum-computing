@@ -10,6 +10,8 @@ Open an issue for a substantial chapter proposal, or submit a pull request for a
 - Check important identities independently of the FlagQuantum execution path.
 - Report software versions, devices, precision, tolerances and seeds.
 - Label planned, unverified, approximate and hardware-specific material accurately.
+- Preserve stable curriculum IDs. Regenerate planned views with `python scripts/build_curriculum.py` and check with its --check option. Run `python scripts/check_prose.py` and review every flagged explanatory shortcut; the scan does not replace mathematical or reader review.
+- Follow the [reader-continuity standard](docs/reader-continuity.md) and [planning freeze gates](docs/curriculum-audit.md).
 - Build the documentation with `python -m mkdocs build --strict` and run affected examples before submitting.
 - Preserve source attribution and ensure you have rights to contributed material.
 

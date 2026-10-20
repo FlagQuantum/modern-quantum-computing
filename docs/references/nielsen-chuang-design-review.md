@@ -1,6 +1,6 @@
 # Learning from Nielsen and Chuang: a design review
 
-**Historical design record:** the chapter allocation discussed below predates the author-directed seven-part, 40-chapter revision. Consult the [current plan](../book-plan.md); the starter homes are now 6, 23 and 39. Pedagogical observations below remain relevant.
+**Historical design record:** the chapter allocation discussed below predates the author-directed nine-part, 50-chapter revision. Consult the [current plan](../book-plan.md); the starter homes are now 6, 23 and 49. Pedagogical observations below remain relevant.
 
 **Review date: October 20, 2026.** Reference: Michael A. Nielsen and Isaac L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), citation key `nielsen_chuang_2010`. [Official publisher page](https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE).
 

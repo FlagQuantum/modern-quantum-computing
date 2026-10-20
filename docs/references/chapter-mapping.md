@@ -4,11 +4,13 @@ This is a reading and editorial plan. **Only measurement, gradients and hydrogen
 
 ## Book chapter numbers
 
-The [full book plan](../book-plan.md) now assigns the measurement, gradients and hydrogen VQE starters to Chapters **6, 23 and 39** respectively. The mapping below groups related topics for reading; consult the plan for the complete 40-chapter sequence and dependencies. The current sample PDF retains its own three-chapter numbering.
+The [full book plan](../book-plan.md) now assigns the measurement, gradients and hydrogen VQE starters to Chapters **6, 23 and 49** respectively. The mapping below groups related topics for reading; consult the plan for the complete 50-chapter sequence and dependencies. The current sample PDF retains its own three-chapter numbering.
 
 See the [Nielsen–Chuang design review](nielsen-chuang-design-review.md) for the reasons behind the revised chapter allocation.
 
-The current [editorial charter](../editorial-charter.md) and seven-part plan supersede the earlier allocation. Specialized modern-algorithm, information-theory and fault-tolerance sections require exact primary-source mappings as they are drafted; the table below is not a complete source map for the expanded curriculum.
+The current [editorial charter](../editorial-charter.md) and nine-part plan supersede the earlier allocation. Specialized modern-algorithm, information-theory and fault-tolerance sections require exact primary-source mappings as they are drafted; the table below is not a complete source map for the expanded curriculum.
+
+The [physical-platform and compilation source anchors](compilation-and-platforms.md) scope the added routes; exact result locators and specialist reviews remain pending.
 
 ## Existing starter chapters
 

@@ -15,6 +15,8 @@ jobs:
       - run: python -m pip install -r requirements-docs.txt
       - run: python scripts/build_book.py --web-metadata
       - run: git diff --exit-code -- docs/index.md
+      - run: python scripts/build_curriculum.py --check
+      - run: python scripts/check_prose.py
       - run: python -m mkdocs build --strict
   examples:
     runs-on: ubuntu-latest

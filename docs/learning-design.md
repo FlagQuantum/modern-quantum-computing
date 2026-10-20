@@ -2,6 +2,8 @@
 
 This is an authoring specification for the proposed textbook. It combines the conceptual structure recorded in the [Nielsen–Chuang review](references/nielsen-chuang-design-review.md) with the reading-method observations in the [Quantum Country review](references/quantum-country-design-review.md). The current site does not implement account-based learning records, an adaptive scheduler or automated reminders.
 
+The [reader-continuity standard](reader-continuity.md) requires explicit entry/exit knowledge, local bridges and justified steps. The [architecture audit](curriculum-audit.md) tests complete learning routes before sustained drafting.
+
 ## A section-level learning loop
 
 1. Pose a concrete question and show the minimum example needed to understand it.

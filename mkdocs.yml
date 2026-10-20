@@ -12,6 +12,8 @@ theme:
 nav:
   - Introduction: index.md
   - Editorial charter: editorial-charter.md
+  - Curriculum audit: curriculum-audit.md
+  - Reader continuity: reader-continuity.md
   - Contents and status: contents.md
   - Full book plan: book-plan.md
   - Detailed section plans:
@@ -21,8 +23,10 @@ nav:
       - 'Part 3: Quantum Algorithms and Computational Resources': section-plans/03-algorithms.md
       - 'Part 4: Variational and Differentiable Quantum Computing': section-plans/04-variational.md
       - 'Part 5: Noise, Error Correction, and Fault-Tolerant Computation': section-plans/05-fault-tolerance.md
-      - 'Part 6: Classical Simulation and the Boundary of Tractability': section-plans/06-simulation.md
-      - 'Part 7: From Papers to Reproducible Research': section-plans/07-research.md
+      - 'Part 6: Physical Realizations and Quantum-System Architecture': section-plans/physical-platforms.md
+      - 'Part 7: Quantum Programming, Compilation, and Control': section-plans/quantum-compilation.md
+      - 'Part 8: Classical Simulation and the Boundary of Tractability': section-plans/06-simulation.md
+      - 'Part 9: From Papers to Reproducible Research': section-plans/07-research.md
   - Learning design: learning-design.md
   - FlagQuantum implementation roadmap: implementation-roadmap.md
   - Conventions: conventions.md
@@ -33,6 +37,7 @@ nav:
   - References:
       - Reading guide: references/reading-guide.md
       - Chapter mapping: references/chapter-mapping.md
+      - Compilation and physical platforms: references/compilation-and-platforms.md
       - Nielsen–Chuang design review: references/nielsen-chuang-design-review.md
       - Quantum Country design review: references/quantum-country-design-review.md
   - Sources and validation: sources.md

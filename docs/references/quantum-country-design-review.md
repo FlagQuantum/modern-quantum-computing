@@ -1,6 +1,6 @@
 # Learning from Quantum Country
 
-**Historical design record:** the chapter allocation discussed below predates the author-directed seven-part, 40-chapter revision. Consult the [current plan](../book-plan.md); the starter homes are now 6, 23 and 39. Pedagogical observations below remain relevant.
+**Historical design record:** the chapter allocation discussed below predates the author-directed nine-part, 50-chapter revision. Consult the [current plan](../book-plan.md); the starter homes are now 6, 23 and 49. Pedagogical observations below remain relevant.
 
 **Review date: October 20, 2026.** Resource: [Quantum Country](https://quantum.country/), by Andy Matuschak and Michael Nielsen. Citation key: `matuschak_nielsen_quantum_country`.
 

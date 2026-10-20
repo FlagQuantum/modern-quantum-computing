@@ -4,6 +4,10 @@
 
 **Reading level:** Core / Advanced / Research. **Theory review:** pending / scope and date. **Implementation status:** not assessed / reference only / upstream issue / validated release. Use the [capability-gap workflow](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/docs/implementation-roadmap.md) when needed. Do not omit a required topic because an API is missing.
 
+## Continuity and planning record
+
+Follow the [reader-continuity standard](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/docs/reader-continuity.md). Use the [section brief](section-brief.md) to list entry knowledge, newly introduced symbols, intermediate reasons, exit skills and the next-section bridge. Replace explanatory shortcuts with actual steps or a precise established result. Record the architecture-review status and stable IDs.
+
 ## Planned sections and dependencies
 
 Use the [numbered section specification](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/docs/section-plan.md). Record each section number, its learning/derivation target, prerequisite bridge, mathematical result/proof obligation and implementation/evidence target. Document and review changes to the allocation; do not treat the plan as completed content.

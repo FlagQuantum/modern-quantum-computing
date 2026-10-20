@@ -1,107 +1,118 @@
 # Detailed chapter and section plan
 
-**Planning revision: October 20, 2026.** This expands the [40-chapter curriculum](contents.md) into numbered sections. Each section has a learning/derivation target and a concrete implementation or evidence target. These are authoring specifications; they are not completed textbook sections, reviewed proofs or validated FlagQuantum features.
+**Revision: 2026-10-20.** 9 parts, 50 chapters and 416 numbered sections. **Architecture status: review pending, not frozen.**
 
-Reading levels and chapter prerequisites are inherited from the [book plan](book-plan.md). Sections marked Advanced can be deferred on an introductory route. A framework gap follows the [implementation workflow](implementation-roadmap.md) and does not remove the section's mathematical target.
+Each section has a learning/derivation target and an implementation/evidence target. These are authoring specifications, not completed sections or validated APIs. See the [curriculum audit](curriculum-audit.md), [reader-continuity standard](reader-continuity.md), and [full book plan](book-plan.md).
 
 ## How to read the specification
 
-- A section number such as **23.5** identifies a planned section within Chapter 23. Titles and allocation remain reviewable before the first complete edition.
-- Learning/derivation targets state what the reader should be able to explain or derive. A central result needs its assumptions, proof or explicit advanced-proof roadmap.
-- Implementation/evidence targets state what a worked program, counterexample, resource calculation or independent reference must establish. Numerical examples do not prove general theorems.
-- Each chapter also has **unnumbered closing material**: a recap, short conceptual checks, substantial derivation/proof and transfer problems, programming/debugging laboratories, selected answer guidance, precise source locators, and a review/implementation-status record. These are not counted as scientific sections.
-- No section requires inventing an unsupported API. Some resource, security or theorem sections appropriately use independent classical calculations or proof exercises; their scientific objective determines the implementation.
-- Detailed subsections, equation numbers, exact theorem/source mappings and problem sets are developed during chapter drafting and mathematical review.
-
+- Section numbers are display labels; stable chapter/section anchors preserve references when numbering changes.
+- A learning target states what the reader can explain or derive; a central result needs assumptions and a proof or an explicit advanced-proof roadmap.
+- An evidence target defines an independently checked calculation, experiment, counterexample or resource analysis. Numerical agreement does not prove a general theorem.
+- Each chapter has unnumbered closing material: recap, conceptual checks, substantial derivation/proof and transfer problems, programming/debugging laboratories, selected answers, source locators and review records.
+- Core/Advanced/Research levels and chapter prerequisites are inherited from the plan. Read a local bridge before encountering its notation or technique.
+- [Framework gaps](implementation-roadmap.md) do not remove a theoretical topic. Unsupported examples stay explicitly pending.
+- Exact subsection/equation labels, proof-source maps and problem sets are developed during drafting and review.
 
 ## Parts and chapters
-
 
 ### Part 1. Foundations and Quantum Information Primitives
 
 | Chapter | Sections | Detailed plan |
 |---|---|---|
-| 1 | 1.1–1.6 | [What Quantum Computing Computes](section-plans/01-foundations.md#chapter-1) |
-| 2 | 2.1–2.8 | [Complex Vectors, Operators, and Numerical Reasoning](section-plans/01-foundations.md#chapter-2) |
-| 3 | 3.1–3.8 | [Single-Qubit States and Rotations](section-plans/01-foundations.md#chapter-3) |
-| 4 | 4.1–4.7 | [Composite Systems, Tensor Products, and Qubit Ordering](section-plans/01-foundations.md#chapter-4) |
-| 5 | 5.1–5.8 | [Gates, Reversible Computation, and Circuit Synthesis](section-plans/01-foundations.md#chapter-5) |
-| 6 | 6.1–6.9 | [Measurement, Expectation Values, and Statistical Estimation](section-plans/01-foundations.md#chapter-6) |
-| 7 | 7.1–7.8 | [Entanglement and Quantum Information Protocols](section-plans/01-foundations.md#chapter-7) |
-| 8 | 8.1–8.8 | [Density Matrices, Reduced States, and Purification](section-plans/01-foundations.md#chapter-8) |
+| 1 | 1.1–1.6 | [What Quantum Computing Computes](section-plans/01-foundations.md#ch-what-quantum-computing-computes) |
+| 2 | 2.1–2.8 | [Complex Vectors, Operators, and Numerical Reasoning](section-plans/01-foundations.md#ch-complex-vectors-operators-and-numerical-reasoning) |
+| 3 | 3.1–3.8 | [Single-Qubit States and Rotations](section-plans/01-foundations.md#ch-single-qubit-states-and-rotations) |
+| 4 | 4.1–4.7 | [Composite Systems, Tensor Products, and Qubit Ordering](section-plans/01-foundations.md#ch-composite-systems-tensor-products-and-qubit-ordering) |
+| 5 | 5.1–5.8 | [Gates, Reversible Computation, and Circuit Synthesis](section-plans/01-foundations.md#ch-gates-reversible-computation-and-circuit-synthesis) |
+| 6 | 6.1–6.9 | [Measurement, Expectation Values, and Statistical Estimation](section-plans/01-foundations.md#ch-measurement-expectation-values-and-statistical-estimation) |
+| 7 | 7.1–7.8 | [Entanglement and Quantum Information Protocols](section-plans/01-foundations.md#ch-entanglement-and-quantum-information-protocols) |
+| 8 | 8.1–8.8 | [Density Matrices, Reduced States, and Purification](section-plans/01-foundations.md#ch-density-matrices-reduced-states-and-purification) |
 
 ### Part 2. Quantum Information: Channels, Inference, and Communication
 
 | Chapter | Sections | Detailed plan |
 |---|---|---|
-| 9 | 9.1–9.8 | [Quantum Channels and Their Representations](section-plans/02-information.md#chapter-9) |
-| 10 | 10.1–10.8 | [Distinguishability, Fidelity, and Quantum State Inference](section-plans/02-information.md#chapter-10) |
-| 11 | 11.1–11.8 | [Entropy, Relative Entropy, and Information Processing](section-plans/02-information.md#chapter-11) |
-| 12 | 12.1–12.8 | [Compression, Entanglement, and Communication Limits](section-plans/02-information.md#chapter-12) |
-| 13 | 13.1–13.8 | [Quantum Cryptography and Security Reasoning](section-plans/02-information.md#chapter-13) |
+| 9 | 9.1–9.8 | [Quantum Channels and Their Representations](section-plans/02-information.md#ch-quantum-channels-and-their-representations) |
+| 10 | 10.1–10.8 | [Distinguishability, Fidelity, and Quantum State Inference](section-plans/02-information.md#ch-distinguishability-fidelity-and-quantum-state-inference) |
+| 11 | 11.1–11.8 | [Entropy, Relative Entropy, and Information Processing](section-plans/02-information.md#ch-entropy-relative-entropy-and-information-processing) |
+| 12 | 12.1–12.8 | [Compression, Entanglement, and Communication Limits](section-plans/02-information.md#ch-compression-entanglement-and-communication-limits) |
+| 13 | 13.1–13.8 | [Quantum Cryptography and Security Reasoning](section-plans/02-information.md#ch-quantum-cryptography-and-security-reasoning) |
 
 ### Part 3. Quantum Algorithms and Computational Resources
 
 | Chapter | Sections | Detailed plan |
 |---|---|---|
-| 14 | 14.1–14.8 | [Computational Models, Complexity, and Quantum Advantage](section-plans/03-algorithms.md#chapter-14) |
-| 15 | 15.1–15.7 | [Interference, Oracles, and Phase Kickback](section-plans/03-algorithms.md#chapter-15) |
-| 16 | 16.1–16.8 | [Grover Search, Amplitude Amplification, and Estimation](section-plans/03-algorithms.md#chapter-16) |
-| 17 | 17.1–17.8 | [Fourier Transforms and Quantum Phase Estimation](section-plans/03-algorithms.md#chapter-17) |
-| 18 | 18.1–18.8 | [Period Finding, Factoring, and Algorithmic Arithmetic](section-plans/03-algorithms.md#chapter-18) |
-| 19 | 19.1–19.8 | [Hamiltonian Simulation and Error Bounds](section-plans/03-algorithms.md#chapter-19) |
-| 20 | 20.1–20.8 | [Block Encodings and Quantum Linear Algebra](section-plans/03-algorithms.md#chapter-20) |
-| 21 | 21.1–21.9 | [Quantum Signal Processing and Singular Value Transformation](section-plans/03-algorithms.md#chapter-21) |
-| 22 | 22.1–22.8 | [Quantum Walks, Lower Bounds, and Algorithm Design](section-plans/03-algorithms.md#chapter-22) |
+| 14 | 14.1–14.8 | [Computational Models, Complexity, and Quantum Advantage](section-plans/03-algorithms.md#ch-computational-models-complexity-and-quantum-advantage) |
+| 15 | 15.1–15.7 | [Interference, Oracles, and Phase Kickback](section-plans/03-algorithms.md#ch-interference-oracles-and-phase-kickback) |
+| 16 | 16.1–16.8 | [Grover Search, Amplitude Amplification, and Estimation](section-plans/03-algorithms.md#ch-grover-search-amplitude-amplification-and-estimation) |
+| 17 | 17.1–17.8 | [Fourier Transforms and Quantum Phase Estimation](section-plans/03-algorithms.md#ch-fourier-transforms-and-quantum-phase-estimation) |
+| 18 | 18.1–18.8 | [Period Finding, Factoring, and Algorithmic Arithmetic](section-plans/03-algorithms.md#ch-period-finding-factoring-and-algorithmic-arithmetic) |
+| 19 | 19.1–19.9 | [Hamiltonian Simulation and Error Bounds](section-plans/03-algorithms.md#ch-hamiltonian-simulation-and-error-bounds) |
+| 20 | 20.1–20.8 | [Block Encodings and Quantum Linear Algebra](section-plans/03-algorithms.md#ch-block-encodings-and-quantum-linear-algebra) |
+| 21 | 21.1–21.9 | [Quantum Signal Processing and Singular Value Transformation](section-plans/03-algorithms.md#ch-quantum-signal-processing-and-singular-value-transformation) |
+| 22 | 22.1–22.8 | [Quantum Walks, Lower Bounds, and Algorithm Design](section-plans/03-algorithms.md#ch-quantum-walks-lower-bounds-and-algorithm-design) |
 
 ### Part 4. Variational and Differentiable Quantum Computing
 
 | Chapter | Sections | Detailed plan |
 |---|---|---|
-| 23 | 23.1–23.10 | [Parameterized Circuits, Quantum Gradients, and Differentiation](section-plans/04-variational.md#chapter-23) |
-| 24 | 24.1–24.9 | [Optimization, Geometry, and Trainability](section-plans/04-variational.md#chapter-24) |
-| 25 | 25.1–25.9 | [Variational Simulation, Chemistry, and Ground-State Problems](section-plans/04-variational.md#chapter-25) |
-| 26 | 26.1–26.8 | [QAOA, Quantum Optimization, and Classical Comparisons](section-plans/04-variational.md#chapter-26) |
-| 27 | 27.1–27.8 | [Quantum Learning, Kernels, and Hybrid Models](section-plans/04-variational.md#chapter-27) |
+| 23 | 23.1–23.10 | [Parameterized Circuits, Quantum Gradients, and Differentiation](section-plans/04-variational.md#ch-parameterized-circuits-quantum-gradients-and-differentiation) |
+| 24 | 24.1–24.9 | [Optimization, Geometry, and Trainability](section-plans/04-variational.md#ch-optimization-geometry-and-trainability) |
+| 25 | 25.1–25.9 | [Variational Simulation, Chemistry, and Ground-State Problems](section-plans/04-variational.md#ch-variational-simulation-chemistry-and-ground-state-problems) |
+| 26 | 26.1–26.8 | [QAOA, Quantum Optimization, and Classical Comparisons](section-plans/04-variational.md#ch-qaoa-quantum-optimization-and-classical-comparisons) |
+| 27 | 27.1–27.8 | [Quantum Learning, Kernels, and Hybrid Models](section-plans/04-variational.md#ch-quantum-learning-kernels-and-hybrid-models) |
 
 ### Part 5. Noise, Error Correction, and Fault-Tolerant Computation
 
 | Chapter | Sections | Detailed plan |
 |---|---|---|
-| 28 | 28.1–28.9 | [Noise, Open Systems, and Error Mitigation](section-plans/05-fault-tolerance.md#chapter-28) |
-| 29 | 29.1–29.9 | [Quantum Error Correction: Conditions and Recovery](section-plans/05-fault-tolerance.md#chapter-29) |
-| 30 | 30.1–30.9 | [Stabilizer Codes, Logical Operators, and Decoding](section-plans/05-fault-tolerance.md#chapter-30) |
-| 31 | 31.1–31.8 | [Surface Codes and Repeated Syndrome Measurements](section-plans/05-fault-tolerance.md#chapter-31) |
-| 32 | 32.1–32.8 | [Fault-Tolerant Gates and Universal Logical Computation](section-plans/05-fault-tolerance.md#chapter-32) |
-| 33 | 33.1–33.8 | [From Logical Algorithms to Physical Resource Estimates](section-plans/05-fault-tolerance.md#chapter-33) |
+| 28 | 28.1–28.9 | [Noise, Open Systems, and Error Mitigation](section-plans/05-fault-tolerance.md#ch-noise-open-systems-and-error-mitigation) |
+| 29 | 29.1–29.9 | [Quantum Error Correction: Conditions and Recovery](section-plans/05-fault-tolerance.md#ch-quantum-error-correction-conditions-and-recovery) |
+| 30 | 30.1–30.10 | [Stabilizer Codes, Logical Operators, and Decoding](section-plans/05-fault-tolerance.md#ch-stabilizer-codes-logical-operators-and-decoding) |
+| 31 | 31.1–31.8 | [Surface Codes and Repeated Syndrome Measurements](section-plans/05-fault-tolerance.md#ch-surface-codes-and-repeated-syndrome-measurements) |
+| 32 | 32.1–32.8 | [Fault-Tolerant Gates and Universal Logical Computation](section-plans/05-fault-tolerance.md#ch-fault-tolerant-gates-and-universal-logical-computation) |
+| 33 | 33.1–33.8 | [From Logical Algorithms to Physical Resource Estimates](section-plans/05-fault-tolerance.md#ch-from-logical-algorithms-to-physical-resource-estimates) |
 
-### Part 6. Classical Simulation and the Boundary of Tractability
-
-| Chapter | Sections | Detailed plan |
-|---|---|---|
-| 34 | 34.1–34.8 | [Exact Simulation, Tensor Execution, and Numerical Reliability](section-plans/06-simulation.md#chapter-34) |
-| 35 | 35.1–35.8 | [Stabilizer Simulation, Magic, and Classical Simulability](section-plans/06-simulation.md#chapter-35) |
-| 36 | 36.1–36.8 | [Matrix Product States, Entanglement, and Truncation](section-plans/06-simulation.md#chapter-36) |
-| 37 | 37.1–37.8 | [Tensor Networks, Contraction, and Hybrid Simulation Strategies](section-plans/06-simulation.md#chapter-37) |
-
-### Part 7. From Papers to Reproducible Research
+### Part 6. Physical Realizations and Quantum-System Architecture
 
 | Chapter | Sections | Detailed plan |
 |---|---|---|
-| 38 | 38.1–38.9 | [Reading Papers, Building Evidence, and Reproducing Results](section-plans/07-research.md#chapter-38) |
-| 39 | 39.1–39.9 | [Case Study: Molecular Hydrogen from Hamiltonian to Verified VQE](section-plans/07-research.md#chapter-39) |
-| 40 | 40.1–40.9 | [Case Study: Logical Memory and Error-Correction Experiments](section-plans/07-research.md#chapter-40) |
+| 34 | 34.1–34.9 | [From Abstract Qubits to Physical Quantum Systems](section-plans/physical-platforms.md#ch-from-abstract-qubits-to-physical-quantum-systems) |
+| 35 | 35.1–35.8 | [Superconducting Qubits and Circuit-QED Control](section-plans/physical-platforms.md#ch-superconducting-qubits-and-circuit-qed-control) |
+| 36 | 36.1–36.8 | [Trapped-Ion Qubits, Motional Gates, and Transport](section-plans/physical-platforms.md#ch-trapped-ion-qubits-motional-gates-and-transport) |
+| 37 | 37.1–37.8 | [Neutral-Atom Arrays and Rydberg Quantum Computing](section-plans/physical-platforms.md#ch-neutral-atom-arrays-and-rydberg-quantum-computing) |
+| 38 | 38.1–38.9 | [Photonic Encodings, Optical Circuits, and Measurement-Based Computation](section-plans/physical-platforms.md#ch-photonic-encodings-optical-circuits-and-measurement-based-computation) |
+| 39 | 39.1–39.8 | [Semiconductor Spin Qubits and Exchange-Based Architectures](section-plans/physical-platforms.md#ch-semiconductor-spin-qubits-and-exchange-based-architectures) |
+| 40 | 40.1–40.8 | [Topological Quantum Computation and Candidate Physical Realizations](section-plans/physical-platforms.md#ch-topological-quantum-computation-and-candidate-physical-realizations) |
 
-## Coverage and integration
+### Part 7. Quantum Programming, Compilation, and Control
 
-The plan contains **40 chapters and 328 numbered sections**, organized into seven parts. The three existing starter chapters contribute material to **6**, **23** and **39**; they do not complete the corresponding section plans. The published three-chapter PDF keeps its independent sample numbering.
+| Chapter | Sections | Detailed plan |
+|---|---|---|
+| 41 | 41.1–41.9 | [Quantum Programs, Intermediate Representations, and Verified Optimization](section-plans/quantum-compilation.md#ch-quantum-programs-intermediate-representations-and-verified-optimization) |
+| 42 | 42.1–42.10 | [Gate Synthesis, Qubit Mapping, Routing, and Scheduling](section-plans/quantum-compilation.md#ch-gate-synthesis-qubit-mapping-routing-and-scheduling) |
+| 43 | 43.1–43.9 | [Control-Level Lowering, Dynamic Execution, and Logical Compilation](section-plans/quantum-compilation.md#ch-control-level-lowering-dynamic-execution-and-logical-compilation) |
 
-The chapter overview links to these detailed plans, and the chapter template requires authors to record the planned section number, prerequisite bridge, mathematical result and independent verification before drafting. Review overloaded chapters and prerequisite jumps with instructors and target readers; a numbered table of contents alone does not establish an effective course.
+### Part 8. Classical Simulation and the Boundary of Tractability
 
-## First depth pilots
+| Chapter | Sections | Detailed plan |
+|---|---|---|
+| 44 | 44.1–44.8 | [Exact Simulation, Tensor Execution, and Numerical Reliability](section-plans/06-simulation.md#ch-exact-simulation-tensor-execution-and-numerical-reliability) |
+| 45 | 45.1–45.8 | [Stabilizer Simulation, Magic, and Classical Simulability](section-plans/06-simulation.md#ch-stabilizer-simulation-magic-and-classical-simulability) |
+| 46 | 46.1–46.8 | [Matrix Product States, Entanglement, and Truncation](section-plans/06-simulation.md#ch-matrix-product-states-entanglement-and-truncation) |
+| 47 | 47.1–47.8 | [Tensor Networks, Contraction, and Hybrid Simulation Strategies](section-plans/06-simulation.md#ch-tensor-networks-contraction-and-hybrid-simulation-strategies) |
 
-- **Chapter 6:** connect postulates, conditional states, generalized measurements and statistical estimates.
-- **Chapter 23:** connect generator spectra, shared parameters, differentiation methods and estimator/resource cost.
-- **Chapter 29:** connect logical information, error spans, correction conditions and a constructed recovery.
+### Part 9. From Papers to Reproducible Research
 
-These pilots test the teaching method across foundational reasoning, modern computational methods and a substantive theorem. The [roadmap](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/ROADMAP.md) gives the writing priorities.
+| Chapter | Sections | Detailed plan |
+|---|---|---|
+| 48 | 48.1–48.9 | [Reading Papers, Building Evidence, and Reproducing Results](section-plans/07-research.md#ch-reading-papers-building-evidence-and-reproducing-results) |
+| 49 | 49.1–49.9 | [Case Study: Molecular Hydrogen from Hamiltonian to Verified VQE](section-plans/07-research.md#ch-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe) |
+| 50 | 50.1–50.9 | [Case Study: Logical Memory and Error-Correction Experiments](section-plans/07-research.md#ch-case-study-logical-memory-and-error-correction-experiments) |
+
+## Integration and review
+
+The complete plan contains **50 chapters and 416 numbered sections**. A higher count does not establish coverage, depth or readability. The [architecture-review gates](curriculum-audit.md) require coverage, dependency, workload and reader review before sustained drafting.
+
+Existing starters supply material to 6, 23 and 49. Initial depth pilots cover measurement, differentiation, correction and a hardware-to-compiler thread. Provider access and framework availability are tracked separately from the theory.
