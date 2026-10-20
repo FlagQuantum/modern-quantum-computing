@@ -1,0 +1,14 @@
+{
+  "title": "Modern Quantum Computing: A Formula-to-Code Approach",
+  "subtitle": "Theory, Algorithms, and Reproducible Experiments with FlagQuantum",
+  "author": "Wei Liu",
+  "team": "FlagQuantum Team",
+  "institution": "Beijing Academy of Artificial Intelligence (BAAI)",
+  "location": "Beijing, China",
+  "version": "0.1.0-draft.1",
+  "date": "2026-10-20",
+  "flagquantum_version": "0.3.1",
+  "repository": "https://github.com/FlagQuantum/modern-quantum-computing",
+  "content_license": "CC BY 4.0",
+  "code_license": "MIT"
+}

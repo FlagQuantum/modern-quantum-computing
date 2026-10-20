@@ -8,6 +8,18 @@ How does an equation in a quantum computing paper become a working program? This
 
 **Early draft:** three starter chapters are available. The remaining chapters are a proposed curriculum, not completed material.
 
+<!-- book-metadata:start -->
+**Wei Liu**
+
+FlagQuantum Team
+
+Beijing Academy of Artificial Intelligence (BAAI)
+
+Beijing, China
+
+**Version 0.1.0-draft.1 · 2026-10-20 · Draft**
+<!-- book-metadata:end -->
+
 ## Who this book is for
 
 Readers who know basic Python and linear algebra and want to understand quantum computing through calculations they can reproduce. Familiarity with complex numbers, matrix multiplication, eigenvalues and elementary derivatives is helpful. A planned foundations part will review these topics; it is not yet written.

@@ -5,3 +5,7 @@ site/
 vqe-results/
 .cache/
 .DS_Store
+
+build/
+output/
+tmp/

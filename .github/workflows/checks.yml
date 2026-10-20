@@ -13,6 +13,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements-docs.txt
+      - run: python scripts/build_book.py --web-metadata
+      - run: git diff --exit-code -- docs/index.md
       - run: python -m mkdocs build --strict
   examples:
     runs-on: ubuntu-latest

@@ -15,6 +15,6 @@ Complete foundations, algorithm chapters, optimization and hybrid models. Add ex
 
 ## Phase 3: publish and teach
 
-Add PDF/ebook output, course material and more paper reproductions. Choose a custom domain and a versioned publication policy. A deployment workflow is provided, but a production domain is not configured.
+The first three-chapter PDF sample pipeline is available. Expand the print edition, add ebook output, course material and more paper reproductions. Choose a custom domain and a versioned publication policy. A deployment workflow is provided, but a production domain is not configured.
 
 Progress depends on correctness, readability and reader feedback. This roadmap is not a release-date commitment.

@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Please cite the specific draft version and source revision you used."
+type: book
+title: "Modern Quantum Computing: A Formula-to-Code Approach"
+authors:
+  - family-names: Liu
+    given-names: Wei
+    affiliation: "FlagQuantum Team, Beijing Academy of Artificial Intelligence (BAAI)"
+version: 0.1.0-draft.1
+date-released: 2026-10-20
+url: https://github.com/FlagQuantum/modern-quantum-computing
+repository-code: https://github.com/FlagQuantum/modern-quantum-computing
+license: CC-BY-4.0
+abstract: "An open textbook sample connecting quantum computing formulas, FlagQuantum code, and independent verification."

@@ -1,0 +1,29 @@
+name: Build PDF sample
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned Pandoc and Tectonic
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/book-tools"
+          gh release download 3.12.1 --repo jgm/pandoc --pattern 'pandoc-3.12.1-linux-amd64.tar.gz' --dir "$RUNNER_TEMP/book-tools"
+          gh release download 'tectonic@0.17.0' --repo tectonic-typesetting/tectonic --pattern 'tectonic-0.17.0-x86_64-unknown-linux-gnu.tar.gz' --dir "$RUNNER_TEMP/book-tools"
+          tar -xzf "$RUNNER_TEMP/book-tools/pandoc-3.12.1-linux-amd64.tar.gz" -C "$RUNNER_TEMP/book-tools"
+          tar -xzf "$RUNNER_TEMP/book-tools/tectonic-0.17.0-x86_64-unknown-linux-gnu.tar.gz" -C "$RUNNER_TEMP/book-tools"
+          echo "$RUNNER_TEMP/book-tools" >> "$GITHUB_PATH"
+          echo "$RUNNER_TEMP/book-tools/pandoc-3.12.1/bin" >> "$GITHUB_PATH"
+      - run: python scripts/build_book.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: modern-quantum-computing-pdf
+          path: output/pdf/

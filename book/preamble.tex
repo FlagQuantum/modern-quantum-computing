@@ -1,0 +1,29 @@
+% Shared print styling. The build script generates a standalone TeX document.
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\definecolor{booknavy}{HTML}{17324D}
+\definecolor{bookteal}{HTML}{087E8B}
+\definecolor{codebackground}{HTML}{F3F6F8}
+\hypersetup{colorlinks=true,linkcolor=booknavy,urlcolor=bookteal,citecolor=booknavy}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\setlength{\headheight}{15pt}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.25pt}
+\titleformat{\chapter}[display]{\normalfont\color{booknavy}}{\large CHAPTER \thechapter}{0.5em}{\Huge\bfseries}
+\titlespacing*{\chapter}{0pt}{5pt}{20pt}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,breakatwhitespace=false,
+  columns=fullflexible,keepspaces=true,showstringspaces=false,
+  frame=single,framerule=0pt,backgroundcolor=\color{codebackground},
+  xleftmargin=0.8em,xrightmargin=0.8em,framexleftmargin=0.5em,
+  aboveskip=0.7em,belowskip=0.7em,tabsize=4}
+% Permit page breaks inside long source listings without reducing code size.
+\raggedbottom
+\emergencystretch=2em

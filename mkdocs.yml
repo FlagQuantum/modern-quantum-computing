@@ -1,4 +1,6 @@
 site_name: 'Modern Quantum Computing: A Formula-to-Code Approach'
+site_author: Wei Liu
+site_url: https://flagquantum.github.io/modern-quantum-computing/
 site_description: An open textbook connecting equations, FlagQuantum code, and independent verification.
 repo_url: https://github.com/FlagQuantum/modern-quantum-computing
 repo_name: FlagQuantum/modern-quantum-computing
@@ -19,6 +21,7 @@ nav:
       - Reading guide: references/reading-guide.md
       - Chapter mapping: references/chapter-mapping.md
   - Sources and validation: sources.md
+  - Editions and publication: publication.md
 markdown_extensions:
   - admonition
   - pymdownx.superfences

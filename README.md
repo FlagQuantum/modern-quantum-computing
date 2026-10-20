@@ -2,6 +2,12 @@
 
 *Theory, Algorithms, and Reproducible Experiments with FlagQuantum*
 
+**Wei Liu**
+
+FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
+
+**Version 0.1.0-draft.1 · 2026-10-20**
+
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
 **Status: early draft.** This repository contains a book plan, shared conventions, and three starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
@@ -42,6 +48,10 @@ python -m mkdocs serve
 ```
 
 Open the local URL printed by MkDocs. Use `python -m mkdocs build --strict` for a release check. GitHub Pages deployment is a separate, manually triggered workflow. No custom domain is configured yet.
+
+## PDF sample edition
+
+The print sample is generated from the same chapters and checked-in Python examples. It includes author information, a versioned cover, contents, numbered display equations, references and complete core code listings. See [editions and publication](docs/publication.md) for build commands and the manual PDF workflow. The generated LaTeX source bundle supports later scholarly preparation; this sample is not an arXiv submission.
 
 ## Contribute
 
