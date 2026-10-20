@@ -81,6 +81,16 @@
       "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
       "record": "book/section-records/2.2.json",
       "author_execution": "passed: Python3.12.14, PyTorch2.13.0 CPU complex128;6561 inner products against independent integer-coordinate references; absolute tolerance1e-12; no quantum execution"
+    },
+    "sec-complex-vectors-operators-and-numerical-reasoning-3": {
+      "state": "draft",
+      "brief": "book/briefs/ch02.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "record": "book/section-records/2.3.json",
+      "author_execution": "passed: Python3.12.14, PyTorch2.13.0 CPU complex128;625 complex inputs versus independent coordinate formulas, tolerance1e-12; no quantum execution"
     }
   },
   "existing_pilots": [

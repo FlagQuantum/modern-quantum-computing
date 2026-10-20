@@ -42,6 +42,7 @@ jobs:
       - run: python examples/foundations/learning_routes.py
       - run: python examples/foundations/complex_coordinates.py
       - run: python examples/foundations/inner_products.py
+      - run: python examples/foundations/basis_changes.py
       - run: python examples/measurement.py
       - run: python examples/gradients.py
       - run: python examples/omalley2016/h2_vqe_model.py

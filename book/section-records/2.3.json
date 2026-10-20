@@ -1,0 +1,102 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-3",
+  "ref": "2.3",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+  "question": "How can different matrices represent the same linear transformation?",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-2"
+  ],
+  "depth": "F",
+  "result": "Similarity under a change of basis",
+  "entry": "2.2 inner products/adjoints and its finite array bridge; basis, independence, coordinate map, inverse and matrix composition defined locally.",
+  "exit": "Derive B=S inverse A S, explain passive versus active transformation, and use adjoint instead of inverse only with orthonormal coordinates.",
+  "assumptions": [
+    "Finite-dimensional complex spaces and ordered bases; coordinate conversion invertible because expansions exist uniquely",
+    "Same basis conversion on input/output for similarity; separate conversions for general rectangular maps",
+    "Old and new bases orthonormal for adjoint-equals-inverse shortcut; Gram formula assumes old orthonormal coordinates",
+    "No physical interpretation asserted for an arbitrary coordinate map or linear transformation"
+  ],
+  "symbols": {
+    "V,W,T": "Input/output vector spaces and linear map",
+    "E,F,B": "Ordered bases; B denotes new basis, while output text B names new matrix",
+    "[v]_E,x,y": "Coordinate columns, old and new",
+    "A,A_B,S,I": "Old/new representation, new-to-old basis-column matrix, identity",
+    "Q,G": "Complex orthonormal conversion and Gram matrix S-adjoint times S",
+    "prime,dagger,inverse": "Output label, conjugate transpose, inverse coordinate conversion"
+  },
+  "local_start_checks": {
+    "prerequisite": "Explained author-checked2.2 draft supplies standard inner products and adjoint identity; basis, composition, inversion and active/passive definitions supplied locally.",
+    "brief": "Filled2.3 brief before prose; canonical depthF and exact2.2 prerequisite preserved.",
+    "source": "Assigned NC:2.1.2 printed63–64 and preceding basis discussion consulted from cached local user-supplied PDF; no third-party content uploaded.",
+    "independent_reference": "Explicit coordinate reconstruction and swap, independent basis-image columns, complex orthonormal overlap calculation.",
+    "scope": "No curriculum/depth/dependency/volume changes and no independent paper audit."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.1.2",
+      "edition": "10th Anniversary Edition(2010)",
+      "consulted_pages": [
+        63,
+        64
+      ],
+      "use": "Basis and linear map/matrix conventions; original coordinate-conversion proof and worked checks supply remaining argument."
+    }
+  ],
+  "proof_obligations": [
+    "Coordinate uniqueness from independence and existence from spanning",
+    "Matrix columns from basis images; linear action and matrix composition derived through finite sums",
+    "Invertible conversion x=S y and y=S inverse x justified by unique expansions",
+    "Similarity A_B=S inverse A S from input conversion, old action and output conversion; general separate-input/output rule",
+    "Adjoint inverse only when old/new bases orthonormal; unitary criterion proved via column inner products",
+    "Nonorthonormal Gram representation from2.2 adjoint identity, active/passive distinction"
+  ],
+  "implementation": {
+    "path": "examples/foundations/basis_changes.py",
+    "command": "python examples/foundations/basis_changes.py",
+    "python": "3.12.14",
+    "dependencies": "Pinned requirements-examples.txt; actual PyTorch2.13.0; no FlagQuantum API invoked",
+    "platform": "macOS ARM64 CPU",
+    "precision": "torch.complex128",
+    "author_run": "passed",
+    "checks": [
+      "625 complex coordinate inputs match direct conversion and independent swap formulas",
+      "New map from solve agrees with separately hand-derived basis-image columns",
+      "Omitted output inverse reconstructs(5,2) instead of(3,2)",
+      "Nonunitary adjoint differs from inverse; naive new-coordinate norm10 versus correct Gram norm13",
+      "Complex orthonormal basis gives explicit off-diagonal matrix(-i,i); adjoint/solve agree and plain transpose fails",
+      "Active map changes vector while passive coordinates reconstruct unchanged vector",
+      "Exactly dependent columns rejected by solver"
+    ],
+    "tolerance": "rtol0,atol1e-12 for explicit numerical comparisons",
+    "limitations": "Bounded tests do not prove general similarity or accurate conversion for nearly dependent bases; conditioning handled later. No physical quantum operation or execution claim.",
+    "expected_output_check": "Passed exact match with chapter expected-output block",
+    "script_sha256": "380cccd0ba52948ca39ce6936f1d2d71d190f23cef706e9df690652cb425084b"
+  },
+  "assessment": {
+    "checkpoint": "2.3-A",
+    "rescaled_basis": "2.3-B",
+    "adjoint_error": "2.3-C",
+    "dependent_columns": "2.3-D",
+    "active_passive_transfer": "2.3-E",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python3.12.14/PyTorch2.13.0 CPU complex128 run, exact expected-output match,625 independent coordinate reference cases, missing-inverse and adjoint counterexamples, complex orthonormal and dependent-column cases, frozen baseline/depth/prerequisite/source checks, prose scan, strict MkDocs build, links/anchors across56 pages, and browser inspection of coordinate arrows, similarity, complex matrices and Gram formula. No raw LaTeX or math-error text observed. Independent scholarly/implementation review and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 2177,
+    "page_status": "Unmeasured planning envelope; preserve complete proof while calibrating future print/reader workload.",
+    "next_draft": "2.4 Hermitian, unitary, and positive operators",
+    "pdf": "Existing PDF sample edition and version unchanged."
+  }
+}

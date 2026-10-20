@@ -1,6 +1,6 @@
 {
   "baseline": "writing-baseline-v1.0",
-  "scope": "Filled authoring briefs for2.1–2.2; remaining Chapter2 briefs not yet prepared",
+  "scope": "Filled authoring briefs for 2.1–2.3; remaining Chapter 2 briefs not yet prepared",
   "sections": [
     {
       "ref": "2.1",
@@ -20,7 +20,7 @@
       "depth": "F",
       "requires": [],
       "status": "draft",
-      "next_transition": "2.2 now has an author-checked draft; independent mathematical, implementation and reader reviews remain pending for both sections. Next production assignment is2.3."
+      "next_transition": "Sections2.1–2.3 now have author-checked drafts; independent reviews pending. Next production assignment is2.4."
     },
     {
       "ref": "2.2",
@@ -42,7 +42,29 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-1"
       ],
       "status": "draft",
-      "next_transition": "Independent mathematical, implementation and target-reader reviews pending; next draft2.3 Linear maps, bases, and changes of coordinates."
+      "next_transition": "Sections2.1–2.3 now have author-checked drafts; independent reviews pending. Next production assignment is2.4."
+    },
+    {
+      "ref": "2.3",
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-3",
+      "title": "Linear maps, bases, and changes of coordinates",
+      "question": "How can different matrices represent the same linear transformation?",
+      "entry": "2.2 inner products/adjoints and its finite array bridge; basis, independence, coordinate map, inverse and matrix composition defined locally.",
+      "exit": "Derive B=S inverse A S, explain passive versus active transformation, and use adjoint instead of inverse only with orthonormal coordinates.",
+      "worked_case": "Swap transformation, shear basis S=[[1,1],[0,1]], x=(2,3); independent direct coordinate formulas plus a complex orthonormal basis.",
+      "boundary": "Finite-dimensional linear maps; no determinant/eigenvalue machinery or physical-gate interpretation. Unitary criterion introduced locally, broader operator properties owned by2.4.",
+      "code_plan": "Complete CPU complex128 PyTorch example with explicit arithmetic reference, solve-based coordinate conversion, omitted-inverse and nonunitary-adjoint counterexamples.",
+      "independent_check": "Hand-derived nonorthogonal-basis matrix, exact integer coordinate grid, complex orthonormal-basis matrix and weighted versus naive norm.",
+      "transfer_task": "Change basis scale, diagnose same/different input-output bases, distinguish active/passive maps; accessible answers.",
+      "source_locators": [
+        "NC:2.1.2"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-2"
+      ],
+      "status": "draft",
+      "next_transition": "Independent mathematical, implementation and target-reader reviews pending; next draft2.4 Hermitian, unitary, and positive operators."
     }
   ]
 }

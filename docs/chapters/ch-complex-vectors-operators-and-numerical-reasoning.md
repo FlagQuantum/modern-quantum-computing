@@ -1,6 +1,6 @@
 # 2. Complex Vectors, Operators, and Numerical Reasoning
 
-**Working draft: sections 2.1–2.2 · Writing Baseline 1.0 · October 21, 2026.** Sections 2.3–2.8 remain planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2 adds PyTorch 2.13.0 CPU complex128 tensor checks.
+**Working draft: sections 2.1–2.3 · Writing Baseline 1.0 · October 21, 2026.** Sections 2.4–2.8 remain planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.3 add PyTorch 2.13.0 CPU complex128 tensor checks.
 
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-1"></span>
 
@@ -485,10 +485,217 @@ The finite tests validate these implementations; they do not prove Cauchy–Schw
 - **D.** A nonzero direction no longer guarantees a positive denominator, and zero residual length no longer implies zero residual vector. Positive definiteness supports both steps. Successful samples cannot replace a failed assumption; even the unconjugated dot rule passes some real-coordinate examples.
 - **E.** The numerator becomes $-2i\langle a,v\rangle$ and the denominator becomes $4\langle a,a\rangle$, giving coefficient $-ic/2$. Multiplication by $b=2ia$ yields $ca=p$. The original direction must be nonzero; the rescaling factor is also nonzero.
 
-The next planned lesson, [2.3 Linear maps, bases, and changes of coordinates](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3), develops how transformations act on coordinates and how their representations change.
+The next lesson, [2.3 Linear maps, bases, and changes of coordinates](#sec-complex-vectors-operators-and-numerical-reasoning-3), develops how transformations act on coordinates and how their representations change.
 
 ### Source, status, and limits
 
 Assigned companion source: [NC:2.1.4](../references/proof-sources.md#source-nc-2-1-4), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §2.1.4, printed pp. 65–68, especially the inner-product conventions, normalization and Box 2.1. Those pages were consulted from the previously supplied local copy. The residual-based proof here supplies its own steps and equality/zero cases; it does not depend on the book's separate Gram–Schmidt argument. The matrix bridge, worked coordinates and exercises are original exposition.
 
 Depth **F**: full derivation of orthogonal projection, nearest-point uniqueness and Cauchy–Schwarz with equality conditions for a positive-definite inner product. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.2.json) separates author execution from pending independent mathematical, implementation and reader reviews. Projection is a mathematical construction here; quantum measurement rules are not inferred from it.
+
+<span id="sec-complex-vectors-operators-and-numerical-reasoning-3"></span>
+
+## 2.3 Linear maps, bases, and changes of coordinates
+
+Two programs can store different coordinate arrays for the same vector, and different matrices for the same transformation. To compare them, we must know which basis each array uses. Matching the printed entries is not the right test; reconstructing the same vector and transformed output is.
+
+The prerequisite is [2.2](#sec-complex-vectors-operators-and-numerical-reasoning-2), including inner products, adjoints and its matrix-vector bridge. We now define bases and linear maps, derive their matrix representations, and prove the change-of-basis rule. No determinant or eigenvalue calculation is assumed.
+
+### A basis makes coordinates unique
+
+A finite complex vector space is a collection in which vector addition and multiplication by complex scalars obey the usual arithmetic rules. Our concrete model is $\mathbb C^n$ from 2.1; we also use a label $V$ for the underlying space to distinguish a vector from its chosen coordinates.
+
+An ordered collection $E=(e_1,\ldots,e_n)$ is a **basis** when it spans $V$ and is linearly independent. Spanning means every $v\in V$ can be written as $v=\sum_j x_j e_j$. Independence means the only coefficients satisfying $\sum_j c_j e_j=0$ are all zero. All coefficients are complex scalars, and the order of the vectors matters.
+
+These conditions prove uniqueness: if $\sum_j x_j e_j=\sum_j y_j e_j$, subtraction gives $\sum_j(x_j-y_j)e_j=0$, so independence forces $x_j=y_j$ for every $j$. Spanning supplies existence; independence supplies uniqueness. We write the coordinate column as
+
+$$
+[v]_E=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}.
+$$
+
+The symbol $[v]_E$ is a coordinate representation of $v$. A different basis can give a different column without changing $v$. In $\mathbb C^2$, the standard basis columns $(1,0)$ and $(0,1)$ are independent because a zero linear combination forces both coefficients to vanish, and span because $(a,b)=a(1,0)+b(0,1)$. This gives a concrete basis without invoking a general basis-existence theorem.
+
+### A linear map is determined by its basis images
+
+A map $T:V\to W$ assigns a vector of $W$ to each vector of $V$. It is **linear** when, for all complex scalars $\alpha,\beta$ and vectors $v,w$ in its input space,
+
+$$
+T(\alpha v+\beta w)=\alpha T(v)+\beta T(w).
+$$
+
+For example, swapping the two coordinates of $\mathbb C^2$ is linear: swapping a coordinatewise sum or scalar multiple gives the sum or multiple of the swapped columns. By contrast, entrywise conjugation is not complex linear: conjugating $iv$ gives $-iv^*$ rather than $iv^*$ for a nonzero $v$.
+
+Choose input basis $E=(e_1,\ldots,e_n)$ and output basis $F=(f_1,\ldots,f_m)$. Expand each basis image as $T(e_j)=\sum_i A_{ij}f_i$. These coefficients form column $j$ of an $m$-by-$n$ matrix $A$. For an arbitrary $v=\sum_j x_j e_j$, linearity gives
+
+$$
+\begin{aligned}
+T(v)&=\sum_j x_j T(e_j)\\
+    &=\sum_j x_j\sum_i A_{ij}f_i\\
+    &=\sum_i\left(\sum_j A_{ij}x_j\right)f_i.
+\end{aligned}
+$$
+
+Uniqueness of coordinates therefore proves $[T(v)]_F=A[v]_E$. Conversely, any specified matrix gives a linear rule on coordinate columns, since distributing its finite sums over $\alpha x+\beta y$ gives $\alpha Ax+\beta Ay$. Thus choosing bases relates linear maps to matrices; a matrix representation needs both its input and output basis labels.
+
+If one matrix $A$ maps input coordinates to intermediate coordinates and a second matrix $D$ maps those intermediate coordinates to final coordinates, composition means first $A$, then $D$. The final coordinate $i$ is $\sum_j D_{ij}\sum_k A_{jk}x_k$. Regrouping the finite sums gives $\sum_k(\sum_j D_{ij}A_{jk})x_k$. This defines the matrix product $(DA)_{ik}=\sum_j D_{ij}A_{jk}$ and proves the composition rule. The rightmost matrix acts first. The intermediate coordinate basis and dimensions must match.
+
+**2.3-A — Build the columns.** For the map that swaps standard-coordinate entries in $\mathbb C^2$, what are its two basis images and hence its matrix? Why are the images columns rather than rows?
+
+### Derive the coordinate conversion before transforming a matrix
+
+For a map $T:V\to V$, suppose the old basis is $E$ and the new basis is $B=(b_1,\ldots,b_n)$. Define $S$ to have column $j$ equal to $[b_j]_E$. If $y=[v]_B$, expanding $v=\sum_j y_jb_j$ in old coordinates gives
+
+$$
+x=[v]_E=Sy,\qquad y=[v]_B=S^{-1}x.
+$$
+
+Here $S^{-1}$ denotes the inverse coordinate conversion. It exists because each old coordinate column represents exactly one vector, which has exactly one new coordinate column. In particular, solving $Sy=x$ has a unique solution for every $x$. This inverse conversion is linear: if $Sy=x$ and $Sz=w$, then $S(\alpha y+\beta z)=\alpha x+\beta w$, and uniqueness identifies $\alpha y+\beta z$ as the inverse image of that combination. The matrix-representation result above therefore also applies to the inverse conversion. Its matrix satisfies $S^{-1}S=SS^{-1}=I$, where $I$ denotes the identity matrix, leaving coordinate columns unchanged. This argument uses the basis assumptions, not merely that $S$ is square.
+
+Let $A$ represent $T$ with basis $E$ for both input and output. Starting with new coordinates $y$, the three stages are
+
+$$
+y\ \xrightarrow{\ S\ }\ x\ \xrightarrow{\ A\ }\ x'
+\ \xrightarrow{\ S^{-1}\ }\ y'.
+$$
+
+The prime labels an output; it is not differentiation. Substituting gives $y'=S^{-1}ASy$ for every input $y$. Therefore the new representation, denoted $A_B$, is
+
+$$
+A_B=S^{-1}AS.
+$$
+
+This is a **similarity transformation**. It changes the representation of the same map. The final inverse is required because $ASy$ is still in the old output coordinates. Omitting it mixes coordinate types.
+
+For distinct input and output spaces with different basis conversions, the same three-stage argument gives $A_{\mathrm{new}}=S_{\mathrm{out}}^{-1}A S_{\mathrm{in}}$. Here $S_{\mathrm{in}}$ and $S_{\mathrm{out}}$ convert new coordinates to old coordinates in their respective spaces. Only when the same conversion applies on both sides does this become the displayed similarity formula.
+
+### A nonorthogonal basis exposes the missing inverse
+
+For the swap map, use the old standard basis and the new columns $b_1=(1,0)$, $b_2=(1,1)$. They span because $x=(x_1,x_2)$ equals $(x_1-x_2)b_1+x_2b_2$, and this formula is unique. Hence they are a basis. Their inner product is 1, so they are not orthogonal. The matrices are
+
+$$
+A=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+S=\begin{pmatrix}1&1\\0&1\end{pmatrix},\quad
+S^{-1}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}.
+$$
+
+The inverse follows from the explicit coefficients $y_1=x_1-x_2$, $y_2=x_2$; multiplying $S$ and this inverse in either order also gives $I$. Now calculate
+
+$$
+AS=\begin{pmatrix}0&1\\1&1\end{pmatrix},\qquad
+A_B=S^{-1}(AS)=\begin{pmatrix}-1&0\\1&1\end{pmatrix}.
+$$
+
+An independent column check avoids relying on that multiplication alone. The swap sends $b_1$ to $(0,1)=-b_1+b_2$, giving the first column $(-1,1)$. It sends $b_2$ to itself, giving the second column $(0,1)$. These are exactly the columns of $A_B$.
+
+For $x=(2,3)$, the new coordinates are $y=(-1,3)$. Applying $A_B$ gives $y'=(1,2)$, which reconstructs $Sy'=(3,2)$, exactly the direct swap output $Ax$.
+
+Now treat $AS$ as though it were the new matrix. It returns $(3,2)$ from input $y$, but those numbers are old coordinates. Interpreting them as new coordinates reconstructs $S(3,2)=(5,2)$, the wrong vector. A matrix can return plausible-looking numbers while violating its coordinate contract.
+
+### When an adjoint can replace an inverse
+
+Suppose both the old and new bases are orthonormal for the same inner product. In old orthonormal coordinates, entry $(j,k)$ of $S^\dagger S$ is the inner product of new basis vectors $b_j,b_k$. Orthonormality makes this entry 1 when $j=k$ and 0 otherwise, so $S^\dagger S=I$. Since $S$ is invertible, multiplying this equality on the right by $S^{-1}$ gives $S^\dagger=S^{-1}$, and hence also $SS^\dagger=I$.
+
+A square matrix with these two adjoint identities is called **unitary**. In this special case,
+
+$$
+A_B=S^\dagger AS.
+$$
+
+Broader properties of unitary operators belong to 2.4. Here the criterion follows directly from orthonormal columns. It does not apply to our nonorthogonal $S$, whose adjoint is $\begin{pmatrix}1&0\\1&1\end{pmatrix}$ rather than its inverse.
+
+For a complex orthonormal example, take
+
+$$
+Q=\frac1{\sqrt2}\begin{pmatrix}1&1\\i&-i\end{pmatrix}.
+$$
+
+Each column has squared length $(1+1)/2=1$, and their overlap is $(1+(-i)(-i))/2=0$. Therefore $Q^{-1}=Q^\dagger$. With the same swap map,
+
+$$
+Q^\dagger A Q=\begin{pmatrix}0&-i\\i&0\end{pmatrix}.
+$$
+
+For example, the first column comes from overlaps of the two new unit columns with $A(1,i)/\sqrt2=(i,1)/\sqrt2$: they are 0 and $i$. The second gives $-i$ and 0. This supplies a component check independent of a matrix-product routine. A plain transpose still fails because $Q$ has complex entries.
+
+The inner product also needs its coordinate convention. With the old basis orthonormal, for general $x=Sy$ the adjoint identity from 2.2 gives
+
+$$
+\langle x,x\rangle=\langle Sy,Sy\rangle
+ =y^\dagger(S^\dagger S)y.
+$$
+
+The array $G=S^\dagger S$ is called the **Gram matrix** of the new basis. It records the inner products between its columns. With an orthonormal new basis $G=I$; with our nonorthogonal basis,
+
+$$
+G=\begin{pmatrix}1&1\\1&2\end{pmatrix}.
+$$
+
+For $y=(-1,3)$, the naive coordinate sum of squared moduli is 10, but $Gy=(2,5)$ gives $y^\dagger Gy=-2+15=13$, agreeing with $\|x\|^2=4+9=13$. The vector's length did not change. The Euclidean-coordinate formula cannot be transferred unchanged to a nonorthonormal basis.
+
+### Passive coordinates and active transformations
+
+A **passive** basis change replaces $x$ by $S^{-1}x$ and changes how we interpret its entries. It represents the same underlying vector. An **active** linear transformation instead applies a map to the vector while keeping the coordinate basis fixed.
+
+For example, in the fixed standard basis, $Sx=(5,3)$ differs from $x=(2,3)$: the same array $S$ is now being used as an active map. By contrast, $y=S^{-1}x=(-1,3)$ reconstructs $Sy=x$. The role is determined by the declared input and output meanings, not by the array's entries alone. Neither a change of coordinates nor an arbitrary linear map automatically specifies a physically allowed quantum operation.
+
+### Formula to executable coordinate contracts
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/basis_changes.py) targets Python 3.12, PyTorch 2.13.0, CPU `complex128`. It uses a linear-system solver rather than explicitly constructing an inverse in routine calculations. `torch.linalg.solve(S, x)` finds the column $y$ satisfying $Sy=x$; with matrix right-hand side `A @ S`, it solves once for each column to obtain $S^{-1}AS$.
+
+| Mathematical statement | Program operation | Independent reference |
+|---|---|---|
+| New coordinates $y=S^{-1}x$ | `torch.linalg.solve(basis, x)` | Explicit $(x_1-x_2,x_2)$ |
+| New map $A_B=S^{-1}AS$ | `torch.linalg.solve(basis, matrix @ basis)` | Basis-image columns $(-1,1)$ and $(0,1)$ |
+| Same transformed vector | `basis @ (changed @ y)` | Direct coordinate swap $(x_2,x_1)$ |
+| Omitted output inverse | `wrong = matrix @ basis` | Incorrect reconstruction $(5,2)$ for the worked input |
+| Orthonormal special case | `q.mH @ matrix @ q` | Explicit matrix with off-diagonal entries $-i,i$ |
+| Preserved inner product | `torch.vdot(y, gram @ y)` | Hand-expanded 13, compared with naive 10 |
+
+Run from the repository root with the existing pinned environment:
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/basis_changes.py
+```
+
+Expected output:
+
+```text
+CPU complex128 coordinate checks; no quantum execution.
+S=[[1,1],[0,1]]; B=S^(-1) A S=[[-1,0],[1,1]]
+x=[2,3] -> new coordinates y=[-1,3] -> B*y=[1,2]
+Reconstructed output S*B*y=[3,2], equal to direct swap(x)
+Omitting output inverse gives reconstructed [5,2] (wrong)
+Squared length: old=13, naive new=10, Gram-weighted new=13
+Complex orthonormal basis: Q^H A Q=[[0,-i],[i,0]]
+625 complex inputs match independent coordinate formulas.
+Active/passive, adjoint/inverse, and dependent-column checks passed.
+```
+
+The output's `B` names the new matrix, which the prose calls $A_B$; its `Q^H` means the adjoint $Q^\dagger$. The 625 test inputs use real and imaginary parts in $-2,-1,0,1,2$ for both coordinates. Solver results are compared with the independent formulas using zero relative tolerance and $10^{-12}$ absolute tolerance. Additional cases check the complex orthonormal conversion and reject an exactly dependent column set. Nearly dependent bases need conditioning analysis; a solver returning numbers is not a guarantee of accurate coordinates. That numerical limitation is separate from the exact invertibility assumption.
+
+### Transfer and debugging
+
+**2.3-B — Rescale one basis vector.** Replace the new basis by $b_1=2e_1$, $b_2=e_2$. Derive the new representation of the swap map, and verify its action on $x=(2,3)$ by reconstructing the output.
+
+**2.3-C — Explain the failed adjoint shortcut.** Why does $S^\dagger AS$ fail for the nonorthogonal example? Would real entries alone justify replacing inverse by transpose?
+
+**2.3-D — Check the basis assumption.** Consider columns $(1,0)$ and $(2,0)$. Which basis condition fails, and can every old coordinate column be converted to a unique new column?
+
+**2.3-E — Distinguish a map from its representation.** A colleague changes both coordinates and matrix using the proved rule, then says the vector and physical device have changed. Which conclusion follows from the algebra, and which needs additional evidence?
+
+**Answers and reasoning**
+
+- **A.** The images are $e_2$ and $e_1$, giving $A=\begin{pmatrix}0&1\\1&0\end{pmatrix}$. Multiplying $A$ by coordinate column $e_j$ selects column $j$, so its entries must represent the image of that input basis vector.
+- **B.** Here $S=\begin{pmatrix}2&0\\0&1\end{pmatrix}$ and $A_B=\begin{pmatrix}0&1/2\\2&0\end{pmatrix}$. Input $x$ becomes $y=(1,3)$, which maps to $(3/2,2)$; reconstructing gives $(3,2)$.
+- **C.** The columns are not orthonormal, so $S^\dagger S\ne I$ and $S^\dagger\ne S^{-1}$. Real entries make adjoint equal transpose, but do not make either equal inverse. Orthogonality and normalization, not reality alone, justify that shortcut.
+- **D.** The columns are dependent because $2(1,0)-(2,0)=0$, and they do not span $\mathbb C^2$. For instance $(0,1)$ has no expansion; $(1,0)$ has multiple expansions. Thus a unique conversion for every column is impossible.
+- **E.** A consistent passive change preserves the vector and the linear transformation, while changing their coordinate representations. No physical-device modification or execution follows from this algebra. Such a claim needs its own operational meaning and evidence.
+
+Next, [2.4 Hermitian, unitary, and positive operators](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-4) develops operator properties whose definitions must be distinguished from a particular displayed matrix.
+
+### Source, status, and limits
+
+Assigned companion source: [NC:2.1.2](../references/proof-sources.md#source-nc-2-1-2), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §2.1.2, printed pp. 63–64. Those pages, including the preceding basis discussion, were consulted from the previously supplied local copy. They support the linear-map and matrix-representation conventions. The coordinate-conversion derivation, nonorthogonal and complex-basis checks, active/passive distinction and exercises here provide original worked exposition, rather than attributing every displayed identity to that subsection.
+
+Depth **F**: derive similarity from coordinate conversion, justify invertibility from the basis assumptions, and prove the orthonormal adjoint shortcut. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.3.json) separates author execution from pending independent mathematical, implementation and reader reviews. Numerical checks validate the bounded implementations, not the general theorem or any quantum hardware behavior.
