@@ -17,7 +17,9 @@ Beijing Academy of Artificial Intelligence (BAAI)
 
 Beijing, China
 
-**Version 0.1.0-draft.1 · 2026-10-20 · Draft**
+Correspondence: [liuwei01@baai.ac.cn](mailto:liuwei01@baai.ac.cn)
+
+**Version 0.1.0-draft.2 · 2026-10-20 · Draft**
 <!-- book-metadata:end -->
 
 ## Who this book is for

@@ -41,7 +41,7 @@ def web_metadata():
     text = path.read_text()
     block = ("<!-- book-metadata:start -->\n"
              f"**{META['author']}**\n\n{META['team']}\n\n{META['institution']}\n\n"
-             f"{META['location']}\n\n**Version {META['version']} · {META['date']} · Draft**\n"
+             f"{META['location']}\n\nCorrespondence: [{META['email']}](mailto:{META['email']})\n\n**Version {META['version']} · {META['date']} · Draft**\n"
              "<!-- book-metadata:end -->")
     pattern = r"<!-- book-metadata:start -->.*?<!-- book-metadata:end -->"
     if re.search(pattern, text, flags=re.S):
@@ -127,7 +127,7 @@ Original prose is CC BY 4.0; repository-authored code is MIT. Linked third-party
 
 Generative AI assisted prose, code and tooling. The named author is responsible for reviewing the mathematics, attribution and results before scholarly submission. Automated checks and visual inspection do not constitute peer review.
 
-Repository: <{META['repository']}>.
+Correspondence: <{META['email']}>. Repository: <{META['repository']}>.
 
 """
     conventions = chapter(ROOT / "docs/conventions.md").replace("# Notation and implementation conventions", "# Notation and conventions {.unnumbered}", 1).replace("## Validation policy", "## Validation policy {.unnumbered}")
@@ -162,7 +162,7 @@ Repository: <{META['repository']}>.
         r"{\large " + tex(META["subtitle"]) + r"\par}\vspace{1.6cm}" + "\n" +
         r"{\Large\bfseries " + tex(META["author"]) + r"\par}\vspace{0.4cm}" + "\n" +
         r"{\large " + tex(META["team"]) + r"\par " + tex(META["institution"]) + r"\par " + tex(META["location"]) + r"\par}" + "\n" +
-        r"\vfill{\large Version " + tex(META["version"]) + r"\quad Draft\par}" + "\n" +
+        r"\vspace{0.4cm}{\small\href{mailto:" + META["email"] + "}{" + tex(META["email"]) + r"}\par}\vfill{\large Version " + tex(META["version"]) + r"\quad Draft\par}" + "\n" +
         tex(META["date"]) + r"\par\vspace{0.5cm}{\small Three starter chapters / FlagQuantum " + tex(META["flagquantum_version"]) + r"\par}\end{titlepage}\pagenumbering{roman}\hypersetup{pageanchor=true}" + "\n")
     output_tex = OUT / "book.tex"
     run("pandoc", str(manuscript), "--from=markdown", "--to=latex", "--standalone",

@@ -10,17 +10,19 @@ Beijing Academy of Artificial Intelligence (BAAI)
 
 Beijing, China
 
+Correspondence: [liuwei01@baai.ac.cn](mailto:liuwei01@baai.ac.cn)
+
 The canonical author, affiliation, version and date are in `book/metadata.json`. Run `python scripts/build_book.py --web-metadata` after changing them, and commit the resulting introduction update. Contributor acknowledgements and any future changes to authorship should reflect actual contributions.
 
 ## Two reading formats
 
 The website follows the living Markdown chapters. The PDF is a fixed sample edition built from the same chapter text and the executable Python files, with a cover, contents, numbered sections and display equations, references, and complete core code listings. Wide web tables are rendered as consecutive labeled formula/code blocks for print.
 
-The first edition is **0.1.0-draft.1**, dated **2026-10-20**. It contains three starter chapters plus conventions, reproduction notes and the hydrogen model/verification listing. It is not a complete course or an arXiv submission.
+The first edition is **0.1.0-draft.2**, dated **2026-10-20**. It contains three starter chapters plus conventions, reproduction notes and the hydrogen model/verification listing. It is not a complete course or an arXiv submission.
 
 ## Download the sample
 
-[PDF sample edition](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.1/modern-quantum-computing.pdf) · [Standalone LaTeX source archive](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.1/modern-quantum-computing-source.tar.gz) · [Versioned release and manifest](https://github.com/FlagQuantum/modern-quantum-computing/releases/tag/v0.1.0-draft.1).
+[PDF sample edition](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.2/modern-quantum-computing.pdf) · [Standalone LaTeX source archive](https://github.com/FlagQuantum/modern-quantum-computing/releases/download/v0.1.0-draft.2/modern-quantum-computing-source.tar.gz) · [Versioned release and manifest](https://github.com/FlagQuantum/modern-quantum-computing/releases/tag/v0.1.0-draft.2).
 
 ## Build locally
 
