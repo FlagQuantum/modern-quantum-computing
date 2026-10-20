@@ -1,0 +1,35 @@
+name: Verify book
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-docs.txt
+      - run: python -m mkdocs build --strict
+  examples:
+    runs-on: ubuntu-latest
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-examples.txt
+      - run: python examples/measurement.py
+      - run: python examples/gradients.py
+      - run: python examples/omalley2016/h2_vqe_model.py
+      - run: python examples/omalley2016/verify_h2_vqe.py
+      - run: python examples/omalley2016/reproduce_h2_curve.py
+      - run: python examples/omalley2016/train_h2_vqe.py
+      - run: python examples/omalley2016/sample_h2_energy.py

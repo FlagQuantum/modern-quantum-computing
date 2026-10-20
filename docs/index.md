@@ -1,0 +1,30 @@
+# Modern Quantum Computing
+
+## A Formula-to-Code Approach
+
+*Theory, Algorithms, and Reproducible Experiments with FlagQuantum*
+
+How does an equation in a quantum computing paper become a working program? This open textbook follows that translation explicitly: define the conventions, derive a small result, implement it, and check the answer independently.
+
+**Early draft:** three starter chapters are available. The remaining chapters are a proposed curriculum, not completed material.
+
+## Who this book is for
+
+Readers who know basic Python and linear algebra and want to understand quantum computing through calculations they can reproduce. Familiarity with complex numbers, matrix multiplication, eigenvalues and elementary derivatives is helpful. A planned foundations part will review these topics; it is not yet written.
+
+## How to use a chapter
+
+1. State the physical question and mathematical conventions.
+2. Derive the formula before calling a simulator.
+3. Match each important expression to code.
+4. Compare the implementation with an independent reference.
+5. Change a parameter or deliberately introduce an error.
+6. Record the software version and the limits of the experiment.
+
+Start with [conventions](conventions.md), then [measurement](chapters/measurement.md), [gradients](chapters/gradients.md), and [VQE](chapters/vqe.md). The [contents](contents.md) explain the proposed learning sequence.
+
+## Scope
+
+FlagQuantum is the implementation framework. Mathematical identities are stated separately from its versioned APIs. Ideal simulation, synthetic shot sampling, and physical hardware experiments must be identified separately. A small model reproducing a paper's calculation does not reproduce its hardware experiment.
+
+The initial runtime target is FlagQuantum 0.3.1, CPU, PyTorch backend, and complex128 statevectors. See the repository README for setup commands.

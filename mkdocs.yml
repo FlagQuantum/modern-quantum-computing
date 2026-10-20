@@ -1,0 +1,26 @@
+site_name: 'Modern Quantum Computing: A Formula-to-Code Approach'
+site_description: An open textbook connecting equations, FlagQuantum code, and independent verification.
+repo_url: https://github.com/FlagQuantum/modern-quantum-computing
+repo_name: FlagQuantum/modern-quantum-computing
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - content.code.copy
+nav:
+  - Introduction: index.md
+  - Contents and status: contents.md
+  - Conventions: conventions.md
+  - Starter chapters:
+      - Measurement and expectations: chapters/measurement.md
+      - Circuits and gradients: chapters/gradients.md
+      - Hydrogen VQE: chapters/vqe.md
+  - Sources and validation: sources.md
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - assets/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js

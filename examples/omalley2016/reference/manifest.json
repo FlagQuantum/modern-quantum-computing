@@ -1,0 +1,16 @@
+{
+  "paper": "arXiv:1512.06860v2",
+  "table": "Table I",
+  "csv_sha256": "1c2bed3d1cd1ef8cf266bf669501752fc5ddfa6f2f86fc19fa381b443b8af477",
+  "flagquantum": "0.3.1",
+  "torch": "2.13.0",
+  "python": "3.12.14",
+  "matplotlib": "3.11.2",
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "device": "cpu",
+  "precision": "complex128",
+  "angle_points": 1000,
+  "geometry_points": 54,
+  "shots": null,
+  "hardware_measurements": false
+}
