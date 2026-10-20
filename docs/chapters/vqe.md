@@ -20,7 +20,8 @@ c_I&=0.2252, & c_{ZI}&=0.3435, & c_{IZ}&=-0.4347,\\
 c_{ZZ}&=0.5716, & c_{XX}&=0.0910, & c_{YY}&=0.0910.
 \end{aligned}
 $$
- The constant already includes the geometry-dependent offset; do not add another nuclear-repulsion term.
+
+The constant already includes the geometry-dependent offset; do not add another nuclear-repulsion term.
 
 **Formula → code:** `coefficients_at(0.75)` loads this labeled row; `dense_hamiltonian(coefficients)` constructs an independent 4 by 4 matrix. Both functions are in `examples/omalley2016/h2_vqe_model.py`.
 
