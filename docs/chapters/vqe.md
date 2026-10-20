@@ -106,3 +106,7 @@ The shot script is a synthetic sampling extension with fixed seeds, 65,536 shots
 4. Compare the odd-sector minimum with all four eigenvalues at every geometry.
 
 The table uses rounded coefficients and does not include the paper's finer equilibrium geometry of 0.72 angstrom. Do not infer an experimental reproduction, an exact molecular potential, or a hardware accuracy claim from this ideal calculation.
+
+## Further reading
+
+Use citation key `omalley_2016` in the [BibTeX bibliography](../references/references.bib), and cite corrected arXiv v2 for the numerical table. The [chapter mapping](../references/chapter-mapping.md) identifies the paper locations used by this starter.

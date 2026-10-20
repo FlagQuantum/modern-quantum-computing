@@ -14,4 +14,6 @@ The full curriculum below is a proposal. Only the three linked starter chapters 
 
 Measurement assumes complex vectors and matrix products. Gradients build on measurement and elementary calculus. VQE builds on both starter chapters, tensor products, and eigenvalue problems. All examples use the shared [conventions](conventions.md).
 
+See the [chapter-to-reference mapping](references/chapter-mapping.md) for targeted readings and independent verification goals.
+
 See [source notes](sources.md) for paper provenance and validation scope.

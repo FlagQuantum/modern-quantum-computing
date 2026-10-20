@@ -11,6 +11,7 @@ An open English textbook that connects quantum computing equations to executable
 - [Book introduction](docs/index.md)
 - [Contents and chapter status](docs/contents.md)
 - [Notation and conventions](docs/conventions.md)
+- [Reference reading guide](docs/references/reading-guide.md) · [Chapter mapping](docs/references/chapter-mapping.md) · [BibTeX bibliography](docs/references/references.bib)
 - [Measurement and expectation values](docs/chapters/measurement.md)
 - [Parameterized circuits and gradients](docs/chapters/gradients.md)
 - [Molecular hydrogen VQE: from a paper to code](docs/chapters/vqe.md)

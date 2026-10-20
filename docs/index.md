@@ -28,3 +28,7 @@ Start with [conventions](conventions.md), then [measurement](chapters/measuremen
 FlagQuantum is the implementation framework. Mathematical identities are stated separately from its versioned APIs. Ideal simulation, synthetic shot sampling, and physical hardware experiments must be identified separately. A small model reproducing a paper's calculation does not reproduce its hardware experiment.
 
 The initial runtime target is FlagQuantum 0.3.1, CPU, PyTorch backend, and complex128 statevectors. See the repository README for setup commands.
+
+## Further reading
+
+The [reference reading guide](references/reading-guide.md) introduces six textbooks and lecture-note collections, plus primary papers used by the starter chapters. The [chapter mapping](references/chapter-mapping.md) suggests targeted readings and separates drafted material from the proposed curriculum.

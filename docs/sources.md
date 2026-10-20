@@ -17,3 +17,7 @@ The reference curve is a calculation using the rounded paper table. It is not ex
 ## Attribution and licensing
 
 Original book prose is CC BY 4.0 and repository-authored code is MIT. These licenses do not relicense the cited paper or any third-party material. Cite the original scientific work when using its model or data.
+
+## Bibliography and reading paths
+
+The [reading guide](references/reading-guide.md) identifies reference editions, official access links and editorial uses. The [chapter mapping](references/chapter-mapping.md) connects readings to existing and planned chapters. [Download the BibTeX bibliography](references/references.bib) for six textbook/lecture-note entries and two primary papers. Citation keys identify sources; chapters still need precise locators for any specific result they adapt.

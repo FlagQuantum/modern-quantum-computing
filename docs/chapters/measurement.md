@@ -45,3 +45,7 @@ Analytic and FlagQuantum results agree.
 3. Derive the variance $\mathrm{Var}(Z)=1-\langle Z\rangle^2$ and the standard error for independent shots.
 
 This program evaluates exact ideal-state probabilities and expectations. It does not generate finite-shot measurements or model noise.
+
+## Further reading
+
+Read NC Chapter 2 or Preskill Chapter 3, *Measurement and Evolution* (July 2015), as listed in the [reading guide](../references/reading-guide.md). These are optional companion readings; the derivation above is self-contained.

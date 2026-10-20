@@ -15,6 +15,9 @@ nav:
       - Measurement and expectations: chapters/measurement.md
       - Circuits and gradients: chapters/gradients.md
       - Hydrogen VQE: chapters/vqe.md
+  - References:
+      - Reading guide: references/reading-guide.md
+      - Chapter mapping: references/chapter-mapping.md
   - Sources and validation: sources.md
 markdown_extensions:
   - admonition
