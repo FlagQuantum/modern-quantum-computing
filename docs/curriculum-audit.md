@@ -9,6 +9,7 @@
 | Foundations and quantum information | 1–13: postulates, mathematics, protocols, channels, inference, entropy, coding/security | Section targets specified; exact proof/source maps and workload review pending |
 | Algorithmic models and resources | 14–22: gate/oracle models, search, estimation, arithmetic, dynamics, block encodings, QSVT, walks/lower bounds | Section targets specified; advanced proof selection pending |
 | Other computational models | Adiabatic bridge in 19; graph-state/measurement-based bridge in 30; analog and optical models in 34, 37–38 | Bridges added; specialist review and route testing pending |
+| Quantum-classical integration | [Eight-pattern map](hybrid-computing.md), introduced in 14.7; inference, optimization/learning, embedding, adaptive feedback, reconstruction and heterogeneous execution | Cross-cutting map and method-specific sections specified; mathematical/API/workflow review pending |
 | Differentiable and variational computation | 23–27: spectral derivatives, optimization/geometry, chemistry, QAOA, learning | Section targets specified; three current starters do not complete this route |
 | Noise, correction and logical computation | 28–33: physical error models through correction, decoding, fault tolerance and physical-resource budgets | Section targets specified; proof, noise-model and workload review pending |
 | Physical realization | 34 common bridge; 35 superconducting; 36 trapped ions; 37 neutral atoms; 38 photonics; 39 semiconductor spins; 40 topology/candidates | Formal main-text routes added; source scoping only, no comprehensive platform review claimed |
@@ -38,6 +39,7 @@ Semiconductor spins are included alongside the five requested routes. Further en
 | Hardware chapters assuming unseen physics | Common oscillator/drive/measurement bridge in 34 and local circuit/atomic/optical/spin bridges | First-use physics and notation audit for each chosen branch |
 | Resource chapter requiring every hardware specialty | 33 states abstract parameters; 34 explains their origin; comparison uses selected branch summaries | Complete example with assumptions and sensitivity |
 | Compilation without a physical target contract | 34 plus one branch before 41–42; 43 adds control/logical prerequisites | One complete target description and semantic-preservation test |
+| Hybrid computation reduced to a trainable quantum layer | Eight composable patterns, with host/controller/device boundaries and an early 14.7 map | Each chosen pattern has an independent contract, total-cost record and a transfer task |
 | Physical transport treated as a cost-free logical SWAP | Platform models distinguish motion, interaction, mapping and output interpretation | Target-specific schedule/resource comparison |
 | Broad hardware tour interrupting the first course | Common core plus a selected branch; no sequential requirement to master 35–40 | Tested introductory and hardware/compiler course routes |
 
@@ -49,6 +51,8 @@ This ledger is a review agenda, not a declaration that the missing bridges have 
 |---|---|---|
 | One entangling-state preparation | Abstract circuit to two contrasting explicitly modeled targets | Exact logical contract, input/output map, legal operations, timing assumptions and independent reference |
 | One dynamic measurement/correction | Conditional branches through classical control and readout | Branch probabilities/maps, correction record, latency and no silent postselection |
+| One host-driven hybrid loop | Objective/estimator or embedded solve across classical and quantum tasks | Typed records, independent reference, checkpoint/state, latency and all sampling/classical costs |
+| One cut/reconstructed result | A declared observable from smaller fragment executions | Exact uncut comparison, signed coefficients, variance/shot costs and no claim of coherent distributed execution |
 | One logical rotation | Approximate synthesis to a declared logical gate set and resource model | Error budget, T/factory/scheduling cost and traceable assumptions |
 | One physical-control calculation | Effective multilevel or coupled-mode dynamics | Units, frame convention, truncation convergence, leakage/loss interpretation and reference solver |
 

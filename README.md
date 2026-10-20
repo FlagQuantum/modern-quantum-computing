@@ -15,6 +15,7 @@ An open English textbook that connects quantum computing equations to executable
 ## Start reading
 
 - [Book introduction](docs/index.md)
+- [Quantum-classical hybrid patterns and implementations](docs/hybrid-computing.md)
 - [Curriculum audit and freeze gates](docs/curriculum-audit.md) · [Reader continuity](docs/reader-continuity.md)
 - [Editorial charter](docs/editorial-charter.md) · [FlagQuantum capability-gap workflow](docs/implementation-roadmap.md)
 - [Full contents: nine parts and 50 chapters](docs/contents.md) · [Detailed chapter plan](docs/book-plan.md) · [Numbered section plans](docs/section-plan.md)

@@ -30,6 +30,8 @@ The subject determines the scope. Required missing capabilities are investigated
 
 The expanded plan is under [architecture review](curriculum-audit.md), with explicit [reader-continuity requirements](reader-continuity.md). It is not frozen or approved merely because its sections have been listed.
 
+The [quantum-classical hybrid map](hybrid-computing.md) connects eight composable algorithm/runtime patterns, their implementation contracts and their chapter homes.
+
 ## Who this book is for
 
 Readers who know basic Python and linear algebra and want to understand quantum computing through calculations they can reproduce. Familiarity with complex numbers, matrix multiplication, eigenvalues and elementary derivatives is helpful. A planned foundations part will review these topics; it is not yet written.

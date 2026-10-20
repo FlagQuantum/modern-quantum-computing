@@ -14,6 +14,7 @@
 - Error/resource assumptions and interpretation:
 - Transfer problem and accessible answer/hint path:
 - Implementation status and confirmed upstream gap, if any:
+- For hybrid work: pattern, typed payloads, host/controller/device boundary, state lifetime, derivative/estimator strategy, full loop cost and checkpoint/retry semantics:
 - Reader-review observation, missing step identified, repair and recheck:
 - Approximate page/worked-example/problem budget and architecture-review finding:
 

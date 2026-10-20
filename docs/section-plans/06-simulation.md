@@ -254,7 +254,7 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Tensor Networks, Contraction, and Hybrid Simulation Strategies**
 
-**Reading level:** Advanced. **Chapter prerequisites:** 14, 44, 46.
+**Reading level:** Advanced. **Chapter prerequisites:** 6, 9, 14, 44, 46.
 
 <span id="sec-tensor-networks-contraction-and-hybrid-simulation-strategies-1"></span>
 <span id="371-circuits-as-indexed-tensor-networks"></span>
@@ -301,10 +301,27 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Implementation and evidence target:** Compare equivalent requested outputs and avoid misleading benchmark substitutions.
 
+<span id="sec-circuit-cutting-reconstruction"></span>
+
+### 47.6 Circuit cutting and classical reconstruction
+
+**Learning and derivation target:** Derive a small cut decomposition with coefficients, fragment preparation/measurement settings and a precisely requested reconstructed observable.
+
+**Implementation and evidence target:** Compare a cut/reconstructed expectation with the complete uncut circuit; account for all fragment settings and distinguish this from distributed coherent execution.
+
+<span id="sec-circuit-cutting-statistics"></span>
+
+### 47.7 Reconstruction variance and sampling overhead
+
+**Learning and derivation target:** Derive a scoped variance/shot-allocation relation including signed coefficients and state the noise/independence assumptions.
+
+**Implementation and evidence target:** Compare repeated reconstructed estimates with an exact reference; report coefficient norm, settings, total shots and cases of prohibitive overhead.
+
 <span id="sec-tensor-networks-contraction-and-hybrid-simulation-strategies-6"></span>
 <span id="376-hybrid-and-distributed-strategies"></span>
+<span id="476-hybrid-and-distributed-strategies"></span>
 
-### 47.6 Hybrid and distributed strategies
+### 47.8 Hybrid and distributed strategies
 
 **Learning and derivation target:** Explain partitioning and a selected statevector/network or sliced execution strategy.
 
@@ -312,8 +329,9 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 <span id="sec-tensor-networks-contraction-and-hybrid-simulation-strategies-7"></span>
 <span id="377-approximation-and-numerical-reliability"></span>
+<span id="477-approximation-and-numerical-reliability"></span>
 
-### 47.7 Approximation and numerical reliability
+### 47.9 Approximation and numerical reliability
 
 **Learning and derivation target:** State any approximations and contraction/rounding validation criteria.
 
@@ -321,8 +339,9 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 <span id="sec-tensor-networks-contraction-and-hybrid-simulation-strategies-8"></span>
 <span id="378-tensor-network-laboratory"></span>
+<span id="478-tensor-network-laboratory"></span>
 
-### 47.8 Tensor-network laboratory
+### 47.10 Tensor-network laboratory
 
 **Learning and derivation target:** Choose a workload, path, memory limit and precise output contract.
 

@@ -14,6 +14,7 @@ nav:
   - Editorial charter: editorial-charter.md
   - Curriculum audit: curriculum-audit.md
   - Reader continuity: reader-continuity.md
+  - Quantum-classical hybrid computing: hybrid-computing.md
   - Contents and status: contents.md
   - Full book plan: book-plan.md
   - Detailed section plans:
@@ -38,6 +39,7 @@ nav:
       - Reading guide: references/reading-guide.md
       - Chapter mapping: references/chapter-mapping.md
       - Compilation and physical platforms: references/compilation-and-platforms.md
+      - Hybrid-computing sources: references/hybrid-computing.md
       - Nielsen–Chuang design review: references/nielsen-chuang-design-review.md
       - Quantum Country design review: references/quantum-country-design-review.md
   - Sources and validation: sources.md

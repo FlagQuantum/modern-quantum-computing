@@ -95,9 +95,11 @@ def render():
             for j, s in enumerate(c["sections"], 1):
                 current = slug(f"{n}.{j} {s['title']}")
                 detailed += [f'\n<span id="{s["id"]}"></span>\n']
-                legacy = s.get("legacy_anchor")
-                if legacy and legacy != current:
-                    detailed += [f'<span id="{legacy}"></span>\n']
+                aliases = set(s.get("aliases", []))
+                if s.get("legacy_anchor"):
+                    aliases.add(s["legacy_anchor"])
+                for alias in sorted(aliases - {current, s["id"]}):
+                    detailed += [f'<span id="{alias}"></span>\n']
                 detailed += [
                     f"\n### {n}.{j} {s['title']}\n\n",
                     f"**Learning and derivation target:** {s['theory']}\n\n",

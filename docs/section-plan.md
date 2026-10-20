@@ -1,6 +1,6 @@
 # Detailed chapter and section plan
 
-**Revision: 2026-10-20.** 9 parts, 50 chapters and 416 numbered sections. **Architecture status: review pending, not frozen.**
+**Revision: 2026-10-20.** 9 parts, 50 chapters and 423 numbered sections. **Architecture status: review pending, not frozen.**
 
 Each section has a learning/derivation target and an implementation/evidence target. These are authoring specifications, not completed sections or validated APIs. See the [curriculum audit](curriculum-audit.md), [reader-continuity standard](reader-continuity.md), and [full book plan](book-plan.md).
 
@@ -43,7 +43,7 @@ Each section has a learning/derivation target and an implementation/evidence tar
 
 | Chapter | Sections | Detailed plan |
 |---|---|---|
-| 14 | 14.1–14.8 | [Computational Models, Complexity, and Quantum Advantage](section-plans/03-algorithms.md#ch-computational-models-complexity-and-quantum-advantage) |
+| 14 | 14.1–14.9 | [Computational Models, Complexity, and Quantum Advantage](section-plans/03-algorithms.md#ch-computational-models-complexity-and-quantum-advantage) |
 | 15 | 15.1–15.7 | [Interference, Oracles, and Phase Kickback](section-plans/03-algorithms.md#ch-interference-oracles-and-phase-kickback) |
 | 16 | 16.1–16.8 | [Grover Search, Amplitude Amplification, and Estimation](section-plans/03-algorithms.md#ch-grover-search-amplitude-amplification-and-estimation) |
 | 17 | 17.1–17.8 | [Fourier Transforms and Quantum Phase Estimation](section-plans/03-algorithms.md#ch-fourier-transforms-and-quantum-phase-estimation) |
@@ -59,7 +59,7 @@ Each section has a learning/derivation target and an implementation/evidence tar
 |---|---|---|
 | 23 | 23.1–23.10 | [Parameterized Circuits, Quantum Gradients, and Differentiation](section-plans/04-variational.md#ch-parameterized-circuits-quantum-gradients-and-differentiation) |
 | 24 | 24.1–24.9 | [Optimization, Geometry, and Trainability](section-plans/04-variational.md#ch-optimization-geometry-and-trainability) |
-| 25 | 25.1–25.9 | [Variational Simulation, Chemistry, and Ground-State Problems](section-plans/04-variational.md#ch-variational-simulation-chemistry-and-ground-state-problems) |
+| 25 | 25.1–25.12 | [Variational Simulation, Chemistry, and Ground-State Problems](section-plans/04-variational.md#ch-variational-simulation-chemistry-and-ground-state-problems) |
 | 26 | 26.1–26.8 | [QAOA, Quantum Optimization, and Classical Comparisons](section-plans/04-variational.md#ch-qaoa-quantum-optimization-and-classical-comparisons) |
 | 27 | 27.1–27.8 | [Quantum Learning, Kernels, and Hybrid Models](section-plans/04-variational.md#ch-quantum-learning-kernels-and-hybrid-models) |
 
@@ -92,7 +92,7 @@ Each section has a learning/derivation target and an implementation/evidence tar
 |---|---|---|
 | 41 | 41.1–41.9 | [Quantum Programs, Intermediate Representations, and Verified Optimization](section-plans/quantum-compilation.md#ch-quantum-programs-intermediate-representations-and-verified-optimization) |
 | 42 | 42.1–42.10 | [Gate Synthesis, Qubit Mapping, Routing, and Scheduling](section-plans/quantum-compilation.md#ch-gate-synthesis-qubit-mapping-routing-and-scheduling) |
-| 43 | 43.1–43.9 | [Control-Level Lowering, Dynamic Execution, and Logical Compilation](section-plans/quantum-compilation.md#ch-control-level-lowering-dynamic-execution-and-logical-compilation) |
+| 43 | 43.1–43.10 | [Control-Level Lowering, Dynamic Execution, and Logical Compilation](section-plans/quantum-compilation.md#ch-control-level-lowering-dynamic-execution-and-logical-compilation) |
 
 ### Part 8. Classical Simulation and the Boundary of Tractability
 
@@ -101,7 +101,7 @@ Each section has a learning/derivation target and an implementation/evidence tar
 | 44 | 44.1–44.8 | [Exact Simulation, Tensor Execution, and Numerical Reliability](section-plans/06-simulation.md#ch-exact-simulation-tensor-execution-and-numerical-reliability) |
 | 45 | 45.1–45.8 | [Stabilizer Simulation, Magic, and Classical Simulability](section-plans/06-simulation.md#ch-stabilizer-simulation-magic-and-classical-simulability) |
 | 46 | 46.1–46.8 | [Matrix Product States, Entanglement, and Truncation](section-plans/06-simulation.md#ch-matrix-product-states-entanglement-and-truncation) |
-| 47 | 47.1–47.8 | [Tensor Networks, Contraction, and Hybrid Simulation Strategies](section-plans/06-simulation.md#ch-tensor-networks-contraction-and-hybrid-simulation-strategies) |
+| 47 | 47.1–47.10 | [Tensor Networks, Contraction, and Hybrid Simulation Strategies](section-plans/06-simulation.md#ch-tensor-networks-contraction-and-hybrid-simulation-strategies) |
 
 ### Part 9. From Papers to Reproducible Research
 
@@ -113,6 +113,6 @@ Each section has a learning/derivation target and an implementation/evidence tar
 
 ## Integration and review
 
-The complete plan contains **50 chapters and 416 numbered sections**. A higher count does not establish coverage, depth or readability. The [architecture-review gates](curriculum-audit.md) require coverage, dependency, workload and reader review before sustained drafting.
+The complete plan contains **50 chapters and 423 numbered sections**. A higher count does not establish coverage, depth or readability. The [architecture-review gates](curriculum-audit.md) require coverage, dependency, workload and reader review before sustained drafting.
 
 Existing starters supply material to 6, 23 and 49. Initial depth pilots cover measurement, differentiation, correction and a hardware-to-compiler thread. Provider access and framework availability are tracked separately from the theory.

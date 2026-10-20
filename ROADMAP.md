@@ -1,6 +1,6 @@
 # Roadmap
 
-The [editorial charter](docs/editorial-charter.md) defines the educational mission. The current [nine-part, 50-chapter architecture](docs/book-plan.md) has **416 numbered sections** and is **under review, not frozen**. The [curriculum audit](docs/curriculum-audit.md) records remaining gates.
+The [editorial charter](docs/editorial-charter.md) defines the educational mission. The current [nine-part, 50-chapter architecture](docs/book-plan.md) has **423 numbered sections** and is **under review, not frozen**. The [curriculum audit](docs/curriculum-audit.md) records remaining gates.
 
 ## Established planning artifacts
 
@@ -10,6 +10,7 @@ The [editorial charter](docs/editorial-charter.md) defines the educational missi
 - [x] Main-text routes for information theory, algorithms, differentiation, fault tolerance, physical platforms, compilation, simulation and research.
 - [x] Numbered learning/derivation and evidence targets, stable IDs and reproducible generation of planning views.
 - [x] Reader-continuity, review and confirmed-capability-gap reporting standards.
+- [x] [Eight quantum-classical hybrid patterns](docs/hybrid-computing.md), including method-specific sections and host/controller/device boundaries.
 
 These are artifacts, not evidence that the complete theory, implementation or teaching architecture has passed review.
 

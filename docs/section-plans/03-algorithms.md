@@ -60,17 +60,27 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Implementation and evidence target:** Build an auditable cost table including preparation and readout.
 
-<span id="sec-computational-models-complexity-and-quantum-advantage-7"></span>
+<span id="sec-hybrid-interaction-map"></span>
 
-### 14.7 Classical baselines and advantage claims
+### 14.7 Quantum-classical interaction patterns
+
+**Learning and derivation target:** Distinguish subroutine pipelines, outer optimization, hybrid learning, inference/reconstruction, decomposition/embedding and in-execution feedback; separate algorithm structure from runtime architecture.
+
+**Implementation and evidence target:** Draw a typed data/control flow for a small task; identify host, device, measurement records, feedback boundary and complete resource costs.
+
+<span id="sec-computational-models-complexity-and-quantum-advantage-7"></span>
+<span id="147-classical-baselines-and-advantage-claims"></span>
+
+### 14.8 Classical baselines and advantage claims
 
 **Learning and derivation target:** State what evidence supports an empirical or asymptotic comparison.
 
 **Implementation and evidence target:** Diagnose omitted costs, unmatched error tolerances and inappropriate baselines.
 
 <span id="sec-computational-models-complexity-and-quantum-advantage-8"></span>
+<span id="148-resource-audit-laboratory"></span>
 
-### 14.8 Resource-audit laboratory
+### 14.9 Resource-audit laboratory
 
 **Learning and derivation target:** Turn an informal algorithm claim into an explicit access and cost specification.
 

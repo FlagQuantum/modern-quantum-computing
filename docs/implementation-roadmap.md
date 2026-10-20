@@ -38,6 +38,7 @@ These are **unassessed curriculum requirements**, not confirmed software deficie
 | 34–40 | Physical levels/modes, effective Hamiltonians, driven controls, readout, leakage/loss and constraint records | Truncation convergence, frame/unit checks and complete model-to-observable references | Not assessed |
 | 41–43 | Program/IR semantics, compiler passes, synthesis, mapping/routing, timing, dynamic control and target lowering | Exact/conditional-map equivalence, legality, output mapping and explicit approximate-error contracts | Not assessed |
 | 44, 46–47 | Exact/approximate executors, truncation records and contraction/resource reporting | Known exact states, explicit approximation settings and independently checked error/cost metrics | Not assessed |
+| 14, 25, 27, 43, 47 | Hybrid calls, estimator/derivative records, embedding/solver data, fragment manifests, local feedback and host workflow state | Independent small workflow, typed boundaries, branch semantics, uncertainty and end-to-end costs | Not assessed |
 | 48–50 | Experiment records, deterministic replay and result/uncertainty export | Reproduce a declared claim from pinned inputs with provenance and discrepancy reporting | Not assessed |
 
 Issue granularity follows the actual architecture. A high-level scientific protocol may use existing composable operations and need only a textbook implementation. Do not request a new framework API for every chapter.

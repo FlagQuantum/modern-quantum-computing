@@ -977,7 +977,7 @@
             5,
             6
           ],
-          "summary": "Circuit families; reversible models; BQP and promise problems; query versus gate cost; precision; classical baselines.",
+          "summary": "Circuit families; reversible models; BQP and promise problems; query versus gate cost; precision; classical baselines. Includes an early map of quantum-classical interaction patterns.",
           "outcome": "Relate input/output access assumptions to a complete resource expression.",
           "verification": "Audit examples including state preparation, oracle synthesis, repetitions and readout; avoid simulator-time speedup claims.",
           "legacy_number": 14,
@@ -987,56 +987,86 @@
               "title": "Problems, input length, and computational models",
               "theory": "Define families of problems and distinguish finite examples from algorithms.",
               "evidence": "Specify task size and required output for representative problems.",
-              "legacy_anchor": "141-problems-input-length-and-computational-models"
+              "legacy_anchor": "141-problems-input-length-and-computational-models",
+              "aliases": [
+                "141-problems-input-length-and-computational-models"
+              ]
             },
             {
               "id": "sec-computational-models-complexity-and-quantum-advantage-2",
               "title": "Reversible computation and uniform circuit families",
               "theory": "Explain uniformity, classical control and efficient circuit generation.",
               "evidence": "Audit a circuit generator's workspace and construction cost.",
-              "legacy_anchor": "142-reversible-computation-and-uniform-circuit-families"
+              "legacy_anchor": "142-reversible-computation-and-uniform-circuit-families",
+              "aliases": [
+                "142-reversible-computation-and-uniform-circuit-families"
+              ]
             },
             {
               "id": "sec-computational-models-complexity-and-quantum-advantage-3",
               "title": "Complexity classes and bounded error",
               "theory": "Introduce P, BPP, BQP and promise problems at the declared level.",
               "evidence": "Classify model assumptions and avoid claiming unproved class separations.",
-              "legacy_anchor": "143-complexity-classes-and-bounded-error"
+              "legacy_anchor": "143-complexity-classes-and-bounded-error",
+              "aliases": [
+                "143-complexity-classes-and-bounded-error"
+              ]
             },
             {
               "id": "sec-computational-models-complexity-and-quantum-advantage-4",
               "title": "Oracle and data-access models",
               "theory": "Distinguish black-box queries, explicit circuits and classical data loading.",
               "evidence": "Compare costs when the same oracle is free versus synthesized.",
-              "legacy_anchor": "144-oracle-and-data-access-models"
+              "legacy_anchor": "144-oracle-and-data-access-models",
+              "aliases": [
+                "144-oracle-and-data-access-models"
+              ]
             },
             {
               "id": "sec-computational-models-complexity-and-quantum-advantage-5",
               "title": "Accuracy, repetition, and success probability",
               "theory": "Derive a representative amplification/repetition argument.",
               "evidence": "Count runs and requested precision in a small complete task.",
-              "legacy_anchor": "145-accuracy-repetition-and-success-probability"
+              "legacy_anchor": "145-accuracy-repetition-and-success-probability",
+              "aliases": [
+                "145-accuracy-repetition-and-success-probability"
+              ]
             },
             {
               "id": "sec-computational-models-complexity-and-quantum-advantage-6",
               "title": "Complete resource accounting",
               "theory": "Combine gates, depth, ancillas, measurements and classical processing.",
               "evidence": "Build an auditable cost table including preparation and readout.",
-              "legacy_anchor": "146-complete-resource-accounting"
+              "legacy_anchor": "146-complete-resource-accounting",
+              "aliases": [
+                "146-complete-resource-accounting"
+              ]
+            },
+            {
+              "id": "sec-hybrid-interaction-map",
+              "title": "Quantum-classical interaction patterns",
+              "theory": "Distinguish subroutine pipelines, outer optimization, hybrid learning, inference/reconstruction, decomposition/embedding and in-execution feedback; separate algorithm structure from runtime architecture.",
+              "evidence": "Draw a typed data/control flow for a small task; identify host, device, measurement records, feedback boundary and complete resource costs."
             },
             {
               "id": "sec-computational-models-complexity-and-quantum-advantage-7",
               "title": "Classical baselines and advantage claims",
               "theory": "State what evidence supports an empirical or asymptotic comparison.",
               "evidence": "Diagnose omitted costs, unmatched error tolerances and inappropriate baselines.",
-              "legacy_anchor": "147-classical-baselines-and-advantage-claims"
+              "legacy_anchor": "147-classical-baselines-and-advantage-claims",
+              "aliases": [
+                "147-classical-baselines-and-advantage-claims"
+              ]
             },
             {
               "id": "sec-computational-models-complexity-and-quantum-advantage-8",
               "title": "Resource-audit laboratory",
               "theory": "Turn an informal algorithm claim into an explicit access and cost specification.",
               "evidence": "Recompute conclusions when input access or target accuracy changes.",
-              "legacy_anchor": "148-resource-audit-laboratory"
+              "legacy_anchor": "148-resource-audit-laboratory",
+              "aliases": [
+                "148-resource-audit-laboratory"
+              ]
             }
           ]
         },
@@ -1678,70 +1708,100 @@
               "title": "Parameterized quantum models and tensor contracts",
               "theory": "Define states, observable-valued outputs, parameter occurrences and batch dimensions.",
               "evidence": "Check a batched model against separate scalar executions.",
-              "legacy_anchor": "231-parameterized-quantum-models-and-tensor-contracts"
+              "legacy_anchor": "231-parameterized-quantum-models-and-tensor-contracts",
+              "aliases": [
+                "231-parameterized-quantum-models-and-tensor-contracts"
+              ]
             },
             {
               "id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-2",
               "title": "Differentiating a unitary expectation",
               "theory": "Derive the expectation derivative with explicit complex conjugation and real-parameter assumptions.",
               "evidence": "Compare a generator-based expression with dense derivatives.",
-              "legacy_anchor": "232-differentiating-a-unitary-expectation"
+              "legacy_anchor": "232-differentiating-a-unitary-expectation",
+              "aliases": [
+                "232-differentiating-a-unitary-expectation"
+              ]
             },
             {
               "id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-3",
               "title": "The single-Pauli parameter-shift rule",
               "theory": "Derive the shift and prefactor from the generator's two eigenvalues.",
               "evidence": "Expand the existing starter with analytic and shifted-execution checks.",
-              "legacy_anchor": "233-the-single-pauli-parameter-shift-rule"
+              "legacy_anchor": "233-the-single-pauli-parameter-shift-rule",
+              "aliases": [
+                "233-the-single-pauli-parameter-shift-rule"
+              ]
             },
             {
               "id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-4",
               "title": "Generator spectra and generalized shift rules [Advanced]",
               "theory": "Explain how spectral gaps determine the frequency structure and valid rules.",
               "evidence": "Test a multi-eigenvalue example against an independent spectral reference.",
-              "legacy_anchor": "234-generator-spectra-and-generalized-shift-rules-advanced"
+              "legacy_anchor": "234-generator-spectra-and-generalized-shift-rules-advanced",
+              "aliases": [
+                "234-generator-spectra-and-generalized-shift-rules-advanced"
+              ]
             },
             {
               "id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-5",
               "title": "Shared parameters and classical reparameterization",
               "theory": "Derive the sum over occurrences and the classical chain rule.",
               "evidence": "Check a reused parameter and a scaled angle; diagnose a missing chain-rule factor.",
-              "legacy_anchor": "235-shared-parameters-and-classical-reparameterization"
+              "legacy_anchor": "235-shared-parameters-and-classical-reparameterization",
+              "aliases": [
+                "235-shared-parameters-and-classical-reparameterization"
+              ]
             },
             {
               "id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-6",
               "title": "Backpropagation and automatic differentiation",
-              "theory": "Explain the mathematical derivative and the computational graph that carries it.",
+              "theory": "Explain the mathematical derivative and the computational graph that carries it. Separate simulator backpropagation through amplitudes from hardware estimators such as parameter shift; specify what classical data crosses the device boundary.",
               "evidence": "Check real outputs, complex state tensors and deliberate detach errors.",
-              "legacy_anchor": "236-backpropagation-and-automatic-differentiation"
+              "legacy_anchor": "236-backpropagation-and-automatic-differentiation",
+              "aliases": [
+                "236-backpropagation-and-automatic-differentiation"
+              ]
             },
             {
               "id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-7",
               "title": "Adjoint differentiation and memory tradeoffs",
               "theory": "Derive reverse propagation for a pure-state circuit and state its assumptions.",
               "evidence": "Compare gradients and operation/memory counts with a simple independent implementation.",
-              "legacy_anchor": "237-adjoint-differentiation-and-memory-tradeoffs"
+              "legacy_anchor": "237-adjoint-differentiation-and-memory-tradeoffs",
+              "aliases": [
+                "237-adjoint-differentiation-and-memory-tradeoffs"
+              ]
             },
             {
               "id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-8",
               "title": "Finite differences and numerical diagnostics",
               "theory": "Analyze truncation, rounding and step-size sensitivity.",
               "evidence": "Sweep finite-difference steps and compare with an exact analytic derivative.",
-              "legacy_anchor": "238-finite-differences-and-numerical-diagnostics"
+              "legacy_anchor": "238-finite-differences-and-numerical-diagnostics",
+              "aliases": [
+                "238-finite-differences-and-numerical-diagnostics"
+              ]
             },
             {
               "id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-9",
               "title": "Finite-shot gradient estimation",
               "theory": "Derive estimator variance under a declared measurement/allocation model.",
               "evidence": "Compare exact gradients with repeated stochastic estimates and their uncertainty.",
-              "legacy_anchor": "239-finite-shot-gradient-estimation"
+              "legacy_anchor": "239-finite-shot-gradient-estimation",
+              "aliases": [
+                "239-finite-shot-gradient-estimation"
+              ]
             },
             {
               "id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-10",
               "title": "Differentiation laboratory and cost audit",
               "theory": "Combine parameter structure, derivative method, accuracy and complete execution cost.",
               "evidence": "Require analytic, dense, shifted and autograd agreement where each method applies.",
-              "legacy_anchor": "2310-differentiation-laboratory-and-cost-audit"
+              "legacy_anchor": "2310-differentiation-laboratory-and-cost-audit",
+              "aliases": [
+                "2310-differentiation-laboratory-and-cost-audit"
+              ]
             }
           ]
         },
@@ -1831,14 +1891,15 @@
           "number": 25,
           "title": "Variational Simulation, Chemistry, and Ground-State Problems",
           "level": "Core application",
-          "prerequisites": "8, 14, 19, 23.",
+          "prerequisites": "8, 14, 19, 23–24.",
           "requires": [
             8,
             14,
             19,
-            23
+            23,
+            24
           ],
-          "summary": "Variational principle; fermions and Jordan-Wigner mapping; symmetries; ansatz selection; measurement allocation; dynamics.",
+          "summary": "Variational principle; fermions and Jordan-Wigner mapping; symmetries; ansatz selection; measurement allocation; dynamics. Adds quantum embedding/self-consistency and quantum-sampled classical subspace solving.",
           "outcome": "Prove the energy bound and derive a small occupation-to-qubit Hamiltonian with units and offsets.",
           "verification": "Compare independent fermionic/qubit matrices and exact diagonalization; report all model and estimator errors.",
           "legacy_number": 25,
@@ -1848,63 +1909,108 @@
               "title": "The variational principle and its assumptions",
               "theory": "Prove the ground-energy upper bound and identify normalization/subspace assumptions.",
               "evidence": "Check the bound and construct a counterexample from an invalid estimator/model.",
-              "legacy_anchor": "251-the-variational-principle-and-its-assumptions"
+              "legacy_anchor": "251-the-variational-principle-and-its-assumptions",
+              "aliases": [
+                "251-the-variational-principle-and-its-assumptions"
+              ]
             },
             {
               "id": "sec-variational-simulation-chemistry-and-ground-state-problems-2",
               "title": "Second quantization and occupation states",
               "theory": "Define fermionic modes, creation/annihilation operators and sign conventions.",
               "evidence": "Build a tiny occupation-basis Hamiltonian independently.",
-              "legacy_anchor": "252-second-quantization-and-occupation-states"
+              "legacy_anchor": "252-second-quantization-and-occupation-states",
+              "aliases": [
+                "252-second-quantization-and-occupation-states"
+              ]
             },
             {
               "id": "sec-variational-simulation-chemistry-and-ground-state-problems-3",
               "title": "Jordan-Wigner and fermion-to-qubit translation",
               "theory": "Derive the parity strings and verify anticommutation relations.",
               "evidence": "Compare fermionic and qubit Hamiltonian matrices.",
-              "legacy_anchor": "253-jordan-wigner-and-fermion-to-qubit-translation"
+              "legacy_anchor": "253-jordan-wigner-and-fermion-to-qubit-translation",
+              "aliases": [
+                "253-jordan-wigner-and-fermion-to-qubit-translation"
+              ]
             },
             {
               "id": "sec-variational-simulation-chemistry-and-ground-state-problems-4",
               "title": "Symmetries and reduced models",
               "theory": "Explain conserved sectors and the conditions for valid reductions.",
               "evidence": "Compare sector spectra and identify an incorrect reference-state sector.",
-              "legacy_anchor": "254-symmetries-and-reduced-models"
+              "legacy_anchor": "254-symmetries-and-reduced-models",
+              "aliases": [
+                "254-symmetries-and-reduced-models"
+              ]
             },
             {
               "id": "sec-variational-simulation-chemistry-and-ground-state-problems-5",
               "title": "Ansatz design and reachable states",
               "theory": "Relate physical structure, circuit expressivity and parameterization.",
               "evidence": "Compare a chosen ansatz with an exactly solvable tiny subspace.",
-              "legacy_anchor": "255-ansatz-design-and-reachable-states"
+              "legacy_anchor": "255-ansatz-design-and-reachable-states",
+              "aliases": [
+                "255-ansatz-design-and-reachable-states"
+              ]
             },
             {
               "id": "sec-variational-simulation-chemistry-and-ground-state-problems-6",
               "title": "Measuring an energy objective",
               "theory": "Derive Pauli-weighted estimates and shot-allocation uncertainty.",
               "evidence": "Compare exact energy with grouped finite-shot estimators.",
-              "legacy_anchor": "256-measuring-an-energy-objective"
+              "legacy_anchor": "256-measuring-an-energy-objective",
+              "aliases": [
+                "256-measuring-an-energy-objective"
+              ]
             },
             {
               "id": "sec-variational-simulation-chemistry-and-ground-state-problems-7",
               "title": "Variational dynamics and extensions [Advanced]",
               "theory": "Derive a selected projected time-evolution principle and its linear system.",
               "evidence": "Compare a tiny variational trajectory with exact dynamics.",
-              "legacy_anchor": "257-variational-dynamics-and-extensions-advanced"
+              "legacy_anchor": "257-variational-dynamics-and-extensions-advanced",
+              "aliases": [
+                "257-variational-dynamics-and-extensions-advanced"
+              ]
             },
             {
               "id": "sec-variational-simulation-chemistry-and-ground-state-problems-8",
               "title": "Chemistry model and error budgets",
               "theory": "Separate basis, mapping, truncation, ansatz, optimization and sampling errors.",
               "evidence": "Record units, constant offsets and independent reference energies.",
-              "legacy_anchor": "258-chemistry-model-and-error-budgets"
+              "legacy_anchor": "258-chemistry-model-and-error-budgets",
+              "aliases": [
+                "258-chemistry-model-and-error-budgets"
+              ]
+            },
+            {
+              "id": "sec-quantum-embedding-model",
+              "title": "Classical environments and quantum embedding [Advanced]",
+              "theory": "Derive a tractable fragment/bath or active-space construction with explicitly stated approximation and double-counting conventions.",
+              "evidence": "Compare the embedded Hamiltonian and observables against a complete small classical reference; identify which properties embedding approximates."
+            },
+            {
+              "id": "sec-quantum-embedding-self-consistency",
+              "title": "Self-consistent quantum impurity solvers [Advanced]",
+              "theory": "Specify a classical environment update driven by quantum-estimated reduced observables; distinguish inner solver error from outer self-consistency and embedding error.",
+              "evidence": "Compare exact-fragment and quantum-estimator loops on the same tiny model, including shot uncertainty, convergence and failure cases."
+            },
+            {
+              "id": "sec-sample-assisted-subspace-solve",
+              "title": "Quantum sampling and classical subspace diagonalization [Advanced]",
+              "theory": "Define a sampled-configuration subspace, its projected Hamiltonian and a classical eigenvalue solve with the precise assumptions behind any variational statement.",
+              "evidence": "Compare selected configurations and projected solutions with exact tiny-instance results; record quantum sampling, configuration processing and classical solve costs."
             },
             {
               "id": "sec-variational-simulation-chemistry-and-ground-state-problems-9",
               "title": "Variational-simulation laboratory",
               "theory": "Connect Hamiltonian construction, circuit model, optimization and evidence.",
               "evidence": "Verify matrices before training and interpret the final result with all declared limitations.",
-              "legacy_anchor": "259-variational-simulation-laboratory"
+              "legacy_anchor": "259-variational-simulation-laboratory",
+              "aliases": [
+                "259-variational-simulation-laboratory"
+              ]
             }
           ]
         },
@@ -2006,56 +2112,80 @@
               "title": "Learning tasks and data-access assumptions",
               "theory": "Specify labels, distributions, encoding access and the desired prediction.",
               "evidence": "Define a train/validation/test protocol before constructing a quantum model.",
-              "legacy_anchor": "271-learning-tasks-and-data-access-assumptions"
+              "legacy_anchor": "271-learning-tasks-and-data-access-assumptions",
+              "aliases": [
+                "271-learning-tasks-and-data-access-assumptions"
+              ]
             },
             {
               "id": "sec-quantum-learning-kernels-and-hybrid-models-2",
               "title": "Encoding data into quantum states",
               "theory": "Derive selected angle/amplitude encodings and their resource implications.",
               "evidence": "Compare input normalization and state preparation with explicit vectors.",
-              "legacy_anchor": "272-encoding-data-into-quantum-states"
+              "legacy_anchor": "272-encoding-data-into-quantum-states",
+              "aliases": [
+                "272-encoding-data-into-quantum-states"
+              ]
             },
             {
               "id": "sec-quantum-learning-kernels-and-hybrid-models-3",
               "title": "Hybrid models and the joint chain rule",
-              "theory": "Derive classical preprocessing, quantum expectation and output-head gradients.",
+              "theory": "Derive classical preprocessing, quantum expectation and output-head gradients. Distinguish trainable quantum layers, fixed quantum features and a kernel-estimation pipeline; identify which parameters actually require quantum derivatives.",
               "evidence": "Check every component and their composition independently.",
-              "legacy_anchor": "273-hybrid-models-and-the-joint-chain-rule"
+              "legacy_anchor": "273-hybrid-models-and-the-joint-chain-rule",
+              "aliases": [
+                "273-hybrid-models-and-the-joint-chain-rule"
+              ]
             },
             {
               "id": "sec-quantum-learning-kernels-and-hybrid-models-4",
               "title": "Quantum feature maps and kernels",
               "theory": "Derive overlap-based kernels and Gram-matrix properties.",
-              "evidence": "Compare explicit feature vectors, circuit estimates and numerical kernel checks.",
-              "legacy_anchor": "274-quantum-feature-maps-and-kernels"
+              "evidence": "Compare explicit feature vectors, circuit estimates and numerical kernel checks. Audit all pairwise kernel queries, finite-shot non-PSD estimates and any regularization/repair bias.",
+              "legacy_anchor": "274-quantum-feature-maps-and-kernels",
+              "aliases": [
+                "274-quantum-feature-maps-and-kernels"
+              ]
             },
             {
               "id": "sec-quantum-learning-kernels-and-hybrid-models-5",
               "title": "Training kernels and hybrid models",
               "theory": "Explain regularization, optimization and estimator noise.",
               "evidence": "Train tiny models with reproducible splits and inspect failure modes.",
-              "legacy_anchor": "275-training-kernels-and-hybrid-models"
+              "legacy_anchor": "275-training-kernels-and-hybrid-models",
+              "aliases": [
+                "275-training-kernels-and-hybrid-models"
+              ]
             },
             {
               "id": "sec-quantum-learning-kernels-and-hybrid-models-6",
               "title": "Generalization and statistical claims",
               "theory": "State a selected learning guarantee's assumptions and distinguish empirical evaluation.",
               "evidence": "Report held-out uncertainty, repeated seeds and data leakage diagnostics.",
-              "legacy_anchor": "276-generalization-and-statistical-claims"
+              "legacy_anchor": "276-generalization-and-statistical-claims",
+              "aliases": [
+                "276-generalization-and-statistical-claims"
+              ]
             },
             {
               "id": "sec-quantum-learning-kernels-and-hybrid-models-7",
               "title": "Classical simulability and meaningful baselines",
               "theory": "Relate encoding/model structure to possible classical implementations.",
               "evidence": "Compare like-for-like classical features, kernels and compute/measurement budgets.",
-              "legacy_anchor": "277-classical-simulability-and-meaningful-baselines"
+              "legacy_anchor": "277-classical-simulability-and-meaningful-baselines",
+              "aliases": [
+                "277-classical-simulability-and-meaningful-baselines"
+              ]
             },
             {
               "id": "sec-quantum-learning-kernels-and-hybrid-models-8",
               "title": "Learning laboratory and claim audit",
               "theory": "Connect mathematical model, data protocol, implementation and evidence.",
               "evidence": "Require a baseline, gradient verification and a complete cost record before interpreting usefulness.",
-              "legacy_anchor": "278-learning-laboratory-and-claim-audit"
+              "legacy_anchor": "278-learning-laboratory-and-claim-audit",
+              "aliases": [
+                "278-learning-laboratory-and-claim-audit"
+              ]
             }
           ]
         }
@@ -3250,7 +3380,7 @@
             41,
             42
           ],
-          "summary": "From native gates to control Hamiltonians; Pulse shaping and constrained optimization; Frames, virtual operations, and calibration; Crosstalk, leakage, and robust control; Dynamic circuits and feed-forward latency; Lowering analog and measurement-based programs; Fault-tolerant logical compilation; Cross-layer verification and approximate equivalence; Hardware-aware compilation laboratory.",
+          "summary": "From native gates to control Hamiltonians; Pulse shaping and constrained optimization; Frames, virtual operations, and calibration; Crosstalk, leakage, and robust control; Dynamic circuits and feed-forward latency; Lowering analog and measurement-based programs; Fault-tolerant logical compilation; Cross-layer verification and approximate equivalence; Hardware-aware compilation laboratory. Includes local feedback and heterogeneous host/device runtime orchestration.",
           "outcome": "Develop the explicit physical/program model and its stated approximations through the section-level derivations.",
           "verification": "Produce a complete small independent reference, an implementation contract and an assumption/error/resource record before claiming framework support.",
           "sections": [
@@ -3258,55 +3388,88 @@
               "id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-1",
               "title": "From native gates to control Hamiltonians",
               "theory": "Specify control amplitude, phase, frames, timing and a target transformation.",
-              "evidence": "Compare an effective control model with a native-gate reference."
+              "evidence": "Compare an effective control model with a native-gate reference.",
+              "aliases": [
+                "431-from-native-gates-to-control-hamiltonians"
+              ]
             },
             {
               "id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-2",
               "title": "Pulse shaping and constrained optimization",
               "theory": "Derive a scoped control objective/gradient and state amplitude/bandwidth constraints.",
-              "evidence": "Optimize a tiny model with independent evolution/gradient checks and report model sensitivity."
+              "evidence": "Optimize a tiny model with independent evolution/gradient checks and report model sensitivity.",
+              "aliases": [
+                "432-pulse-shaping-and-constrained-optimization"
+              ]
             },
             {
               "id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-3",
               "title": "Frames, virtual operations, and calibration",
               "theory": "Derive a frame update and distinguish a mathematical operation from a calibration-dependent implementation.",
-              "evidence": "Check phase-consistent composed controls and record calibration provenance."
+              "evidence": "Check phase-consistent composed controls and record calibration provenance.",
+              "aliases": [
+                "433-frames-virtual-operations-and-calibration"
+              ]
             },
             {
               "id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-4",
               "title": "Crosstalk, leakage, and robust control",
               "theory": "State selected uncertainty/spectator models and robust objective assumptions.",
-              "evidence": "Compare nominal and perturbed models and identify unmodeled limitations."
+              "evidence": "Compare nominal and perturbed models and identify unmodeled limitations.",
+              "aliases": [
+                "434-crosstalk-leakage-and-robust-control"
+              ]
             },
             {
               "id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-5",
-              "title": "Dynamic circuits and feed-forward latency",
-              "theory": "Derive control/measurement timing and branch-dependent execution constraints.",
-              "evidence": "Compare conditional channels and a schedule containing realistic declared feedback latency."
+              "title": "Near-device feedback, decoding, and dynamic execution",
+              "theory": "Derive measurement-to-classical-decision-to-operation dependencies for dynamic circuits and decoder/Pauli-frame feedback; distinguish a host outer loop from a bounded-latency local controller.",
+              "evidence": "Compare exact branch maps and measured-outcome records; validate a declared latency/resource schedule and report unsupported controller operations.",
+              "aliases": [
+                "435-dynamic-circuits-and-feed-forward-latency"
+              ]
             },
             {
               "id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-6",
               "title": "Lowering analog and measurement-based programs",
               "theory": "Specify an analog-control or resource-state target instead of forcing every program into a SWAP-only gate model.",
-              "evidence": "Verify one constrained Hamiltonian schedule or adaptive measurement pattern."
+              "evidence": "Verify one constrained Hamiltonian schedule or adaptive measurement pattern.",
+              "aliases": [
+                "436-lowering-analog-and-measurement-based-programs"
+              ]
             },
             {
               "id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-7",
               "title": "Fault-tolerant logical compilation",
               "theory": "Connect T/Clifford synthesis, Pauli frames, distillation and logical-operation scheduling.",
-              "evidence": "Check an explicitly scoped logical lowering with Chapter 33 resource accounting."
+              "evidence": "Check an explicitly scoped logical lowering with Chapter 33 resource accounting.",
+              "aliases": [
+                "437-fault-tolerant-logical-compilation"
+              ]
             },
             {
               "id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-8",
               "title": "Cross-layer verification and approximate equivalence",
               "theory": "Compose pass, synthesis, control and output-interpretation error contracts.",
-              "evidence": "Check a complete tiny pipeline and distinguish exact semantic equivalence from model-dependent noisy performance."
+              "evidence": "Check a complete tiny pipeline and distinguish exact semantic equivalence from model-dependent noisy performance.",
+              "aliases": [
+                "438-cross-layer-verification-and-approximate-equivalence"
+              ]
+            },
+            {
+              "id": "sec-hybrid-heterogeneous-runtime",
+              "title": "CPU/GPU/QPU workflows and runtime orchestration",
+              "theory": "Specify task graphs, asynchronous execution, parameter binding/batching, checkpointing, result types and failure/retry semantics; distinguish a real QPU from GPU simulation.",
+              "evidence": "Validate a small host/device workflow with an independent local reference and typed records; report queue/communication/device/classical time and keep in-execution feedback separate."
             },
             {
               "id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-9",
               "title": "Hardware-aware compilation laboratory",
               "theory": "Compile a selected task through IR, placement/routing, schedule and one control/logical target.",
-              "evidence": "Publish pass records, calibration/model assumptions, output maps, independent checks and capability gaps."
+              "evidence": "Publish pass records, calibration/model assumptions, output maps, independent checks and capability gaps.",
+              "aliases": [
+                "439-hardware-aware-compilation-laboratory"
+              ]
             }
           ]
         }
@@ -3552,13 +3715,15 @@
           "number": 47,
           "title": "Tensor Networks, Contraction, and Hybrid Simulation Strategies",
           "level": "Advanced",
-          "prerequisites": "14, 44, 46.",
+          "prerequisites": "6, 9, 14, 44, 46.",
           "requires": [
+            6,
+            9,
             14,
             44,
             46
           ],
-          "summary": "Circuit tensors; contraction paths; intermediate sizes; slicing; distributed contraction; amplitudes versus full states.",
+          "summary": "Circuit tensors; contraction paths; intermediate sizes; slicing; distributed contraction; amplitudes versus full states. Includes quantum-executed fragments, classical circuit-cut reconstruction and sampling overhead.",
           "outcome": "Derive a circuit contraction and predict path-dependent intermediate memory.",
           "verification": "Check independent contractions, profile declared workloads and explain when simulation becomes intractable.",
           "legacy_number": 37,
@@ -3568,56 +3733,92 @@
               "title": "Circuits as indexed tensor networks",
               "theory": "Derive gate/state/measurement tensors and their connected indices.",
               "evidence": "Compare a small network with an independently constructed circuit matrix.",
-              "legacy_anchor": "371-circuits-as-indexed-tensor-networks"
+              "legacy_anchor": "371-circuits-as-indexed-tensor-networks",
+              "aliases": [
+                "471-circuits-as-indexed-tensor-networks"
+              ]
             },
             {
               "id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-2",
               "title": "Contraction order and intermediate size",
               "theory": "Show why equivalent contractions have different memory and work.",
               "evidence": "Calculate intermediate shapes for several explicit paths.",
-              "legacy_anchor": "372-contraction-order-and-intermediate-size"
+              "legacy_anchor": "372-contraction-order-and-intermediate-size",
+              "aliases": [
+                "472-contraction-order-and-intermediate-size"
+              ]
             },
             {
               "id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-3",
               "title": "Path selection and structural parameters",
               "theory": "Explain a selected path heuristic and graph-based complexity intuition.",
               "evidence": "Compare estimated versus realized costs without implying optimality.",
-              "legacy_anchor": "373-path-selection-and-structural-parameters"
+              "legacy_anchor": "373-path-selection-and-structural-parameters",
+              "aliases": [
+                "473-path-selection-and-structural-parameters"
+              ]
             },
             {
               "id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-4",
               "title": "Slicing and recomputation",
               "theory": "Derive decomposition over selected indices and its memory/work tradeoff.",
               "evidence": "Verify slice summation against an unsliced contraction.",
-              "legacy_anchor": "374-slicing-and-recomputation"
+              "legacy_anchor": "374-slicing-and-recomputation",
+              "aliases": [
+                "474-slicing-and-recomputation"
+              ]
             },
             {
               "id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-5",
               "title": "Amplitudes, expectations, sampling, and full states",
               "theory": "Specify distinct output tasks and their contraction implications.",
               "evidence": "Compare equivalent requested outputs and avoid misleading benchmark substitutions.",
-              "legacy_anchor": "375-amplitudes-expectations-sampling-and-full-states"
+              "legacy_anchor": "375-amplitudes-expectations-sampling-and-full-states",
+              "aliases": [
+                "475-amplitudes-expectations-sampling-and-full-states"
+              ]
+            },
+            {
+              "id": "sec-circuit-cutting-reconstruction",
+              "title": "Circuit cutting and classical reconstruction",
+              "theory": "Derive a small cut decomposition with coefficients, fragment preparation/measurement settings and a precisely requested reconstructed observable.",
+              "evidence": "Compare a cut/reconstructed expectation with the complete uncut circuit; account for all fragment settings and distinguish this from distributed coherent execution."
+            },
+            {
+              "id": "sec-circuit-cutting-statistics",
+              "title": "Reconstruction variance and sampling overhead",
+              "theory": "Derive a scoped variance/shot-allocation relation including signed coefficients and state the noise/independence assumptions.",
+              "evidence": "Compare repeated reconstructed estimates with an exact reference; report coefficient norm, settings, total shots and cases of prohibitive overhead."
             },
             {
               "id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-6",
               "title": "Hybrid and distributed strategies",
               "theory": "Explain partitioning and a selected statevector/network or sliced execution strategy.",
               "evidence": "Record communication, scheduling and aggregation semantics.",
-              "legacy_anchor": "376-hybrid-and-distributed-strategies"
+              "legacy_anchor": "376-hybrid-and-distributed-strategies",
+              "aliases": [
+                "476-hybrid-and-distributed-strategies"
+              ]
             },
             {
               "id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-7",
               "title": "Approximation and numerical reliability",
               "theory": "State any approximations and contraction/rounding validation criteria.",
               "evidence": "Compare with exact small references and expose cancellation-sensitive cases.",
-              "legacy_anchor": "377-approximation-and-numerical-reliability"
+              "legacy_anchor": "377-approximation-and-numerical-reliability",
+              "aliases": [
+                "477-approximation-and-numerical-reliability"
+              ]
             },
             {
               "id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-8",
               "title": "Tensor-network laboratory",
               "theory": "Choose a workload, path, memory limit and precise output contract.",
               "evidence": "Report verified outputs, path/slicing records and honest tractability limits.",
-              "legacy_anchor": "378-tensor-network-laboratory"
+              "legacy_anchor": "378-tensor-network-laboratory",
+              "aliases": [
+                "478-tensor-network-laboratory"
+              ]
             }
           ]
         }
@@ -3651,63 +3852,90 @@
               "title": "Choose a claim that can be tested",
               "theory": "Separate a theorem, a numerical calculation and a hardware observation in a paper.",
               "evidence": "Produce a scoped claim and an explicit reproduction boundary.",
-              "legacy_anchor": "381-choose-a-claim-that-can-be-tested"
+              "legacy_anchor": "381-choose-a-claim-that-can-be-tested",
+              "aliases": [
+                "481-choose-a-claim-that-can-be-tested"
+              ]
             },
             {
               "id": "sec-reading-papers-building-evidence-and-reproducing-results-2",
               "title": "Freeze sources, data, and revisions",
               "theory": "Explain why a version, correction or data transcription changes the specification.",
               "evidence": "Record exact source versions, locators, data origin and hashes.",
-              "legacy_anchor": "382-freeze-sources-data-and-revisions"
+              "legacy_anchor": "382-freeze-sources-data-and-revisions",
+              "aliases": [
+                "482-freeze-sources-data-and-revisions"
+              ]
             },
             {
               "id": "sec-reading-papers-building-evidence-and-reproducing-results-3",
               "title": "Build a symbol and convention map",
               "theory": "Translate units, qubit labels, basis order, normalization and parameter definitions.",
               "evidence": "Compare one equation with a fully specified array operation.",
-              "legacy_anchor": "383-build-a-symbol-and-convention-map"
+              "legacy_anchor": "383-build-a-symbol-and-convention-map",
+              "aliases": [
+                "483-build-a-symbol-and-convention-map"
+              ]
             },
             {
               "id": "sec-reading-papers-building-evidence-and-reproducing-results-4",
               "title": "Trace equation and assumption dependencies",
               "theory": "Identify which earlier results and approximations each claim uses.",
               "evidence": "Build a small dependency record before implementing the final calculation.",
-              "legacy_anchor": "384-trace-equation-and-assumption-dependencies"
+              "legacy_anchor": "384-trace-equation-and-assumption-dependencies",
+              "aliases": [
+                "484-trace-equation-and-assumption-dependencies"
+              ]
             },
             {
               "id": "sec-reading-papers-building-evidence-and-reproducing-results-5",
               "title": "Construct an independent reference",
               "theory": "Select analytic, dense, enumerated or independently structured checks.",
               "evidence": "Validate a limiting case and one equation before adding optimization.",
-              "legacy_anchor": "385-construct-an-independent-reference"
+              "legacy_anchor": "385-construct-an-independent-reference",
+              "aliases": [
+                "485-construct-an-independent-reference"
+              ]
             },
             {
               "id": "sec-reading-papers-building-evidence-and-reproducing-results-6",
               "title": "Separate sources of error",
               "theory": "Derive a relevant budget for discretization, truncation, sampling and optimization.",
               "evidence": "Choose tolerances justified by the budget and requested claim.",
-              "legacy_anchor": "386-separate-sources-of-error"
+              "legacy_anchor": "386-separate-sources-of-error",
+              "aliases": [
+                "486-separate-sources-of-error"
+              ]
             },
             {
               "id": "sec-reading-papers-building-evidence-and-reproducing-results-7",
               "title": "Design and record the experiment",
               "theory": "Specify inputs, seeds, environment, outputs, resources and comparison criteria.",
-              "evidence": "Create a reproducible manifest and rerun from frozen inputs.",
-              "legacy_anchor": "387-design-and-record-the-experiment"
+              "evidence": "Create a reproducible manifest and rerun from frozen inputs. For hybrid work, preserve task boundaries, queue/transfer/device/classical time, optimizer/solver state and the exact payload returned by each quantum call.",
+              "legacy_anchor": "387-design-and-record-the-experiment",
+              "aliases": [
+                "487-design-and-record-the-experiment"
+              ]
             },
             {
               "id": "sec-reading-papers-building-evidence-and-reproducing-results-8",
               "title": "Investigate discrepancies and negative results",
               "theory": "Distinguish convention bugs, numerical error, model mismatch and source ambiguity.",
               "evidence": "Preserve a failing example and explain the evidence for its cause.",
-              "legacy_anchor": "388-investigate-discrepancies-and-negative-results"
+              "legacy_anchor": "388-investigate-discrepancies-and-negative-results",
+              "aliases": [
+                "488-investigate-discrepancies-and-negative-results"
+              ]
             },
             {
               "id": "sec-reading-papers-building-evidence-and-reproducing-results-9",
               "title": "Report, review, and maintain a reproduction",
               "theory": "State which claim was reproduced, with what uncertainty and unresolved limits.",
               "evidence": "Prepare an auditable report and track confirmed framework gaps upstream.",
-              "legacy_anchor": "389-report-review-and-maintain-a-reproduction"
+              "legacy_anchor": "389-report-review-and-maintain-a-reproduction",
+              "aliases": [
+                "489-report-review-and-maintain-a-reproduction"
+              ]
             }
           ]
         },

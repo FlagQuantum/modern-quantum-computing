@@ -56,7 +56,7 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 23.6 Backpropagation and automatic differentiation
 
-**Learning and derivation target:** Explain the mathematical derivative and the computational graph that carries it.
+**Learning and derivation target:** Explain the mathematical derivative and the computational graph that carries it. Separate simulator backpropagation through amplitudes from hardware estimators such as parameter shift; specify what classical data crosses the device boundary.
 
 **Implementation and evidence target:** Check real outputs, complex state tensors and deliberate detach errors.
 
@@ -178,7 +178,7 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Variational Simulation, Chemistry, and Ground-State Problems**
 
-**Reading level:** Core application. **Chapter prerequisites:** 8, 14, 19, 23.
+**Reading level:** Core application. **Chapter prerequisites:** 8, 14, 19, 23–24.
 
 <span id="sec-variational-simulation-chemistry-and-ground-state-problems-1"></span>
 
@@ -244,9 +244,34 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Implementation and evidence target:** Record units, constant offsets and independent reference energies.
 
-<span id="sec-variational-simulation-chemistry-and-ground-state-problems-9"></span>
+<span id="sec-quantum-embedding-model"></span>
 
-### 25.9 Variational-simulation laboratory
+### 25.9 Classical environments and quantum embedding [Advanced]
+
+**Learning and derivation target:** Derive a tractable fragment/bath or active-space construction with explicitly stated approximation and double-counting conventions.
+
+**Implementation and evidence target:** Compare the embedded Hamiltonian and observables against a complete small classical reference; identify which properties embedding approximates.
+
+<span id="sec-quantum-embedding-self-consistency"></span>
+
+### 25.10 Self-consistent quantum impurity solvers [Advanced]
+
+**Learning and derivation target:** Specify a classical environment update driven by quantum-estimated reduced observables; distinguish inner solver error from outer self-consistency and embedding error.
+
+**Implementation and evidence target:** Compare exact-fragment and quantum-estimator loops on the same tiny model, including shot uncertainty, convergence and failure cases.
+
+<span id="sec-sample-assisted-subspace-solve"></span>
+
+### 25.11 Quantum sampling and classical subspace diagonalization [Advanced]
+
+**Learning and derivation target:** Define a sampled-configuration subspace, its projected Hamiltonian and a classical eigenvalue solve with the precise assumptions behind any variational statement.
+
+**Implementation and evidence target:** Compare selected configurations and projected solutions with exact tiny-instance results; record quantum sampling, configuration processing and classical solve costs.
+
+<span id="sec-variational-simulation-chemistry-and-ground-state-problems-9"></span>
+<span id="259-variational-simulation-laboratory"></span>
+
+### 25.12 Variational-simulation laboratory
 
 **Learning and derivation target:** Connect Hamiltonian construction, circuit model, optimization and evidence.
 
@@ -352,7 +377,7 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 27.3 Hybrid models and the joint chain rule
 
-**Learning and derivation target:** Derive classical preprocessing, quantum expectation and output-head gradients.
+**Learning and derivation target:** Derive classical preprocessing, quantum expectation and output-head gradients. Distinguish trainable quantum layers, fixed quantum features and a kernel-estimation pipeline; identify which parameters actually require quantum derivatives.
 
 **Implementation and evidence target:** Check every component and their composition independently.
 
@@ -362,7 +387,7 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Learning and derivation target:** Derive overlap-based kernels and Gram-matrix properties.
 
-**Implementation and evidence target:** Compare explicit feature vectors, circuit estimates and numerical kernel checks.
+**Implementation and evidence target:** Compare explicit feature vectors, circuit estimates and numerical kernel checks. Audit all pairwise kernel queries, finite-shot non-PSD estimates and any regularization/repair bias.
 
 <span id="sec-quantum-learning-kernels-and-hybrid-models-5"></span>
 

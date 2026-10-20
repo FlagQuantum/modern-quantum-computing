@@ -19,6 +19,7 @@ The numbered order is one reference-book arrangement. It is not a requirement to
 | First algorithms | 14–15, 16.1–16.5, 17, then 16.6–16.8 and selected 18–19 | Complete search, estimation and Fourier-based explanations without a hidden forward prerequisite |
 | Information course | 7–13, after the necessary foundations | Channels, inference, entropy, communication and security assumptions |
 | Modern algorithms | 14–22, supported by 2–6 and 9–10 | Algorithm derivations, access models, error and complete resource cost |
+| Quantum-classical integration | 14.7 overview, then the selected patterns in 10, 23–27, 43 and 47; use the [hybrid map](hybrid-computing.md) | Recognize typed data/control flows, algorithmic versus runtime coupling, and end-to-end costs |
 | Differentiable applications | 23–27, with 10, 14 and selected 19/28 | Gradients, trainability, variational/learning objectives and baselines |
 | Error correction | 28–33, after 7–10; graph-state material in 30 links back to teleportation | From noise and correction conditions to logical operations and resource models |
 | Hardware-to-compiler course | 34, one of 35–40, then 41–42; 43 after 19, 23, 28 and 32–33 | Model and control a selected physical platform, compile a task and validate the whole contract |
@@ -41,6 +42,7 @@ Chapter 7 first derives no-signalling from marginal probabilities and revisits t
 | Gradients and optimization | 23–24 | Variational applications and pulse optimization in 43 |
 | Stabilizers and logical computation | 29–32 | Photonic/topological branches, logical compilation and simulation |
 | Resource/error budgets | 14, 19, 28, 33 | Hardware comparison, compiler objectives and research reports |
+| Hybrid interaction and execution boundary | 14.7; task-specific mathematics in 10, 23–27 | Controller/runtime contracts in 41–43 and fragment reconstruction in 47 |
 | Physical experiment/target contract | 34 and one selected platform | Mapping, scheduling and control in 41–43 |
 | Independent execution/reference methods | Small local references throughout; general methods in 44–47 | Full research capstones in 49–50 |
 
@@ -66,6 +68,8 @@ This is a writing sequence rather than an importance ranking. Missing FlagQuantu
 ## Research anchors and source work
 
 The earlier [reading guide](references/reading-guide.md) supports the foundations. [Compilation and physical-platform source notes](references/compilation-and-platforms.md) identify primary author references and official specifications used to scope the added routes. These are starting points, not claims of complete source or proof review.
+
+The [hybrid-computing source anchors](references/hybrid-computing.md) support the new cross-cutting map, embedding, reconstruction and heterogeneous-workflow planning. Exact method-specific source/proof review remains pending.
 
 Additional anchors include [QSVT](https://arxiv.org/abs/1806.01838), [surface codes](https://arxiv.org/abs/1208.0928v2), and [classical shadows](https://arxiv.org/abs/2002.08953). Each authored section needs exact theorem/equation locators, assumptions and an independent verification plan. Hardware performance and scientific-maturity comparisons require dated, claim-specific evidence.
 

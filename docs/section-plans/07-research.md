@@ -74,7 +74,7 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Learning and derivation target:** Specify inputs, seeds, environment, outputs, resources and comparison criteria.
 
-**Implementation and evidence target:** Create a reproducible manifest and rerun from frozen inputs.
+**Implementation and evidence target:** Create a reproducible manifest and rerun from frozen inputs. For hybrid work, preserve task boundaries, queue/transfer/device/classical time, optimizer/solver state and the exact payload returned by each quantum call.
 
 <span id="sec-reading-papers-building-evidence-and-reproducing-results-8"></span>
 <span id="388-investigate-discrepancies-and-negative-results"></span>

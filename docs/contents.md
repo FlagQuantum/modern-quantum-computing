@@ -1,6 +1,6 @@
 # Contents and chapter status
 
-**Revision: 2026-10-20.** 9 parts, 50 chapters and 416 numbered sections and six appendices. **Architecture review pending.** See the [editorial charter](editorial-charter.md), [curriculum audit](curriculum-audit.md) and [full plan](book-plan.md).
+**Revision: 2026-10-20.** 9 parts, 50 chapters and 423 numbered sections and six appendices. **Architecture review pending.** See the [editorial charter](editorial-charter.md), [curriculum audit](curriculum-audit.md) and [full plan](book-plan.md).
 
 The [numbered section specification](section-plan.md) gives learning, derivation and evidence targets. Only three starter chapters exist, with intended homes in **6, 23 and 49**; they require expansion. The PDF sample keeps independent numbering.
 

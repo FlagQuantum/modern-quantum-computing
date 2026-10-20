@@ -213,12 +213,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 **Implementation and evidence target:** Compare nominal and perturbed models and identify unmodeled limitations.
 
 <span id="sec-control-level-lowering-dynamic-execution-and-logical-compilation-5"></span>
+<span id="435-dynamic-circuits-and-feed-forward-latency"></span>
 
-### 43.5 Dynamic circuits and feed-forward latency
+### 43.5 Near-device feedback, decoding, and dynamic execution
 
-**Learning and derivation target:** Derive control/measurement timing and branch-dependent execution constraints.
+**Learning and derivation target:** Derive measurement-to-classical-decision-to-operation dependencies for dynamic circuits and decoder/Pauli-frame feedback; distinguish a host outer loop from a bounded-latency local controller.
 
-**Implementation and evidence target:** Compare conditional channels and a schedule containing realistic declared feedback latency.
+**Implementation and evidence target:** Compare exact branch maps and measured-outcome records; validate a declared latency/resource schedule and report unsupported controller operations.
 
 <span id="sec-control-level-lowering-dynamic-execution-and-logical-compilation-6"></span>
 
@@ -244,9 +245,18 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Implementation and evidence target:** Check a complete tiny pipeline and distinguish exact semantic equivalence from model-dependent noisy performance.
 
-<span id="sec-control-level-lowering-dynamic-execution-and-logical-compilation-9"></span>
+<span id="sec-hybrid-heterogeneous-runtime"></span>
 
-### 43.9 Hardware-aware compilation laboratory
+### 43.9 CPU/GPU/QPU workflows and runtime orchestration
+
+**Learning and derivation target:** Specify task graphs, asynchronous execution, parameter binding/batching, checkpointing, result types and failure/retry semantics; distinguish a real QPU from GPU simulation.
+
+**Implementation and evidence target:** Validate a small host/device workflow with an independent local reference and typed records; report queue/communication/device/classical time and keep in-execution feedback separate.
+
+<span id="sec-control-level-lowering-dynamic-execution-and-logical-compilation-9"></span>
+<span id="439-hardware-aware-compilation-laboratory"></span>
+
+### 43.10 Hardware-aware compilation laboratory
 
 **Learning and derivation target:** Compile a selected task through IR, placement/routing, schedule and one control/logical target.
 

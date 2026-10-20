@@ -14,6 +14,10 @@ Entry readers need basic Python and introductory linear algebra. Foundations sup
 
 The theory determines the curriculum. A missing FlagQuantum API becomes a tracked implementation requirement through the [capability-gap workflow](implementation-roadmap.md). Authors may develop independent executable references while an upstream implementation is pending. Only actually executed, versioned FlagQuantum examples receive validated status.
 
+## Quantum-classical integration
+
+The [hybrid-computing map](hybrid-computing.md) distinguishes eight composable implementation patterns and their host/controller/device boundaries. The early overview is in 14.7; detailed methods remain in their mathematical and systems homes. Hybrid learning is one branch of this broader subject.
+
 ## Section architecture and acceptance standard
 
 Each chapter below specifies its section sequence, mathematical outcome and independent check. The [detailed section plan](section-plan.md) expands all 50 chapters into numbered sections with learning/derivation and implementation/evidence targets. These are authoring targets, not claims of existing proofs or code.
