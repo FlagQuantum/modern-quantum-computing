@@ -990,6 +990,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
+**Local mathematical bridge to supply:** State the chosen Fibonacci F/R data and gauge as model input; verify the finite braid action without claiming to derive the anyon model from a microscopic material..
+
 <span id="sec-topological-quantum-computation-and-candidate-physical-realizations-4"></span>
 
 ### 40.4 Measurement, corrections, and computational power
@@ -1008,7 +1010,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Fibonacci fusion basis, group closure/density and approximation accuracy.
+**Local mathematical bridge to supply:** Fibonacci fusion basis, group closure/density and approximation accuracy.
 
 **Explicitly deferred proof ingredients:** General density/universality proof and braid-approximation complexity; Preskill 9.17; finite fusion branches remain explicit.
 

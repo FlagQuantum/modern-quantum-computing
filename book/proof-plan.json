@@ -167,7 +167,8 @@
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "Supply a finite-dimensional Rayleigh-quotient maximization/compactness bridge for Hermitian diagonalization, then induct on the orthogonal complement; do not silently assume spectral decomposition in its own proof."
     },
     {
       "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-6",
@@ -180,7 +181,8 @@
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "Define scalar spectral functions and the scalar exponential locally; justify any series interchange by absolute convergence rather than assuming an operator-norm chapter already read."
     },
     {
       "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-7",
@@ -1004,7 +1006,8 @@
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "Supply the trace-maximization/polar-decomposition lemma from the earlier SVD and prove the finite unitary optimization used in Uhlmann's identity."
     },
     {
       "section_id": "sec-distinguishability-fidelity-and-quantum-state-inference-4",
@@ -1104,7 +1107,8 @@
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "Give the elementary scalar logarithm/convexity inequality used in Gibbs' inequality, including zero-probability limits."
     },
     {
       "section_id": "sec-entropy-relative-entropy-and-information-processing-2",
@@ -1130,7 +1134,8 @@
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "Give the finite Jensen/logarithm inequality and support-limiting argument used by the chosen Klein proof; do not require an unstated operator-convexity theorem."
     },
     {
       "section_id": "sec-entropy-relative-entropy-and-information-processing-4",
@@ -1933,7 +1938,8 @@
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "Define modular arithmetic on the valid subspace and a reversible extension on unused computational-basis states; prove the full map is a permutation."
     },
     {
       "section_id": "sec-period-finding-factoring-and-algorithmic-arithmetic-3",
@@ -1966,13 +1972,14 @@
       "result": "Continued-fraction rational recovery",
       "depth": "F",
       "assumptions": "Explicit phase-approximation inequality and denominator bound",
-      "proof_plan": "Prove the selected convergent criterion or give its elementary proof bridge; verify candidates classically",
+      "proof_plan": "Prove the Legendre continued-fraction recovery criterion using the locally taught recurrence/determinant bridge; verify every candidate order classically",
       "source_locators": [
         "NC:A4.4"
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "Teach Euclidean division, convergent numerator/denominator recurrences and the determinant identity; prove the declared Legendre recovery criterion under its exact error/denominator condition."
     },
     {
       "section_id": "sec-period-finding-factoring-and-algorithmic-arithmetic-6",
@@ -2249,7 +2256,8 @@
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "Treat eigenvalues at plus/minus one separately when the nominal two-dimensional orthogonal component has zero norm."
     },
     {
       "section_id": "sec-block-encodings-and-quantum-linear-algebra-7",
@@ -3438,7 +3446,8 @@
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "Explain generator independence over binary arithmetic and the group-average projector before counting the code dimension."
     },
     {
       "section_id": "sec-stabilizer-codes-logical-operators-and-decoding-3",
@@ -4611,7 +4620,8 @@
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "State the chosen Fibonacci F/R data and gauge as model input; verify the finite braid action without claiming to derive the anyon model from a microscopic material."
     },
     {
       "section_id": "sec-topological-quantum-computation-and-candidate-physical-realizations-4",
@@ -5245,7 +5255,7 @@
       "section_id": "sec-stabilizer-simulation-magic-and-classical-simulability-5",
       "result": "Gottesman-Knill efficient-simulation theorem",
       "depth": "F",
-      "assumptions": "Clifford preparation, Pauli measurements and supported classical control",
+      "assumptions": "Polynomial-size adaptive Clifford program, Pauli measurements, stabilizer preparation and polynomial-time classical feed-forward; fixed tableau convention",
       "proof_plan": "Combine tableau updates into an explicit polynomial-time algorithm and count its costs",
       "source_locators": [
         "NC:10.5.4"
@@ -5358,7 +5368,8 @@
       ],
       "source_review": "planned; source locators assigned; proof review pending",
       "mathematical_review": "pending",
-      "implementation_review": "not performed in this planning pass"
+      "implementation_review": "not performed in this planning pass",
+      "local_bridge_requirements": "Supply the finite low-rank approximation lemma in the Frobenius norm from singular values/rank-nullity; state the normalization change after truncation."
     },
     {
       "section_id": "sec-matrix-product-states-entanglement-and-truncation-6",

@@ -230,7 +230,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Core result / role:** Gottesman-Knill efficient-simulation theorem.
 
-**Assumptions and scope:** Clifford preparation, Pauli measurements and supported classical control.
+**Assumptions and scope:** Polynomial-size adaptive Clifford program, Pauli measurements, stabilizer preparation and polynomial-time classical feed-forward; fixed tableau convention.
 
 **Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Combine tableau updates into an explicit polynomial-time algorithm and count its costs.
 
@@ -388,6 +388,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
+**Local mathematical bridge to supply:** Supply the finite low-rank approximation lemma in the Frobenius norm from singular values/rank-nullity; state the normalization change after truncation..
+
 <span id="sec-matrix-product-states-entanglement-and-truncation-6"></span>
 
 ### 46.6 Accumulated error and observable accuracy
@@ -498,7 +500,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Tensor-network graph, line graph, tree decomposition and width.
+**Local mathematical bridge to supply:** Tensor-network graph, line graph, tree decomposition and width.
 
 **Explicitly deferred proof ingredients:** Graph-theoretic contraction-complexity/treewidth equivalence and tree-decomposition algorithm; Markov-Shi Section 4, Theorems 4.3/4.5.
 

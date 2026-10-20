@@ -168,7 +168,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Finite gate ensemble, twirling, design assumptions and noise stationarity.
+**Local mathematical bridge to supply:** Finite gate ensemble, twirling, design assumptions and noise stationarity.
 
 **Explicitly deferred proof ingredients:** General gate-dependent perturbation corrections and robust fit guarantees; Magesan et al. pp.1–4, beyond the idealized decay derived locally.
 
@@ -392,6 +392,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 3–6 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
+**Local mathematical bridge to supply:** Explain generator independence over binary arithmetic and the group-average projector before counting the code dimension..
+
 <span id="sec-stabilizer-codes-logical-operators-and-decoding-3"></span>
 
 ### 30.3 Syndromes as commutation data
@@ -518,7 +520,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Sparse check matrices, Tanner graph, rate, distance and physical connectivity.
+**Local mathematical bridge to supply:** Sparse check matrices, Tanner graph, rate, distance and physical connectivity.
 
 **Explicitly deferred proof ingredients:** General/asymptotic distance claims and architecture-scale decoding/performance arguments; Bravyi et al. Section 4 and Lemmas 1–4.
 
@@ -686,7 +688,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Threshold definition, thermodynamic/scaling limits and confidence in fitted crossings.
+**Local mathematical bridge to supply:** Threshold definition, thermodynamic/scaling limits and confidence in fitted crossings.
 
 **Explicitly deferred proof ingredients:** General threshold theorem is assigned to 32.4; finite source simulations do not prove asymptotic threshold or universal scaling.
 
@@ -764,7 +766,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Product representations, local error detection and compact Lie-group/tangent-space vocabulary.
+**Local mathematical bridge to supply:** Product representations, local error detection and compact Lie-group/tangent-space vocabulary.
 
 **Explicitly deferred proof ingredients:** General connected-component/Lie-algebra argument of Eastin-Knill Theorem 1; selected transversal conjugations are proved locally.
 
@@ -786,7 +788,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Rectangles/exRecs, correctness, malignant fault sets and independent stochastic noise.
+**Local mathematical bridge to supply:** Rectangles/exRecs, correctness, malignant fault sets and independent stochastic noise.
 
 **Explicitly deferred proof ingredients:** Full AGP good-implies-correct and level-reduction lemmas supporting Section 4 Theorem 1; only the declared toy recurrence is proved locally.
 

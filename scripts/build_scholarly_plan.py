@@ -87,9 +87,10 @@ def build():
                         f"**Independent evidence target:** {s['evidence']}\n\n",
                         f"**Planning budget:** {s['page_budget'][0]}–{s['page_budget'][1]} pages. **Review status:** {row['source_review']}; mathematical and implementation review remain separate.\n",
                 ]
+                if row.get('local_bridge_requirements'):
+                    doc += [f"\n**Local mathematical bridge to supply:** {row['local_bridge_requirements']}.\n"]
                 if row['depth']=='R':
-                    doc += [f"\n**Local advanced bridge to supply:** {row['local_bridge_requirements']}.\n\n",
-                            f"**Explicitly deferred proof ingredients:** {row['deferred_proof_ingredients']}.\n"]
+                    doc += [f"\n**Explicitly deferred proof ingredients:** {row['deferred_proof_ingredients']}.\n"]
         outputs[f"docs/proof-plans/{p['path']}.md"]=''.join(doc)
     intro += [
         '\n## Outstanding source acceptance items\n\n',

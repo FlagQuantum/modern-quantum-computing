@@ -78,7 +78,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Generator-gap Fourier expansion, interpolation matrices and degenerate frequencies.
+**Local mathematical bridge to supply:** Generator-gap Fourier expansion, interpolation matrices and degenerate frequencies.
 
 **Explicitly deferred proof ingredients:** General optimal/minimal shift-rule classification; one nonsingular finite interpolation construction is derived locally from Wierichs et al. Section III.
 
@@ -318,7 +318,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Haar/2-design averages, independent random blocks and observable normalization.
+**Local mathematical bridge to supply:** Haar/2-design averages, independent random blocks and observable normalization.
 
 **Explicitly deferred proof ingredients:** Second-moment integral identities and full ensemble variance bound; McClean et al. pp.2–4; no extension to arbitrary shallow circuits.
 

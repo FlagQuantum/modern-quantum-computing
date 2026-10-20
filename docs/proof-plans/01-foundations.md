@@ -206,6 +206,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
+**Local mathematical bridge to supply:** Supply a finite-dimensional Rayleigh-quotient maximization/compactness bridge for Hermitian diagonalization, then induct on the orthogonal complement; do not silently assume spectral decomposition in its own proof..
+
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-6"></span>
 
 ### 2.6 Functions of matrices and time evolution
@@ -223,6 +225,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 **Independent evidence target:** Compare independent series, eigendecomposition and matrix-exponential calculations.
 
 **Planning budget:** 3–6 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
+
+**Local mathematical bridge to supply:** Define scalar spectral functions and the scalar exponential locally; justify any series interchange by absolute convergence rather than assuming an operator-norm chapter already read..
 
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-7"></span>
 
@@ -662,7 +666,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Inverse-closed dense gates; operator norm; SU(d), commutators and recursive accuracy vocabulary.
+**Local mathematical bridge to supply:** Inverse-closed dense gates; operator norm; SU(d), commutators and recursive accuracy vocabulary.
 
 **Explicitly deferred proof ingredients:** General balanced-commutator construction, base-net existence and recursion constants; NC Appendix 3.
 

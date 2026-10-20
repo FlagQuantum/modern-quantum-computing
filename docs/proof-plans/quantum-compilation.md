@@ -242,7 +242,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Clifford+T ring arithmetic, Diophantine feasibility and epsilon operator error.
+**Local mathematical bridge to supply:** Clifford+T ring arithmetic, Diophantine feasibility and epsilon operator error.
 
 **Explicitly deferred proof ingredients:** Ross-Selinger number-theoretic search/runtime lemmas and their conditional assumptions; Sections 7–8; the small exact case is local.
 

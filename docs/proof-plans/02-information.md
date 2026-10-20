@@ -206,6 +206,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
+**Local mathematical bridge to supply:** Supply the trace-maximization/polar-decomposition lemma from the earlier SVD and prove the finite unitary optimization used in Uhlmann's identity..
+
 <span id="sec-distinguishability-fidelity-and-quantum-state-inference-4"></span>
 
 ### 10.4 Monotonicity and operational limits
@@ -242,7 +244,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Ancillary inputs, completely bounded trace norm and semidefinite feasibility vocabulary.
+**Local mathematical bridge to supply:** Ancillary inputs, completely bounded trace norm and semidefinite feasibility vocabulary.
 
 **Explicitly deferred proof ingredients:** Full diamond-norm SDP equivalence/duality and ancilla-size reduction; Watrous 3.3.2–3.3.4.
 
@@ -300,7 +302,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Measurement-channel inversion, shadow norm, independent batches and median-of-means.
+**Local mathematical bridge to supply:** Measurement-channel inversion, shadow norm, independent batches and median-of-means.
 
 **Explicitly deferred proof ingredients:** The concentration argument and simultaneous-property union bound in Appendix A Theorem 3; prove only reconstruction unbiasedness locally.
 
@@ -342,6 +344,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 3–6 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
+**Local mathematical bridge to supply:** Give the elementary scalar logarithm/convexity inequality used in Gibbs' inequality, including zero-probability limits..
+
 <span id="sec-entropy-relative-entropy-and-information-processing-2"></span>
 
 ### 11.2 Von Neumann entropy and spectra
@@ -377,6 +381,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 **Independent evidence target:** Test commuting reductions, singular states and numerically unstable cases.
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
+
+**Local mathematical bridge to supply:** Give the finite Jensen/logarithm inequality and support-limiting argument used by the chosen Klein proof; do not require an unstated operator-convexity theorem..
 
 <span id="sec-entropy-relative-entropy-and-information-processing-4"></span>
 
@@ -414,7 +420,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Convex combinations of states, support limits and isometric dilation.
+**Local mathematical bridge to supply:** Convex combinations of states, support limits and isometric dilation.
 
 **Explicitly deferred proof ingredients:** Joint convexity/operator-convexity lemma needed for the full partial-trace proof; Watrous 5.2.3.
 
@@ -436,7 +442,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Tripartite reductions and conditional mutual information.
+**Local mathematical bridge to supply:** Tripartite reductions and conditional mutual information.
 
 **Explicitly deferred proof ingredients:** Lieb concavity and the general strong-subadditivity proof; NC 11.4.1 and Appendix 6.
 
@@ -532,7 +538,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Typical projector, entanglement fidelity and asymptotic rate/error quantifiers.
+**Local mathematical bridge to supply:** Typical projector, entanglement fidelity and asymptotic rate/error quantifiers.
 
 **Explicitly deferred proof ingredients:** The full optimal-rate converse and finite-to-asymptotic technical estimates; Watrous 5.3.2.
 
@@ -554,7 +560,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** LOCC, typical Schmidt sequences, error metrics and asymptotic rates.
+**Local mathematical bridge to supply:** LOCC, typical Schmidt sequences, error metrics and asymptotic rates.
 
 **Explicitly deferred proof ingredients:** General optimal-rate converse and dilution protocol estimates; NC 12.5.2 and Watrous 6.2.2.
 
@@ -612,7 +618,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Code/decoder families, assistance models, coherent information and regularized limits.
+**Local mathematical bridge to supply:** Code/decoder families, assistance models, coherent information and regularized limits.
 
 **Explicitly deferred proof ingredients:** HSW random-coding/converse and quantum-capacity decoupling/regularization arguments; Watrous 8.1.2 and 8.2.2.
 
@@ -744,7 +750,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Classical-quantum state, two-universal hashing, distance security and exact entropy convention.
+**Local mathematical bridge to supply:** Classical-quantum state, two-universal hashing, distance security and exact entropy convention.
 
 **Explicitly deferred proof ingredients:** Quantum side-information hashing estimates in Renner-König Section 4.1; no unreviewed substitution of a different smooth-entropy theorem.
 
@@ -766,7 +772,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Ideal/real systems, abort, trace-distance secrecy and explicit failure composition.
+**Local mathematical bridge to supply:** Ideal/real systems, abort, trace-distance secrecy and explicit failure composition.
 
 **Explicitly deferred proof ingredients:** Complete general-protocol simulation/composition formalism and full finite-key QKD reduction; Müller-Quade/Renner Section 2.3.
 
@@ -806,7 +812,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Purification, concealment, binding and allowed cheating operations.
+**Local mathematical bridge to supply:** Purification, concealment, binding and allowed cheating operations.
 
 **Explicitly deferred proof ingredients:** Approximate-concealment/general interactive protocols beyond the proved ideal pure-state case; Lo-Chau pp.2–5.
 

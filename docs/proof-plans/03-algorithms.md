@@ -406,7 +406,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Randomized schedules, expected query cost and geometric-series bounds.
+**Local mathematical bridge to supply:** Randomized schedules, expected query cost and geometric-series bounds.
 
 **Explicitly deferred proof ingredients:** Full schedule-specific expected-query proof for unknown amplitude; Brassard et al. Section 2.
 
@@ -666,6 +666,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 3–6 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
+**Local mathematical bridge to supply:** Define modular arithmetic on the valid subspace and a reversible extension on unused computational-basis states; prove the full map is a permutation..
+
 <span id="sec-period-finding-factoring-and-algorithmic-arithmetic-3"></span>
 
 ### 18.3 Coherent modular exponentiation
@@ -710,7 +712,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Assumptions and scope:** Explicit phase-approximation inequality and denominator bound.
 
-**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Prove the selected convergent criterion or give its elementary proof bridge; verify candidates classically.
+**Proof depth:** F — Complete proof at the stated finite scope. **Proof obligation:** Prove the Legendre continued-fraction recovery criterion using the locally taught recurrence/determinant bridge; verify every candidate order classically.
 
 **Imported earlier results:** [18.1](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-1), [18.4](../section-plans/03-algorithms.md#sec-period-finding-factoring-and-algorithmic-arithmetic-4).
 
@@ -719,6 +721,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 **Independent evidence target:** Test ambiguous fractions and reject incorrect candidates.
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
+
+**Local mathematical bridge to supply:** Teach Euclidean division, convergent numerator/denominator recurrences and the determinant identity; prove the declared Legendre recovery criterion under its exact error/denominator condition..
 
 <span id="sec-period-finding-factoring-and-algorithmic-arithmetic-6"></span>
 
@@ -756,7 +760,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Finite cyclic groups, characters and the implemented group oracle.
+**Local mathematical bridge to supply:** Finite cyclic groups, characters and the implemented group oracle.
 
 **Explicitly deferred proof ingredients:** General finite-Abelian decomposition and character-sampling theorem beyond the worked modulo-17 instance; NC 5.4.3.
 
@@ -924,7 +928,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Sparse/LCU/block oracle models and gate-versus-query complexity.
+**Local mathematical bridge to supply:** Sparse/LCU/block oracle models and gate-versus-query complexity.
 
 **Explicitly deferred proof ingredients:** Full simulation construction and optimality/lower-bound details; Berry et al. Theorem 1 and Low-Chuang Section 5.
 
@@ -946,7 +950,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Smooth operator path, derivatives, spectral projector and gap.
+**Local mathematical bridge to supply:** Smooth operator path, derivatives, spectral projector and gap.
 
 **Explicitly deferred proof ingredients:** Resolvent/adiabatic integration estimates for Jansen-Ruskai-Seiler Theorem 3; the elementary two-level example is proved locally.
 
@@ -1096,6 +1100,8 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
+**Local mathematical bridge to supply:** Treat eigenvalues at plus/minus one separately when the nominal two-dimensional orthogonal component has zero norm..
+
 <span id="sec-block-encodings-and-quantum-linear-algebra-7"></span>
 
 ### 20.8 Spectral functions and application contracts
@@ -1188,7 +1194,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Polynomial degree, parity, boundedness and complex completion.
+**Local mathematical bridge to supply:** Polynomial degree, parity, boundedness and complex completion.
 
 **Explicitly deferred proof ingredients:** General completion/factorization sufficiency of Gilyén et al. Theorems 3–5; prove necessity and the selected low-degree case locally.
 
@@ -1246,7 +1252,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 6–10 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Projector pairs, singular subspaces and admissible phase sequences.
+**Local mathematical bridge to supply:** Projector pairs, singular subspaces and admissible phase sequences.
 
 **Explicitly deferred proof ingredients:** General scalar polynomial-existence and robustness lemmas used by Theorem 17/Corollary 18; invariant-subspace lifting is derived locally.
 
@@ -1268,7 +1274,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Spectral promises, normalization, polynomial error and postselection probability.
+**Local mathematical bridge to supply:** Spectral promises, normalization, polynomial error and postselection probability.
 
 **Explicitly deferred proof ingredients:** The inverse-function polynomial approximation in Lemma 40/Theorem 41 and advanced approximation constructions; the conditional application calculation is local.
 
@@ -1418,7 +1424,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Acceptance-polynomial symmetrization and approximation degree.
+**Local mathematical bridge to supply:** Acceptance-polynomial symmetrization and approximation degree.
 
 **Explicitly deferred proof ingredients:** The general polynomial derivative/approximation inequality closing the OR/search bound; Beals et al. Section 5.1.
 
@@ -1458,7 +1464,7 @@ Authoring specifications only. No result/proof/API is certified by this plan. F/
 
 **Planning budget:** 4–8 pages. **Review status:** planned; source locators assigned; proof review pending; mathematical and implementation review remain separate.
 
-**Local advanced bridge to supply:** Promise gaps, witness registers, verification circuits and local terms.
+**Local mathematical bridge to supply:** Promise gaps, witness registers, verification circuits and local terms.
 
 **Explicitly deferred proof ingredients:** History-state clock construction, propagation-gap and completeness/soundness reduction; Preskill 6.10 and Watrous complexity survey.
 
