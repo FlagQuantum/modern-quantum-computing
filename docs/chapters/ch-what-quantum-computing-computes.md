@@ -1,6 +1,6 @@
 # 1. What Quantum Computing Computes
 
-**Working draft: sections 1.1–1.5 · Writing Baseline 1.0 · October 20, 2026.** Section 1.6 remains planned. Independent mathematical and reader review are pending; this is not an accepted chapter. Section 1.1 uses Python 3.12 and the standard library. Sections 1.2–1.4 add pinned FlagQuantum 0.3.1 simulations; 1.5 uses standard-library cost bookkeeping.
+**Working draft: sections 1.1–1.6 · Writing Baseline 1.0 · October 20, 2026.** Independent mathematical and reader review are pending; this is not an accepted chapter. Section 1.1 uses Python 3.12 and the standard library. Sections 1.2–1.4 add pinned FlagQuantum 0.3.1 simulations; 1.5–1.6 use standard-library cost and reading-route checks.
 
 <span id="sec-what-quantum-computing-computes-1"></span>
 
@@ -782,10 +782,120 @@ Simulator evidence has a further boundary. A fast classical statevector simulati
 - **D.** The requested outputs differ. Construct the same required output, include the cost of doing so and match accuracy and reliability before comparing times. Smaller output volume is not evidence that the original task has been solved faster.
 - **E.** The timing can describe the classical simulator execution under its recorded conditions. It supplies no physical-device timing. A hardware claim needs an actual target/execution record, matched task-quality evidence and the complete comparison boundary.
 
-The next planned section, [1.6 A map of the learning routes](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-6), will connect such questions to the book's different study paths.
+The next section, [1.6 A map of the learning routes](#sec-what-quantum-computing-computes-6), connects such questions to the book's different study paths.
 
 ### Source, status, and limits
 
 The assigned companion source is Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §3.2.1, printed pp. 136–137; [NC:3.2.1 source record](../references/proof-sources.md#source-nc-3-2-1). Its computational-resource discussion motivates declaring problem size and model. The mean-estimation contract, fictional costs and exercises here are original; no textbook data or measured benchmark is reproduced.
 
 Depth **V**: specify a testable comparison and diagnose invalid evidence; no complexity separation or performance guarantee is proved. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.5.json) separates author execution from pending independent methodological, implementation and reader review.
+
+<span id="sec-what-quantum-computing-computes-6"></span>
+
+## 1.6 A map of the learning routes
+
+Suppose three readers open this book. One wants to predict an algorithm's answer, another wants to train a circuit, and a third wants to translate a program for a constrained processor. They share some foundations, but their next questions differ. Requiring all three to finish every physical platform and every advanced algorithm before doing useful work would hide that structure.
+
+This section starts from [1.4](#sec-what-quantum-computing-computes-4): a task, a program, a simulator and a physical execution are different objects. We use that distinction to choose a destination, identify its entry knowledge and specify a first deliverable. No new quantum theorem is needed. The routes below are **plans with checked dependencies**, not a claim that their lessons are already written or tested with students.
+
+### Start with an output, then choose a route
+
+Write one sentence describing what you want to produce. “Learn quantum computing” is too broad to tell you which calculation to attempt next. “Predict the output distribution of a specified search circuit and state its input-access assumptions” supplies a calculation and an evidence boundary.
+
+| Destination | Planned route after foundations | First bounded deliverable on that route | Boundary |
+|---|---|---|---|
+| Predict an algorithm's output | [Algorithms](../learning-paths.md#algorithms), Chapters 15–19 selections | A small oracle experiment: specify how the input is accessed, predict probabilities and check them against an independent calculation | A simulation checks the small model; it does not establish a speedup |
+| Train a classical-quantum model | [Hybrid learning](../learning-paths.md#hybrid-learning), selections from Chapters 23, 24 and 27 | A scalar objective for a parameterized circuit, its derivative checked independently, and a recorded optimization update | An update alone establishes neither useful learning nor an advantage over classical models |
+| Translate a program for a target | [Compiler core](../learning-paths.md#compiler-core), selections from Chapters 41–43 | A small program transformation, a declared target gate/connectivity contract and a check that the requested output behavior is preserved | A shorter gate list does not by itself prove lower device error or runtime |
+
+These are destinations, not three new prerequisites for this section. Their technical terms receive definitions in their owning lessons. An **oracle** is an explicitly specified way an algorithm accesses problem information. A **parameter** is an adjustable number in a model; an **objective** is a numerical quantity used to judge its settings. A **target contract** states what operations and constraints a translation must respect. The table lets you recognize a future question without requiring its full solution now.
+
+For a narrower training goal, the [VQE and optimization route](../learning-paths.md#variational) leads to energy minimization. A fixed circuit used to construct features or a similarity measure instead has a [fixed-kernel route](../learning-paths.md#fixed-kernels); it does not automatically require differentiating a trainable quantum layer. Select the route that matches the requested output, rather than treating every use of a classical computer alongside a quantum circuit as the same learning problem.
+
+### What “assumes foundations” means
+
+Each of these three routes assumes the **planned 64-section foundations route**, not merely this six-section opening chapter. That route supplies complex-vector arithmetic, states, registers, gates, measurement, entanglement, mixtures and computational resource models. Its [exact selection](../learning-paths.md#foundations) includes Chapter 14 alongside Chapters 1–8 selections. Chapter number alone is therefore not a prerequisite rule.
+
+A beginner should next enter Chapter 2, beginning with [2.1 Complex scalars, vectors, and conjugation](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-1). This is currently a planned lesson. You do not need to know complex-vector notation to select a route here; the next lessons build it. An experienced reader can use a route's entry list to identify material to review, but should demonstrate the required calculations before treating that knowledge as acquired.
+
+The [seven volumes](../volume-plan.md) organize presentation and reference use. They are not a command to finish Volumes I through VII in sequence. The compiler core can use an abstract target without first deriving superconducting or ion-trap control physics. Platform-specific lowering later imports its own physical assumptions. Similarly, general tensor contraction is not automatically downstream of every matrix-product-state technique. Follow the exact dependency list when entering a specialization.
+
+### From a destination to a prerequisite-closed path
+
+Here is a rule we can translate directly into code. A **direct prerequisite** is a section listed in another section's `requires` field. An **indirect prerequisite** is reached by following that field through one or more earlier sections. A path is **closed under prerequisites** when it includes both kinds, either as assumed prior knowledge or as new reading.
+
+Let $T$ be the set of target section identifiers and $K$ the sections in the route's assumed earlier routes. Both are sets: an identifier occurs at most once. Let $P(s)$ denote the direct prerequisites of section $s$. Start with $R_0=T\cup K$, where $\cup$ means set union, and repeat
+
+$$
+R_{j+1}=R_j\cup\bigcup_{s\in R_j}P(s).
+$$
+
+The index $j$ counts passes through the rule. Each pass adds every prerequisite of the sections already included. Stop when a pass adds nothing; call that final set $R$. Because there are only 435 section identifiers and the sets only grow, the process terminates. The new reading is $R$ with the assumed set $K$ removed, ordered so that each prerequisite comes before the section that uses it. Canonical prerequisites already point to earlier entries in the curriculum; that order supplies such a sequence.
+
+For a hand-sized check, suppose C requires B and B requires A. Start with C: the first pass adds B, the second adds A, and the third adds nothing. The answer is A, B, C. If A was already studied, the new reading is B, C. Merely printing B, C without that assumption leaves B's entry unmet.
+
+| Planning rule | Complete example code | Check |
+|---|---|---|
+| Targets and assumed knowledge | `targets`, `known` in `resolve_routes` | Expand only the canonical target ranges and assumed routes |
+| Add all prerequisites until stable | `closure(targets | known, sections)` | Compare the independent A–B–C example with the expected set |
+| Remove assumed knowledge | `complete - known` | Count only the new reading |
+| Check the ordered path | `check_order(study, known, sections)` | At each step require all direct prerequisites in `seen` |
+| Diagnose a missing entry | Attempt 1.4 with no assumed knowledge | Report the missing 1.1 prerequisite |
+
+The rule checks consistency with the recorded graph. If a necessary mathematical bridge was omitted from that graph, this program could still pass. Mathematical review and reader trials must check that separate question.
+
+### Run the map check
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/learning_routes.py) reads `book/curriculum.json` from a complete repository checkout. It checks all 19 routes and displays three. Python 3.12 and the standard library suffice; no FlagQuantum execution is needed to inspect a reading graph.
+
+```bash
+python examples/foundations/learning_routes.py
+```
+
+Expected output for Writing Baseline 1.0:
+
+```text
+Planning graph only; neither learner completion nor prose acceptance is certified.
+algorithms: 64 assumed sections; 40 new sections; prerequisite order checked.
+hybrid-learning: 64 assumed sections; 17 new sections; prerequisite order checked.
+compiler-core: 64 assumed sections; 24 new sections; prerequisite order checked.
+Broken entry detected: 1.4 requires 1.1.
+Compiler core does not import QFT or microscopic platform chapters.
+Tiny-chain reference, all 19 routes, and missing-entry checks passed.
+```
+
+“Assumed” is an editorial input, not a record of your learning. The program never tests your understanding. Its counts also do not measure pages, study time or available prose. Availability and review status are recorded separately in the [writing queue](../writing-order.md). At this section's initial publication, 1.1–1.6 are working drafts, with independent review pending; the other full sections remain unwritten. The earlier measurement, gradients and VQE pages are format pilots, rather than completed versions of their planned chapters.
+
+There are runnable previews you can inspect now. [The interference program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/interference.py) and [its explained calculation](#sec-what-quantum-computing-computes-2) compare a hand-sized reference with released FlagQuantum 0.3.1. The [gradient pilot](gradients.md) has a [complete derivative-check program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/gradients.py), but assumes background not taught in this opening chapter. The compiler core currently has a checked plan, not a finished compiler tutorial or a claimed SDK implementation. These different statuses matter when choosing what you can study today.
+
+### Other branches and entry diagnostics
+
+The map also offers [information and security](../learning-paths.md#information), [error correction](../learning-paths.md#error-correction), [classical simulation](../learning-paths.md#simulation) and advanced [spectral algorithms](../learning-paths.md#spectral-algorithms). Hardware routes share entry models and then branch into superconducting, trapped-ion, neutral-atom, photonic, spin or topological systems. A research capstone, such as H₂ reproduction or logical memory, includes its own prerequisite closure. Choosing one branch does not make the others incorrect or unnecessary for every later purpose; it means their knowledge is not imported into this particular core task.
+
+**1.6-A — Check entry knowledge.** Before entering Chapter 2, can you (i) compute the mean of `[0, 1, 1, 0]`, (ii) distinguish one sampled bit from that mean, and (iii) distinguish a simulator's predicted distribution from measured device data? State your answers in words as well as numbers. A difficulty here suggests reviewing 1.1 and 1.4, not skipping directly to a specialized route.
+
+**1.6-B — Trace a dependency.** In the A–B–C example, A is already studied and the target is C. Which new sections are needed? What fails if the proposed new reading is only C?
+
+**1.6-C — Transfer the choice.** You want to rewrite a small program to use an abstract target's allowed gates and compare its output behavior before and after. Which of the three routes fits? Must you first study microscopic models of every hardware platform? What extra knowledge becomes necessary if you later claim that the rewrite reduces a real device's error?
+
+**Answers and reasoning**
+
+- **A.** The mean is $2/4=1/2$. One sampled bit is 0 or 1; it is one record, not that mean. A simulator distribution follows from an implemented mathematical model. Device data require an actual execution and measurement record. Agreement on a small model alone is no speedup or hardware-performance claim.
+- **B.** Read B, then C. With only C, its direct prerequisite B is missing even though the indirect prerequisite A is known.
+- **C.** Choose compiler core after its foundations entry. Its abstract target does not require every microscopic platform. A physical error claim additionally needs the relevant platform/noise/control model, the target's actual execution conditions and appropriate evidence; a graph check or semantic equivalence alone supplies none of those.
+
+### Chapter synthesis and next step
+
+The opening chapter has separated a requested answer from the method used to obtain it, introduced a bounded interference preview, distinguished state descriptions from data, and explained why simulation and cost bookkeeping support limited claims. Keep those distinctions when the mathematics becomes more detailed.
+
+**1.6-D — Chapter problem.** A report says: “We returned an ideal distribution from a simulator, removed half the gates and therefore trained a better model that will run twice as fast on hardware.” Identify four missing links in that reasoning. Write a narrower claim that the reported work could support.
+
+**Answer D.** The requested task/output and success criterion are unspecified; gate removal needs a behavior-preservation check; better training needs a defined objective and evaluation evidence; hardware time needs a target and complete measured or explicitly modeled costs. An appropriately narrow claim is that a specified simulator program returned the reported distribution for the tested input. If the rewrite was independently checked, one may additionally report preserved behavior for those checked cases, with the method and scope stated.
+
+Next, build the mathematical language rather than accumulating APIs. Chapter 2 begins with complex scalars and conjugation, then develops vectors and operators with explicit numerical checks. The [writing queue](../writing-order.md) tracks when that planned lesson becomes available.
+
+### Source, status, and limits
+
+The assigned source [ED:routes](../references/proof-sources.md#source-ed-routes) is this project's original editorial specification, [checked prerequisite paths](../learning-paths.md), derived from the canonical curriculum. The formula, miniature reference and diagnostic exercises explain that specification; they assert no quantum theorem or experimentally validated learning schedule.
+
+Depth **V**: construct and check a prerequisite-closed reading path, then diagnose entry knowledge. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.6.json) separates executed graph checks from pending independent methodological, implementation and reader reviews. Neither this section nor Chapter 1 is marked accepted.

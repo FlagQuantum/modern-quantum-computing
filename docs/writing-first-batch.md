@@ -126,7 +126,9 @@ The initial sequence is 1.1–1.6. Use the current queue states to continue from
 
 ## 1.6 A map of the learning routes
 
-**Stable ID:** `sec-what-quantum-computing-computes-6`. **Depth:** V. **State:** brief_ready.
+**Stable ID:** `sec-what-quantum-computing-computes-6`. **Depth:** V. **State:** draft.
+
+[Read the working draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-6). Independent acceptance remains separate.
 
 **Concrete question:** Which learning route serves my question?
 
@@ -138,7 +140,7 @@ The initial sequence is 1.1–1.6. Use the current queue states to continue from
 
 **Scope/continuity boundary:** Present the existing reader routes and core/advanced distinctions, without pretending every volume is a prerequisite for the next.
 
-**Formula-to-code plan:** Use linked complete examples only as previews, with their actual draft/validation status.
+**Formula-to-code plan:** Complete standard-library route checker examples/foundations/learning_routes.py; linked runnable interference and gradient previews carry their existing status, compiler route explicitly planned.
 
 **Independent check:** Resolve the selected route against canonical prerequisites and label unstudied advanced branches.
 

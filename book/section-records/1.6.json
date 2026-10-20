@@ -1,0 +1,82 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-what-quantum-computing-computes-6",
+  "ref": "1.6",
+  "date": "2026-10-20",
+  "state": "draft",
+  "body": "docs/chapters/ch-what-quantum-computing-computes.md",
+  "question": "Which learning route serves my question?",
+  "requires": [
+    "sec-what-quantum-computing-computes-4"
+  ],
+  "depth": "V",
+  "result": "Prerequisite-closed reading paths; select a route, name entry knowledge and a first bounded deliverable; distinguish planned coverage, available drafts and learner completion.",
+  "entry": "Explained, author-checked 1.4 task/model/execution distinction; set union and prerequisite notation introduced locally.",
+  "exit": "Choose a route and identify its entry knowledge and first concrete deliverable.",
+  "assumptions": [
+    "Writing Baseline 1.0 canonical finite 435-section dependency graph, 19 named routes, seven volumes unchanged",
+    "Assumed routes are editorial knowledge inputs, not records of actual learner completion",
+    "Draft publication and author code execution do not constitute independent review or a validated syllabus"
+  ],
+  "symbols": {
+    "T": "Target section IDs",
+    "K": "Prerequisite-closed assumed earlier route section IDs",
+    "P(s)": "Direct prerequisites of section s",
+    "R_j": "Included section set at pass j",
+    "R": "Fixed point; new reading is R minus K"
+  },
+  "local_start_checks": {
+    "prerequisite": "1.4 explains task, program, simulation and physical execution; this section imports no advanced quantum theorem.",
+    "source": "ED:routes original editorial specification consulted in docs/learning-paths.md and canonical book/curriculum.json at b622572. All 435 queue rows read and baseline checked.",
+    "independent_reference": "Three-node chain C requires B requires A, with and without assumed A; real missing-entry counterexample 1.4 without 1.1.",
+    "scope": "No curriculum/depth/volume or prerequisite change. No new paper audit. Existing previews linked with actual draft/format-pilot status."
+  },
+  "sources": [
+    {
+      "locator": "ED:routes",
+      "use": "Original prerequisite paths and route-entry contracts; not third-party textbook content or a quantum theorem."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/learning_routes.py",
+    "command": "python examples/foundations/learning_routes.py",
+    "dependencies": "Python 3.12 standard library only",
+    "python": "3.12.14",
+    "platform": "macOS ARM64 CPU",
+    "author_run": "passed",
+    "flagquantum": "Not applicable: route metadata check; existing runnable previews are linked, no new SDK execution claim.",
+    "checks": [
+      "All 19 canonical routes resolve with direct prerequisites earlier or assumed",
+      "435 stable sections and 19 routes counted",
+      "Hand-sized closure equals {A,B,C}; missing A detected before B; assumed A permits B,C",
+      "Real omitted-entry counterexample detects 1.1 before 1.4",
+      "Algorithms/hybrid-learning/compiler-core new section counts40/17/24 after64 assumed foundations sections",
+      "No section from QFT or physical-platform Chapters17/34–40 imported into compiler core"
+    ],
+    "expected_output_check": "Exact match with the chapter expected-output block",
+    "script_sha256": "22ee54ce38e7baae24afe72c05d1d83fdfe7f5327426e4616e4fe671b0fd933b"
+  },
+  "assessment": {
+    "entry_diagnostic": "1.6-A",
+    "dependency_reasoning": "1.6-B",
+    "route_transfer": "1.6-C",
+    "chapter_debugging_synthesis": "1.6-D",
+    "answers": "Included in section; no reader attempt claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python3.12.14 execution, exact expected-output match, independent three-node closure reference and broken-entry counterexample, all19 route orders, prose scan, frozen scope/dependency/proof-plan checks, strict MkDocs build, links/anchors across55 pages, and actual browser inspection of the closure formula with no raw LaTeX or math-error text. Independent review and reader testing remain pending.",
+    "mathematical": "pending independent methodological review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      2,
+      4
+    ],
+    "word_count_approx": 1921,
+    "page_status": "Unmeasured planning envelope; calibrate with reader/print review without dropping scope.",
+    "next_draft": "2.1 Complex scalars, vectors, and conjugation",
+    "pdf": "Existing three-starter PDF sample and version unchanged."
+  }
+}

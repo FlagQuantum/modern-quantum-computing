@@ -4,7 +4,7 @@
 
 ## Next writing assignment
 
-Sections [1.1–1.5](docs/chapters/ch-what-quantum-computing-computes.md) now have working drafts and author-executed independent references; 1.2–1.4 also compare with released FlagQuantum 0.3.1. Independent mathematical, implementation and target-reader review remain pending. Draft **1.6 A map of the learning routes** next, using the [Chapter 1 briefs](docs/writing-first-batch.md). The existing measurement, gradients and H2 pages remain format pilots until expanded at their scheduled chapter homes.
+Sections [1.1–1.6](docs/chapters/ch-what-quantum-computing-computes.md) now have working drafts and author-executed independent references; 1.2–1.4 also compare with released FlagQuantum 0.3.1. Independent mathematical, implementation and target-reader review remain pending. Draft **2.1 Complex scalars, vectors, and conjugation** next, using its frozen depth F contract and [writing queue](docs/writing-order.md). Chapter 1 now has six drafts; this is not chapter acceptance. The existing measurement, gradients and H2 pages remain format pilots until expanded at their scheduled chapter homes.
 
 The [full queue](docs/writing-order.md) lists every section exactly once, in prerequisite-safe production order. The [reader routes](docs/learning-paths.md) remain separate: a writing batch is not a requirement that students read all earlier production batches.
 

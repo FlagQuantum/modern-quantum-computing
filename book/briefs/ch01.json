@@ -1,6 +1,6 @@
 {
   "baseline": "writing-baseline-v1.0",
-  "scope": "First chapter authoring briefs only; no textbook body or execution claim",
+  "scope": "First chapter authoring briefs and actual drafting status; independent review and acceptance remain separate",
   "sections": [
     {
       "ref": "1.1",
@@ -119,7 +119,7 @@
       "exit": "Choose a route and identify its entry knowledge and first concrete deliverable.",
       "worked_case": "Three bounded destinations: an algorithm prediction, a trainable circuit objective and a program-to-target transformation.",
       "boundary": "Present the existing reader routes and core/advanced distinctions, without pretending every volume is a prerequisite for the next.",
-      "code_plan": "Use linked complete examples only as previews, with their actual draft/validation status.",
+      "code_plan": "Complete standard-library route checker examples/foundations/learning_routes.py; linked runnable interference and gradient previews carry their existing status, compiler route explicitly planned.",
       "independent_check": "Resolve the selected route against canonical prerequisites and label unstudied advanced branches.",
       "transfer_task": "Choose a route for a new task and explain why an unrelated specialization is not required.",
       "source_locators": [
@@ -129,8 +129,8 @@
       "requires": [
         "sec-what-quantum-computing-computes-4"
       ],
-      "status": "brief_ready",
-      "next_transition": "Write a draft only after the local start checks; no body is supplied by this brief."
+      "status": "draft",
+      "next_transition": "Independent methodological, implementation and target-reader review pending. Next drafting assignment: 2.1 Complex scalars, vectors, and conjugation, with its own exact prerequisite and depth F contract."
     }
   ]
 }

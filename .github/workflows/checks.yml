@@ -39,6 +39,7 @@ jobs:
       - run: python examples/foundations/state_descriptions.py
       - run: python examples/foundations/execution_evidence.py
       - run: python examples/foundations/advantage_ledger.py
+      - run: python examples/foundations/learning_routes.py
       - run: python examples/measurement.py
       - run: python examples/gradients.py
       - run: python examples/omalley2016/h2_vqe_model.py
