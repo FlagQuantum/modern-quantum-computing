@@ -33,11 +33,14 @@
       "author_execution": "passed: Python 3.12.14, released FlagQuantum 0.3.1, PyTorch 2.13.0, CPU complex128; constructed data explicitly labelled"
     },
     "sec-what-quantum-computing-computes-4": {
-      "state": "brief_ready",
+      "state": "draft",
       "brief": "book/briefs/ch01.json",
       "mathematical_review": "pending",
-      "implementation_review": "pending-or-scoped-N/A",
-      "reader_review": "pending"
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-what-quantum-computing-computes.md",
+      "record": "book/section-records/1.4.json",
+      "author_execution": "passed: Python 3.12.14, released FlagQuantum 0.3.1, PyTorch 2.13.0, CPU complex128; runtime/provenance verified; no device experiment"
     },
     "sec-what-quantum-computing-computes-5": {
       "state": "brief_ready",

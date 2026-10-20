@@ -1,0 +1,109 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-what-quantum-computing-computes-4",
+  "ref": "1.4",
+  "date": "2026-10-20",
+  "state": "draft",
+  "body": "docs/chapters/ch-what-quantum-computing-computes.md",
+  "question": "How do an algorithm, simulator and physical device differ?",
+  "requires": [
+    "sec-what-quantum-computing-computes-1"
+  ],
+  "depth": "V",
+  "result": "Classify mathematical, simulated and experimental evidence and state a falsifiable check; task/algorithm/program/execution/evidence remain distinct.",
+  "entry": "Only the task/input/output/success contract in 1.1; no interference, amplitude or general gate-theory prerequisite added.",
+  "exit": "Trace one task through specification, reference, program, reported simulator execution and a proposed device experiment; diagnose unsupported evidence claims.",
+  "assumptions": [
+    "One classical integer bit b in {0,1}; output y=1-b",
+    "Supplied ideal X label-swap rule for certain-input states only; general gate postulates are not derived",
+    "Circuit begins at label 0; conditional X prepares b=1 and a separate X performs computation",
+    "Ideal local statevector probabilities on CPU, no samples or physical-qubit execution",
+    "Physical procedure is explicitly proposed and unexecuted; no provider integration or speed ranking claimed"
+  ],
+  "symbols": {
+    "b,y,f": "Classical input bit, output bit and NOT function",
+    "p_0,p_1": "Certain-input label probabilities (1-b,b)",
+    "q_0,q_1": "Output probabilities (b,1-b), not extra qubits",
+    "X": "Supplied label-swap gate for the two basis inputs"
+  },
+  "local_start_checks": {
+    "prerequisite": "Usable explained 1.1 draft. All one-bit model rules and probability notation needed here supplied locally; 1.2/1.3 are not prerequisites.",
+    "source": "Assigned ED:protocol: original Reader review and acceptance evidence standard consulted in docs/reader-continuity.md. No external device or paper evidence invented.",
+    "independent_reference": "Classical f(b)=1-b and independent two-entry label-swap table for both allowed inputs. Compare actual simulation with reference, then detect missing computational X and swapped output labels.",
+    "runtime": "Executed released 0.3.1 .x(0), run/probabilities and inspected actual result.runtime/provenance fields before documenting them."
+  },
+  "sources": [
+    {
+      "locator": "ED:protocol",
+      "consulted": "docs/reader-continuity.md#reader-review-and-acceptance-evidence",
+      "kind": "Original editorial/methodology standard",
+      "use": "Explicit assumptions, independent checks and separated review evidence; not an external experimental paper."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/execution_evidence.py",
+    "command": "python examples/foundations/execution_evidence.py",
+    "dependencies": "requirements-examples.txt",
+    "python": "3.12.14",
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0",
+    "numpy": "2.5.4",
+    "platform": "macOS 27.0 ARM64 CPU",
+    "precision": "complex128",
+    "backend": "pytorch",
+    "atol": 1e-12,
+    "rtol": 0,
+    "author_run": "passed",
+    "runtime_provenance": "Released FlagQuantum wheel installed in /private/tmp/mqc-writing-venv; package direct_url is absent and source resolves inside this environment. NumPy/Matplotlib installed from cached pinned releases. Existing local PyTorch 2.13.0 and supporting packages are shared through a .pth entry after a fresh large-wheel download stalled. Linux CI installs the full pinned requirements independently.",
+    "reported_runtime": {
+      "mode": "statevector",
+      "execution_path": "local_statevector",
+      "simulation_engine": "pytorch_statevector",
+      "device": "cpu"
+    },
+    "reported_provenance": {
+      "selected_device": "cpu",
+      "cpu_fallback_used": false
+    },
+    "randomness": "None; ideal probability requests only; result.samples is None. Hardware execution not performed.",
+    "cases": [
+      "Input 0 -> ideal output 1",
+      "Input 1 -> ideal output 0"
+    ],
+    "checks": [
+      "Classical answer versus independent swapped probability table",
+      "Actual (1,2) probability tensor, CPU location and label order",
+      "Probability mass on the correct label within tolerance",
+      "Actual release runtime/provenance matches requested local CPU statevector execution",
+      "Omitted computational gate produces a detected mismatch for both inputs",
+      "Reversed readout labels produce a detected mismatch for both inputs",
+      "No sample record was generated"
+    ],
+    "expected_output_check": "Exact match with the chapter expected-output block",
+    "script_sha256": "58ec9c2f7ce1872041f207cd52f18a736b17eac3277faf23da4fb8789b668db5"
+  },
+  "assessment": {
+    "checkpoint": "1.4-A",
+    "discrepancy_classification": "1.4-B",
+    "provenance_debugging": "1.4-C",
+    "sampling_counterexample": "1.4-D",
+    "transfer": "1.4-E",
+    "answers": "Included in the section"
+  },
+  "review": {
+    "author_checks": "Passed released FlagQuantum execution, actual runtime/provenance checks, missing-gate and swapped-label counterexamples, exact expected-output comparison, prose scan, strict MkDocs build, links/anchors across all 55 pages, scope/dependency/proof-plan checks and browser visual inspection of formulas, code correspondence and evidence limits. Independent review and reader testing remain pending.",
+    "mathematical": "pending independent mathematical/methodological review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no target-reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      2,
+      4
+    ],
+    "word_count_approx": 1850,
+    "page_status": "Unmeasured planning envelope including worked case, evidence tables and answers; calibrate at reader/print review without changing scope or depth.",
+    "next_draft": "1.5 What computational advantage would require",
+    "pdf": "Existing three-starter PDF sample and edition/version unchanged."
+  }
+}

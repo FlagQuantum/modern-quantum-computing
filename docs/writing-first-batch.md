@@ -78,7 +78,9 @@ The initial sequence is 1.1–1.6. Use the current queue states to continue from
 
 ## 1.4 Algorithms, simulators, and physical devices
 
-**Stable ID:** `sec-what-quantum-computing-computes-4`. **Depth:** V. **State:** brief_ready.
+**Stable ID:** `sec-what-quantum-computing-computes-4`. **Depth:** V. **State:** draft.
+
+[Read the working draft](chapters/ch-what-quantum-computing-computes.md#sec-what-quantum-computing-computes-4). Independent acceptance remains separate.
 
 **Concrete question:** How do an algorithm, simulator and physical device differ?
 
@@ -90,7 +92,7 @@ The initial sequence is 1.1–1.6. Use the current queue states to continue from
 
 **Scope/continuity boundary:** No hardware execution, provider support or speed ranking is claimed. Statevector inspection is a simulator capability with a separate cost.
 
-**Formula-to-code plan:** Plan a complete classical reference and a versioned simulator run when appropriate; hardware access remains optional.
+**Formula-to-code plan:** Complete self-contained NOT truth-table reference and released FlagQuantum simulation: examples/foundations/execution_evidence.py; checks execution provenance and deliberately broken cases. Physical experiment remains an unexecuted plan.
 
 **Independent check:** A claim checklist that detects substitution of simulator output for measured data.
 

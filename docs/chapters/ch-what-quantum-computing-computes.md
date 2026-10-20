@@ -1,6 +1,6 @@
 # 1. What Quantum Computing Computes
 
-**Working draft: sections 1.1–1.3 · Writing Baseline 1.0 · October 20, 2026.** Sections 1.4–1.6 remain planned. Independent mathematical and reader review are pending; this is not an accepted chapter. Section 1.1 uses Python 3.12 and the standard library. Sections 1.2–1.3 add pinned FlagQuantum 0.3.1 simulations.
+**Working draft: sections 1.1–1.4 · Writing Baseline 1.0 · October 20, 2026.** Sections 1.5–1.6 remain planned. Independent mathematical and reader review are pending; this is not an accepted chapter. Section 1.1 uses Python 3.12 and the standard library. Sections 1.2–1.4 add pinned FlagQuantum 0.3.1 simulations.
 
 <span id="sec-what-quantum-computing-computes-1"></span>
 
@@ -490,10 +490,137 @@ FlagQuantum 0.3.1 executes the ideal circuits on CPU using the PyTorch backend a
 - **D.** Direct probabilities are $(1/2,1/2)$ for both. Recombination gives amplitudes $(1,0)$ and $(-1,0)$; both have probabilities $(1,0)$. These two settings do not distinguish them. Formal equivalence of state descriptions is developed later rather than inferred from this finite test alone.
 - **E.** The simulator's internal amplitude coordinates match preparation $B$ in the supplied ideal model. No physical experiment was executed. Adding $H$ before readout yields the sign-sensitive prediction established above; the claim must specify that setting and its model assumptions.
 
-A state description supplies predictions once the operations and readout are specified. A distribution describes possible outcomes for that procedure; a finite record is data from repetitions, or an explicitly labelled fixture. The next planned section, [1.4 Algorithms, simulators, and physical devices](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-4), will separate the roles of those implementations more systematically.
+A state description supplies predictions once the operations and readout are specified. A distribution describes possible outcomes for that procedure; a finite record is data from repetitions, or an explicitly labelled fixture. The next section, [1.4 Algorithms, simulators, and physical devices](#sec-what-quantum-computing-computes-4), will separate the roles of those implementations more systematically.
 
 ### Companion source and review status
 
 For the state/observation distinction, see Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §1.2, printed pp. 13–14, especially Eqs. (1.1)–(1.2); [NC:1.2 source record](../references/proof-sources.md#source-nc-1-2). The setting comparison, constructed record and exercises here are original teaching material. This is a conceptual preview with depth **P**; the formal mathematical state space and full measurement theory are taught in their owning chapters.
 
 Execution details and outstanding reviews are in [the section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.3.json). Author checks are distinct from independent mathematical, implementation and reader review; acceptance remains pending.
+
+<span id="sec-what-quantum-computing-computes-4"></span>
+
+## 1.4 Algorithms, simulators, and physical devices
+
+A circuit diagram, a simulator result and a device readout can all refer to the same computational task. They are different kinds of objects, and they support different claims. A program can implement the wrong algorithm correctly; a simulator can reproduce a model that omits important device effects; an experiment can disagree with a prediction without immediately revealing why.
+
+Our prerequisite is the task contract in [1.1](#sec-what-quantum-computing-computes-1). We will supply a new one-bit example locally, so this section does not require the interference calculations in 1.2–1.3. The goal is to identify what specifies a computation, what calculates a model's predictions, and what constitutes experimental evidence.
+
+### Keep one task fixed
+
+Take an integer bit $b$, either 0 or 1. The requested output is the opposite bit, $y=1-b$. Thus
+
+$$
+f(0)=1,\qquad f(1)=0.
+$$
+
+Here $f$ names the bit-flip function, also called **NOT**. This is a classical input/output task; a quantum circuit can implement it without changing the requested answer. We choose a small example to make every boundary checkable, not to demonstrate a useful quantum speedup.
+
+| Contract item | Our one-bit task |
+|---|---|
+| Input | One known classical bit $b$, supplied to the host program |
+| Output | One classical bit $y$ |
+| Mathematical correctness | $y=1-b$ |
+| Ideal prediction | The correct output has probability one in the declared model |
+| Resources to record | Input preparation, computational operations, readout and classical processing; also the simulator's work when simulation is used |
+
+The mathematical task does not say which machine to use. A classical Python program can return `1 - bit`. Our alternative operational recipe is: prepare a qubit with the input label $b$, apply a gate that swaps labels 0 and 1, then read the output label. Call that gate $X$.
+
+For this example, adopt the ideal rule that $X$ turns a certain label 0 into a certain label 1, and conversely. We are specifying a small model, not deriving a physical gate law. General gate theory is developed later. A **program** expresses the recipe in a language and API; it is distinct from both the task and the execution of that program.
+
+**Checkpoint 1.4-A.** A program leaves the qubit at the input label and returns it. Has it satisfied the task merely because the returned value is a bit? Which input would reveal the mistake?
+
+### Calculate the ideal reference before running a backend
+
+Let $p_0,p_1$ denote the probabilities of the two labels. A certain input bit has probability pair $(1-b,b)$: input 0 gives $(1,0)$, while input 1 gives $(0,1)$. The supplied $X$ rule swaps those entries, giving the predicted output pair
+
+$$
+(q_0,q_1)=(b,1-b).
+$$
+
+The letters $q_0,q_1$ refer to output probabilities, not additional qubits. For $b=0$, the output probabilities are $(0,1)$, so the answer 1 is certain. For $b=1$, they are $(1,0)$, so the answer 0 is certain. This checks both allowed inputs and does not depend on FlagQuantum.
+
+An **ideal simulator** is a classical program that computes predictions for a specified mathematical model. A statevector simulator stores numerical state coordinates and updates them according to the circuit. It can return ideal probabilities without generating a single sampled outcome. Floating-point arithmetic can introduce numerical error even when the simulated model contains no physical noise.
+
+Agreement with the independent reference above checks our program on this task and the simulator's handling of these cases. It does not verify all simulator operations or establish the accuracy of a physical qubit.
+
+### Express the recipe and inspect its execution
+
+The [complete example](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/execution_evidence.py) uses the released FlagQuantum 0.3.1 package. A new `fq.Circuit(1, ...)` starts in the label-0 state. To encode a classical input of 1, the program first applies $X$. It then applies a separate computational $X$ for the NOT algorithm.
+
+This distinction matters: for input 1, two $X$ calls appear in the source, but the first is preparation and the second is the computation. Input 0 needs no preparation flip. Preparation remains part of the execution contract even if a compiler later simplifies a gate sequence.
+
+| Task, formula or evidence | Code expression | Meaning |
+|---|---|---|
+| Classical answer $1-b$ | `classical_not(bit)` | Independent truth-table reference |
+| Input probability pair $(1-b,b)$ | `before = [1-bit, bit]` | Supplied certain-input model |
+| Output pair $(b,1-b)$ | `[before[1], before[0]]` | Independent label-swap calculation |
+| Initialize one qubit | `fq.Circuit(1, dtype=torch.complex128)` | Initial label 0 |
+| Encode input 1 | First, conditional `circuit.x(0)` | Preparation of qubit index 0 |
+| Perform NOT | Second `circuit.x(0)` | Computational step |
+| Request ideal probabilities | `fq.run(..., outputs=[fq.probabilities()], options=OPTIONS)` | Statevector mode, PyTorch backend and CPU; approximation and backend fallback disabled |
+| Read execution information | `result.runtime` and `result.provenance` | The installed release reports the local simulation path and selected device |
+
+The probability tensor has shape `(1, 2)`: one circuit result, with entries ordered as labels 0 and 1. These numbers are predictions, not a physical bit record. The program also verifies that no samples were produced. It never chooses the largest probability and describes that choice as a measured shot.
+
+After installing [the pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples), run from the repository root:
+
+```bash
+python examples/foundations/execution_evidence.py
+```
+
+Expected output:
+
+```text
+input=0: classical answer=1; P(0)=0.000000000, P(1)=1.000000000
+input=1: classical answer=0; P(0)=1.000000000, P(1)=0.000000000
+Reported execution: local_statevector / pytorch_statevector / cpu
+Independent truth-table and simulator checks passed (atol=1e-12).
+Missing-gate and swapped-label errors detected.
+Physical-qubit execution: not performed. Sampled records: none.
+```
+
+Comparisons use zero relative tolerance and absolute tolerance $10^{-12}$ with complex128 simulation. The independent reference is just the exact two-case probability table. To make the checks falsifiable, the program runs a deliberately broken circuit with the computational $X$ missing and separately reverses the output labels; both errors must be detected for both inputs. Passing an API call alone is not the acceptance criterion.
+
+### What would make this a device experiment?
+
+All computers are physical. Here **physical-qubit execution** means applying the circuit operations to an experimental qubit and collecting readout records, rather than using a CPU or GPU to simulate a model. Running software on a remote server, or seeing a cloud job identifier, does not by itself establish physical-qubit execution: the selected target may be a simulator.
+
+A possible hardware experiment would prepare each input, execute the NOT step and collect a chosen number of readouts from repeated preparations. It would preserve the actual target and execution record, software/circuit versions, readout-label mapping, relevant calibration information, timestamps, failed attempts and raw results. The fraction of mismatches could then be compared with a declared error model and statistical acceptance rule.
+
+**That experiment is proposed, not performed here.** We provide no hardware result, provider integration or device-specific accuracy claim. The ideal model predicts no wrong answers for this task. A wrong bit is therefore not ordinary finite-shot fluctuation under that exact model; preparation, control, readout, mapping or model assumptions would need investigation. For tasks with genuinely probabilistic ideal outputs, finite-count variation is a separate issue, as in 1.1.
+
+| Evidence in this section | Supported conclusion | Conclusion it does not establish |
+|---|---|---|
+| Two-case mathematical calculation | The supplied ideal label-swap rule solves the task | A device obeys that rule perfectly |
+| Executed classical reference and simulator comparisons | This program reproduces those ideal predictions on the recorded software path | Hardware fidelity or general simulator correctness |
+| Runtime information reporting a local CPU statevector run | This execution used the specified simulation path | Physical-qubit execution |
+| Proposed hardware procedure | A plan for collecting testable evidence | A measured result, accuracy value or speed comparison |
+
+A simulator may expose internal amplitude coordinates that a physical readout does not return. That access has a classical computation and storage cost. In a full statevector method, each additional qubit doubles the number of amplitude coordinates; this is a property of that representation, not an inference that every simulation method has the same cost. Later chapters derive these resource models. A simulator's elapsed time is not the execution time of the physical circuit it represents.
+
+### Classify a discrepancy before explaining it
+
+**1.4-B — Numerical or logical?** A probability differs from the ideal reference by $2\times10^{-16}$ and passes the declared tolerance. Another run returns the input bit for both inputs because the computational gate was omitted. Classify the two discrepancies and name a check for each.
+
+**1.4-C — Device evidence?** A report labels a cloud job “quantum execution” but supplies only an exact simulator probability array. What information is missing before it can support a physical-qubit claim?
+
+**1.4-D — Sampling or model mismatch?** Someone attributes one wrong output from the ideal NOT model to “normal shot noise.” Is that explanation consistent with the supplied ideal probabilities? Contrast it with a task whose correct model assigns probability $1/2$ to each label.
+
+**1.4-E — Transfer the contract.** Replace NOT by “return the input unchanged.” Give its two-case ideal output probabilities, identify the computational step to remove, and explain why input preparation still matters.
+
+**Answers and reasoning**
+
+- **A.** No. An output type is not a correctness condition. Either allowed input exposes the missing NOT: the unchanged bit is the wrong answer in both cases.
+- **B.** The small difference is consistent with floating-point error at the declared tolerance; compare against the independent probability table and check whether it exceeds that tolerance. The missing gate is a program/algorithm mismatch, detected by the truth table for both inputs. Neither observation is device evidence.
+- **C.** Identify the actual execution target and preserve the execution provenance and raw readout records, including their mapping to output labels. A job label or probability array alone does not show that physical qubit operations occurred. It may be a valid simulation result.
+- **D.** No. In this ideal model the wrong label has probability zero, so sampling the exact distribution cannot produce it. A real wrong readout can motivate investigation of the idealization and execution chain. By contrast, a finite record from a half/half distribution need not have equal counts even when the model is correct.
+- **E.** Input 0 predicts $(1,0)$ and input 1 predicts $(0,1)$. Remove the computational $X$, retaining the conditional preparation $X$ for input 1. Otherwise, both circuits would start at label 0 and would not encode the same task inputs.
+
+We now have a common task spanning a mathematical recipe, a program, an executed simulator and an explicitly unexecuted device plan. The next planned section, [1.5 What computational advantage would require](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-5), uses these distinctions to examine resource comparisons.
+
+### Validation standard and scope
+
+The assigned methodological source is [ED:protocol](../references/proof-sources.md#source-ed-protocol), the book's original [reader-review and acceptance-evidence standard](../reader-continuity.md#reader-review-and-acceptance-evidence). It requires explicit assumptions, reconstructable steps and independent checks; it is not an external device experiment. The task, program, evidence classification and exercises here are original.
+
+This section has depth **V**: it specifies falsifiable checks and the scope of their evidence, rather than proving a new quantum theorem. Author execution, environment details and outstanding reviews are recorded in [the section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/1.4.json). Independent mathematical/methodological review, implementation review and reader testing remain pending.

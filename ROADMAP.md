@@ -4,7 +4,7 @@
 
 ## Next writing assignment
 
-Sections [1.1–1.3](docs/chapters/ch-what-quantum-computing-computes.md) now have working drafts and author-executed independent references; 1.2–1.3 also compare with released FlagQuantum 0.3.1. Independent mathematical, implementation and target-reader review remain pending. Draft **1.4 Algorithms, simulators, and physical devices** next, then **1.5–1.6**, using the [Chapter 1 briefs](docs/writing-first-batch.md). The existing measurement, gradients and H2 pages remain format pilots until expanded at their scheduled chapter homes.
+Sections [1.1–1.4](docs/chapters/ch-what-quantum-computing-computes.md) now have working drafts and author-executed independent references; 1.2–1.4 also compare with released FlagQuantum 0.3.1. Independent mathematical, implementation and target-reader review remain pending. Draft **1.5 What computational advantage would require** next, then **1.6**, using the [Chapter 1 briefs](docs/writing-first-batch.md). The existing measurement, gradients and H2 pages remain format pilots until expanded at their scheduled chapter homes.
 
 The [full queue](docs/writing-order.md) lists every section exactly once, in prerequisite-safe production order. The [reader routes](docs/learning-paths.md) remain separate: a writing batch is not a requirement that students read all earlier production batches.
 
