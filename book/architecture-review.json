@@ -1,0 +1,2518 @@
+{
+  "date": "2026-10-20",
+  "scope": "All existing 50 chapters and 423 sections, plus 12 explicitly assigned repairs; editorial self-review only.",
+  "reviewed_chapter_count": 50,
+  "reviewed_section_count": 435,
+  "findings": [
+    {
+      "id": "F01",
+      "finding": "Definitions arrived after their first operational use: single-qubit probabilities, Pauli matrices and Pauli-specific matrix functions.",
+      "disposition": "State the computational-basis probability postulate in 3.1, define Pauli matrices in 3.3, and keep 2.6 a generic Hermitian-function bridge."
+    },
+    {
+      "id": "F02",
+      "finding": "No-cloning required a two-system tensor-product argument before tensor products were introduced.",
+      "disposition": "Move the existing stable section from 3 to 4, after tensor-product structure; preserve old public anchors."
+    },
+    {
+      "id": "F03",
+      "finding": "Selective measurement and ignored records risked an unintroduced or invalid statevector average.",
+      "disposition": "Limit 6.2 to selective pure-state updates and marginal probabilities; own density mixtures in 8 and mixed-state instruments in 9."
+    },
+    {
+      "id": "F04",
+      "finding": "Phase-based amplitude estimation required jumping from 16 to 17 and back.",
+      "disposition": "Put a phase-free inference example in 16 and move the phase-estimation-based derivation to 17 after QPE; no Chapter 17 prerequisite remains in 16."
+    },
+    {
+      "id": "F05",
+      "finding": "The algorithm route lacked Simon’s canonical hidden-structure example and a clear Abelian/discrete-log bridge.",
+      "disposition": "Add explicit optional/core-scoped sections in 15 and 18 with local binary/group/arithmetic bridges."
+    },
+    {
+      "id": "F06",
+      "finding": "Qubitization was named but not assigned its own invariant-subspace derivation.",
+      "disposition": "Add a selected Hermitian block-encoding walk construction in 20 before spectral transformation applications."
+    },
+    {
+      "id": "F07",
+      "finding": "Quantum information comparison did not clearly cover channel error contracts, mixed entanglement or cryptographic no-go boundaries.",
+      "disposition": "Assign channel metrics/process tomography to 10, mixed-state LOCC/witness/distillation to 12, and a scoped no-go argument to 13."
+    },
+    {
+      "id": "F08",
+      "finding": "Calibration and runtime performance risked being confused with experimental device characterization.",
+      "disposition": "Add SPAM/RB in 28 under explicit model assumptions; keep state/process inversion in 10 and runtime timing in 44."
+    },
+    {
+      "id": "F09",
+      "finding": "Modern QEC coverage lacked named quantum-LDPC and bosonic-code homes.",
+      "disposition": "Add an architecture-aware LDPC section in 30 and an optional oscillator-correction bridge in 34; both require explicit model/error assumptions."
+    },
+    {
+      "id": "F10",
+      "finding": "Optical links and modular hardware were named without a shared networking primitive.",
+      "disposition": "Own pure-state entanglement swapping and classical-message/quantum-link distinctions in 7; mixed-state distillation belongs to 12."
+    },
+    {
+      "id": "F11",
+      "finding": "Several whole-chapter prerequisite lists forced unrelated advanced topics before simple entry tasks.",
+      "disposition": "Replace them with entry guidance and a curated direct-prerequisite graph for every section. Validate compiler, kernel, tensor and memory paths against unnecessary-topic regressions."
+    },
+    {
+      "id": "F12",
+      "finding": "Compilers and basic physical models inherited QFT, full hardware surveys or broad fault-tolerance routes.",
+      "disposition": "Let 41 enter from circuit semantics and 42 from an explicit target contract; physical branches use selected common bridges and advanced controller/logical tracks have separate requirements."
+    },
+    {
+      "id": "F13",
+      "finding": "Fixed kernels inherited trainable-layer prerequisites; MPS became an unnecessary gatekeeper for general contractions.",
+      "disposition": "Create independently checked fixed-kernel and trainable-layer routes; permit general contractions from tensor/circuit tools without 46."
+    },
+    {
+      "id": "F14",
+      "finding": "Repeated concepts risked being fully re-taught across foundations, algorithms, hardware, compilation and simulation.",
+      "disposition": "Record a unique explanatory owner for each recurring concept and mark later uses as applications/reminders, with an explicit duplication matrix."
+    },
+    {
+      "id": "F15",
+      "finding": "The full plan’s workload had no quantitative planning bound.",
+      "disposition": "Assign provisional section page ranges and compute chapter/route totals. Recommend modular/volume packaging review rather than advertising 50 chapters as a single introductory course."
+    },
+    {
+      "id": "F16",
+      "finding": "Basic mathematical/physical tools were sometimes assumed under a broad audience promise.",
+      "disposition": "Assign local probability, calculus, binary algebra, arithmetic/group, oscillator and rotating-frame bridges before use, with exact section dependencies."
+    },
+    {
+      "id": "F17",
+      "finding": "Small algorithm demonstrations could imply stronger preparation, verification or complexity claims.",
+      "disposition": "State eigenstate-overlap cost in QPE, scoped promise/QMA limits in 22 and the expensive tiny-reference boundary in linear-system examples."
+    },
+    {
+      "id": "F18",
+      "finding": "Chapter titles had been treated as sufficient evidence of coverage and learning continuity.",
+      "disposition": "Publish the all-section ledger, chapter-specific decisions and prerequisite-closed routes; require independent specialist/source and reader validation before freeze."
+    },
+    {
+      "id": "F19",
+      "finding": "The H2 reduction and logical-memory source selection still have unresolved scholarly scope.",
+      "disposition": "Keep exact molecular-source/reduction mapping and the Chapter 50 primary-claim selection as explicit outstanding gates; do not write around them with invented evidence."
+    },
+    {
+      "id": "F20",
+      "finding": "The roadmap still allowed new depth/body pilots before the user’s architecture-first requirement was met.",
+      "disposition": "Pause new body drafting. Continue architecture, source mapping and validation design only until the baseline gate is satisfied."
+    }
+  ],
+  "chapters": [
+    {
+      "chapter": 1,
+      "decision": "Retain an informal preview with supplied rules; do not pretend formal measurement/evolution has already been established. Revisit the calculation after 3–6."
+    },
+    {
+      "chapter": 2,
+      "decision": "Remove the premature Pauli specialization from matrix-function introduction. Own linear algebra/norm/tolerance foundations; statistical and physical bridges have named later homes."
+    },
+    {
+      "chapter": 3,
+      "decision": "State the single-qubit probability postulate before interference/Bloch use. Introduce Pauli matrices before their algebra; move no-cloning to the tensor-product chapter."
+    },
+    {
+      "chapter": 4,
+      "decision": "Own subsystem/index conventions and now the no-cloning proof after tensor products. Runtime gate kernels are developed in 44 rather than re-derived here."
+    },
+    {
+      "chapter": 5,
+      "decision": "Retain introductory reversible logic, universality and small identities. Advanced synthesis algorithms and pass correctness are owned by 41–42."
+    },
+    {
+      "chapter": 6,
+      "decision": "Repair selective versus ignored-outcome language: no averaging statevectors. Introduce probability/independence before estimator claims; full mixed-state instruments belong to 8–9."
+    },
+    {
+      "chapter": 7,
+      "decision": "Add entanglement swapping/network-resource primitives. Derive no-signalling from marginal probabilities first; mixed-state entanglement is deferred to 12."
+    },
+    {
+      "chapter": 8,
+      "decision": "Own ensembles, reduced states, purification and unconditioned density updates. Entry does not require completing every protocol or Bell-test topic in 7."
+    },
+    {
+      "chapter": 9,
+      "decision": "Retain representation equivalence and complete-positivity arguments. This is the channel/instrument owner, not a duplicate physical-noise catalogue."
+    },
+    {
+      "chapter": 10,
+      "decision": "Add channel/gate comparison contracts and process tomography. Treat shadows and advanced channel norms as optional inference branches; device characterization protocols are owned by 28."
+    },
+    {
+      "chapter": 11,
+      "decision": "Retain entropy/relative entropy/data processing with explicit support and proof scope. Do not require tomography/shadows before basic entropy."
+    },
+    {
+      "chapter": 12,
+      "decision": "Add mixed-state entanglement/LOCC/witness/distillation reasoning and distinguish finite experiments from capacity theorems. Keep specialized full capacity proofs as scoped advanced readings."
+    },
+    {
+      "chapter": 13,
+      "decision": "Scope a complete QKD path and add an explicit cryptographic no-go boundary. Remove the requirement to complete all channel-capacity theory before the protocol entry."
+    },
+    {
+      "chapter": 14,
+      "decision": "Retain input/output, access, complexity and complete costs plus the hybrid map. Separate comparison assumptions from empirical advantage claims."
+    },
+    {
+      "chapter": 15,
+      "decision": "Restore Simon’s problem and a local binary-equation bridge. Oracle construction remains explicit; general hidden-subgroup structure is owned by 18."
+    },
+    {
+      "chapter": 16,
+      "decision": "Replace the forward phase-estimation dependency with a locally introduced phase-free inference method. Move the phase-estimation-based derivation to 17 and preserve its stable ID."
+    },
+    {
+      "chapter": 17,
+      "decision": "Own QFT/QPE and the phase-based amplitude-estimation extension in sequence. Make eigenstate-overlap/preparation cost explicit; no ground-state-preparation claim follows from QPE alone."
+    },
+    {
+      "chapter": 18,
+      "decision": "Add an advanced Abelian hidden-subgroup/discrete-log example with a local group/arithmetic bridge. Keep non-Abelian representation theory outside the core route."
+    },
+    {
+      "chapter": 19,
+      "decision": "Remove the unnecessary QFT/QPE entry requirement for time evolution/product formulas. Retain adiabatic assumptions and operator/state/observable error distinctions."
+    },
+    {
+      "chapter": 20,
+      "decision": "Add the missing qubitization invariant-subspace derivation between block encodings and QSP/QSVT. Keep access, normalization, conditioning and postselection costs visible."
+    },
+    {
+      "chapter": 21,
+      "decision": "Retain a complete scalar-to-matrix signal-processing path; one proved application plus explicit advanced theorem scope. Do not duplicate polynomial derivations in the walk chapter."
+    },
+    {
+      "chapter": 22,
+      "decision": "Separate algorithm design, query lower bounds and Hamiltonian-complexity limits. Add a scoped promise/QMA boundary without turning small optimizer experiments into complexity evidence."
+    },
+    {
+      "chapter": 23,
+      "decision": "Retain spectral/shared-parameter differentiation with a local calculus bridge. Parameterized tensor contracts are owned here; learning/encoding claims belong to 27."
+    },
+    {
+      "chapter": 24,
+      "decision": "Remove full state-inference prerequisites from optimizer entry. Geometry, trainability theorems and noisy-gradient arguments are branches with exact section requirements."
+    },
+    {
+      "chapter": 25,
+      "decision": "Mark the long chemistry/embedding chapter as a core energy/model path plus independent advanced modules. Do not force embedding, dynamics or sampled-subspace methods before the H2 capstone."
+    },
+    {
+      "chapter": 26,
+      "decision": "Retain objective mapping, alternating circuits and honest solution metrics. Reuse optimization tools from 24 rather than re-teach optimizers."
+    },
+    {
+      "chapter": 27,
+      "decision": "Make fixed-kernel/feature and trainable-layer paths independent. Fixed kernels must not inherit quantum backpropagation prerequisites; include data-access and evaluation bridges."
+    },
+    {
+      "chapter": 28,
+      "decision": "Own physical-noise assumptions, calibration and device characterization. Add SPAM/RB with its own local ensemble/model assumptions; runtime timing benchmarks are owned by 44."
+    },
+    {
+      "chapter": 29,
+      "decision": "Retain the full correction-condition/recovery argument and coherent error-span logic. Teach the first bit-and-phase construction without requiring undeveloped CSS terminology."
+    },
+    {
+      "chapter": 30,
+      "decision": "Add quantum-LDPC/check/connectivity tradeoffs. Keep three separable branches: stabilizer codes, measurement-based graph states and decoder interfaces; introduce binary/group tools locally."
+    },
+    {
+      "chapter": 31,
+      "decision": "Retain repeated syndrome circuits, boundaries, decoder and logical failure definitions. Threshold/scaling evidence remains model-specific; shared syndrome algebra is referenced from 30."
+    },
+    {
+      "chapter": 32,
+      "decision": "Remove factoring and full surface-code prerequisites from the generic logical-gate route. Require surface-code material only for surgery, and retain explicit threshold/magic-state assumptions."
+    },
+    {
+      "chapter": 33,
+      "decision": "Remove all-algorithm prerequisites. A named logical workload and logical-operation/error models suffice; actual decomposition algorithms remain in 42."
+    },
+    {
+      "chapter": 34,
+      "decision": "Retain a common physical bridge, now with an optional bosonic-correction module. Do not require QFT, every noise topic or every code family before basic hardware models."
+    },
+    {
+      "chapter": 35,
+      "decision": "Keep a self-contained effective circuit/transmon branch using selected common physics. Detailed BCS/device fabrication remains out of scope; compiler algorithms are referenced rather than repeated."
+    },
+    {
+      "chapter": 36,
+      "decision": "Keep the local oscillator/sideband/drive bridge and explicit motion-return/transport costs. Avoid cost-free connectivity assumptions and unrelated algorithm prerequisites."
+    },
+    {
+      "chapter": 37,
+      "decision": "Retain distinct digital, analog and motion contracts. The adiabatic theorem is developed in 19; a Rydberg device model does not imply arbitrary graph programmability."
+    },
+    {
+      "chapter": 38,
+      "decision": "Separate optical modes, encoded qubits, conditional gates, graph-state computation and optional CV material. Require only the relevant graph-state/oscillator sections for each branch."
+    },
+    {
+      "chapter": 39,
+      "decision": "Retain a local effective spin/exchange/readout model with explicit omitted levels. No whole chemistry, Fourier or fault-tolerance route is needed for entry."
+    },
+    {
+      "chapter": 40,
+      "decision": "Retain a theory-first, evidence-qualified advanced branch. Majorana/fermionic and protection/logical supplements have separate prerequisites; full tensor-category theory is an explicit exclusion."
+    },
+    {
+      "chapter": 41,
+      "decision": "Remove microscopic hardware from program/IR entry. Own program semantics, dynamic maps, rewrites and interchange boundaries; optional derivative checks use the differentiation bridge."
+    },
+    {
+      "chapter": 42,
+      "decision": "Remove whole-platform prerequisites from mapping/scheduling entry: an explicit target contract suffices. Own synthesis/mapping algorithms; logical-set approximation is an optional prepared branch."
+    },
+    {
+      "chapter": 43,
+      "decision": "Separate control, local dynamic feedback, logical lowering and host workflow tracks. Runtime orchestration must not require pulse optimization, and decoder feedback need not traverse every logical-gate chapter."
+    },
+    {
+      "chapter": 44,
+      "decision": "Make the minimal exact-state executor accessible before AD and density evolution. Own execution/parallel-runtime benchmarks, not experimental RB error characterization."
+    },
+    {
+      "chapter": 45,
+      "decision": "Make tableau entry depend on Pauli/stabilizer sections, not all error-correction or numerical-executor topics. Defer magic-resource extensions explicitly."
+    },
+    {
+      "chapter": 46,
+      "decision": "Retain the SVD/Schmidt-to-MPS argument. Pure-state construction needs neither tomography nor all density/gradient execution; compare truncation with declared metrics."
+    },
+    {
+      "chapter": 47,
+      "decision": "Remove MPS as a prerequisite for general circuit contraction. Keep contraction and cutting/reconstruction as distinct branches, with all signed-weight/statistical overhead explicit."
+    },
+    {
+      "chapter": 48,
+      "decision": "Allow scientific specification and paper-reading habits early. Statistical/resource and application tools are selected for a claim rather than requiring whole advanced courses."
+    },
+    {
+      "chapter": 49,
+      "decision": "Require only the energy/mapping/gradient and research sections needed by the selected H2 calculation. Full molecular reduction/source locators still need review; embedding/learning are not prerequisites."
+    },
+    {
+      "chapter": 50,
+      "decision": "Remove logical universality/resource-estimation prerequisites from the memory experiment. Resource extrapolation is optional; selecting a primary claim/source remains an explicit unresolved gate."
+    }
+  ],
+  "sections": [
+    {
+      "section_id": "sec-what-quantum-computing-computes-1",
+      "chapter": 1,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-what-quantum-computing-computes-2",
+      "chapter": 1,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-what-quantum-computing-computes-3",
+      "chapter": 1,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-what-quantum-computing-computes-4",
+      "chapter": 1,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-what-quantum-computing-computes-5",
+      "chapter": 1,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-what-quantum-computing-computes-6",
+      "chapter": 1,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-1",
+      "chapter": 2,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-2",
+      "chapter": 2,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-3",
+      "chapter": 2,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-4",
+      "chapter": 2,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-5",
+      "chapter": 2,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-6",
+      "chapter": 2,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-7",
+      "chapter": 2,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-8",
+      "chapter": 2,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-single-qubit-states-and-rotations-1",
+      "chapter": 3,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-single-qubit-states-and-rotations-2",
+      "chapter": 3,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-single-qubit-states-and-rotations-3",
+      "chapter": 3,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-single-qubit-states-and-rotations-4",
+      "chapter": 3,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-single-qubit-states-and-rotations-5",
+      "chapter": 3,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-single-qubit-states-and-rotations-6",
+      "chapter": 3,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-single-qubit-states-and-rotations-7",
+      "chapter": 3,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+      "chapter": 4,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+      "chapter": 4,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-3",
+      "chapter": 4,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-4",
+      "chapter": 4,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-5",
+      "chapter": 4,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-6",
+      "chapter": 4,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-single-qubit-states-and-rotations-8",
+      "chapter": 4,
+      "disposition": "Move after prerequisites"
+    },
+    {
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-7",
+      "chapter": 4,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-1",
+      "chapter": 5,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-2",
+      "chapter": 5,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-3",
+      "chapter": 5,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-4",
+      "chapter": 5,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-5",
+      "chapter": 5,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-6",
+      "chapter": 5,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-7",
+      "chapter": 5,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-8",
+      "chapter": 5,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-1",
+      "chapter": 6,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-2",
+      "chapter": 6,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-3",
+      "chapter": 6,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-4",
+      "chapter": 6,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-5",
+      "chapter": 6,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-6",
+      "chapter": 6,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-7",
+      "chapter": 6,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-8",
+      "chapter": 6,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-9",
+      "chapter": 6,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entanglement-and-quantum-information-protocols-1",
+      "chapter": 7,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entanglement-and-quantum-information-protocols-2",
+      "chapter": 7,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entanglement-and-quantum-information-protocols-3",
+      "chapter": 7,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entanglement-and-quantum-information-protocols-4",
+      "chapter": 7,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entanglement-and-quantum-information-protocols-5",
+      "chapter": 7,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entanglement-and-quantum-information-protocols-6",
+      "chapter": 7,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entanglement-and-quantum-information-protocols-7",
+      "chapter": 7,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-network-entanglement-primitives",
+      "chapter": 7,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-entanglement-and-quantum-information-protocols-8",
+      "chapter": 7,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-density-matrices-reduced-states-and-purification-1",
+      "chapter": 8,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-density-matrices-reduced-states-and-purification-2",
+      "chapter": 8,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-density-matrices-reduced-states-and-purification-3",
+      "chapter": 8,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-density-matrices-reduced-states-and-purification-4",
+      "chapter": 8,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-density-matrices-reduced-states-and-purification-5",
+      "chapter": 8,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-density-matrices-reduced-states-and-purification-6",
+      "chapter": 8,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-density-matrices-reduced-states-and-purification-7",
+      "chapter": 8,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-density-matrices-reduced-states-and-purification-8",
+      "chapter": 8,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-channels-and-their-representations-1",
+      "chapter": 9,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-channels-and-their-representations-2",
+      "chapter": 9,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-channels-and-their-representations-3",
+      "chapter": 9,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-channels-and-their-representations-4",
+      "chapter": 9,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-channels-and-their-representations-5",
+      "chapter": 9,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-channels-and-their-representations-6",
+      "chapter": 9,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-channels-and-their-representations-7",
+      "chapter": 9,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-channels-and-their-representations-8",
+      "chapter": 9,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-distinguishability-fidelity-and-quantum-state-inference-1",
+      "chapter": 10,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-distinguishability-fidelity-and-quantum-state-inference-2",
+      "chapter": 10,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-distinguishability-fidelity-and-quantum-state-inference-3",
+      "chapter": 10,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-distinguishability-fidelity-and-quantum-state-inference-4",
+      "chapter": 10,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-channel-error-metrics",
+      "chapter": 10,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-distinguishability-fidelity-and-quantum-state-inference-5",
+      "chapter": 10,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-distinguishability-fidelity-and-quantum-state-inference-6",
+      "chapter": 10,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-distinguishability-fidelity-and-quantum-state-inference-7",
+      "chapter": 10,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-distinguishability-fidelity-and-quantum-state-inference-8",
+      "chapter": 10,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entropy-relative-entropy-and-information-processing-1",
+      "chapter": 11,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-entropy-relative-entropy-and-information-processing-2",
+      "chapter": 11,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entropy-relative-entropy-and-information-processing-3",
+      "chapter": 11,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entropy-relative-entropy-and-information-processing-4",
+      "chapter": 11,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entropy-relative-entropy-and-information-processing-5",
+      "chapter": 11,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entropy-relative-entropy-and-information-processing-6",
+      "chapter": 11,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entropy-relative-entropy-and-information-processing-7",
+      "chapter": 11,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-entropy-relative-entropy-and-information-processing-8",
+      "chapter": 11,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-compression-entanglement-and-communication-limits-1",
+      "chapter": 12,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-compression-entanglement-and-communication-limits-2",
+      "chapter": 12,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-compression-entanglement-and-communication-limits-3",
+      "chapter": 12,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-compression-entanglement-and-communication-limits-4",
+      "chapter": 12,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-mixed-entanglement-resources",
+      "chapter": 12,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-compression-entanglement-and-communication-limits-5",
+      "chapter": 12,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-compression-entanglement-and-communication-limits-6",
+      "chapter": 12,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-compression-entanglement-and-communication-limits-7",
+      "chapter": 12,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-compression-entanglement-and-communication-limits-8",
+      "chapter": 12,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-cryptography-and-security-reasoning-1",
+      "chapter": 13,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-cryptography-and-security-reasoning-2",
+      "chapter": 13,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-cryptography-and-security-reasoning-3",
+      "chapter": 13,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-cryptography-and-security-reasoning-4",
+      "chapter": 13,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-cryptography-and-security-reasoning-5",
+      "chapter": 13,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-cryptography-and-security-reasoning-6",
+      "chapter": 13,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-cryptography-and-security-reasoning-7",
+      "chapter": 13,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-crypto-impossibility-boundaries",
+      "chapter": 13,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-quantum-cryptography-and-security-reasoning-8",
+      "chapter": 13,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-1",
+      "chapter": 14,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-2",
+      "chapter": 14,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-3",
+      "chapter": 14,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-4",
+      "chapter": 14,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-5",
+      "chapter": 14,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-6",
+      "chapter": 14,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hybrid-interaction-map",
+      "chapter": 14,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-7",
+      "chapter": 14,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-8",
+      "chapter": 14,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-interference-oracles-and-phase-kickback-1",
+      "chapter": 15,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-interference-oracles-and-phase-kickback-2",
+      "chapter": 15,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-interference-oracles-and-phase-kickback-3",
+      "chapter": 15,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-interference-oracles-and-phase-kickback-4",
+      "chapter": 15,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-interference-oracles-and-phase-kickback-5",
+      "chapter": 15,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-simon-hidden-structure",
+      "chapter": 15,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-interference-oracles-and-phase-kickback-6",
+      "chapter": 15,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-interference-oracles-and-phase-kickback-7",
+      "chapter": 15,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-grover-search-amplitude-amplification-and-estimation-1",
+      "chapter": 16,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-grover-search-amplitude-amplification-and-estimation-2",
+      "chapter": 16,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-grover-search-amplitude-amplification-and-estimation-3",
+      "chapter": 16,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-grover-search-amplitude-amplification-and-estimation-4",
+      "chapter": 16,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-grover-search-amplitude-amplification-and-estimation-5",
+      "chapter": 16,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-amplitude-estimation-phase-free",
+      "chapter": 16,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-grover-search-amplitude-amplification-and-estimation-7",
+      "chapter": 16,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-grover-search-amplitude-amplification-and-estimation-8",
+      "chapter": 16,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fourier-transforms-and-quantum-phase-estimation-1",
+      "chapter": 17,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fourier-transforms-and-quantum-phase-estimation-2",
+      "chapter": 17,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fourier-transforms-and-quantum-phase-estimation-3",
+      "chapter": 17,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fourier-transforms-and-quantum-phase-estimation-4",
+      "chapter": 17,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fourier-transforms-and-quantum-phase-estimation-5",
+      "chapter": 17,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fourier-transforms-and-quantum-phase-estimation-6",
+      "chapter": 17,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fourier-transforms-and-quantum-phase-estimation-7",
+      "chapter": 17,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-grover-search-amplitude-amplification-and-estimation-6",
+      "chapter": 17,
+      "disposition": "Move after prerequisites"
+    },
+    {
+      "section_id": "sec-fourier-transforms-and-quantum-phase-estimation-8",
+      "chapter": 17,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-period-finding-factoring-and-algorithmic-arithmetic-1",
+      "chapter": 18,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-period-finding-factoring-and-algorithmic-arithmetic-2",
+      "chapter": 18,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-period-finding-factoring-and-algorithmic-arithmetic-3",
+      "chapter": 18,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-period-finding-factoring-and-algorithmic-arithmetic-4",
+      "chapter": 18,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-period-finding-factoring-and-algorithmic-arithmetic-5",
+      "chapter": 18,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-period-finding-factoring-and-algorithmic-arithmetic-6",
+      "chapter": 18,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-abelian-hidden-subgroups",
+      "chapter": 18,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-period-finding-factoring-and-algorithmic-arithmetic-7",
+      "chapter": 18,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-period-finding-factoring-and-algorithmic-arithmetic-8",
+      "chapter": 18,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hamiltonian-simulation-and-error-bounds-1",
+      "chapter": 19,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hamiltonian-simulation-and-error-bounds-2",
+      "chapter": 19,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hamiltonian-simulation-and-error-bounds-3",
+      "chapter": 19,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hamiltonian-simulation-and-error-bounds-4",
+      "chapter": 19,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hamiltonian-simulation-and-error-bounds-5",
+      "chapter": 19,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hamiltonian-simulation-and-error-bounds-6",
+      "chapter": 19,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hamiltonian-simulation-and-error-bounds-7",
+      "chapter": 19,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hamiltonian-adiabatic-model",
+      "chapter": 19,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hamiltonian-simulation-and-error-bounds-8",
+      "chapter": 19,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-block-encodings-and-quantum-linear-algebra-1",
+      "chapter": 20,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-block-encodings-and-quantum-linear-algebra-2",
+      "chapter": 20,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-block-encodings-and-quantum-linear-algebra-3",
+      "chapter": 20,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-block-encodings-and-quantum-linear-algebra-4",
+      "chapter": 20,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-block-encodings-and-quantum-linear-algebra-5",
+      "chapter": 20,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-block-encodings-and-quantum-linear-algebra-6",
+      "chapter": 20,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-qubitization-invariant-subspaces",
+      "chapter": 20,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-block-encodings-and-quantum-linear-algebra-7",
+      "chapter": 20,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-block-encodings-and-quantum-linear-algebra-8",
+      "chapter": 20,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-signal-processing-and-singular-value-transformation-1",
+      "chapter": 21,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-signal-processing-and-singular-value-transformation-2",
+      "chapter": 21,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-signal-processing-and-singular-value-transformation-3",
+      "chapter": 21,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-signal-processing-and-singular-value-transformation-4",
+      "chapter": 21,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-signal-processing-and-singular-value-transformation-5",
+      "chapter": 21,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-signal-processing-and-singular-value-transformation-6",
+      "chapter": 21,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-signal-processing-and-singular-value-transformation-7",
+      "chapter": 21,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-signal-processing-and-singular-value-transformation-8",
+      "chapter": 21,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-signal-processing-and-singular-value-transformation-9",
+      "chapter": 21,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-walks-lower-bounds-and-algorithm-design-1",
+      "chapter": 22,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-walks-lower-bounds-and-algorithm-design-2",
+      "chapter": 22,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-walks-lower-bounds-and-algorithm-design-3",
+      "chapter": 22,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-walks-lower-bounds-and-algorithm-design-4",
+      "chapter": 22,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-walks-lower-bounds-and-algorithm-design-5",
+      "chapter": 22,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-walks-lower-bounds-and-algorithm-design-6",
+      "chapter": 22,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-walks-lower-bounds-and-algorithm-design-7",
+      "chapter": 22,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hamiltonian-complexity-boundary",
+      "chapter": 22,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-quantum-walks-lower-bounds-and-algorithm-design-8",
+      "chapter": 22,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-1",
+      "chapter": 23,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-2",
+      "chapter": 23,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-3",
+      "chapter": 23,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-4",
+      "chapter": 23,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-5",
+      "chapter": 23,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-6",
+      "chapter": 23,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-7",
+      "chapter": 23,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-8",
+      "chapter": 23,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-9",
+      "chapter": 23,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-parameterized-circuits-quantum-gradients-and-differentiation-10",
+      "chapter": 23,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-optimization-geometry-and-trainability-1",
+      "chapter": 24,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-optimization-geometry-and-trainability-2",
+      "chapter": 24,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-optimization-geometry-and-trainability-3",
+      "chapter": 24,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-optimization-geometry-and-trainability-4",
+      "chapter": 24,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-optimization-geometry-and-trainability-5",
+      "chapter": 24,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-optimization-geometry-and-trainability-6",
+      "chapter": 24,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-optimization-geometry-and-trainability-7",
+      "chapter": 24,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-optimization-geometry-and-trainability-8",
+      "chapter": 24,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-optimization-geometry-and-trainability-9",
+      "chapter": 24,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-variational-simulation-chemistry-and-ground-state-problems-1",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-variational-simulation-chemistry-and-ground-state-problems-2",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-variational-simulation-chemistry-and-ground-state-problems-3",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-variational-simulation-chemistry-and-ground-state-problems-4",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-variational-simulation-chemistry-and-ground-state-problems-5",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-variational-simulation-chemistry-and-ground-state-problems-6",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-variational-simulation-chemistry-and-ground-state-problems-7",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-variational-simulation-chemistry-and-ground-state-problems-8",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-embedding-model",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-embedding-self-consistency",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-sample-assisted-subspace-solve",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-variational-simulation-chemistry-and-ground-state-problems-9",
+      "chapter": 25,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-qaoa-quantum-optimization-and-classical-comparisons-1",
+      "chapter": 26,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-qaoa-quantum-optimization-and-classical-comparisons-2",
+      "chapter": 26,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-qaoa-quantum-optimization-and-classical-comparisons-3",
+      "chapter": 26,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-qaoa-quantum-optimization-and-classical-comparisons-4",
+      "chapter": 26,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-qaoa-quantum-optimization-and-classical-comparisons-5",
+      "chapter": 26,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-qaoa-quantum-optimization-and-classical-comparisons-6",
+      "chapter": 26,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-qaoa-quantum-optimization-and-classical-comparisons-7",
+      "chapter": 26,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-qaoa-quantum-optimization-and-classical-comparisons-8",
+      "chapter": 26,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-learning-kernels-and-hybrid-models-1",
+      "chapter": 27,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-learning-kernels-and-hybrid-models-2",
+      "chapter": 27,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-learning-kernels-and-hybrid-models-3",
+      "chapter": 27,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-learning-kernels-and-hybrid-models-4",
+      "chapter": 27,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-learning-kernels-and-hybrid-models-5",
+      "chapter": 27,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-learning-kernels-and-hybrid-models-6",
+      "chapter": 27,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-learning-kernels-and-hybrid-models-7",
+      "chapter": 27,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-learning-kernels-and-hybrid-models-8",
+      "chapter": 27,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-noise-open-systems-and-error-mitigation-1",
+      "chapter": 28,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-noise-open-systems-and-error-mitigation-2",
+      "chapter": 28,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-noise-open-systems-and-error-mitigation-3",
+      "chapter": 28,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-noise-open-systems-and-error-mitigation-4",
+      "chapter": 28,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-noise-open-systems-and-error-mitigation-5",
+      "chapter": 28,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-noise-open-systems-and-error-mitigation-6",
+      "chapter": 28,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-noise-open-systems-and-error-mitigation-7",
+      "chapter": 28,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-noise-open-systems-and-error-mitigation-8",
+      "chapter": 28,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-device-characterization-benchmarking",
+      "chapter": 28,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-noise-open-systems-and-error-mitigation-9",
+      "chapter": 28,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-error-correction-conditions-and-recovery-1",
+      "chapter": 29,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-error-correction-conditions-and-recovery-2",
+      "chapter": 29,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-error-correction-conditions-and-recovery-3",
+      "chapter": 29,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-error-correction-conditions-and-recovery-4",
+      "chapter": 29,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-error-correction-conditions-and-recovery-5",
+      "chapter": 29,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-error-correction-conditions-and-recovery-6",
+      "chapter": 29,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-error-correction-conditions-and-recovery-7",
+      "chapter": 29,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-error-correction-conditions-and-recovery-8",
+      "chapter": 29,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-quantum-error-correction-conditions-and-recovery-9",
+      "chapter": 29,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-codes-logical-operators-and-decoding-1",
+      "chapter": 30,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-stabilizer-codes-logical-operators-and-decoding-2",
+      "chapter": 30,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-codes-logical-operators-and-decoding-3",
+      "chapter": 30,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-codes-logical-operators-and-decoding-4",
+      "chapter": 30,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-codes-logical-operators-and-decoding-5",
+      "chapter": 30,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-codes-logical-operators-and-decoding-6",
+      "chapter": 30,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-codes-logical-operators-and-decoding-7",
+      "chapter": 30,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-codes-logical-operators-and-decoding-8",
+      "chapter": 30,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-ldpc-architecture",
+      "chapter": 30,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-stabilizer-graph-state-mbqc",
+      "chapter": 30,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-codes-logical-operators-and-decoding-9",
+      "chapter": 30,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-surface-codes-and-repeated-syndrome-measurements-1",
+      "chapter": 31,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-surface-codes-and-repeated-syndrome-measurements-2",
+      "chapter": 31,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-surface-codes-and-repeated-syndrome-measurements-3",
+      "chapter": 31,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-surface-codes-and-repeated-syndrome-measurements-4",
+      "chapter": 31,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-surface-codes-and-repeated-syndrome-measurements-5",
+      "chapter": 31,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-surface-codes-and-repeated-syndrome-measurements-6",
+      "chapter": 31,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-surface-codes-and-repeated-syndrome-measurements-7",
+      "chapter": 31,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-surface-codes-and-repeated-syndrome-measurements-8",
+      "chapter": 31,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fault-tolerant-gates-and-universal-logical-computation-1",
+      "chapter": 32,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fault-tolerant-gates-and-universal-logical-computation-2",
+      "chapter": 32,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fault-tolerant-gates-and-universal-logical-computation-3",
+      "chapter": 32,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fault-tolerant-gates-and-universal-logical-computation-4",
+      "chapter": 32,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fault-tolerant-gates-and-universal-logical-computation-5",
+      "chapter": 32,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fault-tolerant-gates-and-universal-logical-computation-6",
+      "chapter": 32,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fault-tolerant-gates-and-universal-logical-computation-7",
+      "chapter": 32,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-fault-tolerant-gates-and-universal-logical-computation-8",
+      "chapter": 32,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-logical-algorithms-to-physical-resource-estimates-1",
+      "chapter": 33,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-logical-algorithms-to-physical-resource-estimates-2",
+      "chapter": 33,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-logical-algorithms-to-physical-resource-estimates-3",
+      "chapter": 33,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-logical-algorithms-to-physical-resource-estimates-4",
+      "chapter": 33,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-logical-algorithms-to-physical-resource-estimates-5",
+      "chapter": 33,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-logical-algorithms-to-physical-resource-estimates-6",
+      "chapter": 33,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-logical-algorithms-to-physical-resource-estimates-7",
+      "chapter": 33,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-logical-algorithms-to-physical-resource-estimates-8",
+      "chapter": 33,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-abstract-qubits-to-physical-quantum-systems-1",
+      "chapter": 34,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-abstract-qubits-to-physical-quantum-systems-2",
+      "chapter": 34,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-abstract-qubits-to-physical-quantum-systems-3",
+      "chapter": 34,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-abstract-qubits-to-physical-quantum-systems-4",
+      "chapter": 34,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-abstract-qubits-to-physical-quantum-systems-5",
+      "chapter": 34,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-abstract-qubits-to-physical-quantum-systems-6",
+      "chapter": 34,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-bosonic-error-correction-bridge",
+      "chapter": 34,
+      "disposition": "Add explicit scope"
+    },
+    {
+      "section_id": "sec-from-abstract-qubits-to-physical-quantum-systems-7",
+      "chapter": 34,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-abstract-qubits-to-physical-quantum-systems-8",
+      "chapter": 34,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-from-abstract-qubits-to-physical-quantum-systems-9",
+      "chapter": 34,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-superconducting-qubits-and-circuit-qed-control-1",
+      "chapter": 35,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-superconducting-qubits-and-circuit-qed-control-2",
+      "chapter": 35,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-superconducting-qubits-and-circuit-qed-control-3",
+      "chapter": 35,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-superconducting-qubits-and-circuit-qed-control-4",
+      "chapter": 35,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-superconducting-qubits-and-circuit-qed-control-5",
+      "chapter": 35,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-superconducting-qubits-and-circuit-qed-control-6",
+      "chapter": 35,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-superconducting-qubits-and-circuit-qed-control-7",
+      "chapter": 35,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-superconducting-qubits-and-circuit-qed-control-8",
+      "chapter": 35,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-trapped-ion-qubits-motional-gates-and-transport-1",
+      "chapter": 36,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-trapped-ion-qubits-motional-gates-and-transport-2",
+      "chapter": 36,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-trapped-ion-qubits-motional-gates-and-transport-3",
+      "chapter": 36,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-trapped-ion-qubits-motional-gates-and-transport-4",
+      "chapter": 36,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-trapped-ion-qubits-motional-gates-and-transport-5",
+      "chapter": 36,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-trapped-ion-qubits-motional-gates-and-transport-6",
+      "chapter": 36,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-trapped-ion-qubits-motional-gates-and-transport-7",
+      "chapter": 36,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-trapped-ion-qubits-motional-gates-and-transport-8",
+      "chapter": 36,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-neutral-atom-arrays-and-rydberg-quantum-computing-1",
+      "chapter": 37,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-neutral-atom-arrays-and-rydberg-quantum-computing-2",
+      "chapter": 37,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-neutral-atom-arrays-and-rydberg-quantum-computing-3",
+      "chapter": 37,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-neutral-atom-arrays-and-rydberg-quantum-computing-4",
+      "chapter": 37,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-neutral-atom-arrays-and-rydberg-quantum-computing-5",
+      "chapter": 37,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-neutral-atom-arrays-and-rydberg-quantum-computing-6",
+      "chapter": 37,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-neutral-atom-arrays-and-rydberg-quantum-computing-7",
+      "chapter": 37,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-neutral-atom-arrays-and-rydberg-quantum-computing-8",
+      "chapter": 37,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-1",
+      "chapter": 38,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-2",
+      "chapter": 38,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-3",
+      "chapter": 38,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-4",
+      "chapter": 38,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-5",
+      "chapter": 38,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-6",
+      "chapter": 38,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-7",
+      "chapter": 38,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-8",
+      "chapter": 38,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-9",
+      "chapter": 38,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-semiconductor-spin-qubits-and-exchange-based-architectures-1",
+      "chapter": 39,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-semiconductor-spin-qubits-and-exchange-based-architectures-2",
+      "chapter": 39,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-semiconductor-spin-qubits-and-exchange-based-architectures-3",
+      "chapter": 39,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-semiconductor-spin-qubits-and-exchange-based-architectures-4",
+      "chapter": 39,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-semiconductor-spin-qubits-and-exchange-based-architectures-5",
+      "chapter": 39,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-semiconductor-spin-qubits-and-exchange-based-architectures-6",
+      "chapter": 39,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-semiconductor-spin-qubits-and-exchange-based-architectures-7",
+      "chapter": 39,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-semiconductor-spin-qubits-and-exchange-based-architectures-8",
+      "chapter": 39,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-topological-quantum-computation-and-candidate-physical-realizations-1",
+      "chapter": 40,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-topological-quantum-computation-and-candidate-physical-realizations-2",
+      "chapter": 40,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-topological-quantum-computation-and-candidate-physical-realizations-3",
+      "chapter": 40,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-topological-quantum-computation-and-candidate-physical-realizations-4",
+      "chapter": 40,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-topological-quantum-computation-and-candidate-physical-realizations-5",
+      "chapter": 40,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-topological-quantum-computation-and-candidate-physical-realizations-6",
+      "chapter": 40,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-topological-quantum-computation-and-candidate-physical-realizations-7",
+      "chapter": 40,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-topological-quantum-computation-and-candidate-physical-realizations-8",
+      "chapter": 40,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-programs-intermediate-representations-and-verified-optimization-1",
+      "chapter": 41,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-programs-intermediate-representations-and-verified-optimization-2",
+      "chapter": 41,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-programs-intermediate-representations-and-verified-optimization-3",
+      "chapter": 41,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-programs-intermediate-representations-and-verified-optimization-4",
+      "chapter": 41,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-programs-intermediate-representations-and-verified-optimization-5",
+      "chapter": 41,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-programs-intermediate-representations-and-verified-optimization-6",
+      "chapter": 41,
+      "disposition": "Revise scope/first use"
+    },
+    {
+      "section_id": "sec-quantum-programs-intermediate-representations-and-verified-optimization-7",
+      "chapter": 41,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-programs-intermediate-representations-and-verified-optimization-8",
+      "chapter": 41,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-quantum-programs-intermediate-representations-and-verified-optimization-9",
+      "chapter": 41,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-1",
+      "chapter": 42,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-2",
+      "chapter": 42,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-3",
+      "chapter": 42,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-4",
+      "chapter": 42,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-5",
+      "chapter": 42,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-6",
+      "chapter": 42,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-7",
+      "chapter": 42,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-8",
+      "chapter": 42,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-9",
+      "chapter": 42,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-10",
+      "chapter": 42,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-1",
+      "chapter": 43,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-2",
+      "chapter": 43,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-3",
+      "chapter": 43,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-4",
+      "chapter": 43,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-5",
+      "chapter": 43,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-6",
+      "chapter": 43,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-7",
+      "chapter": 43,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-8",
+      "chapter": 43,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-hybrid-heterogeneous-runtime",
+      "chapter": 43,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-control-level-lowering-dynamic-execution-and-logical-compilation-9",
+      "chapter": 43,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-1",
+      "chapter": 44,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-2",
+      "chapter": 44,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-3",
+      "chapter": 44,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-4",
+      "chapter": 44,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-5",
+      "chapter": 44,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-6",
+      "chapter": 44,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-7",
+      "chapter": 44,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-8",
+      "chapter": 44,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-simulation-magic-and-classical-simulability-1",
+      "chapter": 45,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-simulation-magic-and-classical-simulability-2",
+      "chapter": 45,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-simulation-magic-and-classical-simulability-3",
+      "chapter": 45,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-simulation-magic-and-classical-simulability-4",
+      "chapter": 45,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-simulation-magic-and-classical-simulability-5",
+      "chapter": 45,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-simulation-magic-and-classical-simulability-6",
+      "chapter": 45,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-simulation-magic-and-classical-simulability-7",
+      "chapter": 45,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-stabilizer-simulation-magic-and-classical-simulability-8",
+      "chapter": 45,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-matrix-product-states-entanglement-and-truncation-1",
+      "chapter": 46,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-matrix-product-states-entanglement-and-truncation-2",
+      "chapter": 46,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-matrix-product-states-entanglement-and-truncation-3",
+      "chapter": 46,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-matrix-product-states-entanglement-and-truncation-4",
+      "chapter": 46,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-matrix-product-states-entanglement-and-truncation-5",
+      "chapter": 46,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-matrix-product-states-entanglement-and-truncation-6",
+      "chapter": 46,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-matrix-product-states-entanglement-and-truncation-7",
+      "chapter": 46,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-matrix-product-states-entanglement-and-truncation-8",
+      "chapter": 46,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-1",
+      "chapter": 47,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-2",
+      "chapter": 47,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-3",
+      "chapter": 47,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-4",
+      "chapter": 47,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-5",
+      "chapter": 47,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-circuit-cutting-reconstruction",
+      "chapter": 47,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-circuit-cutting-statistics",
+      "chapter": 47,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-6",
+      "chapter": 47,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-7",
+      "chapter": 47,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-8",
+      "chapter": 47,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-reading-papers-building-evidence-and-reproducing-results-1",
+      "chapter": 48,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-reading-papers-building-evidence-and-reproducing-results-2",
+      "chapter": 48,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-reading-papers-building-evidence-and-reproducing-results-3",
+      "chapter": 48,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-reading-papers-building-evidence-and-reproducing-results-4",
+      "chapter": 48,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-reading-papers-building-evidence-and-reproducing-results-5",
+      "chapter": 48,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-reading-papers-building-evidence-and-reproducing-results-6",
+      "chapter": 48,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-reading-papers-building-evidence-and-reproducing-results-7",
+      "chapter": 48,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-reading-papers-building-evidence-and-reproducing-results-8",
+      "chapter": 48,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-reading-papers-building-evidence-and-reproducing-results-9",
+      "chapter": 48,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-1",
+      "chapter": 49,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-2",
+      "chapter": 49,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-3",
+      "chapter": 49,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-4",
+      "chapter": 49,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-5",
+      "chapter": 49,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-6",
+      "chapter": 49,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-7",
+      "chapter": 49,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-8",
+      "chapter": 49,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-9",
+      "chapter": 49,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-1",
+      "chapter": 50,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-2",
+      "chapter": 50,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-3",
+      "chapter": 50,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-4",
+      "chapter": 50,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-5",
+      "chapter": 50,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-6",
+      "chapter": 50,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-7",
+      "chapter": 50,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-8",
+      "chapter": 50,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    },
+    {
+      "section_id": "sec-case-study-logical-memory-and-error-correction-experiments-9",
+      "chapter": 50,
+      "disposition": "Retain; ownership/dependencies reviewed"
+    }
+  ],
+  "source_scope": "Compared official course/topic structures and primary abstract/specification information; not full reading/proof review or external specialist approval.",
+  "sources": [
+    {
+      "url": "https://www.preskill.caltech.edu/ph219/",
+      "use": "Broad theory/information/algorithms/correction/topological structure and declared mathematical bridges."
+    },
+    {
+      "url": "https://www.cs.umd.edu/class/fall2025/cmsc657/",
+      "use": "Course-level coverage including mixed states, complexity, channel capacities, nonlocality and cryptographic boundaries."
+    },
+    {
+      "url": "https://quantum.cloud.ibm.com/learning/en/courses/fundamentals-of-quantum-algorithms",
+      "use": "Alternative introduction to the foundational algorithm route."
+    },
+    {
+      "url": "https://quantum.cloud.ibm.com/learning/en/courses/foundations-of-quantum-error-correction",
+      "use": "Alternative scope reference for the correction route."
+    },
+    {
+      "url": "https://arxiv.org/abs/1904.10246",
+      "use": "A scoped phase-free amplitude-estimation construction; no universal performance theorem adopted from a scoping pass."
+    },
+    {
+      "url": "https://arxiv.org/abs/1009.3639",
+      "use": "Randomized benchmarking and applicability of its noise-model assumptions."
+    },
+    {
+      "url": "https://arxiv.org/abs/2308.07915",
+      "use": "A concrete quantum-LDPC architectural example; no general hardware/cost ranking adopted."
+    }
+  ]
+}

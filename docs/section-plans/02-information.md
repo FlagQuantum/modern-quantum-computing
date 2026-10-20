@@ -1,6 +1,6 @@
 # Part 2. Quantum Information: Channels, Inference, and Communication
 
-**Detailed plan · 2026-10-20 · Planned material; architecture review pending.** [All sections](../section-plan.md) · [Full plan](../book-plan.md) · [Reader continuity](../reader-continuity.md)
+**Detailed plan · 2026-10-20 · Planned material; editorial pass completed, external validation/freeze pending.** [All sections](../section-plan.md) · [Full plan](../book-plan.md) · [Reader continuity](../reader-continuity.md)
 
 Each section specifies its argument and independent evidence. Framework implementation, mathematical review and reader review have separate status. Closing materials follow the [section-plan guide](../section-plan.md#how-to-read-the-specification).
 
@@ -10,11 +10,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Quantum Channels and Their Representations**
 
-**Reading level:** Core. **Chapter prerequisites:** 8.
+**Reading level:** Core. **Entry guidance:** 8; selected 4–6 for operational examples.
 
 <span id="sec-quantum-channels-and-their-representations-1"></span>
 
 ### 9.1 From closed evolution to quantum channels
+
+**Section level:** core. **Required earlier sections:** [8.3](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-3), [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4).
 
 **Learning and derivation target:** Derive a reduced-system map from an initially specified environment state.
 
@@ -24,6 +26,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 9.2 Linearity, positivity, and complete positivity
 
+**Section level:** core. **Required earlier sections:** [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2), [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), [9.1](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-1).
+
 **Learning and derivation target:** Define each condition and explain the extension by an untouched ancilla.
 
 **Implementation and evidence target:** Use transposition as a counterexample to positivity being sufficient.
@@ -31,6 +35,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-channels-and-their-representations-3"></span>
 
 ### 9.3 Kraus operators and trace preservation
+
+**Section level:** core. **Required earlier sections:** [9.1](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-1), [9.2](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-2).
 
 **Learning and derivation target:** Derive the operator-sum form and completeness condition.
 
@@ -40,6 +46,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 9.4 Stinespring dilation
 
+**Section level:** core. **Required earlier sections:** [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3), [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4).
+
 **Learning and derivation target:** Construct a finite-dimensional dilation and explain environmental freedom.
 
 **Implementation and evidence target:** Recover the channel by explicit partial trace.
@@ -47,6 +55,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-channels-and-their-representations-5"></span>
 
 ### 9.5 Choi representation and vectorization
+
+**Section level:** core. **Required earlier sections:** [9.2](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-2), [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3), [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2).
 
 **Learning and derivation target:** Fix a vectorization convention and derive the channel-to-Choi correspondence.
 
@@ -56,6 +66,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 9.6 Representation equivalence and Kraus nonuniqueness
 
+**Section level:** core. **Required earlier sections:** [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3), [9.4](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-4), [9.5](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-5).
+
 **Learning and derivation target:** Connect Choi spectral factors, Kraus operators and an environmental isometry.
 
 **Implementation and evidence target:** Convert a small channel between representations and check identical actions.
@@ -64,6 +76,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 9.7 Composition, tensor products, and instruments
 
+**Section level:** core. **Required earlier sections:** [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2).
+
 **Learning and derivation target:** Derive channel composition and trace-nonincreasing branches.
 
 **Implementation and evidence target:** Compare sequential, composite and conditional calculations.
@@ -71,6 +85,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-channels-and-their-representations-8"></span>
 
 ### 9.8 Channel-validation laboratory
+
+**Section level:** core. **Required earlier sections:** [9.5](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-5), [9.6](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-6), [9.7](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-7).
 
 **Learning and derivation target:** State physicality and equivalence tests and their finite numerical limits.
 
@@ -82,11 +98,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Distinguishability, Fidelity, and Quantum State Inference**
 
-**Reading level:** Core. **Chapter prerequisites:** 6, 8, 9.
+**Reading level:** Core. **Entry guidance:** 6, 8–9; advanced channel metrics and shadows are separable branches.
 
 <span id="sec-distinguishability-fidelity-and-quantum-state-inference-1"></span>
 
 ### 10.1 Classical distinguishability as a starting point
+
+**Section level:** core. **Required earlier sections:** [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
 
 **Learning and derivation target:** Define total-variation distance and its discrimination interpretation.
 
@@ -96,6 +114,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 10.2 Quantum trace distance and binary discrimination
 
+**Section level:** core. **Required earlier sections:** [10.1](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-1), [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
+
 **Learning and derivation target:** Derive the optimal two-state measurement for stated priors.
 
 **Implementation and evidence target:** Compare a spectral construction with independently enumerated candidate measurements.
@@ -103,6 +123,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-distinguishability-fidelity-and-quantum-state-inference-3"></span>
 
 ### 10.3 Fidelity and state-comparison conventions
+
+**Section level:** core. **Required earlier sections:** [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
 
 **Learning and derivation target:** Declare squared versus unsquared fidelity and derive pure/commuting cases.
 
@@ -112,37 +134,61 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 10.4 Monotonicity and operational limits
 
+**Section level:** core. **Required earlier sections:** [10.2](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-2), [10.3](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-3), [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3).
+
 **Learning and derivation target:** Explain how channels and restricted measurements affect distinguishability.
 
 **Implementation and evidence target:** Construct a strict information-loss example and an incomplete-measurement counterexample.
 
+<span id="sec-channel-error-metrics"></span>
+
+### 10.5 Comparing channels and gate errors [Advanced]
+
+**Section level:** advanced. **Required earlier sections:** [10.2](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-2), [10.3](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-3), [9.5](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-5).
+
+**Learning and derivation target:** Define channel comparison through inputs/ancillas, entanglement fidelity and a scoped diamond-norm formulation; state any average-fidelity relation with its dimensional and trace-preserving assumptions.
+
+**Implementation and evidence target:** Compare small explicit channels and give a counterexample to inferring worst-case behavior from one state or an average metric.
+
 <span id="sec-distinguishability-fidelity-and-quantum-state-inference-5"></span>
+<span id="105-quantum-state-tomography"></span>
 
-### 10.5 Quantum state tomography
+### 10.6 State and process tomography
 
-**Learning and derivation target:** Derive linear inversion for a qubit and explain positivity and finite-sample difficulties.
+**Section level:** core. **Required earlier sections:** [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7), [8.3](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-3), [9.5](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-5).
+
+**Learning and derivation target:** Derive qubit-state linear inversion, then a small process reconstruction using the Choi convention from Chapter 9; explain identifiability, positivity and finite-sample limitations.
 
 **Implementation and evidence target:** Reconstruct small states and compare physical versus unconstrained estimates.
 
 <span id="sec-distinguishability-fidelity-and-quantum-state-inference-6"></span>
+<span id="106-pauli-sums-grouping-and-measurement-allocation"></span>
 
-### 10.6 Pauli sums, grouping, and measurement allocation
+### 10.7 Pauli sums, grouping, and measurement allocation
+
+**Section level:** core. **Required earlier sections:** [6.4](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-4), [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7).
 
 **Learning and derivation target:** Derive variance/covariance expressions for an estimated weighted observable.
 
 **Implementation and evidence target:** Compare allocation rules under an identical total-shot budget.
 
 <span id="sec-distinguishability-fidelity-and-quantum-state-inference-7"></span>
+<span id="107-classical-shadows-advanced"></span>
 
-### 10.7 Classical shadows [Advanced]
+### 10.8 Classical shadows [Advanced]
+
+**Section level:** advanced. **Required earlier sections:** [10.6](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-5), [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7).
 
 **Learning and derivation target:** Define the measurement ensemble, inverse measurement map and property-estimation task.
 
 **Implementation and evidence target:** Check a small Pauli-shadow estimator and report ensemble-dependent uncertainty.
 
 <span id="sec-distinguishability-fidelity-and-quantum-state-inference-8"></span>
+<span id="108-inference-laboratory-and-validation-limits"></span>
 
-### 10.8 Inference laboratory and validation limits
+### 10.9 Inference laboratory and validation limits
+
+**Section level:** core. **Required earlier sections:** [10.2](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-2), [10.3](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-3), [10.6](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-5), [10.7](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-6).
 
 **Learning and derivation target:** Separate state reconstruction, property prediction and certification claims.
 
@@ -154,19 +200,23 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Entropy, Relative Entropy, and Information Processing**
 
-**Reading level:** Core with advanced proofs. **Chapter prerequisites:** 8–10.
+**Reading level:** Core with advanced proofs. **Entry guidance:** 8 and the state-comparison sections of 10; logarithm identities are introduced locally.
 
 <span id="sec-entropy-relative-entropy-and-information-processing-1"></span>
 
 ### 11.1 Classical entropy and uncertainty
 
-**Learning and derivation target:** Define Shannon entropy and derive basic finite-distribution properties.
+**Section level:** core. **Required earlier sections:** [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
+
+**Learning and derivation target:** Introduce the required logarithm and expectation identities locally, then define Shannon entropy and derive basic finite-distribution properties.
 
 **Implementation and evidence target:** Compare deterministic, uniform and correlated examples.
 
 <span id="sec-entropy-relative-entropy-and-information-processing-2"></span>
 
 ### 11.2 Von Neumann entropy and spectra
+
+**Section level:** core. **Required earlier sections:** [11.1](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-1), [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2).
 
 **Learning and derivation target:** Derive the spectral formula and unitary invariance.
 
@@ -176,6 +226,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 11.3 Relative entropy and support conditions
 
+**Section level:** core. **Required earlier sections:** [11.1](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-1), [11.2](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-2).
+
 **Learning and derivation target:** State classical and quantum definitions with support and infinity conventions.
 
 **Implementation and evidence target:** Test commuting reductions, singular states and numerically unstable cases.
@@ -183,6 +235,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-entropy-relative-entropy-and-information-processing-4"></span>
 
 ### 11.4 Mutual and conditional information
+
+**Section level:** core. **Required earlier sections:** [11.2](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-2), [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4).
 
 **Learning and derivation target:** Derive the entropy identities and interpret classical and entangled examples.
 
@@ -192,6 +246,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 11.5 Data processing
 
+**Section level:** core. **Required earlier sections:** [11.3](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-3), [11.4](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-4), [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3).
+
 **Learning and derivation target:** State operational assumptions, prove a tractable case and map the general proof requirements.
 
 **Implementation and evidence target:** Verify a small channel example and construct a counterexample to an invalid stronger claim.
@@ -199,6 +255,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-entropy-relative-entropy-and-information-processing-6"></span>
 
 ### 11.6 Subadditivity and strong subadditivity [Advanced]
+
+**Section level:** advanced. **Required earlier sections:** [11.4](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-4), [11.5](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-5).
 
 **Learning and derivation target:** State the inequalities precisely and connect their proof dependencies to relative-entropy monotonicity.
 
@@ -208,6 +266,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 11.7 Entropic reasoning in protocols
 
+**Section level:** core. **Required earlier sections:** [11.4](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-4), [11.5](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-5).
+
 **Learning and derivation target:** Use the established inequalities to analyze information flow in a small protocol.
 
 **Implementation and evidence target:** Track relevant subsystems and diagnose an invalid entropy manipulation.
@@ -215,6 +275,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-entropy-relative-entropy-and-information-processing-8"></span>
 
 ### 11.8 Information-inequality laboratory
+
+**Section level:** core. **Required earlier sections:** [11.2](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-2), [11.3](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-3), [11.6](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-6).
 
 **Learning and derivation target:** Specify stable spectral calculations, boundary cases and proof versus evidence.
 
@@ -226,11 +288,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Compression, Entanglement, and Communication Limits**
 
-**Reading level:** Advanced. **Chapter prerequisites:** 7–11.
+**Reading level:** Advanced. **Entry guidance:** 7–8, 11; individual communication/entanglement branches use selected sections.
 
 <span id="sec-compression-entanglement-and-communication-limits-1"></span>
 
 ### 12.1 Operational tasks and asymptotic statements
+
+**Section level:** advanced. **Required earlier sections:** [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8), [11.1](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-1).
 
 **Learning and derivation target:** Distinguish block length, error tolerance and achievable rate.
 
@@ -240,6 +304,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 12.2 Typical sequences and subspaces
 
+**Section level:** advanced. **Required earlier sections:** [12.1](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-1), [11.1](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-1), [11.2](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-2).
+
 **Learning and derivation target:** Derive a finite-alphabet typicality argument and its quantum spectral analogue.
 
 **Implementation and evidence target:** Enumerate short blocks and compare retained probability with entropy-based expectations.
@@ -247,6 +313,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-compression-entanglement-and-communication-limits-3"></span>
 
 ### 12.3 Schumacher compression
+
+**Section level:** advanced. **Required earlier sections:** [12.2](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-2), [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2), [10.3](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-3).
 
 **Learning and derivation target:** State the coding theorem, derive an illustrative construction and map the converse argument.
 
@@ -256,37 +324,61 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 12.4 Entanglement concentration and dilution
 
+**Section level:** advanced. **Required earlier sections:** [7.2](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-2), [11.2](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-2), [12.2](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-2).
+
 **Learning and derivation target:** Explain asymptotic resource conversion and derive a small concentration example.
 
 **Implementation and evidence target:** Calculate branch probabilities and retained entanglement explicitly.
 
-<span id="sec-compression-entanglement-and-communication-limits-5"></span>
+<span id="sec-mixed-entanglement-resources"></span>
 
-### 12.5 Accessible information and the Holevo bound
+### 12.5 Mixed-state entanglement, LOCC, and distillation [Advanced]
+
+**Section level:** advanced. **Required earlier sections:** [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2), [8.4](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-4), [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3), [10.2](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-2), [11.4](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-4).
+
+**Learning and derivation target:** Define separability and LOCC; derive a tractable witness/PPT example, state its dimensional limits and connect entanglement conversion to operational resources.
+
+**Implementation and evidence target:** Compare known separable/entangled mixed states and a tiny purification/distillation example; do not generalize a sufficient test into a universal criterion.
+
+<span id="sec-compression-entanglement-and-communication-limits-5"></span>
+<span id="125-accessible-information-and-the-holevo-bound"></span>
+
+### 12.6 Accessible information and the Holevo bound
+
+**Section level:** advanced. **Required earlier sections:** [11.3](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-3), [11.5](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-5), [12.1](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-1).
 
 **Learning and derivation target:** Define an ensemble communication task and derive the scope of the bound.
 
 **Implementation and evidence target:** Compare candidate measurements with the ensemble's Holevo quantity.
 
 <span id="sec-compression-entanglement-and-communication-limits-6"></span>
+<span id="126-classical-and-quantum-channel-capacities"></span>
 
-### 12.6 Classical and quantum channel capacities
+### 12.7 Classical and quantum channel capacities
+
+**Section level:** advanced. **Required earlier sections:** [9.3](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-3), [11.4](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-4), [12.1](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-1), [12.6](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-5).
 
 **Learning and derivation target:** Specify operational definitions, coding/assistance assumptions and the role of regularization.
 
 **Implementation and evidence target:** Evaluate elementary channels without assuming a universal single-letter capacity formula.
 
 <span id="sec-compression-entanglement-and-communication-limits-7"></span>
+<span id="127-finite-block-limitations-and-resource-accounting"></span>
 
-### 12.7 Finite-block limitations and resource accounting
+### 12.8 Finite-block limitations and resource accounting
+
+**Section level:** advanced. **Required earlier sections:** [12.2](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-2), [12.3](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-3), [12.7](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-6).
 
 **Learning and derivation target:** Explain the gap between theorem limits and short experiments.
 
 **Implementation and evidence target:** Report block length, fidelity, success probability and communication/entanglement costs.
 
 <span id="sec-compression-entanglement-and-communication-limits-8"></span>
+<span id="128-compression-and-communication-laboratory"></span>
 
-### 12.8 Compression and communication laboratory
+### 12.9 Compression and communication laboratory
+
+**Section level:** advanced. **Required earlier sections:** [12.3](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-3), [12.4](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-4), [12.8](../section-plans/02-information.md#sec-compression-entanglement-and-communication-limits-7).
 
 **Learning and derivation target:** Connect one explicit code to its mathematical claim and asymptotic context.
 
@@ -298,11 +390,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Quantum Cryptography and Security Reasoning**
 
-**Reading level:** Advanced. **Chapter prerequisites:** 6–12.
+**Reading level:** Advanced. **Entry guidance:** 6, 8 for the entry; 10–11 for advanced proof branches, not all of 12.
 
 <span id="sec-quantum-cryptography-and-security-reasoning-1"></span>
 
 ### 13.1 Security tasks and adversarial models
+
+**Section level:** advanced. **Required earlier sections:** [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
 
 **Learning and derivation target:** Define correctness, secrecy, authentication and the adversary's capabilities.
 
@@ -312,6 +406,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 13.2 BB84 preparation, measurement, and sifting
 
+**Section level:** advanced. **Required earlier sections:** [3.2](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-2), [6.4](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-4), [13.1](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-1).
+
 **Learning and derivation target:** Derive ideal correlations and an intercept-resend disturbance example.
 
 **Implementation and evidence target:** Check basis choices, sifted records and expected error statistics.
@@ -319,6 +415,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-cryptography-and-security-reasoning-3"></span>
 
 ### 13.3 Parameter estimation and finite samples
+
+**Section level:** advanced. **Required earlier sections:** [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8), [13.2](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-2).
 
 **Learning and derivation target:** Derive a stated bound relating observed data to a security-relevant quantity.
 
@@ -328,6 +426,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 13.4 Error reconciliation and information leakage
 
+**Section level:** advanced. **Required earlier sections:** [11.1](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-1), [13.2](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-2).
+
 **Learning and derivation target:** Explain reconciliation correctness and the public information it reveals.
 
 **Implementation and evidence target:** Track leakage and residual disagreements in a tiny example.
@@ -335,6 +435,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-quantum-cryptography-and-security-reasoning-5"></span>
 
 ### 13.5 Privacy amplification
+
+**Section level:** advanced. **Required earlier sections:** [11.3](../section-plans/02-information.md#sec-entropy-relative-entropy-and-information-processing-3), [13.3](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-3), [13.4](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-4).
 
 **Learning and derivation target:** State a scoped extraction guarantee, its entropy assumptions and the hash-family requirements.
 
@@ -344,6 +446,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 13.6 Composable security and proof structure [Advanced]
 
+**Section level:** advanced. **Required earlier sections:** [10.2](../section-plans/02-information.md#sec-distinguishability-fidelity-and-quantum-state-inference-2), [13.1](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-1), [13.3](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-3), [13.5](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-5).
+
 **Learning and derivation target:** Define a distinguishing-based security target and map a selected proof's assumptions.
 
 **Implementation and evidence target:** Identify which protocol steps are covered by the theorem and which implementation assumptions remain.
@@ -352,13 +456,28 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 13.7 Attacks, side channels, and failure diagnosis
 
+**Section level:** advanced. **Required earlier sections:** [13.1](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-1), [13.2](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-2).
+
 **Learning and derivation target:** Explain how an ideal model can fail to cover an implementation.
 
 **Implementation and evidence target:** Analyze a specified attack or missing-authentication counterexample.
 
-<span id="sec-quantum-cryptography-and-security-reasoning-8"></span>
+<span id="sec-crypto-impossibility-boundaries"></span>
 
-### 13.8 A security-claim audit
+### 13.8 Cryptographic tasks and impossibility boundaries [Advanced]
+
+**Section level:** advanced. **Required earlier sections:** [8.6](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-6), [13.1](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-1).
+
+**Learning and derivation target:** Define a bit-commitment task and map a selected no-go argument using purification, with explicit assumptions; distinguish unconditional impossibility from additional-assumption protocols.
+
+**Implementation and evidence target:** Analyze a tractable cheating example and document the exact theorem/proof obligations rather than inferring security from simulation.
+
+<span id="sec-quantum-cryptography-and-security-reasoning-8"></span>
+<span id="138-a-security-claim-audit"></span>
+
+### 13.9 A security-claim audit
+
+**Section level:** advanced. **Required earlier sections:** [13.3](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-3), [13.5](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-5), [13.6](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-6), [13.7](../section-plans/02-information.md#sec-quantum-cryptography-and-security-reasoning-7).
 
 **Learning and derivation target:** Separate a pedagogical protocol simulation from a complete security proof.
 

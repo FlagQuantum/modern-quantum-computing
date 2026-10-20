@@ -1,10 +1,10 @@
 # Full book plan
 
-**Long-term curriculum revision: October 20, 2026.** Nine parts, 50 chapters and six appendices. This revision adds substantive physical-platform and quantum-compilation routes to the previous 40-chapter plan. The [editorial charter](editorial-charter.md) records the author's aim: a rigorous, accessible modern classic that helps present and future learners enter the field.
+**Long-term curriculum revision: October 20, 2026.** Nine parts, 50 chapters and six appendices. The systematic editorial pass covers all 50 chapters and 435 sections, including physical-platform and quantum-compilation routes. The [editorial charter](editorial-charter.md) records the author's aim: a rigorous, accessible modern classic that helps present and future learners enter the field.
 
 This is a curriculum architecture, not a completed manuscript or a claim that every proposed experiment is supported. Three starter chapters currently exist, with intended homes in Chapters **6, 23 and 49**. The three-chapter PDF retains independent sample numbering and its published version.
 
-**Architecture status: review pending, not frozen.** The [curriculum audit](curriculum-audit.md) lists coverage, prerequisite bridges, cross-layer laboratories and open review gates. [Reader continuity](reader-continuity.md) defines the no-skipped-steps standard. Chapter count is not an acceptance criterion.
+**Architecture status: full editorial pass completed; specialist/reader review and baseline freeze pending.** The [curriculum audit](curriculum-audit.md) lists coverage, prerequisite bridges, cross-layer laboratories and open review gates. [Reader continuity](reader-continuity.md) defines the no-skipped-steps standard. The [review report](architecture-review.md), [435-section ledger](section-review.md) and [19 learning paths](learning-paths.md) make the review traceable. New textbook body drafting is paused until the architecture baseline gate. Chapter count is not an acceptance criterion.
 
 ## Audience, depth and reading levels
 
@@ -38,11 +38,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 1: What Quantum Computing Computes
 
-**Reading level:** Core. **Prerequisites:** Basic Python.
+**Reading level:** Core. **Entry guidance:** Basic Python and arithmetic; the opening calculation is an explicitly supplied preview.
 
 **Numbered section specification:** [Sections 1.1–1.6](section-plans/01-foundations.md#ch-what-quantum-computing-computes).
 
-**Planned sections:** Problems and outputs; interference experiment; models, simulators and hardware; guide to the book.
+**Planned sections:** Problems, inputs, and observable outputs; A first interference experiment; What a quantum state describes; Algorithms, simulators, and physical devices; What computational advantage would require; A map of the learning routes.
 
 **Mathematical outcome:** Derive one interference probability before introducing the general formalism.
 
@@ -52,11 +52,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 2: Complex Vectors, Operators, and Numerical Reasoning
 
-**Reading level:** Core. **Prerequisites:** 1; introductory linear algebra.
+**Reading level:** Core. **Entry guidance:** Basic Python; introductory linear algebra is refreshed locally.
 
 **Numbered section specification:** [Sections 2.1–2.8](section-plans/01-foundations.md#ch-complex-vectors-operators-and-numerical-reasoning).
 
-**Planned sections:** Complex inner products; adjoints and spectra; matrix functions; norms, conditioning and tolerances.
+**Planned sections:** Complex scalars, vectors, and conjugation; Inner products, adjoints, and orthogonality; Linear maps, bases, and changes of coordinates; Hermitian, unitary, and positive operators; Spectral decomposition and singular values; Functions of matrices and time evolution; Norms, conditioning, and perturbations; Floating-point arithmetic and verification contracts.
 
 **Mathematical outcome:** Derive spectral reconstruction and matrix-exponential identities under stated assumptions.
 
@@ -66,11 +66,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 3: Single-Qubit States and Rotations
 
-**Reading level:** Core. **Prerequisites:** 2.
+**Reading level:** Core. **Entry guidance:** 2; the computational-basis probability postulate is introduced locally.
 
-**Numbered section specification:** [Sections 3.1–3.8](section-plans/01-foundations.md#ch-single-qubit-states-and-rotations).
+**Numbered section specification:** [Sections 3.1–3.7](section-plans/01-foundations.md#ch-single-qubit-states-and-rotations).
 
-**Planned sections:** State and evolution postulates; relative and global phase; Bloch sphere; Pauli rotations; no-cloning.
+**Planned sections:** The pure-state postulate and physical equivalence; Relative phase and interference; The Bloch-sphere representation; Closed-system evolution and generators; Pauli algebra and rotation matrices; Composing rotations; Physical phase versus numerical equality.
 
 **Mathematical outcome:** Derive rotations from their generators and prove the elementary no-cloning statement.
 
@@ -80,11 +80,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 4: Composite Systems, Tensor Products, and Qubit Ordering
 
-**Reading level:** Core. **Prerequisites:** 2, 3.
+**Reading level:** Core. **Entry guidance:** 2–3.
 
-**Numbered section specification:** [Sections 4.1–4.7](section-plans/01-foundations.md#ch-composite-systems-tensor-products-and-qubit-ordering).
+**Numbered section specification:** [Sections 4.1–4.8](section-plans/01-foundations.md#ch-composite-systems-tensor-products-and-qubit-ordering).
 
-**Planned sections:** Tensor products; register labels and basis indices; local operations; subsystem permutations.
+**Planned sections:** Tensor-product spaces and basis states; Registers, labels, and basis indices; Local operators on a composite register; Multiple-qubit operators and ordered supports; Permutations, SWAP, and relabeling; Tensor reshaping as indexed mathematics; The no-cloning theorem; Cross-framework convention translation.
 
 **Mathematical outcome:** Derive the basis-index map and local-operator action on an arbitrary register.
 
@@ -94,11 +94,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 5: Gates, Reversible Computation, and Circuit Synthesis
 
-**Reading level:** Core. **Prerequisites:** 3, 4.
+**Reading level:** Core. **Entry guidance:** 3–4.
 
 **Numbered section specification:** [Sections 5.1–5.8](section-plans/01-foundations.md#ch-gates-reversible-computation-and-circuit-synthesis).
 
-**Planned sections:** Gate composition; controlled operations; reversible Boolean computation; universality; approximation and synthesis cost.
+**Planned sections:** Circuit composition, inversion, and call order; Controlled operations and ancillas; Classical logic made reversible; Uncomputation and reusable workspace; Universal gate sets; Decomposing controlled and multi-qubit gates; Approximation, synthesis, and precision; Circuit identities and safe transformations.
 
 **Mathematical outcome:** Derive controlled-gate matrices and a small reversible construction; state the approximation model.
 
@@ -108,11 +108,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 6: Measurement, Expectation Values, and Statistical Estimation
 
-**Reading level:** Core. **Prerequisites:** 3–5.
+**Reading level:** Core. **Entry guidance:** 2–5; elementary probability is introduced locally before sampling.
 
 **Numbered section specification:** [Sections 6.1–6.9](section-plans/01-foundations.md#ch-measurement-expectation-values-and-statistical-estimation).
 
-**Planned sections:** Born rule; conditional states and instruments; generalized measurements; observables; variance and confidence intervals.
+**Planned sections:** Measurement outcomes and the Born rule; Conditional states and ignored outcomes; Observables, spectra, and expectations; Measuring in another basis; Generalized measurements and instruments [Advanced]; From exact probabilities to samples; Variance, covariance, and uncertainty; Confidence intervals and shot budgets; Measurement laboratory and failure diagnosis.
 
 **Mathematical outcome:** Derive projective and generalized-measurement probabilities and finite-shot estimator uncertainty.
 
@@ -122,11 +122,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 7: Entanglement and Quantum Information Protocols
 
-**Reading level:** Core. **Prerequisites:** 4–6.
+**Reading level:** Core. **Entry guidance:** 2, 4–6; reduced-density arguments are deferred to 8.
 
-**Numbered section specification:** [Sections 7.1–7.8](section-plans/01-foundations.md#ch-entanglement-and-quantum-information-protocols).
+**Numbered section specification:** [Sections 7.1–7.9](section-plans/01-foundations.md#ch-entanglement-and-quantum-information-protocols).
 
-**Planned sections:** Schmidt decomposition; Bell correlations; teleportation; superdense coding; no-signalling.
+**Planned sections:** Product states and entangled states; Schmidt decomposition; Bell states and basis changes; Correlations and the CHSH experiment; Teleportation, branch by branch; Superdense coding; No-signalling and classical communication; Entanglement swapping and quantum-network primitives; What entanglement alone does not guarantee.
 
 **Mathematical outcome:** Derive Schmidt structure and all conditional branches of teleportation.
 
@@ -136,11 +136,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 8: Density Matrices, Reduced States, and Purification
 
-**Reading level:** Core. **Prerequisites:** 2, 4, 6, 7.
+**Reading level:** Core. **Entry guidance:** 2, 4, 6; selected 7.2 for reduced Schmidt spectra.
 
 **Numbered section specification:** [Sections 8.1–8.8](section-plans/01-foundations.md#ch-density-matrices-reduced-states-and-purification).
 
-**Planned sections:** Ensembles; density operators; partial trace; purification; improper and proper mixtures.
+**Planned sections:** Statistical ensembles and density operators; Pure states, mixed states, and purity; Expectation values and measurement updates; Partial trace from operational consistency; Reduced states of entangled systems; Purification and nonuniqueness; Proper and improper mixtures; Density-operator verification laboratory.
 
 **Mathematical outcome:** Derive mixed-state expectations and the relation between Schmidt coefficients and reduced spectra.
 
@@ -152,11 +152,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 9: Quantum Channels and Their Representations
 
-**Reading level:** Core. **Prerequisites:** 8.
+**Reading level:** Core. **Entry guidance:** 8; selected 4–6 for operational examples.
 
 **Numbered section specification:** [Sections 9.1–9.8](section-plans/02-information.md#ch-quantum-channels-and-their-representations).
 
-**Planned sections:** Completely positive maps; Kraus representation; Stinespring dilation; Choi representation; channel composition.
+**Planned sections:** From closed evolution to quantum channels; Linearity, positivity, and complete positivity; Kraus operators and trace preservation; Stinespring dilation; Choi representation and vectorization; Representation equivalence and Kraus nonuniqueness; Composition, tensor products, and instruments; Channel-validation laboratory.
 
 **Mathematical outcome:** Establish finite-dimensional representation equivalences and explain why positivity alone is insufficient.
 
@@ -166,11 +166,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 10: Distinguishability, Fidelity, and Quantum State Inference
 
-**Reading level:** Core. **Prerequisites:** 6, 8, 9.
+**Reading level:** Core. **Entry guidance:** 6, 8–9; advanced channel metrics and shadows are separable branches.
 
-**Numbered section specification:** [Sections 10.1–10.8](section-plans/02-information.md#ch-distinguishability-fidelity-and-quantum-state-inference).
+**Numbered section specification:** [Sections 10.1–10.9](section-plans/02-information.md#ch-distinguishability-fidelity-and-quantum-state-inference).
 
-**Planned sections:** Trace distance; fidelity conventions; operational discrimination; tomography; measurement grouping; classical shadows.
+**Planned sections:** Classical distinguishability as a starting point; Quantum trace distance and binary discrimination; Fidelity and state-comparison conventions; Monotonicity and operational limits; Comparing channels and gate errors [Advanced]; State and process tomography; Pauli sums, grouping, and measurement allocation; Classical shadows [Advanced]; Inference laboratory and validation limits.
 
 **Mathematical outcome:** Derive binary discrimination and simple estimation bounds; state the assumptions of shadow guarantees.
 
@@ -180,11 +180,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 11: Entropy, Relative Entropy, and Information Processing
 
-**Reading level:** Core with advanced proofs. **Prerequisites:** 8–10.
+**Reading level:** Core with advanced proofs. **Entry guidance:** 8 and the state-comparison sections of 10; logarithm identities are introduced locally.
 
 **Numbered section specification:** [Sections 11.1–11.8](section-plans/02-information.md#ch-entropy-relative-entropy-and-information-processing).
 
-**Planned sections:** Shannon and von Neumann entropy; relative entropy; mutual information; data processing; strong subadditivity.
+**Planned sections:** Classical entropy and uncertainty; Von Neumann entropy and spectra; Relative entropy and support conditions; Mutual and conditional information; Data processing; Subadditivity and strong subadditivity [Advanced]; Entropic reasoning in protocols; Information-inequality laboratory.
 
 **Mathematical outcome:** Prove accessible special cases and selected central results; identify the ingredients and source of deferred general proofs.
 
@@ -194,11 +194,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 12: Compression, Entanglement, and Communication Limits
 
-**Reading level:** Advanced. **Prerequisites:** 7–11.
+**Reading level:** Advanced. **Entry guidance:** 7–8, 11; individual communication/entanglement branches use selected sections.
 
-**Numbered section specification:** [Sections 12.1–12.8](section-plans/02-information.md#ch-compression-entanglement-and-communication-limits).
+**Numbered section specification:** [Sections 12.1–12.9](section-plans/02-information.md#ch-compression-entanglement-and-communication-limits).
 
-**Planned sections:** Typicality; Schumacher compression; entanglement concentration; Holevo bound; channel-capacity formulations.
+**Planned sections:** Operational tasks and asymptotic statements; Typical sequences and subspaces; Schumacher compression; Entanglement concentration and dilution; Mixed-state entanglement, LOCC, and distillation [Advanced]; Accessible information and the Holevo bound; Classical and quantum channel capacities; Finite-block limitations and resource accounting; Compression and communication laboratory.
 
 **Mathematical outcome:** Derive a finite-block compression example and state coding theorems with their operational assumptions.
 
@@ -208,11 +208,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 13: Quantum Cryptography and Security Reasoning
 
-**Reading level:** Advanced. **Prerequisites:** 6–12.
+**Reading level:** Advanced. **Entry guidance:** 6, 8 for the entry; 10–11 for advanced proof branches, not all of 12.
 
-**Numbered section specification:** [Sections 13.1–13.8](section-plans/02-information.md#ch-quantum-cryptography-and-security-reasoning).
+**Numbered section specification:** [Sections 13.1–13.9](section-plans/02-information.md#ch-quantum-cryptography-and-security-reasoning).
 
-**Planned sections:** BB84; parameter estimation; adversarial models; privacy amplification; finite-size and composable security.
+**Planned sections:** Security tasks and adversarial models; BB84 preparation, measurement, and sifting; Parameter estimation and finite samples; Error reconciliation and information leakage; Privacy amplification; Composable security and proof structure [Advanced]; Attacks, side channels, and failure diagnosis; Cryptographic tasks and impossibility boundaries [Advanced]; A security-claim audit.
 
 **Mathematical outcome:** Derive an intercept-resend example and the logic of a scoped security argument; delimit the full security theorem.
 
@@ -224,11 +224,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 14: Computational Models, Complexity, and Quantum Advantage
 
-**Reading level:** Core. **Prerequisites:** 4–6.
+**Reading level:** Core. **Entry guidance:** 4–6.
 
 **Numbered section specification:** [Sections 14.1–14.9](section-plans/03-algorithms.md#ch-computational-models-complexity-and-quantum-advantage).
 
-**Planned sections:** Circuit families; reversible models; BQP and promise problems; query versus gate cost; precision; classical baselines. Includes an early map of quantum-classical interaction patterns.
+**Planned sections:** Problems, input length, and computational models; Reversible computation and uniform circuit families; Complexity classes and bounded error; Oracle and data-access models; Accuracy, repetition, and success probability; Complete resource accounting; Quantum-classical interaction patterns; Classical baselines and advantage claims; Resource-audit laboratory.
 
 **Mathematical outcome:** Relate input/output access assumptions to a complete resource expression.
 
@@ -238,11 +238,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 15: Interference, Oracles, and Phase Kickback
 
-**Reading level:** Core. **Prerequisites:** 5, 14.
+**Reading level:** Core. **Entry guidance:** 5, 14; binary linear algebra is introduced locally for Simon’s problem.
 
-**Numbered section specification:** [Sections 15.1–15.7](section-plans/03-algorithms.md#ch-interference-oracles-and-phase-kickback).
+**Numbered section specification:** [Sections 15.1–15.8](section-plans/03-algorithms.md#ch-interference-oracles-and-phase-kickback).
 
-**Planned sections:** Reversible oracles; phase kickback; Deutsch-Jozsa; Bernstein-Vazirani; oracle promises.
+**Planned sections:** Boolean functions as reversible oracles; Phase kickback; Deutsch's problem; The Deutsch-Jozsa promise; Bernstein-Vazirani and hidden parity; Simon’s problem and hidden structure; Oracle synthesis and uncomputation; Interference-algorithm laboratory.
 
 **Mathematical outcome:** Derive the phase-oracle action and complete output distributions.
 
@@ -252,11 +252,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 16: Grover Search, Amplitude Amplification, and Estimation
 
-**Reading level:** Core with advanced extensions. **Prerequisites:** 6, 14, 15; revisit after 17.
+**Reading level:** Core with advanced extensions. **Entry guidance:** 5–6, 14–15; phase-free estimation has no Chapter 17 prerequisite.
 
 **Numbered section specification:** [Sections 16.1–16.8](section-plans/03-algorithms.md#ch-grover-search-amplitude-amplification-and-estimation).
 
-**Planned sections:** Two-dimensional geometry; iteration counts; general amplification; amplitude estimation; query bounds.
+**Planned sections:** Search promises and marked subspaces; Reflections and the invariant plane; Success probability and stopping; General amplitude amplification; Unknown success probabilities [Advanced]; Amplitude estimation without phase estimation [Advanced]; Classical estimation, uncertainty, and query comparisons [Advanced]; Search-and-estimation laboratory.
 
 **Mathematical outcome:** Derive the success curve and a scoped estimation error/query relation.
 
@@ -266,11 +266,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 17: Fourier Transforms and Quantum Phase Estimation
 
-**Reading level:** Core. **Prerequisites:** 4–6, 14, 15.
+**Reading level:** Core. **Entry guidance:** 4–6, 14–15; amplitude-estimation extension follows phase estimation here.
 
-**Numbered section specification:** [Sections 17.1–17.8](section-plans/03-algorithms.md#ch-fourier-transforms-and-quantum-phase-estimation).
+**Numbered section specification:** [Sections 17.1–17.9](section-plans/03-algorithms.md#ch-fourier-transforms-and-quantum-phase-estimation).
 
-**Planned sections:** Discrete Fourier transform; QFT factorization; inverse and approximate QFT; exact/off-grid phase estimation.
+**Planned sections:** The discrete Fourier transform; Factorizing the QFT; Inverse transforms and qubit reversal; Approximate QFT; Controlled powers and phase kickback; Exact-grid phase estimation; Off-grid phases and superposed eigenstates; Phase-estimation-based amplitude estimation [Advanced]; Precision, success, and algorithmic cost.
 
 **Mathematical outcome:** Derive QFT structure and finite-precision phase-estimation probabilities.
 
@@ -280,11 +280,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 18: Period Finding, Factoring, and Algorithmic Arithmetic
 
-**Reading level:** Advanced. **Prerequisites:** 5, 14, 17.
+**Reading level:** Advanced. **Entry guidance:** 5, 14, 17; number-theory/group bridges are local.
 
-**Numbered section specification:** [Sections 18.1–18.8](section-plans/03-algorithms.md#ch-period-finding-factoring-and-algorithmic-arithmetic).
+**Numbered section specification:** [Sections 18.1–18.9](section-plans/03-algorithms.md#ch-period-finding-factoring-and-algorithmic-arithmetic).
 
-**Planned sections:** Order finding; modular arithmetic; continued fractions; success probabilities; arithmetic and synthesis costs.
+**Planned sections:** From factoring to order finding; Reversible modular arithmetic; Coherent modular exponentiation; Period information from phase estimation; Continued fractions and candidate verification; Factoring end to end; Discrete logarithms and Abelian hidden subgroups [Advanced]; Arithmetic, synthesis, and resource growth; A reproducible factoring laboratory.
 
 **Mathematical outcome:** Derive the reduction from factoring to order finding and its classical postprocessing conditions.
 
@@ -294,11 +294,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 19: Hamiltonian Simulation and Error Bounds
 
-**Reading level:** Core with advanced extensions. **Prerequisites:** 2, 5, 14, 17.
+**Reading level:** Core with advanced extensions. **Entry guidance:** 2, 5 for dynamics; 14 for resource analysis; no QFT/phase-estimation prerequisite for product formulas.
 
 **Numbered section specification:** [Sections 19.1–19.9](section-plans/03-algorithms.md#ch-hamiltonian-simulation-and-error-bounds).
 
-**Planned sections:** Pauli decompositions; first/second-order formulas; commutator error; sparse and oracle models; precision dependence. Includes an explicit adiabatic-computation and spectral-gap bridge.
+**Planned sections:** Hamiltonians, evolution, and access models; Commuting terms and exact factorizations; First-order product formulas; Symmetric and higher-order constructions; Pauli-term exponentiation; State, observable, and operator error; Alternative simulation paradigms [Advanced]; Adiabatic computation and gap assumptions [Advanced]; Dynamics laboratory and resource budget.
 
 **Mathematical outcome:** Derive product formulas and a finite-system error bound; prepare the transition to signal processing.
 
@@ -308,11 +308,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 20: Block Encodings and Quantum Linear Algebra
 
-**Reading level:** Advanced. **Prerequisites:** 2, 5, 14, 17, 19.
+**Reading level:** Advanced. **Entry guidance:** 2, 5, 14; selected 16 for amplification and 19 for dynamics applications.
 
-**Numbered section specification:** [Sections 20.1–20.8](section-plans/03-algorithms.md#ch-block-encodings-and-quantum-linear-algebra).
+**Numbered section specification:** [Sections 20.1–20.9](section-plans/03-algorithms.md#ch-block-encodings-and-quantum-linear-algebra).
 
-**Planned sections:** Normalization and access models; exact small block encodings; LCU; postselection; linear-system conditioning.
+**Planned sections:** Why matrix access must be specified; Block-encoding definitions and ancillas; Linear combinations of unitaries; Composing encoded operations; Postselection and amplification; Quantum linear systems and conditioning; Qubitization and invariant subspaces [Advanced]; Spectral functions and application contracts; Linear-algebra laboratory.
 
 **Mathematical outcome:** Construct a block encoding and derive normalization, success probability and condition-number dependence.
 
@@ -322,11 +322,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 21: Quantum Signal Processing and Singular Value Transformation
 
-**Reading level:** Advanced. **Prerequisites:** 16, 19, 20.
+**Reading level:** Advanced. **Entry guidance:** 2, 5, block-encoding sections of 20; application-specific dependencies are listed per section.
 
 **Numbered section specification:** [Sections 21.1–21.9](section-plans/03-algorithms.md#ch-quantum-signal-processing-and-singular-value-transformation).
 
-**Planned sections:** SU(2) polynomial sequences; parity and boundedness; phase sequences; QSVT; spectral filtering and simulation.
+**Planned sections:** A scalar signal encoded in SU(2); Phase-controlled polynomial sequences; Admissibility and approximation; Phase synthesis and numerical stability; From eigenvalues to singular values; A precise QSVT theorem [Advanced]; Applications: filtering, inversion, and evolution; Precision and complete complexity; Signal-processing laboratory.
 
 **Mathematical outcome:** Derive low-degree constructions, state a precise transformation theorem and prove a selected application.
 
@@ -336,11 +336,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 22: Quantum Walks, Lower Bounds, and Algorithm Design
 
-**Reading level:** Advanced. **Prerequisites:** 14–21.
+**Reading level:** Advanced. **Entry guidance:** 5, 14, 16 for entry; selected 20–21 for spectral-framework comparisons.
 
-**Numbered section specification:** [Sections 22.1–22.8](section-plans/03-algorithms.md#ch-quantum-walks-lower-bounds-and-algorithm-design).
+**Numbered section specification:** [Sections 22.1–22.9](section-plans/03-algorithms.md#ch-quantum-walks-lower-bounds-and-algorithm-design).
 
-**Planned sections:** Walk constructions; search and hitting problems; polynomial method; query lower bounds; algorithm selection.
+**Planned sections:** Walk models and computational tasks; Unitarity, spectra, and dynamics; Search and marked vertices; Hitting behavior and algorithmic resources; The polynomial method [Advanced]; A representative query lower bound; Choosing an algorithmic framework; Hamiltonian complexity and limits of optimization [Advanced]; Algorithm-design laboratory.
 
 **Mathematical outcome:** Analyze a small walk and derive a representative lower bound under an explicit oracle model.
 
@@ -352,11 +352,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 23: Parameterized Circuits, Quantum Gradients, and Differentiation
 
-**Reading level:** Core. **Prerequisites:** 2–6; elementary calculus.
+**Reading level:** Core. **Entry guidance:** 2–3, 5–6; a local calculus bridge precedes differentiation.
 
 **Numbered section specification:** [Sections 23.1–23.10](section-plans/04-variational.md#ch-parameterized-circuits-quantum-gradients-and-differentiation).
 
-**Planned sections:** Observable-valued models; generator spectra; parameter shift; shared parameters; adjoint differentiation; autograd contracts.
+**Planned sections:** Parameterized quantum models and tensor contracts; Differentiating a unitary expectation; The single-Pauli parameter-shift rule; Generator spectra and generalized shift rules [Advanced]; Shared parameters and classical reparameterization; Backpropagation and automatic differentiation; Adjoint differentiation and memory tradeoffs; Finite differences and numerical diagnostics; Finite-shot gradient estimation; Differentiation laboratory and cost audit.
 
 **Mathematical outcome:** Derive spectral shift rules, normalization changes and parameter-reuse chain rules; analyze execution and memory costs.
 
@@ -366,11 +366,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 24: Optimization, Geometry, and Trainability
 
-**Reading level:** Advanced. **Prerequisites:** 10, 14, 23.
+**Reading level:** Advanced. **Entry guidance:** 23 for entry; 6 for stochastic estimates and 10.3 for geometry, without all state-inference material.
 
 **Numbered section specification:** [Sections 24.1–24.9](section-plans/04-variational.md#ch-optimization-geometry-and-trainability).
 
-**Planned sections:** Exact and stochastic losses; optimizer diagnostics; quantum geometric tensor; natural gradient; barren plateaus; noise.
+**Planned sections:** Objectives and optimization problems; Exact and stochastic gradients; Optimizers, initialization, and diagnostics; Quantum geometric tensor; Natural-gradient updates and singular metrics; Expressivity, identifiability, and trainability; Barren plateaus and ensemble assumptions [Advanced]; Noise, shot budgets, and mitigation overhead; Optimization laboratory and honest conclusions.
 
 **Mathematical outcome:** Derive a small metric and gradient-variance example; state the ensemble assumptions of trainability results.
 
@@ -380,11 +380,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 25: Variational Simulation, Chemistry, and Ground-State Problems
 
-**Reading level:** Core application. **Prerequisites:** 8, 14, 19, 23–24.
+**Reading level:** Core application. **Entry guidance:** 2, 4, 6 for the energy/model entry; selected 23–24 for optimization and embedding extensions.
 
 **Numbered section specification:** [Sections 25.1–25.12](section-plans/04-variational.md#ch-variational-simulation-chemistry-and-ground-state-problems).
 
-**Planned sections:** Variational principle; fermions and Jordan-Wigner mapping; symmetries; ansatz selection; measurement allocation; dynamics. Adds quantum embedding/self-consistency and quantum-sampled classical subspace solving.
+**Planned sections:** The variational principle and its assumptions; Second quantization and occupation states; Jordan-Wigner and fermion-to-qubit translation; Symmetries and reduced models; Ansatz design and reachable states; Measuring an energy objective; Variational dynamics and extensions [Advanced]; Chemistry model and error budgets; Classical environments and quantum embedding [Advanced]; Self-consistent quantum impurity solvers [Advanced]; Quantum sampling and classical subspace diagonalization [Advanced]; Variational-simulation laboratory.
 
 **Mathematical outcome:** Prove the energy bound and derive a small occupation-to-qubit Hamiltonian with units and offsets.
 
@@ -394,11 +394,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 26: QAOA, Quantum Optimization, and Classical Comparisons
 
-**Reading level:** Advanced application. **Prerequisites:** 14–16, 23, 24.
+**Reading level:** Advanced application. **Entry guidance:** 5–6, 14; selected 23–24 for the optimization branch.
 
 **Numbered section specification:** [Sections 26.1–26.8](section-plans/04-variational.md#ch-qaoa-quantum-optimization-and-classical-comparisons).
 
-**Planned sections:** Objective-to-Hamiltonian mapping; mixers; constrained spaces; depth; approximation quality; sampling and optimization cost.
+**Planned sections:** From a discrete objective to a Hamiltonian; Cost and mixer evolution; Low-depth analytic behavior; Constraints and feasible mixers [Advanced]; Parameter landscapes and depth; Sampled solutions and approximation quality; Classical comparisons and total cost; Optimization laboratory.
 
 **Mathematical outcome:** Derive MaxCut and one low-depth result under explicit graph and sign conventions.
 
@@ -408,11 +408,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 27: Quantum Learning, Kernels, and Hybrid Models
 
-**Reading level:** Advanced application. **Prerequisites:** 10, 14, 23, 24; basic machine learning.
+**Reading level:** Advanced application. **Entry guidance:** 6, 14 and a local learning/statistics bridge; 23–24 for trainable layers, not fixed-kernel entry.
 
 **Numbered section specification:** [Sections 27.1–27.8](section-plans/04-variational.md#ch-quantum-learning-kernels-and-hybrid-models).
 
-**Planned sections:** Data access and encoding; hybrid chain rule; quantum kernels; generalization; classical simulability and baselines.
+**Planned sections:** Learning tasks and data-access assumptions; Encoding data into quantum states; Hybrid models and the joint chain rule; Quantum feature maps and kernels; Training kernels and hybrid models; Generalization and statistical claims; Classical simulability and meaningful baselines; Learning laboratory and claim audit.
 
 **Mathematical outcome:** Derive kernel/feature-map relations and joint gradients; state learning-task and data-access assumptions.
 
@@ -424,11 +424,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 28: Noise, Open Systems, and Error Mitigation
 
-**Reading level:** Core. **Prerequisites:** 8–10; 19 for dynamics.
+**Reading level:** Core. **Entry guidance:** 8–9 for channels; local time-evolution/differential-equation bridge for the dynamics branch.
 
-**Numbered section specification:** [Sections 28.1–28.9](section-plans/05-fault-tolerance.md#ch-noise-open-systems-and-error-mitigation).
+**Numbered section specification:** [Sections 28.1–28.10](section-plans/05-fault-tolerance.md#ch-noise-open-systems-and-error-mitigation).
 
-**Planned sections:** Kraus noise; Lindblad dynamics; trajectories; correlated noise; calibration; mitigation and its overhead.
+**Planned sections:** Noise models and system-environment assumptions; Discrete channels: dephasing and depolarization; Amplitude damping and relaxation; Lindblad dynamics; Quantum trajectories and unravelings; Correlated and non-Markovian limitations [Advanced]; Error mitigation: bias, variance, and cost; Calibration, drift, and model validation; SPAM, gate characterization, and randomized benchmarking [Advanced]; Noise laboratory and evidence boundaries.
 
 **Mathematical outcome:** Derive amplitude damping and one master equation; analyze the bias/variance tradeoff of a mitigation example.
 
@@ -438,11 +438,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 29: Quantum Error Correction: Conditions and Recovery
 
-**Reading level:** Core. **Prerequisites:** 7–10, 28.
+**Reading level:** Core. **Entry guidance:** 4–6, 8–9; selected 28 for physical noise examples.
 
 **Numbered section specification:** [Sections 29.1–29.9](section-plans/05-fault-tolerance.md#ch-quantum-error-correction-conditions-and-recovery).
 
-**Planned sections:** Quantum obstacles; repetition codes; error discretization; Knill-Laflamme conditions; recovery and logical information.
+**Planned sections:** The quantum error-correction problem; Encoding and logical information; Repetition codes and syndrome extraction; Error sets and coherent combinations; Knill-Laflamme conditions; Constructing a recovery operation; Degeneracy, distance, and limitations; Beyond bit-flip protection; Recovery laboratory and logical-state verification.
 
 **Mathematical outcome:** Prove the correction condition in a finite example and explain preservation of logical information by syndrome measurement.
 
@@ -452,11 +452,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 30: Stabilizer Codes, Logical Operators, and Decoding
 
-**Reading level:** Core with advanced extensions. **Prerequisites:** 5–8, 29; binary linear algebra.
+**Reading level:** Core with advanced extensions. **Entry guidance:** 4–6 for Pauli/stabilizer entry; 29 for code/recovery branches; binary algebra is local.
 
-**Numbered section specification:** [Sections 30.1–30.10](section-plans/05-fault-tolerance.md#ch-stabilizer-codes-logical-operators-and-decoding).
+**Numbered section specification:** [Sections 30.1–30.11](section-plans/05-fault-tolerance.md#ch-stabilizer-codes-logical-operators-and-decoding).
 
-**Planned sections:** Pauli symplectic representation; stabilizer groups; CSS construction; distance; logical operators; decoder interfaces. Includes graph states, adaptive measurement-based gates and their teleportation bridge.
+**Planned sections:** Pauli groups and binary symplectic algebra; Stabilizer groups and code spaces; Syndromes as commutation data; CSS codes from classical checks; Logical operators and code distance; Degeneracy and decoding choices; Syndrome circuits and fault propagation; Decoder interfaces and evidence records; Quantum LDPC families and architectural tradeoffs [Advanced]; Graph states and measurement-based computation; Stabilizer-code laboratory.
 
 **Mathematical outcome:** Derive a code's syndrome map, logical operators and distance; connect binary algebra to quantum operators.
 
@@ -466,11 +466,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 31: Surface Codes and Repeated Syndrome Measurements
 
-**Reading level:** Advanced. **Prerequisites:** 28–30.
+**Reading level:** Advanced. **Entry guidance:** Selected noise, correction and stabilizer sections in 28–30.
 
 **Numbered section specification:** [Sections 31.1–31.8](section-plans/05-fault-tolerance.md#ch-surface-codes-and-repeated-syndrome-measurements).
 
-**Planned sections:** Lattice checks; boundaries; syndrome circuits; measurement faults; detection events; space-time decoding; logical failure.
+**Planned sections:** From stabilizer checks to a surface-code lattice; Logical operators and distance; Syndrome-extraction circuits; Measurement faults and detection events; Space-time decoding; Logical memory and failure observables; Finite-size scaling and threshold claims; Surface-code laboratory.
 
 **Mathematical outcome:** Derive checks and detection-event patterns for a small patch and repeated rounds.
 
@@ -480,11 +480,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 32: Fault-Tolerant Gates and Universal Logical Computation
 
-**Reading level:** Advanced. **Prerequisites:** 5, 18, 28–31.
+**Reading level:** Advanced. **Entry guidance:** 28–30; 31 only for the surface-code/lattice-surgery branch; factoring is not required.
 
 **Numbered section specification:** [Sections 32.1–32.8](section-plans/05-fault-tolerance.md#ch-fault-tolerant-gates-and-universal-logical-computation).
 
-**Planned sections:** Fault propagation; transversal operations; threshold logic; lattice surgery; code deformation; magic states and distillation.
+**Planned sections:** Fault tolerance and propagation of errors; Fault-tolerant preparation, measurement, and recovery; Transversal operations and their limits; Threshold reasoning [Advanced]; Code deformation and lattice surgery; Magic states and gate injection; Distillation and rejection costs; Universal logical computation laboratory.
 
 **Mathematical outcome:** Derive a fault-propagation example and a small distillation/rejection calculation; state threshold assumptions and explain proof structure.
 
@@ -494,11 +494,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 33: From Logical Algorithms to Physical Resource Estimates
 
-**Reading level:** Advanced synthesis. **Prerequisites:** 14, 18–21, 28–32.
+**Reading level:** Advanced synthesis. **Entry guidance:** 14 and selected logical-computation sections of 32; a chosen algorithm workload, not every algorithm chapter.
 
 **Numbered section specification:** [Sections 33.1–33.8](section-plans/05-fault-tolerance.md#ch-from-logical-algorithms-to-physical-resource-estimates).
 
-**Planned sections:** Logical gate synthesis; T count/depth; factories; error budgets; code distance; physical qubits; runtime and sensitivity.
+**Planned sections:** Define an algorithmic workload and success target; Logical synthesis and non-Clifford resources; Distributing an error budget; Code distance and logical reliability; Magic-state factories and scheduling; Physical qubits, cycles, and runtime; Sensitivity, uncertainty, and comparison; Resource-estimation laboratory.
 
 **Mathematical outcome:** Derive a complete small cost model with a target success probability and explicit architecture/noise assumptions.
 
@@ -510,11 +510,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 34: From Abstract Qubits to Physical Quantum Systems
 
-**Reading level:** Core bridge with optional physics extensions. **Prerequisites:** 2–6, 8–10, 19, 28; selected 29–33 for logical resources.
+**Reading level:** Core bridge with optional physics extensions. **Entry guidance:** 2–3, 5–6, 8 for entry; selected 9/28/29/30 only for corresponding optional branches.
 
-**Numbered section specification:** [Sections 34.1–34.9](section-plans/physical-platforms.md#ch-from-abstract-qubits-to-physical-quantum-systems).
+**Numbered section specification:** [Sections 34.1–34.10](section-plans/physical-platforms.md#ch-from-abstract-qubits-to-physical-quantum-systems).
 
-**Planned sections:** Levels, modes, and computational subspaces; Oscillator and light-matter mathematics bridge; Driven systems, rotating frames, and resonance; Preparation, control, and readout as an experiment; Digital, analog, and measurement-based models; Noise, leakage, loss, and hardware constraints; Connectivity, transport, and modular architectures; A fair platform-comparison framework; Choose a platform learning branch.
+**Planned sections:** Levels, modes, and computational subspaces; Oscillator and light-matter mathematics bridge; Driven systems, rotating frames, and resonance; Preparation, control, and readout as an experiment; Digital, analog, and measurement-based models; Noise, leakage, loss, and hardware constraints; Oscillator encodings and bosonic correction [Advanced]; Connectivity, transport, and modular architectures; A fair platform-comparison framework; Choose a platform learning branch.
 
 **Mathematical outcome:** Develop the explicit physical/program model and its stated approximations through the section-level derivations.
 
@@ -524,7 +524,7 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 35: Superconducting Qubits and Circuit-QED Control
 
-**Reading level:** Advanced platform branch. **Prerequisites:** 2–6, 9, 19, 28, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** Selected common physics bridge in 34; no whole algorithm or fault-tolerance route is required.
 
 **Numbered section specification:** [Sections 35.1–35.8](section-plans/physical-platforms.md#ch-superconducting-qubits-and-circuit-qed-control).
 
@@ -538,7 +538,7 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 36: Trapped-Ion Qubits, Motional Gates, and Transport
 
-**Reading level:** Advanced platform branch. **Prerequisites:** 2–6, 9, 19, 28, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** Selected oscillator/drive/measurement bridge in 34.
 
 **Numbered section specification:** [Sections 36.1–36.8](section-plans/physical-platforms.md#ch-trapped-ion-qubits-motional-gates-and-transport).
 
@@ -552,7 +552,7 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 37: Neutral-Atom Arrays and Rydberg Quantum Computing
 
-**Reading level:** Advanced platform branch. **Prerequisites:** 2–6, 9, 19, 28, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** Selected common bridge in 34; 19 only for advanced dynamics/error analysis.
 
 **Numbered section specification:** [Sections 37.1–37.8](section-plans/physical-platforms.md#ch-neutral-atom-arrays-and-rydberg-quantum-computing).
 
@@ -566,7 +566,7 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 38: Photonic Encodings, Optical Circuits, and Measurement-Based Computation
 
-**Reading level:** Advanced platform branch. **Prerequisites:** 2–10, 28, 30, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** 7 and selected oscillator/measurement bridge in 34; selected 30 for resource-state computation.
 
 **Numbered section specification:** [Sections 38.1–38.9](section-plans/physical-platforms.md#ch-photonic-encodings-optical-circuits-and-measurement-based-computation).
 
@@ -580,7 +580,7 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 39: Semiconductor Spin Qubits and Exchange-Based Architectures
 
-**Reading level:** Advanced platform branch. **Prerequisites:** 2–6, 9, 19, 28, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** Selected common bridge in 34.
 
 **Numbered section specification:** [Sections 39.1–39.8](section-plans/physical-platforms.md#ch-semiconductor-spin-qubits-and-exchange-based-architectures).
 
@@ -594,11 +594,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 40: Topological Quantum Computation and Candidate Physical Realizations
 
-**Reading level:** Advanced platform branch. **Prerequisites:** 7–9, 25, 28–32, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** 7–8 and selected 34 for entry; 25 for Majorana models and 29–32 for protection/logical-resource comparisons.
 
 **Numbered section specification:** [Sections 40.1–40.8](section-plans/physical-platforms.md#ch-topological-quantum-computation-and-candidate-physical-realizations).
 
-**Planned sections:** Topology, protection, and distinct meanings; Fusion spaces and encoded information; Braiding as a logical transformation; Measurement, corrections, and computational power; Majorana models and parity encoding [Advanced]; Protection assumptions and failure mechanisms; Experiments, signatures, and unresolved evidence; Topological compilation and laboratory.
+**Planned sections:** Topology, protection, and distinct meanings; Fusion spaces and encoded information; Fusion bases, F/R moves, and braiding; Measurement, corrections, and computational power; Majorana models and parity encoding [Advanced]; Protection assumptions and failure mechanisms; Experiments, signatures, and unresolved evidence; Topological compilation and laboratory.
 
 **Mathematical outcome:** Develop the explicit physical/program model and its stated approximations through the section-level derivations.
 
@@ -610,7 +610,7 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 41: Quantum Programs, Intermediate Representations, and Verified Optimization
 
-**Reading level:** Core systems route with advanced extensions. **Prerequisites:** 4–6, 9, 14, 34; one chosen platform branch as needed.
+**Reading level:** Core systems route with advanced extensions. **Entry guidance:** 4–6 for circuit semantics/IR; 9 for channel/dynamic branches; no microscopic hardware prerequisite.
 
 **Numbered section specification:** [Sections 41.1–41.9](section-plans/quantum-compilation.md#ch-quantum-programs-intermediate-representations-and-verified-optimization).
 
@@ -624,7 +624,7 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 42: Gate Synthesis, Qubit Mapping, Routing, and Scheduling
 
-**Reading level:** Core systems route with advanced extensions. **Prerequisites:** 5, 14, 34, 41; selected 35–40 for the chosen target.
+**Reading level:** Core systems route with advanced extensions. **Entry guidance:** 5, 41 and an explicit target contract defined here; physical-platform details and logical synthesis are optional branches.
 
 **Numbered section specification:** [Sections 42.1–42.10](section-plans/quantum-compilation.md#ch-gate-synthesis-qubit-mapping-routing-and-scheduling).
 
@@ -638,11 +638,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 43: Control-Level Lowering, Dynamic Execution, and Logical Compilation
 
-**Reading level:** Advanced systems route. **Prerequisites:** 19, 23, 28, 32–34, 41–42; one relevant platform branch.
+**Reading level:** Advanced systems route. **Entry guidance:** Branch-specific: control uses selected 19/23/28/34; dynamic execution uses measurement and program semantics; logical lowering uses 32–33.
 
 **Numbered section specification:** [Sections 43.1–43.10](section-plans/quantum-compilation.md#ch-control-level-lowering-dynamic-execution-and-logical-compilation).
 
-**Planned sections:** From native gates to control Hamiltonians; Pulse shaping and constrained optimization; Frames, virtual operations, and calibration; Crosstalk, leakage, and robust control; Dynamic circuits and feed-forward latency; Lowering analog and measurement-based programs; Fault-tolerant logical compilation; Cross-layer verification and approximate equivalence; Hardware-aware compilation laboratory. Includes local feedback and heterogeneous host/device runtime orchestration.
+**Planned sections:** From native gates to control Hamiltonians; Pulse shaping and constrained optimization; Frames, virtual operations, and calibration; Crosstalk, leakage, and robust control; Near-device feedback, decoding, and dynamic execution; Lowering analog and measurement-based programs; Fault-tolerant logical compilation; Cross-layer verification and approximate equivalence; CPU/GPU/QPU workflows and runtime orchestration; Hardware-aware compilation laboratory.
 
 **Mathematical outcome:** Develop the explicit physical/program model and its stated approximations through the section-level derivations.
 
@@ -655,11 +655,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 44: Exact Simulation, Tensor Execution, and Numerical Reliability
 
-**Reading level:** Core. **Prerequisites:** 2, 4–6, 8, 14, 23.
+**Reading level:** Core. **Entry guidance:** 2, 4–6 for the exact-state executor; 8–9 for channels, 23 for gradients and 14 for parallel-resource analysis.
 
 **Numbered section specification:** [Sections 44.1–44.8](section-plans/06-simulation.md#ch-exact-simulation-tensor-execution-and-numerical-reliability).
 
-**Planned sections:** Statevector and density evolution; tensor-axis operations; precision; memory; batching; differentiation; parallel execution.
+**Planned sections:** Requested outputs and exact-simulation cost; Applying local gates by tensor indices; Observables and measurement execution; Density-matrix and channel execution; Batching and differentiation; Precision, stability, and normalization drift; Parallel execution and communication; Exact-executor laboratory and benchmarks.
 
 **Mathematical outcome:** Derive local-gate tensor contractions and storage/time costs, including communication assumptions.
 
@@ -670,11 +670,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 45: Stabilizer Simulation, Magic, and Classical Simulability
 
-**Reading level:** Advanced. **Prerequisites:** 14, 30, 44.
+**Reading level:** Advanced. **Entry guidance:** 5–6 and Pauli/stabilizer sections of 30; a full error-correction or statevector chapter is not required for tableau entry.
 
 **Numbered section specification:** [Sections 45.1–45.8](section-plans/06-simulation.md#ch-stabilizer-simulation-magic-and-classical-simulability).
 
-**Planned sections:** Tableau updates; Clifford circuits; adaptive measurements; Gottesman-Knill; non-Clifford resources.
+**Planned sections:** Clifford operations and stabilizer states; Tableau representations and phase conventions; Clifford gate updates; Measurement and classical control; The Gottesman-Knill theorem; Beyond stabilizers: non-Clifford resources; Magic as a computational resource [Advanced]; Stabilizer-simulation laboratory.
 
 **Mathematical outcome:** Derive tableau updates and explain the assumptions behind efficient stabilizer simulation.
 
@@ -685,11 +685,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 46: Matrix Product States, Entanglement, and Truncation
 
-**Reading level:** Advanced. **Prerequisites:** 2, 4, 7, 8, 10, 44.
+**Reading level:** Advanced. **Entry guidance:** 2, 4, Schmidt structure in 7; selected 10/44 for comparisons, not tomography or autograd.
 
 **Numbered section specification:** [Sections 46.1–46.8](section-plans/06-simulation.md#ch-matrix-product-states-entanglement-and-truncation).
 
-**Planned sections:** Successive SVD; canonical forms; gate updates; bond dimensions; entanglement; truncation bounds.
+**Planned sections:** Entanglement and compact state representations; Building an MPS by successive SVDs; Gauge freedom and canonical forms; Single- and two-qubit updates; Truncation and discarded weight; Accumulated error and observable accuracy; Bond dimension, entanglement, and cost; MPS laboratory.
 
 **Mathematical outcome:** Derive MPS construction and discarded-weight error relations with normalization assumptions.
 
@@ -700,11 +700,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 47: Tensor Networks, Contraction, and Hybrid Simulation Strategies
 
-**Reading level:** Advanced. **Prerequisites:** 6, 9, 14, 44, 46.
+**Reading level:** Advanced. **Entry guidance:** 4–5, 14 for circuit contractions; 6/9 for cutting and 44/46 only for the chosen hybrid executor.
 
 **Numbered section specification:** [Sections 47.1–47.10](section-plans/06-simulation.md#ch-tensor-networks-contraction-and-hybrid-simulation-strategies).
 
-**Planned sections:** Circuit tensors; contraction paths; intermediate sizes; slicing; distributed contraction; amplitudes versus full states. Includes quantum-executed fragments, classical circuit-cut reconstruction and sampling overhead.
+**Planned sections:** Circuits as indexed tensor networks; Contraction order and intermediate size; Path selection and structural parameters; Slicing and recomputation; Amplitudes, expectations, sampling, and full states; Circuit cutting and classical reconstruction; Reconstruction variance and sampling overhead; Hybrid and distributed strategies; Approximation and numerical reliability; Tensor-network laboratory.
 
 **Mathematical outcome:** Derive a circuit contraction and predict path-dependent intermediate memory.
 
@@ -717,11 +717,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 48: Reading Papers, Building Evidence, and Reproducing Results
 
-**Reading level:** Core research method. **Prerequisites:** 4, 6, 10, 14; application-specific prerequisites.
+**Reading level:** Core research method. **Entry guidance:** 4, 6 for scientific specification; application/resource/statistical sections are selected for the claim.
 
 **Numbered section specification:** [Sections 48.1–48.9](section-plans/07-research.md#ch-reading-papers-building-evidence-and-reproducing-results).
 
-**Planned sections:** Source revisions; symbols and assumptions; equation dependencies; units; independent references; uncertainty; resource records.
+**Planned sections:** Choose a claim that can be tested; Freeze sources, data, and revisions; Build a symbol and convention map; Trace equation and assumption dependencies; Construct an independent reference; Separate sources of error; Design and record the experiment; Investigate discrepancies and negative results; Report, review, and maintain a reproduction.
 
 **Mathematical outcome:** Turn a source claim into a mathematical specification and distinguish proof, numerical evidence and empirical inference.
 
@@ -732,11 +732,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 49: Case Study: Molecular Hydrogen from Hamiltonian to Verified VQE
 
-**Reading level:** Research capstone. **Prerequisites:** 23–25, 48.
+**Reading level:** Research capstone. **Entry guidance:** 4, 6, selected derivatives/energy sections of 23/25 and 48; 24 for the optimizer extension, not all embedding/learning topics.
 
 **Numbered section specification:** [Sections 49.1–49.9](section-plans/07-research.md#ch-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe).
 
-**Planned sections:** Corrected paper data; reduction and qubit mapping; ansatz; closed-form minimum; full curve; optimization; shot uncertainty.
+**Planned sections:** Specify the paper claim and corrected data; From the molecular model to a reduced Hamiltonian; Units, offsets, symmetries, and qubit labels; The ansatz from generator to gates; Observables, energy, and gradient; The exact sector minimum and global comparison; Reproduce the full geometry scan; Optimization and finite-shot extensions; Interpretation, discrepancy analysis, and research report.
 
 **Mathematical outcome:** Derive the model and parameter conventions, amplitudes, observables, gradients and sector minimum.
 
@@ -747,11 +747,11 @@ Short recall prompts follow the [learning design](learning-design.md); substanti
 
 ### Chapter 50: Case Study: Logical Memory and Error-Correction Experiments
 
-**Reading level:** Research capstone. **Prerequisites:** 28–33, 45, 48.
+**Reading level:** Research capstone. **Entry guidance:** Selected 28–31, tableau/reference sections of 45 and 48; 32–33 only for optional resource implications.
 
 **Numbered section specification:** [Sections 50.1–50.9](section-plans/07-research.md#ch-case-study-logical-memory-and-error-correction-experiments).
 
-**Planned sections:** Paper selection and claim specification; repeated syndrome model; decoder; logical observable; scaling; failure analysis.
+**Planned sections:** Select a source and freeze the logical-memory claim; Specify the code, circuit, and noise model; Derive syndromes and detection events; Define decoding and logical success; Build an exact small-instance reference; Design the stochastic experiment; Compare distances, rounds, and noise parameters; From memory evidence to resource implications; Write a reproducible correction-study report.
 
 **Mathematical outcome:** Derive the selected code/model's detection and logical-failure definitions before reproducing a claim.
 
@@ -770,72 +770,50 @@ The bibliography, symbol index, glossary, errata and acknowledgements are separa
 
 ## Dependencies and course routes
 
-The numbered order is one reference-book arrangement. It is not a requirement to read all 50 chapters consecutively. The common core and explicit branch routes give the learner a continuous path without requiring every specialization.
+The numbered arrangement is a reference structure. The authoritative [19 learning paths](learning-paths.md) list exact sections, assumed earlier routes and all required preparation. They are generated from the same stable section records as this plan. Do not maintain a second, conflicting course sequence in prose.
 
-| Route | Sequence and bridges | Intended outcome |
-|---|---|---|
-| Opening core | 1–8, with local mathematics bridges; selected 9–10 and 14 | State, gate, measurement, information and resource reasoning |
-| First algorithms | 14–15, 16.1–16.5, 17, then 16.6–16.8 and selected 18–19 | Complete search, estimation and Fourier-based explanations without a hidden forward prerequisite |
-| Information course | 7–13, after the necessary foundations | Channels, inference, entropy, communication and security assumptions |
-| Modern algorithms | 14–22, supported by 2–6 and 9–10 | Algorithm derivations, access models, error and complete resource cost |
-| Quantum-classical integration | 14.7 overview, then the selected patterns in 10, 23–27, 43 and 47; use the [hybrid map](hybrid-computing.md) | Recognize typed data/control flows, algorithmic versus runtime coupling, and end-to-end costs |
-| Differentiable applications | 23–27, with 10, 14 and selected 19/28 | Gradients, trainability, variational/learning objectives and baselines |
-| Error correction | 28–33, after 7–10; graph-state material in 30 links back to teleportation | From noise and correction conditions to logical operations and resource models |
-| Hardware-to-compiler course | 34, one of 35–40, then 41–42; 43 after 19, 23, 28 and 32–33 | Model and control a selected physical platform, compile a task and validate the whole contract |
-| Platform comparison | 34 and guided comparison sections from 35–40 | Compare encodings, constraints and evidence without taking every advanced branch |
-| Classical simulation | 30, 44–47, with 2, 4, 7–10, 14 and 23 | Exact/structured simulation, approximation and tractability |
-| Research | 48, then 49 or 50 after its application prerequisites | A scoped, independently checked paper reproduction |
+The [435-section review ledger](section-review.md) records each section's direct prerequisites, core/advanced level and editorial disposition. Chapter prerequisite prose is entry guidance, not a requirement to complete every section of every listed chapter. Later specialized sections can have additional dependencies without blocking an earlier core task.
 
-A 14-week course selects sections from a route. The full curriculum is a reference and multi-course project. Page budgets, core/advanced allocation and possible multi-volume publication must be assessed at the architecture-review gate; they are not fixed by chapter count.
+The opening route develops mathematics, pure states, tensor products, gates, measurement, entanglement, mixed states and basic computational resources. First algorithms then progress through oracle problems, search/phase-free estimation, Fourier/phase estimation, arithmetic and dynamics. Phase-based amplitude estimation is now 17.8, after its phase-estimation prerequisites; it no longer forces a return to Chapter 16. Pure-state no-cloning is now 4.7, after tensor products.
 
-Chapter 7 first derives no-signalling from marginal probabilities and revisits the reduced-state proof after Chapter 8. Chapter 19 supplies a scoped adiabatic-model bridge; Chapter 30 introduces graph states and measurement-based gates before photonic computation. Chapter 33 introduces physical resource parameters as explicit abstract assumptions; Chapters 34–40 explain their platform-specific origins and limits.
+Fixed quantum kernels, trainable hybrid learning, basic compilation, simulation and hardware branches have separate entry contracts. A selected physical model is useful for a hardware-to-compiler project but is not required before learning basic program semantics or mapping on a supplied target. Logical-memory simulation does not require universal fault tolerance or magic-state factories. H2 VQE does not require every embedding or quantum-learning extension.
 
-## Ownership of recurring concepts
+## Ownership and scope control
 
-| Concept | First development | Later use without duplicate derivation |
-|---|---|---|
-| Gate identities and simple universality | 5 | Compiler correctness and synthesis in 41–42 |
-| Channels and conditional operations | 6, 8–9 | Noise (28), hardware readout and dynamic compilation |
-| Entanglement and teleportation | 7–8 | Coding, graph-state computation, photonics and topology |
-| Time evolution and approximation | 19 | Hardware effective models and control-level lowering |
-| Gradients and optimization | 23–24 | Variational applications and pulse optimization in 43 |
-| Stabilizers and logical computation | 29–32 | Photonic/topological branches, logical compilation and simulation |
-| Resource/error budgets | 14, 19, 28, 33 | Hardware comparison, compiler objectives and research reports |
-| Hybrid interaction and execution boundary | 14.7; task-specific mathematics in 10, 23–27 | Controller/runtime contracts in 41–43 and fragment reconstruction in 47 |
-| Physical experiment/target contract | 34 and one selected platform | Mapping, scheduling and control in 41–43 |
-| Independent execution/reference methods | Small local references throughout; general methods in 44–47 | Full research capstones in 49–50 |
+The [curriculum audit](curriculum-audit.md) owns the coverage, duplication and deliberate-exclusion matrices. Develop a recurring concept fully in its owning section; later applications give an exact pointer, recall the necessary statement and explain the new use. New derivations belong in the later section only when its assumptions or mathematical object actually change.
 
-## Planning review before substantial drafting
+Chapter 7 uses marginal probabilities for no-signalling; Chapter 8 supplies the reduced-state proof. Chapter 19 supplies the adiabatic bridge. Graph-state and adaptive measurement-based gates are in 30.10 before photonic use. Chapter 33 states abstract resource parameters before platform chapters explain their origins. Experimental SPAM/randomized benchmarking belongs to 28, state/process reconstruction to 10, and simulator timing to 44.
 
-The [curriculum audit](curriculum-audit.md) records the remaining gates. The expanded architecture is **not frozen** and has not yet received specialist or learner approval.
+The additions from this pass give scoped homes to entanglement swapping, channel metrics/process reconstruction, mixed-state entanglement, cryptographic no-go boundaries, Simon's algorithm, an Abelian hidden-subgroup/discrete-log bridge, qubitization, Hamiltonian promise/verification limits, experimental characterization, quantum LDPC codes and bosonic correction. Their scope is stated in the section targets; mentioning an advanced result does not promise a complete research monograph.
 
-1. Review coverage and chapter ownership, including compilation, physical platforms, alternative computational models and the interfaces between them.
-2. Audit first use of concepts, prerequisite bridges, section transitions and explicit learning outcomes using the [reader-continuity standard](reader-continuity.md).
-3. Check depth and workload with algorithm, information, compilation, hardware and error-correction specialists; record the actual scope reviewed.
-4. Test the opening core and representative cross-layer routes with target readers. Record where a reader cannot reconstruct a step.
-5. Resolve missing bridges, overload and redundant material; assign provisional page/problem budgets and freeze a versioned architecture baseline.
-6. Begin sustained chapter drafting against that baseline. Use stable chapter/section IDs and a public change record for later revisions.
+## Workload and publication architecture
 
-Small existing pilots supply evidence for this review. They do not establish that the full architecture, every proof or every experiment has been validated.
+Per-section editorial ranges currently total **1,088–1,958 pages before appendices/front matter**. This is a planning range for explanations, examples and exercises, not a measured typeset length. It exposes a real scope risk: a 50-chapter reference cannot also be a single introductory course.
 
-## Writing priorities after the review gate
+Use the common foundation followed by one selected route. The route report gives additional reading and prerequisite burden separately. Assess coordinated volumes before freezing scope: foundations/information/algorithms; hybrid applications/noise/correction; and physical systems/compilation/simulation/research are candidate groupings, not a publication decision or forced learning order. Preserve cross-volume prerequisites and access to bridges. Page, problem and worked-example budgets require expert and learner calibration rather than proportional compression of difficult proofs.
 
-Complete the opening sequence (1–8), then depth pilots in measurement (6), differentiation (23), correction (29), and a hardware-to-compiler thread (34, selected 35–40, 41–42). Expand channels/inference, resources and the first algorithm path. Develop the VQE research route through 48–49. Draft specialized branches with exact sources and explicit proof obligations; complete simulation and the logical-memory capstone (50) as their prerequisites are available.
+## Architecture-first acceptance gates
 
-This is a writing sequence rather than an importance ranking. Missing FlagQuantum capabilities are investigated upstream while mathematical explanations and independent references are developed.
+A complete editorial architecture pass is recorded in the [review report](architecture-review.md): 50 chapter decisions, 435 section dispositions, 1,042 direct prerequisite edges and 19 checked routes. These checks establish record consistency and expose prerequisite burden; they do not prove the explanations teach successfully.
+
+Before new body drafting:
+
+1. Resolve exact central-result/proof obligations and primary-source locators; distinguish full core proofs from scoped advanced roadmaps.
+2. Obtain specialist review of coverage, ownership and mathematical/physical assumptions; record the actual sections reviewed.
+3. Test representative routes and bridge/transition specifications with target readers. Record the precise missing steps and required repairs.
+4. Set workable page, example and substantial-problem budgets; resolve volume and course packaging.
+5. Resolve findings and tag a versioned architecture baseline with a public change record.
+
+**No new textbook body or depth-pilot drafting while these architecture gates remain open.** Existing three starter chapters remain available as evidence of the format. Source mapping, architectural repairs and validation design can continue; they do not constitute authorization to write new chapters. After the baseline, prioritize a continuous opening and selected complete routes, not isolated topical additions.
 
 ## Research anchors and source work
 
-The earlier [reading guide](references/reading-guide.md) supports the foundations. [Compilation and physical-platform source notes](references/compilation-and-platforms.md) identify primary author references and official specifications used to scope the added routes. These are starting points, not claims of complete source or proof review.
+The [reading guide](references/reading-guide.md), [compilation/platform sources](references/compilation-and-platforms.md), [hybrid sources](references/hybrid-computing.md) and [systematic-review source notes](references/architecture-review.md) document consulted scope. Course outlines and paper abstracts support coverage comparisons; they do not certify proofs, API support or experimental results. Every authored result needs exact edition/revision and theorem/equation locators plus its independent verification plan.
 
-The [hybrid-computing source anchors](references/hybrid-computing.md) support the new cross-cutting map, embedding, reconstruction and heterogeneous-workflow planning. Exact method-specific source/proof review remains pending.
+The H2 source-to-reduced-model mapping and Chapter 50's selected primary paper/claim remain explicit outstanding scholarly decisions. A rounded small-model reproduction cannot stand in for all molecular data or a hardware experiment.
 
-Additional anchors include [QSVT](https://arxiv.org/abs/1806.01838), [surface codes](https://arxiv.org/abs/1208.0928v2), and [classical shadows](https://arxiv.org/abs/2002.08953). Each authored section needs exact theorem/equation locators, assumptions and an independent verification plan. Hardware performance and scientific-maturity comparisons require dated, claim-specific evidence.
+## Stable identifiers and history
 
-## Stable identifiers, compatibility and history
+Canonical records are book/curriculum.json and book/architecture-review.json. Run scripts/build_curriculum.py and scripts/review_curriculum.py to generate views; their --check options detect stale outputs and graph/route inconsistencies. IDs remain stable across display renumbering. A split or merge requires an explicit map, prerequisite/route updates and preserved or redirected public anchors.
 
-The canonical records are in the repository's book/curriculum.json; display numbers and detailed pages are generated by scripts/build_curriculum.py. Stable chapter/section IDs are independent of display numbering. Check generated views with the script's --check option.
-
-The earlier 40-chapter, 328-section plan omitted substantive hardware and compilation routes. This revision adds those routes and two computational-model bridges. The original simulation/research URLs retain legacy chapter and section anchors; current navigation points to stable chapter IDs. Published PDF samples retain their own numbering, source revision and validated scope.
-
-The historical Nielsen–Chuang and Quantum Country reviews remain design records rather than the current chapter allocation. Current starter homes are **6, 23 and 49**; each requires expansion and review.
+The former 40-chapter/328-section plan lacked substantial hardware and compilation routes. The expanded 50-chapter/423-section plan received this full editorial pass and now has 435 sections. Historical design reviews remain records, not current allocations. Existing public section anchors are retained, including moved sections. Current starter homes are 6, 23 and 49; the published three-chapter PDF retains its own sample numbering and source/version provenance.

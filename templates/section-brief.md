@@ -3,7 +3,7 @@
 - Stable chapter and section IDs:
 - Current display number and title:
 - One concrete question and one observable learning outcome:
-- Entry knowledge, with exact usable prerequisite pointers:
+- Entry knowledge, with exact stable section IDs matching the canonical requires list:
 - Symbols, objects, units and physical assumptions introduced here:
 - Exit skill and the precise bridge to the next section:
 - Core narrative versus optional advanced development:

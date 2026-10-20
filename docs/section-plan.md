@@ -1,6 +1,6 @@
 # Detailed chapter and section plan
 
-**Revision: 2026-10-20.** 9 parts, 50 chapters and 423 numbered sections. **Architecture status: review pending, not frozen.**
+**Revision: 2026-10-20.** 9 parts, 50 chapters and 435 numbered sections. **Architecture status: editorial pass completed; external validation/freeze pending.**
 
 Each section has a learning/derivation target and an implementation/evidence target. These are authoring specifications, not completed sections or validated APIs. See the [curriculum audit](curriculum-audit.md), [reader-continuity standard](reader-continuity.md), and [full book plan](book-plan.md).
 
@@ -10,9 +10,11 @@ Each section has a learning/derivation target and an implementation/evidence tar
 - A learning target states what the reader can explain or derive; a central result needs assumptions and a proof or an explicit advanced-proof roadmap.
 - An evidence target defines an independently checked calculation, experiment, counterexample or resource analysis. Numerical agreement does not prove a general theorem.
 - Each chapter has unnumbered closing material: recap, conceptual checks, substantial derivation/proof and transfer problems, programming/debugging laboratories, selected answers, source locators and review records.
-- Core/Advanced/Research levels and chapter prerequisites are inherited from the plan. Read a local bridge before encountering its notation or technique.
+- Exact section prerequisites are authoritative; chapter-level entry guidance does not require completing whole chapters. Read local bridges before use. Core/advanced labels apply within specialized chapters too.
 - [Framework gaps](implementation-roadmap.md) do not remove a theoretical topic. Unsupported examples stay explicitly pending.
-- Exact subsection/equation labels, proof-source maps and problem sets are developed during drafting and review.
+- Exact result/proof-source maps, workload validation and specialist/reader assessment precede baseline freeze. New body drafting is paused until that gate.
+
+[Full editorial review](architecture-review.md) · [All-section ledger](section-review.md) · [Checked learning paths](learning-paths.md)
 
 ## Parts and chapters
 
@@ -22,11 +24,11 @@ Each section has a learning/derivation target and an implementation/evidence tar
 |---|---|---|
 | 1 | 1.1–1.6 | [What Quantum Computing Computes](section-plans/01-foundations.md#ch-what-quantum-computing-computes) |
 | 2 | 2.1–2.8 | [Complex Vectors, Operators, and Numerical Reasoning](section-plans/01-foundations.md#ch-complex-vectors-operators-and-numerical-reasoning) |
-| 3 | 3.1–3.8 | [Single-Qubit States and Rotations](section-plans/01-foundations.md#ch-single-qubit-states-and-rotations) |
-| 4 | 4.1–4.7 | [Composite Systems, Tensor Products, and Qubit Ordering](section-plans/01-foundations.md#ch-composite-systems-tensor-products-and-qubit-ordering) |
+| 3 | 3.1–3.7 | [Single-Qubit States and Rotations](section-plans/01-foundations.md#ch-single-qubit-states-and-rotations) |
+| 4 | 4.1–4.8 | [Composite Systems, Tensor Products, and Qubit Ordering](section-plans/01-foundations.md#ch-composite-systems-tensor-products-and-qubit-ordering) |
 | 5 | 5.1–5.8 | [Gates, Reversible Computation, and Circuit Synthesis](section-plans/01-foundations.md#ch-gates-reversible-computation-and-circuit-synthesis) |
 | 6 | 6.1–6.9 | [Measurement, Expectation Values, and Statistical Estimation](section-plans/01-foundations.md#ch-measurement-expectation-values-and-statistical-estimation) |
-| 7 | 7.1–7.8 | [Entanglement and Quantum Information Protocols](section-plans/01-foundations.md#ch-entanglement-and-quantum-information-protocols) |
+| 7 | 7.1–7.9 | [Entanglement and Quantum Information Protocols](section-plans/01-foundations.md#ch-entanglement-and-quantum-information-protocols) |
 | 8 | 8.1–8.8 | [Density Matrices, Reduced States, and Purification](section-plans/01-foundations.md#ch-density-matrices-reduced-states-and-purification) |
 
 ### Part 2. Quantum Information: Channels, Inference, and Communication
@@ -34,24 +36,24 @@ Each section has a learning/derivation target and an implementation/evidence tar
 | Chapter | Sections | Detailed plan |
 |---|---|---|
 | 9 | 9.1–9.8 | [Quantum Channels and Their Representations](section-plans/02-information.md#ch-quantum-channels-and-their-representations) |
-| 10 | 10.1–10.8 | [Distinguishability, Fidelity, and Quantum State Inference](section-plans/02-information.md#ch-distinguishability-fidelity-and-quantum-state-inference) |
+| 10 | 10.1–10.9 | [Distinguishability, Fidelity, and Quantum State Inference](section-plans/02-information.md#ch-distinguishability-fidelity-and-quantum-state-inference) |
 | 11 | 11.1–11.8 | [Entropy, Relative Entropy, and Information Processing](section-plans/02-information.md#ch-entropy-relative-entropy-and-information-processing) |
-| 12 | 12.1–12.8 | [Compression, Entanglement, and Communication Limits](section-plans/02-information.md#ch-compression-entanglement-and-communication-limits) |
-| 13 | 13.1–13.8 | [Quantum Cryptography and Security Reasoning](section-plans/02-information.md#ch-quantum-cryptography-and-security-reasoning) |
+| 12 | 12.1–12.9 | [Compression, Entanglement, and Communication Limits](section-plans/02-information.md#ch-compression-entanglement-and-communication-limits) |
+| 13 | 13.1–13.9 | [Quantum Cryptography and Security Reasoning](section-plans/02-information.md#ch-quantum-cryptography-and-security-reasoning) |
 
 ### Part 3. Quantum Algorithms and Computational Resources
 
 | Chapter | Sections | Detailed plan |
 |---|---|---|
 | 14 | 14.1–14.9 | [Computational Models, Complexity, and Quantum Advantage](section-plans/03-algorithms.md#ch-computational-models-complexity-and-quantum-advantage) |
-| 15 | 15.1–15.7 | [Interference, Oracles, and Phase Kickback](section-plans/03-algorithms.md#ch-interference-oracles-and-phase-kickback) |
+| 15 | 15.1–15.8 | [Interference, Oracles, and Phase Kickback](section-plans/03-algorithms.md#ch-interference-oracles-and-phase-kickback) |
 | 16 | 16.1–16.8 | [Grover Search, Amplitude Amplification, and Estimation](section-plans/03-algorithms.md#ch-grover-search-amplitude-amplification-and-estimation) |
-| 17 | 17.1–17.8 | [Fourier Transforms and Quantum Phase Estimation](section-plans/03-algorithms.md#ch-fourier-transforms-and-quantum-phase-estimation) |
-| 18 | 18.1–18.8 | [Period Finding, Factoring, and Algorithmic Arithmetic](section-plans/03-algorithms.md#ch-period-finding-factoring-and-algorithmic-arithmetic) |
+| 17 | 17.1–17.9 | [Fourier Transforms and Quantum Phase Estimation](section-plans/03-algorithms.md#ch-fourier-transforms-and-quantum-phase-estimation) |
+| 18 | 18.1–18.9 | [Period Finding, Factoring, and Algorithmic Arithmetic](section-plans/03-algorithms.md#ch-period-finding-factoring-and-algorithmic-arithmetic) |
 | 19 | 19.1–19.9 | [Hamiltonian Simulation and Error Bounds](section-plans/03-algorithms.md#ch-hamiltonian-simulation-and-error-bounds) |
-| 20 | 20.1–20.8 | [Block Encodings and Quantum Linear Algebra](section-plans/03-algorithms.md#ch-block-encodings-and-quantum-linear-algebra) |
+| 20 | 20.1–20.9 | [Block Encodings and Quantum Linear Algebra](section-plans/03-algorithms.md#ch-block-encodings-and-quantum-linear-algebra) |
 | 21 | 21.1–21.9 | [Quantum Signal Processing and Singular Value Transformation](section-plans/03-algorithms.md#ch-quantum-signal-processing-and-singular-value-transformation) |
-| 22 | 22.1–22.8 | [Quantum Walks, Lower Bounds, and Algorithm Design](section-plans/03-algorithms.md#ch-quantum-walks-lower-bounds-and-algorithm-design) |
+| 22 | 22.1–22.9 | [Quantum Walks, Lower Bounds, and Algorithm Design](section-plans/03-algorithms.md#ch-quantum-walks-lower-bounds-and-algorithm-design) |
 
 ### Part 4. Variational and Differentiable Quantum Computing
 
@@ -67,9 +69,9 @@ Each section has a learning/derivation target and an implementation/evidence tar
 
 | Chapter | Sections | Detailed plan |
 |---|---|---|
-| 28 | 28.1–28.9 | [Noise, Open Systems, and Error Mitigation](section-plans/05-fault-tolerance.md#ch-noise-open-systems-and-error-mitigation) |
+| 28 | 28.1–28.10 | [Noise, Open Systems, and Error Mitigation](section-plans/05-fault-tolerance.md#ch-noise-open-systems-and-error-mitigation) |
 | 29 | 29.1–29.9 | [Quantum Error Correction: Conditions and Recovery](section-plans/05-fault-tolerance.md#ch-quantum-error-correction-conditions-and-recovery) |
-| 30 | 30.1–30.10 | [Stabilizer Codes, Logical Operators, and Decoding](section-plans/05-fault-tolerance.md#ch-stabilizer-codes-logical-operators-and-decoding) |
+| 30 | 30.1–30.11 | [Stabilizer Codes, Logical Operators, and Decoding](section-plans/05-fault-tolerance.md#ch-stabilizer-codes-logical-operators-and-decoding) |
 | 31 | 31.1–31.8 | [Surface Codes and Repeated Syndrome Measurements](section-plans/05-fault-tolerance.md#ch-surface-codes-and-repeated-syndrome-measurements) |
 | 32 | 32.1–32.8 | [Fault-Tolerant Gates and Universal Logical Computation](section-plans/05-fault-tolerance.md#ch-fault-tolerant-gates-and-universal-logical-computation) |
 | 33 | 33.1–33.8 | [From Logical Algorithms to Physical Resource Estimates](section-plans/05-fault-tolerance.md#ch-from-logical-algorithms-to-physical-resource-estimates) |
@@ -78,7 +80,7 @@ Each section has a learning/derivation target and an implementation/evidence tar
 
 | Chapter | Sections | Detailed plan |
 |---|---|---|
-| 34 | 34.1–34.9 | [From Abstract Qubits to Physical Quantum Systems](section-plans/physical-platforms.md#ch-from-abstract-qubits-to-physical-quantum-systems) |
+| 34 | 34.1–34.10 | [From Abstract Qubits to Physical Quantum Systems](section-plans/physical-platforms.md#ch-from-abstract-qubits-to-physical-quantum-systems) |
 | 35 | 35.1–35.8 | [Superconducting Qubits and Circuit-QED Control](section-plans/physical-platforms.md#ch-superconducting-qubits-and-circuit-qed-control) |
 | 36 | 36.1–36.8 | [Trapped-Ion Qubits, Motional Gates, and Transport](section-plans/physical-platforms.md#ch-trapped-ion-qubits-motional-gates-and-transport) |
 | 37 | 37.1–37.8 | [Neutral-Atom Arrays and Rydberg Quantum Computing](section-plans/physical-platforms.md#ch-neutral-atom-arrays-and-rydberg-quantum-computing) |
@@ -113,6 +115,6 @@ Each section has a learning/derivation target and an implementation/evidence tar
 
 ## Integration and review
 
-The complete plan contains **50 chapters and 423 numbered sections**. A higher count does not establish coverage, depth or readability. The [architecture-review gates](curriculum-audit.md) require coverage, dependency, workload and reader review before sustained drafting.
+The complete plan contains **50 chapters and 435 numbered sections**. A higher count does not establish coverage, depth or readability. The [architecture-review gates](curriculum-audit.md) require coverage, dependency, workload and reader review before sustained drafting.
 
-Existing starters supply material to 6, 23 and 49. Initial depth pilots cover measurement, differentiation, correction and a hardware-to-compiler thread. Provider access and framework availability are tracked separately from the theory.
+Existing starters supply material to 6, 23 and 49. New body and depth-pilot drafting is paused until the architecture baseline. Provider access and framework availability are tracked separately from theory.

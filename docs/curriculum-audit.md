@@ -1,80 +1,83 @@
 # Curriculum architecture audit and freeze gates
 
-**Revision: October 20, 2026. Status: editorial self-audit; specialist and reader review pending.** This audit follows the author's identification of missing substantive quantum-compilation and physical-platform content. The current [curriculum](contents.md) has nine parts and 50 chapters. Its size is not evidence that the architecture is complete.
+**October 20, 2026: full editorial architecture pass completed; external validation and freeze pending.** All 50 chapters and the earlier 423 sections were reviewed; 12 scoped additions give 435 sections. New textbook body drafting is paused until the baseline gate. This is an editorial review, not an assertion of exhaustive coverage or specialist approval.
 
-## Coverage decisions
+- [Review report: findings, 50 chapter decisions and workload](architecture-review.md)
+- [All 435 sections: direct prerequisites and editorial dispositions](section-review.md)
+- [19 learning paths with prerequisite closure](learning-paths.md)
+- [Detailed learning/derivation and evidence targets](section-plan.md)
 
-| Area | Home and responsibility | Review status |
+## Coverage and responsibility
+
+| Area | Main responsibility | Scope and boundary |
 |---|---|---|
-| Foundations and quantum information | 1–13: postulates, mathematics, protocols, channels, inference, entropy, coding/security | Section targets specified; exact proof/source maps and workload review pending |
-| Algorithmic models and resources | 14–22: gate/oracle models, search, estimation, arithmetic, dynamics, block encodings, QSVT, walks/lower bounds | Section targets specified; advanced proof selection pending |
-| Other computational models | Adiabatic bridge in 19; graph-state/measurement-based bridge in 30; analog and optical models in 34, 37–38 | Bridges added; specialist review and route testing pending |
-| Quantum-classical integration | [Eight-pattern map](hybrid-computing.md), introduced in 14.7; inference, optimization/learning, embedding, adaptive feedback, reconstruction and heterogeneous execution | Cross-cutting map and method-specific sections specified; mathematical/API/workflow review pending |
-| Differentiable and variational computation | 23–27: spectral derivatives, optimization/geometry, chemistry, QAOA, learning | Section targets specified; three current starters do not complete this route |
-| Noise, correction and logical computation | 28–33: physical error models through correction, decoding, fault tolerance and physical-resource budgets | Section targets specified; proof, noise-model and workload review pending |
-| Physical realization | 34 common bridge; 35 superconducting; 36 trapped ions; 37 neutral atoms; 38 photonics; 39 semiconductor spins; 40 topology/candidates | Formal main-text routes added; source scoping only, no comprehensive platform review claimed |
-| Quantum compilation | 41 program semantics/IR/optimization; 42 synthesis/mapping/routing/scheduling; 43 control/dynamic/logical lowering | Formal main-text route added; API audit and worked pipeline pending |
-| Classical simulation | 44–47: exact, stabilizer, MPS and contraction methods | Targets specified; independent implementations and specialized review pending |
-| Research practice | 48 methods; 49 H2 VQE; 50 logical memory | H2 starter exists; correction-study primary source still to be selected |
+| Foundations | 1–8: mathematical bridges, states, tensor products, gates, measurement, entanglement and mixtures | Probability postulate and Pauli definitions precede use; no-cloning follows tensor products; ignored records are density mixtures rather than averaged statevectors |
+| Information | 9–13: channels, inference, entropy, communication, mixed entanglement and security | Channel/process metrics, LOCC/witnesses/PPT and cryptographic no-go scope are explicit; limited examples do not prove general security/capacity |
+| Algorithms and models | 14–22: cost/access models, oracles, search, estimation, Fourier/arithmetic, dynamics, block encodings, qubitization/QSVT and complexity | Simon and Abelian/discrete-log examples have local algebra bridges; selected QMA/Hamiltonian promises delimit claims; analog/adiabatic bridge is 19.8 |
+| Quantum-classical computing | Early map in 14.7; method homes in 10, 23–27, 43 and 47 | [Eight composable patterns](hybrid-computing.md): subroutine pipelines, outer-loop optimization, trainable/fixed learning, dynamic feedback, inference, fragment reconstruction, embedded solvers and heterogeneous execution |
+| Differentiation and applications | 23–27: gradients, optimization/geometry, chemistry, QAOA and learning | Fixed kernels have an independent entry; embedding, dynamics and sample-based diagonalization are optional branches rather than H2 prerequisites |
+| Noise and correction | 28–33: physical errors, characterization, code conditions, stabilizers, decoding, fault tolerance and resources | SPAM/RB includes its ensemble/noise assumptions; LDPC/code-connectivity tradeoffs are explicit; memory experiments precede optional universal-FT machinery |
+| Physical realization | 34 shared physics/target models; 35 superconducting; 36 trapped ions; 37 neutral atoms; 38 photonics; 39 spins; 40 topological theory/candidates | Shared oscillator/control bridges and optional bosonic correction; choose one platform; theoretical protection, physical candidates and demonstrated operations have separate evidence |
+| Quantum compilation | 41 semantics/IR/optimization; 42 synthesis/mapping/routing/scheduling; 43 control/dynamic/logical/runtime lowering | Basic compilation uses an explicit abstract target, without requiring all hardware physics or QFT; advanced lowering has separate prerequisites |
+| Simulation | 44 exact execution; 45 stabilizer; 46 MPS; 47 general contractions/cutting | Basic executor before differentiation; tableau from stabilizer tools; MPS is not required before generic contractions; cutting is not coherent networking |
+| Research | 48 source/claim/verification methods; 49 H2 VQE; 50 logical memory | H2 source/reduction mapping and the memory-study primary claim remain open; no invented execution or experimental evidence |
 
-Platform software installation and provider access remain companion laboratories. Physical models, native interactions, compilation correctness and scheduling algorithms are in the main text.
+Platform installation, provider credentials and evolving API details remain versioned companion laboratories. Essential theory and independent checks remain available offline.
 
-## Platform worksheet and evidence discipline
+## Duplicate derivations and intentional revisits
 
-Every platform branch answers the same questions: what encodes the information; which physical Hilbert space and effective model are assumed; how preparation, control, entanglement and readout work; what noise/leakage/loss is represented; which constraints the compiler receives; and which result the independent reference checks.
-
-Topological codes, non-Abelian theoretical models and candidate physical realizations require separate explanations. A source's proposal, a model calculation, a measured signature, a controlled operation and demonstrated logical computation are different claims. The chapter must supply dated, claim-specific evidence. No ranking of present platform maturity is asserted by this plan.
-
-Semiconductor spins are included alongside the five requested routes. Further encodings, device families, bosonic protection and network architectures can appear as comparisons or research extensions after a coverage review; no finite list is exhaustive.
-
-## Dependency and first-use ledger
-
-| Potential break in learning | Planned repair | Remaining acceptance evidence |
+| Recurring subject | Owner of the main derivation | Later responsibility |
 |---|---|---|
-| Probability estimates before the learner has statistical tools | Local estimator/coverage development in 6, with Appendix A references | Reader reconstructs an uncertainty calculation |
-| Schmidt decomposition before reduced density matrices | Develop SVD/pure-state structure in 7; reduced spectra in 8 | A worked reconstruction and explicit revisit |
-| Amplitude estimation before phase estimation | Read 16.1–16.5, then 17, then 16.6–16.8 | Route review confirms no hidden forward dependency |
-| Analog computation without adiabatic assumptions | Dedicated 19.8 bridge and a declared small model | Source theorem, assumptions and counterexample reviewed |
-| Photonics before measurement-based theory | Graph states and adaptive gates in 30.9, linked to teleportation | All conditional branches derived before photonic use |
-| Hardware chapters assuming unseen physics | Common oscillator/drive/measurement bridge in 34 and local circuit/atomic/optical/spin bridges | First-use physics and notation audit for each chosen branch |
-| Resource chapter requiring every hardware specialty | 33 states abstract parameters; 34 explains their origin; comparison uses selected branch summaries | Complete example with assumptions and sensitivity |
-| Compilation without a physical target contract | 34 plus one branch before 41–42; 43 adds control/logical prerequisites | One complete target description and semantic-preservation test |
-| Hybrid computation reduced to a trainable quantum layer | Eight composable patterns, with host/controller/device boundaries and an early 14.7 map | Each chosen pattern has an independent contract, total-cost record and a transfer task |
-| Physical transport treated as a cost-free logical SWAP | Platform models distinguish motion, interaction, mapping and output interpretation | Target-specific schedule/resource comparison |
-| Broad hardware tour interrupting the first course | Common core plus a selected branch; no sequential requirement to master 35–40 | Tested introductory and hardware/compiler course routes |
+| Gate identities/universality | 5 | 41–42 add semantics, algorithms and error-bounded synthesis; 33 accounts for logical costs |
+| Measurement/channels | 6 selective pure-state updates; 8 mixtures; 9 full instruments/channels | 28 assigns physical error models; 43 lowers classical feedback and readout contracts |
+| Statistical estimation | 6 estimator bridge; 10 state/process reconstruction | 28 develops device-characterization assumptions; 44 measures runtime; applications reuse uncertainty tools |
+| Entanglement/SVD | 7 pure-state structure and swapping; 8 reductions; 12 mixed-state resources | 46 derives MPS truncation bounds; 47 develops contraction costs; networking applications reuse the resource statements |
+| Differentiation/optimization | 23 derivative rules; 24 optimization and geometry | 25–27 and 43 explain changed objectives/constraints without four repeated optimizer tutorials |
+| Stabilizer/logical algebra | 29 code conditions; 30 stabilizers and graph states | 31 specializes geometry/decoding; 32 gives fault-tolerance scope; 38 applies measurement-based gates; 45 builds tableau algorithms |
+| Hardware-to-program contract | 34 common model and 35–40 local physical origins | 42 consumes constraints for compilation; 43 derives control and timing consequences |
+| Reproducible evidence | 48 full method, with small local records throughout | 49–50 execute source-specific capstones rather than repeat generic manifest tutorials |
 
-This ledger is a review agenda, not a declaration that the missing bridges have already been written.
+An intentional revisit must name what changes: the mathematical object, assumptions, proof strength or implementation contract. A brief recall and exact pointer are preferable to an unmarked duplicate proof.
 
-## Cross-layer pilot specifications
+## Deliberate boundaries
 
-| Pilot | Scope | Acceptance target |
+These decisions prevent scope from growing through disconnected topical additions. They may be revisited with a learning objective, prerequisite/workload assessment and an owner.
+
+| Nearby field | Included bridge | Outside the present full-treatment commitment |
 |---|---|---|
-| One entangling-state preparation | Abstract circuit to two contrasting explicitly modeled targets | Exact logical contract, input/output map, legal operations, timing assumptions and independent reference |
-| One dynamic measurement/correction | Conditional branches through classical control and readout | Branch probabilities/maps, correction record, latency and no silent postselection |
-| One host-driven hybrid loop | Objective/estimator or embedded solve across classical and quantum tasks | Typed records, independent reference, checkpoint/state, latency and all sampling/classical costs |
-| One cut/reconstructed result | A declared observable from smaller fragment executions | Exact uncut comparison, signed coefficients, variance/shot costs and no claim of coherent distributed execution |
-| One logical rotation | Approximate synthesis to a declared logical gate set and resource model | Error budget, T/factory/scheduling cost and traceable assumptions |
-| One physical-control calculation | Effective multilevel or coupled-mode dynamics | Units, frame convention, truncation convergence, leakage/loss interpretation and reference solver |
+| Quantum sensing/metrology | Estimation, Fisher/geometry tools and cost reasoning | A complete sensing/instrumentation course and platform metrology survey |
+| Quantum networks | Swapping, mixed-state distillation and modular/link contracts | A complete repeater/network protocol stack, routing/security engineering and deployment survey |
+| Complexity | Access/promise models, lower bounds, selected BQP/QMA/Hamiltonian problems | Full representation theory/non-Abelian HSP, QIP/MIP* and a complexity-theory monograph |
+| Physical engineering | Local circuit/atomic/optical/spin/oscillator models, loss/leakage and control assumptions | Full fabrication, microscopic materials/BCS theory and spectroscopy courses |
+| Cryptography | Precisely scoped information-theoretic arguments and no-go boundaries | Production cryptographic implementations or security certification |
+| Chemistry | Hamiltonian/mapping/ansatz/reduction reasoning and traceable selected molecular data | A complete integral-generation, electronic-structure or chemical-accuracy pipeline |
+| Advanced codes | Selected LDPC and bosonic constructions, assumptions, checks and tradeoffs | An exhaustive coding research survey or a claim that one code family wins universally |
 
-Pilots may reveal software requirements. Confirmed gaps follow the [upstream issue workflow](implementation-roadmap.md); pending software does not erase the theoretical objective.
+## Learning order and overload findings
 
-## Scope, duplication and workload
+The [review report](architecture-review.md) records 20 findings and their dispositions. Major order repairs include moving no-cloning after tensor products and phase-based amplitude estimation after QPE. Device characterization, network primitives and selected modern algorithm/code topics now have scoped homes. Every section has curated direct prerequisites; transitive closure adds only needed preparation to each selected route.
 
-Chapter 5 owns introductory gate identities and universality; 41–43 develop compiler semantics, algorithms and target lowering. Chapter 19 owns basic time evolution and approximation; physical chapters derive their model-specific interactions. Chapters 29–32 own stabilizer/logical theory; photonic/topological branches apply or extend it with explicit extra assumptions.
+The graph has **1,042 direct edges**, no forward dependencies or cycles, and **19 checked routes**. Regression checks protect basic compiler, fixed-kernel, general-contraction, H2 and logical-memory entry paths from unrelated advanced prerequisites. These are structural checks; a reader can still encounter an unexplained argument in prose that has not yet been written.
 
-Before freezing the architecture, assign provisional page, worked-example and substantial-problem budgets. Check the complete opening, a full algorithm route and a hardware-to-compiler route for overload. Decide whether the publication should be one reference book or a coordinated volume sequence only after that review; no volume split is declared here.
+The planned **1,088–1,958 pages before appendices/front matter** make the whole reference unsuitable as one introductory course. Common foundations plus selected branches are the teaching architecture. Coordinated volume packaging, realistic proof/example/problem budgets and learner workload remain acceptance decisions. The range is an editorial estimate, not a rendered page count.
+
+## Cross-layer validation designs
+
+After the baseline, recurring tasks will test circuit-to-target compilation, dynamic correction, a host-driven hybrid loop, cut/reconstructed expectation, logical rotation and physical control. Their specifications must state inputs/outputs, branch probabilities, units, semantics, error/sampling costs and independent references. Confirmed implementation gaps follow the [upstream workflow](implementation-roadmap.md); missing APIs do not remove required theory.
+
+The current phase may refine these specifications and source maps. It does not start new body chapters or depth-pilot prose.
 
 ## Freeze gates and change control
 
-| Gate | Required evidence | Current status |
-|---|---|---|
-| Coverage and chapter ownership | Specialist-informed matrix with justified exclusions and no unowned core topic | Self-audit drafted; external review pending |
-| Dependency and continuity | Section-level first-use ledger and complete bridge/transition checks | Ledger drafted; full audit pending |
-| Mathematical depth | Exact statements, proof plans and primary-source locators for depth pilots | Pending |
-| Executable cross-layer contracts | Small independent references and confirmed capability reports | Pending |
-| Workload and accessibility | Page/problem budgets and target-reader route evidence | Pending |
-| Baseline freeze | Resolved findings, recorded review scope, tagged plan and change log | Pending |
+| Gate | Evidence and present status |
+|---|---|
+| Editorial coverage/ownership | Completed for all 50 chapters/435 sections; exclusions and duplication decisions recorded; specialist assessment pending |
+| Section dependency architecture | Curated direct graph, complete ledger and 19 structurally checked routes completed; prose first-use and actual reader testing pending |
+| Mathematical depth | Exact central statements, proof/deferred-proof obligations and source locators pending section acceptance |
+| Cross-layer contracts | Planning targets recorded; independent complete programs and actual API verification remain pending |
+| Workload and accessibility | Provisional section/chapter/route page ranges computed; examples/problems, learner evidence and publication packaging pending |
+| Baseline freeze | Resolve review findings, record specialist/reader scope and tag an architecture baseline; pending |
 
-Do not treat a successful website build, large section count or authoring template as passing these gates. Small pilots can develop while the architecture is reviewed; sustained full-chapter production follows the baseline gate.
+**No new textbook body or depth-pilot drafting until the architecture baseline gate is satisfied.** The three existing starters remain format evidence. A successful build or a larger table of contents does not pass the outstanding gates.
 
-Stable IDs are held in book/curriculum.json. Current display numbers are generated from the record. Reorganizing content must retain IDs or publish an explicit split/merge map, update prerequisites and course routes, preserve or redirect public anchors, and explain why the change is necessary. Published editions keep their frozen sources.
+Stable IDs are held in book/curriculum.json and review dispositions in book/architecture-review.json. Regenerate both sets of views after structural edits, validate routes and preserve public anchors. A split/merge needs an explicit mapping and rationale; published editions keep their frozen sources. Reassess scope at least annually and on significant corrections, without pretending any curriculum is permanently complete.

@@ -1,10 +1,10 @@
 # Full book plan
 
-**Long-term curriculum revision: October 20, 2026.** Nine parts, 50 chapters and six appendices. This revision adds substantive physical-platform and quantum-compilation routes to the previous 40-chapter plan. The [editorial charter](editorial-charter.md) records the author's aim: a rigorous, accessible modern classic that helps present and future learners enter the field.
+**Long-term curriculum revision: October 20, 2026.** Nine parts, 50 chapters and six appendices. The systematic editorial pass covers all 50 chapters and 435 sections, including physical-platform and quantum-compilation routes. The [editorial charter](editorial-charter.md) records the author's aim: a rigorous, accessible modern classic that helps present and future learners enter the field.
 
 This is a curriculum architecture, not a completed manuscript or a claim that every proposed experiment is supported. Three starter chapters currently exist, with intended homes in Chapters **6, 23 and 49**. The three-chapter PDF retains independent sample numbering and its published version.
 
-**Architecture status: review pending, not frozen.** The [curriculum audit](curriculum-audit.md) lists coverage, prerequisite bridges, cross-layer laboratories and open review gates. [Reader continuity](reader-continuity.md) defines the no-skipped-steps standard. Chapter count is not an acceptance criterion.
+**Architecture status: full editorial pass completed; specialist/reader review and baseline freeze pending.** The [curriculum audit](curriculum-audit.md) lists coverage, prerequisite bridges, cross-layer laboratories and open review gates. [Reader continuity](reader-continuity.md) defines the no-skipped-steps standard. The [review report](architecture-review.md), [435-section ledger](section-review.md) and [19 learning paths](learning-paths.md) make the review traceable. New textbook body drafting is paused until the architecture baseline gate. Chapter count is not an acceptance criterion.
 
 ## Audience, depth and reading levels
 

@@ -13,6 +13,9 @@ nav:
   - Introduction: index.md
   - Editorial charter: editorial-charter.md
   - Curriculum audit: curriculum-audit.md
+  - Systematic architecture review: architecture-review.md
+  - Section review ledger: section-review.md
+  - Checked learning paths: learning-paths.md
   - Reader continuity: reader-continuity.md
   - Quantum-classical hybrid computing: hybrid-computing.md
   - Contents and status: contents.md
@@ -40,6 +43,7 @@ nav:
       - Chapter mapping: references/chapter-mapping.md
       - Compilation and physical platforms: references/compilation-and-platforms.md
       - Hybrid-computing sources: references/hybrid-computing.md
+      - Architecture-review sources: references/architecture-review.md
       - Nielsen–Chuang design review: references/nielsen-chuang-design-review.md
       - Quantum Country design review: references/quantum-country-design-review.md
   - Sources and validation: sources.md

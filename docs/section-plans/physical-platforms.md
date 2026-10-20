@@ -1,6 +1,6 @@
 # Part 6. Physical Realizations and Quantum-System Architecture
 
-**Detailed plan · 2026-10-20 · Planned material; architecture review pending.** [All sections](../section-plan.md) · [Full plan](../book-plan.md) · [Reader continuity](../reader-continuity.md)
+**Detailed plan · 2026-10-20 · Planned material; editorial pass completed, external validation/freeze pending.** [All sections](../section-plan.md) · [Full plan](../book-plan.md) · [Reader continuity](../reader-continuity.md)
 
 Each section specifies its argument and independent evidence. Framework implementation, mathematical review and reader review have separate status. Closing materials follow the [section-plan guide](../section-plan.md#how-to-read-the-specification).
 
@@ -10,13 +10,15 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **From Abstract Qubits to Physical Quantum Systems**
 
-**Reading level:** Core bridge with optional physics extensions. **Chapter prerequisites:** 2–6, 8–10, 19, 28; selected 29–33 for logical resources.
+**Reading level:** Core bridge with optional physics extensions. **Entry guidance:** 2–3, 5–6, 8 for entry; selected 9/28/29/30 only for corresponding optional branches.
 
-**Branch design:** use this common bridge, choose one of Chapters 35–40, then proceed to compilation. Other platforms can be compared through their guided summaries.
+**Branch design:** use selected common bridges and choose a platform. Basic compilation can instead start with a supplied target contract; microscopic platform physics is a separate branch.
 
 <span id="sec-from-abstract-qubits-to-physical-quantum-systems-1"></span>
 
 ### 34.1 Levels, modes, and computational subspaces
+
+**Section level:** core. **Required earlier sections:** [3.1](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-1), [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2).
 
 **Learning and derivation target:** Define the physical Hilbert space, encoded qubit and leakage states; state the effective-model assumptions.
 
@@ -26,6 +28,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 34.2 Oscillator and light-matter mathematics bridge
 
+**Section level:** core. **Required earlier sections:** [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5), [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1).
+
 **Learning and derivation target:** Introduce ladder operators, Fock states and one interaction model before platform-specific use; explain truncation boundaries.
 
 **Implementation and evidence target:** Check low-energy calculations while showing why finite truncations cannot satisfy the full oscillator commutator exactly.
@@ -33,6 +37,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-from-abstract-qubits-to-physical-quantum-systems-3"></span>
 
 ### 34.3 Driven systems, rotating frames, and resonance
+
+**Section level:** core. **Required earlier sections:** [3.4](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-4), [2.6](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-6), [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1).
 
 **Learning and derivation target:** Derive a driven two-level model, a rotating-frame transformation and a scoped rotating-wave approximation.
 
@@ -42,6 +48,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 34.4 Preparation, control, and readout as an experiment
 
+**Section level:** core. **Required earlier sections:** [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [34.3](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-3).
+
 **Learning and derivation target:** Connect calibrated control parameters and a measurement record to the abstract operations.
 
 **Implementation and evidence target:** Build a complete small prepare-control-readout model with units and probability normalization.
@@ -49,6 +57,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-from-abstract-qubits-to-physical-quantum-systems-5"></span>
 
 ### 34.5 Digital, analog, and measurement-based models
+
+**Section level:** core. **Required earlier sections:** [19.8](../section-plans/03-algorithms.md#sec-hamiltonian-adiabatic-model), [30.10](../section-plans/05-fault-tolerance.md#sec-stabilizer-graph-state-mbqc).
 
 **Learning and derivation target:** Distinguish gate sequences, Hamiltonian schedules and adaptive resource-state measurements; connect to 19.8 and the graph-state bridge in Chapter 30.
 
@@ -58,29 +68,50 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 34.6 Noise, leakage, loss, and hardware constraints
 
+**Section level:** core. **Required earlier sections:** [28.2](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-2), [28.3](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-3), [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1).
+
 **Learning and derivation target:** Relate relaxation, dephasing, leakage and heralded erasure to architecture-specific models.
 
 **Implementation and evidence target:** Check explicit channels and explain why equal quoted fidelities need not imply equal workload behavior.
 
-<span id="sec-from-abstract-qubits-to-physical-quantum-systems-7"></span>
+<span id="sec-bosonic-error-correction-bridge"></span>
 
-### 34.7 Connectivity, transport, and modular architectures
+### 34.7 Oscillator encodings and bosonic correction [Advanced]
+
+**Section level:** advanced. **Required earlier sections:** [34.2](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-2), [29.5](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-5), [28.3](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-3).
+
+**Learning and derivation target:** Use oscillator mathematics and the Chapter 29 correction condition to compare a representative cat/binomial/GKP encoding; distinguish ideal infinite-dimensional constructions from finite-energy approximations.
+
+**Implementation and evidence target:** Check one tractable encoding/error example with convergence or analytic bounds; state the scope of protection and link photonic/superconducting applications rather than rederive the theory there.
+
+<span id="sec-from-abstract-qubits-to-physical-quantum-systems-7"></span>
+<span id="347-connectivity-transport-and-modular-architectures"></span>
+
+### 34.8 Connectivity, transport, and modular architectures
+
+**Section level:** core. **Required earlier sections:** [4.5](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-5), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2), [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1).
 
 **Learning and derivation target:** Define interaction graphs, movable qubits, optical links and simultaneous-operation constraints.
 
 **Implementation and evidence target:** Construct explicit target descriptions and identify which constraints a compiler must preserve.
 
 <span id="sec-from-abstract-qubits-to-physical-quantum-systems-8"></span>
+<span id="348-a-fair-platform-comparison-framework"></span>
 
-### 34.8 A fair platform-comparison framework
+### 34.9 A fair platform-comparison framework
+
+**Section level:** core. **Required earlier sections:** [34.4](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-4), [34.6](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-6), [34.8](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-7), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** Specify encoding, native entangler, readout, control, dominant errors and full resource assumptions.
 
 **Implementation and evidence target:** Compare dated primary-source evidence; distinguish proposals, demonstrations and scalable-system projections.
 
 <span id="sec-from-abstract-qubits-to-physical-quantum-systems-9"></span>
+<span id="349-choose-a-platform-learning-branch"></span>
 
-### 34.9 Choose a platform learning branch
+### 34.10 Choose a platform learning branch
+
+**Section level:** core. **Required earlier sections:** [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1), [34.3](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-3), [34.4](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-4), [34.8](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-7).
 
 **Learning and derivation target:** Provide a prerequisite checklist and a common model-control-measurement worksheet for Chapters 35–40.
 
@@ -92,11 +123,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Superconducting Qubits and Circuit-QED Control**
 
-**Reading level:** Advanced platform branch. **Chapter prerequisites:** 2–6, 9, 19, 28, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** Selected common physics bridge in 34; no whole algorithm or fault-tolerance route is required.
 
 <span id="sec-superconducting-qubits-and-circuit-qed-control-1"></span>
 
 ### 35.1 An electrical circuit becomes a quantum model
+
+**Section level:** advanced. **Required earlier sections:** [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1), [34.2](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-2).
 
 **Learning and derivation target:** Introduce circuit coordinates and the effective Josephson model with a local classical-circuit bridge; identify assumptions rather than requiring unexplained BCS theory.
 
@@ -106,6 +139,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 35.2 Anharmonicity and the transmon computational subspace
 
+**Section level:** advanced. **Required earlier sections:** [35.1](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-1), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
+
 **Learning and derivation target:** Derive a scoped low-energy spectrum and explain why anharmonicity supports selective qubit control.
 
 **Implementation and evidence target:** Compare truncated diagonalization and a justified approximation; quantify convergence.
@@ -113,6 +148,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-superconducting-qubits-and-circuit-qed-control-3"></span>
 
 ### 35.3 Microwave control and single-qubit rotations
+
+**Section level:** advanced. **Required earlier sections:** [34.3](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-3), [35.2](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-2).
 
 **Learning and derivation target:** Derive drive phase/amplitude dependence in a declared rotating frame.
 
@@ -122,6 +159,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 35.4 Coupling and native two-qubit interactions
 
+**Section level:** advanced. **Required earlier sections:** [35.2](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-2), [35.3](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-3), [5.2](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
+
 **Learning and derivation target:** Derive one representative exchange or conditional-phase gate and compare other native families at an explicit model level.
 
 **Implementation and evidence target:** Check the projected two-qubit action and leakage with a multilevel reference.
@@ -129,6 +168,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-superconducting-qubits-and-circuit-qed-control-5"></span>
 
 ### 35.5 Dispersive readout and assignment errors
+
+**Section level:** advanced. **Required earlier sections:** [34.4](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-4), [35.1](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-1).
 
 **Learning and derivation target:** Develop a scoped resonator/readout model and distinguish measurement backaction from classical classification error.
 
@@ -138,6 +179,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 35.6 Decoherence, crosstalk, and calibration
 
+**Section level:** advanced. **Required earlier sections:** [28.2](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-2), [28.3](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-3), [35.4](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-4).
+
 **Learning and derivation target:** Connect relaxation/dephasing and spectator interactions to a complete experiment.
 
 **Implementation and evidence target:** Compare ideal and imperfect gates with dated calibration inputs and declared model limits.
@@ -146,6 +189,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 35.7 Target constraints for compilation
 
+**Section level:** advanced. **Required earlier sections:** [35.3](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-3), [35.4](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-4), [34.8](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-7).
+
 **Learning and derivation target:** Specify native gates, coupling, frequency/simultaneity restrictions and frame updates.
 
 **Implementation and evidence target:** Create a small target contract consumed by the compilation laboratories without claiming a provider integration.
@@ -153,6 +198,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-superconducting-qubits-and-circuit-qed-control-8"></span>
 
 ### 35.8 Superconducting-model laboratory
+
+**Section level:** advanced. **Required earlier sections:** [35.2](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-2), [35.3](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-3), [35.4](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-4), [35.5](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-5), [35.6](../section-plans/physical-platforms.md#sec-superconducting-qubits-and-circuit-qed-control-6).
 
 **Learning and derivation target:** Integrate spectrum, drive, entangler and readout and state the boundary of the effective model.
 
@@ -164,11 +211,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Trapped-Ion Qubits, Motional Gates, and Transport**
 
-**Reading level:** Advanced platform branch. **Chapter prerequisites:** 2–6, 9, 19, 28, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** Selected oscillator/drive/measurement bridge in 34.
 
 <span id="sec-trapped-ion-qubits-motional-gates-and-transport-1"></span>
 
 ### 36.1 Internal states, trapping, and preparation
+
+**Section level:** advanced. **Required earlier sections:** [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1), [34.2](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-2).
 
 **Learning and derivation target:** Specify a qubit encoding and explain trapping and cooling with a local physics bridge.
 
@@ -178,6 +227,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 36.2 Collective motion and sidebands
 
+**Section level:** advanced. **Required earlier sections:** [36.1](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-1), [34.2](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-2), [34.3](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-3).
+
 **Learning and derivation target:** Derive a scoped ion-motion coupling and define the Lamb-Dicke/resolved-sideband approximations before use.
 
 **Implementation and evidence target:** Compare low-occupation dynamics with converged oscillator truncations.
@@ -185,6 +236,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-trapped-ion-qubits-motional-gates-and-transport-3"></span>
 
 ### 36.3 Carrier drives and single-qubit control
+
+**Section level:** advanced. **Required earlier sections:** [36.1](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-1), [34.3](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-3).
 
 **Learning and derivation target:** Derive a representative laser/microwave-driven rotation and frame convention.
 
@@ -194,6 +247,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 36.4 Motional entangling gates
 
+**Section level:** advanced. **Required earlier sections:** [36.2](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-2), [36.3](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-3).
+
 **Learning and derivation target:** Derive one Mølmer-Sørensen or geometric-phase construction including a motion-return condition.
 
 **Implementation and evidence target:** Compare joint spin-motion evolution and the reduced spin gate for several motional inputs.
@@ -201,6 +256,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-trapped-ion-qubits-motional-gates-and-transport-5"></span>
 
 ### 36.5 Readout, heating, and coherence
+
+**Section level:** advanced. **Required earlier sections:** [36.2](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-2), [34.4](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-4), [28.3](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-3).
 
 **Learning and derivation target:** Distinguish fluorescence assignment, spontaneous processes and motional heating.
 
@@ -210,6 +267,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 36.6 Chains, QCCD transport, and photonic links
 
+**Section level:** advanced. **Required earlier sections:** [36.1](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-1), [34.8](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-7).
+
 **Learning and derivation target:** Distinguish a chosen interaction model from transport/cooling/zone or modular-network overhead.
 
 **Implementation and evidence target:** Model a tiny transport/operation schedule rather than assuming cost-free all-to-all execution.
@@ -218,6 +277,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 36.7 Target constraints for compilation
 
+**Section level:** advanced. **Required earlier sections:** [36.4](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-4), [36.6](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-6).
+
 **Learning and derivation target:** Specify native entanglers, shared modes, zones, simultaneous operations and timing.
 
 **Implementation and evidence target:** Create a target description and compare two schedules for the same declared architecture.
@@ -225,6 +286,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-trapped-ion-qubits-motional-gates-and-transport-8"></span>
 
 ### 36.8 Trapped-ion laboratory
+
+**Section level:** advanced. **Required earlier sections:** [36.2](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-2), [36.4](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-4), [36.5](../section-plans/physical-platforms.md#sec-trapped-ion-qubits-motional-gates-and-transport-5).
 
 **Learning and derivation target:** Integrate internal-state control, motion, entanglement and readout.
 
@@ -236,11 +299,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Neutral-Atom Arrays and Rydberg Quantum Computing**
 
-**Reading level:** Advanced platform branch. **Chapter prerequisites:** 2–6, 9, 19, 28, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** Selected common bridge in 34; 19 only for advanced dynamics/error analysis.
 
 <span id="sec-neutral-atom-arrays-and-rydberg-quantum-computing-1"></span>
 
 ### 37.1 Trapping, internal encodings, and rearrangement
+
+**Section level:** advanced. **Required earlier sections:** [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1), [34.8](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-7).
 
 **Learning and derivation target:** Specify the computational states, optical-trap model and classical atom-position controls.
 
@@ -250,6 +315,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 37.2 Rydberg interactions and blockade
 
+**Section level:** advanced. **Required earlier sections:** [37.1](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-1), [2.6](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-6).
+
 **Learning and derivation target:** Derive a two-atom effective Hamiltonian and the assumptions of the blockade approximation.
 
 **Implementation and evidence target:** Compare finite-interaction dynamics with the ideal blockade limit.
@@ -257,6 +324,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-neutral-atom-arrays-and-rydberg-quantum-computing-3"></span>
 
 ### 37.3 Single-qubit and entangling control
+
+**Section level:** advanced. **Required earlier sections:** [37.2](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-2), [34.3](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-3).
 
 **Learning and derivation target:** Derive one gate sequence and identify phases, leakage and interaction constraints.
 
@@ -266,6 +335,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 37.4 Analog Hamiltonian programming
 
+**Section level:** advanced. **Required earlier sections:** [37.2](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-2), [19.1](../section-plans/03-algorithms.md#sec-hamiltonian-simulation-and-error-bounds-1).
+
 **Learning and derivation target:** Translate geometry, detuning and drive schedules into a declared many-body Hamiltonian.
 
 **Implementation and evidence target:** Compare a small schedule with exact evolution without assuming arbitrary graph programmability.
@@ -273,6 +344,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-neutral-atom-arrays-and-rydberg-quantum-computing-5"></span>
 
 ### 37.5 Transport, parallelism, and compilation
+
+**Section level:** advanced. **Required earlier sections:** [37.1](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-1), [37.3](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-3), [34.8](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-7).
 
 **Learning and derivation target:** Model motion, blockade neighborhoods and simultaneous gate restrictions.
 
@@ -282,6 +355,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 37.6 Atom loss, readout, and imperfect interactions
 
+**Section level:** advanced. **Required earlier sections:** [37.2](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-2), [34.4](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-4), [28.3](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-3).
+
 **Learning and derivation target:** Distinguish loss/erasure information, computational error and readout assignment.
 
 **Implementation and evidence target:** Check model-specific outcome records and their treatment in a later correction workflow.
@@ -290,6 +365,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 37.7 Digital versus analog experiment contracts
 
+**Section level:** advanced. **Required earlier sections:** [37.3](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-3), [37.4](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-4).
+
 **Learning and derivation target:** Specify inputs, admissible controls, outputs and error metrics for each mode.
 
 **Implementation and evidence target:** Verify one digital and one analog small task with matched mathematical references.
@@ -297,6 +374,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-neutral-atom-arrays-and-rydberg-quantum-computing-8"></span>
 
 ### 37.8 Neutral-atom laboratory
+
+**Section level:** advanced. **Required earlier sections:** [37.3](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-3), [37.4](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-4), [37.6](../section-plans/physical-platforms.md#sec-neutral-atom-arrays-and-rydberg-quantum-computing-6).
 
 **Learning and derivation target:** Connect geometry, Hamiltonian/control, noise and requested observable.
 
@@ -308,11 +387,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Photonic Encodings, Optical Circuits, and Measurement-Based Computation**
 
-**Reading level:** Advanced platform branch. **Chapter prerequisites:** 2–10, 28, 30, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** 7 and selected oscillator/measurement bridge in 34; selected 30 for resource-state computation.
 
 <span id="sec-photonic-encodings-optical-circuits-and-measurement-based-computation-1"></span>
 
 ### 38.1 Optical modes and qubit encodings
+
+**Section level:** advanced. **Required earlier sections:** [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1), [34.2](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-2).
 
 **Learning and derivation target:** Introduce Fock states and polarization/path/time encodings; distinguish physical modes from encoded qubits.
 
@@ -322,6 +403,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 38.2 Beam splitters, phases, and interferometers
 
+**Section level:** advanced. **Required earlier sections:** [38.1](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-1), [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3).
+
 **Learning and derivation target:** Derive mode transformations and their action on selected photon-number states.
 
 **Implementation and evidence target:** Compare mode-unitary and Fock-space calculations with declared phase conventions.
@@ -329,6 +412,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-photonic-encodings-optical-circuits-and-measurement-based-computation-3"></span>
 
 ### 38.3 Interference, sources, and detection
+
+**Section level:** advanced. **Required earlier sections:** [38.2](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-2), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2).
 
 **Learning and derivation target:** Derive a two-photon interference example and state indistinguishability/detector assumptions.
 
@@ -338,6 +423,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 38.4 Measurement-induced operations and heralding
 
+**Section level:** advanced. **Required earlier sections:** [38.3](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-3), [9.7](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-7).
+
 **Learning and derivation target:** Derive a scoped conditional optical operation, its success probability and classical feed-forward.
 
 **Implementation and evidence target:** Check all accepted/rejected branches; do not treat passive optics as deterministic universal qubit gates.
@@ -345,6 +432,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-photonic-encodings-optical-circuits-and-measurement-based-computation-5"></span>
 
 ### 38.5 Graph states, fusion, and logical computation
+
+**Section level:** advanced. **Required earlier sections:** [30.10](../section-plans/05-fault-tolerance.md#sec-stabilizer-graph-state-mbqc), [38.4](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-4).
 
 **Learning and derivation target:** Use Chapter 30's measurement-based bridge to analyze one resource-state/fusion operation.
 
@@ -354,6 +443,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 38.6 Continuous-variable and bosonic branches [Advanced]
 
+**Section level:** advanced. **Required earlier sections:** [34.2](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-2), [38.2](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-2).
+
 **Learning and derivation target:** Introduce quadratures, squeezing and Gaussian/non-Gaussian distinctions through a local mathematics bridge.
 
 **Implementation and evidence target:** Compare a tractable Gaussian calculation or converged truncated-state model without equating a mode with a qubit.
@@ -361,6 +452,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-photonic-encodings-optical-circuits-and-measurement-based-computation-7"></span>
 
 ### 38.7 Loss, erasure, and multiplexing resources
+
+**Section level:** advanced. **Required earlier sections:** [38.3](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-3), [38.4](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-4), [6.7](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7).
 
 **Learning and derivation target:** Separate transmission/detection loss, heralding and resource-state generation cost.
 
@@ -370,6 +463,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 38.8 Photonic compilation and architecture contracts
 
+**Section level:** advanced. **Required earlier sections:** [38.2](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-2), [38.4](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-4), [34.8](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-7).
+
 **Learning and derivation target:** Specify interferometers, resource states, timing, detection and feed-forward targets.
 
 **Implementation and evidence target:** Translate one logical task into a declared optical/measurement pattern and verify its output contract.
@@ -377,6 +472,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-photonic-encodings-optical-circuits-and-measurement-based-computation-9"></span>
 
 ### 38.9 Photonic laboratory
+
+**Section level:** advanced. **Required earlier sections:** [38.2](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-2), [38.3](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-3), [38.4](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-4), [38.7](../section-plans/physical-platforms.md#sec-photonic-encodings-optical-circuits-and-measurement-based-computation-7).
 
 **Learning and derivation target:** Connect encoding, optical transformations, conditional detection and resource accounting.
 
@@ -388,11 +485,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Semiconductor Spin Qubits and Exchange-Based Architectures**
 
-**Reading level:** Advanced platform branch. **Chapter prerequisites:** 2–6, 9, 19, 28, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** Selected common bridge in 34.
 
 <span id="sec-semiconductor-spin-qubits-and-exchange-based-architectures-1"></span>
 
 ### 39.1 Spin encodings and confined-charge models
+
+**Section level:** advanced. **Required earlier sections:** [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1).
 
 **Learning and derivation target:** Introduce single-spin, encoded-spin and donor/dot choices with explicit effective assumptions.
 
@@ -402,6 +501,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 39.2 Zeeman control and electrically driven rotations
 
+**Section level:** advanced. **Required earlier sections:** [39.1](../section-plans/physical-platforms.md#sec-semiconductor-spin-qubits-and-exchange-based-architectures-1), [34.3](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-3).
+
 **Learning and derivation target:** Derive a scoped spin-control Hamiltonian and resonance convention.
 
 **Implementation and evidence target:** Compare time evolution with an independent qubit rotation.
@@ -409,6 +510,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-semiconductor-spin-qubits-and-exchange-based-architectures-3"></span>
 
 ### 39.3 Exchange and entangling operations
+
+**Section level:** advanced. **Required earlier sections:** [39.2](../section-plans/physical-platforms.md#sec-semiconductor-spin-qubits-and-exchange-based-architectures-2), [2.6](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-6).
 
 **Learning and derivation target:** Derive a two-spin exchange evolution and its computational action.
 
@@ -418,6 +521,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 39.4 Charge, valley, and leakage degrees of freedom
 
+**Section level:** advanced. **Required earlier sections:** [39.1](../section-plans/physical-platforms.md#sec-semiconductor-spin-qubits-and-exchange-based-architectures-1), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
+
 **Learning and derivation target:** Explain which extra levels a selected semiconductor model includes and when they matter.
 
 **Implementation and evidence target:** Compare effective-qubit results with a converged small multilevel reference.
@@ -425,6 +530,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-semiconductor-spin-qubits-and-exchange-based-architectures-5"></span>
 
 ### 39.5 Initialization and spin-to-charge readout
+
+**Section level:** advanced. **Required earlier sections:** [39.1](../section-plans/physical-platforms.md#sec-semiconductor-spin-qubits-and-exchange-based-architectures-1), [34.4](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-4).
 
 **Learning and derivation target:** Derive a scoped state-preparation/readout process and distinguish its errors.
 
@@ -434,6 +541,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 39.6 Noise, variability, and calibration
 
+**Section level:** advanced. **Required earlier sections:** [39.3](../section-plans/physical-platforms.md#sec-semiconductor-spin-qubits-and-exchange-based-architectures-3), [28.2](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-2), [28.3](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-3).
+
 **Learning and derivation target:** Model a selected charge/hyperfine/control perturbation without universal platform claims.
 
 **Implementation and evidence target:** Study sensitivity and identify which parameters require measured input.
@@ -442,6 +551,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 39.7 Coupling, shuttling, and modular constraints
 
+**Section level:** advanced. **Required earlier sections:** [39.3](../section-plans/physical-platforms.md#sec-semiconductor-spin-qubits-and-exchange-based-architectures-3), [34.8](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-7).
+
 **Learning and derivation target:** Specify a target's couplings, transport/control resources and timing.
 
 **Implementation and evidence target:** Build a small compilation contract with explicitly costed movement and scheduling.
@@ -449,6 +560,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-semiconductor-spin-qubits-and-exchange-based-architectures-8"></span>
 
 ### 39.8 Spin-qubit laboratory
+
+**Section level:** advanced. **Required earlier sections:** [39.2](../section-plans/physical-platforms.md#sec-semiconductor-spin-qubits-and-exchange-based-architectures-2), [39.3](../section-plans/physical-platforms.md#sec-semiconductor-spin-qubits-and-exchange-based-architectures-3), [39.5](../section-plans/physical-platforms.md#sec-semiconductor-spin-qubits-and-exchange-based-architectures-5), [39.6](../section-plans/physical-platforms.md#sec-semiconductor-spin-qubits-and-exchange-based-architectures-6).
 
 **Learning and derivation target:** Integrate encoding, exchange/control, readout and imperfections.
 
@@ -460,11 +573,13 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Topological Quantum Computation and Candidate Physical Realizations**
 
-**Reading level:** Advanced platform branch. **Chapter prerequisites:** 7–9, 25, 28–32, 34.
+**Reading level:** Advanced platform branch. **Entry guidance:** 7–8 and selected 34 for entry; 25 for Majorana models and 29–32 for protection/logical-resource comparisons.
 
 <span id="sec-topological-quantum-computation-and-candidate-physical-realizations-1"></span>
 
 ### 40.1 Topology, protection, and distinct meanings
+
+**Section level:** advanced. **Required earlier sections:** [7.1](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-1), [8.2](../section-plans/01-foundations.md#sec-density-matrices-reduced-states-and-purification-2), [34.1](../section-plans/physical-platforms.md#sec-from-abstract-qubits-to-physical-quantum-systems-1).
 
 **Learning and derivation target:** Distinguish topological order, topological codes and a physical non-Abelian-quasiparticle proposal.
 
@@ -474,6 +589,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 40.2 Fusion spaces and encoded information
 
+**Section level:** advanced. **Required earlier sections:** [40.1](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-1), [4.1](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1).
+
 **Learning and derivation target:** Introduce charge sectors and fusion rules before using their notation.
 
 **Implementation and evidence target:** Count a small fusion space and state the encoding assumptions.
@@ -481,6 +598,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-topological-quantum-computation-and-candidate-physical-realizations-3"></span>
 
 ### 40.3 Fusion bases, F/R moves, and braiding
+
+**Section level:** advanced. **Required earlier sections:** [40.2](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-2), [2.3](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-3).
 
 **Learning and derivation target:** Define fusion-basis recoupling and exchange matrices before use; derive one specified braid representation and state its consistency conditions and proof scope.
 
@@ -490,6 +609,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 40.4 Measurement, corrections, and computational power
 
+**Section level:** advanced. **Required earlier sections:** [40.3](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-3), [6.2](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2), [32.6](../section-plans/05-fault-tolerance.md#sec-fault-tolerant-gates-and-universal-logical-computation-6).
+
 **Learning and derivation target:** Explain a selected model's measurements, available gates and extra resources needed for universality.
 
 **Implementation and evidence target:** Verify a small logical operation without assuming braiding is universally sufficient.
@@ -497,6 +618,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-topological-quantum-computation-and-candidate-physical-realizations-5"></span>
 
 ### 40.5 Majorana models and parity encoding [Advanced]
+
+**Section level:** advanced. **Required earlier sections:** [25.2](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-2), [25.3](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-3), [40.2](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-2).
 
 **Learning and derivation target:** Introduce a scoped fermionic toy Hamiltonian and parity constraints using the Chapter 25 bridge.
 
@@ -506,6 +629,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 40.6 Protection assumptions and failure mechanisms
 
+**Section level:** advanced. **Required earlier sections:** [40.1](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-1), [28.1](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-1), [29.5](../section-plans/05-fault-tolerance.md#sec-quantum-error-correction-conditions-and-recovery-5).
+
 **Learning and derivation target:** Explain gap, locality, poisoning, finite size and readout assumptions of a selected model.
 
 **Implementation and evidence target:** Perturb a tractable model and distinguish conditional robustness from immunity to all errors.
@@ -514,6 +639,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 40.7 Experiments, signatures, and unresolved evidence
 
+**Section level:** advanced. **Required earlier sections:** [40.5](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-5), [40.6](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-6).
+
 **Learning and derivation target:** Separate proposed signatures, alternative explanations, demonstrated control and full logical computation.
 
 **Implementation and evidence target:** Build a dated primary-source claim/evidence table without inferring a working universal platform from one signature.
@@ -521,6 +648,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="sec-topological-quantum-computation-and-candidate-physical-realizations-8"></span>
 
 ### 40.8 Topological compilation and laboratory
+
+**Section level:** advanced. **Required earlier sections:** [40.3](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-3), [40.4](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-4), [40.6](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-6), [40.7](../section-plans/physical-platforms.md#sec-topological-quantum-computation-and-candidate-physical-realizations-7).
 
 **Learning and derivation target:** Specify allowed braids/measurements, corrections and non-topological supplements.
 

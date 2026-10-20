@@ -16,6 +16,7 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -r requirements-docs.txt
       - run: python scripts/build_curriculum.py --check
+      - run: python scripts/review_curriculum.py --check
       - run: python scripts/check_prose.py
       - run: python -m mkdocs build --strict
       - uses: actions/upload-pages-artifact@v3

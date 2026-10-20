@@ -11,72 +11,50 @@ The bibliography, symbol index, glossary, errata and acknowledgements are separa
 
 ## Dependencies and course routes
 
-The numbered order is one reference-book arrangement. It is not a requirement to read all 50 chapters consecutively. The common core and explicit branch routes give the learner a continuous path without requiring every specialization.
+The numbered arrangement is a reference structure. The authoritative [19 learning paths](learning-paths.md) list exact sections, assumed earlier routes and all required preparation. They are generated from the same stable section records as this plan. Do not maintain a second, conflicting course sequence in prose.
 
-| Route | Sequence and bridges | Intended outcome |
-|---|---|---|
-| Opening core | 1–8, with local mathematics bridges; selected 9–10 and 14 | State, gate, measurement, information and resource reasoning |
-| First algorithms | 14–15, 16.1–16.5, 17, then 16.6–16.8 and selected 18–19 | Complete search, estimation and Fourier-based explanations without a hidden forward prerequisite |
-| Information course | 7–13, after the necessary foundations | Channels, inference, entropy, communication and security assumptions |
-| Modern algorithms | 14–22, supported by 2–6 and 9–10 | Algorithm derivations, access models, error and complete resource cost |
-| Quantum-classical integration | 14.7 overview, then the selected patterns in 10, 23–27, 43 and 47; use the [hybrid map](hybrid-computing.md) | Recognize typed data/control flows, algorithmic versus runtime coupling, and end-to-end costs |
-| Differentiable applications | 23–27, with 10, 14 and selected 19/28 | Gradients, trainability, variational/learning objectives and baselines |
-| Error correction | 28–33, after 7–10; graph-state material in 30 links back to teleportation | From noise and correction conditions to logical operations and resource models |
-| Hardware-to-compiler course | 34, one of 35–40, then 41–42; 43 after 19, 23, 28 and 32–33 | Model and control a selected physical platform, compile a task and validate the whole contract |
-| Platform comparison | 34 and guided comparison sections from 35–40 | Compare encodings, constraints and evidence without taking every advanced branch |
-| Classical simulation | 30, 44–47, with 2, 4, 7–10, 14 and 23 | Exact/structured simulation, approximation and tractability |
-| Research | 48, then 49 or 50 after its application prerequisites | A scoped, independently checked paper reproduction |
+The [435-section review ledger](section-review.md) records each section's direct prerequisites, core/advanced level and editorial disposition. Chapter prerequisite prose is entry guidance, not a requirement to complete every section of every listed chapter. Later specialized sections can have additional dependencies without blocking an earlier core task.
 
-A 14-week course selects sections from a route. The full curriculum is a reference and multi-course project. Page budgets, core/advanced allocation and possible multi-volume publication must be assessed at the architecture-review gate; they are not fixed by chapter count.
+The opening route develops mathematics, pure states, tensor products, gates, measurement, entanglement, mixed states and basic computational resources. First algorithms then progress through oracle problems, search/phase-free estimation, Fourier/phase estimation, arithmetic and dynamics. Phase-based amplitude estimation is now 17.8, after its phase-estimation prerequisites; it no longer forces a return to Chapter 16. Pure-state no-cloning is now 4.7, after tensor products.
 
-Chapter 7 first derives no-signalling from marginal probabilities and revisits the reduced-state proof after Chapter 8. Chapter 19 supplies a scoped adiabatic-model bridge; Chapter 30 introduces graph states and measurement-based gates before photonic computation. Chapter 33 introduces physical resource parameters as explicit abstract assumptions; Chapters 34–40 explain their platform-specific origins and limits.
+Fixed quantum kernels, trainable hybrid learning, basic compilation, simulation and hardware branches have separate entry contracts. A selected physical model is useful for a hardware-to-compiler project but is not required before learning basic program semantics or mapping on a supplied target. Logical-memory simulation does not require universal fault tolerance or magic-state factories. H2 VQE does not require every embedding or quantum-learning extension.
 
-## Ownership of recurring concepts
+## Ownership and scope control
 
-| Concept | First development | Later use without duplicate derivation |
-|---|---|---|
-| Gate identities and simple universality | 5 | Compiler correctness and synthesis in 41–42 |
-| Channels and conditional operations | 6, 8–9 | Noise (28), hardware readout and dynamic compilation |
-| Entanglement and teleportation | 7–8 | Coding, graph-state computation, photonics and topology |
-| Time evolution and approximation | 19 | Hardware effective models and control-level lowering |
-| Gradients and optimization | 23–24 | Variational applications and pulse optimization in 43 |
-| Stabilizers and logical computation | 29–32 | Photonic/topological branches, logical compilation and simulation |
-| Resource/error budgets | 14, 19, 28, 33 | Hardware comparison, compiler objectives and research reports |
-| Hybrid interaction and execution boundary | 14.7; task-specific mathematics in 10, 23–27 | Controller/runtime contracts in 41–43 and fragment reconstruction in 47 |
-| Physical experiment/target contract | 34 and one selected platform | Mapping, scheduling and control in 41–43 |
-| Independent execution/reference methods | Small local references throughout; general methods in 44–47 | Full research capstones in 49–50 |
+The [curriculum audit](curriculum-audit.md) owns the coverage, duplication and deliberate-exclusion matrices. Develop a recurring concept fully in its owning section; later applications give an exact pointer, recall the necessary statement and explain the new use. New derivations belong in the later section only when its assumptions or mathematical object actually change.
 
-## Planning review before substantial drafting
+Chapter 7 uses marginal probabilities for no-signalling; Chapter 8 supplies the reduced-state proof. Chapter 19 supplies the adiabatic bridge. Graph-state and adaptive measurement-based gates are in 30.10 before photonic use. Chapter 33 states abstract resource parameters before platform chapters explain their origins. Experimental SPAM/randomized benchmarking belongs to 28, state/process reconstruction to 10, and simulator timing to 44.
 
-The [curriculum audit](curriculum-audit.md) records the remaining gates. The expanded architecture is **not frozen** and has not yet received specialist or learner approval.
+The additions from this pass give scoped homes to entanglement swapping, channel metrics/process reconstruction, mixed-state entanglement, cryptographic no-go boundaries, Simon's algorithm, an Abelian hidden-subgroup/discrete-log bridge, qubitization, Hamiltonian promise/verification limits, experimental characterization, quantum LDPC codes and bosonic correction. Their scope is stated in the section targets; mentioning an advanced result does not promise a complete research monograph.
 
-1. Review coverage and chapter ownership, including compilation, physical platforms, alternative computational models and the interfaces between them.
-2. Audit first use of concepts, prerequisite bridges, section transitions and explicit learning outcomes using the [reader-continuity standard](reader-continuity.md).
-3. Check depth and workload with algorithm, information, compilation, hardware and error-correction specialists; record the actual scope reviewed.
-4. Test the opening core and representative cross-layer routes with target readers. Record where a reader cannot reconstruct a step.
-5. Resolve missing bridges, overload and redundant material; assign provisional page/problem budgets and freeze a versioned architecture baseline.
-6. Begin sustained chapter drafting against that baseline. Use stable chapter/section IDs and a public change record for later revisions.
+## Workload and publication architecture
 
-Small existing pilots supply evidence for this review. They do not establish that the full architecture, every proof or every experiment has been validated.
+Per-section editorial ranges currently total **1,088–1,958 pages before appendices/front matter**. This is a planning range for explanations, examples and exercises, not a measured typeset length. It exposes a real scope risk: a 50-chapter reference cannot also be a single introductory course.
 
-## Writing priorities after the review gate
+Use the common foundation followed by one selected route. The route report gives additional reading and prerequisite burden separately. Assess coordinated volumes before freezing scope: foundations/information/algorithms; hybrid applications/noise/correction; and physical systems/compilation/simulation/research are candidate groupings, not a publication decision or forced learning order. Preserve cross-volume prerequisites and access to bridges. Page, problem and worked-example budgets require expert and learner calibration rather than proportional compression of difficult proofs.
 
-Complete the opening sequence (1–8), then depth pilots in measurement (6), differentiation (23), correction (29), and a hardware-to-compiler thread (34, selected 35–40, 41–42). Expand channels/inference, resources and the first algorithm path. Develop the VQE research route through 48–49. Draft specialized branches with exact sources and explicit proof obligations; complete simulation and the logical-memory capstone (50) as their prerequisites are available.
+## Architecture-first acceptance gates
 
-This is a writing sequence rather than an importance ranking. Missing FlagQuantum capabilities are investigated upstream while mathematical explanations and independent references are developed.
+A complete editorial architecture pass is recorded in the [review report](architecture-review.md): 50 chapter decisions, 435 section dispositions, 1,042 direct prerequisite edges and 19 checked routes. These checks establish record consistency and expose prerequisite burden; they do not prove the explanations teach successfully.
+
+Before new body drafting:
+
+1. Resolve exact central-result/proof obligations and primary-source locators; distinguish full core proofs from scoped advanced roadmaps.
+2. Obtain specialist review of coverage, ownership and mathematical/physical assumptions; record the actual sections reviewed.
+3. Test representative routes and bridge/transition specifications with target readers. Record the precise missing steps and required repairs.
+4. Set workable page, example and substantial-problem budgets; resolve volume and course packaging.
+5. Resolve findings and tag a versioned architecture baseline with a public change record.
+
+**No new textbook body or depth-pilot drafting while these architecture gates remain open.** Existing three starter chapters remain available as evidence of the format. Source mapping, architectural repairs and validation design can continue; they do not constitute authorization to write new chapters. After the baseline, prioritize a continuous opening and selected complete routes, not isolated topical additions.
 
 ## Research anchors and source work
 
-The earlier [reading guide](references/reading-guide.md) supports the foundations. [Compilation and physical-platform source notes](references/compilation-and-platforms.md) identify primary author references and official specifications used to scope the added routes. These are starting points, not claims of complete source or proof review.
+The [reading guide](references/reading-guide.md), [compilation/platform sources](references/compilation-and-platforms.md), [hybrid sources](references/hybrid-computing.md) and [systematic-review source notes](references/architecture-review.md) document consulted scope. Course outlines and paper abstracts support coverage comparisons; they do not certify proofs, API support or experimental results. Every authored result needs exact edition/revision and theorem/equation locators plus its independent verification plan.
 
-The [hybrid-computing source anchors](references/hybrid-computing.md) support the new cross-cutting map, embedding, reconstruction and heterogeneous-workflow planning. Exact method-specific source/proof review remains pending.
+The H2 source-to-reduced-model mapping and Chapter 50's selected primary paper/claim remain explicit outstanding scholarly decisions. A rounded small-model reproduction cannot stand in for all molecular data or a hardware experiment.
 
-Additional anchors include [QSVT](https://arxiv.org/abs/1806.01838), [surface codes](https://arxiv.org/abs/1208.0928v2), and [classical shadows](https://arxiv.org/abs/2002.08953). Each authored section needs exact theorem/equation locators, assumptions and an independent verification plan. Hardware performance and scientific-maturity comparisons require dated, claim-specific evidence.
+## Stable identifiers and history
 
-## Stable identifiers, compatibility and history
+Canonical records are book/curriculum.json and book/architecture-review.json. Run scripts/build_curriculum.py and scripts/review_curriculum.py to generate views; their --check options detect stale outputs and graph/route inconsistencies. IDs remain stable across display renumbering. A split or merge requires an explicit map, prerequisite/route updates and preserved or redirected public anchors.
 
-The canonical records are in the repository's book/curriculum.json; display numbers and detailed pages are generated by scripts/build_curriculum.py. Stable chapter/section IDs are independent of display numbering. Check generated views with the script's --check option.
-
-The earlier 40-chapter, 328-section plan omitted substantive hardware and compilation routes. This revision adds those routes and two computational-model bridges. The original simulation/research URLs retain legacy chapter and section anchors; current navigation points to stable chapter IDs. Published PDF samples retain their own numbering, source revision and validated scope.
-
-The historical Nielsen–Chuang and Quantum Country reviews remain design records rather than the current chapter allocation. Current starter homes are **6, 23 and 49**; each requires expansion and review.
+The former 40-chapter/328-section plan lacked substantial hardware and compilation routes. The expanded 50-chapter/423-section plan received this full editorial pass and now has 435 sections. Historical design reviews remain records, not current allocations. Existing public section anchors are retained, including moved sections. Current starter homes are 6, 23 and 49; the published three-chapter PDF retains its own sample numbering and source/version provenance.

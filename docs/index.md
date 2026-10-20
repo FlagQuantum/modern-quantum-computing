@@ -28,7 +28,7 @@ Our aim is a rigorous modern classic that helps present and future learners ente
 
 The subject determines the scope. Required missing capabilities are investigated and reported through the [FlagQuantum capability-gap workflow](implementation-roadmap.md); existing API coverage does not limit the theory. Current sample execution claims remain pinned to their tested release.
 
-The expanded plan is under [architecture review](curriculum-audit.md), with explicit [reader-continuity requirements](reader-continuity.md). It is not frozen or approved merely because its sections have been listed.
+A [systematic editorial architecture review](architecture-review.md) covers all 50 chapters and 435 sections, with an [exact prerequisite ledger](section-review.md) and [19 learning paths](learning-paths.md). [Specialist/reader validation and baseline freeze](curriculum-audit.md) remain pending. New textbook body drafting is paused until that gate; [reader continuity](reader-continuity.md) is an explicit acceptance standard.
 
 The [quantum-classical hybrid map](hybrid-computing.md) connects eight composable algorithm/runtime patterns, their implementation contracts and their chapter homes.
 

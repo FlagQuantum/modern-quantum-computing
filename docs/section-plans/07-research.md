@@ -1,6 +1,6 @@
 # Part 9. From Papers to Reproducible Research
 
-**Detailed plan · 2026-10-20 · Planned material; architecture review pending.** [All sections](../section-plan.md) · [Full plan](../book-plan.md) · [Reader continuity](../reader-continuity.md)
+**Detailed plan · 2026-10-20 · Planned material; editorial pass completed, external validation/freeze pending.** [All sections](../section-plan.md) · [Full plan](../book-plan.md) · [Reader continuity](../reader-continuity.md)
 
 Each section specifies its argument and independent evidence. Framework implementation, mathematical review and reader review have separate status. Closing materials follow the [section-plan guide](../section-plan.md#how-to-read-the-specification).
 
@@ -11,12 +11,14 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Reading Papers, Building Evidence, and Reproducing Results**
 
-**Reading level:** Core research method. **Chapter prerequisites:** 4, 6, 10, 14; application-specific prerequisites.
+**Reading level:** Core research method. **Entry guidance:** 4, 6 for scientific specification; application/resource/statistical sections are selected for the claim.
 
 <span id="sec-reading-papers-building-evidence-and-reproducing-results-1"></span>
 <span id="381-choose-a-claim-that-can-be-tested"></span>
 
 ### 48.1 Choose a claim that can be tested
+
+**Section level:** core. **Required earlier sections:** [1.4](../section-plans/01-foundations.md#sec-what-quantum-computing-computes-4), [6.6](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
 
 **Learning and derivation target:** Separate a theorem, a numerical calculation and a hardware observation in a paper.
 
@@ -27,6 +29,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 48.2 Freeze sources, data, and revisions
 
+**Section level:** core. **Required earlier sections:** [48.1](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-1).
+
 **Learning and derivation target:** Explain why a version, correction or data transcription changes the specification.
 
 **Implementation and evidence target:** Record exact source versions, locators, data origin and hashes.
@@ -35,6 +39,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="383-build-a-symbol-and-convention-map"></span>
 
 ### 48.3 Build a symbol and convention map
+
+**Section level:** core. **Required earlier sections:** [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2), [6.3](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-3), [48.1](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-1).
 
 **Learning and derivation target:** Translate units, qubit labels, basis order, normalization and parameter definitions.
 
@@ -45,6 +51,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 48.4 Trace equation and assumption dependencies
 
+**Section level:** core. **Required earlier sections:** [48.3](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-3).
+
 **Learning and derivation target:** Identify which earlier results and approximations each claim uses.
 
 **Implementation and evidence target:** Build a small dependency record before implementing the final calculation.
@@ -53,6 +61,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="385-construct-an-independent-reference"></span>
 
 ### 48.5 Construct an independent reference
+
+**Section level:** core. **Required earlier sections:** [48.4](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-4), [2.8](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-8).
 
 **Learning and derivation target:** Select analytic, dense, enumerated or independently structured checks.
 
@@ -63,6 +73,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 48.6 Separate sources of error
 
+**Section level:** core. **Required earlier sections:** [48.5](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-5), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
+
 **Learning and derivation target:** Derive a relevant budget for discretization, truncation, sampling and optimization.
 
 **Implementation and evidence target:** Choose tolerances justified by the budget and requested claim.
@@ -71,6 +83,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="387-design-and-record-the-experiment"></span>
 
 ### 48.7 Design and record the experiment
+
+**Section level:** core. **Required earlier sections:** [48.2](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-2), [48.6](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-6), [14.6](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 **Learning and derivation target:** Specify inputs, seeds, environment, outputs, resources and comparison criteria.
 
@@ -81,6 +95,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 48.8 Investigate discrepancies and negative results
 
+**Section level:** core. **Required earlier sections:** [48.5](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-5), [48.7](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-7).
+
 **Learning and derivation target:** Distinguish convention bugs, numerical error, model mismatch and source ambiguity.
 
 **Implementation and evidence target:** Preserve a failing example and explain the evidence for its cause.
@@ -89,6 +105,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="389-report-review-and-maintain-a-reproduction"></span>
 
 ### 48.9 Report, review, and maintain a reproduction
+
+**Section level:** core. **Required earlier sections:** [48.6](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-6), [48.7](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-7), [48.8](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-8).
 
 **Learning and derivation target:** State which claim was reproduced, with what uncertainty and unresolved limits.
 
@@ -101,12 +119,14 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Case Study: Molecular Hydrogen from Hamiltonian to Verified VQE**
 
-**Reading level:** Research capstone. **Chapter prerequisites:** 23–25, 48.
+**Reading level:** Research capstone. **Entry guidance:** 4, 6, selected derivatives/energy sections of 23/25 and 48; 24 for the optimizer extension, not all embedding/learning topics.
 
 <span id="sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-1"></span>
 <span id="391-specify-the-paper-claim-and-corrected-data"></span>
 
 ### 49.1 Specify the paper claim and corrected data
+
+**Section level:** advanced. **Required earlier sections:** [48.1](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-1), [48.2](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-2).
 
 **Learning and derivation target:** Identify the O'Malley calculation, chosen source revision and ideal-versus-hardware scope.
 
@@ -117,6 +137,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 49.2 From the molecular model to a reduced Hamiltonian
 
+**Section level:** advanced. **Required earlier sections:** [25.1](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-1), [25.3](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-3), [25.4](../section-plans/04-variational.md#sec-variational-simulation-chemistry-and-ground-state-problems-4).
+
 **Learning and derivation target:** Derive the mapping/reduction steps that are actually supported by the chosen sources.
 
 **Implementation and evidence target:** Compare independent occupation/qubit operators and mark rounded inputs or deferred upstream derivations.
@@ -125,6 +147,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="393-units-offsets-symmetries-and-qubit-labels"></span>
 
 ### 49.3 Units, offsets, symmetries, and qubit labels
+
+**Section level:** advanced. **Required earlier sections:** [49.1](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-1), [49.2](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-2), [4.2](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2).
 
 **Learning and derivation target:** Derive the selected sector and reference-state conventions.
 
@@ -135,6 +159,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 49.4 The ansatz from generator to gates
 
+**Section level:** advanced. **Required earlier sections:** [49.3](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-3), [3.5](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5), [5.4](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4).
+
 **Learning and derivation target:** Derive amplitudes and a gate decomposition with explicit angle normalization.
 
 **Implementation and evidence target:** Compare analytic states, a matrix exponential and FlagQuantum output.
@@ -143,6 +169,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="395-observables-energy-and-gradient"></span>
 
 ### 49.5 Observables, energy, and gradient
+
+**Section level:** advanced. **Required earlier sections:** [49.4](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-4), [23.3](../section-plans/04-variational.md#sec-parameterized-circuits-quantum-gradients-and-differentiation-3), [23.5](../section-plans/04-variational.md#sec-parameterized-circuits-quantum-gradients-and-differentiation-5), [23.6](../section-plans/04-variational.md#sec-parameterized-circuits-quantum-gradients-and-differentiation-6).
 
 **Learning and derivation target:** Derive each Pauli expectation, the energy curve and derivative.
 
@@ -153,6 +181,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 49.6 The exact sector minimum and global comparison
 
+**Section level:** advanced. **Required earlier sections:** [49.5](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-5), [2.5](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5).
+
 **Learning and derivation target:** Derive the reduced-sector solution and state when it equals the full ground energy.
 
 **Implementation and evidence target:** Compare every tabulated geometry with full-matrix eigenvalues.
@@ -161,6 +191,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="397-reproduce-the-full-geometry-scan"></span>
 
 ### 49.7 Reproduce the full geometry scan
+
+**Section level:** advanced. **Required earlier sections:** [49.6](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-6), [2.7](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-7).
 
 **Learning and derivation target:** Derive a grid-error bound for the specified angular scan.
 
@@ -171,6 +203,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 49.8 Optimization and finite-shot extensions
 
+**Section level:** advanced. **Required earlier sections:** [49.5](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-5), [24.3](../section-plans/04-variational.md#sec-optimization-geometry-and-trainability-3), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
+
 **Learning and derivation target:** Separate tutorial extensions from the source calculation and derive their uncertainty.
 
 **Implementation and evidence target:** Compare optimizer outcomes and seeded energy estimates with exact references.
@@ -179,6 +213,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="399-interpretation-discrepancy-analysis-and-research-report"></span>
 
 ### 49.9 Interpretation, discrepancy analysis, and research report
+
+**Section level:** advanced. **Required earlier sections:** [49.1](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-1), [49.3](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-3), [49.5](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-5), [49.6](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-6), [49.7](../section-plans/07-research.md#sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-7), [48.9](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-9).
 
 **Learning and derivation target:** Explain rounded coefficients, geometry coverage and experimental-reproduction limits.
 
@@ -191,7 +227,7 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 **Case Study: Logical Memory and Error-Correction Experiments**
 
-**Reading level:** Research capstone. **Chapter prerequisites:** 28–33, 45, 48.
+**Reading level:** Research capstone. **Entry guidance:** Selected 28–31, tableau/reference sections of 45 and 48; 32–33 only for optional resource implications.
 
 **Source-selection gate:** select and review a primary paper before fixing the code family, noise model and reproduction claim.
 
@@ -199,6 +235,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="401-select-a-source-and-freeze-the-logical-memory-claim"></span>
 
 ### 50.1 Select a source and freeze the logical-memory claim
+
+**Section level:** advanced. **Required earlier sections:** [48.1](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-1), [48.2](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-2).
 
 **Learning and derivation target:** Choose a reviewed primary source, model and tractable reproduction scope before coding.
 
@@ -209,6 +247,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 50.2 Specify the code, circuit, and noise model
 
+**Section level:** advanced. **Required earlier sections:** [28.1](../section-plans/05-fault-tolerance.md#sec-noise-open-systems-and-error-mitigation-1), [31.1](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-1), [31.3](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-3).
+
 **Learning and derivation target:** Define layout, logical preparation, repeated rounds and all noise locations.
 
 **Implementation and evidence target:** Compare the experiment specification with the selected paper and list deviations.
@@ -217,6 +257,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="403-derive-syndromes-and-detection-events"></span>
 
 ### 50.3 Derive syndromes and detection events
+
+**Section level:** advanced. **Required earlier sections:** [50.2](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-2), [31.4](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-4).
 
 **Learning and derivation target:** Work through error-to-event patterns with explicit time/boundary conventions.
 
@@ -227,6 +269,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 50.4 Define decoding and logical success
 
+**Section level:** advanced. **Required earlier sections:** [50.3](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-3), [31.5](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-5), [31.6](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-6).
+
 **Learning and derivation target:** Specify decoder input/output, correction equivalence and logical observable.
 
 **Implementation and evidence target:** Verify noiseless cases and deliberately injected logical errors.
@@ -235,6 +279,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="405-build-an-exact-small-instance-reference"></span>
 
 ### 50.5 Build an exact small-instance reference
+
+**Section level:** advanced. **Required earlier sections:** [50.4](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-4), [45.4](../section-plans/06-simulation.md#sec-stabilizer-simulation-magic-and-classical-simulability-4).
 
 **Learning and derivation target:** Choose a tractable state, stabilizer or enumerated reference independent of the main path.
 
@@ -245,6 +291,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 50.6 Design the stochastic experiment
 
+**Section level:** advanced. **Required earlier sections:** [50.4](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-4), [6.8](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
+
 **Learning and derivation target:** Specify sampling, stopping, seeds, error bars and failure-event accounting.
 
 **Implementation and evidence target:** Validate estimators and retain representative failures for diagnosis.
@@ -253,6 +301,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="407-compare-distances-rounds-and-noise-parameters"></span>
 
 ### 50.7 Compare distances, rounds, and noise parameters
+
+**Section level:** advanced. **Required earlier sections:** [50.6](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-6), [31.7](../section-plans/05-fault-tolerance.md#sec-surface-codes-and-repeated-syndrome-measurements-7).
 
 **Learning and derivation target:** Derive the scope of a scaling comparison and define rates consistently.
 
@@ -263,6 +313,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 
 ### 50.8 From memory evidence to resource implications
 
+**Section level:** advanced. **Required earlier sections:** [50.7](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-7), [33.6](../section-plans/05-fault-tolerance.md#sec-from-logical-algorithms-to-physical-resource-estimates-6).
+
 **Learning and derivation target:** State which logical-gate or architecture assumptions are missing from a memory experiment.
 
 **Implementation and evidence target:** Perform a scoped sensitivity estimate linked to Chapter 33.
@@ -271,6 +323,8 @@ Each section specifies its argument and independent evidence. Framework implemen
 <span id="409-write-a-reproducible-correction-study-report"></span>
 
 ### 50.9 Write a reproducible correction-study report
+
+**Section level:** advanced. **Required earlier sections:** [50.1](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-1), [50.4](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-4), [50.5](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-5), [50.6](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-6), [50.7](../section-plans/07-research.md#sec-case-study-logical-memory-and-error-correction-experiments-7), [48.9](../section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-9).
 
 **Learning and derivation target:** Relate each result to the source claim and its limitations.
 

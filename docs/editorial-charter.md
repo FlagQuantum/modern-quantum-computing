@@ -59,4 +59,4 @@ The [reader-continuity standard](reader-continuity.md) requires local bridges, d
 
 Track completion and independent review of coherent learning routes, success on transfer problems, instructor adoption, reproducibility by readers, and resolution of conceptual errors. Repository popularity and chapter count do not establish educational or theoretical quality.
 
-The first milestone is a coherent opening and three depth pilots: measurement (Chapter 6), quantum differentiation (23), and correction conditions (29). These test whether the approach can teach postulates, spectral arguments and a substantial theorem before the entire book is written.
+The immediate milestone is a reviewed, versioned architecture baseline, with exact source/proof maps, workload decisions and specialist/reader evidence. New body and depth-pilot drafting is paused until that gate. After the baseline, develop a coherent opening and three depth pilots: measurement (Chapter 6), quantum differentiation (23), and correction conditions (29). These test whether the approach can teach postulates, spectral arguments and a substantial theorem before the entire book is written.

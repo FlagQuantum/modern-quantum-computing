@@ -6,7 +6,7 @@
 
 ## Continuity and planning record
 
-Follow the [reader-continuity standard](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/docs/reader-continuity.md). Use the [section brief](section-brief.md) to list entry knowledge, newly introduced symbols, intermediate reasons, exit skills and the next-section bridge. Replace explanatory shortcuts with actual steps or a precise established result. Record the architecture-review status and stable IDs.
+Follow the [reader-continuity standard](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/docs/reader-continuity.md). Use the [section brief](section-brief.md) to list entry knowledge, newly introduced symbols, intermediate reasons, exit skills and the next-section bridge. Replace explanatory shortcuts with actual steps or a precise established result. Record the architecture-review status and stable IDs. New body drafting remains paused until the architecture baseline gate; the template is not approval to start a chapter.
 
 ## Planned sections and dependencies
 

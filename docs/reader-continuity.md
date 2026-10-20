@@ -4,7 +4,7 @@ This is a binding authoring and review standard for the textbook. It implements 
 
 ## A section makes a learning contract
 
-Before drafting, record the question, knowledge assumed, knowledge introduced, result established, worked example, independent check and skill carried into the next section. Link exact earlier sections for prerequisites. A citation to an entire advanced textbook does not supply a missing step on a core learning path.
+Before drafting, record the question, knowledge assumed, knowledge introduced, result established, worked example, independent check and skill carried into the next section. Link exact earlier sections for prerequisites using the stable IDs and direct requires records in book/curriculum.json. Check the [section ledger](section-review.md) and [learning paths](learning-paths.md); add or repair a local bridge when the contract is insufficient. An acyclic graph establishes structural consistency, not that a reader understands the argument. A citation to an entire advanced textbook does not supply a missing step on a core learning path.
 
 If a prerequisite has not been taught, provide a local bridge or explicitly move the section to an advanced branch with a usable entry route. Do not introduce notation in a derivation before defining it. Give dimensions, subsystem labels, units and conventions where they first matter.
 
@@ -50,7 +50,7 @@ Keep important formula/code mappings nearby. Explain what each axis, variable an
 
 Use one recurring task to link an abstract circuit, a physical encoding, native operations, placement/routing, scheduling, control and readout. At each boundary state the contract and what changes. Choose representative exact or controlled small models; do not imply identical noisy physics across platforms.
 
-Chapter 34 supplies common physics bridges. Readers then choose a platform branch, complete the worksheet, and enter compilation with a specified target. Other platform specialties are optional comparative branches. Distinguish qubits, physical levels, optical modes, motional modes, ancillary systems and logical code spaces.
+Chapter 34 supplies common physics bridges. For a hardware-to-compiler route, readers choose a platform and enter compilation with its specified target. The basic compiler route can use a supplied abstract target without completing microscopic physical chapters. Other platform specialties are optional comparative branches. Distinguish qubits, physical levels, optical modes, motional modes, ancillary systems and logical code spaces.
 
 ## Reader review and acceptance evidence
 
