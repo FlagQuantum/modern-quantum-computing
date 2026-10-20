@@ -151,7 +151,7 @@ Repository: <{META['repository']}>.
     pieces += [listing("examples/measurement.py"), listing("examples/gradients.py"),
                listing("examples/omalley2016/h2_vqe_model.py"),
                listing("examples/omalley2016/verify_h2_vqe.py")]
-    pieces.append("# References {#refs}\n\nThe reading guide draws on [@nielsen_chuang_2010; @rieffel_polak_2011; @mermin_2007; @preskill_notes; @schuld_petruccione_2021; @watrous_2018]. Exact editions and official access links are listed below.\n")
+    pieces.append("# References {#refs .unnumbered}\n\nThe reading guide draws on [@nielsen_chuang_2010; @rieffel_polak_2011; @mermin_2007; @preskill_notes; @schuld_petruccione_2021; @watrous_2018]. Exact editions and official access links are listed below.\n")
     manuscript = WORK / "manuscript.md"
     manuscript.write_text("\n\n".join(pieces))
     cover = WORK / "cover.tex"
