@@ -1,6 +1,6 @@
 {
   "baseline": "writing-baseline-v1.0",
-  "scope": "Filled authoring briefs for 2.1–2.4; remaining Chapter2 briefs not yet prepared",
+  "scope": "Filled authoring briefs for 2.1–2.5; remaining Chapter2 briefs not yet prepared",
   "sections": [
     {
       "ref": "2.1",
@@ -20,7 +20,7 @@
       "depth": "F",
       "requires": [],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.4 now have author-checked drafts; independent reviews pending. Next production assignment is 2.5."
+      "next_transition": "Sections 2.1–2.5 now have author-checked drafts; independent reviews pending. Next production assignment is 2.6."
     },
     {
       "ref": "2.2",
@@ -42,7 +42,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-1"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.4 now have author-checked drafts; independent reviews pending. Next production assignment is 2.5."
+      "next_transition": "Sections 2.1–2.5 now have author-checked drafts; independent reviews pending. Next production assignment is 2.6."
     },
     {
       "ref": "2.3",
@@ -64,7 +64,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.4 now have author-checked drafts; independent reviews pending. Next production assignment is 2.5."
+      "next_transition": "Sections 2.1–2.5 now have author-checked drafts; independent reviews pending. Next production assignment is 2.6."
     },
     {
       "ref": "2.4",
@@ -86,7 +86,30 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Independent reviews pending; next draft 2.5 Spectral decomposition and singular values."
+      "next_transition": "Sections 2.1–2.5 now have author-checked drafts; independent reviews pending. Next production assignment is 2.6."
+    },
+    {
+      "ref": "2.5",
+      "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-5",
+      "title": "Spectral decomposition and singular values",
+      "question": "Why do Hermitian eigenvectors form a complete orthonormal basis, and how does this construct a rectangular SVD?",
+      "entry": "2.4 Hermitian real forms, positivity and unitary norms; provide compactness/maximum and orthonormal-completion bridges locally.",
+      "exit": "Prove Hermitian diagonalization without circular eigenbasis assumptions; construct full rectangular SVD including zero singular values and kernel; validate reconstruction independently of vector phases.",
+      "worked_case": "Previous complex H with eigenvalues1,3; complex2-by-3 map with singular values4,3 and a one-dimensional right kernel; degenerate and zero examples.",
+      "boundary": "Finite Hermitian theorem and arbitrary rectangular complex SVD; no general normal spectral theorem or polar decomposition required. Real completeness used in the local compactness lemma.",
+      "code_plan": "CPU complex128 PyTorch decompositions checked against hand eigenprojectors, explicit rectangular factors, coordinate formulas and phase-independent residuals.",
+      "independent_check": "729 three-coordinate inputs, explicit full U/Sigma/V factors, non-Hermitian nilpotent eigenvalue/singular-value distinction, degenerate projector and zero-map kernel.",
+      "transfer_task": "Repair missing V adjoint, dimension/kernel analysis for rectangular maps, explain degeneracy and sampled-versus-proof evidence; full answers.",
+      "source_locators": [
+        "NC:2.1.5",
+        "NC:2.1.10"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-4"
+      ],
+      "status": "draft",
+      "next_transition": "Independent reviews pending; next draft 2.6 Functions of matrices and time evolution."
     }
   ]
 }

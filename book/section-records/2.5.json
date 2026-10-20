@@ -1,0 +1,114 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-complex-vectors-operators-and-numerical-reasoning-5",
+  "ref": "2.5",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+  "question": "Why do Hermitian eigenvectors form a complete orthonormal basis, and how does this construct a rectangular SVD?",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-4"
+  ],
+  "depth": "F",
+  "result": "Spectral theorem and singular-value decomposition",
+  "entry": "2.4 Hermitian real forms, positivity and unitary norms; provide compactness/maximum and orthonormal-completion bridges locally.",
+  "exit": "Prove Hermitian diagonalization without circular eigenbasis assumptions; construct full rectangular SVD including zero singular values and kernel; validate reconstruction independently of vector phases.",
+  "assumptions": [
+    "Finite Hermitian H and arbitrary finite rectangular complex A; orthonormal coordinates",
+    "Completeness/least-upper-bound property of real numbers explicitly used in local compactness bridge",
+    "No determinant, fundamental theorem of algebra, existing complete eigenbasis, normal-operator theorem or polar decomposition imported",
+    "Exact kernels/zero singular values distinguished from numerical threshold decisions"
+  ],
+  "symbols": {
+    "H,q_H,u,lambda": "Hermitian matrix, Rayleigh form, maximizing unit vector and attained maximum/eigenvalue",
+    "q_j,Q,Lambda,P_lambda": "Orthonormal eigenvectors, eigenvector matrix, eigenvalue diagonal and grouped eigenspace projector",
+    "A,m,n,G": "Rectangular map, output/input dimensions and positive Gram matrix A-adjoint A",
+    "mu_i,sigma_i,v_i,u_i,r": "Gram eigenvalues, singular values, right/left singular vectors and rank",
+    "U,Sigma,V": "Full SVD matrices with shapes m-by-m,m-by-n,n-by-n",
+    "kernel,image": "Zero-input directions and attainable-output subspace; dimensions proved from expansion"
+  },
+  "local_start_checks": {
+    "brief": "Filled before prose, exact 2.4 prerequisite, depth F and both assigned locators preserved.",
+    "prerequisite": "Author-checked 2.4 draft supplies real forms, PSD Gram construction, eigenpair rules and adjoint/norm identities.",
+    "source": "Consulted NC assigned sections 2.1.5 printed68–69 and2.1.10 printed78–79, plus companion Box2.2 printed72, from cached user-supplied local PDF; no third-party material uploaded.",
+    "independent_reference": "Explicit Hermitian eigenprojectors and rectangular full factors, direct real/imaginary formulas for729 inputs, rotated degenerate basis and zero map.",
+    "scope": "No frozen curriculum/depth/dependency/volume changes or paper audit."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.1.5",
+      "consulted_pages": [
+        68,
+        69,
+        72
+      ],
+      "edition": "10th Anniversary Edition (2010)",
+      "use": "Eigen/decomposition conventions and companion spectral Box2.2; original compactness/Rayleigh proof for finite Hermitian case supplied locally."
+    },
+    {
+      "locator": "NC:2.1.10",
+      "consulted_pages": [
+        78,
+        79
+      ],
+      "edition": "10th Anniversary Edition (2010)",
+      "use": "Square SVD context; original rectangular Gram construction including kernels supplied without importing polar decomposition."
+    }
+  ],
+  "proof_obligations": [
+    "Finite orthonormal completion by residual subtraction; count n from summed residual norm identity n-k",
+    "Unit-sphere sequential compactness via bounded coordinate subsequences, bisection and real completeness; continuous bounded Rayleigh form attains supremum",
+    "Maximizer eigenvector via real t and imaginary iw perturbations, vanishing first-order real/imaginary coefficients and positive residual norm",
+    "Invariant orthogonal complement and induction produce a complete Hermitian orthonormal eigenbasis",
+    "Spectral reconstruction and grouped projectors; degeneracy independence and positivity eigenvalue converse",
+    "Rectangular SVD from PSD Gram theorem; normalize positive directions only and complete left basis",
+    "Zero Gram directions annihilated; full rectangular dimensions, rank/right kernel and left kernel accounted for",
+    "Hermitian singular values absolute eigenvalues, unitary singular values1 and non-Hermitian counterexample"
+  ],
+  "implementation": {
+    "path": "examples/foundations/spectral_svd.py",
+    "command": "python examples/foundations/spectral_svd.py",
+    "python": "3.12.14",
+    "dependencies": "Pinned requirements-examples.txt; PyTorch 2.13.0 CPU; no FlagQuantum API invoked",
+    "platform": "macOS ARM64 CPU",
+    "precision": "torch.complex128",
+    "author_run": "passed",
+    "checks": [
+      "Hermitian solver reconstruction/eigenpair residuals match hand eigenvalues1,3 and phase-independent projectors",
+      "Rectangular2-by-3 explicit factors and Gram diagonal agree with solver singular values4,3 and reconstruction",
+      "729 inputs match direct independent scalar formulas and norm law",
+      "Full right-kernel projector equals e2 projector; unitary factor checks",
+      "Degenerate rotated eigenbasis projector, all-zero3-by-2 map and full right kernel",
+      "Nilpotent matrix has singular values1,0 despite only eigenvalue0 proved earlier",
+      "Complex right factor checks missing adjoint; real right factors explicitly show why simpler tests would hide error"
+    ],
+    "tolerance": "rtol=0,atol=1e-12; bounded reconstruction Frobenius residual <=1e-12",
+    "limitations": "Finite tests establish implementation checks only. Phases and degenerate bases nonunique; tiny singular values not exact zeros; rank threshold/conditioning not established. No quantum execution.",
+    "expected_output_check": "Passed exact comparison with chapter expected-output block",
+    "script_sha256": "82a83dca7411730e38b10cb230045bffecc77e3e56bb5cf2eb8085aadf08d65f"
+  },
+  "assessment": {
+    "checkpoint": "2.5-A",
+    "zero_division": "2.5-B",
+    "degenerate_subspace": "2.5-C",
+    "rectangular_dimensions": "2.5-D",
+    "eigenvalue_sign": "2.5-E",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python 3.12.14/PyTorch 2.13.0 CPU complex128 run, exact output comparison, 729 independent coordinate cases, analytic spectral/SVD factors, phase-independent and degenerate projectors, rectangular zero and kernel cases, omitted-adjoint counterexample, frozen baseline/depth/source/brief and scholarly-plan checks, prose scan, strict MkDocs build, links/anchors across 56 pages, and actual browser inspection of Rayleigh perturbation proof and full rectangular factor formulas. No raw LaTeX or math-error text observed. Independent scholarly/implementation review and reader trials remain pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      6,
+      10
+    ],
+    "word_count_approx": 2920,
+    "page_status": "Unmeasured planning envelope; full compactness/completion bridges and kernel proofs retained. Calibrate print and reader workload without lowering depth.",
+    "next_draft": "2.6 Functions of matrices and time evolution",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}

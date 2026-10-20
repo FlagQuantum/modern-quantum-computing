@@ -1,6 +1,6 @@
 # 2. Complex Vectors, Operators, and Numerical Reasoning
 
-**Working draft: sections 2.1–2.4 · Writing Baseline 1.0 · October 21, 2026.** Sections 2.5–2.8 remain planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.4 add PyTorch 2.13.0 CPU complex128 tensor checks.
+**Working draft: sections 2.1–2.5 · Writing Baseline 1.0 · October 21, 2026.** Sections 2.6–2.8 remain planned. Author execution checks are recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Section 2.1 uses Python 3.12 and its standard library; 2.2–2.5 add PyTorch 2.13.0 CPU complex128 tensor checks.
 
 <span id="sec-complex-vectors-operators-and-numerical-reasoning-1"></span>
 
@@ -928,10 +928,289 @@ Numerically, an approximate equality within a chosen tolerance differs from an e
 - **D.** “For every vector” has not been established by those finite samples. An exact, verified factorization gives $q_A(v)=\|Cv\|^2\ge0$ for all $v$, proving positive semidefiniteness. Strict positivity additionally requires that $Cv=0$ only for $v=0$.
 - **E.** Ordinary conjugate-transpose tests represent the adjoint in orthonormal coordinates. That assumption fails for the chosen basis; use its Gram-weighted inner product or convert back consistently before applying those tests.
 
-The next planned lesson, [2.5 Spectral decomposition and singular values](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-5), builds the decomposition results needed to turn suitable eigenvalue information into complete operator statements.
+The next lesson, [2.5 Spectral decomposition and singular values](#sec-complex-vectors-operators-and-numerical-reasoning-5), builds the decomposition results needed to turn suitable eigenvalue information into complete operator statements.
 
 ### Source, status, and limits
 
 Assigned companion source: [NC:2.1.6](../references/proof-sources.md#source-nc-2-1-6), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §2.1.6, printed pp. 69–71. Those pages were consulted from the previously supplied local copy. They supply the adjoint, Hermitian, unitary and positivity conventions. The proofs here explicitly supply the quadratic-form implication and all-vector worked forms without assuming the spectral theorem or importing an external exercise as a missing step. Examples, counterexamples and answer explanations are original exposition.
 
 Depth **F**: prove real Hermitian eigenvalues, the real nonnegative quadratic-form condition and unitary norm preservation, with assumptions and boundary cases stated. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.4.json) distinguishes author checks from pending independent mathematical, implementation and reader review. Physical meanings are developed in their later owning sections.
+
+<span id="sec-complex-vectors-operators-and-numerical-reasoning-5"></span>
+
+## 2.5 Spectral decomposition and singular values
+
+Knowing that every Hermitian eigenvalue is real does not yet tell us that enough eigenvectors exist to reconstruct the operator. Knowing several numerical eigenpairs does not fill that gap either. This section proves the missing existence and completeness results, then uses them to construct a decomposition for any rectangular complex matrix, including its zero directions.
+
+The prerequisite is [2.4](#sec-complex-vectors-operators-and-numerical-reasoning-4). We use its Hermitian real forms, positive Gram forms and inner-product conventions. Coordinate bases are orthonormal throughout. We supply the needed finite-dimensional compactness and basis-completion arguments locally, without assuming a spectral theorem in its own proof.
+
+### A finite orthonormal-completion bridge
+
+Start with an orthonormal list $q_1,\ldots,q_k$ in $\mathbb C^n$, possibly empty. For any vector $x$, remove its components along the list:
+
+$$
+r=x-\sum_{j=1}^k q_j\langle q_j,x\rangle.
+$$
+
+Taking the inner product with $q_\ell$ leaves $\langle q_\ell,x\rangle-\langle q_\ell,x\rangle=0$, because all other overlaps vanish. If $r\ne0$, append $r/\|r\|$; it is a unit vector orthogonal to the whole list. If $r=0$, $x$ was already in its span. This proves the step used in the **Gram–Schmidt** construction, including its zero-residual decision.
+
+Apply the step successively to standard coordinate vectors $e_1,\ldots,e_n$, starting with the given list. The resulting finite list spans every $e_j$ and hence the space. It remains orthonormal and is independent: taking an inner product with each list member in a zero linear combination forces its coefficient to vanish.
+
+Here is also an explicit count, so dimension is not hidden in that argument. For any orthonormal list of length $k$, its residuals for the standard vectors satisfy
+
+$$
+\sum_{j=1}^n\left\|e_j-\sum_{\ell=1}^k q_\ell\langle q_\ell,e_j\rangle\right\|^2
+ =n-\sum_{\ell=1}^k\sum_{j=1}^n\lvert\langle q_\ell,e_j\rangle\rvert^2=n-k.
+$$
+
+The first equality follows by the orthogonal squared-length decomposition from 2.2; each $e_j$ has squared length 1. The inner sum is $\|q_\ell\|^2=1$. Nonnegativity gives $k\le n$. For a spanning list all residuals vanish, giving $k=n$. Thus a unit vector can be completed to an orthonormal basis of exactly $n$ members. The remaining $n-1$ members span its orthogonal complement: in the basis expansion, orthogonality forces the first coefficient to be zero.
+
+### Why a Hermitian quadratic form attains a maximum
+
+For Hermitian $H\in\mathbb C^{n\times n}$, consider $q_H(x)=x^\dagger Hx$ on the unit sphere $\|x\|=1$. It is real by 2.4. For nonzero vectors, the ratio $q_H(x)/\|x\|^2$ is called the **Rayleigh quotient**; restricting to unit vectors removes its denominator.
+
+We need an attained maximum, not merely a numerical search. Identify $\mathbb C^n$ with $\mathbb R^{2n}$ using real and imaginary coordinates. A sequence of unit vectors has bounded real coordinates. Every bounded real sequence has a convergent subsequence: repeatedly bisect a bounding interval, keep a closed half containing infinitely many terms, and choose terms with increasing indices in these nested halves. Their lengths tend to zero and real-number completeness gives the common limit. Applying this argument to each of the finitely many coordinates, extracting subsequences successively, gives a subsequence converging in all coordinates. Its norm is still 1, since the finite sum of squared moduli is continuous.
+
+The form $q_H$ is also continuous: it is a finite sum of products of coordinates and fixed entries. It is bounded on the unit sphere, for example
+
+$$
+\lvert q_H(x)\rvert\le\sum_{j,k}\lvert H_{jk}\rvert,
+$$
+
+because every coordinate has modulus at most 1 and the scalar triangle inequality bounds the finite sum. The sphere is nonempty for $n\ge1$. By the least-upper-bound property of the real numbers, its real form values have a supremum $\lambda$. Choose unit vectors whose values approach this supremum, with the $s$th value greater than $\lambda-1/s$. The convergent subsequence just constructed has a unit limit $u$. Continuity gives $q_H(u)=\lambda$. This is the finite compactness/maximum argument needed below. It uses completeness of the real numbers, not eigenvalue existence, determinants or diagonalization.
+
+### A maximizing vector is an eigenvector
+
+Let $u$ be that maximizing unit vector, and take any $w$ with $\langle u,w\rangle=0$. For a real number $t$, the vector
+
+$$
+x(t)=\frac{u+tw}{\sqrt{1+t^2\|w\|^2}}
+$$
+
+has unit norm by orthogonality. Expand its quadratic form and use $q_H(x(t))\le\lambda=q_H(u)$:
+
+$$
+2t\operatorname{Re}\langle u,Hw\rangle
++t^2\bigl(q_H(w)-\lambda\|w\|^2\bigr)\le0.
+$$
+
+This expansion uses $\langle w,Hu\rangle=\langle u,Hw\rangle^*$ from Hermiticity. The coefficient of $t$ must be zero. To see the contradiction explicitly, let $b=\operatorname{Re}\langle u,Hw\rangle$ and $d=q_H(w)-\lambda\|w\|^2$, both real. If $b\ne0$, choose $t$ with the same sign as $b$ and $0<\lvert t\rvert<\lvert b\rvert/(\lvert d\rvert+1)$. Then $2tb+t^2d\ge\lvert t\rvert(2\lvert b\rvert-\lvert t\rvert\lvert d\rvert)>0$, contradicting the inequality. Thus $\operatorname{Re}\langle u,Hw\rangle=0$.
+
+The vector $iw$ is also orthogonal to $u$. Repeating the argument with it makes $\operatorname{Re}(i\langle u,Hw\rangle)=-\operatorname{Im}\langle u,Hw\rangle$ zero. Both parts vanish, so $\langle u,Hw\rangle=\langle w,Hu\rangle=0$ for every $w$ orthogonal to $u$.
+
+Set $r=Hu-\lambda u$. Since $\langle u,r\rangle=q_H(u)-\lambda=0$, the preceding result applies with $w=r$. It gives
+
+$$
+0=\langle r,Hu\rangle
+ =\langle r,\lambda u+r\rangle=\|r\|^2.
+$$
+
+Positive definiteness forces $r=0$. Hence $Hu=\lambda u$ with $u\ne0$: an eigenpair has been constructed rather than assumed.
+
+### Hermitian spectral theorem by induction
+
+We can now state and prove the finite **Hermitian spectral theorem**: every Hermitian $H$ on $\mathbb C^n$ has an orthonormal basis of eigenvectors with real eigenvalues.
+
+For $n=1$, a Hermitian scalar is real and its unit coordinate vector is an eigenvector. For $n>1$, construct $u$ as above. Its orthogonal complement is invariant under $H$: if $w$ is orthogonal to $u$, then
+
+$$
+\langle u,Hw\rangle=\langle Hu,w\rangle
+ =\langle\lambda u,w\rangle=\lambda\langle u,w\rangle=0,
+$$
+
+where $\lambda$ is real by 2.4. The restriction of $H$ to this complement is Hermitian, since its inner-product adjoint identity holds for every pair of vectors in the complement. The completion bridge provides orthonormal coordinates of dimension $n-1$ there. Apply the induction hypothesis to that restriction, and append $u$ to its orthonormal eigenbasis. This yields $n$ eigenvectors spanning the original space, completing the proof.
+
+Let the resulting columns be $q_1,\ldots,q_n$ with eigenvalues $\lambda_1,\ldots,\lambda_n$. Put them into a unitary matrix $Q$, and let $\Lambda$ be the diagonal matrix with those eigenvalues. The column equations $Hq_j=\lambda_jq_j$ give
+
+$$
+HQ=Q\Lambda,\qquad H=Q\Lambda Q^\dagger
+ =\sum_{j=1}^n\lambda_j q_jq_j^\dagger.
+$$
+
+Here $q_jq_j^\dagger$ denotes an outer-product matrix, acting on $x$ as $q_j\langle q_j,x\rangle$. Because the columns are an orthonormal basis, $x=\sum_j q_j\langle q_j,x\rangle$; applying $H$ gives precisely the reconstruction formula.
+
+If eigenvalues coincide, the individual eigenvectors are not uniquely determined. For each distinct value $\lambda$, group its orthonormal eigenvectors into
+
+$$
+P_\lambda=\sum_{j:\lambda_j=\lambda}q_jq_j^\dagger,\qquad
+H=\sum_\lambda\lambda P_\lambda.
+$$
+
+The product of outer products is $q_j(q_j^\dagger q_k)q_k^\dagger$, so orthonormality gives $P_\lambda^2=P_\lambda$, $P_\lambda^\dagger=P_\lambda$, mutually zero products for distinct values, and $\sum_\lambda P_\lambda=I$. The projector is independent of the chosen orthonormal basis within that eigenspace: it is the identity on that subspace and zero on its orthogonal complement. Rotating a degenerate eigenbasis changes columns but not this action.
+
+The spectral theorem now closes the positivity converse left open in 2.4. For $x=\sum_j c_jq_j$,
+
+$$
+q_H(x)=\sum_j\lambda_j\lvert c_j\rvert^2.
+$$
+
+If all eigenvalues are nonnegative, every term is nonnegative, so $H\succeq0$. Combined with 2.4's necessary direction, a Hermitian matrix is positive semidefinite exactly when all its eigenvalues are nonnegative. Strict positivity is equivalent to all eigenvalues being strictly positive: this expression is positive at any nonzero coefficient column, whereas a zero or negative eigenvalue supplies an eigenvector violating strict positivity.
+
+**2.5-A — Identify the missing premise.** Does a list of real nonnegative eigenvalues make an arbitrary square matrix positive semidefinite? Which premise enabled the displayed all-vector expansion?
+
+### Construct an SVD for a rectangular complex matrix
+
+Let $A\in\mathbb C^{m\times n}$, with positive integers $m,n$. The Gram matrix $G=A^\dagger A$ is $n$-by-$n$ and positive semidefinite by 2.4. Its spectral theorem provides an orthonormal basis $v_1,\ldots,v_n$ and eigenvalues $\mu_i\ge0$. Reorder so the positive ones come first, in decreasing order. Let $r$ be their number and set $\sigma_i=\sqrt{\mu_i}>0$ for $1\le i\le r$. These are the positive **singular values** of $A$.
+
+For positive indices define output vectors
+
+$$
+u_i=\frac{Av_i}{\sigma_i}.
+$$
+
+They are orthonormal, because
+
+$$
+\langle u_i,u_j\rangle
+ =\frac{\langle Av_i,Av_j\rangle}{\sigma_i\sigma_j}
+ =\frac{\langle v_i,Gv_j\rangle}{\sigma_i\sigma_j}
+ =\frac{\mu_j\langle v_i,v_j\rangle}{\sigma_i\sigma_j}.
+$$
+
+This is 1 when $i=j$ and 0 otherwise. The completion bridge implies $r\le m$ and extends these vectors to an orthonormal basis $u_1,\ldots,u_m$ of the output space. No division by a zero singular value has occurred.
+
+For $i>r$, $\mu_i=0$ and
+
+$$
+\|Av_i\|^2=\langle v_i,Gv_i\rangle=0,
+$$
+
+so $Av_i=0$. These right-side directions must be retained as kernel directions, not normalized by an undefined $1/0$.
+
+Form unitary matrices $U$ with the $m$ output columns and $V$ with the $n$ input columns. Define $\Sigma\in\mathbb R^{m\times n}$ to have $\sigma_i$ at diagonal position $(i,i)$ for $i\le r$ and zero everywhere else. Its diagonal has $\min(m,n)$ positions, with any additional singular values set to zero. The action on every input basis column now agrees:
+
+$$
+Av_i=U\Sigma e_i\quad(1\le i\le n).
+$$
+
+For $i\le r$ both sides equal $\sigma_i u_i$; for $i>r$ both are zero, including indices beyond the rectangular diagonal. Thus
+
+$$
+AV=U\Sigma,\qquad A=U\Sigma V^\dagger.
+$$
+
+This is the **full singular-value decomposition**, or SVD. It holds whether $A$ is square, rectangular, invertible, rank deficient or zero. For $A=0$, take any orthonormal input and output bases and $\Sigma=0$; the construction needs no positive singular vector.
+
+The **kernel** is the set of inputs mapped to zero; the **image** is the set of attainable outputs. To identify them completely, expand any input as $x=\sum_i c_iv_i$. The orthonormal output vectors give
+
+$$
+Ax=\sum_{i=1}^r\sigma_i c_i u_i,\qquad
+\|Ax\|^2=\sum_{i=1}^r\sigma_i^2\lvert c_i\rvert^2.
+$$
+
+The second expression vanishes exactly when all $c_i$ with $i\le r$ vanish. Hence the kernel is spanned by $v_{r+1},\ldots,v_n$, and has dimension $n-r$. The image is spanned by $u_1,\ldots,u_r$: each is attained using $v_i/\sigma_i$, and the expansion shows there are no other image directions. Its dimension $r$ is the **rank**. Output basis vectors $u_{r+1},\ldots,u_m$ are orthogonal to the image. This accounts for both sides when $m\ne n$. The unused output subspace is also the kernel of $A^\dagger$: if $u$ is orthogonal to every $Ax$, then $\langle x,A^\dagger u\rangle=\langle Ax,u\rangle=0$ for every $x$. Choosing $x=A^\dagger u$ forces $A^\dagger u=0$. Conversely that zero equation makes $u$ orthogonal to every output by the same identity.
+
+A reduced SVD keeps fewer columns, which can be enough for reconstructing $A$. It may omit right-kernel or unused output directions; it must not be mistaken for a full basis of both spaces.
+
+### Eigenvalues and singular values answer different questions
+
+For Hermitian $H=Q\Lambda Q^\dagger$, $H^\dagger H=H^2$ sends $q_j$ to $\lambda_j^2q_j$. Therefore its singular values are the numbers $\lvert\lambda_j\rvert$, reordered and counted with multiplicity. They discard negative signs. For a unitary square matrix, $U^\dagger U=I$, so every singular value is 1.
+
+For a general square matrix, singular values are not the moduli of its eigenvalues. The matrix $N=\begin{pmatrix}0&1\\0&0\end{pmatrix}$ from 2.4 has only eigenvalue 0, but $N^\dagger N=\operatorname{diag}(0,1)$ gives singular values 1 and 0. It maps $e_2$ to $e_1$ rather than annihilating every input. Eigenvectors describe preserved directions up to scalar multiplication; singular vectors describe orthonormal input-output directions and their scaling. Rectangular matrices also have an SVD, even though an eigenvalue equation between different input and output dimensions has no such meaning.
+
+### Work both decompositions before calling a solver
+
+For the previous section's Hermitian example,
+
+$$
+H=\begin{pmatrix}2&i\\-i&2\end{pmatrix},\quad
+Q=\frac1{\sqrt2}\begin{pmatrix}1&1\\i&-i\end{pmatrix},\quad
+\Lambda=\begin{pmatrix}1&0\\0&3\end{pmatrix}.
+$$
+
+Section 2.4 checked the two eigenpairs; 2.3 checked these columns are orthonormal. Multiplying $Q\Lambda Q^\dagger$ reconstructs $H$. The numerical check compares each rank-one projector with the hand-derived one, rather than requiring an eigensolver to choose identical phases.
+
+For a rectangular case, take
+
+$$
+A=\begin{pmatrix}3&0&0\\0&0&4i\end{pmatrix},\qquad
+A^\dagger A=\begin{pmatrix}9&0&0\\0&0&0\\0&0&16\end{pmatrix}.
+$$
+
+The right singular basis in decreasing positive order is $v_1=e_3$, $v_2=e_1$, $v_3=e_2$. Applying $A$ and dividing by 4 and 3 gives $u_1=i e_2$ and $u_2=e_1$. Thus explicit full factors are
+
+$$
+U=\begin{pmatrix}0&1\\i&0\end{pmatrix},\quad
+\Sigma=\begin{pmatrix}4&0&0\\0&3&0\end{pmatrix},\quad
+V=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix}.
+$$
+
+Their product $U\Sigma V^\dagger$ returns $A$. The two listed singular values are 4 and 3, although the right Gram matrix has three eigenvalues. The extra zero appears through the third right basis vector and the zero column of $\Sigma$. Its kernel is exactly $\operatorname{span}(e_2)$, meaning all complex multiples of $e_2$; its image is all of $\mathbb C^2$.
+
+For any input $x=(a,b,c)$, an independent direct reference is
+
+$$
+Ax=\begin{pmatrix}3a\\4ic\end{pmatrix},\qquad
+\|Ax\|^2=9\lvert a\rvert^2+16\lvert c\rvert^2.
+$$
+
+The coordinate $b$ never affects the output, independently confirming the kernel direction.
+
+### Formula to code, with explicit factor dimensions
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/spectral_svd.py) targets Python 3.12 and PyTorch 2.13.0, CPU `complex128`.
+
+| Mathematical object or check | Tensor operation | Independent evidence |
+|---|---|---|
+| Hermitian eigendecomposition | `torch.linalg.eigh(h)` | Hand eigenvalues 1, 3 and rank-one projectors from $Q$ |
+| Spectral reconstruction | `vectors @ diag(values) @ vectors.mH` | Explicit $H$ and column eigenpair residuals |
+| Full rectangular SVD | `torch.linalg.svd(a, full_matrices=True)` | Explicit full $U,\Sigma,V$ above |
+| Right adjoint | Returned `vh` is $V^\dagger$ | Reconstruct with `u @ sigma_numeric @ vh` |
+| Right kernel | Third column of `vh.mH` | Projector onto $e_2$ and zero output |
+| Direct action | Reconstructed factors applied to each input | Real/imaginary coordinate formula for $(3a,4ic)$ |
+| Degeneracy and zero | Compare projectors and reconstructed operators | A rotated eigenbasis of $\operatorname{diag}(2,2,0)$ and the zero 3-by-2 map |
+
+For a 2-by-3 input with full factors, `u` is 2-by-2, `vh` is 3-by-3 and the returned singular-value vector has length 2. The program inserts those entries into a separate 2-by-3 zero array to build $\Sigma$. Multiplying by a 2-by-2 diagonal array alone would lose the third input coordinate in the full-factor expression.
+
+Run in the existing pinned example environment:
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/spectral_svd.py
+```
+
+Expected output:
+
+```text
+CPU complex128; reconstruction and subspace checks, no quantum execution.
+Hermitian H: eigenvalues [1,3]; analytic eigenprojectors and reconstruction agree
+Rectangular A (2x3): singular values [4,3]; full factor shapes U=2x2, Sigma=2x3, V^H=3x3
+Right kernel: span(e2); full V retains the direction omitted by a reduced SVD
+SVD reconstruction Frobenius residual <= 1e-12: True
+729 inputs match direct three-coordinate formulas.
+Degenerate eigenspace projector and all-zero rectangular kernel checks passed.
+Nilpotent N: only eigenvalue 0 (proved in text), singular values [1,0]
+Missing right adjoint detected with a complex right basis; no phase matching required.
+```
+
+The 729 inputs have three complex coordinates, each real and imaginary part in $-1,0,1$. Comparisons use zero relative tolerance and $10^{-12}$ absolute tolerance. The **Frobenius residual** is the square root of the sum of squared moduli of all entries of the reconstructed matrix minus $A$. It checks reconstruction on this bounded example, not the existence theorem.
+
+The main example's $V$ is real, so replacing its adjoint by transpose would accidentally pass. The program therefore also constructs a complex right basis, multiplying the first coordinate row of $V$ by $i$. It checks that using transpose instead of adjoint then fails. Further cases check a rotated degenerate eigenspace projector and a zero rectangular map whose entire input space is kernel. Neither arbitrary phases nor a solver's choice of basis within a degenerate subspace should be treated as a correctness failure.
+
+No FlagQuantum API or quantum hardware execution is needed for this mathematical reference. In floating point, a very small singular value is not automatically an exact zero. Choosing a numerical rank threshold needs scale and error information, addressed in later numerical reasoning; no universal threshold is inferred here.
+
+### Transfer, proof diagnosis, and answers
+
+**2.5-B — Zero singular direction.** A proposed SVD proof defines $u_i=Av_i/\sigma_i$ for every right Gram eigenvector. Locate the invalid step when $\sigma_i=0$ and replace it with the correct kernel argument.
+
+**2.5-C — Repeated eigenvalues.** Two eigensolvers return different orthonormal columns for eigenvalue 2 of $\operatorname{diag}(2,2,0)$. What should be compared, and why can both answers be correct?
+
+**2.5-D — Dimensions.** A 3-by-2 matrix has rank 1. State the shapes of its full factors, its right-kernel dimension and the dimension of the output complement orthogonal to its image. What changes if the matrix is zero?
+
+**2.5-E — Preserve a sign.** Compare eigenvalues and singular values of $\operatorname{diag}(1,-2)$. Which decomposition retains the negative sign needed to diagnose lack of positivity?
+
+**Answers and reasoning**
+
+- **A.** No. The orthonormal eigenbasis and all-vector reconstruction were proved under Hermiticity. The non-Hermitian $N$ has only eigenvalue 0 yet has negative and non-real forms, as 2.4 showed.
+- **B.** Division by zero is undefined. Instead $\|Av_i\|^2=\mu_i=0$ forces $Av_i=0$. Retain the right vector in the kernel basis; complete the positive left singular vectors to an output basis independently.
+- **C.** Compare the summed projector onto the eigenvalue-2 subspace and the reconstructed operator. Rotations within that subspace preserve both, even when individual columns differ.
+- **D.** $U$ is 3-by-3, $\Sigma$ is 3-by-2, and $V^\dagger$ is 2-by-2. Right kernel dimension is $2-1=1$; unused output dimension is $3-1=2$. For the zero map the factor shapes stay the same, all singular values vanish, and those dimensions become 2 and 3.
+- **E.** Eigenvalues are 1 and $-2$; singular values in decreasing order are 2 and 1. The Hermitian spectral decomposition retains the sign. Singular values alone cannot distinguish this operator from a positive one with the same absolute eigenvalues.
+
+Next, [2.6 Functions of matrices and time evolution](../section-plans/01-foundations.md#sec-complex-vectors-operators-and-numerical-reasoning-6) uses decompositions to define and evaluate functions of operators with their assumptions stated.
+
+### Source, status, and limits
+
+Assigned sources: [NC:2.1.5](../references/proof-sources.md#source-nc-2-1-5), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), §2.1.5, printed pp. 68–69, and [NC:2.1.10](../references/proof-sources.md#source-nc-2-1-10), printed pp. 78–79. The companion spectral statement in Box 2.2 on printed p. 72 was also consulted. These pages were read from the previously supplied local copy. The source's normal-operator theorem and square SVD do not replace the local proof obligations here: this section supplies a Rayleigh-maximum/compactness proof for finite Hermitian matrices and a rectangular SVD construction with its kernel, without assuming a polar decomposition. Our convention writes $A=U\Sigma V^\dagger$ with right singular vectors as columns of $V$; the source's square formula names the whole right unitary factor $V$, so its symbol already includes that adjoint.
+
+Depth **F**: full Hermitian diagonalization and rectangular singular-value construction, including their local bridges and zero cases. [The section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.5.json) separates author execution from pending independent mathematical, implementation and reader review. Infinite-dimensional spectral theory and general normal-operator diagonalization are outside this section's asserted theorem.

@@ -101,6 +101,16 @@
       "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
       "record": "book/section-records/2.4.json",
       "author_execution": "passed: Python 3.12.14, PyTorch 2.13.0 CPU complex128; 625 independent quadratic/norm coordinate checks and five supplied nonzero eigenpair residuals; no quantum execution"
+    },
+    "sec-complex-vectors-operators-and-numerical-reasoning-5": {
+      "state": "draft",
+      "brief": "book/briefs/ch02.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "record": "book/section-records/2.5.json",
+      "author_execution": "passed: Python 3.12.14, PyTorch 2.13.0 CPU complex128; 729 independent rectangular-map inputs, spectral/SVD reconstructions, projector and zero-kernel checks; no quantum execution"
     }
   },
   "existing_pilots": [
