@@ -63,6 +63,10 @@ Use as an advanced mathematical reference: Chapters 1–2 for operators, states 
 
 The [Nielsen–Chuang design review](nielsen-chuang-design-review.md) records the preface, contents and selected passages actually examined, the limitations of that review, and the changes it motivates in our chapter plan.
 
+## Web-based learning design
+
+[Quantum Country](https://quantum.country/), by Andy Matuschak and Michael Nielsen, provides a complementary reading-design reference. See our [design review](quantum-country-design-review.md) and [learning specification](../learning-design.md) for observed features, original adaptations and implementation limits. Citation key: `matuschak_nielsen_quantum_country`.
+
 ## How authors should use a reference
 
 Read the relevant source, derive the result independently, and give the exact section, theorem or equation locator when adapting a particular argument. Then write original explanations and executable checks using this book's conventions. The mapping is a reading and editorial plan; it does not imply that every listed source has already been studied in full or that every planned chapter is implemented.

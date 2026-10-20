@@ -13,6 +13,7 @@ nav:
   - Introduction: index.md
   - Contents and status: contents.md
   - Full book plan: book-plan.md
+  - Learning design: learning-design.md
   - Conventions: conventions.md
   - Starter chapters:
       - Measurement and expectations: chapters/measurement.md
@@ -22,6 +23,7 @@ nav:
       - Reading guide: references/reading-guide.md
       - Chapter mapping: references/chapter-mapping.md
       - Nielsen–Chuang design review: references/nielsen-chuang-design-review.md
+      - Quantum Country design review: references/quantum-country-design-review.md
   - Sources and validation: sources.md
   - Editions and publication: publication.md
 markdown_extensions:

@@ -16,6 +16,8 @@ Specify the mathematical model, basis order, units, generator normalization and 
 
 ## Derivation and checkpoints
 
+Use the [checkpoint template](checkpoint.md) and distinguish brief recall/prediction from proof problems and programming laboratories. Preserve answer access and stable prompt IDs across web and print.
+
 Give the important intermediate steps. State why each step is valid. Insert short checks after new notation or a substantive inference. Identify any deferred proof and its source.
 
 ## Formula-to-code correspondence

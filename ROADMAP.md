@@ -6,7 +6,8 @@
 - [x] Establish conventions, references and chapter-template guidance.
 - [x] Review the preface, complete contents and selected instructional passages of Nielsen and Chuang.
 - [x] Revise the [six-part, 28-chapter plan](docs/contents.md) around conceptual dependencies; record [findings and source locations](docs/references/nielsen-chuang-design-review.md).
-- [ ] Review the revised plan with target readers and examine additional references for specialized topics.
+- [x] Review Quantum Country and specify recall, prediction, translation and diagnosis prompts with web/print parity.
+- [ ] Pilot original prompts and the revised plan with target readers; examine dedicated references for specialized topics.
 
 ## Phase 2: write the missing textbook foundations
 

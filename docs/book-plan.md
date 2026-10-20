@@ -10,10 +10,12 @@ The outcome is the ability to understand a quantum calculation, derive its assum
 
 ## Teaching design
 
+The [Quantum Country review](references/quantum-country-design-review.md) adds a section-level learning pattern without changing the six-part scope. The [learning design](learning-design.md) specifies recall, prediction, translation and diagnosis prompts, their relation to substantial problems, and web/print parity. Adaptive scheduling remains a future option.
+
 1. Begin each chapter with a physical or computational question and a small worked example.
 2. State the relevant definitions, postulates and assumptions, then derive the general result with explicit intermediate steps.
 3. Pair important formulas with implementation expressions and independently checked small cases.
-4. Insert short checkpoints where new notation, a convention or an inference is introduced.
+4. Insert short recall, prediction, translation or diagnosis checkpoints where useful; ask readers to attempt an answer before checking it, and revisit prerequisite concepts later.
 5. End with a recap, derivation problems, programming laboratories and a deeper investigation.
 6. Provide precise source locators, a history/further-reading note and explicit scope limits.
 

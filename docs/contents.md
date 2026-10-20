@@ -2,6 +2,8 @@
 
 **Reference-informed planning revision: October 20, 2026.** Six parts, 28 chapters and six appendices. This revises the first outline after reading the preface, contents and selected teaching passages of Nielsen and Chuang; see the [design review](references/nielsen-chuang-design-review.md).
 
+The [learning design](learning-design.md) adds recall, prediction and error diagnosis within this structure, informed by the [Quantum Country review](references/quantum-country-design-review.md).
+
 Only three starter chapters currently exist, with intended homes in Chapters **6, 16 and 28**. They require expansion and editorial review. The versioned three-chapter PDF is a format pilot with its own numbering, not the full manuscript.
 
 See the [full book plan](book-plan.md) for prerequisites, derivations, experiments, learning paths and writing priorities. Planned topics do not certify the availability of a FlagQuantum API or execution backend.
