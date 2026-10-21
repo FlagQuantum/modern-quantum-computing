@@ -53,6 +53,8 @@ Across all rounds, three ambiguous tasks prompted clarification. The initial coo
 
 ## Evidence, replay and remaining review
 
+The [immutable 0.1.1 package](https://github.com/FlagQuantum/modern-quantum-computing/tree/22a3d2598570f082460682bea5e83d3e484a21f6/skills/compare-quantum-states-and-operators) is published at commit `22a3d2598570f082460682bea5e83d3e484a21f6`. Evaluation freeze fields naming `f7b7bda` identify the pre-edit checkout base; the evaluated 0.1.1 working-tree bytes are identified by their package hashes and this first publication commit. The [publication provenance record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/state-operator-v0.1.1/publication-provenance.json) makes this distinction explicit without rewriting the original evidence.
+
 The bundle preserves 27 raw tasks, both package snapshots, reference keys, all agent outputs, actual commands and statuses, verification scripts and the conductor's grades. Immutable file hashes connect these artifacts. The cases are now public: **replaying them is regression checking, not another blind evaluation**. Future claims of held-out agent competence require new tasks and fresh agents.
 
 Run with the example environment's CPython 3.12 interpreter:

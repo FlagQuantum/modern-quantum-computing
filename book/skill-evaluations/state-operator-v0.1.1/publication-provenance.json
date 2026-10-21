@@ -1,0 +1,9 @@
+{
+  "skill": "compare-quantum-states-and-operators",
+  "version": "0.1.1",
+  "evaluation_checkout_base": "f7b7bdaae2e389e3de22aa826727ffa71f922583",
+  "first_publication_commit": "22a3d2598570f082460682bea5e83d3e484a21f6",
+  "package_path": "skills/compare-quantum-states-and-operators",
+  "provenance_note": "The original source_commit/source_revision fields in evaluation freezes identify the pre-edit checkout base, not a claim that it contains 0.1.1. The evaluated working-tree package is pinned by SHA-256; first_publication_commit contains exactly those package bytes. Frozen original evidence is preserved unchanged.",
+  "immutable_package_url": "https://github.com/FlagQuantum/modern-quantum-computing/tree/22a3d2598570f082460682bea5e83d3e484a21f6/skills/compare-quantum-states-and-operators"
+}
