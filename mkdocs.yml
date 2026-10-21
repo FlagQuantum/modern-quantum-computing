@@ -18,6 +18,7 @@ nav:
       - Independent blind evaluation: comparison-skill-blind-evaluation.md
       - Second skill - qubit interference: interference-skill-prototype.md
       - Third skill - phase-tracked evolution: unitary-evolution-skill-prototype.md
+      - Fourth skill - complex linear algebra: complex-algebra-skill-prototype.md
       - Task contract and evaluation: skill-contract.md
       - Paper verification and acceptance: paper-reproduction-standard.md
   - Writing baseline 1.0: writing-baseline.md

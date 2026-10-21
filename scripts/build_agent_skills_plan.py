@@ -68,6 +68,18 @@ def render():
             assert all(c['passed'] for c in author['cases']) and len(author['cases'])==53
             assert blind['new_tasks']==blind['passed_tasks']==12 and blind['agents']==3
             assert blind['actual_flagquantum_circuits']==56 and blind['scientific_acceptance']=='pending'
+        elif skill['id']=='translate-complex-linear-algebra':
+            assert skill['status']=='independent-agent-tested prototype'
+            assert skill['behavioral_evaluation']=='blind agent tasks: 12/12; author cases: 55/55'
+            assert (ROOT/skill['prototype_package']).is_file()
+            author=json.loads((ROOT/skill['evaluation_report']).read_text())
+            blind=json.loads((ROOT/skill['blind_evaluation_report']).read_text())
+            assert author['version']==blind['version']==skill['package_version']=='0.1.0'
+            assert author['passed']==55 and author['actual_flagquantum_circuits']==0
+            assert all(c['passed'] for c in author['cases']) and len(author['cases'])==55
+            assert blind['new_tasks']==blind['passed_tasks']==12 and blind['agents']==3
+            assert blind['algebra_quantum_circuits']==0 and blind['routed_flagquantum_circuits']==9
+            assert blind['scientific_acceptance']=='pending'
         else:
             assert skill['status']=='planned' and skill['behavioral_evaluation']=='not run'
         assert len(skill['primary_section_ids'])==len(set(skill['primary_section_ids']))
@@ -100,7 +112,7 @@ def render():
         return f"[{ch['number']}.{i}](section-plans/{part['path']}.md#{sid})"
     states=Counter(progress.get(sid,{}).get('state','not_started') for sid in section_map)
     lines=['# Agent skills: capability levels and chapter map','',
-           f'**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains {len(skills)} proposed task skills; three have independent-agent-tested prototypes: state/operator comparison 0.1.1, single-qubit interference 0.1.0 and phase-tracked unitary evolution 0.1.0. Their separate evidence records retain failures, author execution and blind-task outcomes. Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.','',
+           f'**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains {len(skills)} proposed task skills; four have independent-agent-tested prototypes: state/operator comparison 0.1.1, single-qubit interference 0.1.0, phase-tracked unitary evolution 0.1.0 and complex linear algebra 0.1.0. Their separate evidence records retain failures, author execution and blind-task outcomes. Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.','',
            '[Dual-entry design](dual-entry.md) · [Skill contract](skill-contract.md) · [Paper verification and acceptance](paper-reproduction-standard.md)','',
            '## Capability levels','',
            'Levels describe increasing task composition and evaluation scope. They do not replace the textbook P/F/M/R/V proof-depth codes, its prerequisite graph, or evidence-based competence in a domain. An L5 router does not certify every L2 workflow.','',
@@ -128,6 +140,8 @@ def render():
             lines += ['', '[Interference prototype, formula-to-code contract and independent blind evaluation](interference-skill-prototype.md).']
         elif skill['id']=='translate-unitary-evolution':
             lines += ['', '[Unitary evolution prototype, units, phase contract and independent blind evaluation](unitary-evolution-skill-prototype.md).']
+        elif skill['id']=='translate-complex-linear-algebra':
+            lines += ['', '[Complex linear algebra prototype, numerical contracts and independent blind evaluation](complex-algebra-skill-prototype.md).']
         deps=', '.join(f"[{dep}](#{dep})" for dep in skill['requires_skills']) or 'None at catalog level; this does not waive source prerequisites.'
         lines +=['',f'**Required task skills:** {deps}']
         grouped={}
@@ -148,9 +162,10 @@ def render():
             '1. Preserve the [state/operator blind evaluation](comparison-skill-blind-evaluation.md): 0.1.1 passed 11 fresh tasks after a runtime-contract repair. Gather separate scientific acceptance and reader evidence; published cases are now regression fixtures.',
             '2. Preserve the [interference prototype evidence](interference-skill-prototype.md): 35 author cases and 12 new blind-agent tasks passed, including units, analyzer signs, chronology, claim rejection and selection between two runnable skills. Scientific acceptance remains separate.',
             '3. Preserve the [phase-tracked unitary evolution evidence](unitary-evolution-skill-prototype.md): 53 author cases and 12 blind tasks passed, covering units, generator validation, Euler endpoints, controlled phase repair and selection among three skills. Scientific acceptance remains pending.',
-            '4. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.',
-            '5. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.', '',
-            'This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first three bounded prototypes are independent-agent-tested; no paper run or new textbook section is performed by this update.','']
+            '4. Preserve the [complex linear algebra evidence](complex-algebra-skill-prototype.md): 55 author cases and 12 blind tasks passed. Classical calculations and actual routed FlagQuantum execution are recorded separately; scientific acceptance remains pending.',
+            '5. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.',
+            '6. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.', '',
+            'This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first four bounded prototypes are independent-agent-tested; no paper run or new textbook section is performed by this update.','']
     return '\n'.join(lines),len(skills)
 
 

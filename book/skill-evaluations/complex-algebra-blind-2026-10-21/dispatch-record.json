@@ -1,0 +1,26 @@
+{
+  "agents": [
+    {
+      "name": "/root/algebra_blind_a",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-algebra-blind-r1/a",
+      "prompt_scope": "Handle raw tasks using catalog/packages/interpreter candidates; preserve inputs; no repo, siblings, key or external sources. Save actual requests/stdout/stderr/exits/runtime, explanations, claim dispositions, independent code/results. Ask /root for missing semantics and keep dependent decisions pending; no real-user UI/install/publication. Distinguish classical and quantum execution.",
+      "expected_answers_supplied": false
+    },
+    {
+      "name": "/root/algebra_blind_b",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-algebra-blind-r1/b",
+      "prompt_scope": "Handle raw tasks using catalog/packages/interpreter candidates; preserve inputs; no repo, siblings, key or external sources. Save actual requests/stdout/stderr/exits/runtime, explanations, claim dispositions, independent code/results. Ask /root for missing semantics and keep dependent decisions pending; no real-user UI/install/publication. Distinguish classical and quantum execution.",
+      "expected_answers_supplied": false
+    },
+    {
+      "name": "/root/algebra_blind_c",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-algebra-blind-r1/c",
+      "prompt_scope": "Handle raw tasks using catalog/packages/interpreter candidates; preserve inputs; no repo, siblings, key or external sources. Save actual requests/stdout/stderr/exits/runtime, explanations, claim dispositions, independent code/results. Ask /root for missing semantics and keep dependent decisions pending; no real-user UI/install/publication. Distinguish classical and quantum execution.",
+      "expected_answers_supplied": false
+    }
+  ],
+  "note": "Dispatch scope summary; original raw inputs and returned artifacts preserved byte-for-byte"
+}

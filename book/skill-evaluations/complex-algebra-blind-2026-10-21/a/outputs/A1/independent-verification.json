@@ -1,0 +1,104 @@
+{
+  "method": "Explicit two by two inverse, scalar indexed products and analytic Gram spectrum, independently of Torch solve/SVD",
+  "checks": {
+    "coordinates": {
+      "passed": true,
+      "max_absolute_error": 1.1102230246251565e-16,
+      "atol": 1e-11,
+      "rtol": 1e-12,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "operator": {
+      "passed": true,
+      "max_absolute_error": 2.7809732887839817e-17,
+      "atol": 1e-11,
+      "rtol": 1e-12,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "gram": {
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "atol": 1e-11,
+      "rtol": 1e-12,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "action": {
+      "passed": true,
+      "max_absolute_error": 1.6667795129466247e-16,
+      "atol": 1e-11,
+      "rtol": 1e-12,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "gram_norm": {
+      "passed": true,
+      "max_absolute_error": 3.3306690738754696e-16,
+      "atol": 1e-11,
+      "rtol": 1e-12,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "condition": {
+      "passed": true,
+      "max_absolute_error": 4.440892098500626e-16,
+      "atol": 1e-11,
+      "rtol": 1e-12,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    }
+  },
+  "new_coordinates": [
+    [
+      -0.04730675970216595,
+      0.8626166499911736
+    ],
+    [
+      -0.7748159305715254,
+      -0.14923268044847302
+    ]
+  ],
+  "new_operator": [
+    [
+      [
+        0.07867267231526129,
+        -0.010442411977558757
+      ],
+      [
+        0.0033102445968861225,
+        -0.060360762876062186
+      ]
+    ],
+    [
+      [
+        0.1420896276894598,
+        -0.6981934627278824
+      ],
+      [
+        1.1213273276847389,
+        0.010442411977558751
+      ]
+    ]
+  ],
+  "gram": [
+    [
+      [
+        1.029929,
+        0.0
+      ],
+      [
+        0.173,
+        0.317
+      ]
+    ],
+    [
+      [
+        0.173,
+        -0.317
+      ],
+      [
+        1.100489,
+        0.0
+      ]
+    ]
+  ],
+  "condition_2": 1.4259198795974477,
+  "condition_limit_satisfied": true,
+  "passed": true
+}

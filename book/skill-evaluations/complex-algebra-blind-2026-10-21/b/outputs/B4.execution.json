@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-algebra-blind-r1/b/skills/compare-quantum-states-and-operators/scripts/compare.py"
+  ],
+  "stdin": "/private/tmp/mqc-algebra-blind-r1/b/outputs/B4.request.json",
+  "exit_code": 0,
+  "elapsed_seconds": 0.01644175000001269,
+  "quantum_execution": false
+}

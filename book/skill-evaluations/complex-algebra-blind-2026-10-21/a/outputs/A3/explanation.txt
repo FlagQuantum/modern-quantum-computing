@@ -1,0 +1,1 @@
+The matrix satisfies A²=A but is neither Hermitian, unitary nor normal. The supplied universal claim is rejected: an orthogonal projector additionally requires Hermiticity. The given exact decimal matrix is a counterexample; its range and kernel are not orthogonal. A successful helper status certifies tests ran consistently, not that their property decisions are all true.

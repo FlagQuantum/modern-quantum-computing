@@ -1,0 +1,1 @@
+Using conjugate first argument gives <v,w>=-16.625+7.125i. Squared norms are 18.25 and 30.625. Exact rational real/imag pair arithmetic independently verifies these; vectors are not normalized or interpreted as quantum states.

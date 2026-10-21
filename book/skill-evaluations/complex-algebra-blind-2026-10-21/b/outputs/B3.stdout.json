@@ -1,0 +1,1 @@
+{"contract_version": "0.1.0", "reason": "Exact shape/dtype/device equality required before arithmetic; no broadcasting or casts", "runtime": {"implementation": "cpython", "python": "3.12.14"}, "status": "invalid_input"}

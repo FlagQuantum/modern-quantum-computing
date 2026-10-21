@@ -1,0 +1,221 @@
+[
+  {
+    "id": "B1",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": "Literal complex 2x4 full SVD with full U and V\u2020, rectangular Sigma; repeated singular block and right numerical kernel projector. Elementwise atol=1e-11, rtol=1e-12; retain singular values > rank_rtol*smax.",
+    "clarification_question": null,
+    "status": "verified",
+    "explanation": "One full SVD is U=I2, Sigma=[[2,0,0,0],[0,2,0,0]], V\u2020=[[0,i,0,0],[1,0,0,0],[0,0,1,0],[0,0,0,1]]. Numerical rank is 2 at cutoff 2e-12 and the right-kernel projector is diag(0,0,1,1). Both nonzero singular values are 2; factors in this repeated block are not unique. Scalar reconstruction, unitarity, repeated subspace and projector checks pass.",
+    "claim_disposition": "requested_numerical_result_supported",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B1.request.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B1.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B1.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B1.execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.stdout",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.stderr",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/run_tasks.py",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.execution.json"
+    ],
+    "verification": {
+      "independent": {
+        "passed": true,
+        "checks": {
+          "reconstruction": true,
+          "left_unitarity": true,
+          "right_unitarity": true,
+          "kernel_projector": true,
+          "kernel_equation": true,
+          "projector_idempotent": true,
+          "projector_hermitian": true,
+          "right_repeated_singular_subspace": true,
+          "singular_values": true,
+          "rank": true
+        },
+        "independent_reason": "A\u2020A=diag(4,4,0,0) directly; left repeated subspace is all C^2, right repeated subspace span(e1,e2), kernel span(e3,e4).",
+        "rank_cutoff": 2e-12,
+        "reconstruction_max_absolute_error": 0.0
+      },
+      "actual_helper_exit_code": 0,
+      "elapsed_seconds": 0.5421030830002564,
+      "helper_output_path": "/private/tmp/mqc-algebra-blind-r1/b/outputs/B1.stdout.json"
+    },
+    "limitations": [
+      "Numerical rank uses the explicit relative cutoff; numerical verification is not a general exact rank theorem.",
+      "Singular-vector phases and bases within repeated singular subspaces are nonunique.",
+      "Classical CPU calculation only; no quantum circuit was executed."
+    ]
+  },
+  {
+    "id": "B2",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": "Literal complex square solve, explicit max_condition=1e10. Candidate residual, backward error and forward error are separate decisions. atol=1e-8, rtol=0.",
+    "clarification_question": null,
+    "status": "verified",
+    "explanation": "Solution x=(1,0), kappa2=2^30=1073741824 <=1e10. Candidate c=(1,1) has residual 2^-30=9.313225746154785e-10, relative residual same, backward error 3.8576644134996e-10. Actual relative forward error is exactly 1; absolute and relative conditioning bounds are both 1. Thus the residual test passes but the supplied forward-error claim is false.",
+    "claim_disposition": "refuted",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B2.request.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B2.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B2.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B2.execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.stdout",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.stderr",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/run_tasks.py",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.execution.json"
+    ],
+    "verification": {
+      "independent": {
+        "passed": true,
+        "exact_solution": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "condition_2": 1073741824.0,
+        "candidate_residual_exact": "1/1073741824",
+        "candidate_relative_forward_error_exact": "1",
+        "absolute_forward_bound": 1.0,
+        "relative_forward_bound": 1.0,
+        "normwise_backward_error": 3.8576644134996e-10,
+        "claim_disposition": "refuted",
+        "reason": "Residual <1e-8 but exact candidate relative forward error is 1."
+      },
+      "actual_helper_exit_code": 0,
+      "elapsed_seconds": 0.5682010419986909,
+      "helper_output_path": "/private/tmp/mqc-algebra-blind-r1/b/outputs/B2.stdout.json"
+    },
+    "limitations": [
+      "Helper conditioning bounds use floating estimates, not outward-rounded interval certificates; the independent diagonal Fraction calculation gives exact evidence for this specific input.",
+      "Classical CPU calculation only; no quantum circuit was executed."
+    ]
+  },
+  {
+    "id": "B3",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": "Strict producer-declared shape/dtype/device admission before literal complex elementwise comparison. No reshaping, repair, casting or broadcasting.",
+    "clarification_question": null,
+    "status": "invalid_input",
+    "explanation": "Both flattened payloads have valid lengths for their respective declarations, but (2,) and (2,1) are different shapes. Metadata admission fails (helper exit 2). A hypothetical broadcast comparison would produce a (2,2) all-ones agreement, which cannot authorize success under this contract.",
+    "claim_disposition": "broadcasting_does_not_authorize_success",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B3.request.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B3.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B3.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B3.execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.stdout",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.stderr",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/run_tasks.py",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.execution.json"
+    ],
+    "verification": {
+      "independent": {
+        "passed": true,
+        "actual_shape": [
+          2
+        ],
+        "reference_shape": [
+          2,
+          1
+        ],
+        "each_payload_matches_own_declared_shape": true,
+        "exact_metadata_admission": false,
+        "hypothetical_broadcast_allclose": true,
+        "hypothetical_broadcast_shape": [
+          2,
+          2
+        ],
+        "claim_disposition": "broadcasting_does_not_authorize_success",
+        "decision": "invalid_input; do not reshape or repair"
+      },
+      "actual_helper_exit_code": 2,
+      "elapsed_seconds": 0.5666107920005743,
+      "helper_output_path": "/private/tmp/mqc-algebra-blind-r1/b/outputs/B3.stdout.json"
+    },
+    "limitations": [
+      "Producer metadata are declarations, not attestation of an upstream array or execution.",
+      "No elementwise decision is admitted after the shape mismatch.",
+      "Classical CPU calculation only; no quantum circuit was executed."
+    ]
+  },
+  {
+    "id": "B4",
+    "selected_skills": [
+      "compare-quantum-states-and-operators"
+    ],
+    "chosen_context": "Normalized dimension-2 pure-state rays in canonical basis [0,1], isolated global-phase mode with one multiplier on all of b; Euclidean atol=1e-10.",
+    "clarification_question": null,
+    "status": "within_tolerance",
+    "explanation": "Both states satisfy normalization admission. Multiplying all of b by 0.8038837320927981-0.594786470320698i gives residual 7.850462293418876e-17 <=1e-10; raw coordinate residual is 0.6262847082712493. Independent whole-ray projectors agree to 1.1102289621786797e-16.",
+    "claim_disposition": "requested_numerical_result_supported",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B4.request.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B4.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B4.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/B4.execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.stdout",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/runtime.stderr",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/run_tasks.py",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/b/outputs/independent.execution.json"
+    ],
+    "verification": {
+      "independent": {
+        "passed": true,
+        "norm_squared_a": 1.0000000000000002,
+        "norm_squared_b": 1.0000000000000002,
+        "overlap": [
+          0.8038837320927981,
+          0.594786470320698
+        ],
+        "common_multiplier_on_b": [
+          0.8038837320927981,
+          -0.594786470320698
+        ],
+        "raw_residual": 0.6262847082712493,
+        "aligned_residual": 7.850462293418876e-17,
+        "ray_projector_max_absolute_error": 1.1102289621786797e-16,
+        "atol": 1e-10,
+        "basis": [
+          "0",
+          "1"
+        ],
+        "phase_scope": "one common phase in isolated state comparison",
+        "decision": "within_tolerance"
+      },
+      "actual_helper_exit_code": 0,
+      "elapsed_seconds": 0.01644175000001269,
+      "helper_output_path": "/private/tmp/mqc-algebra-blind-r1/b/outputs/B4.stdout.json"
+    },
+    "limitations": [
+      "Floating-point within-tolerance ray comparison is not an exact equality proof or a circuit/physical implementation comparison.",
+      "Classical CPU calculation only; no quantum circuit was executed."
+    ]
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_verify.py"
+  ],
+  "exit_code": 0,
+  "wall_seconds": 0.02082370800053468
+}

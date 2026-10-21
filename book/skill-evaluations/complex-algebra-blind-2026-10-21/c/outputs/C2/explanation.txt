@@ -1,0 +1,1 @@
+Hermitian admission rejected: scale 1e-15, discrepancy 1e-15, scale-relative threshold 1e-27. Tiny input preserved; no symmetrization or decomposition performed.

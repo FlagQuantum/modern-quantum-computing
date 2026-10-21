@@ -1,0 +1,49 @@
+{
+  "evaluation_id": "complex-algebra-blind-r1",
+  "version": "0.1.0",
+  "agents": [
+    "/root/algebra_blind_a",
+    "/root/algebra_blind_b",
+    "/root/algebra_blind_c"
+  ],
+  "context": "Three fresh fork_turns=none agents; raw tasks, four skill packages, catalog and interpreter candidates; no expected answers supplied",
+  "reference_key_sha256": "02a62b910c4be4df1a63cf4912fdf7f1b30128992376380327a300c241d52531",
+  "frozen_before_dispatch": true,
+  "gates": {
+    "tasks": 12,
+    "required_clarifications": [
+      "A1 basis direction",
+      "C3 tolerance"
+    ],
+    "supported_algebra_tasks": [
+      "A1",
+      "A2",
+      "A3",
+      "B1",
+      "B2",
+      "C1",
+      "C3"
+    ],
+    "invalid_inputs": [
+      "B3",
+      "C2"
+    ],
+    "unsupported": [
+      "C4"
+    ],
+    "other_skill_only": [
+      "A4 actual physical circuit",
+      "B4 isolated ray comparison"
+    ],
+    "claims": "idempotence vs orthogonal projection; conditioned forward accuracy; entrywise vs matrix exponential; complex modulus",
+    "false_successes_allowed": 0,
+    "incorrect_abstentions_allowed": 0,
+    "runtime": "CPython3.12/Torch2.13.0; FQ0.3.1 only for actual circuit request"
+  },
+  "limitations": [
+    "Small conductor-designed nonrandom sample",
+    "Logical resource restriction, not OS-enforced isolation",
+    "Same inherited model family; exact backend revision/token/cost telemetry unavailable",
+    "Conductor grades evidence; independent scientific acceptance and reader trials remain separate"
+  ]
+}

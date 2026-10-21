@@ -1,0 +1,20 @@
+[
+  {
+    "task": "A1",
+    "question": "Should basis_columns be interpreted passively as new basis vectors in old coordinates, or actively?",
+    "reply": "Use passive-new-in-old: columns of S are the new basis in old coordinates; v is the old coordinate vector. Return x_new=S^-1*v, B=S^-1*A*S and the Gram metric. Do not apply S actively to v.",
+    "expected_output_supplied": false
+  },
+  {
+    "task": "C3",
+    "question": "What explicit finite atol and rtol acceptance budget should be used?",
+    "reply": "Use explicit atol=1e-9 and rtol=0, comparing the modulus of each complex difference against the budget relative to the supplied reference; preserve metadata and do not align phase.",
+    "expected_output_supplied": false
+  },
+  {
+    "task": "C4",
+    "question": "Is there a declared logarithm branch/domain or should this remain unsupported?",
+    "reply": "No branch or domain is supplied. Keep the logarithm request unsupported; a separate explanation of nonuniqueness is appropriate.",
+    "expected_output_supplied": false
+  }
+]

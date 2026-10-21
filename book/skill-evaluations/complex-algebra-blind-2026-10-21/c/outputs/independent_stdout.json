@@ -1,0 +1,104 @@
+{
+  "all_expected_dispositions_verified": true,
+  "verification_results": {
+    "C1": {
+      "method": "Independent closed form A=zI+N with N^2=0; exp(A)=exp(z)(I+N).",
+      "expected": [
+        [
+          [
+            0.9850727854955552,
+            0.17213833761259542
+          ],
+          [
+            0.29053767712222106,
+            -0.08830548211987771
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.9850727854955552,
+            0.17213833761259542
+          ]
+        ]
+      ],
+      "residuals": [
+        [
+          2.7755575615628914e-17,
+          1.3877787807814457e-17
+        ],
+        [
+          0.0,
+          2.7755575615628914e-17
+        ]
+      ],
+      "passed": true,
+      "entrywise_exp": [
+        [
+          [
+            0.9850727854955552,
+            0.17213833761259542
+          ],
+          [
+            1.2989886445281007,
+            -0.17908325326270308
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.9850727854955552,
+            0.17213833761259542
+          ]
+        ]
+      ],
+      "claim_disposition": "rejected",
+      "counterexample": "Entrywise exp maps the (1,0) zero to 1; the true matrix exponential has zero there.",
+      "quantum_execution": false
+    },
+    "C2": {
+      "method": "Direct scalar adjoint calculation and scale-relative admission; no symmetrization.",
+      "max_entry_scale": 1e-15,
+      "hermiticity_defect": 1e-15,
+      "admission_budget": 1e-27,
+      "defect_to_scale": 1.0,
+      "admitted": false,
+      "passed": true,
+      "explanation": "A_01=i*1e-15 but conjugate(A_10)=0; defect 1e-15 exceeds 1e-27. The reconstruction atol is not the Hermitian admission rule. No Hermitian spectral decomposition is returned.",
+      "quantum_execution": false
+    },
+    "C3": {
+      "method": "Independent scalar math.hypot(real difference, imaginary difference) after exact metadata equality.",
+      "metadata_match": true,
+      "component_errors": [
+        1e-09,
+        1e-09
+      ],
+      "complex_modulus_error": 1.4142135623730951e-09,
+      "budget": 1e-09,
+      "comparison_passed": false,
+      "passed": true,
+      "claim_disposition": "rejected",
+      "explanation": "Both component errors equal atol=1e-9, but the complex modulus is sqrt(2)*1e-9, exceeding the budget.",
+      "quantum_execution": false
+    },
+    "C4": {
+      "method": "Analytic witnesses L_plus=i*pi*I and L_minus=-i*pi*I. Both exponentiate to -I and differ by 2*pi*i*I. More generally (2k+1)*i*pi*I works for each integer k.",
+      "numerical_scalar_witness_residuals": [
+        1.2246467991473532e-16,
+        1.2246467991473532e-16
+      ],
+      "unique": false,
+      "passed": true,
+      "request_disposition": "unsupported",
+      "explanation": "The skill excludes logarithm branch selection. No branch/domain was provided; no unique logarithm computed or certified. Witnesses explain nonuniqueness only.",
+      "quantum_execution": false
+    }
+  }
+}

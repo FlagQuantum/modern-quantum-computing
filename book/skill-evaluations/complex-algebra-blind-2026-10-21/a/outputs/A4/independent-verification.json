@@ -1,0 +1,108 @@
+{
+  "method": "Closed diagonal complex exponentials from supplied rad/s and ns, direct scalar expected states for all nine actual circuit records",
+  "checks": {
+    "unitary": {
+      "passed": true,
+      "max_absolute_error": 1.1102230246251565e-16,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "alpha": {
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "trace_phase": {
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "reconstruction": {
+      "passed": true,
+      "max_absolute_error": 1.3877787807814457e-17,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "supplied/direct": {
+      "passed": true,
+      "max_absolute_error": 1.1102230246251565e-16,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "supplied/native-zyz": {
+      "passed": true,
+      "max_absolute_error": 1.3877787807814457e-17,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "zero/direct": {
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "zero/native-zyz": {
+      "passed": true,
+      "max_absolute_error": 1.3877787807814457e-17,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "one/direct": {
+      "passed": true,
+      "max_absolute_error": 6.123233995736766e-17,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "one/native-zyz": {
+      "passed": true,
+      "max_absolute_error": 6.123233995736766e-17,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "coherent-control/controlled-direct": {
+      "passed": true,
+      "max_absolute_error": 1.1103585416259206e-16,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "coherent-control/controlled-repaired": {
+      "passed": true,
+      "max_absolute_error": 5.594315114139762e-17,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "coherent-control/controlled-unrepaired": {
+      "passed": true,
+      "max_absolute_error": 6.938893903907228e-18,
+      "atol": 1e-10,
+      "rtol": 0,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "circuit_record_count": {
+      "passed": true
+    }
+  },
+  "dimensionless_diagonal_exponent": [
+    0.1071,
+    0.0189
+  ],
+  "alpha": -0.063,
+  "controlled_state_omission_distance": 0.044540360499854985,
+  "omission_detected": true,
+  "quantum_execution": "The helper executed actual FlagQuantum circuits. This independent script performs classical reference verification only.",
+  "passed": true
+}

@@ -1,0 +1,270 @@
+[
+  {
+    "id": "C1",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "coordinates": "literal-complex",
+      "runtime": "CPython 3.12.14, Torch 2.13.0",
+      "device": "cpu",
+      "dtype": "complex128",
+      "execution_type": "classical computations; no circuit execution",
+      "skill_contract": "0.1.0",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      }
+    },
+    "clarification_question": null,
+    "status": "verified",
+    "explanation": "Matrix exponential verified against the helper scalar Taylor series and separately against the nilpotent closed form. Entrywise-exponential claim rejected by the zero lower-left entry.",
+    "claim_disposition": "rejected",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C1/request.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C1/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C1/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C1/execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C1/independent_verification.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C1/explanation.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_execution.json"
+    ],
+    "verification": {
+      "independent_result": {
+        "method": "Independent closed form A=zI+N with N^2=0; exp(A)=exp(z)(I+N).",
+        "expected": [
+          [
+            [
+              0.9850727854955552,
+              0.17213833761259542
+            ],
+            [
+              0.29053767712222106,
+              -0.08830548211987771
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.9850727854955552,
+              0.17213833761259542
+            ]
+          ]
+        ],
+        "residuals": [
+          [
+            2.7755575615628914e-17,
+            1.3877787807814457e-17
+          ],
+          [
+            0.0,
+            2.7755575615628914e-17
+          ]
+        ],
+        "passed": true,
+        "entrywise_exp": [
+          [
+            [
+              0.9850727854955552,
+              0.17213833761259542
+            ],
+            [
+              1.2989886445281007,
+              -0.17908325326270308
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.9850727854955552,
+              0.17213833761259542
+            ]
+          ]
+        ],
+        "claim_disposition": "rejected",
+        "counterexample": "Entrywise exp maps the (1,0) zero to 1; the true matrix exponential has zero there.",
+        "quantum_execution": false
+      },
+      "actual_helper_exit_code": 0,
+      "actual_wall_seconds": 0.6329304580012831
+    },
+    "limitations": [
+      "Finite CPU complex128 classical computation; no quantum circuit or hardware executed.",
+      "Floating-point residuals are not interval accuracy certificates."
+    ]
+  },
+  {
+    "id": "C2",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "coordinates": "literal-complex",
+      "runtime": "CPython 3.12.14, Torch 2.13.0",
+      "device": "cpu",
+      "dtype": "complex128",
+      "execution_type": "classical computations; no circuit execution",
+      "skill_contract": "0.1.0",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      }
+    },
+    "clarification_question": null,
+    "status": "invalid_input",
+    "explanation": "Hermitian admission rejected: scale 1e-15, discrepancy 1e-15, scale-relative threshold 1e-27. Tiny input preserved; no symmetrization or decomposition performed.",
+    "claim_disposition": "not_supplied",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C2/request.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C2/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C2/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C2/execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C2/independent_verification.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C2/explanation.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_execution.json"
+    ],
+    "verification": {
+      "independent_result": {
+        "method": "Direct scalar adjoint calculation and scale-relative admission; no symmetrization.",
+        "max_entry_scale": 1e-15,
+        "hermiticity_defect": 1e-15,
+        "admission_budget": 1e-27,
+        "defect_to_scale": 1.0,
+        "admitted": false,
+        "passed": true,
+        "explanation": "A_01=i*1e-15 but conjugate(A_10)=0; defect 1e-15 exceeds 1e-27. The reconstruction atol is not the Hermitian admission rule. No Hermitian spectral decomposition is returned.",
+        "quantum_execution": false
+      },
+      "actual_helper_exit_code": 2,
+      "actual_wall_seconds": 0.6080181249999441
+    },
+    "limitations": [
+      "Finite CPU complex128 classical computation; no quantum circuit or hardware executed.",
+      "Floating-point residuals are not interval accuracy certificates."
+    ]
+  },
+  {
+    "id": "C3",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "coordinates": "literal-complex",
+      "runtime": "CPython 3.12.14, Torch 2.13.0",
+      "device": "cpu",
+      "dtype": "complex128",
+      "execution_type": "classical computations; no circuit execution",
+      "skill_contract": "0.1.0",
+      "tolerance": {
+        "atol": 1e-09,
+        "rtol": 0
+      }
+    },
+    "clarification_question": "What explicit atol and rtol acceptance budget applies? Answered by parent: atol=1e-9, rtol=0.",
+    "status": "outside_tolerance",
+    "explanation": "Parent supplied atol=1e-9, rtol=0. Modulus error sqrt(2)*1e-9 exceeds 1e-9 despite each component meeting atol. Comparison outside_tolerance and supplied claim rejected.",
+    "claim_disposition": "rejected",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C3/request.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C3/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C3/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C3/execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C3/independent_verification.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C3/explanation.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_execution.json"
+    ],
+    "verification": {
+      "independent_result": {
+        "method": "Independent scalar math.hypot(real difference, imaginary difference) after exact metadata equality.",
+        "metadata_match": true,
+        "component_errors": [
+          1e-09,
+          1e-09
+        ],
+        "complex_modulus_error": 1.4142135623730951e-09,
+        "budget": 1e-09,
+        "comparison_passed": false,
+        "passed": true,
+        "claim_disposition": "rejected",
+        "explanation": "Both component errors equal atol=1e-9, but the complex modulus is sqrt(2)*1e-9, exceeding the budget.",
+        "quantum_execution": false
+      },
+      "actual_helper_exit_code": 1,
+      "actual_wall_seconds": 0.5595715409999684
+    },
+    "limitations": [
+      "Finite CPU complex128 classical computation; no quantum circuit or hardware executed.",
+      "Floating-point residuals are not interval accuracy certificates."
+    ]
+  },
+  {
+    "id": "C4",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "coordinates": "literal-complex",
+      "runtime": "CPython 3.12.14, Torch 2.13.0",
+      "device": "cpu",
+      "dtype": "complex128",
+      "execution_type": "classical computations; no circuit execution",
+      "skill_contract": "0.1.0",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      }
+    },
+    "clarification_question": "Is any logarithm branch/domain supplied? Parent confirmed none; retain unsupported.",
+    "status": "unsupported",
+    "explanation": "Unsupported: no branch/domain was supplied and skill excludes logarithms. Distinct logarithm witnesses explain nonuniqueness without choosing a branch.",
+    "claim_disposition": "uniqueness not certified; unsupported request",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C4/request.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C4/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C4/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C4/execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C4/independent_verification.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/C4/explanation.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/c/outputs/independent_execution.json"
+    ],
+    "verification": {
+      "independent_result": {
+        "method": "Analytic witnesses L_plus=i*pi*I and L_minus=-i*pi*I. Both exponentiate to -I and differ by 2*pi*i*I. More generally (2k+1)*i*pi*I works for each integer k.",
+        "numerical_scalar_witness_residuals": [
+          1.2246467991473532e-16,
+          1.2246467991473532e-16
+        ],
+        "unique": false,
+        "passed": true,
+        "request_disposition": "unsupported",
+        "explanation": "The skill excludes logarithm branch selection. No branch/domain was provided; no unique logarithm computed or certified. Witnesses explain nonuniqueness only.",
+        "quantum_execution": false
+      },
+      "actual_helper_exit_code": 3,
+      "actual_wall_seconds": 0.6182848749995173
+    },
+    "limitations": [
+      "Finite CPU complex128 classical computation; no quantum circuit or hardware executed.",
+      "Floating-point residuals are not interval accuracy certificates.",
+      "The unsupported logarithm request remains uncomputed; no branch selected."
+    ]
+  }
+]

@@ -73,7 +73,7 @@
     {
       "id": "translate-complex-linear-algebra",
       "level": "L1",
-      "status": "planned",
+      "status": "independent-agent-tested prototype",
       "task": "Translate complex scalar/vector/operator formulas with explicit coordinate and numerical contracts.",
       "deliverable": "Indexed formulas, small independent references and checked implementation.",
       "requires_skills": [],
@@ -89,9 +89,30 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-8"
       ],
       "support_section_ids": [],
-      "candidate_evidence": [],
-      "behavioral_evaluation": "not run",
-      "independent_acceptance": "pending"
+      "candidate_evidence": [
+        "examples/foundations/complex_coordinates.py",
+        "examples/foundations/inner_products.py",
+        "examples/foundations/basis_changes.py",
+        "examples/foundations/operator_classes.py",
+        "examples/foundations/spectral_svd.py",
+        "examples/foundations/matrix_functions.py",
+        "examples/foundations/conditioning.py",
+        "examples/foundations/verification_contracts.py",
+        "book/section-records/2.1.json",
+        "book/section-records/2.2.json",
+        "book/section-records/2.3.json",
+        "book/section-records/2.4.json",
+        "book/section-records/2.5.json",
+        "book/section-records/2.6.json",
+        "book/section-records/2.7.json",
+        "book/section-records/2.8.json"
+      ],
+      "behavioral_evaluation": "blind agent tasks: 12/12; author cases: 55/55",
+      "independent_acceptance": "pending",
+      "prototype_package": "skills/translate-complex-linear-algebra/SKILL.md",
+      "package_version": "0.1.0",
+      "evaluation_report": "book/skill-evaluations/complex-algebra-v0.1.0/author-report.json",
+      "blind_evaluation_report": "book/skill-evaluations/complex-algebra-blind-2026-10-21/report.json"
     },
     {
       "id": "compare-quantum-states-and-operators",

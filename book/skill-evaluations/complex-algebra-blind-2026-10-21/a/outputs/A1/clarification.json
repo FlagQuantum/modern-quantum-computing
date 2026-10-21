@@ -1,0 +1,5 @@
+{
+  "question": "Should basis_columns be interpreted as passive-new-in-old or an active transformation?",
+  "answer": "Use passive-new-in-old: columns of S are the new basis in old coordinates; v is the old coordinate vector. Return x_new=S^-1*v, B=S^-1*A*S and the Gram metric. Do not apply S actively to v.",
+  "source": "Parent /root clarification response via collaboration.send_message"
+}

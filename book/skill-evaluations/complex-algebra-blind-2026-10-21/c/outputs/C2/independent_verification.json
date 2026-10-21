@@ -1,0 +1,11 @@
+{
+  "method": "Direct scalar adjoint calculation and scale-relative admission; no symmetrization.",
+  "max_entry_scale": 1e-15,
+  "hermiticity_defect": 1e-15,
+  "admission_budget": 1e-27,
+  "defect_to_scale": 1.0,
+  "admitted": false,
+  "passed": true,
+  "explanation": "A_01=i*1e-15 but conjugate(A_10)=0; defect 1e-15 exceeds 1e-27. The reconstruction atol is not the Hermitian admission rule. No Hermitian spectral decomposition is returned.",
+  "quantum_execution": false
+}

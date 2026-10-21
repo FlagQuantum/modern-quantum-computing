@@ -1,0 +1,194 @@
+[
+  {
+    "id": "B1",
+    "request": "Give a full SVD, numerical rank and right-kernel projector. The rectangular null space and repeated singular block matter. Do not require unique raw singular-vector phases.",
+    "data": {
+      "task": "decompose",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "kind": "svd",
+      "matrix": [
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            2.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "rank_rtol": 1e-12
+    }
+  },
+  {
+    "id": "B2",
+    "request": "Solve the system and separately assess the supplied candidate using conditioning, residual and forward-error evidence. Audit the claim against this task.",
+    "data": {
+      "task": "solve",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-08,
+        "rtol": 0
+      },
+      "matrix": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            9.313225746154785e-10,
+            0.0
+          ]
+        ]
+      ],
+      "rhs": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "candidate": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "max_condition": 10000000000.0
+    },
+    "claim": "The candidate residual is below 1e-8, therefore its relative forward error is below 1e-8."
+  },
+  {
+    "id": "B3",
+    "request": "Check these producer-declared arrays without reshaping or repairing metadata. Does a broadcasting allclose authorize success?",
+    "data": {
+      "task": "check",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "actual": {
+        "shape": [
+          2
+        ],
+        "dtype": "complex128",
+        "device": "cpu",
+        "values": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "reference": {
+        "shape": [
+          2,
+          1
+        ],
+        "dtype": "complex128",
+        "device": "cpu",
+        "values": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "id": "B4",
+    "request": "Compare only these normalized pure-state rays in isolation, allowing one common phase. This is not a literal-coordinate equality or circuit-execution request.",
+    "data": {
+      "kind": "state",
+      "mode": "global-phase",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ],
+      "a": [
+        [
+          0.31622776601683794,
+          0.6324555320336759
+        ],
+        [
+          0.6324555320336759,
+          -0.31622776601683794
+        ]
+      ],
+      "b": [
+        [
+          -0.12196563679612538,
+          0.6965087102405222
+        ],
+        [
+          0.6965087102405222,
+          0.12196563679612538
+        ]
+      ],
+      "atol": 1e-10
+    }
+  }
+]

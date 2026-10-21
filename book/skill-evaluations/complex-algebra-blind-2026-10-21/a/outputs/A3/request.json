@@ -1,0 +1,30 @@
+{
+  "task": "classify",
+  "coordinates": "literal-complex",
+  "tolerance": {
+    "atol": 1e-11,
+    "rtol": 1e-12
+  },
+  "matrix": [
+    [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.473
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ]
+  ]
+}

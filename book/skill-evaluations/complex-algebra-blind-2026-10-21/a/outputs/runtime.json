@@ -1,0 +1,8 @@
+{
+  "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "packages": {
+    "torch": "2.13.0",
+    "flagquantum": "0.3.1"
+  }
+}

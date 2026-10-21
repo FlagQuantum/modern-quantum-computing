@@ -1,0 +1,1 @@
+Unsupported: no branch/domain was supplied and skill excludes logarithms. Distinct logarithm witnesses explain nonuniqueness without choosing a branch.

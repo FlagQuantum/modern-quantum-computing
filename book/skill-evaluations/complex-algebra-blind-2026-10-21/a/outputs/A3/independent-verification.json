@@ -1,0 +1,52 @@
+{
+  "method": "Independent indexed identities plus rational exact idempotence witness",
+  "identity_results": {
+    "hermitian": {
+      "passed": false,
+      "max_absolute_error": 0.473,
+      "atol": 1e-11,
+      "rtol": 1e-12,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "idempotent": {
+      "passed": true,
+      "max_absolute_error": 0.0,
+      "atol": 1e-11,
+      "rtol": 1e-12,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "normal": {
+      "passed": false,
+      "max_absolute_error": 0.473,
+      "atol": 1e-11,
+      "rtol": 1e-12,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    },
+    "unitary": {
+      "passed": false,
+      "max_absolute_error": 0.776271,
+      "atol": 1e-11,
+      "rtol": 1e-12,
+      "comparison": "elementwise complex modulus; reference-scaled budget"
+    }
+  },
+  "checks": {
+    "hermitian": {
+      "passed": true
+    },
+    "idempotent": {
+      "passed": true
+    },
+    "normal": {
+      "passed": true
+    },
+    "unitary": {
+      "passed": true
+    }
+  },
+  "exact_idempotent": true,
+  "nonzero_offdiagonal_fraction": "473/1000",
+  "claim_disposition": "rejected: this supplied matrix is exactly idempotent but not Hermitian, hence not an orthogonal projector for the standard inner product",
+  "geometric_witness": "Range is span(e1); kernel is span((-0.473i,1)). Their inner product is -0.473i, so kernel is not orthogonal to range.",
+  "passed": true
+}

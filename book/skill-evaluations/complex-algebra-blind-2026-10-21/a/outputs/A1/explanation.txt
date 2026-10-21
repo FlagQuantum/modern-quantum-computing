@@ -1,0 +1,1 @@
+Clarified passive-new-in-old. Solve S*x_new=v and S*B=A*S. The condition number is about 1.42592, below 100. Nonorthogonality requires Gram S†S: old and Gram-weighted squared lengths are both 0.993778; naive new Euclidean length is 1.368955533536768. Full vector and operator action reconstructions pass the declared atol=1e-11, rtol=1e-12 budget.

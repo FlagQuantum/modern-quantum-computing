@@ -1,0 +1,226 @@
+{
+  "skill": "translate-complex-linear-algebra",
+  "version": "0.1.0",
+  "status": "independent-agent-tested prototype",
+  "agents": 3,
+  "new_tasks": 12,
+  "passed_tasks": 12,
+  "supported_algebra_tasks": 7,
+  "invalid_input_tasks": 2,
+  "unsupported_tasks": 1,
+  "other_skill_only_tasks": 2,
+  "recorded_helper_calls": 12,
+  "algebra_helper_calls": 10,
+  "algebra_quantum_circuits": 0,
+  "routed_flagquantum_circuits": 9,
+  "clarification_exchanges": 3,
+  "required_semantic_clarifications": 2,
+  "false_successes": 0,
+  "incorrect_abstentions": 0,
+  "task_grades": [
+    {
+      "id": "A1",
+      "status": "verified",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    },
+    {
+      "id": "A2",
+      "status": "verified",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    },
+    {
+      "id": "A3",
+      "status": "verified",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    },
+    {
+      "id": "A4",
+      "status": "verified",
+      "selected_skills": [
+        "translate-unitary-evolution"
+      ],
+      "passed": true
+    },
+    {
+      "id": "B1",
+      "status": "verified",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    },
+    {
+      "id": "B2",
+      "status": "verified",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    },
+    {
+      "id": "B3",
+      "status": "invalid_input",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    },
+    {
+      "id": "B4",
+      "status": "within_tolerance",
+      "selected_skills": [
+        "compare-quantum-states-and-operators"
+      ],
+      "passed": true
+    },
+    {
+      "id": "C1",
+      "status": "verified",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    },
+    {
+      "id": "C2",
+      "status": "invalid_input",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    },
+    {
+      "id": "C3",
+      "status": "outside_tolerance",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    },
+    {
+      "id": "C4",
+      "status": "unsupported",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    }
+  ],
+  "calls": [
+    {
+      "task": "A1",
+      "skill": "translate-complex-linear-algebra",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "a/outputs/A1/execution.json"
+    },
+    {
+      "task": "A2",
+      "skill": "translate-complex-linear-algebra",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "a/outputs/A2/execution.json"
+    },
+    {
+      "task": "A3",
+      "skill": "translate-complex-linear-algebra",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "a/outputs/A3/execution.json"
+    },
+    {
+      "task": "A4",
+      "skill": "translate-unitary-evolution",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "a/outputs/A4/execution.json"
+    },
+    {
+      "task": "B1",
+      "skill": "translate-complex-linear-algebra",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "b/outputs/B1.execution.json"
+    },
+    {
+      "task": "B2",
+      "skill": "translate-complex-linear-algebra",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "b/outputs/B2.execution.json"
+    },
+    {
+      "task": "B3",
+      "skill": "translate-complex-linear-algebra",
+      "status": "invalid_input",
+      "exit_code": 2,
+      "artifact": "b/outputs/B3.execution.json"
+    },
+    {
+      "task": "B4",
+      "skill": "compare-quantum-states-and-operators",
+      "status": "within_tolerance",
+      "exit_code": 0,
+      "artifact": "b/outputs/B4.execution.json"
+    },
+    {
+      "task": "C1",
+      "skill": "translate-complex-linear-algebra",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "c/outputs/C1/execution.json"
+    },
+    {
+      "task": "C2",
+      "skill": "translate-complex-linear-algebra",
+      "status": "invalid_input",
+      "exit_code": 2,
+      "artifact": "c/outputs/C2/execution.json"
+    },
+    {
+      "task": "C3",
+      "skill": "translate-complex-linear-algebra",
+      "status": "outside_tolerance",
+      "exit_code": 1,
+      "artifact": "c/outputs/C3/execution.json"
+    },
+    {
+      "task": "C4",
+      "skill": "translate-complex-linear-algebra",
+      "status": "unsupported",
+      "exit_code": 3,
+      "artifact": "c/outputs/C4/execution.json"
+    }
+  ],
+  "observations": [
+    "Correct selection among four available skill packages, including actual physical circuit routing and isolated ray comparison",
+    "Passive basis convention and comparison tolerance clarified before dependent execution",
+    "Idempotence-only orthogonal projection, residual-only forward accuracy, entrywise exponential and componentwise complex-error claims rejected",
+    "Rectangular repeated-block SVD checked through full reconstruction/kernel projector rather than raw factor uniqueness",
+    "Shape-broadcast admission and tiny non-Hermitian spectrum input rejected; logarithm request remained unsupported",
+    "Fourth helper made zero quantum executions; nine actual FlagQuantum circuits belong only to routed third skill",
+    "No package defect found; no package changes or post-blind tuning"
+  ],
+  "grading_role": "author/conductor against preregistered dispositions, separate NumPy/analytic/exact references and raw execution records",
+  "executor_context": "Three fresh fork_turns=none agents, no expected answers; raw tasks/catalog/four frozen packages and existing interpreter candidates",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "released_skills": 0,
+  "limitations": [
+    "Small conductor-designed nonrandom sample",
+    "Logical resource restriction, not OS-enforced isolation",
+    "Same inherited model family; exact backend revision/token/cost telemetry unavailable",
+    "Conductor grades evidence; independent scientific acceptance and reader trials remain separate",
+    "NumPy/Torch may share numerical backend families; analytic and exact fixtures supplement their agreement",
+    "Published cases become regression fixtures; CI replay does not rerun autonomous agents"
+  ]
+}

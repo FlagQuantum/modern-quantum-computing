@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "evaluation_checkout_base": "5eaf5718de35e5b87152fa6f176f05e7587bd948",
+  "frozen_at_utc": "2026-10-21T06:06:09.293478+00:00",
+  "sha256": {
+    "SKILL.md": "d5b2894e0b5ae76134a093b4993e39ab76eb61c23b531a88ebd0761a74f22285",
+    "agents/openai.yaml": "475441448d646757542dbeb44328fa12cc46ecef19cde7594c2dfc4bbdb22332",
+    "references/contract.md": "1cf046182bb4fff9c021a45b7e173ca75ae1e3a7a5be34ff001b9902a907b450",
+    "scripts/algebra.py": "0f90cfb8982d15840d110fee37d5a19d31d621b632d8bc087cf4b19f30fed74b"
+  },
+  "note": "Evaluated working-tree bytes; base commit predates this package"
+}

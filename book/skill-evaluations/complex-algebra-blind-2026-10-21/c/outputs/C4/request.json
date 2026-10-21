@@ -1,0 +1,32 @@
+{
+  "task": "function",
+  "coordinates": "literal-complex",
+  "tolerance": {
+    "atol": 1e-11,
+    "rtol": 1e-12
+  },
+  "kind": "log",
+  "units": "dimensionless",
+  "matrix": [
+    [
+      [
+        -1.0,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        -0.0,
+        0.0
+      ],
+      [
+        -1.0,
+        0.0
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "runtime_seconds": 0.0017353340008412488,
+  "all_passed": true,
+  "tasks": {
+    "A1": {
+      "passed": true,
+      "checks": {
+        "coordinates": {
+          "passed": true,
+          "max_absolute_error": 1.1102230246251565e-16,
+          "atol": 1e-11,
+          "rtol": 1e-12,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "operator": {
+          "passed": true,
+          "max_absolute_error": 2.7809732887839817e-17,
+          "atol": 1e-11,
+          "rtol": 1e-12,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "gram": {
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "atol": 1e-11,
+          "rtol": 1e-12,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "action": {
+          "passed": true,
+          "max_absolute_error": 1.6667795129466247e-16,
+          "atol": 1e-11,
+          "rtol": 1e-12,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "gram_norm": {
+          "passed": true,
+          "max_absolute_error": 3.3306690738754696e-16,
+          "atol": 1e-11,
+          "rtol": 1e-12,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "condition": {
+          "passed": true,
+          "max_absolute_error": 4.440892098500626e-16,
+          "atol": 1e-11,
+          "rtol": 1e-12,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        }
+      }
+    },
+    "A2": {
+      "passed": true,
+      "checks": {
+        "inner": {
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "atol": 1e-11,
+          "rtol": 1e-12,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "norm_v": {
+          "passed": true,
+          "max_absolute_error": 3.552713678800501e-15,
+          "atol": 1e-11,
+          "rtol": 1e-12,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "norm_w": {
+          "passed": true,
+          "max_absolute_error": 3.552713678800501e-15,
+          "atol": 1e-11,
+          "rtol": 1e-12,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        }
+      }
+    },
+    "A3": {
+      "passed": true,
+      "checks": {
+        "hermitian": {
+          "passed": true
+        },
+        "idempotent": {
+          "passed": true
+        },
+        "normal": {
+          "passed": true
+        },
+        "unitary": {
+          "passed": true
+        }
+      }
+    },
+    "A4": {
+      "passed": true,
+      "checks": {
+        "unitary": {
+          "passed": true,
+          "max_absolute_error": 1.1102230246251565e-16,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "alpha": {
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "trace_phase": {
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "reconstruction": {
+          "passed": true,
+          "max_absolute_error": 1.3877787807814457e-17,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "supplied/direct": {
+          "passed": true,
+          "max_absolute_error": 1.1102230246251565e-16,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "supplied/native-zyz": {
+          "passed": true,
+          "max_absolute_error": 1.3877787807814457e-17,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "zero/direct": {
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "zero/native-zyz": {
+          "passed": true,
+          "max_absolute_error": 1.3877787807814457e-17,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "one/direct": {
+          "passed": true,
+          "max_absolute_error": 6.123233995736766e-17,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "one/native-zyz": {
+          "passed": true,
+          "max_absolute_error": 6.123233995736766e-17,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "coherent-control/controlled-direct": {
+          "passed": true,
+          "max_absolute_error": 1.1103585416259206e-16,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "coherent-control/controlled-repaired": {
+          "passed": true,
+          "max_absolute_error": 5.594315114139762e-17,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "coherent-control/controlled-unrepaired": {
+          "passed": true,
+          "max_absolute_error": 6.938893903907228e-18,
+          "atol": 1e-10,
+          "rtol": 0,
+          "comparison": "elementwise complex modulus; reference-scaled budget"
+        },
+        "circuit_record_count": {
+          "passed": true
+        }
+      }
+    }
+  }
+}

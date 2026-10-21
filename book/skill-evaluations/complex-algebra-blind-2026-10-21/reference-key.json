@@ -1,0 +1,52 @@
+{
+  "A1": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra",
+    "reply": "Use passive-new-in-old: columns of S are the new basis in old coordinates; v is the old coordinate vector. Return x_new=S^-1*v, B=S^-1*A*S and the Gram metric. Do not apply S actively to v."
+  },
+  "A2": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "A3": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "A4": {
+    "status": "verified",
+    "skill": "translate-unitary-evolution"
+  },
+  "B1": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "B2": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "B3": {
+    "status": "invalid_input",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "B4": {
+    "status": "within_tolerance",
+    "skill": "compare-quantum-states-and-operators"
+  },
+  "C1": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "C2": {
+    "status": "invalid_input",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "C3": {
+    "status": "outside_tolerance",
+    "skill": "translate-complex-linear-algebra",
+    "reply": "Use explicit atol=1e-9 and rtol=0, comparing the modulus of each complex difference against the budget relative to the supplied reference; preserve metadata and do not align phase."
+  },
+  "C4": {
+    "status": "unsupported",
+    "skill": "translate-complex-linear-algebra"
+  }
+}

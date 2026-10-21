@@ -1,0 +1,197 @@
+[
+  {
+    "id": "A1",
+    "request": "Translate this basis-related formula and preserve the represented vector and operator action. The column matrix is supplied, but its intended active/passive interpretation has not been declared. Resolve the convention before executing.",
+    "data": {
+      "task": "basis",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "matrix": [
+        [
+          [
+            0.3,
+            0.0
+          ],
+          [
+            0.0,
+            0.2
+          ]
+        ],
+        [
+          [
+            -0.0,
+            -0.7
+          ],
+          [
+            0.9,
+            0.0
+          ]
+        ]
+      ],
+      "basis_columns": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.317
+          ]
+        ],
+        [
+          [
+            0.173,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      ],
+      "v": [
+        [
+          0.0,
+          0.617
+        ],
+        [
+          -0.783,
+          0.0
+        ]
+      ],
+      "max_condition": 100
+    }
+  },
+  {
+    "id": "A2",
+    "request": "Compute the declared sesquilinear inner product and the squared norms; check conjugation independently. These are arbitrary vectors, not normalized quantum states.",
+    "data": {
+      "task": "algebra",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "operation": "inner",
+      "v": [
+        [
+          2.0,
+          -3.0
+        ],
+        [
+          -1.0,
+          2.0
+        ],
+        [
+          0.0,
+          0.5
+        ]
+      ],
+      "w": [
+        [
+          1.0,
+          4.0
+        ],
+        [
+          3.0,
+          -2.0
+        ],
+        [
+          -0.25,
+          0.75
+        ]
+      ]
+    }
+  },
+  {
+    "id": "A3",
+    "request": "Classify the supplied operator using defining identities. Audit the supplied claim; do not infer a property merely because the helper ran.",
+    "data": {
+      "task": "classify",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "matrix": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.473
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ]
+    },
+    "claim": "Every idempotent matrix is an orthogonal projector for the standard complex inner product."
+  },
+  {
+    "id": "A4",
+    "request": "Realize and execute this physical angular-frequency generator evolution as an actual FlagQuantum qubit circuit, preserving its scalar phase and coherent-control operation. A classical algebra computation alone would not fulfill this task.",
+    "data": {
+      "task": "evolve",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "context": "coherent-control",
+      "generator": {
+        "matrix": [
+          [
+            [
+              170000000.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              30000000.0,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "rad/s"
+      },
+      "time": {
+        "value": 0.63,
+        "unit": "ns"
+      },
+      "atol": 1e-10
+    }
+  }
+]

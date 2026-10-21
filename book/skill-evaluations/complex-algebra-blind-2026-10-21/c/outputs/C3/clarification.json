@@ -1,0 +1,5 @@
+{
+  "question": "What explicit atol and rtol budget applies?",
+  "answer": "Use explicit atol=1e-9 and rtol=0, comparing modulus of each complex difference against the supplied reference budget; preserve metadata and do not align phase.",
+  "source": "Parent /root collaboration message"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "A4",
+  "request": "Realize and execute this physical angular-frequency generator evolution as an actual FlagQuantum qubit circuit, preserving its scalar phase and coherent-control operation. A classical algebra computation alone would not fulfill this task.",
+  "data": {
+    "task": "evolve",
+    "basis": [
+      "0",
+      "1"
+    ],
+    "state": [
+      [
+        0.0,
+        0.6
+      ],
+      [
+        0.8,
+        0.0
+      ]
+    ],
+    "context": "coherent-control",
+    "generator": {
+      "matrix": [
+        [
+          [
+            170000000.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            30000000.0,
+            0.0
+          ]
+        ]
+      ],
+      "unit": "rad/s"
+    },
+    "time": {
+      "value": 0.63,
+      "unit": "ns"
+    },
+    "atol": 1e-10
+  }
+}

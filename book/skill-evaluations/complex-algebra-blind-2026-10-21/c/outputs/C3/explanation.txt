@@ -1,0 +1,1 @@
+Parent supplied atol=1e-9, rtol=0. Modulus error sqrt(2)*1e-9 exceeds 1e-9 despite each component meeting atol. Comparison outside_tolerance and supplied claim rejected.

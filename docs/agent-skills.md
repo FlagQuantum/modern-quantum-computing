@@ -1,6 +1,6 @@
 # Agent skills: capability levels and chapter map
 
-**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains 23 proposed task skills; three have independent-agent-tested prototypes: state/operator comparison 0.1.1, single-qubit interference 0.1.0 and phase-tracked unitary evolution 0.1.0. Their separate evidence records retain failures, author execution and blind-task outcomes. Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.
+**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains 23 proposed task skills; four have independent-agent-tested prototypes: state/operator comparison 0.1.1, single-qubit interference 0.1.0, phase-tracked unitary evolution 0.1.0 and complex linear algebra 0.1.0. Their separate evidence records retain failures, author execution and blind-task outcomes. Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.
 
 [Dual-entry design](dual-entry.md) · [Skill contract](skill-contract.md) · [Paper verification and acceptance](paper-reproduction-standard.md)
 
@@ -98,15 +98,19 @@ Classify claims and record feasibility, source locations, access models and miss
 
 ### translate-complex-linear-algebra
 
-**L1 · planned · not run · independent acceptance pending.**
+**L1 · independent-agent-tested prototype · blind agent tasks: 12/12; author cases: 55/55 · independent acceptance pending.**
 
 Translate complex scalar/vector/operator formulas with explicit coordinate and numerical contracts.
 
 **Deliverable:** Indexed formulas, small independent references and checked implementation.
 
+[Complex linear algebra prototype, numerical contracts and independent blind evaluation](complex-algebra-skill-prototype.md).
+
 **Required task skills:** None at catalog level; this does not waive source prerequisites.
 
 **Primary sources:** [Chapter 2, all sections](section-plans/01-foundations.md#ch-complex-vectors-operators-and-numerical-reasoning)
+
+**Existing candidate evidence:** [complex_coordinates.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/complex_coordinates.py); [inner_products.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/inner_products.py); [basis_changes.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/basis_changes.py); [operator_classes.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/operator_classes.py); [spectral_svd.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/spectral_svd.py); [matrix_functions.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/matrix_functions.py); [conditioning.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/conditioning.py); [verification_contracts.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/verification_contracts.py); [2.1.json](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.1.json); [2.2.json](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.2.json); [2.3.json](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.3.json); [2.4.json](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.4.json); [2.5.json](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.5.json); [2.6.json](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.6.json); [2.7.json](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.7.json); [2.8.json](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/2.8.json). These artifacts are not a skill evaluation, an acceptance decision or a whole-paper reproduction claim.
 
 ### compare-quantum-states-and-operators
 
@@ -399,7 +403,8 @@ Evaluate routing and execution on held-out papers, identifying unsupported requi
 1. Preserve the [state/operator blind evaluation](comparison-skill-blind-evaluation.md): 0.1.1 passed 11 fresh tasks after a runtime-contract repair. Gather separate scientific acceptance and reader evidence; published cases are now regression fixtures.
 2. Preserve the [interference prototype evidence](interference-skill-prototype.md): 35 author cases and 12 new blind-agent tasks passed, including units, analyzer signs, chronology, claim rejection and selection between two runnable skills. Scientific acceptance remains separate.
 3. Preserve the [phase-tracked unitary evolution evidence](unitary-evolution-skill-prototype.md): 53 author cases and 12 blind tasks passed, covering units, generator validation, Euler endpoints, controlled phase repair and selection among three skills. Scientific acceptance remains pending.
-4. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.
-5. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.
+4. Preserve the [complex linear algebra evidence](complex-algebra-skill-prototype.md): 55 author cases and 12 blind tasks passed. Classical calculations and actual routed FlagQuantum execution are recorded separately; scientific acceptance remains pending.
+5. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.
+6. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.
 
-This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first three bounded prototypes are independent-agent-tested; no paper run or new textbook section is performed by this update.
+This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first four bounded prototypes are independent-agent-tested; no paper run or new textbook section is performed by this update.

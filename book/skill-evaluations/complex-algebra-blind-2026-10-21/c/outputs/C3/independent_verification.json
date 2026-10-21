@@ -1,0 +1,15 @@
+{
+  "method": "Independent scalar math.hypot(real difference, imaginary difference) after exact metadata equality.",
+  "metadata_match": true,
+  "component_errors": [
+    1e-09,
+    1e-09
+  ],
+  "complex_modulus_error": 1.4142135623730951e-09,
+  "budget": 1e-09,
+  "comparison_passed": false,
+  "passed": true,
+  "claim_disposition": "rejected",
+  "explanation": "Both component errors equal atol=1e-9, but the complex modulus is sqrt(2)*1e-9, exceeding the budget.",
+  "quantum_execution": false
+}

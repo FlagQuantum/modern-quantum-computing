@@ -1,0 +1,115 @@
+{
+  "checks": [
+    {
+      "name": "wrong_python",
+      "command": [
+        "/usr/bin/python3",
+        "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/translate-complex-linear-algebra/scripts/algebra.py"
+      ],
+      "request": {
+        "task": "algebra",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "operation": "inner",
+        "v": [
+          [
+            2.0,
+            -3.0
+          ],
+          [
+            -1.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.5
+          ]
+        ],
+        "w": [
+          [
+            1.0,
+            4.0
+          ],
+          [
+            3.0,
+            -2.0
+          ],
+          [
+            -0.25,
+            0.75
+          ]
+        ]
+      },
+      "exit_code": 3,
+      "stdout": {
+        "contract_version": "0.1.0",
+        "reason": "CPython 3.12 required",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.9.6"
+        },
+        "status": "unsupported"
+      },
+      "stderr": ""
+    },
+    {
+      "name": "missing_packages",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "-S",
+        "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/translate-complex-linear-algebra/scripts/algebra.py"
+      ],
+      "request": {
+        "task": "algebra",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "operation": "inner",
+        "v": [
+          [
+            2.0,
+            -3.0
+          ],
+          [
+            -1.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.5
+          ]
+        ],
+        "w": [
+          [
+            1.0,
+            4.0
+          ],
+          [
+            3.0,
+            -2.0
+          ],
+          [
+            -0.25,
+            0.75
+          ]
+        ]
+      },
+      "exit_code": 3,
+      "stdout": {
+        "contract_version": "0.1.0",
+        "reason": "PyTorch runtime missing",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "unsupported"
+      },
+      "stderr": ""
+    }
+  ]
+}

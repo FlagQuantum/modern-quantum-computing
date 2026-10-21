@@ -1,0 +1,145 @@
+[
+  {
+    "id": "C1",
+    "request": "Compute the matrix exponential of the dimensionless non-Hermitian input and verify independently. Audit the supplied formula claim.",
+    "data": {
+      "task": "function",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "kind": "exp",
+      "units": "dimensionless",
+      "matrix": [
+        [
+          [
+            0.0,
+            0.173
+          ],
+          [
+            0.271,
+            -0.137
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.173
+          ]
+        ]
+      ]
+    },
+    "claim": "Applying scalar exp entrywise to this matrix gives its matrix exponential."
+  },
+  {
+    "id": "C2",
+    "request": "Can this matrix be admitted to a Hermitian spectral decomposition? Preserve its tiny scale and do not symmetrize or discard off-diagonal terms.",
+    "data": {
+      "task": "decompose",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "kind": "hermitian",
+      "matrix": [
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1e-15
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "id": "C3",
+    "request": "Evaluate the declared complex comparison. The acceptance budget has not been supplied, so resolve it before deciding. Audit the claim once the budget is known.",
+    "data": {
+      "task": "check",
+      "coordinates": "literal-complex",
+      "actual": {
+        "shape": [
+          1
+        ],
+        "dtype": "complex128",
+        "device": "cpu",
+        "values": [
+          [
+            1e-09,
+            1e-09
+          ]
+        ]
+      },
+      "reference": {
+        "shape": [
+          1
+        ],
+        "dtype": "complex128",
+        "device": "cpu",
+        "values": [
+          [
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    "claim": "If both real and imaginary component errors are individually <=atol, the complex comparison must pass."
+  },
+  {
+    "id": "C4",
+    "request": "Compute a uniquely determined matrix logarithm for this matrix under this skill; no branch, spectrum-domain convention or external reference was supplied. Do not invent a branch or certify uniqueness.",
+    "data": {
+      "task": "function",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "kind": "log",
+      "units": "dimensionless",
+      "matrix": [
+        [
+          [
+            -1.0,
+            0.0
+          ],
+          [
+            -0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            -0.0,
+            0.0
+          ],
+          [
+            -1.0,
+            0.0
+          ]
+        ]
+      ]
+    }
+  }
+]

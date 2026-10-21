@@ -1,6 +1,6 @@
 # Agent task contract and evaluation plan
 
-**Plan 0.1 · October 21, 2026 · three prototypes evaluated.** The [comparison skill blind evaluation](comparison-skill-blind-evaluation.md) the [interference prototype](interference-skill-prototype.md), and the [phase-tracked evolution prototype](unitary-evolution-skill-prototype.md) supply actual behavior evidence; scientific acceptance remains separate. Use this contract when implementing one task proposed in the [catalog](agent-skills.md). The [design worksheet](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/templates/skill-design.md) is a template, not an executed example.
+**Plan 0.1 · October 21, 2026 · four prototypes evaluated.** The [comparison skill blind evaluation](comparison-skill-blind-evaluation.md) the [interference prototype](interference-skill-prototype.md), the [phase-tracked evolution prototype](unitary-evolution-skill-prototype.md), and the [complex algebra prototype](complex-algebra-skill-prototype.md) supply actual behavior evidence; scientific acceptance remains separate. Use this contract when implementing one task proposed in the [catalog](agent-skills.md). The [design worksheet](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/templates/skill-design.md) is a template, not an executed example.
 
 ## A task contract is more than a prompt
 

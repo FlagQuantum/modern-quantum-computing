@@ -1,0 +1,174 @@
+[
+  {
+    "id": "A1",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": "passive-new-in-old; literal-complex; Gram metric",
+    "clarification_question": {
+      "question": "Should basis_columns be interpreted as passive-new-in-old or an active transformation?",
+      "answer": "Use passive-new-in-old: columns of S are the new basis in old coordinates; v is the old coordinate vector. Return x_new=S^-1*v, B=S^-1*A*S and the Gram metric. Do not apply S actively to v.",
+      "source": "Parent /root clarification response via collaboration.send_message"
+    },
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A1/claim-disposition.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A1/clarification.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A1/execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A1/explanation.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A1/independent-verification.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A1/original-task.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A1/request.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A1/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A1/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/runtime.json"
+    ],
+    "verification": {
+      "helper_status": "verified",
+      "helper_exit_code": 0,
+      "independent_passed": true,
+      "details": "/private/tmp/mqc-algebra-blind-r1/a/outputs/A1/independent-verification.json",
+      "actual_quantum_circuits": 0,
+      "claim_disposition": {
+        "disposition": "fulfilled after clarification",
+        "claim": "Passive coordinate/operator transformation preserves represented vector and action."
+      },
+      "explanation": "Clarified passive-new-in-old. Solve S*x_new=v and S*B=A*S. The condition number is about 1.42592, below 100. Nonorthogonality requires Gram S\u2020S: old and Gram-weighted squared lengths are both 0.993778; naive new Euclidean length is 1.368955533536768. Full vector and operator action reconstructions pass the declared atol=1e-11, rtol=1e-12 budget."
+    },
+    "limitations": [
+      "Floating point complex128 results are within-budget computations, not rigorous interval certificates.",
+      "No external sources, textbook repository, sibling workspace, grading keys, package installation or environment changes used.",
+      "Classical algebra computation only; no quantum execution."
+    ]
+  },
+  {
+    "id": "A2",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": "literal-complex; first-argument conjugation; standard complex inner product",
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A2/claim-disposition.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A2/execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A2/explanation.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A2/independent-verification.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A2/original-task.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A2/request.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A2/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A2/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/runtime.json"
+    ],
+    "verification": {
+      "helper_status": "verified",
+      "helper_exit_code": 0,
+      "independent_passed": true,
+      "details": "/private/tmp/mqc-algebra-blind-r1/a/outputs/A2/independent-verification.json",
+      "actual_quantum_circuits": 0,
+      "claim_disposition": {
+        "disposition": "verified within declared numerical budget with exact rational references",
+        "claim": "First-argument-conjugated sesquilinear product and squared norms."
+      },
+      "explanation": "Using conjugate first argument gives <v,w>=-16.625+7.125i. Squared norms are 18.25 and 30.625. Exact rational real/imag pair arithmetic independently verifies these; vectors are not normalized or interpreted as quantum states."
+    },
+    "limitations": [
+      "Floating point complex128 results are within-budget computations, not rigorous interval certificates.",
+      "No external sources, textbook repository, sibling workspace, grading keys, package installation or environment changes used.",
+      "Classical algebra computation only; no quantum execution."
+    ]
+  },
+  {
+    "id": "A3",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": "literal-complex; first-argument conjugation; standard complex inner product",
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A3/claim-disposition.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A3/execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A3/explanation.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A3/independent-verification.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A3/original-task.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A3/request.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A3/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A3/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/runtime.json"
+    ],
+    "verification": {
+      "helper_status": "verified",
+      "helper_exit_code": 0,
+      "independent_passed": true,
+      "details": "/private/tmp/mqc-algebra-blind-r1/a/outputs/A3/independent-verification.json",
+      "actual_quantum_circuits": 0,
+      "claim_disposition": {
+        "disposition": "rejected",
+        "claim": "Every idempotent matrix is an orthogonal projector for the standard complex inner product.",
+        "counterexample": "Supplied [[1,0.473i],[0,0]] is exactly idempotent and not Hermitian."
+      },
+      "explanation": "The matrix satisfies A\u00b2=A but is neither Hermitian, unitary nor normal. The supplied universal claim is rejected: an orthogonal projector additionally requires Hermiticity. The given exact decimal matrix is a counterexample; its range and kernel are not orthogonal. A successful helper status certifies tests ran consistently, not that their property decisions are all true."
+    },
+    "limitations": [
+      "Floating point complex128 results are within-budget computations, not rigorous interval certificates.",
+      "No external sources, textbook repository, sibling workspace, grading keys, package installation or environment changes used.",
+      "Classical algebra computation only; no quantum execution."
+    ]
+  },
+  {
+    "id": "A4",
+    "selected_skills": [
+      "translate-unitary-evolution"
+    ],
+    "chosen_context": "coherent-control; literal full operator phase; basis 0,1; controlled basis 00,01,10,11",
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A4/claim-disposition.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A4/execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A4/explanation.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A4/independent-verification.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A4/original-task.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A4/request.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A4/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/A4/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verify.py",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.execution.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.stdout.json",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/verification.stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r1/a/outputs/runtime.json"
+    ],
+    "verification": {
+      "helper_status": "verified",
+      "helper_exit_code": 0,
+      "independent_passed": true,
+      "details": "/private/tmp/mqc-algebra-blind-r1/a/outputs/A4/independent-verification.json",
+      "actual_quantum_circuits": 9,
+      "claim_disposition": {
+        "disposition": "fulfilled by actual ideal FlagQuantum circuit execution",
+        "claim": "Physical angular-frequency evolution preserving scalar phase and coherent-control behavior."
+      },
+      "explanation": "Actual FlagQuantum execution used 9 CPU complex128 statevector circuits, including direct/native single-qubit checks on three inputs and direct/repaired/unrepaired coherent-control circuits. Convert 0.63 ns to 6.3e-10 s: exponent diag(0.1071,0.0189), U=diag(exp(-0.1071i),exp(-0.0189i)). Retained scalar phase alpha=-0.063; native Rz angle 0.0882. Coherent control repairs controlled(V) with an actual phase(0,theta=-0.063) on the control. Independent closed-form diagonal calculations check every returned circuit state at atol=1e-10, rtol=0. The reference calculations are classical and separate from the actual circuit execution."
+    },
+    "limitations": [
+      "Floating point complex128 results are within-budget computations, not rigorous interval certificates.",
+      "No external sources, textbook repository, sibling workspace, grading keys, package installation or environment changes used.",
+      "Ideal deterministic simulation only; no hardware, shots or noise.",
+      "Generic controlled(V) unitary plus native control phase; not native controlled-Euler synthesis.",
+      "Isolated native V lacks U scalar phase; its corrected output is diagnostic arithmetic. Coherent-control repair was an actual circuit operation."
+    ]
+  }
+]

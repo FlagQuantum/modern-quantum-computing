@@ -1,0 +1,26 @@
+from pathlib import Path
+import json,sys,subprocess,time
+r=Path(__file__).resolve().parent
+cmd=[sys.executable,str(r/'verify.py')];s=time.perf_counter();p=subprocess.run(cmd,capture_output=True,text=True);elapsed=time.perf_counter()-s
+(r/'verification.stdout.json').write_text(p.stdout);(r/'verification.stderr.txt').write_text(p.stderr);(r/'verification.execution.json').write_text(json.dumps({'command':cmd,'exit_code':p.returncode,'elapsed_seconds':elapsed,'runtime':json.loads((r/'runtime.json').read_text())},indent=2))
+assert p.returncode==0 and json.loads(p.stdout)['all_passed']
+explanations={
+'A1': 'Clarified passive-new-in-old. Solve S*x_new=v and S*B=A*S. The condition number is about 1.42592, below 100. Nonorthogonality requires Gram S†S: old and Gram-weighted squared lengths are both 0.993778; naive new Euclidean length is 1.368955533536768. Full vector and operator action reconstructions pass the declared atol=1e-11, rtol=1e-12 budget.',
+'A2': 'Using conjugate first argument gives <v,w>=-16.625+7.125i. Squared norms are 18.25 and 30.625. Exact rational real/imag pair arithmetic independently verifies these; vectors are not normalized or interpreted as quantum states.',
+'A3': 'The matrix satisfies A²=A but is neither Hermitian, unitary nor normal. The supplied universal claim is rejected: an orthogonal projector additionally requires Hermiticity. The given exact decimal matrix is a counterexample; its range and kernel are not orthogonal. A successful helper status certifies tests ran consistently, not that their property decisions are all true.',
+'A4': 'Actual FlagQuantum execution used 9 CPU complex128 statevector circuits, including direct/native single-qubit checks on three inputs and direct/repaired/unrepaired coherent-control circuits. Convert 0.63 ns to 6.3e-10 s: exponent diag(0.1071,0.0189), U=diag(exp(-0.1071i),exp(-0.0189i)). Retained scalar phase alpha=-0.063; native Rz angle 0.0882. Coherent control repairs controlled(V) with an actual phase(0,theta=-0.063) on the control. Independent closed-form diagonal calculations check every returned circuit state at atol=1e-10, rtol=0. The reference calculations are classical and separate from the actual circuit execution.'}
+claims={
+'A1':{'disposition':'fulfilled after clarification','claim':'Passive coordinate/operator transformation preserves represented vector and action.'},
+'A2':{'disposition':'verified within declared numerical budget with exact rational references','claim':'First-argument-conjugated sesquilinear product and squared norms.'},
+'A3':{'disposition':'rejected','claim':'Every idempotent matrix is an orthogonal projector for the standard complex inner product.','counterexample':'Supplied [[1,0.473i],[0,0]] is exactly idempotent and not Hermitian.'},
+'A4':{'disposition':'fulfilled by actual ideal FlagQuantum circuit execution','claim':'Physical angular-frequency evolution preserving scalar phase and coherent-control behavior.'}}
+results=[]
+for ident in ['A1','A2','A3','A4']:
+ d=r/ident;h=json.loads((d/'stdout.json').read_text());iv=json.loads((d/'independent-verification.json').read_text())
+ (d/'explanation.txt').write_text(explanations[ident]+'\n');(d/'claim-disposition.json').write_text(json.dumps(claims[ident],indent=2))
+ limitations=['Floating point complex128 results are within-budget computations, not rigorous interval certificates.','No external sources, textbook repository, sibling workspace, grading keys, package installation or environment changes used.']
+ if ident=='A4':limitations+=['Ideal deterministic simulation only; no hardware, shots or noise.','Generic controlled(V) unitary plus native control phase; not native controlled-Euler synthesis.','Isolated native V lacks U scalar phase; its corrected output is diagnostic arithmetic. Coherent-control repair was an actual circuit operation.']
+ else:limitations+=['Classical algebra computation only; no quantum execution.']
+ results.append({'id':ident,'selected_skills':['translate-unitary-evolution' if ident=='A4' else 'translate-complex-linear-algebra'],'chosen_context':'coherent-control; literal full operator phase; basis 0,1; controlled basis 00,01,10,11' if ident=='A4' else ('passive-new-in-old; literal-complex; Gram metric' if ident=='A1' else 'literal-complex; first-argument conjugation; standard complex inner product'),'clarification_question':json.loads((d/'clarification.json').read_text()) if ident=='A1' else None,'status':'verified','evidence_paths':[str(f) for f in sorted(d.iterdir()) if f.is_file()]+[str(r/'verify.py'),str(r/'verification.execution.json'),str(r/'verification.stdout.json'),str(r/'verification.stderr.txt'),str(r/'runtime.json')],'verification':{'helper_status':h['status'],'helper_exit_code':json.loads((d/'execution.json').read_text())['exit_code'],'independent_passed':iv['passed'],'details':str(d/'independent-verification.json'),'actual_quantum_circuits':h.get('actual_flagquantum_circuits',0),'claim_disposition':claims[ident],'explanation':explanations[ident]},'limitations':limitations})
+(r/'results.json').write_text(json.dumps(results,indent=2))
+print(json.dumps({'results':str(r/'results.json'),'all_independent_checks_passed':True,'unresolved_questions':[]},indent=2))

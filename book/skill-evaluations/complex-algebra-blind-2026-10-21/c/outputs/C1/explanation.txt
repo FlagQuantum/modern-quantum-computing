@@ -1,0 +1,1 @@
+Matrix exponential verified against the helper scalar Taylor series and separately against the nilpotent closed form. Entrywise-exponential claim rejected by the zero lower-left entry.

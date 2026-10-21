@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-10-21T06:11:40.497184+00:00",
+  "scope": "Fourth skill and navigation, no new textbook section",
+  "author_cases": 55,
+  "author_quantum_circuits": 0,
+  "blind_tasks": 12,
+  "blind_helper_calls": 12,
+  "algebra_blind_quantum_circuits": 0,
+  "routed_evolution_flagquantum_circuits": 9,
+  "example": "Actual prose bash command ran under pinned interpreter; exact displayed output matched",
+  "visual_check": "Actual local browser rendering inspected: conjugation bars, daggers, passive inverse/Gram metric, SVD, singular extrema, forward-error fractions and elementwise tolerance; no garbled math in inspected formulas",
+  "build": "Strict MkDocs build and all local links/fragments in 67 rendered pages passed; unique IDs",
+  "curriculum": "Baseline, progress and full 435-section queue byte-identical; 22 draft,413 not started,zero accepted",
+  "first_three_packages": "Byte-identical to published base",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "note": "Executor agents independent of author context; conductor grades original artifacts. CI replays are not fresh blind tests."
+}

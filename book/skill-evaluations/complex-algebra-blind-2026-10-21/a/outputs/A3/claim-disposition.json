@@ -1,0 +1,5 @@
+{
+  "disposition": "rejected",
+  "claim": "Every idempotent matrix is an orthogonal projector for the standard complex inner product.",
+  "counterexample": "Supplied [[1,0.473i],[0,0]] is exactly idempotent and not Hermitian."
+}
