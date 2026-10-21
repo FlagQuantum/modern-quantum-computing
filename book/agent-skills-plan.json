@@ -197,13 +197,16 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-4",
         "sec-complex-vectors-operators-and-numerical-reasoning-5",
         "sec-complex-vectors-operators-and-numerical-reasoning-6",
-        "sec-single-qubit-states-and-rotations-1"
+        "sec-single-qubit-states-and-rotations-1",
+        "sec-single-qubit-states-and-rotations-7"
       ],
       "candidate_evidence": [
         "examples/foundations/closed_evolution.py",
         "examples/foundations/composing_rotations.py",
         "book/section-records/3.4.json",
-        "book/section-records/3.6.json"
+        "book/section-records/3.6.json",
+        "examples/foundations/pauli_rotations.py",
+        "book/section-records/3.5.json"
       ],
       "behavioral_evaluation": "blind agent tasks: 12/12; author cases: 53/53",
       "independent_acceptance": "pending",
