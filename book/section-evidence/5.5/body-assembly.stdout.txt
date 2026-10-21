@@ -1,0 +1,1 @@
+8body fragments and12actual allowed-gate circuits passed;exact stdout captured.

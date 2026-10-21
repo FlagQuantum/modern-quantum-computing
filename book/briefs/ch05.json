@@ -93,6 +93,30 @@
       ],
       "status": "draft",
       "next_transition": "5.5 Universal gate sets."
+    },
+    {
+      "ref": "5.5",
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-5",
+      "title": "Universal gate sets",
+      "depth": "F",
+      "requires": [
+        "sec-single-qubit-states-and-rotations-6",
+        "sec-gates-reversible-computation-and-circuit-synthesis-2"
+      ],
+      "question": "How does every finite unitary reduce constructively to continuous one-qubit gates and CNOT?",
+      "entry": "3.6 phase-tracked ZYZ;5.2 coherent controls and full target phases.",
+      "exit": "Prove two-level QR reduction and diagonal phases,construct all two-level gates using Gray paths,reduce multi-controls to controlled-one-qubit ABC and CNOT; distinguish exact continuous from finite-alphabet approximation.",
+      "worked_case": "Generic2/4/8dimensional matrices,controlledI/-I,X,complex targets,reversedGraypaths,negative controls and full complex basis verification.",
+      "boundary": "Exact continuous U(2) availability and unrestricted logical CNOT pairs;no ancilla. Numerical teaching compiler limited1–3qubits with stated residual/tolerance choices;no efficient or finite-alphabet theorem claimed.",
+      "code_plan": "Original book synthesis with actual released1qubit unitary andCX only;independent dense target multiplication and row-factor reconstruction.",
+      "independent_check": "Allbasis+complex for single/doublecontrols,orderedpairs,fulltargets,identity andphase;7invalidcontracts;IRarity inspection;6newtarget transfer runs.",
+      "transfer_task": "New dense4x4seed77 andorderedpair(010,111)seed79;fullanswers.",
+      "source_locators": [
+        "NC:4.5.1",
+        "NC:4.5.2"
+      ],
+      "status": "draft",
+      "next_transition": "5.6 Decomposing controlled and multi-qubit gates."
     }
   ]
 }

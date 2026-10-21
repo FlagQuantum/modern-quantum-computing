@@ -1,0 +1,111 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-5",
+  "ref": "5.5",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+  "depth": "F",
+  "result": "Single-qubit gates and CNOT are universal",
+  "requires": [
+    "sec-single-qubit-states-and-rotations-6",
+    "sec-gates-reversible-computation-and-circuit-synthesis-2"
+  ],
+  "assumptions": [
+    "Arbitrary finite nqubit unitary;exact continuous U(2) singlequbit gates",
+    "CNOT available on arbitrary ordered distinct logical qubits;no ancillas",
+    "Proof exact;floating-point matrices/residuals and1\u20133qubit teaching guard separate"
+  ],
+  "proof_obligations": [
+    "Complex Givens2x2 unitarity and column annihilation;finite upper-triangular reduction",
+    "Unitary upper-triangular matrix diagonal by orthogonality induction;phase-preserving factor order",
+    "One-control ABC with phase on control and2CNOTs",
+    "Unitary square-root existence;decreasing-control recursion with exponent2ab",
+    "SimpleGraypath pair permutation;negative controls andorderedlocal XUX",
+    "Diagonal phase factors andchronological assembly;finite universal circuit terminates",
+    "Continuous exact versus countable finite-alphabet words;no discrete-density theorem inferred"
+  ],
+  "formula_code_units": [
+    "formula-code-5-5-statement",
+    "formula-code-5-5-elimination",
+    "formula-code-5-5-controlled",
+    "formula-code-5-5-multiple",
+    "formula-code-5-5-gray",
+    "formula-code-5-5-assembly",
+    "formula-code-5-5-validation",
+    "formula-code-5-5-scope"
+  ],
+  "sources": [
+    {
+      "locators": [
+        "NC:4.5.1",
+        "NC:4.5.2"
+      ],
+      "edition": "10th Anniversary Edition (2010)",
+      "current_session_inspection": "Assigned background;no fresh localPDF inspection claimed"
+    },
+    {
+      "source": "Installed released FlagQuantum0.3.1 onequbit customunitary,CX,IR andexecution",
+      "evidence": "book/section-evidence/5.5/api-inspection.json"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/universal_gates.py",
+    "command": "python examples/foundations/universal_gates.py",
+    "prose_check_command": "python scripts/check_universal_gates_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 106,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 12,
+    "separate_transfer_circuits": 6,
+    "execution_ledger": {
+      "complete": 106,
+      "body_assembly": 12,
+      "body_plus_complete_checker": 118,
+      "separate_transfer": 6,
+      "total_section55_circuits": 242,
+      "note": "Initial-complete andcomplete files record the same passing106run,not two executions.Earliersection regressions/futureCI separate.No independent agent review claimed."
+    },
+    "checks": [
+      "25singlecontrol,18doublecontrol,36orderedGraypair,17general2/4/8dimension,10identity/phase circuits",
+      "Allbasiscolumns+complex vector;fullmatrix QR factors independently reconstructed",
+      "ActualIR onlyonequbit orCX;no targetmulti-qubit matrix submitted",
+      "7invalidcontracts,8actualbody exactstdout andcompleteoutput",
+      "6newdense/orderedpair transfer circuits"
+    ],
+    "tolerance": "Fullvector atol1e-9,rtol0;localunitarity/root/QR residual checks1e-11;ZYZ endpoint1e-13.Floatdiagonalphase choice androot eigenvectorQR explicit.No phasealignment,backendfallback orapproximate simulator.",
+    "unplanned_execution_failures": "None",
+    "limitations": "Exactcontinuous existence theorem;not efficientcompiler/discretealphabet density.No ancillas,hardware routing,shots,noise or certifiednumericalerror bound.",
+    "script_sha256": "979d2da931317195c371b91e1a72120886108022535543dfeef4f2fac53048be"
+  },
+  "assessment": {
+    "tasks": [
+      "5.5-A newtarget transfer",
+      "5.5-B controlrecursion/noancilla",
+      "5.5-C orderedpair/matrixorder",
+      "5.5-D exact/approximate universality"
+    ],
+    "answers": "Supplied;reader trial notrun"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "106complete circuits,8actualbody fragments/12circuits and6new-target transfer circuits passed with exact stdout,fullmatrix/vector phases andallowedIRarity.Scoped5.2/5.4body/full regressions passed.Frozen curriculum/proof/baseline/skills agree.StrictMkDocs/new70page links andactualbrowser formulas passed after restoring docs runtime.Preceding5.4completeCI/deploy success confirmed.Independent reviews pending."
+  },
+  "production": {
+    "next_draft": "5.6 Decomposing controlled and multi-qubit gates",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual IAB1280x720 screenshots:Givens matrix/vector elimination andfactor order,ABC half-angle/control phase formulas,recursive-control exponent identity.No garbling or clipping in inspected regions.",
+    "documentation_runtime": "Prior temporary docs venv absent;first build could not start.Restored pinnedrequirements in/private/tmp/mqc-docs55-venv,then strictbuild andall70page links passed.Newbuild logs andpipfreeze retained;earlier stale-site link check not used as new-section validation."
+  }
+}

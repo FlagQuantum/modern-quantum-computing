@@ -1,6 +1,6 @@
 # 5. Gates, Reversible Computation, and Circuit Synthesis
 
-**Working drafts: sections 5.1–5.4 · Writing Baseline 1.0 · October 21, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 5.1–5.5 · Writing Baseline 1.0 · October 21, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-1"></span>
 
@@ -1368,4 +1368,320 @@ The first call XORs d into Y; the intervening rotation contributes its matrix en
 
 Depth **F**: the compute-copy-uncompute statement tracks every register, extends to arbitrary joint D,Y coefficients, permits complex workspace and branch phases, and explains why orthogonal basis encoding permits a nondisturbing copy while generic unknown-state cloning fails. The clean-workspace and retained-output obligations are checked separately. Assigned background: Nielsen and Chuang, 10th Anniversary Edition (2010), §3.2.5. No fresh inspection of the user-local PDF is claimed. Released FlagQuantum source/signatures and actual executions support the named gates, placement, composition and native unitary adjoints; no new compiler, reset or state-preparation API is invented.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.4.json) records author execution, exact body/full outputs and the new-angle transfer. This remains a working draft: independent mathematical and implementation reviews and reader trials are pending. No physical reset, noise, shots, hardware execution, numerical error certificate or resource-optimal scheduling is claimed. Continue, when drafted, with [5.5 Universal gate sets](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-5).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.4.json) records author execution, exact body/full outputs and the new-angle transfer. This remains a working draft: independent mathematical and implementation reviews and reader trials are pending. No physical reset, noise, shots, hardware execution, numerical error certificate or resource-optimal scheduling is claimed. Continue with [5.5 Universal gate sets](#sec-gates-reversible-computation-and-circuit-synthesis-5).
+
+
+<span id="sec-gates-reversible-computation-and-circuit-synthesis-5"></span>
+
+## 5.5 Universal gate sets
+
+A gate set is useful because compositions can express operations beyond the gates originally listed. To prove universality, we need a route from an arbitrary target unitary to a finite allowed circuit. Recognizing a few familiar circuits is not enough. This section gives a constructive route, retaining ordered basis labels and full phases at every step.
+
+Prerequisites are [3.6](ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-6), for phase-tracked single-qubit factorization, and [5.2](#sec-gates-reversible-computation-and-circuit-synthesis-2), for coherent controlled operations. We use column vectors, left matrix action and q0 as the most significant basis bit. Eight cumulative units pair the proof steps with executable calculations. The full program is [universal_gates.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/universal_gates.py), running released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. Mathematical exactness and floating-point verification are stated separately.
+
+<span id="formula-code-5-5-statement"></span>
+
+### 1. State exactly which universal set is being proved
+
+**Theorem.** On any finite register of n≥1 qubits, every unitary $U\in U(2^n)$ is a finite product of arbitrary continuous one-qubit $U(2)$ gates and CNOT gates between any distinct ordered pair of logical qubits. No auxiliary qubit is required by the construction below. The theorem permits exact real parameters and full one-qubit phases. It is an exact continuous-set existence statement, not a claim about a fixed finite gate alphabet or an efficient hardware compiler.
+
+**Proof plan.** Reduce U to diagonal form by two-level row operations; realize each two-level unitary on two arbitrary basis labels using a Gray path; realize the required multiply controlled one-qubit gate recursively; terminate the recursion with a one-control construction from one-qubit gates and CNOT. Each reduction is established below. This fills the logical gap between saying that two-level matrices suffice and actually constructing them from the allowed gates.
+
+**One-qubit starting point.** Section 3.6 supplies phase-tracked ZYZ factorization:
+
+$$
+U=e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta).
+$$
+
+The chronological calls are δ rotation, γ rotation, β rotation, followed by the scalar phase. This section's elementary gate list may store a one-qubit matrix directly: arbitrary one-qubit unitaries are precisely the continuous set in the theorem. The retained α becomes essential when a gate is controlled.
+
+**Code.** Imports are cumulative; run from the repository root in the pinned CPU complex128 environment. The numerical teaching compiler is a book helper with a one-to-three-qubit resource guard, not a FlagQuantum compiler API. Every emitted instruction is checked: a one-qubit gate or a named two-qubit CX, with no multi-qubit matrix instruction. The runner uses actual FlagQuantum statevector execution and checks returned probabilities and precision.
+
+```python
+import sys,cmath,torch
+sys.path.insert(0,'.')
+import flagquantum as fq
+from math import sqrt
+from examples.foundations import universal_gates as ug
+D=ug.D
+U1=ug.fixture(2,71)
+alpha,beta,gamma,delta=ug.zyz(U1)
+rebuilt=cmath.exp(1j*alpha)*ug.explicit('z',beta)@ug.explicit('y',gamma)@ug.explicit('z',delta)
+factors=ug.complex_factors(1)
+v,p=ug.run(ug.one(0,rebuilt),1,factors)
+torch.testing.assert_close(v,U1@ug.product_input(factors),rtol=0,atol=ug.ATOL)
+print('Continuous one-qubit base case: phase-tracked ZYZ reconstructs the full complex action')
+```
+
+```text
+Continuous one-qubit base case: phase-tracked ZYZ reconstructs the full complex action
+```
+
+<span id="formula-code-5-5-elimination"></span>
+
+### 2. Reduce an arbitrary unitary to two-level matrices
+
+**Formula.** A two-level matrix acts as a chosen 2×2 unitary G on the ordered basis pair (p,q), and as identity on every other basis vector. For complex entries a,b in rows p,q of one column, let $r=(|a|^2+|b|^2)^{1/2}$. If r>0, choose
+
+$$
+G=\frac1r\begin{pmatrix}\overline a&\overline b\\-b&a\end{pmatrix},
+\qquad G\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}r\\0\end{pmatrix}.
+$$
+
+**Proof.** The displayed product is $(|a|^2+|b|^2,-ba+ab)^T/r$. Its two rows have norm one and inner product zero, giving $GG^\dagger=I$; the reverse product follows directly as well. If b=0 no elimination is needed, including r=0. Start at column zero and eliminate its entries from bottom to top using adjacent rows (row−1,row). Continue with the next column. For an earlier column, both rows now being mixed lie below its diagonal and have zero entries, so their mixing preserves that earlier elimination. The finite procedure uses at most $N(N-1)/2$ two-level operations for N=2^n.
+
+Let their chronological row-operation matrices be $E_1,\ldots,E_L$. The result $D=E_L\cdots E_1U$ is upper triangular and unitary. Its first column has only its diagonal entry, whose modulus is one. Orthogonality with that column forces every other entry in the first row to vanish. Removing that row and column leaves an upper-triangular unitary; induction proves D is diagonal with unit-modulus entries. Therefore
+
+$$
+U=E_1^\dagger E_2^\dagger\cdots E_L^\dagger D.
+$$
+
+**Code and verification.** This reduction is classical matrix algebra, before constructing a quantum circuit. Rebuild a four-dimensional target from the recorded local factors and diagonal, checking every complex matrix entry. The code chooses unit phases from the computed diagonal and checks its residual; that finite-precision step is not a proof of exact arithmetic.
+
+```python
+U4=ug.fixture(4,73)
+records,diagonal=ug.elimination(U4)
+restored=diagonal.clone()
+for a,b,G in reversed(records):
+    torch.testing.assert_close(G.mH@G,torch.eye(2,dtype=D),rtol=0,atol=1e-11)
+    restored=ug.embedded_two(G.mH,a,b,2)@restored
+torch.testing.assert_close(restored,U4,rtol=0,atol=1e-11)
+assert len(records)<=6
+print('4x4 row elimination: unitary two-level factors and diagonal reconstruct the complete target matrix')
+```
+
+```text
+4x4 row elimination: unitary two-level factors and diagonal reconstruct the complete target matrix
+```
+
+<span id="formula-code-5-5-controlled"></span>
+
+### 3. Build a one-control unitary from two CNOT gates
+
+**Formulas.** For the full ZYZ representation above, define
+
+$$
+\begin{aligned}
+A&=R_z(\beta)R_y(\gamma/2),\\
+B&=R_y(-\gamma/2)R_z[-(\delta+\beta)/2],\\
+C&=R_z[(\delta-\beta)/2],\qquad P_\alpha=\operatorname{diag}(1,e^{i\alpha}).
+\end{aligned}
+$$
+
+Then $ABC=I$ and $AXBXC=R_z(\beta)R_y(\gamma)R_z(\delta)$. Chronologically apply C on target, CX, B on target, CX, A on target, and $P_\alpha$ on control.
+
+**Proof.** In ABC the opposite Ry half-angles cancel, while the Rz angles sum to zero. For the second identity use $XR_y(\theta)X=R_y(-\theta)$ and $XR_z(\theta)X=R_z(-\theta)$, established from the Pauli matrices in 3.5. Moving the two X factors through the middle rotations gives
+
+$$
+AXBXC=R_z(\beta)R_y(\gamma/2)R_y(\gamma/2)
+R_z[(\delta+\beta)/2]R_z[(\delta-\beta)/2].
+$$
+
+The adjacent rotations combine to the claimed product. With control zero, both CX act as I and the target sees ABC=I. With control one, it sees AXBXC and gains the missing scalar $e^{i\alpha}$ from the control phase. Thus the circuit implements the full $C(U)$, not merely a phase-equivalent target. Control superpositions follow by linearity, with no measurement.
+
+**Code and verification.** The helper emits the six allowed instructions just derived. The reference embeds U into the control-one basis pair (10,11).
+
+```python
+target=ug.fixture(2,75)
+ops=ug.controlled_one(target,0,1)
+factors=ug.complex_factors(2)
+v,p=ug.run(ops,2,factors)
+expected=ug.embedded_two(target,2,3,2)@ug.product_input(factors)
+torch.testing.assert_close(v,expected,rtol=0,atol=ug.ATOL)
+assert sum(g[0]=='cx' for g in ops)==2
+print('Controlled U: two CNOTs and one-qubit gates reproduce both complex branches including target global phase')
+```
+
+```text
+Controlled U: two CNOTs and one-qubit gates reproduce both complex branches including target global phase
+```
+
+<span id="formula-code-5-5-multiple"></span>
+
+### 4. Remove extra controls by a terminating recursion
+
+**Construction.** Suppose U acts on one target and has k≥2 positive controls. Separate the last control b from the other k−1 controls A. Let a denote the Boolean AND of A's basis values; a is notation for a condition, not an allocated qubit. Choose a unitary square root V with $V^2=U$. Such a root exists: unitary U has an orthonormal eigenbasis, and taking half of each eigenvalue phase gives a unitary V.
+
+Apply, chronologically: controlled-V from b to target; X on b controlled by all of A; controlled-V-dagger from b to target; the same controlled X on b; then V on target controlled by all of A.
+
+**Proof.** Controls A never change and b is toggled twice, hence restored. On a fixed control branch the target receives powers of the same V, so they commute. Its total exponent is
+
+$$
+b-(b\oplus a)+a=2ab.
+$$
+
+For a=0 it is zero; for a=1 it is 2b. Thus the target receives U precisely when all k controls are one, and identity otherwise. Linearity proves the coherent action. The two controlled-X operations and final controlled-V operation have k−1 controls, while the two other controlled operations have one. Recursion therefore terminates at unit 3, or at an uncontrolled one-qubit gate. It requires no ancilla and preserves every control, without assuming that a Boolean AND can be overwritten for free.
+
+**Code and verification.** The numerical root helper orthonormalizes computed eigenvectors and explicitly checks both unitarity and V²≈U. Those checks validate the floating-point fixture; the spectral argument proves root existence. Compare a two-control implementation against the full ordered pair (110,111).
+
+```python
+ops=ug.multi(target,(0,1),2)
+factors=ug.complex_factors(3)
+v,p=ug.run(ops,3,factors)
+expected=ug.embedded_two(target,6,7,3)@ug.product_input(factors)
+torch.testing.assert_close(v,expected,rtol=0,atol=ug.ATOL)
+print('Two controls reduced recursively to one-qubit gates and CNOT; all complex branch amplitudes match')
+```
+
+```text
+Two controls reduced recursively to one-qubit gates and CNOT; all complex branch amplitudes match
+```
+
+<span id="formula-code-5-5-gray"></span>
+
+### 5. Realize a two-level unitary on arbitrary basis labels
+
+**Construction.** For distinct n-bit labels a,b, form a simple Gray path $g_0=a,g_1,\ldots,g_h=b$ by flipping each differing bit once. Adjacent path states differ in one target bit. Swapping exactly such a pair is a multi-controlled X on that bit, conditioned on all other bits matching their common pattern. A zero-valued control is handled by X before and after the positive-control construction.
+
+Use adjacent swaps from $g_0$ through $g_{h-1}$, leaving b unchanged. Their product P maps a to $g_{h-1}$ and b to b. On that now-adjacent ordered pair apply the desired local U, using the common control pattern. Undo the swaps in reverse order. The full matrix is
+
+$$
+P^\dagger K P,
+$$
+
+and acts as U on the original ordered pair (a,b), leaving every other basis vector fixed.
+
+**Proof.** P is a basis permutation; conjugation transports the support of K back to (a,b). No intermediate swap touches b because the path has no repeated vertices and stops one edge before b. The adjacent pair's target bit may be one in its *first* label. The physical target matrix has local order zero,one, so in this case use XUX; otherwise use U. This preserves the declared ordered pair rather than silently reversing its rows and columns. All control patterns are realized by the positive-control recursion and one-qubit X conjugations, so every operation ultimately uses only the allowed gates.
+
+**Code and verification.** Use the deliberately reversed pair (111,000). The helper's path is 111→011→001→000, so two swaps precede the adjacent operation and two follow it. The full complex reference also verifies that untouched amplitudes remain unchanged.
+
+```python
+ops=ug.two_level(target,7,0,3)
+factors=ug.complex_factors(3)
+v,p=ug.run(ops,3,factors)
+expected=ug.embedded_two(target,7,0,3)@ug.product_input(factors)
+torch.testing.assert_close(v,expected,rtol=0,atol=ug.ATOL)
+assert all(g[0] in ('one','cx') for g in ops)
+print('Ordered pair(111,000): Gray swaps,negative controls and local XUX orientation reproduce the full two-level action')
+```
+
+```text
+Ordered pair(111,000): Gray swaps,negative controls and local XUX orientation reproduce the full two-level action
+```
+
+<span id="formula-code-5-5-assembly"></span>
+
+### 6. Assemble the diagonal and inverse factors in chronological order
+
+**Formula.** Write $D=\operatorname{diag}(d_0,\ldots,d_{N-1})$ with unit-modulus entries. For each j>0 apply the two-level diagonal diag(1,d_j) on ordered pair (0,j); also apply diag(d_0,1) on (0,1). Their product is D: the first basis amplitude gets d0, and each other amplitude gets its own d_j. These diagonal factors commute; none of the phases is discarded.
+
+From unit 2, $U=E_1^\dagger\cdots E_L^\dagger D$. Therefore the chronological gate calls are the diagonal factors, then $E_L^\dagger,\ldots,E_1^\dagger$. Each two-level factor now has an allowed-gate implementation by units 3–5. This proves the theorem in unit 1 for every finite n: the elimination, finite Gray paths and decreasing-control recursion all terminate.
+
+**Code and verification.** Compile the four-dimensional fixture from unit 2 and run every basis state plus a complex product. Compare actual statevectors directly with U times the input, without phase alignment. `compile_unitary` is this explicit book construction; it does not call a native FlagQuantum compilation service.
+
+```python
+compiled=ug.compile_unitary(U4)
+for factors in [ug.basis_factors(bits) for bits in ((0,0),(0,1),(1,0),(1,1))]+[ug.complex_factors(2)]:
+    v,p=ug.run(compiled,2,factors)
+    torch.testing.assert_close(v,U4@ug.product_input(factors),rtol=0,atol=ug.ATOL)
+assert all(len(i.wires)==1 or (len(i.wires)==2 and i.name=='cx') for i in ug.circuit(compiled,2).to_ir().instructions)
+print('General4x4 unitary: all4basis columns and a complex input agree; emitted gates are one-qubit or CX only')
+```
+
+```text
+General4x4 unitary: all4basis columns and a complex input agree; emitted gates are one-qubit or CX only
+```
+
+<span id="formula-code-5-5-validation"></span>
+
+### 7. Test the whole reduction beyond a single two-level example
+
+**Validation target.** A generic three-qubit unitary has eight input basis columns. The full example checks every column and a complex product of a deterministically generated dense fixture. This exercises multiple eliminated columns, diagonal phases, nonadjacent ordered pairs, negative controls and recursive controls together. The numerical target matrix is a classical reference; it is never submitted as a multi-qubit matrix gate in the compiled circuit.
+
+**Code and verification.** The body executes a complex input as a compact visible example. The full program additionally tests its eight basis inputs. The circuit contains 2,438 elementary logical instructions for this construction, illustrating why an existence proof is not an efficiency claim. The preparation helper also uses only one-qubit matrices; it introduces no hidden multi-qubit target gate.
+
+```python
+U8=ug.fixture(8,65)
+compiled8=ug.compile_unitary(U8)
+factors=ug.complex_factors(3)
+v,p=ug.run(compiled8,3,factors)
+torch.testing.assert_close(v,U8@ug.product_input(factors),rtol=0,atol=ug.ATOL)
+assert len(compiled8)==2438
+print('General8x8 unitary:2438one-qubit/CX instructions reproduce the complex target action')
+```
+
+```text
+General8x8 unitary:2438one-qubit/CX instructions reproduce the complex target action
+```
+
+<span id="formula-code-5-5-scope"></span>
+
+### 8. Separate phase, finite precision and finite gate alphabets
+
+**Phase check.** Although I and −I have the same isolated target probabilities, their controlled versions differ: on plus control and zero target, a final H on control yields 00 for C(I) and 10 for C(−I). The decomposition must preserve this distinction. This test also probes ZYZ endpoint branches and exact target phase conventions.
+
+**Exact theorem versus numerical checks.** The proof uses exact continuous gates and exact row operations. The code performs complex128 arithmetic, tests unitarity/root/reconstruction residuals, and uses phase-based diagonal entries after checking the row-elimination residual. Near ZYZ endpoints it uses a stated small numerical branch threshold. It does not provide an interval error certificate or exact symbolic output. Full-vector comparisons use absolute tolerance $10^{-9}$, relative tolerance zero, across the tested circuits; no phase alignment, backend fallback or approximate simulator mode is enabled. The looser comparison than the short-gate examples accounts for long gate products and multiple floating-point matrix factorizations; it is a declared finite test threshold, not a general error bound.
+
+**Finite alphabet boundary.** A fixed finite gate alphabet has only countably many finite words, whereas even single-qubit unitaries modulo global phase form an uncountable family. Hence no such alphabet exactly realizes every unitary with a finite word. Approximate universality concerns whether its closure is dense under a specified metric and precision target; it requires a separate theorem and synthesis analysis. This section proves neither that a particular finite alphabet is approximately universal nor a gate-count bound for approximating arbitrary gates.
+
+**Resource boundaries.** The proof permits any finite n but offers no efficient compilation guarantee. The numerical helper explicitly restricts general targets to one–three qubits, rejects nonunitaries rather than projecting the input onto a unitary, and requires valid ordered supports. The guard is a teaching resource choice, not a FlagQuantum qubit limit. CNOT connectivity is unrestricted at the logical level; physical routing and native-gate costs need additional compilation.
+
+**Code and verification.** Both analyzers below use the constructed one-control gate, not a native controlled-unitary API.
+
+```python
+for sign,index in ((1,0),(-1,2)):
+    ops=ug.controlled_one(sign*ug.I,0,1)+ug.one(0,torch.tensor([[1,1],[1,-1]],dtype=D)/sqrt(2))
+    v,p=ug.run(ops,2,[(1/sqrt(2),1/sqrt(2)),(1,0)])
+    expected=torch.zeros(4,dtype=D);expected[index]=1
+    torch.testing.assert_close(v,expected,rtol=0,atol=ug.ATOL)
+assert ug.RUNS==12
+print('Constructed C(I) andC(-I) remain distinguishable: analyzer outputs00 and10;12actual body circuits')
+```
+
+```text
+Constructed C(I) andC(-I) remain distinguishable: analyzer outputs00 and10;12actual body circuits
+```
+
+### Run the complete example
+
+```bash
+python examples/foundations/universal_gates.py
+python scripts/check_universal_gates_prose.py
+```
+
+The complete program runs **106 actual circuits**. Twenty-five runs check five one-control targets on all basis inputs and a complex product, including I, −I, X and full complex phase. Eighteen check two double-control targets. Thirty-six check four ordered three-qubit two-level pairs, including reverse orientation and nonadjacent basis labels. Seventeen check generic targets of dimensions two, four and eight on all basis columns and a complex product; the classical row-elimination factors are independently reconstructed before synthesis. Ten further runs check identity and a nontrivial global-phase identity. Seven invalid helper contracts are rejected. Every emitted circuit is inspected to contain only one-qubit gates and named CX gates.
+
+The eight cumulative body fragments run twelve additional circuits and compare their printed output exactly. A separate new-target transfer runs six circuits as described below. These tests cover full complex coordinates and preserve global phase; finite fixtures are implementation evidence, not a replacement for the exact finite constructive proof.
+
+Expected output of the complete program:
+
+```text
+5single-control targets includingI,-I,X,complex phase:allbasis andcomplex inputs passed.
+2double-control targets:recursive square-root construction checked on all8basis andcomplex input.
+4ordered two-level pairs:Gray paths,negative controls and reversed target orientation checked.
+2x2dense unitary:QR reconstruction andallowed-gate circuit passed;3logical gates.
+4x4dense unitary:QR reconstruction andallowed-gate circuit passed;108logical gates.
+8x8dense unitary:QR reconstruction andallowed-gate circuit passed;2438logical gates.
+Identity/global-phase cases and7invalid contracts checked;106actual CPUcomplex128 circuits.
+Numerical fullvector atol1e-9,rtol0;no phasealignment,no native multi-qubit matrix gate or ancilla.
+Constructive existence only;1-3qubit memory guard,not an efficientcompiler or finite-alphabet synthesis claim.
+```
+
+### Understanding checks and transfer exercises
+
+**5.5-A — New target transfer.** Generate a new four-dimensional unitary with the pinned fixture seed 77, compile it, and compare all basis columns plus a complex product. Separately use a new 2×2 target from seed 79 on ordered pair (010,111). Which gates can be emitted, and which complete matrix is the reference?
+
+**5.5-B — Recursion without a hidden ancilla.** In unit 4, a is the AND of k−1 basis values. Where is a stored physically? Evaluate $b-(b\oplus a)+a$ on all four Boolean pairs and explain why b is restored.
+
+**5.5-C — Ordered support and matrix order.** Why is XUX needed when the first adjacent label has target bit one? Why are the inverse row factors emitted in reverse chronological order after D?
+
+**5.5-D — Exact and approximate universality.** Why does the theorem not imply exact finite-word synthesis from a finite alphabet? Does checking a finite list of matrices establish that a gate set is dense, or certify an error bound for all targets?
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** Only arbitrary one-qubit matrices and named CNOT gates may appear; a single native multi-qubit target matrix would bypass the reduction being tested. Compare the compiled statevector with the original dense U times the same input. For the ordered-pair transfer compare with the identity matrix whose (2,7) rows/columns are replaced by the local 2×2 target in that order. The separate author transfer performs four basis and one complex execution for the new dense target, then one complex ordered-pair execution: six actual circuits. The reference matrices are the inputs to synthesis, not reconstructed from the emitted instruction list. This is an author transfer, not independent-agent review.
+
+**B.** It is not stored in an auxiliary register; it is a condition used to analyze a computational-basis branch. For (a,b)=(0,0),(0,1),(1,0),(1,1), the exponent is respectively 0,0,0,2. The two controlled X operations both toggle b by a, giving $b\oplus a\oplus a=b$. Lower-control implementations replace these conditional operations recursively; the argument does not assume an unavailable multi-control primitive.
+
+**C.** The local matrix API orders its target bit as zero,one. Reversing that local coordinate order uses the permutation X, so $M_{\mathrm{local}}=XUX$ realizes U in ordered coordinates one,zero. Likewise, $D=E_L\cdots E_1U$ implies $U=E_1^\dagger\cdots E_L^\dagger D$; rightmost factors act first, so chronological calls begin with D and then $E_L^\dagger$ through $E_1^\dagger$. These are coordinate/order requirements, not optional phase conventions.
+
+**D.** The available one-qubit gates here form an uncountable continuous family. A finite alphabet has only countably many finite words, so exact representation of every member of an uncountable unitary family is impossible. A countable set can nevertheless have dense closure; density and quantitative approximation require their own proofs. Neither finitely many passing fixtures nor this continuous-set theorem proves a discrete-alphabet density theorem or a certified numerical error bound.
+
+</details>
+
+### Sources, depth and next step
+
+Depth **F**: the two-level row-elimination proof, upper-triangular unitary diagonalization, full diagonal phase assembly, one-control ABC construction, unitary-root control recursion, Gray-path reduction and ordered-target orientation together establish continuous one-qubit/CNOT universality. Numerical endpoint decisions, root and diagonal residuals are explicitly separated from that exact proof. Assigned background: Nielsen and Chuang, 10th Anniversary Edition (2010), §§4.5.1–4.5.2, with 3.6's phase-tracked factorization as the local prerequisite. No fresh inspection of the user-local PDF is claimed. Installed released FlagQuantum unitary/CX instruction semantics and actual execution were checked; the teaching compiler is original repository code, not a claimed native API.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.5.json) records author execution, actual body/full outputs and the new-target transfer. Independent mathematical review, implementation review and reader trials are pending; this remains a working draft. No ancilla, approximate simulator, hardware routing, efficient general compilation or finite-alphabet universality theorem was used or claimed. Continue, when drafted, with [5.6 Decomposing controlled and multi-qubit gates](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-6).

@@ -1,0 +1,7 @@
+{
+  "initial_build": "Could not start;temporary docs environment missing",
+  "observed_tool_error": "zsh:7:no such file or directory:/private/tmp/modern-quantum-book-docs-venv/bin/python",
+  "recovery": "Created/private/tmp/mqc-docs55-venv withsciencePython3.12andinstalled unchangedrequirements-docs.txt",
+  "final_build": "passed;actualbuild.stdout/stderr andnewlinks.stdout retained",
+  "note": "No textbook code failure or lowered proof depth;no stale-site link check counted as newvalidation."
+}

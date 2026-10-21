@@ -1,0 +1,9 @@
+5single-control targets includingI,-I,X,complex phase:allbasis andcomplex inputs passed.
+2double-control targets:recursive square-root construction checked on all8basis andcomplex input.
+4ordered two-level pairs:Gray paths,negative controls and reversed target orientation checked.
+2x2dense unitary:QR reconstruction andallowed-gate circuit passed;3logical gates.
+4x4dense unitary:QR reconstruction andallowed-gate circuit passed;108logical gates.
+8x8dense unitary:QR reconstruction andallowed-gate circuit passed;2438logical gates.
+Identity/global-phase cases and7invalid contracts checked;106actual CPUcomplex128 circuits.
+Numerical fullvector atol1e-9,rtol0;no phasealignment,no native multi-qubit matrix gate or ancilla.
+Constructive existence only;1-3qubit memory guard,not an efficientcompiler or finite-alphabet synthesis claim.

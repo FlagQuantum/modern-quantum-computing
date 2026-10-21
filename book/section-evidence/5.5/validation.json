@@ -1,0 +1,25 @@
+{
+  "section": "5.5",
+  "state": "author-verified draft",
+  "complete_circuits": 106,
+  "body_fragments": 8,
+  "body_circuits": 12,
+  "separate_transfer_circuits": 6,
+  "execution_ledger_total": 242,
+  "invalid_contracts": 7,
+  "example_execution_failures": "None",
+  "build_runtime_recovery": {
+    "initial_build": "Could not start;temporary docs environment missing",
+    "observed_tool_error": "zsh:7:no such file or directory:/private/tmp/modern-quantum-book-docs-venv/bin/python",
+    "recovery": "Created/private/tmp/mqc-docs55-venv withsciencePython3.12andinstalled unchangedrequirements-docs.txt",
+    "final_build": "passed;actualbuild.stdout/stderr andnewlinks.stdout retained",
+    "note": "No textbook code failure or lowered proof depth;no stale-site link check counted as newvalidation."
+  },
+  "regressions": "5.2/5.4scopedbody/fullpassed",
+  "strict_build": "passed after runtime restoration",
+  "links": "New70pages;alllocal links/fragments resolve;IDsunique",
+  "formula_display": "Passed actual IAB1280x720 screenshots:Givens matrix/vector elimination andfactor order,ABC half-angle/control phase formulas,recursive-control exponent identity.No garbling or clipping in inspected regions.",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

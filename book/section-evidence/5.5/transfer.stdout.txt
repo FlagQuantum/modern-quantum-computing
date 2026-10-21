@@ -1,0 +1,1 @@
+New4x4target(seed77):4basis+complex;newordered pair(010,111),seed79:complex;6actual allowed-gate circuits passed.
