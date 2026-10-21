@@ -312,7 +312,7 @@
         "sec-single-qubit-states-and-rotations-1"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md"
     },
     {

@@ -53,6 +53,7 @@ nav:
       - "Chapter 1: What Quantum Computing Computes": chapters/ch-what-quantum-computing-computes.md
       - "Chapter 2: Complex Vectors, Operators, and Numerical Reasoning": chapters/ch-complex-vectors-operators-and-numerical-reasoning.md
       - "Chapter 3: Single-Qubit States and Rotations": chapters/ch-single-qubit-states-and-rotations.md
+      - "Chapter 4: Composite Systems, Tensor Products, and Qubit Ordering": chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md
   - Starter chapters:
       - Measurement and expectations: chapters/measurement.md
       - Circuits and gradients: chapters/gradients.md

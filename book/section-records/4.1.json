@@ -1,0 +1,133 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+  "ref": "4.1",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+  "question": "How does a finite tensor-product construction produce an mn-dimensional orthonormal product basis and the amplitudes of independent pure-state preparations?",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-2",
+    "sec-complex-vectors-operators-and-numerical-reasoning-3",
+    "sec-single-qubit-states-and-rotations-1"
+  ],
+  "depth": "F",
+  "result": "Tensor-product dimension and product-basis orthonormality",
+  "entry": "Exact2.2 inner products/orthogonality,2.3 bases/linear maps and3.1 pure-state postulate. Define finite coefficient model and physical composition assumption locally.",
+  "exit": "Construct bilinear products and product basis, prove dimension/orthonormality and inner-product/norm factorization; derive ordered complex amplitudes and distinguish product vectors from general joint vectors.",
+  "assumptions": [
+    "Positive finite dimensions m,n and chosen ordered orthonormal bases",
+    "Formal coefficient-array construction, bilinear vector product and coefficient inner product",
+    "Independent pure preparations in a distinguishable-qubit register use tensor-product composition as a separately stated physical assumption",
+    "Finite joint computational-basis Born rule explicitly stated; no measurement update imported",
+    "Qubit0=A andqubit1=B; pair enumeration first factor then second, with generic register indexing deferred to4.2"
+  ],
+  "symbols": {
+    "V,W,m,n": "Factor inner-product spaces and dimensions",
+    "f_i,g_j,E_ij": "Ordered factor bases and product-basis labels",
+    "a_i,b_j,z_ij": "Factor coefficients and arbitrary joint coefficients",
+    "F,Ftilde": "Bilinear rule and its unique linear extension",
+    "Q": "Explicit unitary matrix whose first column prepares the supplied qubit state"
+  },
+  "local_start_checks": {
+    "brief": "Prepared before prose; exact2.2/2.3/3.1 prerequisites, F depth and NC:2.1.7 retained.",
+    "prerequisite": "Inner products/bases/maps and unit qubit vectors supplied by usable drafts; no3.4/3.7 or Chapter4later dependency imported. Physical composition assumption and prep-matrix column proof supplied locally.",
+    "source": "Consulted cached user-supplied NC printed71\u201374 and supplementary93\u201394; finite Born-rule source84\u201385 already consulted for3.1. No third-party text/images uploaded.",
+    "independent_reference": "Hand complex product, Python scalar nested loops and inner products versus torch.kron/Gram and released single/joint preparation states.",
+    "scope": "No frozen435-section/50-chapter/7-volume/16-batch changes;2x3fixtures mathematics only; PDF sample unchanged."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.1.7",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        71,
+        72,
+        73,
+        74
+      ],
+      "use": "Bilinearity2.42\u20132.44, product inner product2.49 and Kronecker representation2.50\u20132.51; expanded finite construction/proofs are original."
+    },
+    {
+      "supplementary": "NC section2.2.8, printed93\u201394",
+      "use": "Separate physical composition assumption, especially Postulate4 on94."
+    },
+    {
+      "supplementary": "NC section2.2.3, printed84\u201385",
+      "use": "Finite-basis Born rule, already consulted in3.1; not derived from tensor algebra."
+    },
+    {
+      "supplementary": "Released FlagQuantum0.3.1 and PyTorch2.13.0 execution",
+      "use": "Actual generic unitary per-qubit preparation/run/probabilities/statevector, one-dimensional torch.kron; no qutrit API used."
+    }
+  ],
+  "proof_obligations": [
+    "Construct finite formal array space and bilinear product coefficients",
+    "Prove unique linear extension of any bilinear rule and construction isomorphism by uniqueness",
+    "Verify coefficient inner product and product-basis delta identity",
+    "Spanning plus inner-product independence gives dimension mn",
+    "Derive factorized product inner product and norm, including zero factors",
+    "State physical composition/Born assumptions separately; derive independent joint probabilities",
+    "Ordered complex Kronecker example with negative phase term, unwanted conjugation witness",
+    "General joint-vector nonfactorability distinguished from basis spanning",
+    "Prep matrix normalized orthogonal columns justify ideal API input without later local-operator theorem"
+  ],
+  "implementation": {
+    "path": "examples/foundations/tensor_spaces.py",
+    "command": "python examples/foundations/tensor_spaces.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "architecture": "arm64",
+      "system": "Darwin",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_run": "passed",
+    "dependencies": "Pinned requirements-examples.txt; genuine released FlagQuantum wheel in existing mqc-writing-venv with shared Torch support provenance recorded in1.2",
+    "checks": [
+      "All6C2xC3 product basis labels/order and Gram identity",
+      "243complex2x3 pairs including zeros: Python scalar product versus torch.kron, both distributive laws/scalar bilinearity, inner-product and norm factorization",
+      "Separate single-qubit preparations verified before actual joint independent preparation",
+      "Hand joint vector(3,3i,4i,-4)/(5sqrt2), scalar/kron references, probabilities.18,.18,.32,.32 and norm",
+      "All4two-qubit basis preparations verify fixed pair ordering",
+      "Wrong conjugation has same norm/probabilities but orthogonal wrong state; reversed order changes array",
+      "Nonproduct coefficient constraint witness",
+      "6invalid preparation vectors: zero, nonunit, wrongshape/dtype, NaN, infinity",
+      "Finite CPU complex128 states andfloat64 probabilities with batch1x2or1x4; no hidden fallback/approximation",
+      "7 cumulative inline formula-to-code fragments: executed exact outputs, including nontrivial overlap -4-13j, norm squared250 and conjugation witness"
+    ],
+    "tolerance": "atol1e-12, rtol0 for bounded tensor/state checks; exact scalar identities on integer-complex fixtures; no automatic normalization",
+    "limitations": "2x3grid is mathematical only; actual simulator uses two qubits. No qutrit execution, entangling preparation, hardware or shot data. Local-operator tensor rule deferred to4.3.",
+    "expected_output_check": "Exact complete-program output and all7inline fragment outputs passed; persistent check added to CI.",
+    "script_sha256": "389edffb3642b039a8c2c6235f13477d418b8bfa49abc35a21c47cca59d26f9f",
+    "prose_check_command": "python scripts/check_tensor_spaces_prose.py"
+  },
+  "assessment": {
+    "amplitudes": "4.1-A",
+    "orthogonality": "4.1-B",
+    "implementation_debugging": "4.1-C",
+    "space_vs_product": "4.1-D",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Complete example and 7 cumulative body fragments executed with exact displayed-output comparisons; strict MkDocs build, 58-page local-link/anchor checks and actual browser inspection passed. CI/deployed checks reported separately after publication.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 2766,
+    "page_status": "Unmeasured section envelope; equations/construction and code table require later print/workload calibration without lowering F depth.",
+    "next_draft": "4.2 Registers, labels, and basis indices",
+    "pdf": "Existing PDF sample edition and release version unchanged.",
+    "formula_display": "Actual local browser inspection: coefficient definition/bilinearity, delta identities/dimension and complex column vectors rendered; no raw LaTeX/error found in full accessibility text.",
+    "formula_to_code_audit": "book/formula-to-code-audit.json: existing-draft presentation gaps recorded, not claimed repaired;4.1 now uses adjacent implementation/output units."
+  }
+}

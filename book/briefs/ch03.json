@@ -23,7 +23,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
     },
     {
       "ref": "3.2",
@@ -46,7 +46,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
     },
     {
       "ref": "3.3",
@@ -70,7 +70,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
     },
     {
       "ref": "3.4",
@@ -93,7 +93,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-6"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
     },
     {
       "ref": "3.5",
@@ -117,7 +117,7 @@
         "sec-single-qubit-states-and-rotations-4"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
     },
     {
       "ref": "3.6",
@@ -139,7 +139,7 @@
         "sec-single-qubit-states-and-rotations-5"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
     },
     {
       "ref": "3.7",
@@ -164,7 +164,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-8"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
     }
   ]
 }

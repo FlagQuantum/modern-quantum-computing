@@ -1,0 +1,30 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "scope": "Chapter4 authoring briefs prepared in queue order; independent acceptance pending",
+  "sections": [
+    {
+      "ref": "4.1",
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+      "title": "Tensor-product spaces and basis states",
+      "question": "How does a finite tensor-product construction produce an mn-dimensional orthonormal product basis and the amplitudes of independent pure-state preparations?",
+      "entry": "Exact2.2 inner products/orthogonality,2.3 bases/linear maps and3.1 pure-state postulate. Define finite coefficient model and physical composition assumption locally.",
+      "exit": "Construct bilinear products and product basis, prove dimension/orthonormality and inner-product/norm factorization; derive ordered complex amplitudes and distinguish product vectors from general joint vectors.",
+      "worked_case": "A=(3/5,4i/5), B=(1,i)/sqrt2; joint amplitudes(3,3i,4i,-4)/(5sqrt2), probabilities.18,.18,.32,.32 in00,01,10,11 order.",
+      "boundary": "F depth. Finite distinguishable-subsystem register model; no generic bit-string index theorem, local-operator Kronecker rule, SWAP or entanglement classification imported.2x3 fixtures are mathematics only, not a qutrit API claim.",
+      "code_plan": "Independent Python nested-loop coefficient product versus torch.kron; product-basis Gram,243complex2x3 fixtures with bilinear/inner-product checks; actual released FlagQuantum0.3.1 separate local preparations and joint state.",
+      "independent_check": "Hand complex amplitude vector,6basis rows/Gram,243grid products including zeros, conjugation/order mistake witnesses, all4two-qubit basis preparations, invalid preparation vectors.",
+      "transfer_task": "Expand a different complex product, prove inner-product factorization consequences, diagnose reversed factors/conjugation, disprove factorability of a specified joint state; full answers.",
+      "source_locators": [
+        "NC:2.1.7"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-2",
+        "sec-complex-vectors-operators-and-numerical-reasoning-3",
+        "sec-single-qubit-states-and-rotations-1"
+      ],
+      "status": "draft",
+      "next_transition": "4.2 Registers, labels, and basis indices."
+    }
+  ]
+}
