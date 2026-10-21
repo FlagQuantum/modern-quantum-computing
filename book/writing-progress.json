@@ -411,6 +411,16 @@
       "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
       "record": "book/section-records/6.4.json",
       "author_execution": "passed: Python 3.12.14, FlagQuantum 0.3.1, PyTorch 2.13.0, CPU complex128; 54 complete/10 body/14 transfer; actual unitary analyzers and native exact probabilities"
+    },
+    "sec-measurement-expectation-values-and-statistical-estimation-5": {
+      "state": "draft",
+      "brief": "book/briefs/ch06.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+      "record": "book/section-records/6.5.json",
+      "author_execution": "passed: Python 3.12.14, FlagQuantum 0.3.1, PyTorch 2.13.0, CPU complex128; 51 complete/7 body/14 transfer; native meter dilation and explicitly classical pure-input instrument branches"
     }
   },
   "existing_pilots": [

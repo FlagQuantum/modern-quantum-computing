@@ -1,0 +1,118 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-measurement-expectation-values-and-statistical-estimation-5",
+  "ref": "6.5",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+  "depth": "P",
+  "result": "POVM normalization and conditional measurement-operator rule",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-1",
+    "sec-measurement-expectation-values-and-statistical-estimation-2",
+    "sec-complex-vectors-operators-and-numerical-reasoning-4"
+  ],
+  "assumptions": [
+    "Normalized pure global inputs; finite positive effects summing to identity.",
+    "Declared square measurement operators, one or more hidden operators per reported outcome.",
+    "Generalized physical probability/update rules explicitly postulated; pure-input operational instrument description only."
+  ],
+  "proof_obligations": [
+    "Derive POVM positivity/normalization consequences without imposing projector identities.",
+    "Derive M-dagger M effect and pure branch norm/update consistency.",
+    "Show same effects for all inputs but different subsequent conditional predictions.",
+    "Derive native Ry/CRy zero-meter realization and optional coherent meter-controlled X.",
+    "Derive genuine trine POVM normalization and scalar probabilities.",
+    "Keep coarse hidden alternatives as ensembles and derive subsequent-event joint probabilities.",
+    "Show hidden-index unitary mixing preserves instrument predictions, so operator lists are not unique.",
+    "Separate impossible, rare and numerically unresolved branches; defer general mixed instrument maps/composition to 9.7."
+  ],
+  "formula_code_units": [
+    "formula-code-6-5-effects",
+    "formula-code-6-5-operators",
+    "formula-code-6-5-same-effects",
+    "formula-code-6-5-dilation",
+    "formula-code-6-5-trine",
+    "formula-code-6-5-instrument",
+    "formula-code-6-5-boundaries",
+    "formula-code-6-5-support"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.2.3",
+      "edition": "10th Anniversary Edition (2010)",
+      "printed_page_start": 84
+    },
+    {
+      "locator": "NC:2.2.6",
+      "edition": "10th Anniversary Edition (2010)",
+      "printed_page_start": 90
+    },
+    {
+      "author": "John Preskill",
+      "url": "https://www.preskill.caltech.edu/ph219/chap3_15.pdf",
+      "served_header_update": "October 2018",
+      "locator": "Section 3.1.2, equations (3.23)-(3.31), PDF pages 9-11",
+      "inspection": "Official author public PDF inspected; assigned NC locators retained without claiming fresh user-local PDF inspection."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/generalized_measurements.py",
+    "command": "python examples/foundations/generalized_measurements.py",
+    "prose_check_command": "python scripts/check_generalized_measurements_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 51,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 7,
+    "separate_transfer_circuits": 14,
+    "execution_ledger": {
+      "complete": 51,
+      "body_assembly": 7,
+      "body_plus_complete_checker": 58,
+      "separate_transfer": 14,
+      "total_section65_circuits": 130,
+      "note": "Previous-section regressions and future remote CI are separate. Final wording qualifications preserve all Python/text fragments byte-for-byte; no extra circuits."
+    },
+    "checks": [
+      "42 two-qubit weak realizations: strengths 0/.35/1, seven inputs, two updates.",
+      "7 actual native input preparations with classical trine scalar/effect/operator checks.",
+      "2 local system readouts compare identity versus hidden-Z coarse instruments.",
+      "14 fresh transfers: twelve weak dilations and two new trine inputs.",
+      "10 invalid contracts; zero, positive 1e-20, and squared-norm underflow branch boundaries."
+    ],
+    "tolerance": "Absolute 1e-12, relative zero. No clipping, input normalization repair, phase alignment or hidden vector averaging; no rare-event relative-error/interval certificate.",
+    "unplanned_example_execution_failures": "None",
+    "limitations": "Native coherent unitary dilation and exact computational probabilities, not a dedicated POVM/instrument endpoint or sampled collapse. Trine and general operator groups are explicit classical predictions. General mixed-input instrument maps remain in 9.7; dense same-input/output dimension 1-4-qubit teaching guard is not a FlagQuantum limit.",
+    "script_sha256": "9ff793e17557a956627bcdd48d3ae20d61d65f701760344c85e58042cf124d11"
+  },
+  "assessment": {
+    "tasks": [
+      "6.5-A fresh weak instrument",
+      "6.5-B new trine input",
+      "6.5-C hidden alternatives and representation",
+      "6.5-D implementation versus physical measurement"
+    ],
+    "answers": "Supplied; reader trial not run."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "51 complete-program circuits, eight exact-output body units/seven native circuits, 14 new transfer cases and scoped 6.4 body/full regression passed. Strict new website build and all 71 page local links passed. Actual browser including expanded answers passed. Frozen section scope/depth/prerequisites unchanged."
+  },
+  "production": {
+    "next_draft": "6.6 From exact probabilities to samples",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Actual local IAB 1280x720 screenshots checked effects/M-dagger-M and conditional-state normalization, trine effects/scalar probabilities, hidden-operator unitary-mixing equality, and expanded exercise answers. No garbling or clipping in inspected formulas.",
+    "final_wording": "Clarified that the unmeasured meter retains joint coherence and local statistics do not prove a sampled/discarded classical record. All Python/text fragments stayed byte-identical; no unnecessary circuit rerun."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "runtime": {
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0",
+    "numpy": "2.5.4"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "run": {
+    "signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+    "source_sha256": "a9b43ad881e7b3a32433a04dae54a0bf9978ca99bc5dbb815405ee1e85493b68"
+  },
+  "probabilities": {
+    "signature": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | None | Omitted' = OMITTED) -> 'OutputRequest'",
+    "source_sha256": "dfedaf836a31c8e8d3bfbae12b8912f0e8ae839f96c87c93beee6a4a9daf1376"
+  },
+  "MeasurementResult": {
+    "signature": "(kind: 'str', qubits: 'tuple[int, ...]', value: 'MeasurementValue', shots: 'int | None' = None, metadata: 'Mapping[str, Any]' = <factory>, statistics: 'Mapping[str, Any]' = <factory>) -> None",
+    "source_sha256": "7e77b6927cffaddcb2631ed7d7773af4c642da8f4a15a230d41d9778c9fbd4c0"
+  },
+  "ry": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "cry": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "cx": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "unitary": {
+    "signature": "(self, *qubits: 'int', unitary: 'Any', name: 'str' = 'any') -> \"'Circuit'\"",
+    "source_sha256": "96337b06d545c524e778dd66a635d7a78266cb3092e73138fd7692ce6dd7dfc8"
+  },
+  "public_surface": {
+    "named_povm_instrument_exports": [],
+    "matching_circuit_methods": []
+  },
+  "example_weak_ir": "(Instruction(name='ry', wires=(1,), params={'theta': 0.9272952180016123}, matrix=None, metadata={}), Instruction(name='cry', wires=(0, 1), params={'theta': 1.2870022175865685}, matrix=None, metadata={}), Instruction(name='cx', wires=(1, 0), params={}, matrix=None, metadata={}))",
+  "note": "Static API/source inspection and circuit IR construction only here, zero simulation executions. Actual Ry/CRy/CX dynamics and result shapes recorded in body/complete/transfer. Existing noise Kraus code not invoked or asserted to be an outcome-indexed instrument endpoint."
+}

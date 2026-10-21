@@ -1,0 +1,3 @@
+12 fresh weak-instrument transfers passed: two strengths, three complex inputs, both updates, explicit scalar joint amplitudes and equal meter probabilities.
+2 new native trine-input preparations passed against closed amplitudes, scalar probabilities and effect/operator consistency.
+14 actual CPU complex128 circuits; author transfer, not independent review, reader trial or general native instrument execution.

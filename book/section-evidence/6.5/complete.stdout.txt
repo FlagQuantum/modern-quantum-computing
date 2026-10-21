@@ -1,0 +1,5 @@
+42 two-qubit weak-instrument circuits: three strengths including 0/1, seven inputs and two updates with identical meter probabilities passed.
+7 native single-qubit preparations: genuine three-outcome trine effects and pure measurement-operator branches checked classically against scalar formulas.
+2 native joint-system readouts: one coarse effect I can preserve or destroy later interference; hidden-operator unitary mixing preserves the instrument predictions.
+10 malformed contracts rejected; impossible/positive rare/underflow branches distinguished without clipping or vector averaging.
+51 actual CPU complex128 circuits; native unitary dilation/readout plus explicitly labelled classical branch analysis, not a dedicated POVM/instrument or sampled-collapse API.

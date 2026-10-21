@@ -161,5 +161,11 @@
     "command": "python scripts/check_basis_measurement_prose.py",
     "record": "book/section-records/6.4.json",
     "status": "author-verified draft"
+  },
+  "new_section_6_5": {
+    "units": 8,
+    "command": "python scripts/check_generalized_measurements_prose.py",
+    "record": "book/section-records/6.5.json",
+    "status": "author-verified draft"
   }
 }

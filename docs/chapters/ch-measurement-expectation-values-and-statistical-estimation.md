@@ -1,6 +1,6 @@
 # 6. Measurement, Expectation Values, and Statistical Estimation
 
-**Working drafts: sections 6.1–6.4 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
+**Working drafts: sections 6.1–6.5 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
 
 <span id="sec-measurement-expectation-values-and-statistical-estimation-1"></span>
 
@@ -1489,4 +1489,429 @@ Expected output of the complete program:
 
 The frozen source target is Nielsen and Chuang, 10th Anniversary Edition (2010), §1.3.3, “Measurements in bases other than the computational basis,” beginning at printed page 22. Its assigned locator is retained without claiming fresh inspection of the user-local textbook PDF. For the imported finite spectral/Born setup, [Preskill's Caltech Chapter 2, §2.1](https://www.preskill.caltech.edu/ph219/chap2_15.pdf), equations (2.4)–(2.7), PDF page 5, was checked; its served header says July 2015. The analyzer-direction, X/Y, label and register derivations are given explicitly here.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.4.json) keeps author execution distinct from independent mathematical/implementation review and reader trials, which remain pending. Continue, when drafted, with [6.5 Generalized measurements and instruments](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-5).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.4.json) keeps author execution distinct from independent mathematical/implementation review and reader trials, which remain pending. Continue with [6.5 Generalized measurements and instruments](#sec-measurement-expectation-values-and-statistical-estimation-5).
+
+<span id="sec-measurement-expectation-values-and-statistical-estimation-5"></span>
+
+## 6.5 Generalized measurements and instruments [Advanced]
+
+Projectors describe an important measurement model, but not every measurement probability is a projection onto an orthogonal subspace. Moreover, probabilities do not determine the disturbance caused by an apparatus. We now distinguish three objects that are sometimes all informally called “the measurement.”
+
+| Object | What is specified? | What is not determined by that object alone? |
+|---|---|---|
+| POVM effects $E_a$ | Probabilities for the reported labels a on each input | The conditional output state |
+| Measurement operators $K_{a,k}$ | One representation of an outcome's finer update branches | A unique physical implementation or unique operator representation |
+| Instrument | The outcome-indexed operational rule for probabilities and subsequent state-dependent predictions | A unique choice of operators representing that rule |
+
+Our prerequisites are [6.1](#sec-measurement-expectation-values-and-statistical-estimation-1), [6.2](#sec-measurement-expectation-values-and-statistical-estimation-2) and [2.4](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-4). Depth **P** means that the generalized probability/update rules are stated as physical postulates, with their mathematical consistency derived. Inputs here are normalized **pure global states** on a finite space; the code uses square measurement operators on that same input/output space. We describe hidden branches as probability-weighted ensembles. General mixed-input instrument maps and their composition remain in [9.7](../section-plans/02-information.md#sec-quantum-channels-and-their-representations-7), after the density-operator foundations.
+
+The examples use FlagQuantum 0.3.1/PyTorch 2.13.0, CPU complex128, absolute implementation tolerance $10^{-12}$ and relative tolerance zero. Supported unitary gates actually prepare states and couple an auxiliary meter qubit. Explicit classical code computes effects and conditional branches; it does not invent a native POVM/instrument request or claim a sampled collapse.
+
+<span id="formula-code-6-5-effects"></span>
+
+### 1. A POVM specifies probabilities, without specifying an update
+
+**Postulate.** A finite positive operator-valued measure, or POVM, is a family of effects with declared classical labels a satisfying
+
+$$
+E_a^\dagger=E_a,\qquad E_a\ge0,\qquad \sum_aE_a=I.
+$$
+
+Positivity means $\langle v|E_a|v\rangle\ge0$ for every vector v. On a normalized pure input ψ, its probability rule is
+
+$$
+p(a\mid\psi)=\langle\psi|E_a|\psi\rangle.
+$$
+
+**Consistency derivation.** Positivity gives nonnegative probabilities; summing them gives $\langle\psi|I|\psi\rangle=1$. Also $I-E_a=\sum_{b\ne a}E_b\ge0$, so every effect lies between zero and I. None of these conditions requires $E_a^2=E_a$ or orthogonality of different effects. Projective measurement is the special case where the effects are orthogonal projectors.
+
+For a dimensionless strength $0\le\kappa\le1$, consider
+
+$$
+E_0=\frac{I+\kappa Z}{2},\qquad E_1=\frac{I-\kappa Z}{2}.
+$$
+
+Their diagonal eigenvalues are $(1\pm\kappa)/2$, proving positivity and completeness directly. At κ=0 they describe a fair label independent of the input; at κ=1 they are the Z projectors. At intermediate strengths they are not projectors: $E_0E_1=(1-\kappa^2)I/4$. The labels' assigned values +1,−1 would have mean $\kappa\langle Z\rangle$, rather than the unscaled Z mean.
+
+**FlagQuantum preparation → classical formula → result.** Run the eight snippets cumulatively from the repository root. The native call prepares an actual simulated input; the two effect probabilities are then computed by our original classical helper. They are not a dedicated native POVM query.
+
+```python
+import math
+import torch
+import flagquantum as fq
+import examples.foundations.generalized_measurements as g
+b = g.b
+calls = 0
+helper_start = b.RUNS
+def query(circuit,selected=None):
+    global calls
+    request = fq.probabilities() if selected is None else fq.probabilities(qubits=selected)
+    result = fq.run(circuit,outputs=[request],options=b.OPTIONS)
+    v,p = result.statevector(),result.probabilities
+    assert v.shape == (1,2**circuit.n_qubits)
+    assert p.shape == (1,2**(circuit.n_qubits if selected is None else len(selected)))
+    assert v.dtype == b.D and p.dtype == torch.float64
+    calls += 1
+    return v[0],p[0]
+psi = torch.tensor([.6,.8j],dtype=b.D)
+prepared,_ = query(fq.Circuit(1,dtype=b.D).unitary(0,unitary=b.prepare_matrix(psi)))
+torch.testing.assert_close(prepared,psi,rtol=0,atol=b.ATOL)
+kappa = .6
+effects = ((g.I+kappa*g.Z)/2,(g.I-kappa*g.Z)/2)
+names = ('meter-0','meter-1')
+p = g.povm(prepared,effects,names)
+assert not torch.allclose(effects[0]@effects[0],effects[0],rtol=0,atol=b.ATOL)
+torch.testing.assert_close(p,torch.tensor([.416,.584],dtype=torch.float64),rtol=0,atol=b.ATOL)
+print('POVM probabilities:',*(f'{x:.6f}' for x in p),'; effects are not projectors.')
+```
+```text
+POVM probabilities: 0.416000 0.584000 ; effects are not projectors.
+```
+
+<span id="formula-code-6-5-operators"></span>
+
+### 2. Measurement operators add the conditional-update information
+
+First consider **one** measurement operator $M_a$ per reported outcome, with
+
+$$
+E_a=M_a^\dagger M_a,\qquad \sum_aM_a^\dagger M_a=I.
+$$
+
+**Postulated update and consistency.** The branch has probability
+$p_a=\|M_a\psi\|^2=\langle\psi|E_a|\psi\rangle$. For $p_a>0$, the conditional pure state is
+
+$$
+|\psi_a\rangle=\frac{M_a|\psi\rangle}{\sqrt{p_a}},\qquad
+\langle\psi_a|\psi_a\rangle=1.
+$$
+
+The equal probability formulas follow by the definition of the adjoint; dividing the branch norm squared by $p_a$ proves normalization. Interpreting this vector as the apparatus's conditional output is the extra physical update rule. The operator $M_a$ need not be Hermitian, positive, projective or unitary. In particular, a nonunitary $M_a$ must not be submitted as a unitary circuit gate.
+
+For the weak effects above, set $u=\sqrt{(1+\kappa)/2}$ and $v=\sqrt{(1-\kappa)/2}$:
+
+$$
+M_0=\begin{pmatrix}u&0\\0&v\end{pmatrix},\qquad
+M_1=\begin{pmatrix}v&0\\0&u\end{pmatrix}.
+$$
+
+Squaring these diagonal matrices gives the specified effects; their squared sum is I. Conditional normalization divides by the input-dependent branch probability, not by the matrix's norm. We retain the complex scalar phase in the declared vector representative, as in 6.2.
+
+More generally, a positive effect admits a square root: diagonalize it with nonnegative eigenvalues and take their nonnegative square roots. Then $M_a=U_a\sqrt{E_a}$, for any unitary $U_a$, obeys $M_a^\dagger M_a=E_a$. This supplies candidate updates but does not select the update implemented by a real apparatus.
+
+```python
+groups = g.weak(kappa)
+p_operator,records = g.instrument(prepared,groups,names)
+for j,group in enumerate(groups):
+    M = group[0]
+    torch.testing.assert_close(M.mH@M,effects[j],rtol=0,atol=b.ATOL)
+    w = M@prepared
+    norm_probability = torch.vdot(w,w).real
+    normalized = w/torch.sqrt(norm_probability)
+    torch.testing.assert_close(p_operator[j],norm_probability,rtol=0,atol=b.ATOL)
+    torch.testing.assert_close(records[j][0][1],normalized,rtol=0,atol=b.ATOL)
+torch.testing.assert_close(p_operator,p,rtol=0,atol=b.ATOL)
+print('Measurement-operator probabilities equal POVM probabilities; both conditional vectors have unit norm and retain their complex phase.')
+```
+```text
+Measurement-operator probabilities equal POVM probabilities; both conditional vectors have unit norm and retain their complex phase.
+```
+
+<span id="formula-code-6-5-same-effects"></span>
+
+### 3. Construct different instruments with exactly the same POVM
+
+Compare the preceding update with
+
+$$
+N_0=M_0,\qquad N_1=XM_1.
+$$
+
+**Derivation.** Since $X^\dagger X=I$, $N_1^\dagger N_1=M_1^\dagger M_1$ and the effects agree for **every** input, not just a tested example. Yet the outcome-1 conditional vector changes from $M_1\psi/\sqrt{p_1}$ to $XM_1\psi/\sqrt{p_1}$. On input |0⟩ and κ=.6, both give probability .2 for outcome 1; the first leaves |0⟩ and the second gives |1⟩. Their next Z predictions are +1 and −1, so they are operationally different instruments.
+
+The POVM alone cannot decide between them. Conversely, changing $M_a$ by an outcome-dependent scalar phase would not change the isolated conditional ray or any subsequent probabilities. Thus “different operator lists” is not by itself sufficient to establish different instruments; a difference in operational predictions is needed.
+
+**Actual native realization check.** The helper below executes the meter-coupling circuit derived in unit 4. In the second implementation it adds a coherent meter-controlled X. The reported conditional vectors are extracted classically from the actual joint simulation; no mid-circuit classical feedback or sampled measurement API is claimed.
+
+```python
+zero = torch.tensor([1,0],dtype=b.D)
+for flip in (False,True):
+    joint,native = g.native_weak(zero,kappa,flip)
+    operators = g.weak(kappa,flip)
+    probabilities,branches = g.instrument(zero,operators,names)
+    torch.testing.assert_close(native,probabilities,rtol=0,atol=b.ATOL)
+    selected = branches[1][0][1]
+    zmean = torch.vdot(selected,g.Z@selected).real.item()
+    assert abs(zmean-(-1 if flip else 1))<b.ATOL
+    print(f'Outcome-1 update flip={flip}: probability {native[1]:.6f}; conditional Z mean {zmean:+.6f}.')
+```
+```text
+Outcome-1 update flip=False: probability 0.200000; conditional Z mean +1.000000.
+Outcome-1 update flip=True: probability 0.200000; conditional Z mean -1.000000.
+```
+
+<span id="formula-code-6-5-dilation"></span>
+
+### 4. Realize the weak operators through a unitary meter coupling
+
+Let the system be q0 and an auxiliary meter be q1, initially |0⟩. We want the joint premeasurement state
+
+$$
+|\Omega\rangle=M_0|\psi\rangle\otimes|0\rangle
++M_1|\psi\rangle\otimes|1\rangle.
+$$
+
+**Derivation of the gates.** For $\psi=\alpha|0\rangle+\beta|1\rangle$, the desired amplitudes in order 00,01,10,11 are
+$(u\alpha,v\alpha,v\beta,u\beta)$. Set
+$\gamma_0=2\arccos u$ and $\gamma_1=2\arccos v$, in radians. An Ry(γ0) on the meter makes its amplitudes u,v. A controlled Ry(γ1−γ0), with q0 controlling q1, changes the meter rotation to Ry(γ1) only when the system bit is 1. That branch has meter amplitudes v,u. This proves the displayed joint vector for arbitrary complex α,β by linearity.
+
+Native computational probabilities on q1 therefore give
+$p_a=\sum_s|\Omega_{2s+a}|^2=\|M_a\psi\|^2$.
+The joint slices at indices [0,2] and [1,3] are precisely the unnormalized system branches. Dividing a nonzero slice by $\sqrt{p_a}$ predicts its conditional pure state under an ideal later meter readout. At a mathematically zero branch, small native floating residuals are checked by the implementation tolerance rather than normalized or clipped.
+
+For $N_1=XM_1$, an additional CX(q1,q0) flips the system only within the meter-1 component. Its norm and hence the meter probability stay unchanged. This is a coherent controlled gate before readout, not an invoked classical feed-forward endpoint.
+
+```python
+alpha = math.sqrt((1+kappa)/2)
+beta = math.sqrt((1-kappa)/2)
+gamma0,gamma1 = 2*math.acos(alpha),2*math.acos(beta)
+circuit = fq.Circuit(2,dtype=b.D).unitary(0,unitary=b.prepare_matrix(psi))
+circuit.ry(1,gamma0).cry(0,1,gamma1-gamma0)
+joint,meter = query(circuit,(1,))
+expected = torch.zeros(4,dtype=b.D)
+for j in (0,1):
+    expected[j::2] = groups[j][0]@psi
+torch.testing.assert_close(joint,expected,rtol=0,atol=b.ATOL)
+torch.testing.assert_close(meter,p_operator,rtol=0,atol=b.ATOL)
+for j in (0,1):
+    torch.testing.assert_close(joint[j::2]/torch.sqrt(meter[j]),records[j][0][1],rtol=0,atol=b.ATOL)
+print('Native system q0 / zero meter q1: full joint amplitudes match M0|psi>|0> + M1|psi>|1>.')
+print('Meter probabilities:',*(f'{x:.6f}' for x in meter),'; conditional branches extracted classically.')
+```
+```text
+Native system q0 / zero meter q1: full joint amplitudes match M0|psi>|0> + M1|psi>|1>.
+Meter probabilities: 0.416000 0.584000 ; conditional branches extracted classically.
+```
+
+For a general complete operator family, the map
+$W\psi=\sum_aM_a\psi\otimes|a\rangle$ preserves inner products because
+$W^\dagger W=\sum_aM_a^\dagger M_a=I$. This explains the isometric structure behind a meter model. Here we construct and execute the specific weak family; we do not claim a native general dilation compiler, an efficient implementation for every POVM or a calibrated hardware realization.
+
+<span id="formula-code-6-5-trine"></span>
+
+### 5. A genuinely three-outcome qubit POVM
+
+A projective measurement on a two-dimensional system has at most two nonzero mutually orthogonal projectors. General effects can instead have three nonzero alternatives.
+
+**Formula.** Let $\phi_j=2\pi j/3$ and
+
+$$
+|t_j\rangle=\frac{|0\rangle+e^{i\phi_j}|1\rangle}{\sqrt2},\qquad
+E_j=\frac23|t_j\rangle\langle t_j|,\qquad j=0,1,2.
+$$
+
+**Derivation.** Each effect is positive with eigenvalues 2/3 and zero, so it is not a projector. Summing its 2×2 matrix gives diagonal entries one and off-diagonal entries zero, using $1+e^{2\pi i/3}+e^{4\pi i/3}=0$. Thus the family is complete. Choose $M_j=\sqrt{2/3}|t_j\rangle\langle t_j|$; idempotence of the rank-one projector gives $M_j^\dagger M_j=E_j$.
+
+For $\psi=\alpha|0\rangle+\beta|1\rangle$,
+
+$$
+p_j=\frac13|\alpha+e^{-i\phi_j}\beta|^2.
+$$
+
+On |+⟩ the three probabilities are 2/3,1/6,1/6. These are three classical labels of one qubit POVM, not a claim that an unextended one-qubit computational readout returns three distinct bitstrings.
+
+```python
+trine_input,_ = query(fq.Circuit(1,dtype=b.D).h(0))
+trine_states,trine_groups,trine_effects = g.trine()
+tp = g.povm(trine_input,trine_effects,('t0','t1','t2'))
+ip,_ = g.instrument(trine_input,trine_groups,('t0','t1','t2'))
+torch.testing.assert_close(tp,ip,rtol=0,atol=b.ATOL)
+torch.testing.assert_close(tp,torch.tensor([2/3,1/6,1/6],dtype=torch.float64),rtol=0,atol=b.ATOL)
+print('Trine outcomes on native |+> preparation:',*(f'{x:.6f}' for x in tp))
+print('Three-outcome probabilities are classical predictions here; no native three-outcome measurement was submitted.')
+```
+```text
+Trine outcomes on native |+> preparation: 0.666667 0.166667 0.166667
+Three-outcome probabilities are classical predictions here; no native three-outcome measurement was submitted.
+```
+
+Only the input preparation above is executed natively. The trine effects, probabilities and operator branches are classical predictions in this example; a three-label dilation and its physical readout are not implemented here.
+
+<span id="formula-code-6-5-instrument"></span>
+
+### 6. An instrument can have hidden branches within one reported outcome
+
+A reported outcome a can collect several unobserved fine alternatives k. Specify operators $K_{a,k}$, with
+
+$$
+E_a=\sum_kK_{a,k}^\dagger K_{a,k},\qquad
+p_a=\sum_k\|K_{a,k}\psi\|^2.
+$$
+
+**Pure-input operational description.** If k is also known, its normalized state is
+$K_{a,k}\psi/\sqrt{p_{a,k}}$, where $p_{a,k}=\|K_{a,k}\psi\|^2>0$.
+If only a is reported and $p_a>0$, keep a classical ensemble with conditional weights $p_{a,k}/p_a$. It need not be a pure state. Do not sum and renormalize the branch vectors.
+
+For a later projective event $Q_c$ with no intervening evolution, the instrument predicts the joint probabilities
+
+$$
+p(a,c)=\sum_k\|Q_cK_{a,k}\psi\|^2.
+$$
+
+**Consistency derivation.** Multiply each fine branch's later Born probability by $p_{a,k}$, cancel its normalization denominator, then sum the exclusive hidden alternatives. Summing over c returns $p_a$. These outcome-indexed subsequent predictions distinguish instruments in the pure-input sector. The full mixed-input map formalism and composition are deferred to 9.7.
+
+**Same POVM, different coarse disturbance.** A single reported label “kept” can have effect I and either operator group {I} or {P0,P1}, where P0,P1 are the computational projectors. On |+⟩ the first preserves a later plus probability of 1; the second gives 1/2. Both report “kept” with probability one.
+
+**Same instrument, different representation.** The hidden group {P0,P1} can be replaced by
+$\{(P_0+P_1)/\sqrt2,(P_0-P_1)/\sqrt2\}=\{I/\sqrt2,Z/\sqrt2\}$.
+More generally, if $L_j=\sum_kU_{jk}K_k$ with unitary U mixing hidden indices within one outcome, then
+
+$$
+\sum_j\|Q_cL_j\psi\|^2
+=\sum_{k,\ell}\left(\sum_j\overline{U_{j\ell}}U_{jk}\right)
+\langle Q_cK_\ell\psi|Q_cK_k\psi\rangle
+=\sum_k\|Q_cK_k\psi\|^2.
+$$
+
+This proves unchanged later-event predictions and, with Q=I, unchanged coarse probability. It demonstrates why measurement operators are a representation of an instrument rather than its unique identity.
+
+The following native circuits compare an uncoupled meter with a CNOT-coupled meter and read the system after H. Their local exact probabilities agree with the two coarse instrument predictions. We do not claim that either run sampled the hidden record. The unmeasured joint system and meter remain a coherent pure state; agreement of these local readout statistics does not establish that an actual classical record was created or discarded.
+
+```python
+plus = torch.tensor([1,1],dtype=b.D)/math.sqrt(2)
+projectors,zn = b.basis_family(1)
+Qplus = torch.outer(plus,plus.conj())
+Q,qn = (Qplus,g.I-Qplus),('plus','minus')
+do_nothing = ((g.I,),)
+hidden_Z = ((projectors[0],projectors[1]),)
+mixed_representation = ((g.I/math.sqrt(2),g.Z/math.sqrt(2)),)
+same_effect = g.povm(plus,(g.I,),('kept',))
+assert abs(same_effect[0].item()-1)<b.ATOL
+torch.testing.assert_close(g.later(plus,hidden_Z,('kept',),Q,qn),
+                           g.later(plus,mixed_representation,('kept',),Q,qn),rtol=0,atol=b.ATOL)
+for entangle in (False,True):
+    circuit = fq.Circuit(2,dtype=b.D).h(0)
+    if entangle: circuit.cx(0,1)
+    circuit.h(0)
+    joint,readout = query(circuit,(0,))
+    later = g.later(plus,hidden_Z if entangle else do_nothing,('kept',),Q,qn).sum(0)
+    torch.testing.assert_close(readout,later,rtol=0,atol=b.ATOL)
+    print(f'Effect I, hidden_Z={entangle}: later plus probability {readout[0]:.6f}.')
+print('Hidden-operator mixing changes the representation, while the coarse instrument predictions remain identical.')
+```
+```text
+Effect I, hidden_Z=False: later plus probability 1.000000.
+Effect I, hidden_Z=True: later plus probability 0.500000.
+Hidden-operator mixing changes the representation, while the coarse instrument predictions remain identical.
+```
+
+<span id="formula-code-6-5-boundaries"></span>
+
+### 7. Keep impossible, hidden and numerically unresolved branches separate
+
+For a coarse outcome with $p_a=0$, no normalized conditional ensemble is defined. A fine zero-probability branch has no normalized vector; its label remains present with None. For $p_a>0$, hidden fine branches remain explicitly separate, even if their vectors happen to be collinear on a particular input. Our helper reports the ensemble rather than claiming to classify its purity.
+
+A positive probability below $10^{-12}$ is not impossible: that number is a comparison tolerance, not a probability cutoff. At κ=1, input $|0\rangle+10^{-10}i|1\rangle$ is normalized to floating precision and retains the positive $10^{-20}$ outcome-1 probability and its normalized phase representative $i|1\rangle$.
+
+A nonzero projected component whose squared norm underflows to zero is instead rejected explicitly. The code checks this at amplitude $10^{-200}$. Dividing by a tiny probability can amplify input and rounding errors; these tests do not supply a relative-error or interval certificate for arbitrary rare events.
+
+```python
+p_edge,edge_rows = g.instrument(zero,g.weak(1.),names)
+assert p_edge[1].item()==0 and edge_rows[1][0][1] is None
+rare = torch.tensor([1,1e-10j],dtype=b.D)
+p_rare,rare_rows = g.instrument(rare,g.weak(1.),names)
+assert 0<p_rare[1].item()<b.ATOL
+torch.testing.assert_close(rare_rows[1][0][1],torch.tensor([0,1j],dtype=b.D),rtol=0,atol=b.ATOL)
+try:
+    g.instrument(torch.tensor([1,1e-200j],dtype=b.D),g.weak(1.),names)
+except FloatingPointError:
+    pass
+else:
+    raise AssertionError('Underflow silently treated as impossible')
+print('Exactly impossible branch -> None; positive 1e-20 branch retained; squared-norm underflow -> explicit error.')
+```
+```text
+Exactly impossible branch -> None; positive 1e-20 branch retained; squared-norm underflow -> explicit error.
+```
+
+<span id="formula-code-6-5-support"></span>
+
+### 8. State the implementation boundary precisely
+
+| Operation in this section | Executed support | Limit |
+|---|---|---|
+| Prepare a pure input | Native unitary circuit gates | Ideal CPU statevector model |
+| Weak family and outcome-controlled X | Native Ry, CRy and CX with a zero meter | One constructed two-qubit dilation; coherent control before readout |
+| Read the meter or system probabilities | Native computational probability request with declared qubit selection | Exact distribution; no shot or sampled collapse in these examples |
+| Arbitrary effect/operator groups and trine probabilities | Original PyTorch postprocessors of a simulated state | Not a native general POVM/instrument request |
+| General mixed-state instruments and composition | Deferred to 9.7 | Not established by these examples |
+
+The inspected public FlagQuantum 0.3.1 namespace does not expose requests named povm or instrument, and its Circuit public methods expose no such measurement/update method. This is a report of the checked version and interfaces, not a claim that generalized measurements cannot be realized with supported gates. The package also contains Kraus-channel/noise simulation code; such a channel representation does not by itself specify a reported outcome or establish an outcome-indexed instrument API. We do not invoke those noise functions here.
+
+The book helpers validate positive complete effects, complete operator groups, normalized CPU complex128 inputs and declared labels. No Hermitian symmetrization, QR adjustment, clipping, input normalization repair or statevector averaging is performed. The dense dimension limit of four qubits is a teaching-reference guard, rather than a FlagQuantum limit.
+
+```python
+assert g.invalid_checks()==10
+assert calls==5 and b.RUNS-helper_start==2
+public_requests = [name for name in ('povm','instrument') if hasattr(fq,name)]
+assert public_requests == []
+print('10 malformed contracts rejected; seven actual native body circuits.')
+print('Use supported unitary rotations and computational probability requests; book helpers provide effect/branch calculations, not a native instrument endpoint.')
+```
+```text
+10 malformed contracts rejected; seven actual native body circuits.
+Use supported unitary rotations and computational probability requests; book helpers provide effect/branch calculations, not a native instrument endpoint.
+```
+
+### Complete program and expected output
+
+Run the [complete example](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/generalized_measurements.py):
+
+    python examples/foundations/generalized_measurements.py
+
+It executes 51 native circuits: 42 two-qubit weak-instrument premeasurement/readout cases, seven one-qubit trine input preparations and two joint-system interference readouts. The weak cases cover strengths 0,.35,1, seven basis/complex inputs and both updates. Trine branches are checked classically against an independent scalar formula. Ten invalid contracts and zero/rare/underflow branch boundaries are also checked.
+
+Run the exact body/output checker:
+
+    python scripts/check_generalized_measurements_prose.py
+
+It executes eight cumulative snippets with seven native circuits, then compares the complete program's actual stdout. Numerical tests validate these implementations; the declared generalized measurement postulates and the distinction between their objects are not proved by sampling simulator outputs.
+
+Expected output of the complete program:
+
+```text
+42 two-qubit weak-instrument circuits: three strengths including 0/1, seven inputs and two updates with identical meter probabilities passed.
+7 native single-qubit preparations: genuine three-outcome trine effects and pure measurement-operator branches checked classically against scalar formulas.
+2 native joint-system readouts: one coarse effect I can preserve or destroy later interference; hidden-operator unitary mixing preserves the instrument predictions.
+10 malformed contracts rejected; impossible/positive rare/underflow branches distinguished without clipping or vector averaging.
+51 actual CPU complex128 circuits; native unitary dilation/readout plus explicitly labelled classical branch analysis, not a dedicated POVM/instrument or sampled-collapse API.
+```
+
+### Understanding checks and transfer exercises
+
+**6.5-A — A new weak instrument.** Choose κ=.17 or .73 and a fresh complex input. Run both meter realizations, compare every joint amplitude with $M_a\psi$ or $N_a\psi$, and check that outcome probabilities agree while subsequent predictions can differ. Which operation is coherent control, rather than a classical feedback API?
+
+**6.5-B — New trine inputs.** Prepare Ry(θ) then P(φ) on a fresh qubit. Compare the three scalar probabilities with effect quadratic forms and measurement-operator norms. Can these three labels be a nonzero orthogonal projective family on that qubit alone?
+
+**6.5-C — What does an outcome specify?** If the report says only “kept” for the group {P0,P1}, why is $(P_0+P_1)\psi$ the wrong conditional statevector in general? Are {P0,P1} and {I/√2,Z/√2} different coarse instruments just because their operators differ?
+
+**6.5-D — Which support was demonstrated?** Does native execution of the weak meter circuit prove a general instrument endpoint, a trine dilation, a noise-calibrated measurement or a sampled collapsed state? What does a zero effect mean, and how does it differ from a nonzero component lost to squared-norm underflow?
+
+<details markdown="1">
+<summary>Answers and reasoning for 6.5</summary>
+
+**A.** Before readout, the first realization has joint slices $M_a\psi$; the second has $M_0\psi$ and $XM_1\psi$. Unitarity of X preserves their norms. A coherent CX(q1,q0) executes the outcome-controlled system transformation before the meter is measured; no classical feedback endpoint was invoked. The separate author transfer uses two new strengths, three new complex inputs each and both updates, for twelve native circuits.
+
+**B.** With $\alpha=\cos(\theta/2)$ and $\beta=e^{i\phi}\sin(\theta/2)$, use $p_j=|\alpha+e^{-2\pi i j/3}\beta|^2/3$. The effect matrices are complete but not orthogonal projectors. Three nonzero orthogonal projectors cannot fit into a two-dimensional space. Two new native preparations are checked in the transfer, making fourteen transfer circuits total; their trine readout remains a classical prediction.
+
+**C.** The report hides an exclusive fine alternative. Its later probabilities are sums of squared branch amplitudes, rather than the squared amplitude of a vector sum. For input |+⟩, summing P0ψ and P1ψ restores |+⟩ and incorrectly predicts a certain later plus event. The two operator groups are related by a unitary transformation of the hidden index, so they give identical coarse-instrument subsequent predictions.
+
+**D.** Only the declared unitary dilation and exact computational readout were executed. None of the further claims follows. A zero effect gives an impossible outcome for every input; a nonzero effect can also have zero probability on one particular input. Neither case supplies a normalized conditional state there. Numerical underflow instead means the computed nonzero branch cannot be normalized through its represented squared norm; it is reported as a computational failure, not a physical impossibility.
+
+</details>
+
+### Sources, depth and next step
+
+The assigned targets are Nielsen and Chuang, 10th Anniversary Edition (2010), §2.2.3, beginning at printed page 84, and §2.2.6, beginning at printed page 90. These locators are retained without claiming fresh inspection of the user-local textbook PDF. The public author source [Preskill, Caltech Chapter 3, §3.1.2](https://www.preskill.caltech.edu/ph219/chap3_15.pdf), equations (3.23)–(3.31), PDF pages 9–11, was checked for the operator/effect probability and pure-state update setup; its served header says October 2018. Our hidden-branch examples and representation comparison are supplied locally within the declared pure-input scope.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.5.json) separates author execution from independent mathematical/implementation review and reader trials, which remain pending. Continue, when drafted, with [6.6 From exact probabilities to samples](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).

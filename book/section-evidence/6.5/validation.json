@@ -1,0 +1,32 @@
+{
+  "section": "6.5",
+  "state": "author-verified draft",
+  "complete_circuits": 51,
+  "body_fragments": 8,
+  "body_circuits": 7,
+  "separate_transfer_circuits": 14,
+  "execution_ledger": {
+    "complete": 51,
+    "body_assembly": 7,
+    "body_plus_complete_checker": 58,
+    "separate_transfer": 14,
+    "total_section65_circuits": 130,
+    "note": "Previous-section regressions and future remote CI are separate. Final wording qualifications preserve all Python/text fragments byte-for-byte; no extra circuits."
+  },
+  "invalid_contracts": 10,
+  "example_execution_failures": "None",
+  "strict_build": "passed",
+  "links": "71 pages; local links/fragments resolve; IDs unique",
+  "formula_display": "Actual local IAB 1280x720 screenshots checked effects/M-dagger-M and conditional-state normalization, trine effects/scalar probabilities, hidden-operator unitary-mixing equality, and expanded exercise answers. No garbling or clipping in inspected formulas.",
+  "details_render": {
+    "rendered_pages": 71,
+    "details_blocks": 20,
+    "math_wrappers_in_details": 92,
+    "raw_answer_markup_findings": [],
+    "note": "StaticHTMLparsecheck;visualformulaQAseparatelysampled6.1and5.8."
+  },
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "independent_review": "pending",
+  "reader_trial": "not run",
+  "instrument_scope": "Pure-input operational predictions and branch ensembles; mixed-state instruments/composition remain in 9.7."
+}

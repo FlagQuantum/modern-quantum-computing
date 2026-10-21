@@ -94,6 +94,31 @@
       ],
       "status": "draft",
       "next_transition": "6.5 Generalized measurements and instruments [Advanced]."
+    },
+    {
+      "ref": "6.5",
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-5",
+      "title": "Generalized measurements and instruments [Advanced]",
+      "depth": "P",
+      "requires": [
+        "sec-measurement-expectation-values-and-statistical-estimation-1",
+        "sec-measurement-expectation-values-and-statistical-estimation-2",
+        "sec-complex-vectors-operators-and-numerical-reasoning-4"
+      ],
+      "question": "What do POVM effects determine, what extra update information do measurement operators supply, and which operational information belongs to an instrument?",
+      "entry": "6.1 Born probabilities; 6.2 pure global branches and probability sums; 2.4 adjoints/isometries.",
+      "exit": "State generalized measurement postulates, derive pure-input normalization/update consistency, distinguish effects from different instrument updates and nonunique hidden operator representations.",
+      "worked_case": "Weak Z effects with diagonal measurement operators versus outcome-conditioned X; native controlled-meter rotations; genuine trine POVM; coarse hidden branches and representation mixing.",
+      "boundary": "Pure inputs and branch ensembles; full mixed-input instrument maps/composition remain in 9.7 and density-state formalism in Chapter 8. Native unitary dilation and computational probabilities, no invented POVM/collapse API.",
+      "code_plan": "Native Ry/CRy/CX with a zero meter, exact meter readout; original classical effect/operator-group validators and branch enumeration; trine predictions on real native preparations.",
+      "independent_check": "Explicit joint amplitude blocks, scalar weak/trine probabilities, later-event sums and alternate hidden representations.",
+      "transfer_task": "Fresh strengths/complex inputs and new trine preparations.",
+      "source_locators": [
+        "NC:2.2.3",
+        "NC:2.2.6"
+      ],
+      "status": "draft",
+      "next_transition": "6.6 From exact probabilities to samples."
     }
   ]
 }
