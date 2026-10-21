@@ -1,0 +1,113 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-measurement-expectation-values-and-statistical-estimation-4",
+  "ref": "6.4",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+  "depth": "F",
+  "result": "Measurement after basis rotation",
+  "requires": [
+    "sec-single-qubit-states-and-rotations-5",
+    "sec-gates-reversible-computation-and-circuit-synthesis-1",
+    "sec-measurement-expectation-values-and-statistical-estimation-3"
+  ],
+  "assumptions": [
+    "Finite unitary analyzer, normalized pure global state and specified computational projective readout.",
+    "Desired basis columns B; actual analyzer B dagger; declared classical labels and radian angles."
+  ],
+  "proof_obligations": [
+    "Prove R-dagger Q R effective projectors and completeness/orthogonality.",
+    "Derive inverse basis analyzer and column-overlap probabilities.",
+    "Derive X and Y basis vectors, projectors and precise chronological gates including Y sign.",
+    "Derive tilted-basis matrix, inverse order and conjugated axis.",
+    "Extend to ordered partial computational events on arbitrary correlated inputs.",
+    "Derive Bell-basis column labels and inverse entangling analyzer.",
+    "Prove column-phase invariance and permutation label mapping without changing coherent-gate phases.",
+    "Distinguish rotated native pre-measurement vector from any selected collapsed state."
+  ],
+  "formula_code_units": [
+    "formula-code-6-4-effective",
+    "formula-code-6-4-x",
+    "formula-code-6-4-y",
+    "formula-code-6-4-tilted",
+    "formula-code-6-4-local",
+    "formula-code-6-4-bell",
+    "formula-code-6-4-labels",
+    "formula-code-6-4-boundary"
+  ],
+  "sources": [
+    {
+      "locator": "NC:1.3.3",
+      "edition": "10th Anniversary Edition (2010)",
+      "printed_page_start": 22,
+      "inspection": "Assigned basis-measurement locator retained; no fresh user-local PDF inspection claimed."
+    },
+    {
+      "author": "John Preskill",
+      "url": "https://www.preskill.caltech.edu/ph219/chap2_15.pdf",
+      "served_header_update": "July 2015",
+      "locator": "Section 2.1, equations (2.4)-(2.7), PDF page 5",
+      "inspection": "Official author PDF checked for imported finite spectral/Born setup; basis/analyzer derivations supplied locally."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/basis_measurement.py",
+    "command": "python examples/foundations/basis_measurement.py",
+    "prose_check_command": "python scripts/check_basis_measurement_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 54,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 10,
+    "separate_transfer_circuits": 14,
+    "execution_ledger": {
+      "complete": 54,
+      "body_assembly": 10,
+      "body_plus_complete_checker": 64,
+      "separate_transfer": 14,
+      "total_section64_circuits": 142,
+      "note": "Previous-section regression and future remote CI separate. Diagnostic wrong-analyzer circuits were deliberately submitted and their actual outputs verified; not unexpected implementation failures."
+    },
+    "checks": [
+      "21 X/Y/tilted one-qubit circuits on seven inputs.",
+      "18 native ordered partial readouts on correlated three-qubit inputs.",
+      "5 Bell basis cases; 6 column-phase/permutation cases; 4 diagnostic circuits.",
+      "14 fresh transfers: nine tilted eigenstate/complex cases and five four-qubit ordered readouts.",
+      "10 malformed basis/angle/label contracts."
+    ],
+    "tolerance": "Absolute 1e-12, relative zero; full-vector phase retained; no normalization, QR or probability repair; no interval certificate.",
+    "unplanned_example_execution_failures": "None",
+    "limitations": "Logical ideal native basis rotations and exact probabilities, not shots, hardware calibration, sampled collapse or native general-projector API. Dense 1-4-qubit and angle-magnitude guards are book-side constraints.",
+    "script_sha256": "3b142946bddb4c0fe4ab82d51350a42d7d940dec3fe82f87d054c1be7037fb1f"
+  },
+  "assessment": {
+    "tasks": [
+      "6.4-A fresh tilted axes",
+      "6.4-B ordered four-qubit readout",
+      "6.4-C Y sign and symmetric input",
+      "6.4-D phase, labels and returned state"
+    ],
+    "answers": "Supplied; reader trial not run."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "54 complete-program circuits, eight exact-output body units/10 circuits, 14 fresh transfers, 10 malformed contracts and scoped 6.3 body/full regression passed. Strict new site build and all 71 page local links passed. Actual browser including expanded answers passed. Frozen scope, dependencies and proof depth unchanged."
+  },
+  "production": {
+    "next_draft": "6.5 Generalized measurements and instruments [Advanced]",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Actual local IAB 1280x720 screenshots checked Y eigenvectors/inverse and phase sign, final effective-projector proof, complex tilted matrix/axis, Bell label mapping and expanded answers including ordered partial projectors and selected-branch phase normalization. No garbling or clipping in inspected formulas.",
+    "editorial_clarification": "Before publication, replaced an isolated-ray shorthand for selected states with explicit eta_j/sqrt(p_j) representatives and restoration by B; original text recorded. Six classical branch-restoration checks passed, zero additional native circuits. Python/text fragments unchanged."
+  }
+}

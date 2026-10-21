@@ -70,6 +70,30 @@
       ],
       "status": "draft",
       "next_transition": "6.4 Measuring in another basis."
+    },
+    {
+      "ref": "6.4",
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-4",
+      "title": "Measuring in another basis",
+      "depth": "F",
+      "requires": [
+        "sec-single-qubit-states-and-rotations-5",
+        "sec-gates-reversible-computation-and-circuit-synthesis-1",
+        "sec-measurement-expectation-values-and-statistical-estimation-3"
+      ],
+      "question": "Which actual pre-readout circuit implements a declared projective basis, and how do its labels relate to the original state?",
+      "entry": "3.5 basis conjugation; 5.1 chronological composition and inversion; 6.3 projectors and spectral weights.",
+      "exit": "Prove R-dagger Q R effective projectors and B-dagger analyzers, derive X/Y and tilted circuits, handle partial ordered readout, entangled bases and label/phase conventions.",
+      "worked_case": "X: H; Y: P(-pi/2) then H; tilted Rz/Ry inverse order; ordered local Y/X on correlated register; Bell analyzer.",
+      "boundary": "Ideal unitary rotations before native exact computational probability queries. No native arbitrary-projector request, shots, noisy measurement calibration or collapsed-state claim.",
+      "code_plan": "Execute actual named rotations and CNOT analyzers; custom unitary only for explicit column-phase/permutation diagnostics with book unitary guard.",
+      "independent_check": "Explicit conjugated projectors, scalar column overlaps, indexed prepared/rotated vectors and closed Pauli sign tests.",
+      "transfer_task": "Fresh tilted angles and new four-qubit ordered partial support.",
+      "source_locators": [
+        "NC:1.3.3"
+      ],
+      "status": "draft",
+      "next_transition": "6.5 Generalized measurements and instruments [Advanced]."
     }
   ]
 }

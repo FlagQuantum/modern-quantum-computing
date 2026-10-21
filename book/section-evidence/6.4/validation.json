@@ -1,0 +1,34 @@
+{
+  "section": "6.4",
+  "state": "author-verified draft",
+  "complete_circuits": 54,
+  "body_fragments": 8,
+  "body_circuits": 10,
+  "separate_transfer_circuits": 14,
+  "execution_ledger": {
+    "complete": 54,
+    "body_assembly": 10,
+    "body_plus_complete_checker": 64,
+    "separate_transfer": 14,
+    "total_section64_circuits": 142,
+    "note": "Previous-section regression and future remote CI separate. Diagnostic wrong-analyzer circuits were deliberately submitted and their actual outputs verified; not unexpected implementation failures."
+  },
+  "invalid_contracts": 10,
+  "classical_branch_phase_checks": 6,
+  "additional_native_circuits_for_phase_checks": 0,
+  "example_execution_failures": "None; diagnostic wrong analyzers intentional, not unexpected failures",
+  "editorial_clarification": "Before publication, replaced an isolated-ray shorthand for selected states with explicit eta_j/sqrt(p_j) representatives and restoration by B; original text recorded. Six classical branch-restoration checks passed, zero additional native circuits. Python/text fragments unchanged.",
+  "strict_build": "passed",
+  "links": "71 pages; local links/fragments resolve; IDs unique",
+  "formula_display": "Actual local IAB 1280x720 screenshots checked Y eigenvectors/inverse and phase sign, final effective-projector proof, complex tilted matrix/axis, Bell label mapping and expanded answers including ordered partial projectors and selected-branch phase normalization. No garbling or clipping in inspected formulas.",
+  "details_render": {
+    "rendered_pages": 71,
+    "details_blocks": 19,
+    "math_wrappers_in_details": 86,
+    "raw_answer_markup_findings": [],
+    "note": "StaticHTMLparsecheck;visualformulaQAseparatelysampled6.1and5.8."
+  },
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

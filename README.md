@@ -12,7 +12,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7, 4.1–4.8, 5.1–5.8 and 6.1–6.3, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7, 4.1–4.8, 5.1–5.8 and 6.1–6.4, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Two entry points: learners and agents
 
@@ -169,3 +169,5 @@ Section [6.1 Measurement outcomes and the Born rule](docs/chapters/ch-measuremen
 Section [6.2 Conditional states and ignored outcomes](docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-2) now derives pure-global ideal projective branches, repeatability, ordered joint probabilities and ignored-record marginals. Eight checked formula-to-code units distinguish coarse projection from forgotten fine records and reject vector averaging; 46 complete-program preparations are followed by explicit classical branch postprocessing. Independent acceptance remains pending.
 
 Section [6.3 Observables, spectra, and expectations](docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-3) now proves the spectral expectation identity, degeneracy invariance, real linearity and spectral bounds. Eight checked formula-to-code units compare native FlagQuantum Pauli expectations with spectral/dense references; 41 complete-program circuits distinguish means, individual outcomes and measurement protocols. Independent acceptance remains pending.
+
+Section [6.4 Measuring in another basis](docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-4) now proves conjugated readout projectors and the X/Y analyzer circuits, with explicit tilted/Bell bases, ordered partial labels and phase conventions. Eight checked units and 54 complete-program circuits execute actual pre-readout gates and native probabilities; returned statevectors remain pre-measurement vectors. Independent acceptance remains pending.

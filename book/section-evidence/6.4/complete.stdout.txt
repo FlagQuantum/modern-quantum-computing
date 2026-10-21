@@ -1,0 +1,7 @@
+21 single-qubit circuits: X, Y and complex tilted bases; full rotated vectors, overlap probabilities and Pauli signs passed.
+18 correlated-register circuits: all six ordered two-qubit selections with local Y/X rotations and native partial readout passed.
+5 Bell-basis circuits: entangling preparation, inverse analyzer and 00/01/10/11 labels Phi+/Psi+/Phi-/Psi- passed.
+6 phase/relabel circuits: independent column phases preserve probabilities; column permutation follows declared labels.
+4 diagnostic circuits: forward B is not its inverse analyzer; wrong Y phase swaps plus/minus labels, without correcting submitted results.
+10 malformed basis/angle/label contracts rejected; radian inputs, exact labels and full-vector phases retained.
+54 actual CPU complex128 circuits; native post-rotation exact probabilities, not shots, hardware calibration or a post-measurement statevector.

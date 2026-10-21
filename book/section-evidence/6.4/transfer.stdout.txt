@@ -1,0 +1,3 @@
+9 tilted-basis transfers: three new angle pairs, complex input and both explicit basis columns passed.
+5 four-qubit transfers: four declared basis inputs and one complex product, indexed preparation and (q3,q1) Y/X readout passed.
+14 actual CPU complex128 circuits; author transfer, not independent review, hardware measurement or reader trial.

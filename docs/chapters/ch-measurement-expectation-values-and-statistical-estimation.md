@@ -1,6 +1,6 @@
 # 6. Measurement, Expectation Values, and Statistical Estimation
 
-**Working drafts: sections 6.1–6.3 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
+**Working drafts: sections 6.1–6.4 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
 
 <span id="sec-measurement-expectation-values-and-statistical-estimation-1"></span>
 
@@ -1088,4 +1088,405 @@ Expected output of the complete program:
 
 The frozen source target is Nielsen and Chuang, 10th Anniversary Edition (2010), §2.2.5, beginning at printed page 87; its assigned locator is retained without claiming fresh inspection of the user-local PDF. A publicly accessible author source checked for this section is [John Preskill, Caltech Chapter 2, §2.1](https://www.preskill.caltech.edu/ph219/chap2_15.pdf), equations (2.4)–(2.9), PDF pages 5–6; its served header says July 2015. These give the finite spectral/projective setup and weighted expectation identity. Our proof and worked translations are supplied above; mixed-state formulas and statistical estimators are deferred.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.3.json) keeps author checks distinct from independent mathematics/implementation review and reader trials, which remain pending. Continue, when drafted, with [6.4 Measuring in another basis](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-4).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.3.json) keeps author checks distinct from independent mathematics/implementation review and reader trials, which remain pending. Continue with [6.4 Measuring in another basis](#sec-measurement-expectation-values-and-statistical-estimation-4).
+
+<span id="sec-measurement-expectation-values-and-statistical-estimation-4"></span>
+
+## 6.4 Measuring in another basis
+
+The simulator's computational probability query does not require every experiment to be interpreted in the computational basis. We can apply a unitary analyzer first. The essential questions are which unitary to apply, which basis its output labels describe, and which state the returned statevector represents.
+
+Prerequisites are [3.5](ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-5), for conjugation and basis changes; [5.1](ch-gates-reversible-computation-and-circuit-synthesis.md#sec-gates-reversible-computation-and-circuit-synthesis-1), for chronological calls and inverse circuits; and [6.3](#sec-measurement-expectation-values-and-statistical-estimation-3), for spectral outcome values and expectations. Depth **F** requires the complete effective-projector proof and explicit X/Y analyzer derivations given below.
+
+All examples execute actual pre-readout gates in released FlagQuantum 0.3.1/PyTorch 2.13.0, using CPU complex128 with absolute implementation tolerance $10^{-12}$ and relative tolerance zero. Native probabilities are exact predictions after those gates, rather than sampled labels or hardware observations. We compare full complex vectors without phase alignment and probabilities without clipping or normalization repair.
+
+<span id="formula-code-6-4-effective"></span>
+
+### 1. Conjugate the measured projector in the correct direction
+
+Let $|\psi\rangle$ be the normalized original register state, R a unitary applied before readout, and $Q_a$ a projector for a computational readout event.
+
+**Formula and complete proof.** The rotated state is $|\eta\rangle=R|\psi\rangle$. Its event probability is
+
+$$
+p_a=\langle\eta|Q_a|\eta\rangle
+=\langle\psi|R^\dagger Q_aR|\psi\rangle,\qquad
+P_a^{\mathrm{effective}}=R^\dagger Q_aR.
+$$
+
+Hermiticity follows from $(R^\dagger Q_aR)^\dagger=R^\dagger Q_aR$. For a complete orthogonal readout family, unitarity gives
+
+$$
+P_a^{\mathrm{effective}}P_c^{\mathrm{effective}}
+=R^\dagger Q_aRR^\dagger Q_cR
+=\delta_{ac}R^\dagger Q_aR,\qquad
+\sum_aP_a^{\mathrm{effective}}=R^\dagger IR=I.
+$$
+
+Thus the rotated readout implements exactly this projective probability family on the original input. The proof holds for an arbitrary pure global register, including entangled inputs and higher-rank computational events.
+
+If columns of a unitary B are the desired orthonormal vectors $|b_j\rangle=B|j\rangle$, choose **R=B†**. Then
+
+$$
+P_j=B|j\rangle\langle j|B^\dagger
+=|b_j\rangle\langle b_j|,\qquad
+p_j=|\langle b_j|\psi\rangle|^2
+=|(B^\dagger\psi)_j|^2.
+$$
+
+B prepares basis vectors from computational labels; B† analyzes an unknown input in that basis. These directions agree only for special self-adjoint B, such as H.
+
+**FlagQuantum code → result.** Run the snippets cumulatively from the repository root. The query returns the actual rotated vector and native computational probabilities. The leading dimension is an execution batch. Our explicit conjugated projectors are an independent classical prediction, rather than a claimed native general-projector request.
+
+```python
+import math
+import torch
+import flagquantum as fq
+import examples.foundations.basis_measurement as a
+b = a.b
+calls = 0
+def query(circuit, selected=None):
+    global calls
+    request = fq.probabilities() if selected is None else fq.probabilities(qubits=selected)
+    result = fq.run(circuit,outputs=[request],options=b.OPTIONS)
+    v,p = result.statevector(),result.probabilities
+    assert v.shape == (1,2**circuit.n_qubits)
+    assert p.shape == (1,2**(circuit.n_qubits if selected is None else len(selected)))
+    assert v.dtype == b.D and p.dtype == torch.float64
+    calls += 1
+    return v[0],p[0]
+initial = torch.tensor([.6,.8j],dtype=b.D)
+prep = b.prepare_matrix(initial)
+B = a.tilted(.4,.2)
+R = B.mH
+after,p = query(fq.Circuit(1,dtype=b.D).unitary(0,unitary=prep).rz(0,-.2).ry(0,-.4))
+E,names = b.basis_family(1)
+effective = tuple(R.mH@Q@R for Q in E)
+torch.testing.assert_close(p,b.born(initial,effective,names),rtol=0,atol=b.ATOL)
+a.full_check(initial,B,('b0','b1'),after,p)
+print('Effective projectors R-dagger |j><j| R match native probabilities:',*(f'{x:.6f}' for x in p))
+```
+```text
+Effective projectors R-dagger |j><j| R match native probabilities: 0.408187 0.591813
+```
+
+<span id="formula-code-6-4-x"></span>
+
+### 2. Derive X readout: apply H before computational readout
+
+**Formula.** The X eigenbasis is
+
+$$
+|x_+\rangle=\frac{|0\rangle+|1\rangle}{\sqrt2},\qquad
+|x_-\rangle=\frac{|0\rangle-|1\rangle}{\sqrt2},\qquad
+B_X=H=\frac1{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}.
+$$
+
+**Derivation.** Multiplying X by these vectors gives ± the same vector. Their columns form H, and direct multiplication gives $H^\dagger=H$ and $H^2=I$. The analyzer is therefore H itself. Its effective projectors are
+$P_{x_\pm}=(I\pm X)/2$, obtained by taking the outer products of the displayed vectors. Hence $HZH=X$ and $\langle X\rangle=p_0-p_1$ after H. Computational label 0 means X+, while label 1 means X−; the measured numerical values are +1 and −1, rather than the bit values 0 and 1.
+
+```python
+after,p = query(fq.Circuit(1,dtype=b.D).unitary(0,unitary=prep).h(0))
+a.full_check(initial,a.H,('X+','X-'),after,p)
+xmean = (p[0]-p[1]).item()
+assert abs(xmean-torch.vdot(initial,a.X@initial).real.item())<b.ATOL
+torch.testing.assert_close(a.H@a.Z@a.H,a.X,rtol=0,atol=b.ATOL)
+print('H then computational readout: X+ and X- probabilities',*(f'{x:.6f}' for x in p))
+```
+```text
+H then computational readout: X+ and X- probabilities 0.500000 0.500000
+```
+
+<span id="formula-code-6-4-y"></span>
+
+### 3. Derive Y readout and fix its phase sign
+
+**Formula.** With $S=\operatorname{diag}(1,i)=P(\pi/2)$,
+
+$$
+|y_\pm\rangle=\frac{|0\rangle\pm i|1\rangle}{\sqrt2},\qquad
+B_Y=SH,\qquad
+R_Y=B_Y^\dagger=HS^\dagger.
+$$
+
+**Derivation.** Using $Y=\begin{pmatrix}0&-i\\i&0\end{pmatrix}$, multiplication gives $Y(1,\pm i)^T=\pm(1,\pm i)^T$. Multiplying the H columns by S produces precisely these normalized vectors. Therefore the inverse analyzer applies **S† first, H second**, since the rightmost matrix acts first. As a matrix check,
+
+$$
+R_Y^\dagger ZR_Y=SHZH S^\dagger
+=SXS^\dagger
+=\begin{pmatrix}0&-i\\i&0\end{pmatrix}=Y.
+$$
+
+The actual calls are P(−π/2), then H. Replacing P(−π/2) by P(+π/2) gives $S^\dagger XS=-Y$ in the effective observable and swaps the meanings of labels 0 and 1. A generic probability check alone can miss that mistake; both Y eigenstates make the sign test decisive.
+
+```python
+BY = a.S@a.H
+RY = a.H@a.S.mH
+torch.testing.assert_close(RY.mH@a.Z@RY,a.Y,rtol=0,atol=b.ATOL)
+for sign in (1,-1):
+    ystate = torch.tensor([1,sign*1j],dtype=b.D)/math.sqrt(2)
+    yprep = b.prepare_matrix(ystate)
+    after,p = query(fq.Circuit(1,dtype=b.D).unitary(0,unitary=yprep).p(0,-math.pi/2).h(0))
+    a.full_check(ystate,BY,('Y+','Y-'),after,p)
+    expected = torch.tensor([1.,0.] if sign==1 else [0.,1.],dtype=torch.float64)
+    torch.testing.assert_close(p,expected,rtol=0,atol=b.ATOL)
+    print(f'Y eigenstate sign {sign:+d}: P(-pi/2), H -> probabilities',*(f'{x:.6f}' for x in p))
+```
+```text
+Y eigenstate sign +1: P(-pi/2), H -> probabilities 1.000000 0.000000
+Y eigenstate sign -1: P(-pi/2), H -> probabilities 0.000000 1.000000
+```
+
+<span id="formula-code-6-4-tilted"></span>
+
+### 4. Build a complex tilted basis with the inverse call order
+
+Let $B=R_z(\phi)R_y(\theta)$, with θ and φ declared in **radians**. Write $c=\cos(\theta/2)$ and $s=\sin(\theta/2)$.
+
+**Formula.** Its columns and analyzer are
+
+$$
+B=
+\begin{pmatrix}
+ce^{-i\phi/2}&-se^{-i\phi/2}\\
+se^{i\phi/2}&ce^{i\phi/2}
+\end{pmatrix},\qquad
+R=B^\dagger=R_y(-\theta)R_z(-\phi).
+$$
+
+**Derivation.** Multiply the diagonal Rz matrix by Ry to obtain the columns. Inverting a product reverses its factors and changes the rotation angles' signs, as proved in 5.1. Preparing B uses chronological Ry(θ),Rz(φ); analyzing uses chronological **Rz(−φ),Ry(−θ)**. The matrix expression and call list must not be read in the same direction.
+
+The conjugations from 3.5 give
+$R_y(\theta)ZR_y(-\theta)=\cos\theta Z+\sin\theta X$ and
+$R_z(\phi)XR_z(-\phi)=\cos\phi X+\sin\phi Y$.
+Substitution yields
+
+$$
+BZB^\dagger
+=\sin\theta\cos\phi\,X+\sin\theta\sin\phi\,Y+\cos\theta\,Z,
+$$
+
+$$
+p_0=\frac{1+\langle BZB^\dagger\rangle_\psi}{2},\qquad p_1=1-p_0.
+$$
+
+This proves both the axis convention and the plus/minus interpretation. The native rotated probabilities are checked against this formula and independent column overlaps.
+
+```python
+theta,phi = .71,.43
+Bt = a.tilted(theta,phi)
+after,p_tilt = query(fq.Circuit(1,dtype=b.D).unitary(0,unitary=prep).rz(0,-phi).ry(0,-theta))
+a.full_check(initial,Bt,('tilted+','tilted-'),after,p_tilt)
+axis = math.sin(theta)*math.cos(phi)*a.X+math.sin(theta)*math.sin(phi)*a.Y+math.cos(theta)*a.Z
+torch.testing.assert_close(Bt@a.Z@Bt.mH,axis,rtol=0,atol=b.ATOL)
+formula = (1+torch.vdot(initial,axis@initial).real)/2
+torch.testing.assert_close(p_tilt[0],formula,rtol=0,atol=b.ATOL)
+print('Tilted basis: call Rz(-phi), then Ry(-theta); plus probability',f'{p_tilt[0]:.6f}')
+```
+```text
+Tilted basis: call Rz(-phi), then Ry(-theta); plus probability 0.524260
+```
+
+A bare number does not reveal an intended unit: passing 90 means 90 radians here, not 90 degrees. Convert degrees explicitly before calling. The helper's magnitude limit of 100 radians is a teaching-input guard, not a FlagQuantum limitation or an automatic unit detector.
+
+<span id="formula-code-6-4-local"></span>
+
+### 5. Keep ordered partial labels on a correlated register
+
+For selected qubits $S=(s_0,\ldots,s_{k-1})$, let $Q_a$ be the computational projector that keeps all bitstrings whose selected bits equal a in this order.
+
+**Formula.**
+
+$$
+p_S(a)=\sum_{j:\,j_S=a}|(R\psi)_j|^2
+=\langle\psi|R^\dagger Q_aR|\psi\rangle.
+$$
+
+**Derivation.** In rotated coordinates, mutually exclusive compatible bitstrings have probabilities given by squared coordinate magnitudes. Summing them is the diagonal projector $Q_a$. Applying unit 1's conjugation proves the second expression. This derivation makes no product-state assumption: the unmeasured coordinates remain part of the original global vector.
+
+Apply the Y analyzer to q2 and X analyzer to q0. Native labels requested as (q2,q0) name those measured axes in that order; they do not rename the dense q0-leftmost statevector axes. Their probability parity is
+
+$$
+p_{00}-p_{01}-p_{10}+p_{11}
+=\langle X_0Y_2\rangle
+=\langle X\otimes I\otimes Y\rangle.
+$$
+
+To prove this, weight each rotated label by its product of ±1 eigenvalues and use the two local conjugations. Identity on spectator q1 stays in the dense matrix.
+
+```python
+factors = b.complex_factors(3)
+circuit = fq.Circuit(3,dtype=b.D)
+for q,factor in enumerate(factors):
+    circuit.unitary(q,unitary=b.prepare_matrix(torch.tensor(factor,dtype=b.D)))
+circuit.ry(0,.29).cx(0,2).p(1,-.31)
+pre = (('ry',(0,),(.29,)),('cx',(0,2),()),('p',(1,),(-.31,)))
+original = a.matrix(3,pre)@b.product_input(factors)
+read = (('p',(2,),(-math.pi/2,)),('h',(2,),()),('h',(0,),()))
+R = a.matrix(3,read)
+circuit.p(2,-math.pi/2).h(2).h(0)
+after,p = query(circuit,(2,0))
+Q,names = b.marginal_family(3,(2,0))
+P = tuple(R.mH@q@R for q in Q)
+torch.testing.assert_close(after,R@original,rtol=0,atol=b.ATOL)
+torch.testing.assert_close(p,b.born(original,P,names),rtol=0,atol=b.ATOL)
+parity = p[0]-p[1]-p[2]+p[3]
+observable = torch.kron(torch.kron(a.X,a.I),a.Y)
+torch.testing.assert_close(parity,torch.vdot(original,observable@original).real,rtol=0,atol=b.ATOL)
+print('Native labels ordered (q2,q0):',names,'; local Y(q2)/X(q0) parity mean',f'{parity:.6f}')
+```
+```text
+Native labels ordered (q2,q0): ('00', '01', '10', '11') ; local Y(q2)/X(q0) parity mean -0.268800
+```
+
+<span id="formula-code-6-4-bell"></span>
+
+### 6. Analyze an entangled basis with an entangling inverse
+
+A general register basis need not be a product of one-qubit bases. Define the two-qubit Bell preparation B by chronological H(q0),CX(q0,q1), so $B=CX_{0,1}(H\otimes I)$.
+
+**Formula and derivation.** Apply these two gates to each computational input:
+
+$$
+B|00\rangle=|\Phi_+\rangle,\quad B|01\rangle=|\Psi_+\rangle,\quad
+B|10\rangle=|\Phi_-\rangle,\quad B|11\rangle=|\Psi_-\rangle,
+$$
+
+where $|\Phi_\pm\rangle=(|00\rangle\pm|11\rangle)/\sqrt2$ and
+$|\Psi_\pm\rangle=(|01\rangle\pm|10\rangle)/\sqrt2$.
+The first input bit selects the H relative sign; the controlled flip selects correlated or anticorrelated computational pairs. Since CX and H are individually self-inverse, $B^\dagger=(H\otimes I)CX_{0,1}$: call **CX first, H second**.
+
+Unit 1's proof then identifies readout labels 00,01,10,11 with Φ+,Ψ+,Φ−,Ψ−. The example verifies both Φ+ and Ψ−; the complete program checks all four and a complex superposition in the Bell basis. A coherent gate network is being executed before exact computational probability readout. This is not a claim about which hardware can perform these gates or resolve Bell states under additional platform restrictions.
+
+```python
+BB = a.matrix(2,(('h',(0,),()),('cx',(0,1),())))
+bell_names = ('Phi+','Psi+','Phi-','Psi-')
+for bits,index in [((0,0),0),((1,1),3)]:
+    circuit = fq.Circuit(2,dtype=b.D)
+    for q,bit in enumerate(bits):
+        if bit: circuit.x(q)
+    circuit.h(0).cx(0,1)
+    before = BB@b.product_input(b.basis_factors(bits))
+    circuit.cx(0,1).h(0)
+    after,p = query(circuit)
+    a.full_check(before,BB,bell_names,after,p)
+    expected = torch.zeros(4,dtype=torch.float64); expected[index] = 1
+    torch.testing.assert_close(p,expected,rtol=0,atol=b.ATOL)
+    print(f'Bell input {bell_names[index]} -> computational label {index:02b}, probability {p[index]:.6f}.')
+```
+```text
+Bell input Phi+ -> computational label 00, probability 1.000000.
+Bell input Psi- -> computational label 11, probability 1.000000.
+```
+
+<span id="formula-code-6-4-labels"></span>
+
+### 7. Separate basis-column phases from label permutations
+
+**Formula.** Let D be diagonal with entries $e^{i\chi_j}$, and let the permutation matrix Π satisfy $\Pi|j\rangle=|\sigma(j)\rangle$. For $B'=BD\Pi$,
+
+$$
+|b'_j\rangle=e^{i\chi_{\sigma(j)}}|b_{\sigma(j)}\rangle,\qquad
+p'_j=p_{\sigma(j)},\qquad
+B'^\dagger=\Pi^\dagger D^\dagger B^\dagger.
+$$
+
+**Derivation.** Multiplication by Π selects column σ(j), and D supplies its phase. The phase cancels in the column's outer product and in the squared overlap, proving the probability relation. The inverse product proves the new analyzer. Thus column phases alone preserve label probabilities, while a column permutation requires the corresponding classical label mapping.
+
+This is an equivalence of projective probability families. It does not authorize removing those phases if B is being reused as a coherent gate in another circuit. The full rotated vectors can differ by component phases; our full-vector comparisons retain them. The following actual analyzer combines new column phases with a column swap and declares the resulting labels explicitly.
+
+```python
+phase = torch.diag(torch.tensor([complex(math.cos(.2),math.sin(.2)),
+                                  complex(math.cos(-.8),math.sin(-.8))],dtype=b.D))
+Bnew = (Bt@phase)[:,[1,0]]
+labels = ('old-minus','old-plus')
+a.basis_family(Bnew,labels)
+after,p = query(fq.Circuit(1,dtype=b.D).unitary(0,unitary=prep).unitary(0,unitary=Bnew.mH.contiguous()))
+a.full_check(initial,Bnew,labels,after,p)
+torch.testing.assert_close(p,p_tilt.flip(0),rtol=0,atol=b.ATOL)
+print('Phased and swapped columns follow labels',labels,'; probabilities',*(f'{x:.6f}' for x in p))
+```
+```text
+Phased and swapped columns follow labels ('old-minus', 'old-plus') ; probabilities 0.475740 0.524260
+```
+
+<span id="formula-code-6-4-boundary"></span>
+
+### 8. Diagnose a wrong analyzer and identify the returned state
+
+**Direction check.** On input $|b_0\rangle$, the correct analyzer B† must give label 0 with probability one. Applying B instead measures a different effective family, except in special cases. The diagnostic below submits that wrong forward B, checks its actual full vector $B|b_0\rangle$, and reports its incorrect-for-the-target probabilities. Successful verification of the submitted wrong circuit does not make it a correct implementation of the desired measurement.
+
+**Input contract.** The helper requires a square, finite, unitary CPU complex128 basis matrix and a distinct label for every column. It rejects a nonorthogonal basis rather than repairing it with QR, since QR would change the requested vectors. It also rejects invalid shapes, duplicate labels, nonfinite angles and ambiguous nonnumeric angle declarations.
+
+**State boundary.** An exact native probability query returns the rotated **pre-measurement** vector $B^\dagger\psi$, alongside predicted probabilities; it does not return a sampled collapsed state. If an actual ideal computational measurement subsequently produced a possible j, write $\eta_j=(B^\dagger\psi)_j$ and $p_j=|\eta_j|^2>0$. Its normalized branch in that physical frame would be $\eta_j|j\rangle/\sqrt{p_j}$. Returning it to the original frame requires B and gives $\eta_j|b_j\rangle/\sqrt{p_j}=P_j\psi/\sqrt{p_j}$, consistent with the ideal update in 6.2. These are the isolated rays |j⟩ and |b_j⟩, respectively, but the explicit phase representative is retained in a full-vector comparison. We do not execute that measurement/update process here. Basis probabilities, logical analyzer gates and hardware measurement calibration remain separate claims.
+
+```python
+b0 = Bt[:,0]
+after,wrong = query(fq.Circuit(1,dtype=b.D).unitary(0,unitary=b.prepare_matrix(b0)).unitary(0,unitary=Bt))
+torch.testing.assert_close(after,Bt@b0,rtol=0,atol=b.ATOL)
+assert wrong[1].item()>.1
+desired = b.born(b0,a.basis_family(Bt,('plus','minus')),('plus','minus'))
+torch.testing.assert_close(desired,torch.tensor([1.,0.],dtype=torch.float64),rtol=0,atol=b.ATOL)
+assert a.invalid_checks()==10 and calls==10
+print(f'Wrong forward-B analyzer on b0: undesired label-1 probability {wrong[1]:.6f}; desired probability {desired[1]:.6f}.')
+print('10 malformed contracts rejected; 10 actual native body circuits; returned states are pre-measurement rotated vectors, not collapsed branches.')
+```
+```text
+Wrong forward-B analyzer on b0: undesired label-1 probability 0.405548; desired probability 0.000000.
+10 malformed contracts rejected; 10 actual native body circuits; returned states are pre-measurement rotated vectors, not collapsed branches.
+```
+
+### Complete program and expected output
+
+Run the [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/basis_measurement.py):
+
+    python examples/foundations/basis_measurement.py
+
+It executes 54 native circuits: 21 single-qubit, 18 correlated-register, five Bell-basis, six phase/relabel and four diagnostic cases. Explicit scalar overlaps, conjugated projectors, indexed preparations and full rotated vectors check the actual submitted circuits. The two kinds of deliberately wrong analyzer are predicted correctly as wrong for the target basis, rather than silently repaired.
+
+Run the eight cumulative body fragments and compare actual stdout with:
+
+    python scripts/check_basis_measurement_prose.py
+
+The body executes ten native circuits. Numerical validation supports the implementation; it does not replace the complete conjugated-projector and X/Y derivations above.
+
+Expected output of the complete program:
+
+```text
+21 single-qubit circuits: X, Y and complex tilted bases; full rotated vectors, overlap probabilities and Pauli signs passed.
+18 correlated-register circuits: all six ordered two-qubit selections with local Y/X rotations and native partial readout passed.
+5 Bell-basis circuits: entangling preparation, inverse analyzer and 00/01/10/11 labels Phi+/Psi+/Phi-/Psi- passed.
+6 phase/relabel circuits: independent column phases preserve probabilities; column permutation follows declared labels.
+4 diagnostic circuits: forward B is not its inverse analyzer; wrong Y phase swaps plus/minus labels, without correcting submitted results.
+10 malformed basis/angle/label contracts rejected; radian inputs, exact labels and full-vector phases retained.
+54 actual CPU complex128 circuits; native post-rotation exact probabilities, not shots, hardware calibration or a post-measurement statevector.
+```
+
+### Understanding checks and transfer exercises
+
+**6.4-A — Fresh tilted axes.** Use three new pairs of θ,φ and a complex qubit input. Compute B's columns explicitly, execute Rz(−φ),Ry(−θ), and compare native probabilities with scalar overlaps. Test the two new basis eigenstates as inputs.
+
+**6.4-B — Larger partial readout.** On four qubits prepare a complex product, apply Ry(q1,.32),CX(q3,q0),P(q0,−.28), then analyze Y on q3 and X on q1. Request labels ordered (q3,q1). Verify the full rotated vector, each conjugated partial projector and the compatible-index sum, for basis inputs as well as the complex product.
+
+**6.4-C — A sign hidden by a symmetric state.** Why might using P(+π/2),H accidentally pass a probability test on |0⟩? Which two inputs establish the Y sign and label convention?
+
+**6.4-D — Readout versus state.** If B's columns are rephased, which probabilities stay invariant and which returned vector coordinates change? Does a computational-probability request imply that a physical measurement was sampled? What extra gate would restore an ideal selected branch to the original basis?
+
+<details markdown="1">
+<summary>Answers and reasoning for 6.4</summary>
+
+**A.** The columns are $(ce^{-i\phi/2},se^{i\phi/2})^T$ and $(-se^{-i\phi/2},ce^{i\phi/2})^T$. For each original input ψ, native p(j) must equal $|\sum_k\overline{B_{kj}}\psi_k|^2$. The corresponding basis-vector inputs give deterministic labels 0 and 1. The separate author transfer checks three new angle pairs on the complex input and both eigenstates.
+
+**B.** Let R be the complete analyzer, including identity on q0,q2. For each label a, let $Q_a=\sum_{j:j_3j_1=a}|j\rangle\langle j|$. Check $\psi^\dagger R^\dagger Q_aR\psi=\sum_{j:j_3j_1=a}|(R\psi)_j|^2$. The first label bit names Y(q3), not the most significant dense register coordinate. The transfer tests four selected basis inputs and a complex product; it records author execution rather than reader trials.
+
+**C.** Both Y signs give probabilities 1/2,1/2 on |0⟩. Use $(|0\rangle+i|1\rangle)/\sqrt2$ and $(|0\rangle-i|1\rangle)/\sqrt2$: the correct analyzer maps them to labels 0 and 1 respectively. Replacing S† by S swaps those labels.
+
+**D.** Independent column phases cancel in projectors and squared overlaps. The corresponding B† output coordinates acquire inverse phases and are retained in full-vector comparisons. The exact probability request predicts a distribution without producing a sampled outcome or collapsed state. Under a separately assumed ideal measurement, applying B maps the normalized rotated branch $\eta_j|j\rangle/\sqrt{p_j}$ to $\eta_j|b_j\rangle/\sqrt{p_j}$ in the original frame. The isolated ray is |b_j⟩; this convention retains its scalar phase.
+
+</details>
+
+### Sources, depth and next step
+
+The frozen source target is Nielsen and Chuang, 10th Anniversary Edition (2010), §1.3.3, “Measurements in bases other than the computational basis,” beginning at printed page 22. Its assigned locator is retained without claiming fresh inspection of the user-local textbook PDF. For the imported finite spectral/Born setup, [Preskill's Caltech Chapter 2, §2.1](https://www.preskill.caltech.edu/ph219/chap2_15.pdf), equations (2.4)–(2.7), PDF page 5, was checked; its served header says July 2015. The analyzer-direction, X/Y, label and register derivations are given explicitly here.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.4.json) keeps author execution distinct from independent mathematical/implementation review and reader trials, which remain pending. Continue, when drafted, with [6.5 Generalized measurements and instruments](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-5).

@@ -1,0 +1,6 @@
+{
+  "original_before_publication": "If an actual ideal computational measurement subsequently produced j, its ideal branch in that physical frame would be |j\u27e9. Returning it to the original frame would require B, giving |b_j\u27e9, consistent with the ideal update in 6.2.",
+  "correction": "State the normalized selected phase representative eta_j/sqrt(p_j), its restoration by B, and the distinction from an isolated ray.",
+  "validation": "Classical pure-branch equality check recorded separately; all executed Python/text snippets unchanged.",
+  "diagnostic_wording": "Two kinds of wrong analyzer (forward B and opposite Y phase), not two wrong circuit invocations."
+}

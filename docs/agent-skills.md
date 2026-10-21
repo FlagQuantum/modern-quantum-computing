@@ -19,7 +19,7 @@ Levels describe increasing task composition and evaluation scope. They do not re
 
 ## Complete chapter-to-skill mapping
 
-All **50 chapters and 435 sections** have one primary task-family assignment in the JSON catalog. Current source states: 40 drafts, 395 not started, 0 accepted. A draft with checked examples is useful prototype evidence, not a released skill.
+All **50 chapters and 435 sections** have one primary task-family assignment in the JSON catalog. Current source states: 41 drafts, 394 not started, 0 accepted. A draft with checked examples is useful prototype evidence, not a released skill.
 
 The primary owner is an editorial responsibility, not exclusive use or a claim that every section already implements the task. Support references and selected domain workflows create many-to-many reuse. Source links below lead to stable planning anchors; a planned section must not be presented as completed prose.
 
@@ -30,7 +30,7 @@ The primary owner is an editorial responsibility, not exclusive use or a claim t
 | [3. Single-Qubit States and Rotations](section-plans/01-foundations.md#ch-single-qubit-states-and-rotations) (3.1–3.7) | [compare-quantum-states-and-operators](#compare-quantum-states-and-operators); [convert-bloch-state-coordinates](#convert-bloch-state-coordinates); [reproduce-qubit-interference](#reproduce-qubit-interference); [translate-unitary-evolution](#translate-unitary-evolution) | 7 / 7 |
 | [4. Composite Systems, Tensor Products, and Qubit Ordering](section-plans/01-foundations.md#ch-composite-systems-tensor-products-and-qubit-ordering) (4.1–4.8) | [translate-qubit-ordering](#translate-qubit-ordering) | 8 / 8 |
 | [5. Gates, Reversible Computation, and Circuit Synthesis](section-plans/01-foundations.md#ch-gates-reversible-computation-and-circuit-synthesis) (5.1–5.8) | [build-and-check-circuits](#build-and-check-circuits) | 8 / 8 |
-| [6. Measurement, Expectation Values, and Statistical Estimation](section-plans/01-foundations.md#ch-measurement-expectation-values-and-statistical-estimation) (6.1–6.9) | [measure-and-estimate-observables](#measure-and-estimate-observables) | 3 / 9 |
+| [6. Measurement, Expectation Values, and Statistical Estimation](section-plans/01-foundations.md#ch-measurement-expectation-values-and-statistical-estimation) (6.1–6.9) | [measure-and-estimate-observables](#measure-and-estimate-observables) | 4 / 9 |
 | [7. Entanglement and Quantum Information Protocols](section-plans/01-foundations.md#ch-entanglement-and-quantum-information-protocols) (7.1–7.9) | [model-composite-states-and-channels](#model-composite-states-and-channels) | 0 / 9 |
 | [8. Density Matrices, Reduced States, and Purification](section-plans/01-foundations.md#ch-density-matrices-reduced-states-and-purification) (8.1–8.8) | [model-composite-states-and-channels](#model-composite-states-and-channels) | 0 / 8 |
 | [9. Quantum Channels and Their Representations](section-plans/02-information.md#ch-quantum-channels-and-their-representations) (9.1–9.8) | [model-composite-states-and-channels](#model-composite-states-and-channels) | 0 / 8 |
