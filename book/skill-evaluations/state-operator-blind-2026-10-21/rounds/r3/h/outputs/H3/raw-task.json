@@ -1,0 +1,8 @@
+{
+  "id": "H3",
+  "request": "There were 62 successes in 173 independent Bernoulli shots. Give the observed proportion and its usual plug-in standard error. Select a skill only if its supported profile fits; these data are counts.",
+  "data": {
+    "successes": 62,
+    "shots": 173
+  }
+}

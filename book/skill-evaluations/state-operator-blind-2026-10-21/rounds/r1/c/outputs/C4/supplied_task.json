@@ -1,0 +1,42 @@
+{
+  "id": "C4",
+  "request": "Can these producer exports be admitted to the comparison skill as verified FlagQuantum statevectors? Compare if the profile permits it; otherwise explain the boundary. Preserve the supplied dtype and metadata.",
+  "data": {
+    "producer": "unverified local export",
+    "dtype": "complex64",
+    "device": "cpu",
+    "shape": [
+      1,
+      2
+    ],
+    "a": [
+      [
+        [
+          0.7071067811865476,
+          0.0
+        ],
+        [
+          0.7071067811865476,
+          0.0
+        ]
+      ]
+    ],
+    "b": [
+      [
+        [
+          0.7071067811865476,
+          0.0
+        ],
+        [
+          0.7071067811865476,
+          0.0
+        ]
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "context": "isolated pure states up to global phase"
+  }
+}

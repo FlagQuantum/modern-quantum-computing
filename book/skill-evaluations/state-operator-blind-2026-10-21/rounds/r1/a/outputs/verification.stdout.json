@@ -1,0 +1,23 @@
+{
+  "A1": {
+    "squared_norm_a": 1.0,
+    "squared_norm_b": 1.0,
+    "independent_raw_residual": 0.4588755322106866,
+    "verification": "passed"
+  },
+  "A2": {
+    "squared_norm_a": 1.0,
+    "squared_norm_b": 1.0,
+    "overlap": [
+      0.7822439843305213,
+      0.50307615652467
+    ],
+    "independent_aligned_residual": 0.37403457393355366,
+    "verification": "passed"
+  },
+  "A3": {
+    "squared_norm_a": 1.0,
+    "squared_norm_b": 1.0161000000000002,
+    "verification": "passed"
+  }
+}

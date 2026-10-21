@@ -1,0 +1,186 @@
+[
+  {
+    "id": "C1",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "state",
+      "dimension": 4,
+      "mode": "global-phase",
+      "atol": 1e-10,
+      "basis_a": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "basis_b": [
+        "00",
+        "10",
+        "01",
+        "11"
+      ]
+    },
+    "clarification_question": null,
+    "status": "unsupported",
+    "evidence_paths": [
+      "C1/execution.json",
+      "C1/explanation.txt",
+      "C1/request.json",
+      "C1/stderr.txt",
+      "C1/stdout.json",
+      "C1/supplied_task.json"
+    ],
+    "verification": {
+      "script": "verify.py",
+      "report": "verification.json",
+      "result": "passed",
+      "details": {
+        "passed": true,
+        "basis_declarations_preserved": true,
+        "helper_exit_code": 3,
+        "no_inequality_inferred": true
+      }
+    },
+    "limitations": [
+      "No comparison decision is available under the supplied basis declarations.",
+      "No permutation was inferred or applied."
+    ]
+  },
+  {
+    "id": "C2",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "state",
+      "dimension": 2,
+      "mode": "global-phase",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10
+    },
+    "clarification_question": null,
+    "status": "outside_tolerance",
+    "evidence_paths": [
+      "C2/execution.json",
+      "C2/explanation.txt",
+      "C2/request.json",
+      "C2/stderr.txt",
+      "C2/stdout.json",
+      "C2/supplied_task.json"
+    ],
+    "verification": {
+      "script": "verify.py",
+      "report": "verification.json",
+      "result": "passed",
+      "details": {
+        "passed": true,
+        "helper_exit_code": 1,
+        "independent_aligned_residual": 0.5589107922721196,
+        "independent_ray_formula": 0.5589107922721195,
+        "squared_norm_a": 1.0,
+        "squared_norm_b": 1.0,
+        "cached_decision_reliable": false,
+        "absolute_tolerance": 1e-10
+      }
+    },
+    "limitations": [
+      "Binary64 numerical comparison of the supplied arrays, not exact equality proof or producer validation."
+    ]
+  },
+  {
+    "id": "C3",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "density",
+      "meaning": "mixed-state density operators",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "requested_relation": "matrix equality including mixed-state interpretation",
+      "helper_probe": "coordinates, solely to record representation rejection"
+    },
+    "clarification_question": null,
+    "status": "unsupported",
+    "evidence_paths": [
+      "C3/execution.json",
+      "C3/explanation.txt",
+      "C3/request.json",
+      "C3/stderr.txt",
+      "C3/stdout.json",
+      "C3/supplied_task.json"
+    ],
+    "verification": {
+      "script": "verify.py",
+      "report": "verification.json",
+      "result": "passed",
+      "details": {
+        "passed": true,
+        "helper_exit_code": 3,
+        "representation_preserved": true,
+        "supplied_entries_equal": true,
+        "supplementary_trace": [
+          1.0,
+          0
+        ],
+        "supplementary_purity": 0.5,
+        "density_certification_by_skill": false
+      }
+    },
+    "limitations": [
+      "No density-matrix certification profile is available in the supplied catalog.",
+      "No statevector substitution was made."
+    ]
+  },
+  {
+    "id": "C4",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "producer statevector export",
+      "requested_admission": "verified FlagQuantum",
+      "claimed_context": "isolated pure states up to global phase",
+      "dtype": "complex64",
+      "device": "cpu",
+      "shape": [
+        1,
+        2
+      ],
+      "producer": "unverified local export",
+      "basis": [
+        "0",
+        "1"
+      ]
+    },
+    "clarification_question": null,
+    "status": "unsupported",
+    "evidence_paths": [
+      "C4/admission.json",
+      "C4/explanation.txt",
+      "C4/supplied_task.json"
+    ],
+    "verification": {
+      "script": "verify.py",
+      "report": "verification.json",
+      "result": "passed",
+      "details": {
+        "passed": true,
+        "helper_executed": false,
+        "raw_dtype_preserved": "complex64",
+        "raw_shape_preserved": [
+          1,
+          2
+        ],
+        "raw_metadata_preserved": true,
+        "producer_verified": false,
+        "batch_axis_removed": false,
+        "dtype_widened": false
+      }
+    },
+    "limitations": [
+      "No real producer validation can be performed from metadata assertions alone.",
+      "CPU device and basis declarations do not verify actual producing behavior.",
+      "A validated compatible producer export is required for future comparison."
+    ]
+  }
+]

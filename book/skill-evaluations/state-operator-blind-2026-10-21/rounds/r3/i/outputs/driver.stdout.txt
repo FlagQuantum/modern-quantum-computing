@@ -1,0 +1,15 @@
+{
+  "tasks_executed": [
+    "I1",
+    "I2",
+    "I3"
+  ],
+  "helper_executable": "/private/tmp/mqc-writing-venv/bin/python",
+  "statuses": {
+    "I1": "unsupported",
+    "I2": "outside_tolerance",
+    "I3": "within_tolerance",
+    "I4": "unsupported",
+    "I5": "not_admissible"
+  }
+}

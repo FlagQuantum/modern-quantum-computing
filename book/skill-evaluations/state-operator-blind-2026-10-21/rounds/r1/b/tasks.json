@@ -1,0 +1,128 @@
+[
+  {
+    "id": "B1",
+    "request": "A compiler changes target gate U into V. The target will be executed only on the control=1 branch, with coherent superpositions of the control allowed. Are the resulting full operations equivalent up to one overall phase? The first qubit is control, the second target, basis 00,01,10,11. Use tolerance 1e-10 and save evidence.",
+    "data": {
+      "kind": "unitary",
+      "a": [
+        [
+          [
+            0.9279209378035927,
+            0.0
+          ],
+          [
+            -0.36053389026286115,
+            0.09475255752552608
+          ]
+        ],
+        [
+          [
+            0.36053389026286115,
+            0.09475255752552608
+          ],
+          [
+            0.9279209378035927,
+            0.0
+          ]
+        ]
+      ],
+      "b": [
+        [
+          [
+            0.7426156506319443,
+            0.5563805013215264
+          ],
+          [
+            -0.34534901832099696,
+            -0.14034524833575465
+          ]
+        ],
+        [
+          [
+            0.23172193370679556,
+            0.29200629894727337
+          ],
+          [
+            0.7426156506319443,
+            0.5563805013215264
+          ]
+        ]
+      ],
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    }
+  },
+  {
+    "id": "B2",
+    "request": "A reviewer checked computational basis inputs and says these two isolated gates have the same output rays. Are the gates equivalent for arbitrary coherent inputs, up to a single overall phase? Basis 0,1; absolute tolerance 1e-10.",
+    "data": {
+      "kind": "unitary",
+      "a": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      ],
+      "b": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.6002361482517589,
+            0.7998228343401385
+          ]
+        ]
+      ],
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    }
+  },
+  {
+    "id": "B3",
+    "request": "From 125 independent Bernoulli shots I observed 47 successes. Give the observed proportion and the usual plug-in standard error. These are counts, not statevectors; do not invent amplitudes. Select an applicable available skill only if its contract fits.",
+    "data": {
+      "shots": 125,
+      "successes": 47
+    }
+  }
+]

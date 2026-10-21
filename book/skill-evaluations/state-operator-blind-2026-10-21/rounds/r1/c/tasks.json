@@ -1,0 +1,198 @@
+[
+  {
+    "id": "C1",
+    "request": "Compare these four-coordinate pure-state exports as supplied, up to a global phase, tolerance 1e-10. Do not reorder coordinates or change the basis declarations.",
+    "data": {
+      "kind": "state",
+      "a": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "b": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "basis_a": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "basis_b": [
+        "00",
+        "10",
+        "01",
+        "11"
+      ]
+    }
+  },
+  {
+    "id": "C2",
+    "request": "Validate a cached comparison against the raw inputs and return checkable artifacts. The inputs are isolated pure states up to global phase in basis 0,1, tolerance 1e-10. Is the cached decision reliable?",
+    "data": {
+      "a": [
+        [
+          0.6782329983125268,
+          0.0
+        ],
+        [
+          0.7348469228349535,
+          0.0
+        ]
+      ],
+      "b": [
+        [
+          0.6782329983125268,
+          0.0
+        ],
+        [
+          0.30886977190259945,
+          0.666782921200623
+        ]
+      ],
+      "kind": "state",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    },
+    "cached_result": {
+      "status": "within_tolerance",
+      "aligned_residual": 0,
+      "absolute_tolerance": 1e-10
+    }
+  },
+  {
+    "id": "C3",
+    "request": "Can the available comparison skill certify equality of these density matrices, including their mixed-state meaning? Do not replace them with statevectors.",
+    "data": {
+      "kind": "density",
+      "a": [
+        [
+          [
+            0.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.5,
+            0.0
+          ]
+        ]
+      ],
+      "b": [
+        [
+          [
+            0.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.5,
+            0.0
+          ]
+        ]
+      ],
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    }
+  },
+  {
+    "id": "C4",
+    "request": "Can these producer exports be admitted to the comparison skill as verified FlagQuantum statevectors? Compare if the profile permits it; otherwise explain the boundary. Preserve the supplied dtype and metadata.",
+    "data": {
+      "producer": "unverified local export",
+      "dtype": "complex64",
+      "device": "cpu",
+      "shape": [
+        1,
+        2
+      ],
+      "a": [
+        [
+          [
+            0.7071067811865476,
+            0.0
+          ],
+          [
+            0.7071067811865476,
+            0.0
+          ]
+        ]
+      ],
+      "b": [
+        [
+          [
+            0.7071067811865476,
+            0.0
+          ],
+          [
+            0.7071067811865476,
+            0.0
+          ]
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "context": "isolated pure states up to global phase"
+    }
+  }
+]

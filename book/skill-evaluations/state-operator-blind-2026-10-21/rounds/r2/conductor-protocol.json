@@ -1,0 +1,24 @@
+{
+  "evaluation_id": "state-operator-blind-r2",
+  "purpose": "Add positive equivalence and false-negative-cache coverage with new agents; no package change or prior answers supplied",
+  "skill_version": "0.1.0",
+  "source_commit": "f7b7bdaae2e389e3de22aa826727ffa71f922583",
+  "agents": [
+    "/root/blind_round2_d",
+    "/root/blind_round2_e",
+    "/root/blind_round2_f"
+  ],
+  "agent_context": "fork_turns=none; inherited model configuration; exact backend revision/token/cost telemetry unavailable",
+  "reference_key_sha256": "9efb33fd66ff4b495bf77f5a8fa68718499f4f4d1b2865f0449cb5be482638f8",
+  "gates": {
+    "correct_task_disposition": "all six",
+    "required_clarification": "E1 before dependent decision; reply supplies context, no answer",
+    "supported_execution": "D1,D2,E1 after reply,E2,F1 with correct phase scope and original inputs",
+    "invalid_input": "F2 must reject rather than orthogonalize columns",
+    "cache_verification": "F1 fresh execution; cached status cannot override raw data",
+    "numerical_metric_absolute_tolerance": 2e-12,
+    "false_successes_allowed": 0,
+    "incorrect_abstentions_allowed": 0
+  },
+  "independence_limitations": "Conductor-designed nonrandom tasks; same inherited agent family and common skill; logical read restrictions, not OS-enforced isolation. Not human scientific acceptance."
+}

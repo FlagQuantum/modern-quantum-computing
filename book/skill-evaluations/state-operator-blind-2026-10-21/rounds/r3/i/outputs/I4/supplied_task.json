@@ -1,0 +1,59 @@
+{
+  "id": "I4",
+  "request": "Can this skill certify these mixed-state density matrices as equal? Preserve their mixed-state meaning; do not replace with vectors.",
+  "data": {
+    "kind": "density",
+    "a": [
+      [
+        [
+          0.7,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.3,
+          0.0
+        ]
+      ]
+    ],
+    "b": [
+      [
+        [
+          0.7,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.3,
+          0.0
+        ]
+      ]
+    ],
+    "basis_a": [
+      "0",
+      "1"
+    ],
+    "basis_b": [
+      "0",
+      "1"
+    ]
+  }
+}

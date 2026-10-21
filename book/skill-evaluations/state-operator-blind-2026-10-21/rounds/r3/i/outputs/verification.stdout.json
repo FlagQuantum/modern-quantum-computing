@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "id": "I1",
+      "passed": true
+    },
+    {
+      "id": "I2",
+      "passed": true
+    },
+    {
+      "id": "I3",
+      "passed": true
+    },
+    {
+      "id": "I4",
+      "passed": true
+    },
+    {
+      "id": "I5",
+      "passed": true
+    }
+  ],
+  "inputs_unchanged": true
+}

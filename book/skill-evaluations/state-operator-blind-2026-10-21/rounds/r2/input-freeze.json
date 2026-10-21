@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-10-21T04:50:04.135231+00:00",
+  "source_commit": "f7b7bdaae2e389e3de22aa826727ffa71f922583",
+  "files": {
+    "d/catalog.json": "4c202e6ddbffc9f5d2062b58652ce58f34f0cfee8e0ac377f6dcb6254271ab79",
+    "d/skills/compare-quantum-states-and-operators/SKILL.md": "e7dcac94f21b61268fda83bb30d9f7634c3b6916db2ccd4bd4948389288b68be",
+    "d/skills/compare-quantum-states-and-operators/agents/openai.yaml": "e0c97d1b156907457229fc1cb122fedfa43558a12fe2bf4cdb1796d0459760b3",
+    "d/skills/compare-quantum-states-and-operators/references/contract.md": "d5a1cba79cf724b55b08d7ca80c7cf9d171ab853eaefde2c7ac11c85b9e1af98",
+    "d/skills/compare-quantum-states-and-operators/scripts/compare.py": "4ec18a41ae4e022a5f46362a6ce2ed5a563a18bb1b425154493ed9e78f1495c5",
+    "d/tasks.json": "621513460f495c8840b9bf7e2133b4a52bca3e5dc45af17a8238d602e7a4a0d7",
+    "e/catalog.json": "4c202e6ddbffc9f5d2062b58652ce58f34f0cfee8e0ac377f6dcb6254271ab79",
+    "e/skills/compare-quantum-states-and-operators/SKILL.md": "e7dcac94f21b61268fda83bb30d9f7634c3b6916db2ccd4bd4948389288b68be",
+    "e/skills/compare-quantum-states-and-operators/agents/openai.yaml": "e0c97d1b156907457229fc1cb122fedfa43558a12fe2bf4cdb1796d0459760b3",
+    "e/skills/compare-quantum-states-and-operators/references/contract.md": "d5a1cba79cf724b55b08d7ca80c7cf9d171ab853eaefde2c7ac11c85b9e1af98",
+    "e/skills/compare-quantum-states-and-operators/scripts/compare.py": "4ec18a41ae4e022a5f46362a6ce2ed5a563a18bb1b425154493ed9e78f1495c5",
+    "e/tasks.json": "b9ff9b22e03e81051bcc3c3c15359155aaec72191d9f10c54aaaf306a8768de0",
+    "f/catalog.json": "4c202e6ddbffc9f5d2062b58652ce58f34f0cfee8e0ac377f6dcb6254271ab79",
+    "f/skills/compare-quantum-states-and-operators/SKILL.md": "e7dcac94f21b61268fda83bb30d9f7634c3b6916db2ccd4bd4948389288b68be",
+    "f/skills/compare-quantum-states-and-operators/agents/openai.yaml": "e0c97d1b156907457229fc1cb122fedfa43558a12fe2bf4cdb1796d0459760b3",
+    "f/skills/compare-quantum-states-and-operators/references/contract.md": "d5a1cba79cf724b55b08d7ca80c7cf9d171ab853eaefde2c7ac11c85b9e1af98",
+    "f/skills/compare-quantum-states-and-operators/scripts/compare.py": "4ec18a41ae4e022a5f46362a6ce2ed5a563a18bb1b425154493ed9e78f1495c5",
+    "f/tasks.json": "0899d9f4992dc013ee95d22a4cc85a217563959cc61c9a3fd86b363194267eed"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "evaluation_id": "state-operator-blind-r1",
+  "source_commit": "f7b7bdaae2e389e3de22aa826727ffa71f922583",
+  "skill_version": "0.1.0",
+  "started_at_utc": "2026-10-21T04:47:52.170582+00:00",
+  "selection": "Ten new conductor-authored tasks, partitioned 3/3/4 among three fresh no-history agents; no expected answers, suspected defects or evaluation rubric supplied",
+  "agents": [
+    "/root/blind_round1_a",
+    "/root/blind_round1_b",
+    "/root/blind_round1_c"
+  ],
+  "context": "fork_turns=none; inherited model configuration; exact backend revision and token/cost telemetry unavailable",
+  "allowed_reads": "Assigned workspace, skill/catalog/tasks and standard-library resources only; logical isolation, not OS-enforced sandbox",
+  "reference_key_sha256": "f3c38828404830d92281208f2771239d58bdf244dd88ce55f7d736c72018894b",
+  "reference_timing": "Reference dispositions/analytic targets frozen before dispatch; report specification formalized during execution before grading",
+  "gates": {
+    "correct_task_disposition": "all ten",
+    "required_clarification": "A1 before dependent execution; resolve on explicit caller reply",
+    "supported_comparisons": "A1 after reply, A2, B1, B2, C2 must execute matching phase scope and preserve inputs",
+    "invalid_or_unsupported": "A3, C1, C3, C4 must not produce false success or silently repair inputs",
+    "nonmatching_task": "B3 must not fabricate amplitudes or use the pure-state helper for Bernoulli statistics",
+    "cached_evidence": "C2 must verify raw inputs by fresh execution rather than accept cached status",
+    "numerical_metric_absolute_tolerance": 2e-12,
+    "false_successes_allowed": 0,
+    "incorrect_abstentions_allowed": 0
+  },
+  "review_scope": "Conductor grades recorded artifacts against private analytic key; separate agents are executors, not human scientific reviewers. Source mathematical acceptance, reader trial and release remain pending."
+}

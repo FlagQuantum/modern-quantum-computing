@@ -1,0 +1,42 @@
+{
+  "id": "I5",
+  "request": "Are these exports admissible as verified FlagQuantum statevector outputs for this skill? Preserve the stated dtype/metadata; compare only if the producer contract permits it.",
+  "data": {
+    "producer": "unverified export",
+    "dtype": "complex64",
+    "shape": [
+      1,
+      2
+    ],
+    "device": "cpu",
+    "basis": [
+      "0",
+      "1"
+    ],
+    "context": "isolated pure states up to global phase",
+    "a": [
+      [
+        [
+          0.6,
+          0.0
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ]
+    ],
+    "b": [
+      [
+        [
+          0.6,
+          0.0
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ]
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+The fresh helper execution returns outside_tolerance (exit 1); aligned Euclidean residual is 0.55891079227211959, exceeding 1e-10. The cached within_tolerance result and zero residual are unreliable. The two basis probabilities coincide, but relative phase differs. The multiplier on b is recorded in stdout.json; inputs were not normalized or repaired.

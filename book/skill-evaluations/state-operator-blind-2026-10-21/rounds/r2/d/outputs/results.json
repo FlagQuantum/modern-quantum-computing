@@ -1,0 +1,141 @@
+[
+  {
+    "id": "D1",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "state",
+      "mode": "global-phase",
+      "basis_a": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "basis_b": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "atol": 1e-10,
+      "metric": "euclidean",
+      "phase_scope": "one phase on the whole isolated pure state"
+    },
+    "clarification_question": null,
+    "status": "within_tolerance",
+    "evidence_paths": [
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D1/task.json",
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D1/request.json",
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D1/stdout.json",
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D1/stderr.txt",
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D1/execution.json",
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D1/explanation.txt"
+    ],
+    "verification": {
+      "status": "passed",
+      "script": "/private/tmp/mqc-comparison-blind-r2/d/outputs/verify.py",
+      "stdout": "/private/tmp/mqc-comparison-blind-r2/d/outputs/verification_stdout.json",
+      "stderr": "/private/tmp/mqc-comparison-blind-r2/d/outputs/verification_stderr.txt",
+      "execution": "/private/tmp/mqc-comparison-blind-r2/d/outputs/verification_execution.json",
+      "exit_code": 0
+    },
+    "limitations": [
+      "Binary64 numerical result, not proof of exact equality.",
+      "Basis labels are supplied assertions; no producing program is available.",
+      "No circuit, channel, hardware or statistical equivalence is established."
+    ],
+    "result": {
+      "absolute_tolerance": 1e-10,
+      "aligned_residual": 8.496376103241741e-18,
+      "alignment_multiplier_on_b": [
+        0.4615985088659584,
+        0.8870889564258614
+      ],
+      "comparison_dimension": 4,
+      "contract_version": "0.1.0",
+      "decision_residual": 8.496376103241741e-18,
+      "input_dimension": 4,
+      "kind": "state",
+      "metric": "euclidean",
+      "mode": "global-phase",
+      "overlap": [
+        0.4615985088659584,
+        -0.8870889564258614
+      ],
+      "phase_identifiable": true,
+      "phase_scope": "one phase on the whole object",
+      "proof_of_exact_equality": false,
+      "raw_residual": 1.037691178659664,
+      "status": "within_tolerance",
+      "validation_atol": 1e-12
+    }
+  },
+  {
+    "id": "D2",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "state",
+      "mode": "global-phase",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10,
+      "metric": "euclidean",
+      "phase_scope": "one phase on the whole isolated pure state"
+    },
+    "clarification_question": null,
+    "status": "outside_tolerance",
+    "evidence_paths": [
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D2/task.json",
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D2/request.json",
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D2/stdout.json",
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D2/stderr.txt",
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D2/execution.json",
+      "/private/tmp/mqc-comparison-blind-r2/d/outputs/D2/explanation.txt"
+    ],
+    "verification": {
+      "status": "passed",
+      "script": "/private/tmp/mqc-comparison-blind-r2/d/outputs/verify.py",
+      "stdout": "/private/tmp/mqc-comparison-blind-r2/d/outputs/verification_stdout.json",
+      "stderr": "/private/tmp/mqc-comparison-blind-r2/d/outputs/verification_stderr.txt",
+      "execution": "/private/tmp/mqc-comparison-blind-r2/d/outputs/verification_execution.json",
+      "exit_code": 0
+    },
+    "limitations": [
+      "Binary64 numerical result, not proof of exact equality.",
+      "Basis labels are supplied assertions; no producing program is available.",
+      "No circuit, channel, hardware or statistical equivalence is established.",
+      "Zero overlap means all phases minimize distance; reported phase 1 is arbitrary and not identifiable."
+    ],
+    "result": {
+      "absolute_tolerance": 1e-10,
+      "aligned_residual": 1.414213562373095,
+      "alignment_multiplier_on_b": [
+        1.0,
+        0.0
+      ],
+      "comparison_dimension": 2,
+      "contract_version": "0.1.0",
+      "decision_residual": 1.414213562373095,
+      "input_dimension": 2,
+      "kind": "state",
+      "metric": "euclidean",
+      "mode": "global-phase",
+      "overlap": [
+        0.0,
+        0.0
+      ],
+      "phase_identifiable": false,
+      "phase_scope": "one phase on the whole object",
+      "proof_of_exact_equality": false,
+      "raw_residual": 1.414213562373095,
+      "status": "outside_tolerance",
+      "validation_atol": 1e-12
+    }
+  }
+]

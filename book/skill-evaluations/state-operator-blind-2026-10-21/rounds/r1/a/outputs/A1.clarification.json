@@ -1,0 +1,5 @@
+{
+  "question": "Should A1 compare the supplied statevectors with their coordinates/phases retained, or as isolated pure states up to one overall global phase?",
+  "answer": "I mean equality of the exported complex coordinates with phase retained, rather than ray equivalence. Use absolute Euclidean tolerance 1e-10.",
+  "source": "Requester clarification relayed by /root via collaboration.send_message"
+}

@@ -1,0 +1,47 @@
+{
+  "A1": {
+    "initial": "clarification required",
+    "reply": "I mean equality of the exported complex coordinates with phase retained, rather than ray equivalence. Use absolute Euclidean tolerance 1e-10.",
+    "mode": "coordinates",
+    "status": "outside_tolerance",
+    "residual": 0.4588755322106866
+  },
+  "A2": {
+    "mode": "global-phase",
+    "status": "outside_tolerance",
+    "residual": 0.3740345739335538
+  },
+  "A3": {
+    "status": "invalid_input"
+  },
+  "B1": {
+    "mode": "controlled",
+    "status": "outside_tolerance",
+    "residual": 0.6402343287964788
+  },
+  "B2": {
+    "mode": "global-phase",
+    "status": "outside_tolerance",
+    "residual": 0.6496362243361175
+  },
+  "B3": {
+    "skill": null,
+    "status": "general reasoning without pure-state helper",
+    "proportion": 0.376,
+    "standard_error": 0.043324265717955335
+  },
+  "C1": {
+    "status": "unsupported"
+  },
+  "C2": {
+    "mode": "global-phase",
+    "status": "outside_tolerance",
+    "residual": 0.5589107922721195
+  },
+  "C3": {
+    "status": "unsupported"
+  },
+  "C4": {
+    "status": "unsupported producer contract; no cast or widening"
+  }
+}

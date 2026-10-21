@@ -22,7 +22,7 @@ import torch
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT/'skills/compare-quantum-states-and-operators'
-EVIDENCE = ROOT/'book/skill-evaluations/state-operator-v0.1'
+EVIDENCE = ROOT/'book/skill-evaluations/state-operator-v0.1.1'
 
 
 def encode(x):
@@ -97,20 +97,20 @@ def main():
     for name,text in [('nan','{"kind":NaN}'),('infinity','{"kind":Infinity}'),('syntax','{'),('duplicate','{"kind":"state","kind":"unitary"}')]:
         add(name,'error',None,'invalid_input');cases[-1]['raw_request']=text
 
-    # Constructed only after package-freeze.json. Analytic transfer fixtures, not a blind reviewer.
+    # Reused 0.1.0 transfer fixtures: regression, not new held-out evidence.
     v=np.array([1+2j,-3+4j])/sqrt(30)
     phi=0.731
-    add('complex_nonlandmark_ray','held-out-transfer',request(v,cmath.exp(1j*phi)*v),'within_tolerance',0)
-    add('complex_nonlandmark_coordinates','held-out-transfer',request(v,cmath.exp(1j*phi)*v,mode='coordinates'),'outside_tolerance',2*abs(sin(phi/2)))
+    add('complex_nonlandmark_ray','transfer-regression',request(v,cmath.exp(1j*phi)*v),'within_tolerance',0)
+    add('complex_nonlandmark_coordinates','transfer-regression',request(v,cmath.exp(1j*phi)*v,mode='coordinates'),'outside_tolerance',2*abs(sin(phi/2)))
     w=np.array([2-1j,1-2j,3j,-1+4j])/6
-    add('complex_four_coordinate_ray','held-out-transfer',request(w,-1j*w),'within_tolerance',0)
+    add('complex_four_coordinate_ray','transfer-regression',request(w,-1j*w),'within_tolerance',0)
     # Nontrivial unitary and a target phase invisible in isolation but visible under control.
     t=.417
     U=np.array([[cos(t),-cmath.exp(-.29j)*sin(t)],[cmath.exp(.29j)*sin(t),cos(t)]])
-    add('generic_unitary_phase','held-out-transfer',request(U,cmath.exp(1j*phi)*U,'unitary'),'within_tolerance',0)
-    add('generic_controlled_phase','held-out-transfer',request(U,cmath.exp(1j*phi)*U,'unitary','controlled'),'outside_tolerance',sqrt(8-8*abs(cos(phi/2))))
+    add('generic_unitary_phase','transfer-regression',request(U,cmath.exp(1j*phi)*U,'unitary'),'within_tolerance',0)
+    add('generic_controlled_phase','transfer-regression',request(U,cmath.exp(1j*phi)*U,'unitary','controlled'),'outside_tolerance',sqrt(8-8*abs(cos(phi/2))))
     # Same probabilities, different complex relative phase; |<a,b>|=sqrt(1/2).
-    add('complex_relative_phase','held-out-transfer',request(plus,np.array([1,1j])/sqrt(2)),'outside_tolerance',sqrt(2-sqrt(2)))
+    add('complex_relative_phase','transfer-regression',request(plus,np.array([1,1j])/sqrt(2)),'outside_tolerance',sqrt(2-sqrt(2)))
 
     # Producing-program checks precede export: no implicit dtype widening/batch squeezing.
     assert version('flagquantum') == '0.3.1'
@@ -141,6 +141,9 @@ def main():
             payload=case.get('raw_request',json.dumps(case['request'],allow_nan=False))
             proc=subprocess.run([sys.executable,str(copied/'scripts/compare.py')],input=payload,text=True,capture_output=True,cwd=tmp,timeout=10)
             output=json.loads(proc.stdout)
+            assert output['runtime']['implementation']=='cpython'
+            assert output['runtime']['python'].startswith('3.12.')
+            assert output['contract_version']=='0.1.1'
             assert output['status']==case['expected_status'],(case['name'],output)
             assert proc.returncode==codes[case['expected_status']] and not proc.stderr,(case['name'],proc.stderr)
             expected=case['expected_residual']
@@ -154,11 +157,11 @@ def main():
                 assert abs(complex(*output['alignment_multiplier_on_b'])+1j)<1e-12
             logs.append({**case,'actual_exit_code':proc.returncode,'actual_output':output,'passed':True})
     report={
-        'skill':PACKAGE.name,'version':'0.1.0','status':'author-verified prototype',
+        'skill':PACKAGE.name,'version':'0.1.1','status':'author-verified prototype',
         'evaluated_at_utc':datetime.now(timezone.utc).isoformat(),
         'evaluator_role':'authoring agent; programmatic CLI evaluation',
         'independent_agent_forward_test':'not run','independent_acceptance':'pending','reader_trial':'not run',
-        'held_out_scope':'Six post-package-freeze author-designed transfer cases; not blind independent evaluation',
+        'held_out_scope':'Six reused transfer fixtures, now regression only; blind agent evidence is recorded separately',
         'environment':{'python':platform.python_version(),'platform':platform.platform(),'flagquantum':version('flagquantum'),'torch':version('torch'),'numpy':version('numpy')},
         'package_sha256':current,'counts':dict(Counter(c['category'] for c in cases)),
         'passed':len(logs),'false_successes':0,'incorrect_abstentions':0,'unexpected_exceptions':0,

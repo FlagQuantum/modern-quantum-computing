@@ -1,0 +1,65 @@
+[
+  {
+    "agent": "/root/blind_round1_a",
+    "fork_turns": "none",
+    "prompt": "Independently handle the user's raw tasks in /private/tmp/mqc-comparison-blind-r1/a/tasks.json. Discover available skills from /private/tmp/mqc-comparison-blind-r1/a/catalog.json; decide which applies. You have no expected answers. Work only in /private/tmp/mqc-comparison-blind-r1/a (plus standard Python libraries); do not read other folders, the textbook repository, evaluation rubrics, sibling agents, or external sources. This is a logically isolated evaluation, not an OS security boundary. Do not modify any supplied skill/catalog/task file. Save requests, actual stdout/stderr/exit codes, verification scripts and per-task explanations under outputs/. For each task return structured outcomes in outputs/results.json: id, selected_skill (or null), chosen_context, clarification_question if any, status, evidence_paths, verification, limitations. Treat tasks independently. If clarification is needed, send the exact task ID/question to /root via collaboration.send_message and leave the dependent decision pending until the conductor replies; continue other tasks meanwhile. Do not ask the real user via UI tools. Report actual execution only, no fabricated tool output. Finish with artifact locations and unresolved questions. Do not alter the public repo or publish anything.",
+    "model_configuration": "inherited; exact backend revision not exposed",
+    "read_scope": "logical instruction boundary; not OS sandbox"
+  },
+  {
+    "agent": "/root/blind_round1_b",
+    "fork_turns": "none",
+    "prompt": "Independently handle the user's raw tasks in /private/tmp/mqc-comparison-blind-r1/b/tasks.json. Discover available skills from /private/tmp/mqc-comparison-blind-r1/b/catalog.json; decide which applies. You have no expected answers. Work only in /private/tmp/mqc-comparison-blind-r1/b (plus standard Python libraries); do not read other folders, the textbook repository, evaluation rubrics, sibling agents, or external sources. This is a logically isolated evaluation, not an OS security boundary. Do not modify any supplied skill/catalog/task file. Save requests, actual stdout/stderr/exit codes, verification scripts and per-task explanations under outputs/. For each task return structured outcomes in outputs/results.json: id, selected_skill (or null), chosen_context, clarification_question if any, status, evidence_paths, verification, limitations. Treat tasks independently. If clarification is needed, send the exact task ID/question to /root via collaboration.send_message and leave the dependent decision pending until the conductor replies; continue other tasks meanwhile. Do not ask the real user via UI tools. Report actual execution only, no fabricated tool output. Finish with artifact locations and unresolved questions. Do not alter the public repo or publish anything.",
+    "model_configuration": "inherited; exact backend revision not exposed",
+    "read_scope": "logical instruction boundary; not OS sandbox"
+  },
+  {
+    "agent": "/root/blind_round1_c",
+    "fork_turns": "none",
+    "prompt": "Independently handle the user's raw tasks in /private/tmp/mqc-comparison-blind-r1/c/tasks.json. Discover available skills from /private/tmp/mqc-comparison-blind-r1/c/catalog.json; decide which applies. You have no expected answers. Work only in /private/tmp/mqc-comparison-blind-r1/c (plus standard Python libraries); do not read other folders, the textbook repository, evaluation rubrics, sibling agents, or external sources. This is a logically isolated evaluation, not an OS security boundary. Do not modify any supplied skill/catalog/task file. Save requests, actual stdout/stderr/exit codes, verification scripts and per-task explanations under outputs/. For each task return structured outcomes in outputs/results.json: id, selected_skill (or null), chosen_context, clarification_question if any, status, evidence_paths, verification, limitations. Treat tasks independently. If clarification is needed, send the exact task ID/question to /root via collaboration.send_message and leave the dependent decision pending until the conductor replies; continue other tasks meanwhile. Do not ask the real user via UI tools. Report actual execution only, no fabricated tool output. Finish with artifact locations and unresolved questions. Do not alter the public repo or publish anything.",
+    "model_configuration": "inherited; exact backend revision not exposed",
+    "read_scope": "logical instruction boundary; not OS sandbox"
+  },
+  {
+    "agent": "/root/blind_round2_d",
+    "fork_turns": "none",
+    "prompt": "Independently handle raw user tasks in /private/tmp/mqc-comparison-blind-r2/d/tasks.json. Discover available skills from that workspace's catalog.json and decide what applies. No expected answers are supplied. Read/write only /private/tmp/mqc-comparison-blind-r2/d and standard Python library resources; do not inspect siblings, repository, rubrics or external sources. Preserve supplied skill/catalog/tasks unchanged. Save requests, actual stdout/stderr/exit codes, per-task explanations and verification scripts/results under outputs/. Produce outputs/results.json with per-task id, selected_skill or null, chosen_context, clarification_question if any, status, evidence_paths, verification and limitations. Treat tasks independently. If context is missing, send task ID and question to /root using collaboration.send_message; leave dependent decisions pending until reply, continue other tasks meanwhile. Do not ask the real user through UI tools. No fabricated execution. Do not edit/publish the public repo. Finish with artifacts and unresolved questions.",
+    "model_configuration": "inherited; exact backend revision not exposed",
+    "read_scope": "logical instruction boundary; not OS sandbox"
+  },
+  {
+    "agent": "/root/blind_round2_e",
+    "fork_turns": "none",
+    "prompt": "Independently handle raw user tasks in /private/tmp/mqc-comparison-blind-r2/e/tasks.json. Discover available skills from that workspace's catalog.json and decide what applies. No expected answers are supplied. Read/write only /private/tmp/mqc-comparison-blind-r2/e and standard Python library resources; do not inspect siblings, repository, rubrics or external sources. Preserve supplied skill/catalog/tasks unchanged. Save requests, actual stdout/stderr/exit codes, per-task explanations and verification scripts/results under outputs/. Produce outputs/results.json with per-task id, selected_skill or null, chosen_context, clarification_question if any, status, evidence_paths, verification and limitations. Treat tasks independently. If context is missing, send task ID and question to /root using collaboration.send_message; leave dependent decisions pending until reply, continue other tasks meanwhile. Do not ask the real user through UI tools. No fabricated execution. Do not edit/publish the public repo. Finish with artifacts and unresolved questions.",
+    "model_configuration": "inherited; exact backend revision not exposed",
+    "read_scope": "logical instruction boundary; not OS sandbox"
+  },
+  {
+    "agent": "/root/blind_round2_f",
+    "fork_turns": "none",
+    "prompt": "Independently handle raw user tasks in /private/tmp/mqc-comparison-blind-r2/f/tasks.json. Discover available skills from that workspace's catalog.json and decide what applies. No expected answers are supplied. Read/write only /private/tmp/mqc-comparison-blind-r2/f and standard Python library resources; do not inspect siblings, repository, rubrics or external sources. Preserve supplied skill/catalog/tasks unchanged. Save requests, actual stdout/stderr/exit codes, per-task explanations and verification scripts/results under outputs/. Produce outputs/results.json with per-task id, selected_skill or null, chosen_context, clarification_question if any, status, evidence_paths, verification and limitations. Treat tasks independently. If context is missing, send task ID and question to /root using collaboration.send_message; leave dependent decisions pending until reply, continue other tasks meanwhile. Do not ask the real user through UI tools. No fabricated execution. Do not edit/publish the public repo. Finish with artifacts and unresolved questions.",
+    "model_configuration": "inherited; exact backend revision not exposed",
+    "read_scope": "logical instruction boundary; not OS sandbox"
+  },
+  {
+    "agent": "/root/blind_round3_g",
+    "fork_turns": "none",
+    "prompt": "Independently handle raw user tasks in /private/tmp/mqc-comparison-blind-r3/g/tasks.json. Discover available skills from catalog.json and available local interpreters from environment.json in that workspace; decide what applies. No expected answers are supplied. Read/write only /private/tmp/mqc-comparison-blind-r3/g plus the listed interpreter/standard-library resources; do not inspect siblings, textbook repo, rubrics or external sources. Preserve supplied skill/catalog/tasks/environment unchanged. Save actual requests/stdout/stderr/exit codes, per-task explanations, verification scripts/results and actual interpreter information under outputs/. Produce outputs/results.json with per-task id, selected_skill or null, chosen_context, clarification_question if any, status, evidence_paths, verification and limitations. Treat tasks independently. If context is missing, send task ID and question to /root via collaboration.send_message; leave dependent decisions pending until reply and continue independent tasks meanwhile. Do not ask the real user through UI tools. No fabricated execution, no environment installation, no edits/publication to the public repo. Finish with artifacts and unresolved questions.",
+    "model_configuration": "inherited; exact backend revision not exposed",
+    "read_scope": "logical instruction boundary; not OS sandbox"
+  },
+  {
+    "agent": "/root/blind_round3_h",
+    "fork_turns": "none",
+    "prompt": "Independently handle raw user tasks in /private/tmp/mqc-comparison-blind-r3/h/tasks.json. Discover available skills from catalog.json and available local interpreters from environment.json in that workspace; decide what applies. No expected answers are supplied. Read/write only /private/tmp/mqc-comparison-blind-r3/h plus the listed interpreter/standard-library resources; do not inspect siblings, textbook repo, rubrics or external sources. Preserve supplied skill/catalog/tasks/environment unchanged. Save actual requests/stdout/stderr/exit codes, per-task explanations, verification scripts/results and actual interpreter information under outputs/. Produce outputs/results.json with per-task id, selected_skill or null, chosen_context, clarification_question if any, status, evidence_paths, verification and limitations. Treat tasks independently. If context is missing, send task ID and question to /root via collaboration.send_message; leave dependent decisions pending until reply and continue independent tasks meanwhile. Do not ask the real user through UI tools. No fabricated execution, no environment installation, no edits/publication to the public repo. Finish with artifacts and unresolved questions.",
+    "model_configuration": "inherited; exact backend revision not exposed",
+    "read_scope": "logical instruction boundary; not OS sandbox"
+  },
+  {
+    "agent": "/root/blind_round3_i",
+    "fork_turns": "none",
+    "prompt": "Independently handle raw user tasks in /private/tmp/mqc-comparison-blind-r3/i/tasks.json. Discover available skills from catalog.json and available local interpreters from environment.json in that workspace; decide what applies. No expected answers are supplied. Read/write only /private/tmp/mqc-comparison-blind-r3/i plus the listed interpreter/standard-library resources; do not inspect siblings, textbook repo, rubrics or external sources. Preserve supplied skill/catalog/tasks/environment unchanged. Save actual requests/stdout/stderr/exit codes, per-task explanations, verification scripts/results and actual interpreter information under outputs/. Produce outputs/results.json with per-task id, selected_skill or null, chosen_context, clarification_question if any, status, evidence_paths, verification and limitations. Treat tasks independently. If context is missing, send task ID and question to /root via collaboration.send_message; leave dependent decisions pending until reply and continue independent tasks meanwhile. Do not ask the real user through UI tools. No fabricated execution, no environment installation, no edits/publication to the public repo. Finish with artifacts and unresolved questions.",
+    "model_configuration": "inherited; exact backend revision not exposed",
+    "read_scope": "logical instruction boundary; not OS sandbox"
+  }
+]

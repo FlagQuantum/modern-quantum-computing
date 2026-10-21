@@ -1,0 +1,43 @@
+{
+  "C1": {
+    "passed": true,
+    "basis_declarations_preserved": true,
+    "helper_exit_code": 3,
+    "no_inequality_inferred": true
+  },
+  "C2": {
+    "passed": true,
+    "helper_exit_code": 1,
+    "independent_aligned_residual": 0.5589107922721196,
+    "independent_ray_formula": 0.5589107922721195,
+    "squared_norm_a": 1.0,
+    "squared_norm_b": 1.0,
+    "cached_decision_reliable": false,
+    "absolute_tolerance": 1e-10
+  },
+  "C3": {
+    "passed": true,
+    "helper_exit_code": 3,
+    "representation_preserved": true,
+    "supplied_entries_equal": true,
+    "supplementary_trace": [
+      1.0,
+      0
+    ],
+    "supplementary_purity": 0.5,
+    "density_certification_by_skill": false
+  },
+  "C4": {
+    "passed": true,
+    "helper_executed": false,
+    "raw_dtype_preserved": "complex64",
+    "raw_shape_preserved": [
+      1,
+      2
+    ],
+    "raw_metadata_preserved": true,
+    "producer_verified": false,
+    "batch_axis_removed": false,
+    "dtype_widened": false
+  }
+}

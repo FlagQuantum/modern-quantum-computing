@@ -1,0 +1,196 @@
+{
+  "results": [
+    {
+      "id": "G1",
+      "selected_skill": "compare-quantum-states-and-operators",
+      "chosen_context": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "absolute_euclidean_tolerance": 1e-10,
+        "normalization_validation_tolerance": 1e-12
+      },
+      "clarification_question": "Should the comparison retain phase or permit one common global phase, and at what absolute tolerance?",
+      "clarification_resolved": true,
+      "status": "within_tolerance",
+      "actual_result": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 1.6628553272775844e-16,
+        "alignment_multiplier_on_b": [
+          0.7511459686759877,
+          0.6601361478830047
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.1",
+        "decision_residual": 1.6628553272775844e-16,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          0.7511459686759876,
+          -0.6601361478830046
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 0.7054842752663057,
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "evidence_paths": [
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G1/request.json",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G1/stdout.json",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G1/stderr.txt",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G1/execution.json",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G1/explanation.txt",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G1/verification.json",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G1_clarification.json"
+      ],
+      "verification": {
+        "passed": true,
+        "script": "/private/tmp/mqc-comparison-blind-r3/g/outputs/verify.py",
+        "result": "/private/tmp/mqc-comparison-blind-r3/g/outputs/G1/verification.json",
+        "execution": "/private/tmp/mqc-comparison-blind-r3/g/outputs/verification_execution.json"
+      },
+      "limitations": [
+        "Basis labels are caller assertions; no producing-program evidence supplied.",
+        "Deterministic binary64 comparison of supplied arrays only; no exact equality proof or circuit/hardware verification."
+      ]
+    },
+    {
+      "id": "G2",
+      "selected_skill": "compare-quantum-states-and-operators",
+      "chosen_context": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "absolute_euclidean_tolerance": 1e-10,
+        "normalization_validation_tolerance": 1e-12
+      },
+      "clarification_question": null,
+      "clarification_resolved": null,
+      "status": "outside_tolerance",
+      "actual_result": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.5350379315744639,
+        "alignment_multiplier_on_b": [
+          0.6131584553111217,
+          0.7899599411871966
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.1",
+        "decision_residual": 0.5350379315744639,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          0.5253953723692022,
+          -0.6768907675687271
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 0.9742737065432874,
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "evidence_paths": [
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G2/request.json",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G2/stdout.json",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G2/stderr.txt",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G2/execution.json",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G2/explanation.txt",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G2/verification.json"
+      ],
+      "verification": {
+        "passed": true,
+        "script": "/private/tmp/mqc-comparison-blind-r3/g/outputs/verify.py",
+        "result": "/private/tmp/mqc-comparison-blind-r3/g/outputs/G2/verification.json",
+        "execution": "/private/tmp/mqc-comparison-blind-r3/g/outputs/verification_execution.json"
+      },
+      "limitations": [
+        "Basis labels are caller assertions; no producing-program evidence supplied.",
+        "Deterministic binary64 comparison of supplied arrays only; no exact equality proof or circuit/hardware verification."
+      ]
+    },
+    {
+      "id": "G3",
+      "selected_skill": "compare-quantum-states-and-operators",
+      "chosen_context": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "absolute_euclidean_tolerance": 1e-10,
+        "normalization_validation_tolerance": 1e-12
+      },
+      "clarification_question": null,
+      "clarification_resolved": null,
+      "status": "invalid_input",
+      "actual_result": {
+        "contract_version": "0.1.1",
+        "reason": "State must already have unit squared norm within 1e-12",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "evidence_paths": [
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G3/request.json",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G3/stdout.json",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G3/stderr.txt",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G3/execution.json",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G3/explanation.txt",
+        "/private/tmp/mqc-comparison-blind-r3/g/outputs/G3/verification.json"
+      ],
+      "verification": {
+        "passed": true,
+        "script": "/private/tmp/mqc-comparison-blind-r3/g/outputs/verify.py",
+        "result": "/private/tmp/mqc-comparison-blind-r3/g/outputs/G3/verification.json",
+        "execution": "/private/tmp/mqc-comparison-blind-r3/g/outputs/verification_execution.json"
+      },
+      "limitations": [
+        "Basis labels are caller assertions; no producing-program evidence supplied.",
+        "Deterministic binary64 comparison of supplied arrays only; no exact equality proof or circuit/hardware verification.",
+        "Invalid normalized-state input; no physical-equivalence decision made."
+      ]
+    }
+  ],
+  "runtime_evidence": [
+    "/private/tmp/mqc-comparison-blind-r3/g/outputs/runtime_0.json",
+    "/private/tmp/mqc-comparison-blind-r3/g/outputs/runtime_1.json"
+  ],
+  "selected_interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+  "unresolved_questions": []
+}

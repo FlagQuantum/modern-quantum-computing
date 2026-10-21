@@ -1,0 +1,22 @@
+[
+  {
+    "argv": [
+      "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "-c",
+      "import sys,json; print(json.dumps({\"executable\":sys.executable,\"implementation\":sys.implementation.name,\"version\":sys.version,\"version_info\":list(sys.version_info[:3])}))"
+    ],
+    "stdout": "{\"executable\": \"/Library/Developer/CommandLineTools/usr/bin/python3\", \"implementation\": \"cpython\", \"version\": \"3.9.6 (default, Aug 25 2026, 21:26:21) \\n[Clang 21.0.0 (clang-2100.3.34.2)]\", \"version_info\": [3, 9, 6]}\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "-c",
+      "import sys,json; print(json.dumps({\"executable\":sys.executable,\"implementation\":sys.implementation.name,\"version\":sys.version,\"version_info\":list(sys.version_info[:3])}))"
+    ],
+    "stdout": "{\"executable\": \"/private/tmp/mqc-writing-venv/bin/python\", \"implementation\": \"cpython\", \"version\": \"3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]\", \"version_info\": [3, 12, 14]}\n",
+    "stderr": "",
+    "exit_code": 0
+  }
+]

@@ -1,0 +1,1 @@
+The requester clarified coordinate equality with phase retained. Both arrays use declared basis [0,1]. The raw Euclidean residual exceeds 1e-10, so coordinates are outside tolerance. A small aligned residual is diagnostic only and cannot override retained-phase semantics.

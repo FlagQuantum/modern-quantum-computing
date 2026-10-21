@@ -5,16 +5,18 @@ description: Compare one- or two-qubit pure states and unitary matrices with exp
 
 # Compare quantum states and operators
 
-**Prototype 0.1.0.** Author verification is separate from independent agent evaluation and scientific acceptance. This repository package is not installed globally or released as an accepted skill.
+**Prototype 0.1.1.** Author verification is separate from independent agent evaluation and scientific acceptance. This repository package is not installed globally or released as an accepted skill.
 
 Ask what is being compared and which phase scope matters if the request is ambiguous. Do not silently choose global-phase equivalence. Obtain both arrays and their basis labels; a supplied convention is an assertion by the caller, not evidence of the array's actual order.
 
 Read [the input/output and mathematical contract](references/contract.md) before preparing a request. The sources are textbook 3.1 (pure states and ray distance) and 3.7 (whole-operator and controlled-context comparisons), with the complex arithmetic and numerical contracts of 2.1, 2.2, 2.8 and the phase-tracked decomposition of 3.6. Their drafts explain the prerequisite mathematics; no other installed skill is required for this prototype.
 
-Use the bundled standard-library helper:
+Check the actual interpreter version before executing the helper. This validated profile requires **CPython 3.12**. Resolve a compatible interpreter explicitly rather than assuming `python` or `python3` names it. If none is available, report the runtime boundary; do not install or change the environment silently. Save the actual runtime returned by the helper with the result. An unsupported-runtime response is not an object-comparison result.
+
+Use the bundled standard-library helper with the selected interpreter:
 
 ```bash
-python /path/to/compare-quantum-states-and-operators/scripts/compare.py < request.json > result.json
+/path/to/python3.12 /path/to/compare-quantum-states-and-operators/scripts/compare.py < request.json > result.json
 ```
 
 The helper supports dimension 2 or 4 only. Choose `coordinates` to retain phase, `global-phase` to permit one phase for the entire state or isolated unitary, or `controlled` to compare the full controlled extensions of two dimension-2 target gates. Never align columns separately. Never remove a target phase before constructing its controlled extension. Equal computational-basis probabilities alone do not establish state equality.

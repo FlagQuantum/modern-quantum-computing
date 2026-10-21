@@ -1,0 +1,148 @@
+[
+  {
+    "id": "B1",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": "controlled",
+    "clarification_question": null,
+    "status": "outside_tolerance",
+    "evidence_paths": [
+      "B1.request.json",
+      "B1.stdout.json",
+      "B1.stderr.txt",
+      "B1.execution.json",
+      "B1.explanation.txt",
+      "verify.py",
+      "verification.stdout.json",
+      "verification.stderr.txt",
+      "verification.execution.json"
+    ],
+    "verification": {
+      "passed": true,
+      "independent_trace_identity_residual": 0.6402343287964781,
+      "unitarity_entrywise_errors": [
+        9.847198770311142e-19,
+        2.2651367558913373e-17
+      ],
+      "coherent_input": [
+        [
+          0.7071067811865475,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.7071067811865475,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "output_ray_fidelity": 0.9001502824096898,
+      "helper_exit_code": 1
+    },
+    "limitations": [
+      "Binary64 numerical comparison; declared basis is assumed and not independently established.",
+      "Does not establish noisy implementation or algorithm equivalence."
+    ],
+    "outcome": {
+      "equivalent_up_to_single_overall_phase": false,
+      "basis": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "atol": 1e-10,
+      "residual": 0.640234328796479
+    }
+  },
+  {
+    "id": "B2",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": "global-phase",
+    "clarification_question": null,
+    "status": "outside_tolerance",
+    "evidence_paths": [
+      "B2.request.json",
+      "B2.stdout.json",
+      "B2.stderr.txt",
+      "B2.execution.json",
+      "B2.explanation.txt",
+      "verify.py",
+      "verification.stdout.json",
+      "verification.stderr.txt",
+      "verification.execution.json"
+    ],
+    "verification": {
+      "passed": true,
+      "independent_trace_identity_residual": 0.6496362243361175,
+      "unitarity_entrywise_errors": [
+        0.0,
+        1.167314339255078e-18
+      ],
+      "coherent_input": [
+        [
+          0.7071067811865475,
+          0.0
+        ],
+        [
+          0.7071067811865475,
+          0.0
+        ]
+      ],
+      "output_ray_fidelity": 0.8001180741258791,
+      "helper_exit_code": 1
+    },
+    "limitations": [
+      "Binary64 numerical comparison; declared basis is assumed and not independently established.",
+      "Does not establish noisy implementation or algorithm equivalence."
+    ],
+    "outcome": {
+      "equivalent_up_to_single_overall_phase": false,
+      "basis": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10,
+      "residual": 0.6496362243361173
+    }
+  },
+  {
+    "id": "B3",
+    "selected_skill": null,
+    "chosen_context": "independent Bernoulli shot counts; descriptive proportion and usual plug-in standard error",
+    "clarification_question": null,
+    "status": "completed",
+    "evidence_paths": [
+      "B3.request.json",
+      "B3.stdout.json",
+      "B3.stderr.txt",
+      "B3.execution.json",
+      "B3.explanation.txt",
+      "run_tasks.py",
+      "verify.py",
+      "verification.stdout.json",
+      "verification.stderr.txt",
+      "verification.execution.json"
+    ],
+    "verification": {
+      "passed": true,
+      "observed_proportion": 0.376,
+      "plug_in_standard_error": 0.043324265717955335
+    },
+    "limitations": [
+      "Plug-in standard error under the stated independent Bernoulli assumption; no confidence interval requested."
+    ],
+    "outcome": {
+      "observed_proportion": 0.376,
+      "plug_in_standard_error": 0.043324265717955335,
+      "shots": 125,
+      "successes": 47,
+      "formula": "sqrt(p_hat*(1-p_hat)/n)"
+    }
+  }
+]

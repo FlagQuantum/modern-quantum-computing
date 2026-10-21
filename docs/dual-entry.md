@@ -1,6 +1,6 @@
 # One knowledge base, two entry points
 
-**Plan 0.1 · October 21, 2026 · first prototype pilot.** This document proposes a human textbook entry and an agent task entry for *Modern Quantum Computing: A Formula-to-Code Approach*. It changes neither Writing Baseline 1.0 nor its 50 chapters, 435 sections, seven volumes, 16 batches or proof-depth requirements. The [first comparison prototype](comparison-skill-prototype.md) is author-verified; independent agent evaluation and acceptance remain pending. No skill package is released.
+**Plan 0.1 · October 21, 2026 · first prototype pilot.** This document proposes a human textbook entry and an agent task entry for *Modern Quantum Computing: A Formula-to-Code Approach*. It changes neither Writing Baseline 1.0 nor its 50 chapters, 435 sections, seven volumes, 16 batches or proof-depth requirements. The [first comparison prototype](comparison-skill-prototype.md) has [independent blind-test evidence](comparison-skill-blind-evaluation.md); scientific acceptance remains pending. No skill package is released.
 
 ## Choose an entry
 
@@ -48,7 +48,7 @@ The [six capability levels and complete chapter map](agent-skills.md) assign pri
 | `docs/skill-contract.md` | Task/package contract and behavior evaluation requirements | Planning specification |
 | `docs/paper-reproduction-standard.md` | Per-claim verification, scientific outcomes and acceptance gates | Planning specification |
 | `templates/skill-design.md` and `templates/paper-reproduction-report.md` | Reviewable design and evidence-report worksheets | Unfilled templates; no claimed run |
-| `skills/compare-quantum-states-and-operators/SKILL.md` and its contract/helper | First discoverable execution entry | Author-verified prototype; not installed globally or independently accepted |
+| `skills/compare-quantum-states-and-operators/SKILL.md` and its contract/helper | First discoverable execution entry | Independent-agent-tested prototype 0.1.1; not installed globally or scientifically accepted |
 | Future `reproductions/<paper-id>/<run-id>/` bundles | Inputs, implementation, environment, actual evidence and review decisions | Not created or fabricated in this pass |
 
 A future `SKILL.md` contains concise discovery metadata, scope, essential invariants, routing and links. Detailed math stays in the source sections; conditional procedures and schemas are loaded as needed. Runtime adapters may differ, but the scientific task/output contract is shared. Instructions do not grant permission to submit hardware jobs, spend resources, upload sources or post external messages.
@@ -73,4 +73,4 @@ python scripts/review_curriculum.py --check
 python -m mkdocs build --strict
 ```
 
-The catalog check verifies all 435 assignments, canonical source IDs, chapter ownership, dependency acyclicity, candidate-evidence paths and truthful planning status. It does not test agent competence or scientific claims. Example execution continues through `python scripts/check_formula_code.py` and the existing CI. The first comparison helper is implemented and author-verified. No new textbook section, paper run, upstream issue, arXiv submission or PDF edition is part of this prototype update.
+The catalog check verifies all 435 assignments, canonical source IDs, chapter ownership, dependency acyclicity, candidate-evidence paths and truthful planning status. It does not test agent competence or scientific claims. Example execution continues through `python scripts/check_formula_code.py` and the existing CI. The first comparison helper is implemented and independent-agent-tested. No new textbook section, paper run, upstream issue, arXiv submission or PDF edition is part of this prototype update.

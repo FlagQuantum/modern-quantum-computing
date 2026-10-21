@@ -1,0 +1,112 @@
+[
+  {
+    "id": "A1",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "state",
+      "mode": "coordinates",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10,
+      "source": "requester clarification"
+    },
+    "clarification_question": "Should A1 compare the supplied statevectors with their coordinates/phases retained, or as isolated pure states up to one overall global phase?",
+    "clarification_answer": "I mean equality of the exported complex coordinates with phase retained, rather than ray equivalence. Use absolute Euclidean tolerance 1e-10.",
+    "status": "outside_tolerance",
+    "evidence_paths": [
+      "outputs/A1.request.json",
+      "outputs/A1.stdout.json",
+      "outputs/A1.stderr.txt",
+      "outputs/A1.execution.json",
+      "outputs/A1.explanation.txt",
+      "outputs/A1.clarification.json"
+    ],
+    "verification": {
+      "script": "outputs/verify.py",
+      "report": "outputs/verification.stdout.json"
+    },
+    "limitations": [
+      "Declared basis ordering is an assertion by the caller; source program ordering was not inspected.",
+      "Deterministic binary64 numerical comparison, not exact equality proof or experimental evidence."
+    ]
+  },
+  {
+    "id": "A2",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "state",
+      "mode": "global-phase",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10,
+      "source": "explicit task request"
+    },
+    "clarification_question": null,
+    "clarification_answer": null,
+    "status": "outside_tolerance",
+    "evidence_paths": [
+      "outputs/A2.request.json",
+      "outputs/A2.stdout.json",
+      "outputs/A2.stderr.txt",
+      "outputs/A2.execution.json",
+      "outputs/A2.explanation.txt"
+    ],
+    "verification": {
+      "script": "outputs/verify.py",
+      "report": "outputs/verification.stdout.json"
+    },
+    "limitations": [
+      "Declared basis ordering is an assertion by the caller; source program ordering was not inspected.",
+      "Deterministic binary64 numerical comparison, not exact equality proof or experimental evidence."
+    ]
+  },
+  {
+    "id": "A3",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "state",
+      "mode": "global-phase",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10,
+      "source": "explicit task request"
+    },
+    "clarification_question": null,
+    "clarification_answer": null,
+    "status": "invalid_input",
+    "evidence_paths": [
+      "outputs/A3.request.json",
+      "outputs/A3.stdout.json",
+      "outputs/A3.stderr.txt",
+      "outputs/A3.execution.json",
+      "outputs/A3.explanation.txt"
+    ],
+    "verification": {
+      "script": "outputs/verify.py",
+      "report": "outputs/verification.stdout.json"
+    },
+    "limitations": [
+      "Declared basis ordering is an assertion by the caller; source program ordering was not inspected.",
+      "Deterministic binary64 numerical comparison, not exact equality proof or experimental evidence.",
+      "As-supplied export is not normalized; no physical-state inequality conclusion is valid."
+    ]
+  }
+]

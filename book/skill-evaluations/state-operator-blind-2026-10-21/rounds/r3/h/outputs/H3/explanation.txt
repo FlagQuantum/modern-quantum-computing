@@ -1,0 +1,2 @@
+The available comparison skill supports pure statevectors and unitaries and explicitly excludes shot statistics. No skill selected. For independent Bernoulli shots, p_hat=62/173 and plug-in SE=sqrt(p_hat*(1-p_hat)/173).
+{"observed_proportion": 0.3583815028901734, "plugin_standard_error": 0.03645760870944905, "runtime": {"implementation": "cpython", "python": "3.12.14"}}

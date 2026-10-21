@@ -1,0 +1,8 @@
+{
+  "id": "B3",
+  "request": "From 125 independent Bernoulli shots I observed 47 successes. Give the observed proportion and the usual plug-in standard error. These are counts, not statevectors; do not invent amplitudes. Select an applicable available skill only if its contract fits.",
+  "data": {
+    "shots": 125,
+    "successes": 47
+  }
+}

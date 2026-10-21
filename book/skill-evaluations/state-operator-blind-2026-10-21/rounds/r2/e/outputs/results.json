@@ -1,0 +1,119 @@
+[
+  {
+    "id": "E1",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "unitary",
+      "mode": "global-phase",
+      "phase_scope": "one phase on whole isolated operator",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ],
+      "absolute_frobenius_tolerance": 1e-10,
+      "source": "requester clarification"
+    },
+    "clarification_question": "Does same mean coordinate equality retaining phase, isolated whole-operator equivalence up to one global phase, or equality under coherent control?",
+    "clarification_answer": "These are isolated unitary gates. Allow one overall phase for the entire operator, in the declared basis, with absolute Frobenius tolerance 1e-10. No coherent-control embedding is being compared.",
+    "status": "within_tolerance",
+    "evidence_paths": [
+      "E1/supplied_task.json",
+      "E1/request.json",
+      "E1/stdout.json",
+      "E1/stderr.txt",
+      "E1/execution.json",
+      "E1/explanation.txt",
+      "E1/clarification.json"
+    ],
+    "verification": {
+      "script": "verify.py",
+      "stdout": "verification.stdout.json",
+      "stderr": "verification.stderr.txt",
+      "execution": "verification.execution.json",
+      "result": {
+        "passed": true,
+        "max_gram_errors": [
+          0.0,
+          4.6857976831460677e-17
+        ],
+        "pivot_phase": [
+          0.8693059126718419,
+          -0.4942744482509449
+        ],
+        "pivot_phase_residual": 9.980020803122184e-17,
+        "recomputed_raw": 0.7230327442879975,
+        "recomputed_aligned": 1.8515641637918378e-16,
+        "decision": 1.8515641637918378e-16
+      }
+    },
+    "limitations": [
+      "Binary64 numerical agreement is not a proof of exact equality.",
+      "Basis order is declared by caller; producing-program ordering is not independently established.",
+      "No coherent control, circuits, noise or hardware execution is compared."
+    ]
+  },
+  {
+    "id": "E2",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "unitary",
+      "mode": "global-phase",
+      "phase_scope": "one phase on whole isolated operator",
+      "basis_a": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "basis_b": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "absolute_frobenius_tolerance": 1e-10,
+      "source": "explicit task request"
+    },
+    "clarification_question": null,
+    "clarification_answer": null,
+    "status": "within_tolerance",
+    "evidence_paths": [
+      "E2/supplied_task.json",
+      "E2/request.json",
+      "E2/stdout.json",
+      "E2/stderr.txt",
+      "E2/execution.json",
+      "E2/explanation.txt"
+    ],
+    "verification": {
+      "script": "verify.py",
+      "stdout": "verification.stdout.json",
+      "stderr": "verification.stderr.txt",
+      "execution": "verification.execution.json",
+      "result": {
+        "passed": true,
+        "max_gram_errors": [
+          2.2204540161686683e-16,
+          2.2288148478044577e-16
+        ],
+        "pivot_phase": [
+          0.9159208695857857,
+          0.40135889258520024
+        ],
+        "pivot_phase_residual": 2.0770370905276122e-16,
+        "recomputed_raw": 0.8201420872712941,
+        "recomputed_aligned": 2.0770370905276122e-16,
+        "decision": 2.0770370905276122e-16
+      }
+    },
+    "limitations": [
+      "Binary64 numerical agreement is not a proof of exact equality.",
+      "Basis order is declared by caller; producing-program ordering is not independently established.",
+      "No coherent control, circuits, noise or hardware execution is compared."
+    ]
+  }
+]

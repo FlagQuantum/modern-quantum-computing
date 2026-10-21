@@ -1,0 +1,89 @@
+{
+  "purpose": "Actual old-interpreter rejection and compatible-interpreter success after repair",
+  "checks": [
+    {
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "request": {
+        "a": [
+          [
+            0.5567764362830022,
+            0.0
+          ],
+          [
+            0.8306623862918074,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.5567764362830022,
+            0.0
+          ],
+          [
+            0.5685149491825243,
+            0.6056325227033236
+          ]
+        ],
+        "kind": "state",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "mode": "global-phase",
+        "atol": 1e-10
+      },
+      "stdout": "{\"contract_version\": \"0.1.1\", \"reason\": \"unsupported_runtime: this profile requires CPython 3.12; choose a compatible interpreter explicitly\", \"runtime\": {\"implementation\": \"cpython\", \"python\": \"3.9.6\"}, \"status\": \"unsupported\"}\n",
+      "stderr": "",
+      "exit_code": 3
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "request": {
+        "a": [
+          [
+            0.5567764362830022,
+            0.0
+          ],
+          [
+            0.8306623862918074,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.5567764362830022,
+            0.0
+          ],
+          [
+            0.5685149491825243,
+            0.6056325227033236
+          ]
+        ],
+        "kind": "state",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "mode": "global-phase",
+        "atol": 1e-10
+      },
+      "stdout": "{\"absolute_tolerance\": 1e-10, \"aligned_residual\": 0.37403457393355366, \"alignment_multiplier_on_b\": [0.8410781867465154, -0.5409135640554726], \"comparison_dimension\": 2, \"contract_version\": \"0.1.1\", \"decision_residual\": 0.37403457393355366, \"input_dimension\": 2, \"kind\": \"state\", \"metric\": \"euclidean\", \"mode\": \"global-phase\", \"overlap\": [0.7822439843305213, 0.50307615652467], \"phase_identifiable\": true, \"phase_scope\": \"one phase on the whole object\", \"proof_of_exact_equality\": false, \"raw_residual\": 0.6599333537100222, \"runtime\": {\"implementation\": \"cpython\", \"python\": \"3.12.14\"}, \"status\": \"outside_tolerance\", \"validation_atol\": 1e-12}\n",
+      "stderr": "",
+      "exit_code": 1
+    }
+  ]
+}

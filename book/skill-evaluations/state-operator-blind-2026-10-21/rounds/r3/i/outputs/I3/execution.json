@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-comparison-blind-r3/i/skills/compare-quantum-states-and-operators/scripts/compare.py"
+  ],
+  "stdin_path": "/private/tmp/mqc-comparison-blind-r3/i/outputs/I3/request.json",
+  "stdout_path": "/private/tmp/mqc-comparison-blind-r3/i/outputs/I3/stdout.json",
+  "stderr_path": "/private/tmp/mqc-comparison-blind-r3/i/outputs/I3/stderr.txt",
+  "exit_code": 0
+}

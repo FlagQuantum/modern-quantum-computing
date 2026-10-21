@@ -1,0 +1,68 @@
+{
+  "H1": {
+    "absolute_tolerance": 1e-10,
+    "aligned_residual": 0.8074139693770418,
+    "alignment_multiplier_on_b": [
+      0.9185103352568511,
+      0.39539697017851166
+    ],
+    "comparison_dimension": 4,
+    "contract_version": "0.1.1",
+    "decision_residual": 0.8074139693770418,
+    "input_dimension": 2,
+    "kind": "unitary",
+    "metric": "frobenius",
+    "mode": "controlled",
+    "overlap": [
+      3.3746449438946122,
+      -1.4527048145528316
+    ],
+    "phase_identifiable": true,
+    "phase_scope": "one phase on the full controlled operation",
+    "proof_of_exact_equality": false,
+    "raw_residual": 1.1183515154953627,
+    "runtime": {
+      "implementation": "cpython",
+      "python": "3.12.14"
+    },
+    "status": "outside_tolerance",
+    "validation_atol": 1e-12
+  },
+  "H2": {
+    "absolute_tolerance": 1e-10,
+    "aligned_residual": 3.7239098981968567e-16,
+    "alignment_multiplier_on_b": [
+      0.6278566252911052,
+      -0.7783290165977785
+    ],
+    "comparison_dimension": 4,
+    "contract_version": "0.1.1",
+    "decision_residual": 3.7239098981968567e-16,
+    "input_dimension": 4,
+    "kind": "unitary",
+    "metric": "frobenius",
+    "mode": "global-phase",
+    "overlap": [
+      2.5114265011644203,
+      3.1133160663911137
+    ],
+    "phase_identifiable": true,
+    "phase_scope": "one phase on the whole object",
+    "proof_of_exact_equality": false,
+    "raw_residual": 1.7254411023477907,
+    "runtime": {
+      "implementation": "cpython",
+      "python": "3.12.14"
+    },
+    "status": "within_tolerance",
+    "validation_atol": 1e-12
+  },
+  "H3": {
+    "observed_proportion": 0.3583815028901734,
+    "plugin_standard_error": 0.03645760870944905,
+    "runtime": {
+      "implementation": "cpython",
+      "python": "3.12.14"
+    }
+  }
+}

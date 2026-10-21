@@ -1,6 +1,6 @@
 # Agent task contract and evaluation plan
 
-**Plan 0.1 · October 21, 2026 · no packaged skills yet.** Use this contract when implementing one task proposed in the [catalog](agent-skills.md). The [design worksheet](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/templates/skill-design.md) is a template, not an executed example.
+**Plan 0.1 · October 21, 2026 · first prototype evaluated.** The [comparison skill blind evaluation](comparison-skill-blind-evaluation.md) supplies actual behavior evidence; scientific acceptance remains separate. Use this contract when implementing one task proposed in the [catalog](agent-skills.md). The [design worksheet](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/templates/skill-design.md) is a template, not an executed example.
 
 ## A task contract is more than a prompt
 

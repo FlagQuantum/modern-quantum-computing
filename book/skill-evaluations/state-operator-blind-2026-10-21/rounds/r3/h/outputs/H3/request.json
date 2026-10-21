@@ -1,0 +1,5 @@
+{
+  "successes": 62,
+  "shots": 173,
+  "estimator": "p_hat=k/n; plug-in SE=sqrt(p_hat*(1-p_hat)/n)"
+}

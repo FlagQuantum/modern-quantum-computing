@@ -1,0 +1,55 @@
+{
+  "B1": {
+    "passed": true,
+    "independent_trace_identity_residual": 0.6402343287964781,
+    "unitarity_entrywise_errors": [
+      9.847198770311142e-19,
+      2.2651367558913373e-17
+    ],
+    "coherent_input": [
+      [
+        0.7071067811865475,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.7071067811865475,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "output_ray_fidelity": 0.9001502824096898,
+    "helper_exit_code": 1
+  },
+  "B2": {
+    "passed": true,
+    "independent_trace_identity_residual": 0.6496362243361175,
+    "unitarity_entrywise_errors": [
+      0.0,
+      1.167314339255078e-18
+    ],
+    "coherent_input": [
+      [
+        0.7071067811865475,
+        0.0
+      ],
+      [
+        0.7071067811865475,
+        0.0
+      ]
+    ],
+    "output_ray_fidelity": 0.8001180741258791,
+    "helper_exit_code": 1
+  },
+  "B3": {
+    "passed": true,
+    "observed_proportion": 0.376,
+    "plug_in_standard_error": 0.043324265717955335
+  }
+}

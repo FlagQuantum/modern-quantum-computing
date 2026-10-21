@@ -1,0 +1,12 @@
+{
+  "version": "0.1.1",
+  "source_revision": "f7b7bdaae2e389e3de22aa826727ffa71f922583",
+  "frozen_at_utc": "2026-10-21T04:52:03.277791+00:00",
+  "sha256": {
+    "SKILL.md": "8276bccbad28dcb325f8758717b3236c7af71f6e97b407a9be935b7cc6d37b12",
+    "agents/openai.yaml": "e0c97d1b156907457229fc1cb122fedfa43558a12fe2bf4cdb1796d0459760b3",
+    "references/contract.md": "0245b1af219db63a8ad0fbd7091fc673ac20ebf39d2c62c5f8548a39c62d115c",
+    "scripts/compare.py": "79e6f8d4ff582dfce67845ad284ac5c675778cb32a2ed0203f60f991a0e0e2ba"
+  },
+  "change": "Runtime admission and actual runtime reporting; numerical comparison kernel unchanged"
+}

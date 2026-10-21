@@ -1,0 +1,19 @@
+{
+  "scope": "Independent comparison-skill agent evaluation and runtime repair; no new textbook sections",
+  "current_version": "0.1.1",
+  "local_checks": {
+    "author_regression": "45/45; three actual released FlagQuantum 0.3.1 runs passed",
+    "blind_evidence_replay": "27 archived tasks, 22 helper calls; initial runtime failure preserved; fresh retest 11/11 passed",
+    "skill_creator_quick_validate": "passed",
+    "formula_code_regression": "61 body fragments / 15 full program outputs passed",
+    "strict_website_build": "passed",
+    "local_links": "64 pages; local links/fragments resolve and IDs unique",
+    "browser_layout": "actual task table and comparison formula visually checked; rendered cases/conjugate/sum/norm normal",
+    "numerical_kernel": "all non-main function ASTs unchanged between archived 0.1.0 and 0.1.1",
+    "baseline_progress_and_queue": "byte-identical to pre-task copies; 50 chapters / 435 sections / seven volumes / 16 batches unchanged",
+    "git_diff_check": "passed"
+  },
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "released_skills": 0
+}

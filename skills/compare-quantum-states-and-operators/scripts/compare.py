@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Bounded state/unitary comparison, contract 0.1.0; Python standard library only."""
+"""Bounded state/unitary comparison, contract 0.1.1; Python standard library only."""
 import json
 import math
 import sys
 
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 VALIDATION_ATOL = 1e-12
 
 
@@ -140,10 +140,18 @@ def unique_object(pairs):
 
 
 def main():
+    runtime = {'implementation': sys.implementation.name,
+               'python': '.'.join(map(str, sys.version_info[:3]))}
+    if sys.implementation.name != 'cpython' or sys.version_info[:2] != (3, 12):
+        print(json.dumps({'contract_version': VERSION, 'status': 'unsupported',
+                          'reason': 'unsupported_runtime: this profile requires CPython 3.12; choose a compatible interpreter explicitly',
+                          'runtime': runtime}, sort_keys=True))
+        return 3
     try:
         result = compare(json.load(sys.stdin, parse_constant=reject_constant, object_pairs_hook=unique_object))
     except (Invalid, ValueError, OverflowError, RecursionError) as exc:
         result = {'contract_version': VERSION, 'status': 'invalid_input', 'reason': str(exc)}
+    result['runtime'] = runtime
     print(json.dumps(result, allow_nan=False, sort_keys=True))
     return {'within_tolerance': 0, 'outside_tolerance': 1, 'invalid_input': 2, 'unsupported': 3}[result['status']]
 

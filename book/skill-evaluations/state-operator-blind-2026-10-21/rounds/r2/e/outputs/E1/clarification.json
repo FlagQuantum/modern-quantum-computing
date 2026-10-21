@@ -1,0 +1,5 @@
+{
+  "question": "Does same mean coordinate equality retaining phase, isolated whole-operator equivalence up to one global phase, or equality under coherent control?",
+  "answer": "These are isolated unitary gates. Allow one overall phase for the entire operator, in the declared basis, with absolute Frobenius tolerance 1e-10. No coherent-control embedding is being compared.",
+  "source": "Requester clarification relayed by /root via collaboration.send_message"
+}

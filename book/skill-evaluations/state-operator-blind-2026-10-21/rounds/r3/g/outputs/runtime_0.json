@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-c",
+    "import sys,platform,json; print(json.dumps({\"executable\":sys.executable,\"implementation\":platform.python_implementation(),\"version\":sys.version,\"version_info\":list(sys.version_info)}))"
+  ],
+  "stdout": "{\"executable\": \"/Library/Developer/CommandLineTools/usr/bin/python3\", \"implementation\": \"CPython\", \"version\": \"3.9.6 (default, Aug 25 2026, 21:26:21) \\n[Clang 21.0.0 (clang-2100.3.34.2)]\", \"version_info\": [3, 9, 6, \"final\", 0]}\n",
+  "stderr": "",
+  "exit_code": 0
+}

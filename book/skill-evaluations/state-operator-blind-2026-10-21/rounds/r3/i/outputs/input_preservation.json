@@ -1,0 +1,12 @@
+{
+  "unchanged": true,
+  "sha256": {
+    "catalog.json": "4c202e6ddbffc9f5d2062b58652ce58f34f0cfee8e0ac377f6dcb6254271ab79",
+    "tasks.json": "802c686c2edd689767a10428d950916e704ee9f431fb3b9cdd2b0fe2af727852",
+    "environment.json": "21e1d502bebe005f7b35803f4630a142ca57b7d42c908d5c4a89c95aece3adf5",
+    "skills/compare-quantum-states-and-operators/SKILL.md": "8276bccbad28dcb325f8758717b3236c7af71f6e97b407a9be935b7cc6d37b12",
+    "skills/compare-quantum-states-and-operators/agents/openai.yaml": "e0c97d1b156907457229fc1cb122fedfa43558a12fe2bf4cdb1796d0459760b3",
+    "skills/compare-quantum-states-and-operators/references/contract.md": "0245b1af219db63a8ad0fbd7091fc673ac20ebf39d2c62c5f8548a39c62d115c",
+    "skills/compare-quantum-states-and-operators/scripts/compare.py": "79e6f8d4ff582dfce67845ad284ac5c675778cb32a2ed0203f60f991a0e0e2ba"
+  }
+}

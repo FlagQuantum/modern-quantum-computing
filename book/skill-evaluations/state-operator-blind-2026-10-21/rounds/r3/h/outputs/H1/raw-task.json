@@ -1,0 +1,59 @@
+{
+  "id": "H1",
+  "request": "A compiler replaces target U by V inside a controlled operation, with superposed control allowed. Are the full operations equal up to one overall phase? Input matrices describe the target; output order is control then target, basis 00,01,10,11. Absolute Frobenius tolerance 1e-10.",
+  "data": {
+    "kind": "unitary",
+    "a": [
+      [
+        [
+          0.8683156258231266,
+          0.0
+        ],
+        [
+          -0.4527006551906458,
+          -0.20270690846972136
+        ]
+      ],
+      [
+        [
+          0.4527006551906458,
+          -0.20270690846972136
+        ],
+        [
+          0.8683156258231266,
+          0.0
+        ]
+      ]
+    ],
+    "b": [
+      [
+        [
+          0.5968128423712236,
+          -0.6307031450923556
+        ],
+        [
+          -0.458387984316342,
+          0.18949519726313105
+        ]
+      ],
+      [
+        [
+          0.16391468243925758,
+          -0.46814522408354153
+        ],
+        [
+          0.5968128423712236,
+          -0.6307031450923556
+        ]
+      ]
+    ],
+    "basis_a": [
+      "0",
+      "1"
+    ],
+    "basis_b": [
+      "0",
+      "1"
+    ]
+  }
+}

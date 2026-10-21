@@ -33,14 +33,19 @@ def render():
         assert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',skill['id']) and len(skill['id'])<64
         assert skill['level'] in levels and skill['independent_acceptance']=='pending'
         if skill['id']=='compare-quantum-states-and-operators':
-            assert skill['status']=='author-verified prototype'
-            assert skill['behavioral_evaluation']=='helper: 45/45 author cases; independent agent evaluation not run'
+            assert skill['status']=='independent-agent-tested prototype'
+            assert skill['behavioral_evaluation']=='blind agent retest: 11/11; author helper regression: 45/45'
             assert (ROOT/skill['prototype_package']).is_file()
             report=json.loads((ROOT/skill['evaluation_report']).read_text())
             assert report['passed']==45 and report['independent_agent_forward_test']=='not run'
             assert report['independent_acceptance']=='pending'
-            assert report['counts']=={'normal':11,'boundary':7,'error':21,'held-out-transfer':6}
+            assert report['counts']=={'normal':11,'boundary':7,'error':21,'transfer-regression':6}
             assert all(c['passed'] for c in report['cases']) and len(report['cases'])==45
+            blind=json.loads((ROOT/skill['blind_evaluation_report']).read_text())
+            assert blind['current_version']==skill['package_version']=='0.1.1'
+            assert blind['fresh_retest_tasks']==blind['fresh_retest_passed']==11
+            assert blind['initial_nonconforming_helper_calls']==14
+            assert blind['scientific_acceptance']=='pending' and blind['released_skills']==0
         else:
             assert skill['status']=='planned' and skill['behavioral_evaluation']=='not run'
         assert len(skill['primary_section_ids'])==len(set(skill['primary_section_ids']))
@@ -73,7 +78,7 @@ def render():
         return f"[{ch['number']}.{i}](section-plans/{part['path']}.md#{sid})"
     states=Counter(progress.get(sid,{}).get('state','not_started') for sid in section_map)
     lines=['# Agent skills: capability levels and chapter map','',
-           f'**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains {len(skills)} proposed task skills; one has an author-verified executable prototype (45 helper cases), while independent agent evaluation and acceptance remain pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.','',
+           f'**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains {len(skills)} proposed task skills; one has an independent-agent-tested prototype (0.1.1: 11/11 fresh blind tasks after a recorded runtime repair; 45 author regression cases). Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.','',
            '[Dual-entry design](dual-entry.md) · [Skill contract](skill-contract.md) · [Paper verification and acceptance](paper-reproduction-standard.md)','',
            '## Capability levels','',
            'Levels describe increasing task composition and evaluation scope. They do not replace the textbook P/F/M/R/V proof-depth codes, its prerequisite graph, or evidence-based competence in a domain. An L5 router does not certify every L2 workflow.','',
@@ -96,7 +101,7 @@ def render():
     for skill in skills.values():
         lines +=[f"### {skill['id']}",'',f"**{skill['level']} · {skill['status']} · {skill['behavioral_evaluation']} · independent acceptance pending.**",'',skill['task'],'',f"**Deliverable:** {skill['deliverable']}"]
         if 'prototype_package' in skill:
-            lines += ['', '[Prototype contract, usage and evaluation](comparison-skill-prototype.md).']
+            lines += ['', '[Prototype usage](comparison-skill-prototype.md) · [Independent blind evaluation and runtime repair](comparison-skill-blind-evaluation.md).']
         deps=', '.join(f"[{dep}](#{dep})" for dep in skill['requires_skills']) or 'None at catalog level; this does not waive source prerequisites.'
         lines +=['',f'**Required task skills:** {deps}']
         grouped={}
@@ -114,12 +119,12 @@ def render():
             lines+=['','**Existing candidate evidence:** '+refs+'. These artifacts are not a skill evaluation, an acceptance decision or a whole-paper reproduction claim.']
         lines+=['']
     lines+=['## Implementation order after this planning pass','',
-            '1. Independently forward-test the [state/operator prototype](comparison-skill-prototype.md). Its author-verified helper has 45 cases including six post-freeze transfer cases; independent agent evaluation is not run.',
+            '1. Preserve the [state/operator blind evaluation](comparison-skill-blind-evaluation.md): 0.1.1 passed 11 fresh tasks after a runtime-contract repair. Gather separate scientific acceptance and reader evidence; published cases are now regression fixtures.',
             '2. Prototype `reproduce-qubit-interference` using 3.2. Test changed analyzer/sign/order cases and a paper-style claim ledger; this demonstrates one bounded experiment, not L4 paper acceptance.',
             '3. Add `translate-unitary-evolution` from 3.4–3.6 with units, exact/near endpoints and omitted-phase failure. Reuse the mathematical contracts and independently checked source examples.',
             '4. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.',
             '5. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.', '',
-            'This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first bounded prototype is author-verified; no paper run or new textbook section is performed by this update.','']
+            'This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first bounded prototype is independent-agent-tested; no paper run or new textbook section is performed by this update.','']
     return '\n'.join(lines),len(skills)
 
 

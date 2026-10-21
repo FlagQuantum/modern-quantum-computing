@@ -1,0 +1,10 @@
+[
+  {
+    "agent": "/root/blind_round3_g",
+    "task": "G1",
+    "question": "Should \u201cthe same\u201d mean exact coordinates retaining phase, or isolated pure-state equivalence up to one common global phase? What absolute tolerance should be used? Both arrays and basis labels are supplied; dependent comparison pending.",
+    "reply": "Compare them as isolated pure states up to one overall global phase, in the supplied computational basis, at absolute Euclidean tolerance 1e-10.",
+    "transport": "collaboration.send_message",
+    "numeric_answer_supplied": false
+  }
+]

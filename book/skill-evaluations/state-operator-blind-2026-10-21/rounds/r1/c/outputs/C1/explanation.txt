@@ -1,0 +1,1 @@
+The helper returns unsupported (exit 3): basis_b is noncanonical and differs from basis_a. Coordinates and basis labels were passed unchanged. Identical numeric arrays do not establish equality under different declared orders. No physical inequality is certified. The user forbids the explicit reorder/transformation needed to enter this profile.

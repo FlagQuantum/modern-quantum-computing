@@ -1,0 +1,4 @@
+{
+  "executed": false,
+  "reason": "Producer contract not established; preserved dtype and batch metadata, so comparison not admitted."
+}

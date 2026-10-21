@@ -1,0 +1,9 @@
+{
+  "squared_norm_a": 1.0,
+  "squared_norm_b": 0.9724999999999999,
+  "arrays_preserved": true,
+  "basis_assertion_checked": true,
+  "expected_status": "invalid_input",
+  "reason": "Supplied state is nonunit; no normalization or comparison substituted.",
+  "passed": true
+}

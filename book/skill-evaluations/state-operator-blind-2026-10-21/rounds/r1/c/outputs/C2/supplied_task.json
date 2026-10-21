@@ -1,0 +1,40 @@
+{
+  "id": "C2",
+  "request": "Validate a cached comparison against the raw inputs and return checkable artifacts. The inputs are isolated pure states up to global phase in basis 0,1, tolerance 1e-10. Is the cached decision reliable?",
+  "data": {
+    "a": [
+      [
+        0.6782329983125268,
+        0.0
+      ],
+      [
+        0.7348469228349535,
+        0.0
+      ]
+    ],
+    "b": [
+      [
+        0.6782329983125268,
+        0.0
+      ],
+      [
+        0.30886977190259945,
+        0.666782921200623
+      ]
+    ],
+    "kind": "state",
+    "basis_a": [
+      "0",
+      "1"
+    ],
+    "basis_b": [
+      "0",
+      "1"
+    ]
+  },
+  "cached_result": {
+    "status": "within_tolerance",
+    "aligned_residual": 0,
+    "absolute_tolerance": 1e-10
+  }
+}

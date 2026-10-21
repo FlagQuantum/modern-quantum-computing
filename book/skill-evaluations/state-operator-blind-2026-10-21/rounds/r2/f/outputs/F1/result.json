@@ -1,0 +1,25 @@
+{
+  "absolute_tolerance": 1e-10,
+  "aligned_residual": 7.855646793595436e-17,
+  "alignment_multiplier_on_b": [
+    0.8144590847870377,
+    -0.5802209916987329
+  ],
+  "comparison_dimension": 4,
+  "contract_version": "0.1.0",
+  "decision_residual": 7.855646793595436e-17,
+  "input_dimension": 4,
+  "kind": "state",
+  "metric": "euclidean",
+  "mode": "global-phase",
+  "overlap": [
+    0.8144590847870377,
+    0.5802209916987329
+  ],
+  "phase_identifiable": true,
+  "phase_scope": "one phase on the whole object",
+  "proof_of_exact_equality": false,
+  "raw_residual": 0.6091648630920243,
+  "status": "within_tolerance",
+  "validation_atol": 1e-12
+}

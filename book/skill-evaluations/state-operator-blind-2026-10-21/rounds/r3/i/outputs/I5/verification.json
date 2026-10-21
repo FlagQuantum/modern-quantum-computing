@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "evidence": {
+    "metadata_preserved": true,
+    "verified_producer": false,
+    "declared_dtype": "complex64",
+    "declared_shape": [
+      1,
+      2
+    ],
+    "batch_axis_present": true,
+    "comparison_executed": false
+  },
+  "runtime": {
+    "executable": "/private/tmp/mqc-writing-venv/bin/python",
+    "version": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]"
+  }
+}

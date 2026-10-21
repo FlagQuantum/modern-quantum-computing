@@ -1,0 +1,1 @@
+import json,math,sys; d=json.load(sys.stdin); k=d['successes']; n=d['shots']; assert isinstance(k,int) and isinstance(n,int) and n>0 and 0<=k<=n; p=k/n; print(json.dumps({'observed_proportion':p,'plugin_standard_error':math.sqrt(p*(1-p)/n),'runtime':{'implementation':sys.implementation.name,'python':'.'.join(map(str,sys.version_info[:3]))}}))

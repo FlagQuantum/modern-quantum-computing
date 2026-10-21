@@ -1,0 +1,169 @@
+[
+  {
+    "id": "H1",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": "controlled",
+    "clarification_question": null,
+    "status": "outside_tolerance",
+    "answer": {
+      "absolute_tolerance": 1e-10,
+      "aligned_residual": 0.8074139693770418,
+      "alignment_multiplier_on_b": [
+        0.9185103352568511,
+        0.39539697017851166
+      ],
+      "comparison_dimension": 4,
+      "contract_version": "0.1.1",
+      "decision_residual": 0.8074139693770418,
+      "input_dimension": 2,
+      "kind": "unitary",
+      "metric": "frobenius",
+      "mode": "controlled",
+      "overlap": [
+        3.3746449438946122,
+        -1.4527048145528316
+      ],
+      "phase_identifiable": true,
+      "phase_scope": "one phase on the full controlled operation",
+      "proof_of_exact_equality": false,
+      "raw_residual": 1.1183515154953627,
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "status": "outside_tolerance",
+      "validation_atol": 1e-12
+    },
+    "evidence_paths": [
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H1/raw-task.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H1/request.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H1/stdout.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H1/stderr.txt",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H1/execution.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H1/explanation.txt",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/verification.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/verify.py",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/interpreter-system.stdout",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/interpreter-venv.stdout"
+    ],
+    "verification": {
+      "status": "passed",
+      "details": {
+        "passed": true,
+        "unitarity_max_entry_error": 2.2227721050557814e-16,
+        "independent_min_squared_residual": 0.6519173179451911,
+        "direct_residual": 0.8074139693770418
+      },
+      "script_path": "/private/tmp/mqc-comparison-blind-r3/h/outputs/verify.py",
+      "results_path": "/private/tmp/mqc-comparison-blind-r3/h/outputs/verification.json"
+    },
+    "limitations": [
+      "Binary64 numerical comparison, not proof of exact equality.",
+      "Basis order is the caller-supplied assertion."
+    ]
+  },
+  {
+    "id": "H2",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": "global-phase",
+    "clarification_question": null,
+    "status": "within_tolerance",
+    "answer": {
+      "absolute_tolerance": 1e-10,
+      "aligned_residual": 3.7239098981968567e-16,
+      "alignment_multiplier_on_b": [
+        0.6278566252911052,
+        -0.7783290165977785
+      ],
+      "comparison_dimension": 4,
+      "contract_version": "0.1.1",
+      "decision_residual": 3.7239098981968567e-16,
+      "input_dimension": 4,
+      "kind": "unitary",
+      "metric": "frobenius",
+      "mode": "global-phase",
+      "overlap": [
+        2.5114265011644203,
+        3.1133160663911137
+      ],
+      "phase_identifiable": true,
+      "phase_scope": "one phase on the whole object",
+      "proof_of_exact_equality": false,
+      "raw_residual": 1.7254411023477907,
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "status": "within_tolerance",
+      "validation_atol": 1e-12
+    },
+    "evidence_paths": [
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H2/raw-task.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H2/request.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H2/stdout.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H2/stderr.txt",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H2/execution.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H2/explanation.txt",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/verification.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/verify.py",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/interpreter-system.stdout",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/interpreter-venv.stdout"
+    ],
+    "verification": {
+      "status": "passed",
+      "details": {
+        "passed": true,
+        "unitarity_max_entry_error": 1.1329897232455277e-16,
+        "independent_min_squared_residual": 0.0,
+        "direct_residual": 3.7239098981968567e-16
+      },
+      "script_path": "/private/tmp/mqc-comparison-blind-r3/h/outputs/verify.py",
+      "results_path": "/private/tmp/mqc-comparison-blind-r3/h/outputs/verification.json"
+    },
+    "limitations": [
+      "Binary64 numerical comparison, not proof of exact equality.",
+      "Basis order is the caller-supplied assertion."
+    ]
+  },
+  {
+    "id": "H3",
+    "selected_skill": null,
+    "chosen_context": "independent Bernoulli counts; observed proportion and usual plug-in standard error",
+    "clarification_question": null,
+    "status": "completed",
+    "answer": {
+      "observed_proportion": 0.3583815028901734,
+      "plugin_standard_error": 0.03645760870944905,
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      }
+    },
+    "evidence_paths": [
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H3/raw-task.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H3/request.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H3/calculate.py",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H3/stdout.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H3/stderr.txt",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H3/execution.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/H3/explanation.txt",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/verification.json",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/verify.py",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/interpreter-system.stdout",
+      "/private/tmp/mqc-comparison-blind-r3/h/outputs/interpreter-venv.stdout"
+    ],
+    "verification": {
+      "status": "passed",
+      "details": {
+        "passed": true,
+        "decimal_proportion": "0.358381502890173410404624277456647398843930635838150289017341",
+        "decimal_standard_error": "0.0364576087094490471424422189654698445920462912593833111018145"
+      },
+      "script_path": "/private/tmp/mqc-comparison-blind-r3/h/outputs/verify.py",
+      "results_path": "/private/tmp/mqc-comparison-blind-r3/h/outputs/verification.json"
+    },
+    "limitations": [
+      "Plug-in standard error assumes the stated independent Bernoulli trials; it is not a confidence interval."
+    ]
+  }
+]

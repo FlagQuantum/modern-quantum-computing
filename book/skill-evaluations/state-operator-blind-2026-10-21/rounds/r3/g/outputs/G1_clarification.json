@@ -1,0 +1,1 @@
+{"task_id":"G1","question":"Should the comparison retain phase or permit one common global phase, and at what absolute tolerance?","response":"Compare them as isolated pure states up to one overall global phase, in the supplied computational basis, at absolute Euclidean tolerance 1e-10.","source":"Parent agent supplied requester clarification via collaboration.send_message"}

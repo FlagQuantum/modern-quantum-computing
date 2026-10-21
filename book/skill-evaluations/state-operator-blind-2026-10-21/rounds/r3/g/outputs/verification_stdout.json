@@ -1,0 +1,40 @@
+{
+  "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "checks": {
+    "G1": {
+      "squared_norm_a": 1.0,
+      "squared_norm_b": 0.9999999999999999,
+      "arrays_preserved": true,
+      "basis_assertion_checked": true,
+      "expected_status": "within_tolerance",
+      "direct_angle_residual": 1.6628553272775844e-16,
+      "norm_identity_residual": 1.4901161193847656e-08,
+      "raw_residual": 0.7054842752663057,
+      "phase_grid_minimum": 2.902969374755519e-05,
+      "passed": true
+    },
+    "G2": {
+      "squared_norm_a": 1.0,
+      "squared_norm_b": 0.9999999999999999,
+      "arrays_preserved": true,
+      "basis_assertion_checked": true,
+      "expected_status": "outside_tolerance",
+      "direct_angle_residual": 0.5350379315744639,
+      "norm_identity_residual": 0.5350379315744638,
+      "raw_residual": 0.9742737065432874,
+      "phase_grid_minimum": 0.5350380872530343,
+      "passed": true
+    },
+    "G3": {
+      "squared_norm_a": 1.0,
+      "squared_norm_b": 0.9724999999999999,
+      "arrays_preserved": true,
+      "basis_assertion_checked": true,
+      "expected_status": "invalid_input",
+      "reason": "Supplied state is nonunit; no normalization or comparison substituted.",
+      "passed": true
+    }
+  },
+  "passed": true
+}

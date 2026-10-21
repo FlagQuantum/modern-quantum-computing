@@ -1,0 +1,27 @@
+{
+  "id": "I4",
+  "selected_skill": null,
+  "chosen_context": {
+    "kind": "density",
+    "meaning": "mixed-state density matrices",
+    "basis_a": [
+      "0",
+      "1"
+    ],
+    "basis_b": [
+      "0",
+      "1"
+    ]
+  },
+  "clarification_question": null,
+  "status": "unsupported",
+  "evidence_paths": [
+    "outputs/I4/supplied_task.json",
+    "outputs/I4/execution.json"
+  ],
+  "verification": null,
+  "limitations": [
+    "A density-matrix comparison profile with its own tolerance, validity and metric contract is required; none is available in the supplied catalog."
+  ],
+  "explanation": "No. The sole available skill covers pure statevectors and unitaries, and cannot certify mixed density matrices. Arrays are retained as matrices; no vectors, pure-state mode, or helper object-comparison claim was substituted."
+}

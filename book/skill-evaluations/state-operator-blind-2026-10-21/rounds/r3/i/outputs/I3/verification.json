@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "evidence": {
+    "independent_method": "atan2 phase and hypot distance, no helper imports",
+    "squared_norms": [
+      1.0,
+      0.9999999999999998
+    ],
+    "overlap": [
+      0.9403971775526683,
+      -0.34007815050510815
+    ],
+    "alignment_multiplier_on_b": [
+      0.9403971775526684,
+      0.3400781505051082
+    ],
+    "aligned_residual": 1.0495102522057192e-17,
+    "raw_residual": 0.34526170493505814,
+    "fresh_status": "within_tolerance",
+    "cached_status": "outside_tolerance",
+    "cache_agrees": false
+  },
+  "runtime": {
+    "executable": "/private/tmp/mqc-writing-venv/bin/python",
+    "version": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]"
+  }
+}

@@ -1,14 +1,14 @@
 # First agent skill prototype: state and operator comparison
 
-**Version 0.1.0 · October 21, 2026 · author-verified prototype.** This is the first executable package under the [dual-entry design](dual-entry.md). It is not independently accepted or a released skill. No new textbook section is authored here.
+**Version 0.1.1 · October 21, 2026 · independent-agent-tested prototype.** This is the first executable package under the [dual-entry design](dual-entry.md). The [independent blind evaluation](comparison-skill-blind-evaluation.md) found and repaired a runtime-contract gap; 11 fresh tasks passed after repair. Scientific acceptance and release remain pending. No new textbook section is authored here.
 
-[Skill entry and instructions](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/skills/compare-quantum-states-and-operators/SKILL.md) · [Exact input/output contract](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/skills/compare-quantum-states-and-operators/references/contract.md) · [Actual evaluation evidence](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/state-operator-v0.1/author-report.json)
+[Skill entry and instructions](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/skills/compare-quantum-states-and-operators/SKILL.md) · [Exact input/output contract](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/skills/compare-quantum-states-and-operators/references/contract.md) · [Actual evaluation evidence](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/state-operator-v0.1.1/author-report.json)
 
 ## Invoke the prototype
 
 Ask an agent that supports local `SKILL.md` packages to load `skills/compare-quantum-states-and-operators/SKILL.md` from this repository. For example: “Use this skill to compare these two statevectors; preserve the computational basis and allow one overall state phase. Save the request, residuals and limitations.” No global installation is performed by this update. Runtime-specific discovery/installation is separate from the scientific contract.
 
-The bundled helper is independently callable with Python 3.12 and its standard library. The package can be copied alone to a temporary workspace. Run from the repository root:
+The bundled helper is independently callable with **CPython 3.12** and its standard library. Check the actual interpreter version: an incompatible runtime returns `unsupported`, and every result records the runtime. The package can be copied alone to a temporary workspace. Run from the repository root in a CPython 3.12 environment. The commands below assume `python` resolves to that interpreter; otherwise replace it with the explicit compatible interpreter path:
 
 ```bash
 cat > /tmp/mqc-comparison-request.json <<'JSON'
@@ -72,26 +72,27 @@ The helper itself does not execute FlagQuantum. The evaluation adapter checks ac
 
 ## Evidence and acceptance
 
-The [predeclared protocol](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/state-operator-v0.1/protocol.json) requires correct statuses and exit codes, analytic residual agreement within absolute 2e-12, and zero false successes, incorrect abstentions or unexpected exceptions. The [package freeze](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/state-operator-v0.1/package-freeze.json) records SHA-256 for every package file before the transfer fixtures were written. Execution uses a fresh temporary copy of that package, without repository imports.
+The original 0.1.0 [predeclared protocol](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/state-operator-v0.1/protocol.json) requires correct statuses and exit codes, analytic residual agreement within absolute 2e-12, and zero false successes, incorrect abstentions or unexpected exceptions. The original 0.1.0 [package freeze](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/state-operator-v0.1/package-freeze.json) records SHA-256 for every package file before the transfer fixtures were written. The [0.1.1 package freeze](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/state-operator-v0.1.1/package-freeze.json) records the repaired package. Regression execution uses a fresh temporary copy without repository imports; reused cases are not newly held out.
 
 | Category | Cases passed / total | Representative obligation |
 |---|---|---|
 | Normal | 11 / 11 | Global versus relative phase; whole operator versus columns; three real FlagQuantum comparisons |
 | Boundary | 7 / 7 | Zero/near-zero overlap, dimension 4, exact tolerance and its adjacent floating-point values |
 | Error or unsupported scope | 21 / 21 | Zero/nonunit state, nonunitary matrix, missing context, malformed/nonfinite JSON, basis mismatch, density input |
-| Post-freeze transfer | 6 / 6 | Nonlandmark complex states, four-coordinate input, generic complex unitary, controlled target phase |
+| Transfer regression (original 0.1.0 fixtures) | 6 / 6 | Nonlandmark complex states, four-coordinate input, generic complex unitary, controlled target phase |
 
 **45/45 helper cases passed; three actual FlagQuantum executions passed.** Analytic residual references include orthogonal-state √2, I/Z distance 2, controlled sign distance √8 and generic phase-dependent distances. Wrong-input cases check rejection rather than counting a stopped task as a numerical success. The saved report includes every request, expected status/metric, actual structured output, exit code, environment and package hash.
 
-The transfer cases are author-designed after package freeze. They exercise inputs not used in helper development, but **are not a blind independent agent evaluation**. This run evaluates the executable helper and the producing-program adapter; it does not establish autonomous skill selection, ambiguity clarification or unseen-paper competence. An independent agent must still receive raw tasks without expected answers and be evaluated on routing, artifact production, context questions and false-success/abstention rates. Independent mathematical/implementation acceptance and reader trials remain pending; released-skill count remains zero.
+These six cases originated as author-designed post-freeze transfer fixtures for 0.1.0. For 0.1.1 they are **reused regression cases**, not new held-out evidence. The separate [independent blind evaluation](comparison-skill-blind-evaluation.md) used nine no-history agents across 27 new tasks, preserved the initial runtime failure, and passed 11 fresh tasks after repair. Independent mathematical/implementation acceptance and reader trials remain pending; released-skill count remains zero.
 
 Rerun the recorded test set (the CLI's isolated package copy needs only the standard library; the evaluation runner needs the existing example environment):
 
 ```bash
 python -m pip install -r requirements-examples.txt
 python scripts/check_comparison_skill.py
+python scripts/check_blind_comparison_evidence.py
 python scripts/build_agent_skills_plan.py --check
 python -m mkdocs build --strict
 ```
 
-The default rerun verifies the frozen hashes and cases without overwriting original evidence. `--record` is reserved for an initial report and refuses to overwrite it. Future fixes require preserved failure evidence and a newly versioned package/evaluation set. The package is added to CI; a green rerun does not advance independent acceptance. The next step is independent forward testing of this bounded skill, rather than broader paper-reproduction claims or new textbook prose.
+The default rerun verifies the frozen hashes and cases without overwriting original evidence. `--record` is reserved for an initial report and refuses to overwrite it. Future fixes require preserved failure evidence and a newly versioned package/evaluation set. The package is added to CI; a green rerun does not advance independent acceptance. The independent blind-test record is linked above. Scientific acceptance remains a separate step; no broader paper-reproduction capability or new textbook prose is claimed.

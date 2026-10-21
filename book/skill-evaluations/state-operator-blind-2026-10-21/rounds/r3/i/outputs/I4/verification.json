@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "evidence": {
+    "available_skills": [
+      "compare-quantum-states-and-operators"
+    ],
+    "density_boundary_verified_in_contract": true,
+    "input_matrices_preserved": true,
+    "entrywise_identical_as_supplied": true,
+    "scope_note": "Entrywise identity is a direct inspection, not certification by the unavailable density profile."
+  },
+  "runtime": {
+    "executable": "/private/tmp/mqc-writing-venv/bin/python",
+    "version": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]"
+  }
+}

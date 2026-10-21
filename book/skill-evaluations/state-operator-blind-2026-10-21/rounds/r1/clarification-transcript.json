@@ -1,0 +1,10 @@
+[
+  {
+    "agent": "/root/blind_round1_a",
+    "task": "A1",
+    "question": "Should A1 compare the supplied statevectors with their coordinates/phases retained, or as isolated pure states up to one overall global phase? Basis labels are supplied; absent a tolerance preference I can use the default absolute tolerance 1e-10. Dependent comparison is pending.",
+    "reply": "I mean equality of the exported complex coordinates with phase retained, rather than ray equivalence. Use absolute Euclidean tolerance 1e-10.",
+    "transport": "collaboration.send_message",
+    "numeric_answer_supplied": false
+  }
+]

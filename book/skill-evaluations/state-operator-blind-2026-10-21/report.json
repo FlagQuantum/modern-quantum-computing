@@ -1,0 +1,298 @@
+{
+  "skill": "compare-quantum-states-and-operators",
+  "current_version": "0.1.1",
+  "behavior_status": "independent-agent-tested prototype",
+  "rounds": [
+    {
+      "round": "r1",
+      "skill_version": "0.1.0",
+      "tasks": 10,
+      "task_decisions_passed": 10,
+      "helper_calls": 8,
+      "runtime_compliant_calls": 0,
+      "overall_runtime_gate": "failed post-run runtime audit",
+      "tasks_detail": [
+        {
+          "id": "A1",
+          "disposition": "outside_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": 0.4588755322106866,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "A2",
+          "disposition": "outside_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": 0.37403457393355366,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "A3",
+          "disposition": "invalid_input",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": null,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "B1",
+          "disposition": "outside_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": 0.640234328796479,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "B2",
+          "disposition": "outside_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": 0.6496362243361173,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "B3",
+          "disposition": "off-profile calculation; no pure-state skill selected",
+          "task_passed": true,
+          "helper_executed": false
+        },
+        {
+          "id": "C1",
+          "disposition": "unsupported",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": null,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "C2",
+          "disposition": "outside_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": 0.5589107922721196,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "C3",
+          "disposition": "unsupported",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": null,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "C4",
+          "disposition": "unsupported producer; no cast or comparison",
+          "task_passed": true,
+          "helper_executed": false
+        }
+      ]
+    },
+    {
+      "round": "r2",
+      "skill_version": "0.1.0",
+      "tasks": 6,
+      "task_decisions_passed": 6,
+      "helper_calls": 6,
+      "runtime_compliant_calls": 0,
+      "overall_runtime_gate": "failed post-run runtime audit",
+      "tasks_detail": [
+        {
+          "id": "D1",
+          "disposition": "within_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": 8.496376103241741e-18,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "D2",
+          "disposition": "outside_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": 1.414213562373095,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "E1",
+          "disposition": "within_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": 1.8515641637918378e-16,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "E2",
+          "disposition": "within_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": 2.0770370905276124e-16,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "F1",
+          "disposition": "within_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": 7.855646793595436e-17,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        },
+        {
+          "id": "F2",
+          "disposition": "invalid_input",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": false,
+          "residual": null,
+          "original_interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3"
+        }
+      ]
+    },
+    {
+      "round": "r3",
+      "skill_version": "0.1.1",
+      "tasks": 11,
+      "task_decisions_passed": 11,
+      "helper_calls": 8,
+      "runtime_compliant_calls": 8,
+      "overall_runtime_gate": "passed",
+      "tasks_detail": [
+        {
+          "id": "G1",
+          "disposition": "within_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": true,
+          "residual": 1.6628553272775844e-16,
+          "original_interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+        },
+        {
+          "id": "G2",
+          "disposition": "outside_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": true,
+          "residual": 0.5350379315744639,
+          "original_interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+        },
+        {
+          "id": "G3",
+          "disposition": "invalid_input",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": true,
+          "residual": null,
+          "original_interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+        },
+        {
+          "id": "H1",
+          "disposition": "outside_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": true,
+          "residual": 0.8074139693770418,
+          "original_interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+        },
+        {
+          "id": "H2",
+          "disposition": "within_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": true,
+          "residual": 3.7239098981968567e-16,
+          "original_interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+        },
+        {
+          "id": "H3",
+          "disposition": "off-profile calculation; no pure-state skill selected",
+          "task_passed": true,
+          "helper_executed": false
+        },
+        {
+          "id": "I1",
+          "disposition": "unsupported",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": true,
+          "residual": null,
+          "original_interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+        },
+        {
+          "id": "I2",
+          "disposition": "outside_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": true,
+          "residual": 0.45947166118665406,
+          "original_interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+        },
+        {
+          "id": "I3",
+          "disposition": "within_tolerance",
+          "task_passed": true,
+          "helper_executed": true,
+          "runtime_compliant": true,
+          "residual": 4.8251361808328234e-17,
+          "original_interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+        },
+        {
+          "id": "I4",
+          "disposition": "unsupported scope; no object decision",
+          "task_passed": true,
+          "helper_executed": false
+        },
+        {
+          "id": "I5",
+          "disposition": "unsupported producer; no cast or comparison",
+          "task_passed": true,
+          "helper_executed": false
+        }
+      ]
+    }
+  ],
+  "initial_tasks": 16,
+  "initial_decisions_correct": 16,
+  "initial_nonconforming_helper_calls": 14,
+  "initial_disposition": "not a complete pass: declared Python 3.12 runtime was not enforced or recorded",
+  "repair": "0.1.1 checks CPython 3.12 admission before parsing; reports actual runtime; instructions require explicit interpreter selection. Numerical kernel unchanged.",
+  "fresh_retest_tasks": 11,
+  "fresh_retest_passed": 11,
+  "fresh_retest_categories": {
+    "supported_comparison": 6,
+    "invalid_input": 1,
+    "unsupported_profile": 3,
+    "off_profile_counts": 1
+  },
+  "fresh_retest_false_successes": 0,
+  "fresh_retest_incorrect_abstentions": 0,
+  "fresh_retest_clarifications": 1,
+  "all_round_clarifications": 3,
+  "independent_executors": 9,
+  "blind_to_reference_answers": true,
+  "grader_role": "author/conductor; analytic targets frozen before agent dispatch",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "released_skills": 0,
+  "limitations": [
+    "Small conductor-designed nonrandom sample; not a statistical competence estimate",
+    "One implemented skill among 23 catalog entries; no claim of competition among multiple working skills",
+    "No-history agents inherit the same model configuration; exact backend revision/token/cost telemetry unavailable",
+    "Read restrictions are logical and not OS-enforced; no secret-proof isolation claim",
+    "CI replays frozen artifacts and numerical requests; it does not rerun autonomous agents"
+  ]
+}

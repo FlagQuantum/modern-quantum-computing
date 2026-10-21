@@ -1,0 +1,121 @@
+[
+  {
+    "id": "F1",
+    "request": "Audit this cached result using the raw isolated pure-state arrays up to global phase, tolerance 1e-10. Return a freshly verified decision and artifacts.",
+    "data": {
+      "a": [
+        [
+          0.2672612419124244,
+          0.5345224838248488
+        ],
+        [
+          -0.5345224838248488,
+          0.2672612419124244
+        ],
+        [
+          0.5345224838248488,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "b": [
+        [
+          -0.09246781916308343,
+          0.5904172757991423
+        ],
+        [
+          -0.5904172757991423,
+          -0.09246781916308343
+        ],
+        [
+          0.43534669297408046,
+          0.3101411656501237
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "kind": "state",
+      "basis_a": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "basis_b": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ]
+    },
+    "cached_result": {
+      "status": "outside_tolerance",
+      "aligned_residual": 0.5,
+      "absolute_tolerance": 1e-10
+    }
+  },
+  {
+    "id": "F2",
+    "request": "The two columns in each proposed gate matrix have unit norm. Can these supplied matrices be compared as unitaries, in basis 0,1, up to global phase, tolerance 1e-10? Preserve all entries.",
+    "data": {
+      "a": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      ],
+      "b": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.8,
+            0.0
+          ]
+        ]
+      ],
+      "kind": "unitary",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    }
+  }
+]

@@ -1,0 +1,172 @@
+[
+  {
+    "id": "F1",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "state",
+      "mode": "global-phase",
+      "basis_a": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "basis_b": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "atol": 1e-10,
+      "source": "Explicit user request; supplied labels treated as caller assertions."
+    },
+    "clarification_question": null,
+    "status": "within_tolerance",
+    "evidence_paths": [
+      "outputs/F1/request.json",
+      "outputs/F1/result.json",
+      "outputs/F1/stdout.txt",
+      "outputs/F1/stderr.txt",
+      "outputs/F1/execution.json",
+      "outputs/F1/explanation.md",
+      "outputs/verify.py",
+      "outputs/verification.json",
+      "outputs/verification.stdout.txt",
+      "outputs/verification.stderr.txt",
+      "outputs/verification.execution.json",
+      "outputs/input_hashes.json"
+    ],
+    "verification": {
+      "status": "passed",
+      "script": "outputs/verify.py",
+      "results": "outputs/verification.json",
+      "details": {
+        "passed": true,
+        "unit_squared_norms": [
+          1.0000000000000002,
+          1.0
+        ],
+        "independent_aligned_residual": 7.855646793595436e-17,
+        "independent_raw_residual": 0.6091648630920243,
+        "multiplier_on_b": [
+          0.8144590847870377,
+          -0.5802209916987329
+        ],
+        "cached_decision_rejected": true
+      }
+    },
+    "limitations": [
+      "Binary64 numerical evidence, not proof of exact equality.",
+      "Basis labels are supplied assertions; array provenance and physical implementation are not established."
+    ]
+  },
+  {
+    "id": "F2",
+    "selected_skill": "compare-quantum-states-and-operators",
+    "chosen_context": {
+      "kind": "unitary",
+      "mode": "global-phase",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10,
+      "source": "Explicit user request; supplied labels treated as caller assertions."
+    },
+    "clarification_question": null,
+    "status": "invalid_input",
+    "evidence_paths": [
+      "outputs/F2/request.json",
+      "outputs/F2/result.json",
+      "outputs/F2/stdout.txt",
+      "outputs/F2/stderr.txt",
+      "outputs/F2/execution.json",
+      "outputs/F2/explanation.md",
+      "outputs/verify.py",
+      "outputs/verification.json",
+      "outputs/verification.stdout.txt",
+      "outputs/verification.stderr.txt",
+      "outputs/verification.execution.json",
+      "outputs/input_hashes.json"
+    ],
+    "verification": {
+      "status": "passed",
+      "script": "outputs/verify.py",
+      "results": "outputs/verification.json",
+      "details": {
+        "passed": true,
+        "column_squared_norms": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0
+          ]
+        ],
+        "gram_matrices": [
+          [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.6,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.6,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ]
+        ],
+        "max_entrywise_gram_errors": [
+          0.0,
+          0.6
+        ],
+        "unitary_comparison_valid": false,
+        "no_entries_repaired": true
+      }
+    },
+    "limitations": [
+      "Binary64 numerical evidence, not proof of exact equality.",
+      "Basis labels are supplied assertions; array provenance and physical implementation are not established.",
+      "Input b is nonunitary; no unitary equivalence conclusion is valid."
+    ]
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "D1",
+    "request": "Compare these isolated four-coordinate pure states up to one overall phase, absolute tolerance 1e-10. Preserve the stated basis and return checkable numerical artifacts.",
+    "data": {
+      "a": [
+        [
+          0.25,
+          0.25
+        ],
+        [
+          0.5,
+          0.0
+        ],
+        [
+          -0.0,
+          -0.25
+        ],
+        [
+          0.75,
+          0.0
+        ]
+      ],
+      "b": [
+        [
+          0.3371718663229549,
+          -0.10637261188997575
+        ],
+        [
+          0.2307992544329792,
+          -0.4435444782129307
+        ],
+        [
+          -0.22177223910646535,
+          -0.1153996272164896
+        ],
+        [
+          0.34619888164946877,
+          -0.665316717319396
+        ]
+      ],
+      "kind": "state",
+      "basis_a": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "basis_b": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ]
+    }
+  },
+  {
+    "id": "D2",
+    "request": "Check pure-state equivalence up to global phase for these complex vectors, basis 0,1, tolerance 1e-10. Report the residual and any limitations of an aligning phase.",
+    "data": {
+      "a": [
+        [
+          0.4472135954999579,
+          0.0
+        ],
+        [
+          0.0,
+          0.8944271909999159
+        ]
+      ],
+      "b": [
+        [
+          0.0,
+          0.8944271909999159
+        ],
+        [
+          0.4472135954999579,
+          0.0
+        ]
+      ],
+      "kind": "state",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    }
+  }
+]

@@ -96,7 +96,7 @@
     {
       "id": "compare-quantum-states-and-operators",
       "level": "L1",
-      "status": "author-verified prototype",
+      "status": "independent-agent-tested prototype",
       "task": "Choose state, operator or distribution comparison with the correct phase scope.",
       "deliverable": "Validated comparison domain, residuals and phase-sensitive counterexamples.",
       "requires_skills": [
@@ -119,10 +119,12 @@
         "book/section-records/3.1.json",
         "book/section-records/3.7.json"
       ],
-      "behavioral_evaluation": "helper: 45/45 author cases; independent agent evaluation not run",
+      "behavioral_evaluation": "blind agent retest: 11/11; author helper regression: 45/45",
       "independent_acceptance": "pending",
       "prototype_package": "skills/compare-quantum-states-and-operators/SKILL.md",
-      "evaluation_report": "book/skill-evaluations/state-operator-v0.1/author-report.json"
+      "evaluation_report": "book/skill-evaluations/state-operator-v0.1.1/author-report.json",
+      "blind_evaluation_report": "book/skill-evaluations/state-operator-blind-2026-10-21/report.json",
+      "package_version": "0.1.1"
     },
     {
       "id": "reproduce-qubit-interference",

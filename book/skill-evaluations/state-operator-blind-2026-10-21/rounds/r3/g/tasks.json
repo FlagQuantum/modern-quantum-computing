@@ -1,0 +1,107 @@
+[
+  {
+    "id": "G1",
+    "request": "Are these two exported statevectors the same? Please verify before deciding.",
+    "data": {
+      "kind": "state",
+      "a": [
+        [
+          0.6557438524302001,
+          0.0
+        ],
+        [
+          0.7125162914120636,
+          0.24964081091119522
+        ]
+      ],
+      "b": [
+        [
+          0.49255935123700656,
+          -0.43288022074123367
+        ],
+        [
+          0.7000006631794429,
+          -0.2828410711836952
+        ]
+      ],
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    }
+  },
+  {
+    "id": "G2",
+    "request": "Compare these isolated pure states up to one common phase, basis 0,1 and absolute tolerance 1e-10. Save the actual numerical result and verification.",
+    "data": {
+      "kind": "state",
+      "a": [
+        [
+          0.5291502622129182,
+          0.0
+        ],
+        [
+          0.848528137423857,
+          0.0
+        ]
+      ],
+      "b": [
+        [
+          0.5291502622129182,
+          0.0
+        ],
+        [
+          0.28920121979010127,
+          -0.7977234197840235
+        ]
+      ],
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    }
+  },
+  {
+    "id": "G3",
+    "request": "Compare the proposed pure states as supplied, up to global phase, tolerance 1e-10. Do not change the arrays.",
+    "data": {
+      "kind": "state",
+      "a": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "b": [
+        [
+          0.5,
+          0.0
+        ],
+        [
+          0.85,
+          0.0
+        ]
+      ],
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    }
+  }
+]

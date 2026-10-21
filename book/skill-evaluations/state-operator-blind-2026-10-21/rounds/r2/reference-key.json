@@ -1,0 +1,32 @@
+{
+  "D1": {
+    "mode": "global-phase",
+    "status": "within_tolerance",
+    "residual": 0
+  },
+  "D2": {
+    "mode": "global-phase",
+    "status": "outside_tolerance",
+    "residual": 1.4142135623730951
+  },
+  "E1": {
+    "initial": "clarification required",
+    "reply": "These are isolated unitary gates. Allow one overall phase for the entire operator, in the declared basis, with absolute Frobenius tolerance 1e-10. No coherent-control embedding is being compared.",
+    "mode": "global-phase",
+    "status": "within_tolerance",
+    "residual": 0
+  },
+  "E2": {
+    "mode": "global-phase",
+    "status": "within_tolerance",
+    "residual": 0
+  },
+  "F1": {
+    "mode": "global-phase",
+    "status": "within_tolerance",
+    "residual": 0
+  },
+  "F2": {
+    "status": "invalid_input"
+  }
+}

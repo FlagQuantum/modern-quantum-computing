@@ -1,0 +1,25 @@
+{
+  "status": "unsupported",
+  "helper_executed": false,
+  "reasons": [
+    "unverified producer and no API/version evidence",
+    "batch axis outside state profile",
+    "complex64 must not be silently widened"
+  ],
+  "preserved_metadata": {
+    "kind": "producer statevector export",
+    "requested_admission": "verified FlagQuantum",
+    "claimed_context": "isolated pure states up to global phase",
+    "dtype": "complex64",
+    "device": "cpu",
+    "shape": [
+      1,
+      2
+    ],
+    "producer": "unverified local export",
+    "basis": [
+      "0",
+      "1"
+    ]
+  }
+}

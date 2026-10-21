@@ -1,6 +1,6 @@
-# Comparison contract 0.1.0
+# Comparison contract 0.1.1
 
-Runtime: Python 3.12 standard library, binary64 complex arithmetic, CPU. The folder is self-contained; it needs neither repository imports nor an installed FlagQuantum. The optional FlagQuantum evaluation adapter is in the repository test runner.
+Runtime: CPython 3.12 standard library, binary64 complex arithmetic, CPU. The folder is self-contained; it needs neither repository imports nor an installed FlagQuantum. The optional FlagQuantum evaluation adapter is in the repository test runner.
 
 ## Sources and symbol mapping
 
@@ -15,6 +15,10 @@ For flattened entries, set `c = sum(conj(a[j])*b[j])` (`overlap`). Expansion giv
 When c is zero every unit phase minimizes the distance: return z=1 and `phase_identifiable=false`; no division by zero. For near-zero c the selected phase is ill conditioned. Neither case invalidates the residual. Phase identifiability describes this exact floating-point overlap, not statistical confidence.
 
 `controlled` constructs diag(I,U) in order 00,01,10,11 with the first qubit the control (`controlled`). Align only the **full** four-dimensional operation. An isolated target phase becomes a relative branch phase and is observable on coherent inputs. No control-phase repair is inserted automatically.
+
+## Runtime admission
+
+The CLI checks its actual interpreter before parsing an object request. A different Python minor version or implementation returns `unsupported` (exit 3), with reason `unsupported_runtime` and the actual runtime. Do not count this as a state/operator result or silently widen the supported runtime. Select an available CPython 3.12 interpreter explicitly and rerun, or report the environment boundary. Every CLI result records its actual `runtime` implementation and Python version.
 
 ## Input
 

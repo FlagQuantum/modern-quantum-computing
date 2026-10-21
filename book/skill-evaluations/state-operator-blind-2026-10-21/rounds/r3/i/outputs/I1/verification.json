@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "evidence": {
+    "basis_labels_preserved": true,
+    "unsupported_is_not_inequality": true,
+    "helper_reason": "Canonical computational basis required for both inputs; transform explicitly first"
+  },
+  "runtime": {
+    "executable": "/private/tmp/mqc-writing-venv/bin/python",
+    "version": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]"
+  }
+}

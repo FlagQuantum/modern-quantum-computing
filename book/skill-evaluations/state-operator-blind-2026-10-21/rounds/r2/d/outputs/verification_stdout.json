@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "id": "D1",
+      "passed": true,
+      "norm_a_squared": 1.0,
+      "norm_b_squared": 1.0,
+      "overlap": [
+        0.4615985088659583,
+        -0.8870889564258613
+      ],
+      "recomputed_residual": 8.496376103241741e-18,
+      "minimum_squared_distance_formula": 2.220446049250313e-16,
+      "sampled_phase_residuals": [
+        1.037691178659664,
+        0.9509431524571621,
+        0.3885140691118838,
+        0.10894604847143301,
+        1.2953058855427322,
+        1.9200506363102128
+      ]
+    },
+    {
+      "id": "D2",
+      "passed": true,
+      "norm_a_squared": 0.9999999999999999,
+      "norm_b_squared": 0.9999999999999999,
+      "overlap": [
+        0.0,
+        0.0
+      ],
+      "recomputed_residual": 1.414213562373095,
+      "minimum_squared_distance_formula": 1.9999999999999998,
+      "sampled_phase_residuals": [
+        1.414213562373095,
+        1.4142135623730951,
+        1.4142135623730951,
+        1.4142135623730951,
+        1.4142135623730951,
+        1.4142135623730951
+      ]
+    }
+  ]
+}

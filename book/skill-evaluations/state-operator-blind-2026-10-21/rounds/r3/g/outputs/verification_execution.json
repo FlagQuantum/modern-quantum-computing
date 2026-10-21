@@ -1,0 +1,9 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-comparison-blind-r3/g/outputs/verify.py"
+  ],
+  "stdout_path": "/private/tmp/mqc-comparison-blind-r3/g/outputs/verification_stdout.json",
+  "stderr_path": "/private/tmp/mqc-comparison-blind-r3/g/outputs/verification_stderr.txt",
+  "exit_code": 0
+}

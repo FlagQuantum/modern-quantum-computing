@@ -1,0 +1,8 @@
+{
+  "argv": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/private/tmp/mqc-comparison-blind-r1/c/skills/compare-quantum-states-and-operators/scripts/compare.py"
+  ],
+  "stdin": "request.json",
+  "exit_code": 3
+}

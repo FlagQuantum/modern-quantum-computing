@@ -1,0 +1,59 @@
+{
+  "id": "I3",
+  "request": "Check whether this cached decision agrees with the raw isolated pure-state arrays, up to global phase at tolerance 1e-10. Save a fresh comparison and verification.",
+  "data": {
+    "kind": "state",
+    "a": [
+      [
+        0.3333333333333333,
+        0.0
+      ],
+      [
+        0.0,
+        0.6666666666666666
+      ],
+      [
+        0.6666666666666666,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "b": [
+      [
+        0.31346572585088944,
+        -0.11335938350170273
+      ],
+      [
+        0.22671876700340546,
+        0.6269314517017789
+      ],
+      [
+        0.6269314517017789,
+        -0.22671876700340546
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "basis_a": [
+      "00",
+      "01",
+      "10",
+      "11"
+    ],
+    "basis_b": [
+      "00",
+      "01",
+      "10",
+      "11"
+    ]
+  },
+  "cached_result": {
+    "status": "outside_tolerance",
+    "aligned_residual": 0.4
+  }
+}

@@ -1,0 +1,256 @@
+[
+  {
+    "id": "I1",
+    "request": "Compare the four-coordinate states up to global phase as supplied, tolerance 1e-10. Preserve the different basis declarations and do not reorder coordinates.",
+    "data": {
+      "kind": "state",
+      "a": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "b": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "basis_a": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "basis_b": [
+        "00",
+        "10",
+        "01",
+        "11"
+      ]
+    }
+  },
+  {
+    "id": "I2",
+    "request": "Audit the cached comparison using raw inputs: isolated pure states, one overall phase allowed, tolerance 1e-10. Return newly verified evidence.",
+    "data": {
+      "kind": "state",
+      "a": [
+        [
+          0.6082762530298219,
+          0.0
+        ],
+        [
+          0.7937253933193772,
+          0.0
+        ]
+      ],
+      "b": [
+        [
+          0.6082762530298219,
+          0.0
+        ],
+        [
+          0.45326469152192334,
+          0.6515758738777363
+        ]
+      ],
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    },
+    "cached_result": {
+      "status": "within_tolerance",
+      "aligned_residual": 0
+    }
+  },
+  {
+    "id": "I3",
+    "request": "Check whether this cached decision agrees with the raw isolated pure-state arrays, up to global phase at tolerance 1e-10. Save a fresh comparison and verification.",
+    "data": {
+      "kind": "state",
+      "a": [
+        [
+          0.3333333333333333,
+          0.0
+        ],
+        [
+          0.0,
+          0.6666666666666666
+        ],
+        [
+          0.6666666666666666,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "b": [
+        [
+          0.31346572585088944,
+          -0.11335938350170273
+        ],
+        [
+          0.22671876700340546,
+          0.6269314517017789
+        ],
+        [
+          0.6269314517017789,
+          -0.22671876700340546
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "basis_a": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "basis_b": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ]
+    },
+    "cached_result": {
+      "status": "outside_tolerance",
+      "aligned_residual": 0.4
+    }
+  },
+  {
+    "id": "I4",
+    "request": "Can this skill certify these mixed-state density matrices as equal? Preserve their mixed-state meaning; do not replace with vectors.",
+    "data": {
+      "kind": "density",
+      "a": [
+        [
+          [
+            0.7,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.3,
+            0.0
+          ]
+        ]
+      ],
+      "b": [
+        [
+          [
+            0.7,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.3,
+            0.0
+          ]
+        ]
+      ],
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ]
+    }
+  },
+  {
+    "id": "I5",
+    "request": "Are these exports admissible as verified FlagQuantum statevector outputs for this skill? Preserve the stated dtype/metadata; compare only if the producer contract permits it.",
+    "data": {
+      "producer": "unverified export",
+      "dtype": "complex64",
+      "shape": [
+        1,
+        2
+      ],
+      "device": "cpu",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "context": "isolated pure states up to global phase",
+      "a": [
+        [
+          [
+            0.6,
+            0.0
+          ],
+          [
+            0.8,
+            0.0
+          ]
+        ]
+      ],
+      "b": [
+        [
+          [
+            0.6,
+            0.0
+          ],
+          [
+            0.8,
+            0.0
+          ]
+        ]
+      ]
+    }
+  }
+]

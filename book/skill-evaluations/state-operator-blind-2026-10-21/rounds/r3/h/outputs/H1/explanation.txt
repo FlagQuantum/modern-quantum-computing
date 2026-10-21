@@ -1,0 +1,2 @@
+Construct diag(I,U) and diag(I,V), with control first and basis 00,01,10,11. Align a single scalar phase on those full 4x4 operators. A target-only phase is a relative phase between the control branches.
+Decision: outside_tolerance; Frobenius residual 0.8074139693770418 at absolute tolerance 1e-10.

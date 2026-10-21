@@ -1,0 +1,35 @@
+{
+  "id": "I1",
+  "selected_skill": "compare-quantum-states-and-operators",
+  "chosen_context": {
+    "kind": "state",
+    "mode": "global-phase",
+    "atol": 1e-10,
+    "basis_a": [
+      "00",
+      "01",
+      "10",
+      "11"
+    ],
+    "basis_b": [
+      "00",
+      "10",
+      "01",
+      "11"
+    ]
+  },
+  "clarification_question": null,
+  "status": "unsupported",
+  "evidence_paths": [
+    "outputs/I1/supplied_task.json",
+    "outputs/I1/request.json",
+    "outputs/I1/stdout.json",
+    "outputs/I1/stderr.txt",
+    "outputs/I1/execution.json"
+  ],
+  "verification": null,
+  "limitations": [
+    "Canonical identical basis declarations are required by this profile. No documented transformation is supplied or authorized."
+  ],
+  "explanation": "The explicit different basis declarations are preserved. The supplied helper rejects the noncanonical second basis with exit 3. This is an unsupported basis contract, not an inequality result. No permutation or relabeling was applied."
+}

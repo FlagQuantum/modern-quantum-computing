@@ -1,0 +1,51 @@
+{
+  "G1": {
+    "initial": "clarification required",
+    "reply": "Compare them as isolated pure states up to one overall global phase, in the supplied computational basis, at absolute Euclidean tolerance 1e-10.",
+    "mode": "global-phase",
+    "status": "within_tolerance",
+    "residual": 0
+  },
+  "G2": {
+    "mode": "global-phase",
+    "status": "outside_tolerance",
+    "residual": 0.5350379315744638
+  },
+  "G3": {
+    "status": "invalid_input"
+  },
+  "H1": {
+    "mode": "controlled",
+    "status": "outside_tolerance",
+    "residual": 0.8074139693770421
+  },
+  "H2": {
+    "mode": "global-phase",
+    "status": "within_tolerance",
+    "residual": 0
+  },
+  "H3": {
+    "status": "completed without pure-state helper",
+    "proportion": 0.3583815028901734,
+    "standard_error": 0.03645760870944905
+  },
+  "I1": {
+    "status": "unsupported"
+  },
+  "I2": {
+    "mode": "global-phase",
+    "status": "outside_tolerance",
+    "residual": 0.45947166118665383
+  },
+  "I3": {
+    "mode": "global-phase",
+    "status": "within_tolerance",
+    "residual": 0
+  },
+  "I4": {
+    "status": "unsupported"
+  },
+  "I5": {
+    "status": "unsupported"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "I1",
+  "request": "Compare the four-coordinate states up to global phase as supplied, tolerance 1e-10. Preserve the different basis declarations and do not reorder coordinates.",
+  "data": {
+    "kind": "state",
+    "a": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "b": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "basis_a": [
+      "00",
+      "01",
+      "10",
+      "11"
+    ],
+    "basis_b": [
+      "00",
+      "10",
+      "01",
+      "11"
+    ]
+  }
+}

@@ -1,0 +1,2 @@
+Compare the supplied 4x4 isolated operators in basis 00,01,10,11. Use one scalar phase across all matrix entries; no columnwise alignment.
+Decision: within_tolerance; Frobenius residual 3.7239098981968567e-16 at absolute tolerance 1e-10.

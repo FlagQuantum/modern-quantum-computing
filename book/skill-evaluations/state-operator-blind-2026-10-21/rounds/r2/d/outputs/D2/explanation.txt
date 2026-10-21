@@ -1,0 +1,7 @@
+Selected the available compare-quantum-states-and-operators skill because the request explicitly specifies pure-state equivalence up to global phase in declared basis [0,1]. Preserved the supplied arrays and basis without normalization or permutation. Context: kind=state, mode=global-phase, absolute Euclidean tolerance=1e-10.
+
+Actual helper exit code: 1 (outside_tolerance, a valid completed comparison). Raw and optimally aligned residual: 1.414213562373095. These states are not equivalent up to global phase at tolerance 1e-10. Overlap is exactly 0+0j in the floating-point computation. Every unit phase minimizes the distance, so there is no identifiable aligning phase; the helper's multiplier z=1 is a deterministic convention, not a distinguished physical alignment. Near-zero overlap would also make phase estimates unstable even when the residual remains stable.
+
+Independent verification checks normalization, multiplier magnitude, residuals, squared-distance identity and decision. It additionally checks zero overlap and evaluates six phases, all yielding sqrt(2) within floating-point error. Verification passes. Analytically, zero overlap makes the squared distance equal to the sum of the squared norms for every phase.
+
+Limitations: binary64 arithmetic, caller-declared basis, deterministic arrays only. Agreement of computational-basis probabilities would not establish ray equality; no exact theorem or circuit/experimental equivalence follows from this comparison.

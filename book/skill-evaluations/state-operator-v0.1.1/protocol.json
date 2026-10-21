@@ -1,0 +1,27 @@
+{
+  "skill": "compare-quantum-states-and-operators",
+  "version": "0.1.1",
+  "scope": "Author regression after runtime admission repair; old transfer fixtures are regression, new blind evidence is separate",
+  "evaluator_role": "authoring agent",
+  "independent_review": "pending",
+  "reader_trial": "not run",
+  "release_acceptance": "pending",
+  "categories": [
+    "normal",
+    "boundary",
+    "error",
+    "transfer-regression"
+  ],
+  "gates": {
+    "all_status_and_exit_codes_correct": true,
+    "all_valid_metrics_match_declared_analytic_reference": true,
+    "false_successes_allowed": 0,
+    "incorrect_abstentions_allowed": 0,
+    "unexpected_exceptions_allowed": 0,
+    "residual_reference_absolute_tolerance": 2e-12,
+    "input_validation_absolute_tolerance": 1e-12,
+    "decision_absolute_tolerance_default": 1e-10
+  },
+  "freeze_policy": "Package frozen before 0.1.1 author run; all 45 cases reused from 0.1.0 and are not new held-out cases. Preserve original evidence. Independent no-history agents use separately frozen new task sets.",
+  "framework_adapter": "Run actual released FlagQuantum 0.3.1 CPU complex128 statevector circuits and submit validated single samples to the helper; do not infer backend execution from the helper alone."
+}

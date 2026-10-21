@@ -1,0 +1,39 @@
+{
+  "id": "I2",
+  "request": "Audit the cached comparison using raw inputs: isolated pure states, one overall phase allowed, tolerance 1e-10. Return newly verified evidence.",
+  "data": {
+    "kind": "state",
+    "a": [
+      [
+        0.6082762530298219,
+        0.0
+      ],
+      [
+        0.7937253933193772,
+        0.0
+      ]
+    ],
+    "b": [
+      [
+        0.6082762530298219,
+        0.0
+      ],
+      [
+        0.45326469152192334,
+        0.6515758738777363
+      ]
+    ],
+    "basis_a": [
+      "0",
+      "1"
+    ],
+    "basis_b": [
+      "0",
+      "1"
+    ]
+  },
+  "cached_result": {
+    "status": "within_tolerance",
+    "aligned_residual": 0
+  }
+}

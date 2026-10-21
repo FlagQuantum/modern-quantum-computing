@@ -1,0 +1,1 @@
+No available skill fits shot counts: the available comparison skill excludes hardware statistics and accepts only statevectors/unitaries. Independently compute p_hat=47/125=0.376, and usual Bernoulli plug-in SE=sqrt(p_hat*(1-p_hat)/125). No amplitudes inferred. This is a plug-in SE, not a confidence interval or exact population uncertainty.

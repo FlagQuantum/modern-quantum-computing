@@ -1,0 +1,10 @@
+[
+  {
+    "agent": "/root/blind_round2_e",
+    "task": "E1",
+    "question": "Does \u201csame\u201d mean coordinate equality retaining phase, isolated whole-operator equivalence up to one global phase, or equality when each gate is placed under coherent control? Matrices/bases alone do not select this context. E1 dependent comparison remains pending; continuing E2.",
+    "reply": "These are isolated unitary gates. Allow one overall phase for the entire operator, in the declared basis, with absolute Frobenius tolerance 1e-10. No coherent-control embedding is being compared.",
+    "transport": "collaboration.send_message",
+    "numeric_answer_supplied": false
+  }
+]

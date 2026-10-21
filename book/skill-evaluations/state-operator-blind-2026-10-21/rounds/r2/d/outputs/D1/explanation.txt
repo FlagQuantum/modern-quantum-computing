@@ -1,0 +1,7 @@
+Selected the available compare-quantum-states-and-operators skill because the request specifies two four-coordinate isolated pure states and permits a single overall phase. The declared basis is [00,01,10,11], preserved without permutation or normalization. Context: kind=state, mode=global-phase, absolute Euclidean tolerance=1e-10.
+
+Actual helper exit code: 0 (within_tolerance). Raw residual: 1.037691178659664. Multiplying b by z=0.4615985088659584+0.8870889564258614j produces aligned residual 8.496376103241741e-18, so the supplied arrays agree up to a global phase within the requested tolerance. The overlap is nonzero, so the aligning phase is identifiable in this calculation. Request, complete structured stdout, stderr, and execution record are saved alongside this explanation.
+
+Independent verification checks input normalization, unit magnitude of the multiplier, coordinate ratios, directly recomputed residual, squared-distance identity and tolerance decision. It passes. The squared-distance identity has cancellation near equality; the directly evaluated residual is the reliable reported number.
+
+Limitations: binary64 numerical agreement is not proof of exact equality. Basis labels are caller assertions. These artifacts compare deterministic supplied pure-state coordinates; they do not validate a producing circuit or noisy experiment.

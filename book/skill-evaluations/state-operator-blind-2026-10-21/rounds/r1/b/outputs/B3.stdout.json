@@ -1,0 +1,7 @@
+{
+  "observed_proportion": 0.376,
+  "plug_in_standard_error": 0.043324265717955335,
+  "shots": 125,
+  "successes": 47,
+  "formula": "sqrt(p_hat*(1-p_hat)/n)"
+}

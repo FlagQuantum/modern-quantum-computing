@@ -1,0 +1,29 @@
+{
+  "id": "I5",
+  "selected_skill": "compare-quantum-states-and-operators",
+  "chosen_context": {
+    "meaning": "isolated pure states up to global phase",
+    "producer": "unverified export",
+    "dtype": "complex64",
+    "shape": [
+      1,
+      2
+    ],
+    "device": "cpu",
+    "basis": [
+      "0",
+      "1"
+    ]
+  },
+  "clarification_question": null,
+  "status": "not_admissible",
+  "evidence_paths": [
+    "outputs/I5/supplied_task.json",
+    "outputs/I5/execution.json"
+  ],
+  "verification": null,
+  "limitations": [
+    "Actual producing API/version, producer validation, and actual ordering are not evidenced. CPU metadata alone does not establish producer provenance. Need a validated source program/export meeting the profile before comparison."
+  ],
+  "explanation": "These exports are not admissible as verified FlagQuantum outputs. Producer is explicitly unverified, declared dtype is complex64 and there is a leading batch axis [1,2]. The validated adapter profile uses actual FlagQuantum 0.3.1 CPU complex128, and requires producer-side validation plus export of exactly one validated sample. No axis removal, cast or comparison was performed."
+}

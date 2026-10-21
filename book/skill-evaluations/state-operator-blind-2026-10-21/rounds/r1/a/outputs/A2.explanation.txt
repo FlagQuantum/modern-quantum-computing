@@ -1,0 +1,1 @@
+These isolated pure states are valid normalized exports in declared basis [0,1]. Applying one optimal phase to the whole b vector leaves Euclidean residual 0.37403457393355366, greater than 1e-10. They are outside tolerance even up to overall phase. Equal component magnitudes do not remove the relative phase difference.

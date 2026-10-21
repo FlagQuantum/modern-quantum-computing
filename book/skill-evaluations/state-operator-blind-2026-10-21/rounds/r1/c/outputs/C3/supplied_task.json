@@ -1,0 +1,59 @@
+{
+  "id": "C3",
+  "request": "Can the available comparison skill certify equality of these density matrices, including their mixed-state meaning? Do not replace them with statevectors.",
+  "data": {
+    "kind": "density",
+    "a": [
+      [
+        [
+          0.5,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.0
+        ]
+      ]
+    ],
+    "b": [
+      [
+        [
+          0.5,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.0
+        ]
+      ]
+    ],
+    "basis_a": [
+      "0",
+      "1"
+    ],
+    "basis_b": [
+      "0",
+      "1"
+    ]
+  }
+}

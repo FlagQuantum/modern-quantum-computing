@@ -1,0 +1,82 @@
+{
+  "F1": {
+    "passed": true,
+    "unit_squared_norms": [
+      1.0000000000000002,
+      1.0
+    ],
+    "independent_aligned_residual": 7.855646793595436e-17,
+    "independent_raw_residual": 0.6091648630920243,
+    "multiplier_on_b": [
+      0.8144590847870377,
+      -0.5802209916987329
+    ],
+    "cached_decision_rejected": true
+  },
+  "F2": {
+    "passed": true,
+    "column_squared_norms": [
+      [
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0
+      ]
+    ],
+    "gram_matrices": [
+      [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.6,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      ]
+    ],
+    "max_entrywise_gram_errors": [
+      0.0,
+      0.6
+    ],
+    "unitary_comparison_valid": false,
+    "no_entries_repaired": true
+  },
+  "protected_inputs_unchanged": true
+}
