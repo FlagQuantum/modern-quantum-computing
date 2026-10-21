@@ -488,7 +488,7 @@ $$
 (x,y,z)=(\sin\theta\cos\phi,\ \sin\theta\sin\phi,\ \cos\theta).
 $$
 
-These are spherical coordinates: $\theta$ is measured down from positive $z$, and $\phi$ is measured in the $xy$ plane from positive $x$ toward positive $y$. This derivation explains the half angles in the statevector. Substituting $\cos\theta,\sin\theta$ into the amplitudes would generally place the point at polar angle $2\theta$ instead.
+These are spherical coordinates: $\theta$ is measured down from positive $z$, and $\phi$ is measured in the $xy$ plane from positive $x$ toward positive $y$. This derivation explains the half angles in the statevector. Substituting $\cos\theta,\sin\theta$ into the amplitudes would instead give $(\sin(2\theta)\cos\phi,\sin(2\theta)\sin\phi,\cos(2\theta))$. These doubled-angle coordinates differ from the intended ones; when $2\theta>\pi$, it is outside the chosen polar-angle range.
 
 ![Original Bloch-sphere illustration showing the polar and azimuthal angles and the worked pure state.](../assets/figures/bloch-pure-state.svg)
 
