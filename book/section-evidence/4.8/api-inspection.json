@@ -1,0 +1,28 @@
+{
+  "Circuit.unitary": {
+    "signature": "(self, *qubits: 'int', unitary: 'Any', name: 'str' = 'any') -> \"'Circuit'\"",
+    "source_sha256": "96337b06d545c524e778dd66a635d7a78266cb3092e73138fd7692ce6dd7dfc8"
+  },
+  "QuantumCircuit.unitary": {
+    "signature": "(self, obj: 'np.ndarray | Gate | BaseOperator', qubits: 'Sequence[QubitSpecifier]', label: 'str | None' = None)",
+    "source_sha256": "c63b89b76a82f5106ec6e023c9552f0d064a9fa273d8e7347cd7e0f8cb9e1d98"
+  },
+  "Statevector.from_instruction": {
+    "signature": "(instruction: 'Instruction | QuantumCircuit') -> 'Statevector'",
+    "source_sha256": "c2ce87be9beea5098e3cf5369d48ec9dccaaad48133a25db1a5027dc1f98f55e"
+  },
+  "StatevectorSampler.run": {
+    "signature": "(self, pubs: 'Iterable[SamplerPubLike]', *, shots: 'int | None' = None) -> 'PrimitiveJob[PrimitiveResult[SamplerPubResult]]'",
+    "source_sha256": "ffb572aeeff036b6691588639df00b8545b5b4c231af69acc213fe7614cad562"
+  },
+  "versions": {
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0",
+    "qiskit": "2.5.2",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "rustworkx": "0.18.1",
+    "stevedore": "5.9.1",
+    "dill": "0.4.1"
+  }
+}

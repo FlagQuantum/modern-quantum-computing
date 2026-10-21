@@ -1,0 +1,2 @@
+-r requirements-examples.txt
+qiskit==2.5.2

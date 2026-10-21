@@ -1,0 +1,33 @@
+{
+  "section": "4.8",
+  "state": "author-verified draft",
+  "frameworks": {
+    "flagquantum": "0.3.1",
+    "qiskit": "2.5.2"
+  },
+  "complete_program": {
+    "FQ_statevector": 82,
+    "Qiskit_statevector": 86,
+    "Qiskit_Operator": 3,
+    "Sampler_pubs": 4,
+    "shots": 2176
+  },
+  "body_fragments": 8,
+  "body": {
+    "FQ_statevector": 2,
+    "Qiskit_statevector": 4,
+    "Operator": 1,
+    "Sampler_pubs": 4,
+    "shots": 2176
+  },
+  "new_transfer": "1FQ/1Qstatevector; all16coordinates/probabilities and grouped fixture checked",
+  "readout_archive": "readout-counts.json;2additional seeded replay sampler submissions,2048shots, not independent trials",
+  "exact_stdout": "8actualbody and full program matched",
+  "strict_build": "passed",
+  "links": "69pages; local links/fragments resolve; IDs unique",
+  "actual_formula_display": "IAB screenshots for indices, conjugation/expectations and conditional marginal summation",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "unplanned_execution_failures": [],
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

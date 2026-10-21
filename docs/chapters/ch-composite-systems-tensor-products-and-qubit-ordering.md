@@ -1,6 +1,6 @@
 # 4. Composite Systems, Tensor Products, and Qubit Ordering
 
-**Working drafts: sections 4.1–4.7 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 4.1–4.8 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-composite-systems-tensor-products-and-qubit-ordering-1"></span>
 
@@ -2389,4 +2389,360 @@ The zero fidelity for the minus-state attempt is useful: the fixed gate does not
 
 Depth **F**: the two-input inner-product proof includes output phase freedom, the identical-ray and orthogonal boundaries, and a contradiction from an explicit nonorthogonal pair. The assigned background locator is Nielsen and Chuang, 10th Anniversary Edition, §1.3.5. No fresh inspection of the user-local PDF is claimed. A historical primary reference is W. K. Wootters and W. H. Zurek, [“A single quantum cannot be cloned,” Nature 299, 802–803 (1982)](https://doi.org/10.1038/299802a0); its bibliographic record was checked, without claiming a new full-paper review. The derivation and teaching examples above are original.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.7.json) keeps author execution separate from pending independent mathematical, implementation and reader review. This remains a working draft. Continue, when drafted, with [4.8 Cross-framework convention translation](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-7).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.7.json) keeps author execution separate from pending independent mathematical, implementation and reader review. This remains a working draft. Continue with the working draft [4.8 Cross-framework convention translation](#sec-composite-systems-tensor-products-and-qubit-ordering-7).
+
+<span id="sec-composite-systems-tensor-products-and-qubit-ordering-7"></span>
+
+## 4.8 Cross-framework convention translation
+
+Two simulators can return different arrays for the same labeled physical state. Agreement requires a declared correspondence between qubits, basis indices, local matrix arguments and measured classical bits. Reversing every array or string is not a general translation strategy.
+
+The prerequisites are [4.2](#sec-composite-systems-tensor-products-and-qubit-ordering-2), [4.5](#sec-composite-systems-tensor-products-and-qubit-ordering-5) and [4.6](#sec-composite-systems-tensor-products-and-qubit-ordering-6). We derive a general basis-permutation contract and then execute it between **FlagQuantum 0.3.1** and **Qiskit 2.5.2**, matching qubit q in one circuit with qubit q in the other. Both use ideal CPU simulation here. No physical SWAP or hardware mapping is implied by a coordinate conversion.
+
+Install the additional pinned dependency in a fresh example environment:
+
+```bash
+python -m pip install -r requirements-interop.txt
+```
+
+That file includes the existing pinned example requirements and `qiskit==2.5.2`. No cloud account, credentials, Aer package or quantum device is required. The eight cumulative formula–derivation–code–result fragments run from the repository root. The complete companion is [convention_translation.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/convention_translation.py). Numerical coordinate comparisons use CPU complex128, absolute tolerance $10^{-12}$ and relative tolerance zero. Sampling checks have a separately declared frequency tolerance.
+
+<span id="formula-code-4-8-index-contract"></span>
+
+### 1. Fix labels before comparing basis indices
+
+**Formula.** Let b=(b0,…,b(n−1)) assign bit bq to the same physical qubit q in both frameworks. The tested conventions are
+
+$$
+J_F(b)=\sum_{q=0}^{n-1}b_q2^{n-1-q},\qquad
+J_Q(b)=\sum_{q=0}^{n-1}b_q2^q.
+$$
+
+**Derivation.** In the FlagQuantum convention established by the preceding executions, q0 is the most significant bit. Qiskit's documented integer convention makes q0 least significant. Its displayed computational ket string runs from q(n−1) to q0. Therefore one physical tuple has two coordinate indices. For n=3, tuple `100` means q0=1, q1=q2=0, so its indices are 4 and 1. Qiskit's string label for that tuple is `001`. A diagram's vertical order does not change this equation. The [official bit-ordering guide](https://quantum.cloud.ibm.com/docs/en/guides/bit-ordering) separates integer, string and diagram conventions; the versions above are actually tested here.
+
+```python
+import torch
+import flagquantum as fq
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector, Operator
+from examples.foundations.tensor_spaces import OPTIONS
+from examples.foundations.convention_translation import (
+    DTYPE, ATOL, basis_map, reversal, q_local, q_circuit, pair,
+    complex_gate, factors_complex, dense_embedding,
+    sample, sample_partial, canonical_counts, decode_key, slot_map, marginal)
+fq_basis = fq.Circuit(3,dtype=DTYPE); fq_basis.x(0)
+fq_result = fq.run(fq_basis,outputs=[fq.probabilities()],options=OPTIONS)
+assert fq_result.statevector().shape == (1,8)
+f = fq_result.statevector()[0]
+q_basis = QuantumCircuit(3); q_basis.x(0)
+z = torch.from_numpy(Statevector.from_instruction(q_basis).data.copy())
+assert int(f.abs().argmax()) == 4 and int(z.abs().argmax()) == 1
+print('same physical tuple(q0,q1,q2)=100: FQ index4; Qiskit index1, displayed001')
+```
+
+```text
+same physical tuple(q0,q1,q2)=100: FQ index4; Qiskit index1, displayed001
+```
+
+<span id="formula-code-4-8-permutation"></span>
+
+### 2. Construct the coordinate-conversion matrix
+
+**Formula.** Declare source and target basis orders, each most significant first. For every physical tuple b, define
+
+$$
+B_{J_Q(b),J_F(b)}=1,
+$$
+
+with all other entries zero. More generally, if $g=J_T\circ J_S^{-1}$ maps a source index to its target index, set $B_{k,j}=\delta_{k,g(j)}$. Then
+
+$$
+z=Bx,\qquad x=B^\dagger z,\qquad B^\dagger B=BB^\dagger=I.
+$$
+
+**Derivation.** Both index maps are bijections by 4.2, so g is a bijection. Every column and every row of B contains exactly one unit entry; its columns are orthonormal. If source basis vector $e_j$ and target basis vector $f_{g(j)}$ denote the same physical basis state, expanding the same vector in both bases gives $z_{g(j)}=x_j$. That is z=Bx. Here B is defined as a **coordinate converter**; it is not the active gate P from 4.5. The passive rule there is consistent: new basis columns are related by $P=B^\dagger$.
+
+For the particular FQ/Qiskit order pair, B reverses binary digit positions and happens to be its own inverse. It does not reverse the amplitude array: a full array reversal maps index 0 to 7, while a bit-position reversal leaves index 0 fixed. The helper also accepts other declared label orders; do not infer self-inversion for a general converter.
+
+```python
+source = ('q0','q1','q2'); target = ('q2','q1','q0')
+B = basis_map(source,target)
+assert torch.equal(B.mH @ B,torch.eye(8,dtype=DTYPE))
+assert torch.allclose(z,B @ f,rtol=0,atol=ATOL)
+assert torch.allclose(f,B.mH @ z,rtol=0,atol=ATOL)
+cycle = basis_map(source,('q1','q2','q0'))
+assert not torch.equal(cycle,cycle.mH)
+print('bit-position reversal fixes index0:', int(B[:,0].abs().argmax()))
+print('a general declared basis converter need not equal its inverse')
+```
+
+```text
+bit-position reversal fixes index0: 0
+a general declared basis converter need not equal its inverse
+```
+
+<span id="formula-code-4-8-local-gate"></span>
+
+### 3. Translate a local matrix independently of the global vector order
+
+**Formula.** In FQ, support $S=(s_0,\ldots,s_{k-1})$ uses s0 as the most significant local bit. For Qiskit's generic `unitary(matrix,qargs)` path tested here, `qargs[0]` supplies the least significant local bit. Let $R_k$ reverse those k binary positions. Keeping the same qarg list requires
+
+$$
+U_Q=R_kU_FR_k^\dagger.
+$$
+
+**Derivation.** Let a be the local physical bit tuple in S order. The FQ local index is $J_F(a)$ and the Qiskit local index is $J_Q(a)$. The local matrix entry mapping is therefore $(U_Q)_{J_Q(a),J_Q(d)}=(U_F)_{J_F(a),J_F(d)}$, exactly the conjugation above. Alternatively, keep the numerical matrix $U_F$ but supply `list(reversed(S))` to this generic Qiskit operation. That reversal makes the first *physical* bit in S the most significant matrix bit again. These two alternatives are checked against each other. This is not an instruction to reverse arguments of every named gate API; semantic control/target arguments must retain their declared meaning.
+
+Take the asymmetric complex U from 4.4 on nonadjacent support `(2,0)` and the complex product preparation from that section. The same raw U on the same numeric Qiskit qarg list is a deliberate wrong translation. Complex, order-sensitive amplitudes expose the mistake where identity or symmetric gates might not.
+
+```python
+S = (2,0); U = complex_gate()
+f, z, q_complex = pair(factors_complex(),U,S)
+q_alternative = q_circuit(factors_complex(),U,S,reverse_arguments=True)
+z_alternative = torch.from_numpy(Statevector.from_instruction(q_alternative).data.copy())
+assert torch.allclose(z_alternative,z,rtol=0,atol=ATOL)
+q_wrong = q_circuit(factors_complex())
+q_wrong.unitary(U.numpy(),list(S))
+z_wrong = torch.from_numpy(Statevector.from_instruction(q_wrong).data.copy())
+assert not torch.allclose(z_wrong,z,rtol=0,atol=ATOL)
+print('converted local matrix == reversed generic qargs: full complex vector checked')
+print('same raw local matrix with same qargs: mismatch detected')
+```
+
+```text
+converted local matrix == reversed generic qargs: full complex vector checked
+same raw local matrix with same qargs: mismatch detected
+```
+
+The helper's actual FQ call is `circuit.unitary(*S,unitary=U)`. The paired Qiskit call is `qc.unitary(q_local(U,len(S)).numpy(),list(S))`. Independent scalar amplitude sums check the FQ result before the Qiskit comparison. This example concerns these released interfaces; another library's local matrix contract must be inspected rather than assumed.
+
+<span id="formula-code-4-8-observables"></span>
+
+### 4. Convert operators and outcome projectors with the state
+
+**Formula.** If y=Ax in source coordinates and z=Bx, the target operator is
+
+$$
+A_Q=BA_FB^\dagger.
+$$
+
+For an outcome projector $M_F$, let $M_Q=BM_FB^\dagger$. Then
+
+$$
+z^\dagger M_Qz=x^\dagger M_Fx.
+$$
+
+For the complete computational distribution, $p_Q=Bp_F$ as well, because B is a zero-one permutation matrix.
+
+**Derivation.** Convert the output: $By=BA_Fx=BA_FB^\dagger z$. This establishes the operator rule. Substitute z=Bx into the quadratic form and cancel $B^\dagger B$ on both sides of $M_F$ to prove event-probability invariance. No numerical phase fitting is involved. For a computational projector selecting one physical tuple, B moves its nonzero diagonal entry to the coordinate of that same tuple in the target basis. Summing such projectors proves the same statement for a set of outcomes.
+
+Check a Qiskit full operator, not only one output state, and then check the event “physical q0 is one.” Both matrices must refer to the same labeled event.
+
+```python
+q_operator = QuantumCircuit(3)
+q_operator.unitary(q_local(U,2).numpy(),list(S))
+OQ = torch.from_numpy(Operator(q_operator).data.copy())
+OF = dense_embedding(U,3,S)
+assert torch.allclose(OQ,B @ OF @ B.mH,rtol=0,atol=ATOL)
+MF = torch.diag(torch.tensor([0,0,0,0,1,1,1,1],dtype=DTYPE))
+MQ = B @ MF @ B.mH
+pF = f.abs().square(); pQ = z.abs().square()
+assert torch.allclose(pQ,B.real @ pF,rtol=0,atol=ATOL)
+eventF = torch.vdot(f,MF @ f).real.item()
+eventQ = torch.vdot(z,MQ @ z).real.item()
+assert abs(eventF-eventQ) < ATOL
+print('operator conjugation checked in all64entries')
+print(f'physical q0=1 probability: FQ={eventF:.9f}; Qiskit={eventQ:.9f}')
+```
+
+```text
+operator conjugation checked in all64entries
+physical q0=1 probability: FQ=0.500000000; Qiskit=0.500000000
+```
+
+Matching only computational probabilities would not verify all phases or the operator on untested vectors. Here the explicit matrix identity and full complex comparisons test those translations. An unexplained global phase is recorded as a discrepancy under this exact-coordinate contract; it is not silently aligned away. Raw ideal circuits here have zero declared circuit-level global phase.
+
+<span id="formula-code-4-8-classical-slots"></span>
+
+### 5. Distinguish quantum labels from measured classical slots
+
+**Formula.** For a full final readout, let $\mu(q)$ be the classical slot receiving physical bit bq. Define classical bits by
+
+$$
+c_{\mu(q)}=b_q.
+$$
+
+For the single classical register used here, the returned binary key is displayed as $c_{n-1}\cdots c_0$. Thus
+
+$$
+b_q=c_{\mu(q)}
+$$
+
+is the decoding rule; it depends on the measurement map, not only on qubit order.
+
+**Derivation.** Final computational measurement associates an outcome bit with each selected qubit. The circuit's explicit `measure(q,c)` instruction chooses where that bit is stored. The display then chooses how those classical slots are written. Follow these two maps separately. With identity $\mu=(0,1,2)$, physical tuple `100` displays as `001`. With $\mu=(2,0,1)$, it displays as `100`, although the quantum state is unchanged.
+
+These are actual seeded Qiskit `StatevectorSampler` runs with 64 shots each. The results are deterministic because the input is a computational basis state, not because the seed is being treated as an exact-probability guarantee. The sampler's `data.c` identifies the explicitly named single classical register returned by this circuit construction.
+
+```python
+q_readout = QuantumCircuit(3); q_readout.x(0)
+raw_identity, canonical_identity = sample(q_readout,(0,1,2),64)
+raw_changed, canonical_changed = sample(q_readout,(2,0,1),64)
+assert raw_identity == {'001':64} and raw_changed == {'100':64}
+print('identity measurement map raw:', raw_identity)
+print('changed measurement map raw:', raw_changed)
+```
+
+```text
+identity measurement map raw: {'001': 64}
+changed measurement map raw: {'100': 64}
+```
+
+Qiskit result containers can differ between primitive implementations. This example uses the installed local `StatevectorSampler` and validates its returned strings. Do not assume every cloud service, executor, memory dump or framework shares that display contract. The [sampler API](https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.primitives.StatevectorSampler) documents per-classical-register results; the actual pinned runtime is the execution authority here.
+
+<span id="formula-code-4-8-counts"></span>
+
+### 6. Decode counts using declared metadata and conserve totals
+
+**Formula.** Let d(k) decode a returned key k into the chosen canonical physical-bit tuple. The translated counts are
+
+$$
+N_F(b)=\sum_{k:\,d(k)=b}N_Q(k),\qquad
+\sum_bN_F(b)=\sum_kN_Q(k).
+$$
+
+**Derivation.** Assign each returned key to exactly one decoded event and add its nonnegative integer count. The decoded event classes partition the input keys, so regrouping preserves the total. Full bijective readout simply renames keys. Coarse-graining onto fewer measured labels can merge events. Neither operation changes how many shots were recorded.
+
+The helper requires unique measured labels implicitly declared by the caller's ordered list, a bijective slot map for that list, exact binary widths and integer counts. For this full readout the list is `(q0,q1,q2)`. A grouped fixture illustrates an additional metadata requirement: key `10 0` means descending slot blocks `(c2,c1)` and `(c0)` only when those group widths and that slot order have been explicitly declared. It is not an actual sampled key in the preceding runs, and the helper does not discover a multi-register schema from spaces.
+
+```python
+assert canonical_identity == canonical_changed == {'100':64}
+assert sum(canonical_changed.values()) == sum(raw_changed.values()) == 64
+grouped = canonical_counts({'10 0':7},(0,1,2),groups=(2,1))
+assert grouped == {'001':7}
+print('both full-readout results in(q0,q1,q2) order:', canonical_changed)
+print('constructed grouped fixture with explicit slot blocks:', grouped)
+```
+
+```text
+both full-readout results in(q0,q1,q2) order: {'100': 64}
+constructed grouped fixture with explicit slot blocks: {'001': 7}
+```
+
+For other result containers, obtain classical register order, slot numbering, encoding and measurement assignments from that result's metadata first. Hexadecimal keys, missing padding and undeclared group layouts are rejected by this minimal adapter. Reset or overwrite histories need an additional explicit circuit/result contract; the generated readout circuits here contain neither, and counts alone cannot diagnose such histories.
+
+<span id="formula-code-4-8-partial"></span>
+
+### 7. Treat partial measurement as a marginal, not an invertible reshape
+
+**Formula.** For an ordered measured subset $S=(s_0,\ldots,s_{k-1})$, define canonical output bits $a=(b_{s_0},\ldots,b_{s_{k-1}})$. Its exact distribution is
+
+$$
+p_S(a)=\sum_{b:\,b_S=a}p_F(b).
+$$
+
+**Derivation.** All full-register outcomes with the selected bits a correspond to the same measured event. They differ only on unmeasured positions, so their mutually exclusive probabilities add. Grouping by the binary index of a gives a length-$2^k$ vector, with s0 most significant. The grouping loses information when k<n: one partial count string cannot recover the unmeasured bits, the full joint distribution or any relative phases.
+
+Check both full and partial readout on the complex circuit from unit 3. For the partial circuit, measure physical `(q2,q0)` into classical `(c0,c1)`. Its canonical list is explicitly `(q2,q0)`; the raw displayed string is `(c1,c0)`. The returned helper dictionary refers only to these two measured labels, not to a reconstructed three-qubit outcome.
+
+```python
+raw_complex, counts_complex = sample(q_complex,(2,0,1),1024)
+empirical = torch.tensor([counts_complex.get(format(j,'03b'),0)/1024
+                          for j in range(8)],dtype=torch.float64)
+assert (empirical-pF).abs().max() < .1
+raw_partial, counts_partial = sample_partial(q_complex,(2,0),1024)
+exact_partial = marginal(pF,3,(2,0))
+partial_empirical = torch.tensor([counts_partial.get(format(j,'02b'),0)/1024
+                                 for j in range(4)],dtype=torch.float64)
+assert (partial_empirical-exact_partial).abs().max() < .1
+assert sum(counts_complex.values()) == sum(counts_partial.values()) == 1024
+print('exact ordered(q2,q0) marginal:', [round(v,9) for v in exact_partial.tolist()])
+print('full and partial sampled frequencies: max absolute error below0.1;1024shots each')
+```
+
+```text
+exact ordered(q2,q0) marginal: [0.466506351, 0.466506351, 0.033493649, 0.033493649]
+full and partial sampled frequencies: max absolute error below0.1;1024shots each
+```
+
+The 0.1 bound is a coarse finite-sampling check on these seeded fixtures, separate from the $10^{-12}$ coordinate tolerance. Repeated execution with the same seed is not fresh independent experimental evidence. Exact probabilities are checked through statevectors; counts are actual finite-shot local-simulator outputs. No hardware noise, measurement calibration or quantum-state reconstruction is claimed.
+
+<span id="formula-code-4-8-rejections"></span>
+
+### 8. Reject missing contracts instead of repairing conventions silently
+
+```python
+invalid = [lambda: basis_map(('a','a'),('a','b')),
+           lambda: basis_map(('a','b'),('a','c')),
+           lambda: slot_map((0,0,2)),
+           lambda: decode_key('1',(0,1,2)),
+           lambda: decode_key('10 0',(0,1,2)),
+           lambda: canonical_counts({'001':-1},(0,1,2))]
+rejected = 0
+for action in invalid:
+    try:
+        action()
+    except ValueError:
+        rejected += 1
+assert rejected == 6
+print('duplicate/missing labels, duplicate slots, short/undeclared grouped key and negative count:', rejected, 'rejected')
+```
+
+```text
+duplicate/missing labels, duplicate slots, short/undeclared grouped key and negative count: 6 rejected
+```
+
+A complete translation record includes framework versions, logical-qubit correspondence, full and local basis orders, matrix phase conventions, measured-label order, quantum-to-classical assignments, display encoding, register groups and shot count. Transpiled hardware circuits require an additional logical-to-physical layout map; none is used in these ideal raw-circuit examples. This section implements a validated narrow adapter, not an arbitrary circuit importer or universal framework compatibility layer.
+
+Run the complete verification and actual-body checker:
+
+```bash
+python examples/foundations/convention_translation.py
+python scripts/check_convention_translation_prose.py
+```
+
+The complete program executes 82 FQ statevector circuits paired with Qiskit circuits: 30 basis preparations through four qubits, 48 asymmetric-gate basis/support cases on all three-qubit ordered pairs, and four complex-state pairs including full support. Three alternative reversed-qarg executions and one deliberately wrong raw-matrix execution give 86 Qiskit statevector runs in total. Three Qiskit `Operator` constructions check full matrices. Four sampler submissions use 2,176 shots: two deterministic 64-shot readouts plus two 1,024-shot complex full/partial readouts. Six classical basis-order roundtrips, a grouped fixture and ten malformed-schema cases are also checked. FQ probabilities and Qiskit samples are separate evidence types.
+
+Expected output of the complete program:
+
+```text
+FQ0.3.1:q0MSB; Qiskit2.5.2:q0LSB; labels and physical qubits matched explicitly.
+30 basis-preparation pairs through4qubits: every complex coordinate and probability checked.
+48 ordered-support basis pairs: asymmetric complex local gate on all3qubit ordered pairs.
+4complex pairs,3reversed-argument alternatives,3operator matrices; raw-matrix negative witness rejected.
+Actual64shot basis readout: map(0,1,2) raw001; map(2,0,1) raw100; both canonical100.
+1024shot complex readout: counts conserved, all frequencies within0.1of exact probabilities; actual1024shot partial readout matches ordered marginal.
+6basis-order roundtrips, explicit grouped fixture and10invalid schemas checked.
+82FQ circuits;86Qiskit statevector circuits;3Operator constructions;4Sampler pubs,2176shots; ideal CPU only.
+```
+
+The eight body fragments separately execute two FQ circuits, four Qiskit statevector circuits, one Qiskit Operator construction and four sampler submissions using 2,176 shots. The body checker reruns the complete companion as a separate invocation. A new four-qubit nonadjacent transfer is recorded below. These finite tests validate the stated translations and examples; the general preservation identities follow from the proofs, and other frameworks require their own declared and verified maps.
+
+### Understanding checks and transfer exercises
+
+**4.8-A — New nonadjacent support.** In a four-qubit register, apply the asymmetric complex U to ordered support `(3,1)` on physical input `1011`. State the input's FQ and Qiskit global indices, the selected local input indices in the two conventions, and the local matrix Qiskit needs if the qarg list is unchanged.
+
+**4.8-B — Counts are not ket labels.** Decode raw `10 0` with descending slot groups `(2,1)` and map $\mu=(2,0,1)$. Which physical tuple does it denote? Why does the answer differ from the identity map in unit 6?
+
+**4.8-C — Lost bits.** If only `(q2,q0)` is measured and the canonical outcome is `10`, list all consistent three-qubit physical tuples. Can those counts determine the relative phase between them?
+
+**4.8-D — Diagnose a supposed fix.** A collaborator reverses the amplitude array and every gate argument list, then accepts a result because probabilities agree. Identify three distinct contracts that this procedure fails to establish.
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** Physical tuple `1011` has FQ index 11 and Qiskit index 13 (`1101` in Qiskit's displayed order). Selected local bits `(b3,b1)=(1,0)` have FQ local index 2 and Qiskit local index 1. Use $R_2UR_2^\dagger$ with qargs `[3,1]`, or U with reversed generic qargs `[1,3]`. The separate author transfer actually runs both frameworks for this nonadjacent four-qubit case and compares every complex amplitude and probability after conversion, using scalar gate action as an independent reference.
+
+**B.** Flattened descending slots are `100`, so c2=1,c1=0,c0=0. The map assigns b0=c2=1,b1=c0=0,b2=c1=0: physical tuple `100`. Under the identity map, the same slot contents denote physical `001`. The string alone does not identify the quantum event.
+
+**C.** b2=1 and b0=0, while b1 is unmeasured. The consistent physical tuples `(q0,q1,q2)` are `001` and `011`. Partial counts add their probabilities and reveal neither their separate probabilities nor their relative phase.
+
+**D.** Full array reversal complements all binary bits rather than reversing their significance. Generic local-matrix order and named gate semantics require separate rules; changing every argument list can change control/target meaning. Finally, probability agreement does not establish complex amplitudes, operator phases or correctly labeled measurement events. Require the physical-label map, correct basis permutations and matrix conjugations, and an explicit classical-readout schema, then compare phase-sensitive examples.
+
+</details>
+
+### Sources, depth and next step
+
+Depth **F**: the basis bijection, coordinate converter, operator/projector conjugation, probability preservation, local matrix conversion, count regrouping and ordered marginal are derived explicitly. Assigned background remains Nielsen and Chuang, 10th Anniversary Edition, §2.1.7; the editorial acceptance protocol remains separate from execution evidence. No fresh inspection of the user-local PDF is claimed. The IBM documentation links above support the framework contracts; actual pinned interfaces, runtime versions and source inspection limits are recorded in the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.8.json).
+
+All eight Chapter 4 sections now have author-verified working drafts, not independent acceptance. Mathematical, implementation and reader review remain pending. Continue, when drafted, with [5.1 Circuit composition, inversion, and call order](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-1).

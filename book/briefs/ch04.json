@@ -163,6 +163,31 @@
       ],
       "status": "draft",
       "next_transition": "4.8 Cross-framework convention translation."
+    },
+    {
+      "ref": "4.8",
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-7",
+      "title": "Cross-framework convention translation",
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-5",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-6"
+      ],
+      "question": "How do two declared basis conventions describe the same labeled state, gate and measured event?",
+      "entry": "4.2 indices,4.5 passive permutations and4.6 ordered tensor axes.",
+      "exit": "Prove consistent state/operator/projector conversion; distinguish global basis order, local gate order, classical slots/count display and partial-measurement marginals.",
+      "worked_case": "FQq0MSB versus Qiskitq0LSB;100 indices4/1; asymmetric complex gate on(2,0), changed measurement map and sampled counts.",
+      "boundary": "Pinned ideal CPU frameworks; no automatic importer, hardware layout/routing, arbitrary count format, hidden phase alignment or missing-bit inference.",
+      "code_plan": "Released FQ0.3.1 and actual Qiskit2.5.2 Statevector/Operator/StatevectorSampler; explicit local/global permutations and strict counts metadata.",
+      "independent_check": "All basis inputs n1..4; all3qubit ordered pairs with asymmetric gate; complex states and full support, scalar action reference, deterministic/sampled classical remapping, invalid schemas.",
+      "transfer_task": "New4qubit nonadjacent gate, multi-register count fixture, partial-measurement information loss, phase and layout traps; answers.",
+      "source_locators": [
+        "NC:2.1.7",
+        "ED:protocol"
+      ],
+      "status": "draft",
+      "next_transition": "5.1 Circuit composition, inversion, and call order."
     }
   ]
 }

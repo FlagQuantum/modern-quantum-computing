@@ -1,0 +1,22 @@
+8cumulative fragments:2FQ,4Qstatevector,1Operator,4Samplerpubs2176shots; exact stdout captured.
+same physical tuple(q0,q1,q2)=100: FQ index4; Qiskit index1, displayed001
+
+bit-position reversal fixes index0: 0
+a general declared basis converter need not equal its inverse
+
+converted local matrix == reversed generic qargs: full complex vector checked
+same raw local matrix with same qargs: mismatch detected
+
+operator conjugation checked in all64entries
+physical q0=1 probability: FQ=0.500000000; Qiskit=0.500000000
+
+identity measurement map raw: {'001': 64}
+changed measurement map raw: {'100': 64}
+
+both full-readout results in(q0,q1,q2) order: {'100': 64}
+constructed grouped fixture with explicit slot blocks: {'001': 7}
+
+exact ordered(q2,q0) marginal: [0.466506351, 0.466506351, 0.033493649, 0.033493649]
+full and partial sampled frequencies: max absolute error below0.1;1024shots each
+
+duplicate/missing labels, duplicate slots, short/undeclared grouped key and negative count: 6 rejected

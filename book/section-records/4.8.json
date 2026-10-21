@@ -1,0 +1,146 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-7",
+  "ref": "4.8",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+  "depth": "F",
+  "result": "Convention translation preserves physical predictions",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+    "sec-composite-systems-tensor-products-and-qubit-ordering-5",
+    "sec-composite-systems-tensor-products-and-qubit-ordering-6"
+  ],
+  "assumptions": [
+    "Same physical qubit labels explicitly identified across two ideal raw circuits",
+    "GlobalFQq0MSB versus Qiskitq0LSB, full logical basis orders declared",
+    "Generic local unitary matrix basis and qargs order declared separately",
+    "Coordinate B maps source columnj to target rowg(j); no phase alignment",
+    "Full readout uses bijective slot map; partial readout names selected labels explicitly; generated circuits have final single-register measurements only"
+  ],
+  "proof_obligations": [
+    "Index-map composition gives bijective coordinate converter and unitary inverse",
+    "Operator conjugation and projector event probability invariance",
+    "Local generic matrix order converted by k-qubit reversal, with verified reversed-qarg alternative",
+    "Counts regrouping conserves totals under declared classical-slot/display schemas",
+    "Partial measurement gives ordered marginal and cannot recover missing bits or phase"
+  ],
+  "formula_code_units": [
+    "formula-code-4-8-index-contract",
+    "formula-code-4-8-permutation",
+    "formula-code-4-8-local-gate",
+    "formula-code-4-8-observables",
+    "formula-code-4-8-classical-slots",
+    "formula-code-4-8-counts",
+    "formula-code-4-8-partial",
+    "formula-code-4-8-rejections"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.1.7",
+      "use": "Assigned tensor-product background; original permutation proof supplied",
+      "current_session_inspection": "No fresh user-local textbook PDF inspection claimed"
+    },
+    {
+      "locator": "ED:protocol",
+      "use": "Author execution separate from independent review and acceptance"
+    },
+    {
+      "url": "https://quantum.cloud.ibm.com/docs/en/guides/bit-ordering",
+      "use": "Read official integer/string/gate/diagram distinctions; guide developed with2.5.2; actual conventions independently executed"
+    },
+    {
+      "url": "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.primitives.StatevectorSampler",
+      "use": "Official local sampler and per-classical-register result contract; versioned2.5URLs inaccessible; no claim those unavailable pages read"
+    },
+    {
+      "source": "Installed FQ0.3.1/Qiskit2.5.2 runtime APIs",
+      "use": "Source signatures/hashes and package versions in api-inspection.json; actual local generic gate and sampler results tested"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/convention_translation.py",
+    "command": "python examples/foundations/convention_translation.py",
+    "prose_check_command": "python scripts/check_convention_translation_prose.py",
+    "requirements": "requirements-interop.txt",
+    "environment": {
+      "python": "3.12.14",
+      "system": "Darwin",
+      "architecture": "arm64",
+      "device": "cpu",
+      "precision": "complex128",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "qiskit": "2.5.2",
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "rustworkx": "0.18.1",
+      "stevedore": "5.9.1",
+      "dill": "0.4.1"
+    },
+    "author_execution": "passed",
+    "complete_program_per_invocation": {
+      "FQ_statevector": 82,
+      "Qiskit_statevector": 86,
+      "Qiskit_Operator": 3,
+      "Qiskit_Sampler_pubs": 4,
+      "sampled_shots": 2176
+    },
+    "body_fragments": 8,
+    "body_per_invocation": {
+      "FQ_statevector": 2,
+      "Qiskit_statevector": 4,
+      "Qiskit_Operator": 1,
+      "Qiskit_Sampler_pubs": 4,
+      "sampled_shots": 2176
+    },
+    "execution_ledger": {
+      "initial_complete": "82FQ/86Qstatevectors/3Operator/3Samplerpubs1152shots; passed before actual partial-readout coverage added; raw logs retained",
+      "final_complete": "82FQ/86Qstatevectors/3Operator/4Samplerpubs2176shots",
+      "body_assembly": "2FQ/4Qstatevectors/1Operator/4Samplerpubs2176shots",
+      "body_checker_plus_complete": "84FQ/90Qstatevectors/4Operator/8Samplerpubs4352shots",
+      "new_transfer": "1FQ/1Qstatevector; no shots",
+      "note": "Prior4.2/4.5/4.6/4.7 regression executions and futureCI separate. No fresh blind-agent evaluation requested or claimed.",
+      "seeded_readout_archive_replay": "2additional Sampler pubs,2048shots; actual full/partial dictionaries in readout-counts.json; same seed/fixtures, not independent evidence"
+    },
+    "checks": [
+      "30basispreparation pairs through4qubits",
+      "48asymmetric complex gate basis/support pairs across all3qubit ordered pairs",
+      "4complex pairs including3qubit full support;3reversed-qarg alternatives and3full operator identities",
+      "Negative raw-matrix translation witness:actualQstatevector mismatch detected",
+      "Changed full classical-slot map:actual64shot001versus100 bothcanonical100",
+      "Actual1024shot complex full and1024shot partial readout compared with exact ordered probabilities",
+      "6basis-order roundtrips and constructed grouped-count fixture with explicit widths",
+      "10invalid label/slot/string/count contracts rejected;8exact actual body outputs and complete expected output",
+      "Separate4qubit1011 F11/Q13,nonadjacent support(3,1) all amplitudes/probabilities matched"
+    ],
+    "coordinate_tolerance": "atol1e-12,rtol0; no phase alignment, normalization repair, backend fallback or approximation",
+    "sampling_tolerance": "max absolute frequency error<0.1 on seeded1024shot fixtures; not exact probabilities or fresh independent experimental trials",
+    "seed": 20261021,
+    "script_sha256": "fbe612f751ba6cfe27baaecda207089530052615d7a1a56bc005b557c6ab7aa7",
+    "unplanned_execution_failures": "none",
+    "limitations": "Pinned narrow ideal raw-circuit adapter, no automatic circuit importer, cloud/hardware layout/noise equivalence, arbitrary count format or reconstruction of unmeasured bits. Counts alone cannot establish reset/overwrite history."
+  },
+  "assessment": {
+    "tasks": [
+      "4.8-A actual new4qubit nonadjacent transfer",
+      "4.8-B grouped key under changed measurement map",
+      "4.8-C lost bits/phase from partial readout",
+      "4.8-D array reversal, gate argument and probability-only traps"
+    ],
+    "answers": "All supplied; no reader trial"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "8actual body outputs and complete companion expected stdout passed;4qubit transfer,4.2/4.5/4.6/4.7 scoped body/complete regressions passed; strict MkDocs and69renderedpage local link/anchor uniqueness checks passed. Frozen50chapter435section7volume baseline unchanged. Actual browser formulas checked. Independent reviews and reader trials remain pending."
+  },
+  "production": {
+    "next_draft": "5.1 Circuit composition, inversion, and call order",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual IAB1280x720 screenshots: FQ/Qiskit binary-index sums, operator/projector conjugation with adjoints and expectation invariance, ordered partial-measurement marginal with conditional summation. No garbling or clipping in inspected regions."
+  }
+}

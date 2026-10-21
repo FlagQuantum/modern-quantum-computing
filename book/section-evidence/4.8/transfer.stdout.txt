@@ -1,0 +1,2 @@
+New4qubit transfer:physical1011,indicesF11/Q13,support(3,1); all16amplitudes/probabilities match after conversion.
+Grouped-count transfer with changed measurement map:10 0 -> physical100.

@@ -19,7 +19,7 @@ Levels describe increasing task composition and evaluation scope. They do not re
 
 ## Complete chapter-to-skill mapping
 
-All **50 chapters and 435 sections** have one primary task-family assignment in the JSON catalog. Current source states: 28 drafts, 407 not started, 0 accepted. A draft with checked examples is useful prototype evidence, not a released skill.
+All **50 chapters and 435 sections** have one primary task-family assignment in the JSON catalog. Current source states: 29 drafts, 406 not started, 0 accepted. A draft with checked examples is useful prototype evidence, not a released skill.
 
 The primary owner is an editorial responsibility, not exclusive use or a claim that every section already implements the task. Support references and selected domain workflows create many-to-many reuse. Source links below lead to stable planning anchors; a planned section must not be presented as completed prose.
 
@@ -28,7 +28,7 @@ The primary owner is an editorial responsibility, not exclusive use or a claim t
 | [1. What Quantum Computing Computes](section-plans/01-foundations.md#ch-what-quantum-computing-computes) (1.1–1.6) | [scope-paper-claims](#scope-paper-claims) | 6 / 6 |
 | [2. Complex Vectors, Operators, and Numerical Reasoning](section-plans/01-foundations.md#ch-complex-vectors-operators-and-numerical-reasoning) (2.1–2.8) | [translate-complex-linear-algebra](#translate-complex-linear-algebra) | 8 / 8 |
 | [3. Single-Qubit States and Rotations](section-plans/01-foundations.md#ch-single-qubit-states-and-rotations) (3.1–3.7) | [compare-quantum-states-and-operators](#compare-quantum-states-and-operators); [convert-bloch-state-coordinates](#convert-bloch-state-coordinates); [reproduce-qubit-interference](#reproduce-qubit-interference); [translate-unitary-evolution](#translate-unitary-evolution) | 7 / 7 |
-| [4. Composite Systems, Tensor Products, and Qubit Ordering](section-plans/01-foundations.md#ch-composite-systems-tensor-products-and-qubit-ordering) (4.1–4.8) | [translate-qubit-ordering](#translate-qubit-ordering) | 7 / 8 |
+| [4. Composite Systems, Tensor Products, and Qubit Ordering](section-plans/01-foundations.md#ch-composite-systems-tensor-products-and-qubit-ordering) (4.1–4.8) | [translate-qubit-ordering](#translate-qubit-ordering) | 8 / 8 |
 | [5. Gates, Reversible Computation, and Circuit Synthesis](section-plans/01-foundations.md#ch-gates-reversible-computation-and-circuit-synthesis) (5.1–5.8) | [build-and-check-circuits](#build-and-check-circuits) | 0 / 8 |
 | [6. Measurement, Expectation Values, and Statistical Estimation](section-plans/01-foundations.md#ch-measurement-expectation-values-and-statistical-estimation) (6.1–6.9) | [measure-and-estimate-observables](#measure-and-estimate-observables) | 0 / 9 |
 | [7. Entanglement and Quantum Information Protocols](section-plans/01-foundations.md#ch-entanglement-and-quantum-information-protocols) (7.1–7.9) | [model-composite-states-and-channels](#model-composite-states-and-channels) | 0 / 9 |

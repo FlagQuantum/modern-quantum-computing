@@ -1,0 +1,1 @@
+Archived full/partial counts,2048shots; frequency errors 0.023707888,0.010056149.

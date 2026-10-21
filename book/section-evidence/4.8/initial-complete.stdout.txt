@@ -1,0 +1,8 @@
+FQ0.3.1:q0MSB; Qiskit2.5.2:q0LSB; labels and physical qubits matched explicitly.
+30 basis-preparation pairs through4qubits: every complex coordinate and probability checked.
+48 ordered-support basis pairs: asymmetric complex local gate on all3qubit ordered pairs.
+4complex pairs,3reversed-argument alternatives,3operator matrices; raw-matrix negative witness rejected.
+Actual64shot basis readout: map(0,1,2) raw001; map(2,0,1) raw100; both canonical100.
+1024shot complex readout: counts conserved, all frequencies within0.1of exact probabilities; partial marginal checked.
+6basis-order roundtrips, explicit grouped fixture and10invalid schemas checked.
+82FQ circuits;86Qiskit statevector circuits;3Operator constructions;3Sampler pubs,1152shots; ideal CPU only.

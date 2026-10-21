@@ -1,0 +1,57 @@
+{
+  "seed": 20261021,
+  "shots_each": 1024,
+  "full_mapping": [
+    2,
+    0,
+    1
+  ],
+  "full_canonical_labels": [
+    "q0",
+    "q1",
+    "q2"
+  ],
+  "full_raw": {
+    "000": 364,
+    "001": 133,
+    "101": 130,
+    "100": 334,
+    "110": 23,
+    "011": 12,
+    "010": 17,
+    "111": 11
+  },
+  "full_canonical": {
+    "000": 364,
+    "010": 133,
+    "110": 130,
+    "100": 334,
+    "101": 23,
+    "011": 12,
+    "001": 17,
+    "111": 11
+  },
+  "partial_measured_labels": [
+    "q2",
+    "q0"
+  ],
+  "partial_slots": [
+    0,
+    1
+  ],
+  "partial_raw": {
+    "00": 477,
+    "10": 484,
+    "01": 24,
+    "11": 39
+  },
+  "partial_canonical": {
+    "00": 477,
+    "01": 484,
+    "10": 24,
+    "11": 39
+  },
+  "full_max_frequency_error": 0.02370788820958203,
+  "partial_max_frequency_error": 0.010056149053890316,
+  "note": "Actual local sampler replay of existing seeded fixtures, not fresh independent scientific evidence."
+}
