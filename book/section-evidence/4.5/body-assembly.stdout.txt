@@ -1,0 +1,22 @@
+Executed 8 cumulative fragments, five actual circuits; captured exact outputs.
+SWAP(0,2): 100 -> 001
+
+forward: 010
+inverse: 001
+
+active probabilities: [0.6, 0.0, 0.0, 0.2, 0.15, 0.0, 0.0, 0.05]
+
+original Z0: 0.5
+active, fixed Z0: 0.6
+passive, transformed Z0: 0.5
+
+ordered support: (2, 0) -> (1, 2)
+two circuit paths: full complex coordinates agree
+
+rename in fixed positions: ('data', 'reference', 'flag')
+passive reordered labels: ('reference', 'flag', 'signal')
+
+first p, then r: (0, 2, 1)
+reversed order: (2, 1, 0)
+
+invalid permutation/bit/rename declarations: 5 rejected

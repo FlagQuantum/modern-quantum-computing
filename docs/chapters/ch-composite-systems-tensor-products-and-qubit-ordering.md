@@ -1,6 +1,6 @@
 # 4. Composite Systems, Tensor Products, and Qubit Ordering
 
-**Working drafts: sections 4.1–4.4 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 4.1–4.5 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-composite-systems-tensor-products-and-qubit-ordering-1"></span>
 
@@ -1366,4 +1366,346 @@ Single-factor reduction, global unitarity, nonunitary reference and10invalid-inp
 
 Depth **F**: unique basis extension, ordered local-index extraction, matrix entries, the full local-input sum and the unitary/spectator arguments are derived explicitly. The assigned background locators remain Nielsen and Chuang, 10th Anniversary Edition, §2.1.7 and §4.3. The derivation here explicitly fixes the local basis and support convention. Its proof and worked translations are original, using the explained prerequisite drafts and the actual released API checked above; source-access provenance is recorded separately in the section record.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.4.json) separates author execution from pending independent mathematical, implementation and reader review. This remains a working draft. Continue, when drafted, with [4.5 Permutations, SWAP, and relabeling](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-5).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.4.json) separates author execution from pending independent mathematical, implementation and reader review. This remains a working draft. Continue with the working draft [4.5 Permutations, SWAP, and relabeling](#sec-composite-systems-tensor-products-and-qubit-ordering-5).
+
+<span id="sec-composite-systems-tensor-products-and-qubit-ordering-5"></span>
+
+## 4.5 Permutations, SWAP, and relabeling
+
+A program prints `001` where another prints `100`. Has a gate moved the state between qubits, has the same state been expressed in a different ordered basis, or have names merely changed? Those explanations require different corrections. We will specify each operation before translating it into code.
+
+The prerequisites are [4.2](#sec-composite-systems-tensor-products-and-qubit-ordering-2), for the index bijection, and [4.4](#sec-composite-systems-tensor-products-and-qubit-ordering-4), for ordered supports. We retain $J_n(b)=\sum_{q=0}^{n-1}b_q2^{n-1-q}$: qubit 0 is the most significant bit. All spaces here contain finitely many distinguishable qubits with the same two-dimensional local basis. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0, CPU complex128, absolute tolerance $10^{-12}$ and relative tolerance zero. No state normalization or phase alignment repairs an incorrect permutation.
+
+The eight formula–derivation–code–result units are cumulative. Run their fragments in order from the repository root. The complete companion is [permutations_swap.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/permutations_swap.py); its independent references and broader tests are described below.
+
+<span id="formula-code-4-5-physical-swap"></span>
+
+### 1. Physical SWAP changes the state at fixed qubit positions
+
+**Formula.** On two selected qubits, define
+
+$$
+\operatorname{SWAP}|a,b\rangle=|b,a\rangle,\qquad
+\operatorname{SWAP}=\begin{pmatrix}
+1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1
+\end{pmatrix}.
+$$
+
+**Derivation.** The four columns are the images of `00,01,10,11`, respectively. Exchanging twice returns every basis vector, so linearity gives $\operatorname{SWAP}^2=I$. Its columns are an orthonormal permutation of the original basis; hence it is unitary and equals its own adjoint. Embedding this matrix at support `(0,2)` in a three-qubit register leaves the middle qubit fixed. With the original basis and labels held fixed, `100` becomes `001`. This is an active state change. Here “physical SWAP” names an executed gate operation; the example executes it in an ideal simulator, not on a device.
+
+**FlagQuantum code.** The helper prepares each factor with `Circuit.unitary`, applies the swaps through the actual released `circuit.swap(a,b)` method, and checks statevector/probability shapes and dtypes. Here its swap sequence is exactly one call, `circuit.swap(0,2)`.
+
+```python
+import torch
+from examples.foundations.permutations_swap import (
+    DTYPE, ATOL, run, perm_matrix, inverse, moved_bits,
+    scalar_permute, swap_sequence, renamed,
+    complex_factors, entangled_reference)
+from examples.foundations.ordered_supports import dense_embedding, controlled_flip
+import flagquantum as fq
+from examples.foundations.tensor_spaces import OPTIONS
+circuit = fq.Circuit(3, dtype=DTYPE)
+circuit.x(0)
+circuit.swap(0,2)
+result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
+assert result.statevector().shape == result.probabilities.shape == (1,8)
+state, probability = result.statevector()[0], result.probabilities[0]
+assert swap_sequence((2,1,0)) == [(0,2)]
+expected = torch.zeros(8, dtype=DTYPE); expected[1] = 1
+assert torch.allclose(state, expected, rtol=0, atol=ATOL)
+print('SWAP(0,2): 100 ->', format(int(probability.argmax()), '03b'))
+```
+
+```text
+SWAP(0,2): 100 -> 001
+```
+
+<span id="formula-code-4-5-cycle-convention"></span>
+
+### 2. Declare the direction of a general permutation
+
+**Formula.** Let $p$ be a bijection of positions $\{0,\ldots,n-1\}$. Our convention is **old position q moves to position p(q)**. Define the moved bit tuple $f_p(b)$ and the linear map $P_p$ by
+
+$$
+[f_p(b)]_{p(q)}=b_q,\qquad
+P_p|b\rangle=|f_p(b)\rangle.
+$$
+
+**Derivation.** Bijection gives exactly one bit for each output position, and distinct input tuples give distinct output tuples. Thus the images of the computational basis form that same orthonormal basis in a different order. Taking inner products of columns proves $P_p^\dagger P_p=I$. Moving each output factor back proves
+
+$$
+P_p^{-1}=P_p^\dagger=P_{p^{-1}}.
+$$
+
+A transposition cannot distinguish a permutation from its inverse. Instead take $p=(1,2,0)$: old q0 moves to q1, old q1 to q2, old q2 to q0. Then $f_p(a,b,c)=(c,a,b)$, while $f_{p^{-1}}(a,b,c)=(b,c,a)$. In particular, `100` goes to `010` in the forward direction and `001` in the inverse direction. Applying SWAP(0,1), then SWAP(0,2), realizes the forward cycle. Matrix multiplication places the later gate on the left. The helper uses a different valid decomposition: SWAP(0,2), then SWAP(1,2), which sends `(a,b,c)` through `(c,b,a)` to `(c,a,b)`. The code checks the actual helper sequence rather than assuming a unique decomposition.
+
+```python
+p = (1,2,0); P = perm_matrix(p)
+basis100 = torch.eye(8, dtype=DTYPE)[:,4]
+cycle, probability = run(p, [(0,1),(1,0),(1,0)])
+assert swap_sequence(p) == [(0,2),(1,2)]
+assert torch.allclose(cycle, P @ basis100, rtol=0, atol=ATOL)
+assert torch.equal(perm_matrix(inverse(p)), P.mH)
+print('forward:', format(int(probability.argmax()), '03b'))
+print('inverse:', format(int((P.mH @ basis100).abs().argmax()), '03b'))
+```
+
+```text
+forward: 010
+inverse: 001
+```
+
+<span id="formula-code-4-5-coefficients"></span>
+
+### 3. Move complex amplitudes without conjugating them
+
+**Formula.** Expand an arbitrary joint state as $|\psi\rangle=\sum_b\psi_b|b\rangle$. Setting $c=f_p(b)$ in its image gives
+
+$$
+(P_p\psi)_c=\psi_{f_{p^{-1}}(c)},\qquad
+\Pr_{P_p\psi}(c)=|\psi_{f_{p^{-1}}(c)}|^2.
+$$
+
+**Derivation.** Each output receives exactly one input amplitude, with coefficient 1. There is no amplitude sum, complex conjugation or extra phase in this permutation. The formula holds for entangled states as well as products. A coordinate permutation can change a fixed labeled outcome probability even though it preserves the multiset of probabilities and the norm.
+
+For a phase-sensitive example, prepare q0 in $(\sqrt3/2,i/2)$, q1 in $|0\rangle$, and q2 in $(\sqrt{4/5},i\sqrt{1/5})$. Apply the controlled flip on `(0,1)` before permuting. Expanding those preparations gives
+
+$$
+|\psi\rangle=\sqrt{3/5}|000\rangle
++i\sqrt{3/20}|001\rangle
++i\sqrt{1/5}|110\rangle
+-\sqrt{1/20}|111\rangle.
+$$
+
+The minus sign is the product of two imaginary amplitudes. The cycle moves the occupied indices `0,1,6,7` to `0,4,3,7`; their complex coefficients move unchanged. `entangled_reference()` stores this hand expansion. `scalar_permute` instead gathers input coefficients using binary strings, independently of the dense permutation matrix and SWAP synthesis.
+
+```python
+psi = entangled_reference()
+active, probability = run(p, complex_factors(), entangle=True)
+assert torch.allclose(active, P @ psi, rtol=0, atol=ATOL)
+assert torch.allclose(active, scalar_permute(psi.tolist(), p), rtol=0, atol=ATOL)
+assert abs(active[7].item() + (1/20)**.5) < ATOL
+print('active probabilities:', [round(x,6) for x in probability.tolist()])
+```
+
+```text
+active probabilities: [0.6, 0.0, 0.0, 0.2, 0.15, 0.0, 0.0, 0.05]
+```
+
+<span id="formula-code-4-5-passive-basis"></span>
+
+### 4. A passive basis change describes the same physical state
+
+**Formula.** Write the old ordered basis columns as $e_j$. Choose new basis columns $e'_j=P_pe_j$. If $x$ and $x'$ describe the **same abstract vector** in these two bases, then
+
+$$
+\sum_j e_jx_j=\sum_j e'_jx'_j
+\quad\Longrightarrow\quad
+x=P_px',\qquad \boxed{x'=P_p^\dagger x}.
+$$
+
+For the same linear operator and a Hermitian observable, respectively,
+
+$$
+A'=P_p^\dagger A P_p,\qquad
+(x')^\dagger A'x'=x^\dagger Ax.
+$$
+
+**Derivation.** The first equality equates two coordinate expansions of one vector; substitute the definition of $e'_j$ and multiply by $P_p^\dagger$. If the old-coordinate equation is $y=Ax$, then $y'=P_p^\dagger y=P_p^\dagger AP_px'$, proving the operator rule. Substituting both transformed expressions in the quadratic form cancels $P_pP_p^\dagger$ twice, proving the expectation identity. It does not assume a product state.
+
+For this convention the reordered qubit-label list is $(L_{p(0)},\ldots,L_{p(n-1)})$. In the cycle example this is `(reference,flag,signal)`. A new tuple assigns its first bit to old q1, its second to old q2 and its third to old q0. Consequently old physical `100` has new coordinates `001`. This also follows directly from $P_p^\dagger|100\rangle$; the forward active result `010` answers a different question.
+
+Let $A=Z_0$, the local Pauli Z on old q0, with eigenvalues +1 and −1. For the displayed $\psi$, the original expectation is $1-2(1/4)=1/2$. After the active cycle, fixed q0 carries the former q2 value, giving $1-2(1/5)=3/5$. After a passive conversion, old q0 is at new position 2: $A'=Z_2$, and its expectation remains 1/2.
+
+```python
+Z = torch.diag(torch.tensor([1,-1], dtype=DTYPE))
+A = dense_embedding(Z, 3, (0,))
+passive = P.mH @ psi
+Aprime = P.mH @ A @ P
+assert torch.allclose(Aprime, dense_embedding(Z,3,(2,)), rtol=0, atol=ATOL)
+def expectation(v, observable):
+    return float(torch.vdot(v, observable @ v).real)
+print('original Z0:', round(expectation(psi,A),6))
+print('active, fixed Z0:', round(expectation(active,A),6))
+print('passive, transformed Z0:', round(expectation(passive,Aprime),6))
+```
+
+```text
+original Z0: 0.5
+active, fixed Z0: 0.6
+passive, transformed Z0: 0.5
+```
+
+The passive calculations are classical coordinate conversions of the state verified in unit 3; they require no new quantum execution. If one holds $A$ fixed while converting only the coordinates, one is generally evaluating a different physical observable. The same rule applies to computational-outcome projectors: transform their labels and matrices together to preserve event probabilities. A permutation basis change only reorders product-basis vectors. A general unitary basis change, such as an X-basis conversion, can mix them and is not merely a qubit permutation.
+
+<span id="formula-code-4-5-support-conjugation"></span>
+
+### 5. Transform ordered supports as well as state coordinates
+
+**Formula.** For the embedding $E_S(U)$ from 4.4 and ordered support $S=(s_0,\ldots,s_{k-1})$,
+
+$$
+P_p^\dagger E_S(U)P_p=E_{p^{-1}(S)}(U),\qquad
+p^{-1}(S)=(p^{-1}(s_0),\ldots,p^{-1}(s_{k-1})).
+$$
+
+**Derivation.** Apply the left-hand side to any basis tuple b. The rightmost $P_p$ puts bit $b_q$ at old position $p(q)$. Thus the ordered input bits read by $E_S(U)$ are $b_{p^{-1}(s_0)},\ldots,b_{p^{-1}(s_{k-1})}$. That operator replaces precisely those bits with its local output tuple, weighted by the corresponding entry of U. The final $P_p^\dagger$ moves them back to positions $p^{-1}(s_j)$, preserving the local tuple order and all spectator bits. This is exactly the 4.4 basis prescription for the right-hand side. Equality on a spanning basis proves the operator identity for any U, including nonunitary linear maps. Admission as a deterministic circuit gate still separately requires U to be unitary.
+
+For $p=(1,2,0)$, old support `(2,0)` becomes `(1,2)`. Sorting the transformed tuple would in general change the meaning of U. Check the identity as matrices and as two actual circuit paths on the complex joint input: apply the old-support gate then the inverse cycle, or apply the inverse cycle then the transformed-support gate.
+
+```python
+S = (2,0); T = tuple(inverse(p)[q] for q in S)
+C = controlled_flip()
+left = P.mH @ dense_embedding(C,3,S) @ P
+assert torch.allclose(left, dense_embedding(C,3,T), rtol=0, atol=ATOL)
+a, _ = run(inverse(p), complex_factors(), True, before=(S,C))
+b, _ = run(inverse(p), complex_factors(), True, after=(T,C))
+assert torch.allclose(a,b,rtol=0,atol=ATOL)
+print('ordered support:', S, '->', T)
+print('two circuit paths: full complex coordinates agree')
+```
+
+```text
+ordered support: (2, 0) -> (1, 2)
+two circuit paths: full complex coordinates agree
+```
+
+<span id="formula-code-4-5-labels"></span>
+
+### 6. Renaming a label does not move a state
+
+**Formula.** Let an ordered register list be $L=(L_0,\ldots,L_{n-1})$. An injective replacement of names $r$ gives
+
+$$
+L'=(r(L_0),\ldots,r(L_{n-1})),\qquad x'=x,\qquad A'=A.
+$$
+
+**Derivation.** Every tuple position and its local basis stays fixed; only the text naming that position changes. Therefore the basis columns, coefficient array and operator entries stay fixed. References to the renamed qubit in application metadata must be updated consistently. This is distinct from *reordering* the register list, which changes which factor each tuple position denotes and requires the passive coordinate rule above. These names are application metadata, not a claim that FlagQuantum exposes this named-register API.
+
+| Action | State/coordinates | Operator/observable | Quantum operation |
+|---|---|---|---|
+| Active permutation in fixed basis | $x\mapsto P_px$ | A fixed observable stays A | Execute a gate sequence |
+| Passive basis $e'_j=P_pe_j$ | $x'=P_p^\dagger x$ | $A'=P_p^\dagger AP_p$ | Coordinate conversion only |
+| Rename labels in fixed list positions | Same array | Same matrix; update name references | Metadata only |
+
+An active permutation is not always observable on a chosen input: SWAP leaves $|00\rangle$ invariant. That special case does not identify it with renaming.
+
+```python
+labels = ('signal','reference','flag')
+new_names = renamed(labels, {'signal':'data'})
+before = psi.clone()
+assert torch.equal(psi,before)
+print('rename in fixed positions:', new_names)
+print('passive reordered labels:', tuple(labels[q] for q in p))
+```
+
+```text
+rename in fixed positions: ('data', 'reference', 'flag')
+passive reordered labels: ('reference', 'flag', 'signal')
+```
+
+<span id="formula-code-4-5-composition"></span>
+
+### 7. Compose destinations in execution order
+
+**Formula.** If p acts first and r acts second, an old factor q moves first to $p(q)$ and then to $r(p(q))$. Consequently
+
+$$
+P_rP_p=P_{r\circ p},\qquad (r\circ p)(q)=r(p(q)).
+$$
+
+**Derivation.** Follow a single bit through both basis permutations. All bits end in those destinations, so the composite basis image and hence its linear extension are determined. This also proves the identity rule and the inverse formula used above. Disjoint transpositions commute, but transpositions sharing a qubit need not; a general sequence cannot be reversed without changing the map. `swap_sequence` places the required old factor at each destination in turn. Once a destination is fixed, its required factor cannot be needed elsewhere by bijection; later swaps leave it fixed. At most n−1 swaps suffice because the final position is forced after the first n−1. This is an all-to-all mathematical decomposition, not a hardware connectivity or native-gate cost guarantee.
+
+```python
+r = (1,0,2)
+composed = tuple(r[p[q]] for q in range(3))
+reverse = tuple(p[r[q]] for q in range(3))
+assert torch.equal(perm_matrix(r) @ P, perm_matrix(composed))
+assert not torch.equal(perm_matrix(composed), perm_matrix(reverse))
+assert swap_sequence((0,1,2)) == []
+print('first p, then r:', composed)
+print('reversed order:', reverse)
+```
+
+```text
+first p, then r: (0, 2, 1)
+reversed order: (2, 1, 0)
+```
+
+<span id="formula-code-4-5-boundaries"></span>
+
+### 8. Reject ambiguous or invalid contracts before execution
+
+The permutation requires a nonempty tuple containing every integer from 0 through n−1 exactly once. Booleans and floating-point approximations to integers are rejected. Bits require literal 0 or 1 integers. Renaming requires unique nonempty names before and after replacement, and keys must refer to existing labels. The body examples below make no quantum calls.
+
+```python
+invalid = [lambda: perm_matrix((0,0)),
+           lambda: perm_matrix((0,2)),
+           lambda: perm_matrix((False,1)),
+           lambda: moved_bits((1,), (1,0)),
+           lambda: renamed(('a','b'), {'a':'b'})]
+rejected = 0
+for action in invalid:
+    try:
+        action()
+    except ValueError:
+        rejected += 1
+assert rejected == 5
+print('invalid permutation/bit/rename declarations:', rejected, 'rejected')
+```
+
+```text
+invalid permutation/bit/rename declarations: 5 rejected
+```
+
+Do not infer a convention from a statevector alone. Ask whether the intended action is active, passive or a rename; require the old and new ordered labels, destination direction, basis, and phase/precision contract. Qubit permutations introduce no phase, so full complex equality is the appropriate check here. Equal computational probabilities alone would miss a wrong sign or relative phase in a circuit implementation. A tolerance above the discrepancy would also conceal failure; the stated tolerance is for these small double-precision examples, not an all-size error bound.
+
+Run the companion and the body-output checker:
+
+```bash
+python examples/foundations/permutations_swap.py
+python scripts/check_permutations_swap_prose.py
+```
+
+The complete program executes **450 circuits**: every basis input under every permutation for n=1,2,3,4 (442), all six permutations of the complex three-qubit joint state (6), and the two support-conjugation paths (2). Identity permutations and the n=1 boundary execute preparations with no SWAP gates. Dense references and an independent binary-string gather check every complex output. The eight body fragments execute five circuits in a separate invocation. These are author execution checks, not an independent review or a hardware experiment.
+
+Expected output of the complete program:
+
+```text
+Convention: p[q] is the destination of old qubit q; qubit0 is most significant.
+442 basis circuits: every permutation and every basis input for n=1,2,3,4.
+Input100: active cycle index2; passive coordinate index1.
+Z0: original 0.500000; active fixed observable 0.600000; passive transformed observable 0.500000.
+Passive ordered support (2, 0) -> (1, 2): two actual circuit paths agree in every complex coordinate.
+Composition order, identity, inverse, metadata rename and10invalid declarations checked.
+450 actual CPU complex128 circuits; atol=1e-12,rtol=0; no phase alignment, shots or hardware.
+```
+
+### Understanding checks and transfer exercises
+
+**4.5-A — New nonadjacent swap.** For four qubits, execute SWAP(1,3) on `1100`. Give the output tuple and index. Does this swap commute with SWAP(0,2)? Explain without assuming commutativity of general permutations.
+
+**4.5-B — Direction check.** For p=(2,0,1), find the active output of `100`, the passive coordinates of that same original state in the basis $e'_j=P_pe_j$, and the new ordered labels. Which operation changes the physical state?
+
+**4.5-C — Measurement and support.** For p=(1,2,0), convert old $Z_0$ and support `(0,2)` to passive coordinates. Explain why keeping $Z_0$ numerically unchanged can give the wrong event interpretation. Does the local controlled-flip matrix itself need to change under the ordered-support rule?
+
+**4.5-D — Diagnose a repair.** A collaborator reverses a label list but keeps the statevector and every numeric gate target unchanged, calling it “just a rename.” What must be clarified? Why do tests using only $|000\rangle$ fail to diagnose the problem?
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** Bits q1=1 and q3=0 exchange, giving `1001`, index 9. SWAP(1,3) and SWAP(0,2) have disjoint supports, so each leaves the other's selected bits unchanged; following any basis tuple proves they commute. A separate author transfer circuit executes the first swap and compares all 16 amplitudes/probabilities. This one circuit is additional to the complete program.
+
+**B.** The active output is `001`, while $P_p^\dagger|100\rangle=|010\rangle$ gives passive coordinates. The ordered labels become `(flag,signal,reference)` for the section's original list. The active gate changes the state at fixed physical positions; the passive conversion describes the same state in the declared new basis.
+
+**C.** Inverse p=(2,0,1), so old $Z_0$ becomes new $Z_2$, and ordered support `(0,2)` becomes `(2,1)`. Keeping the numerical $Z_0$ would ask about new position 0, corresponding to old q1. Keep the same local matrix U and preserve that transformed support order. Sorting it would require an additional local basis conversion; it is not part of this rule.
+
+**D.** Determine whether names are being replaced in fixed positions or the ordered physical-factor list is being rearranged. If it is rearranged, convert coordinates, operator matrices and target positions consistently. If only names change, keep each physical position fixed and update references to those names. Every permutation leaves `000` fixed, so that input cannot distinguish the interpretations. Use an asymmetric basis input, a non-self-inverse cycle and complex joint amplitudes.
+
+</details>
+
+### Sources, depth and next step
+
+Depth **F**: the basis prescription, unitarity, inverse, composition, amplitude rule, passive coordinate/observable transformation, ordered-support conjugation and SWAP decomposition are proved explicitly. Nielsen and Chuang, 10th Anniversary Edition, §4.3 is the assigned background locator; this section supplies its own convention-fixed derivations and does not claim a fresh inspection of the user-local PDF. The released FlagQuantum SWAP method is exercised directly; implementation evidence and source-access limits appear in the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.5.json).
+
+This is an author-verified working draft, with independent mathematical, implementation and reader review pending. Continue, when drafted, with [4.6 Tensor reshaping as indexed mathematics](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-6).

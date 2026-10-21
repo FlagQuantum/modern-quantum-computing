@@ -1,0 +1,7 @@
+Convention: p[q] is the destination of old qubit q; qubit0 is most significant.
+442 basis circuits: every permutation and every basis input for n=1,2,3,4.
+Input100: active cycle index2; passive coordinate index1.
+Z0: original 0.500000; active fixed observable 0.600000; passive transformed observable 0.500000.
+Passive ordered support (2, 0) -> (1, 2): two actual circuit paths agree in every complex coordinate.
+Composition order, identity, inverse, metadata rename and10invalid declarations checked.
+450 actual CPU complex128 circuits; atol=1e-12,rtol=0; no phase alignment, shots or hardware.

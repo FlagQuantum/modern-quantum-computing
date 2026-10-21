@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/scripts/check_permutations_swap_prose.py", line 12, in <module>
+    body = path.read_text().split('<span id="sec-composite-systems-tensor-products-and-qubit-ordering-5"></span>', 1)[1]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range

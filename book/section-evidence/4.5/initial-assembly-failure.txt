@@ -1,0 +1,9 @@
+Observed stdout/stderr from initial body assembly (two actual circuits had executed):
+Traceback (most recent call last):
+  File "/private/tmp/assemble45.py", line 10, in <module>
+    with contextlib.redirect_stdout(o):exec(compile(code,f'4.5-fragment-{i}','exec'),namespace)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "4.5-fragment-2", line 4, in <module>
+AssertionError
+
+Cause: prose asserted a valid but different SWAP decomposition from the helper's actual destination-placement sequence. Actual state already matched the declared cycle. Corrected the asserted helper sequence and explained both valid decompositions. No library/API or mathematical result failure.

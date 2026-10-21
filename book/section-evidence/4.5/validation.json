@@ -1,0 +1,17 @@
+{
+  "section": "4.5",
+  "status": "author-verified draft",
+  "complete_circuits": 450,
+  "body_fragments": 8,
+  "body_circuits": 5,
+  "separate_transfer_circuits": 1,
+  "body_outputs": "exactly matched",
+  "regressions": "4.1\u20134.4 scoped prose checkers and their full programs passed",
+  "baseline_scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "strict_build": "passed",
+  "rendered_links": "69pages, all local links/fragments resolve, IDs unique",
+  "formula_display": "actual IAB screenshots, roots/matrices/adjoints/inverse subscripts/boxed passive conversion rendered without garbling",
+  "initial_failure": "different valid SWAP synthesis path asserted; corrected, raw failure preserved",
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

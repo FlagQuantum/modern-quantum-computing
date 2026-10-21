@@ -94,6 +94,29 @@
       ],
       "status": "draft",
       "next_transition": "4.5 Permutations, SWAP, and relabeling."
+    },
+    {
+      "ref": "4.5",
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-5",
+      "title": "Permutations, SWAP, and relabeling",
+      "question": "What changes when a permutation is executed, used as a basis change, or applied only to labels?",
+      "entry": "4.2 index bijection and4.4 ordered-support embedding; locally derive all permutation statements.",
+      "exit": "Prove permutation unitarity, inverse and conjugation; distinguish active state change from passive coordinates and metadata renaming.",
+      "worked_case": "SWAP(0,2) and non-self-inverse p=(1,2,0), input100; complex entangled input, transformed observable and ordered controlled support.",
+      "boundary": "F depth; finite distinguishable qubits, bijective permutation, same dimensions; no routing costs, physical hardware or framework interoperability claims.",
+      "code_plan": "Actual released Circuit.swap; independent scalar bit scatter, dense permutation matrix, exhaustive n1..4 basis tests and complex entangled witnesses; exact prose outputs.",
+      "independent_check": "Inverse/composition proof, cycles distinct from inverse, all permutations through four qubits, observable covariance and ordered support conjugation; malformed permutations and metadata rejected.",
+      "transfer_task": "Four-qubit nonadjacent swap, new cycle direction, transformed observable and rename/reorder diagnosis; full answers.",
+      "source_locators": [
+        "NC:4.3"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-4"
+      ],
+      "status": "draft",
+      "next_transition": "4.6 Tensor reshaping as indexed mathematics."
     }
   ]
 }

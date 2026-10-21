@@ -1,0 +1,2 @@
+7 cumulative 4.3 prose fragments: exact outputs and assertions passed.
+Complete 4.3 example: exact expected-output comparison passed.
