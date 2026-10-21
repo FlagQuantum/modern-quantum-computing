@@ -1,0 +1,58 @@
+{
+  "run": {
+    "signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+    "source_sha256": "a9b43ad881e7b3a32433a04dae54a0bf9978ca99bc5dbb815405ee1e85493b68"
+  },
+  "probabilities": {
+    "signature": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | None | Omitted' = OMITTED) -> 'OutputRequest'",
+    "source_sha256": "dfedaf836a31c8e8d3bfbae12b8912f0e8ae839f96c87c93beee6a4a9daf1376"
+  },
+  "ExecutionOptions": {
+    "signature": "(mode: 'str | None' = None, backend: 'str | None' = None, device: 'str | None' = None, target: 'str | None' = None, batch_size: 'int | None' = None, precision: 'str | None' = None, shots: 'int | None' = None, seed: 'int | None' = None, memory_limit_bytes: 'int | None' = None, require_gradients: 'bool | None' = None, allow_approximate: 'bool | None' = None, allow_backend_fallback: 'bool | None' = None) -> None",
+    "source_sha256": "9b76f4dbb21812057f5b6bb6b8782847ccd74b710e5c8a02fd60b4a718f28936"
+  },
+  "h": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "ry": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "x": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "cx": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "p": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "unitary": {
+    "signature": "(self, *qubits: 'int', unitary: 'Any', name: 'str' = 'any') -> \"'Circuit'\"",
+    "source_sha256": "96337b06d545c524e778dd66a635d7a78266cb3092e73138fd7692ce6dd7dfc8"
+  },
+  "compose": {
+    "signature": "(self, other: \"'Circuit | CircuitIR'\", *, qubits: 'Iterable[int] | int | None' = None, qubit_map: 'Mapping[int, int] | None' = None) -> \"'Circuit'\"",
+    "source_sha256": "429b14f7904190dc2781d095dbe35fd2b48f175a891d0b1cae632f4de711aac9"
+  },
+  "runtime": {
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0",
+    "numpy": "2.5.4"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "docs_Markdown_version": "3.11.2",
+  "distribution": {
+    "module_path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/__init__.py",
+    "direct_url_json": null
+  },
+  "md_in_html": {
+    "source_sha256": "e28812f4970e133f24b49be828c14e53bb62e289fdc281d2c31e7daed5a579ec",
+    "role": "Processexistingdetailsmarkdown=1beforearithmatex/MathJaxrendering"
+  },
+  "note": "Sourceinspectiononly;nocircuits executedhere.Nativefull/partialrequestshapesandprobabilitysemanticsactuallyexecutedincomplete/body/transfer."
+}

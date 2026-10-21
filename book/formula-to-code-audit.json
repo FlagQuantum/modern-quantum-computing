@@ -1,7 +1,7 @@
 {
   "date": "2026-10-22",
   "baseline": "writing-baseline-v1.0",
-  "scope": "Presentation audit of 37 drafted sections; prior backfills retained; 5.8 adds 8 adjacent formula/derivation/FlagQuantum code/result units. Independent acceptance pending.",
+  "scope": "Presentation audit of 38 drafted sections; prior backfills retained; 6.1 adds 8 adjacent formula/derivation/FlagQuantum code/result units. Independent acceptance pending.",
   "finding": "Executable companion scripts and end-of-section correspondence tables do not by themselves provide adjacent formula-to-code teaching in the body.",
   "priority_backfill": [],
   "secondary_review": [],
@@ -136,6 +136,12 @@
     "units": 8,
     "command": "python scripts/check_circuit_rewrites_prose.py",
     "record": "book/section-records/5.8.json",
+    "status": "author-verified draft"
+  },
+  "new_section_6_1": {
+    "units": 8,
+    "command": "python scripts/check_projective_born_prose.py",
+    "record": "book/section-records/6.1.json",
     "status": "author-verified draft"
   }
 }

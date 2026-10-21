@@ -371,6 +371,16 @@
       "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
       "record": "book/section-records/5.8.json",
       "author_execution": "passed: FQ0.3.1/Torch2.13.0 CPUcomplex128;355completecircuits,phase/support conditions,fullmatrix references andconservativebookcancellation"
+    },
+    "sec-measurement-expectation-values-and-statistical-estimation-1": {
+      "state": "draft",
+      "brief": "book/briefs/ch06.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+      "record": "book/section-records/6.1.json",
+      "author_execution": "passed: FQ0.3.1/Torch2.13.0 CPUcomplex128;163actualcircuits,nativecomputational/marginalprobabilitiesandexplicitprojectorpostprocessing"
     }
   },
   "existing_pilots": [

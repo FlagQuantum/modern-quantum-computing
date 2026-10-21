@@ -67,6 +67,7 @@ nav:
       - "Chapter 3: Single-Qubit States and Rotations": chapters/ch-single-qubit-states-and-rotations.md
       - "Chapter 4: Composite Systems, Tensor Products, and Qubit Ordering": chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md
       - "Chapter 5: Gates, Reversible Computation, and Circuit Synthesis": chapters/ch-gates-reversible-computation-and-circuit-synthesis.md
+      - "Chapter 6: Measurement, Expectation Values, and Statistical Estimation": chapters/ch-measurement-expectation-values-and-statistical-estimation.md
   - Starter chapters:
       - Measurement and expectations: chapters/measurement.md
       - Circuits and gradients: chapters/gradients.md
@@ -86,6 +87,7 @@ nav:
   - Sources and validation: sources.md
   - Editions and publication: publication.md
 markdown_extensions:
+  - md_in_html
   - admonition
   - pymdownx.superfences
   - pymdownx.arithmatex:

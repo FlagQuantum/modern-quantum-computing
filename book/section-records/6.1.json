@@ -1,0 +1,115 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-measurement-expectation-values-and-statistical-estimation-1",
+  "ref": "6.1",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+  "depth": "P",
+  "result": "Projective Born rule and normalization",
+  "requires": [
+    "sec-single-qubit-states-and-rotations-1",
+    "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+    "sec-complex-vectors-operators-and-numerical-reasoning-5"
+  ],
+  "assumptions": [
+    "Normalized pure state;finite complete orthogonal Hermitian projectors",
+    "Distinct declared classical outcome labels;fullregistercomputationalbasisq0leftmost",
+    "Idealstatevector/nativecomputationalprobabilities;generalprojectorvaluesclassicallypostprocessed"
+  ],
+  "proof_obligations": [
+    "StatephysicalBornruleaspostulate,notderivedfromsimulation",
+    "Projectorquadraticformequalsprojectednormsquared;nonnegativeandsumone",
+    "Rankonecomputationalprobabilitiesanddeclaredindexmapping",
+    "Compatiblebasisprojectorsgiveorderedmarginals",
+    "Orthogonalcoarsegroupingaddsprobabilities,notcoalescedscalaramplitudes",
+    "ExplicitXXrank2familyandphaseBellcosinelaw",
+    "Globalstatephaseinvariance;distinctfromcontrolledoperatorphase",
+    "Completeness/orthogonality/normalizationfailuresandprobability-onlyboundary"
+  ],
+  "formula_code_units": [
+    "formula-code-6-1-postulate",
+    "formula-code-6-1-normalization",
+    "formula-code-6-1-register",
+    "formula-code-6-1-partial",
+    "formula-code-6-1-coarse",
+    "formula-code-6-1-family",
+    "formula-code-6-1-phase",
+    "formula-code-6-1-contracts"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.2.5",
+      "edition": "10th Anniversary Edition (2010)",
+      "printed_page_start": 87,
+      "inspection": "Assignedlocatorretained;no freshuser-localPDFinspectionclaimed"
+    },
+    {
+      "author": "JohnPreskill",
+      "url": "https://www.preskill.caltech.edu/ph219/chap3_15.pdf",
+      "title": "Ph219/CS219Chapter3",
+      "served_header_update": "October2018",
+      "locator": "§3.1.1,eqs(3.11)and(3.15),PDFpage7",
+      "inspection": "OfficialauthorpublicPDF checkedthissession;filename_15notusedtoinfereditiondate;stateupdateandpointermodelnotimportedhere"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/projective_born.py",
+    "command": "python examples/foundations/projective_born.py",
+    "prose_check_command": "python scripts/check_projective_born_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 163,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 11,
+    "separate_transfer_circuits": 20,
+    "execution_ledger": {
+      "initial_complete": 163,
+      "body_assembly": 11,
+      "body_plus_complete_checker": 174,
+      "separate_transfer": 20,
+      "total_section61_circuits": 368,
+      "note": "Initialpassing163temporaryrunarchivedonce;finalcheckerexecutedfullprogramafterphase-inputfiniteguardchangedfromtemporaryfloat32testtomath.isfinite.No physics/outputchange,notafailedrun.Priorregressions/futureCIseparate."
+    },
+    "checks": [
+      "17fullcomputational,135orderednativepartial,8Bellglobal/relativephase,3sparseindexcircuits",
+      "Allbasis/complexproducts1–3qubits;all15orderednonempty3qubitselections",
+      "Classicalrank2projectornorms/scalarcoherenceandparityreferences;12malformedcontracts",
+      "11directnativebodyqueriesand20new4qubit/Fourierprojectortransfercircuits"
+    ],
+    "tolerance": "Implementationatol1e-12,rtol0;no normalization/clipping/phasealignment;projectoradmissionfloatingtestsnotintervalcertificate",
+    "unplanned_execution_failures": "None",
+    "limitations": "No nativegeneralprojectorAPIclaim,hardware,shots,sampledcollapse,mixedstatechannelorstateupdateclaim;dense4qubitguardbookside",
+    "script_sha256": "8c88e3c625c257072d80fe12b47a647c89d6dea175cd3863fd3def8442e35b90"
+  },
+  "assessment": {
+    "tasks": [
+      "6.1-A fourqubitmarginal",
+      "6.1-B Fourierrank2family",
+      "6.1-C incompletefamily/zeroprobability",
+      "6.1-D physicalpostulatevsalgebraandshots"
+    ],
+    "answers": "Supplied;readertrialnotrun"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "163completeprogramcircuits,8actualbodyfragments/11directnativequeries and20newmarginal/Fouriertransfercircuits passed.5.8scopedbody/fullregressionpassed.Frozen435sectionstructure unchanged.StrictMkDocs/new71pagelinks passed.Afterfixingformulafailures,16detailsblocks/55mathwrappersstaticcheckandactual6.1/5.8expandedanswervisualQApassed.Independentreviews pending."
+  },
+  "production": {
+    "next_draft": "6.2 Conditional states and ignored outcomes",
+    "pdf": "Existing sample edition unchanged",
+    "pilot": "docs/chapters/measurement.md remainsformatpilot,unchanged",
+    "formula_display": "ActualIAB1280x720screenshots passed:positivity/normalization,orderedmarginalprojectors,XXrank2probabilities,correctedFourierexerciseandexpandedanswerformulas.Alsoexpanded5.8answerpanel:phaseformulaandMarkdownnowrendercorrectly.No garbling/clipping ininspectedformulas;initialfailedsourceandunparsedanswerHTMLpreserved.",
+    "rendering_repair": "InitialexerciseTeXescapesweredamagedbyJavaScriptauthoring;thenexpandedanswerpanelrevealedglobalmissingmd_in_htmlextension.Bothrepairedbeforepublication.Originalsource/HTMLretained.Code/expectedoutputsbyte-identicalafterprosefixes;noextraquantumruns."
+  }
+}

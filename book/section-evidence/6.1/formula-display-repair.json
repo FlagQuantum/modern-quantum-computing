@@ -1,0 +1,12 @@
+{
+  "finding": "Initial browserAX revealed malformed Fourier-exercise and answer formulas: missing TeXslashes andnewlineinsideketcommands.",
+  "cause": "Singlebackslashes in the JavaScript authoring string were interpreted before Python raw-string handling.",
+  "original": "book/section-evidence/6.1/formula-initial-exercises.txt",
+  "repair": "Reconstructed the exercise/answer prose using literalbackslash construction;allPythonandexpectedoutputfragmentsbyte-identical.",
+  "example_execution_failure": false,
+  "publication": "Repairedbeforefirstpublication",
+  "revalidation": "Strictbuildandall71pagelinks passed.Static16detailsblockscontain55arithmatexwrappersandnorawanswermarkup.Actualbrowser6.1Fourierexerciseandexpandedanswersandprior5.8expandedanswerformula passed.",
+  "secondary_finding": "Expanded answer panel displayed literalMarkdown/TeX because existingdetailsmarkdown=1 wasnotprocessed:md_in_htmlextension absent fromsiteconfiguration.Thisaffectedearlieranswerpanels too.",
+  "secondary_original": "book/section-evidence/6.1/answers-initial-render.txt",
+  "secondary_repair": "Enabledbuilt-inMarkdownmd_in_htmlextension tohonorexistingdetailsmarkdown=1;nochaptercodeorcurriculumchange."
+}

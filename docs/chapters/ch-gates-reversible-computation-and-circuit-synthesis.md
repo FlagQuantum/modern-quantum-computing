@@ -2808,6 +2808,6 @@ Chapter 5 has connected call order and inversion, coherent controls, reversible 
 
 Depth **F**: the displayed cancellation, generator, support, conjugation and controlled-phase identities are proved explicitly, and the finite cancellation pass has an invariant and termination proof. Assigned background is Nielsen and Chuang, 10th Anniversary Edition (2010), §§4.2–4.3. These assigned locators are retained; no fresh inspection of the user-local textbook PDF is claimed. Released named gate behavior, including CRx and RZZ half-angle conventions, was checked by actual execution and source provenance. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.8.json) separates author checks from independent mathematical/implementation review and reader trials, which remain pending.
 
-Continue, when drafted, with [6.1 Measurement outcomes and the Born rule](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-1).
+Continue with [6.1 Measurement outcomes and the Born rule](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-1).
 
 <!-- end-section-5.8 -->

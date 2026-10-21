@@ -1,0 +1,30 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "scope": "Chapter6 follows frozen queue;existing measurement.md remains a format pilot;independent acceptance pending",
+  "sections": [
+    {
+      "ref": "6.1",
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-1",
+      "title": "Measurement outcomes and the Born rule",
+      "depth": "P",
+      "requires": [
+        "sec-single-qubit-states-and-rotations-1",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+        "sec-complex-vectors-operators-and-numerical-reasoning-5"
+      ],
+      "question": "How does a declared projective measurement map a normalized state to probabilities for classical outcome labels?",
+      "entry": "3.1normalizedpurestates andsinglequbitBornpostulate;4.1tensorbasis;2.5orthogonal spectral subspaces.",
+      "exit": "StatefiniteprojectiveBornruleaspostulate;derivepositivity andnormalization;translatecomputational labels,marginals andcoarse outcomes without confusingprobabilities withsamples orstateupdates.",
+      "worked_case": "Complexqubit,010/111register,marginal(q2,q0),paritycoarsegrain,XXrank2projectors onphaseBellstate,globalphaseinvariance.",
+      "boundary": "Normalized pure states,completeorthogonalprojectors;probabilitiesonly.Conditionalstates6.2,observables6.3,basis-changeprotocol6.4,POVMs6.5,samples6.6 deferred.",
+      "code_plan": "NativeFQstatevector/fullandselectedcomputationalprobabilities;generalprojectorsoriginalclassicalpostprocessor,notclaimednativeprojectivemeasurementAPI.",
+      "independent_check": "Allbasisandcomplex1–3qubits,15orderednative3qubitmarginals,closedBellXXcosine/parity/sparse references;12malformedcontracts.",
+      "transfer_task": "4qubitnonadjacentmarginalwith17basis/complexinputs;3new2qubitstates andFourier-rank2projectors,20actualcircuits.",
+      "source_locators": [
+        "NC:2.2.5"
+      ],
+      "status": "draft",
+      "next_transition": "6.2 Conditional states and ignored outcomes."
+    }
+  ]
+}

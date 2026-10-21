@@ -1,0 +1,36 @@
+Initial failed authoring output; preserved before repair. These malformed exercise formulas were not published.
+
+
+
+**6.1-A — A larger marginal.** Prepare a four-qubit input and apply Ry(q0,−.37),CX(q0,q3). Request outcomes ordered as (q3,q1). Check every basis input and a complex product against the complete-state compatible-event sum. Does the leading result dimension name q3?
+
+**6.1-B — A new projective family.** Let $B_{jk}=e^{2pi i jk/4}/2$ for j,k=0,1,2,3, with orthonormal columns $|b_k
+angle$. Form Q0 from columns 0,1 and Q1 from columns 2,3. For a new prepared two-qubit state, compare the two projector probabilities with sums of squared overlaps. Is this a native hardware measurement?
+
+**6.1-C — An apparently successful incomplete family.** Why does evaluating only P0 on $|0\rangle$ fail to establish a valid qubit measurement family? Does a zero-probability outcome require removing its label?
+
+**6.1-D — Which claim is a postulate?** Separate the physical probability rule, its normalization proof and the prediction of a conditional output state. Why is an exact probability query not one experimental shot?
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** For label a, sum full probabilities over strings b whose q3,q1 bits equal a in that order. The corresponding projector is diagonal on precisely those strings; it includes q0,q2 as unrestricted coordinates. `[0]` removes one execution dimension, not a qubit dimension. The separate author transfer executes 17 four-qubit cases, checking the prepared vectors with an independent indexed-gate reference and then the native marginal with compatible-index sums.
+
+**B.** Orthogonality follows from the finite geometric sum $sum_{j=0}^3e^{2pi i j(k-ell)/4}=4delta_{kell}$. Thus $Q_0=sum_{k=0}^1|b_k
+anglelangle b_k|$, $Q_1=sum_{k=2}^3|b_k
+anglelangle b_k|$ are orthogonal complete rank-two projectors. Their probabilities are respectively $sum_{k=0}^1|langle b_k|psi
+angle|^2$ and $sum_{k=2}^3|langle b_k|psi
+angle|^2$. The separate author transfer uses three new prepared states, adding three circuits for twenty transfer circuits total. It computes classical predictions on simulated vectors and does not execute a general-projector hardware measurement. It is author validation, not independent review.
+
+**C.** The missing P1 subspace makes the family incomplete; on input $|1\rangle$ its total would be zero. Completeness must hold on the full state space. A zero-probability event for a particular input is compatible with a complete family and retains its label.
+
+**D.** Interpreting $langlepsi|P_a|psi
+angle$ as an outcome probability is the physical postulate. Nonnegativity and unit total follow from Hermitian orthogonal complete projectors and normalization. A conditional state additionally needs an update rule, treated in 6.2. A probability query returns deterministic ideal model predictions; a shot would return one label according to an outcome distribution, with finite-sample reasoning developed in 6.6.
+
+</details>
+
+### Sources, depth and next step
+
+Assigned background is Nielsen and Chuang, 10th Anniversary Edition (2010), §2.2.5, beginning at printed page 87. Its assigned locator is retained; no fresh inspection of the user-local textbook PDF is claimed. For a publicly accessible author source, [John Preskill, Caltech Ph219/CS219 Chapter 3, §3.1.1](https://www.preskill.caltech.edu/ph219/chap3_15.pdf), equation (3.11) and the probability statement (3.15) on PDF page 7, were checked. The currently served PDF labels its update **October 2018**, despite the `_15` filename. We use only the finite projective-probability statement here; pointer dynamics, conditional-state formulas and generalized measurements are outside this section's scope.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.1.json) separates author checks from independent mathematical review, implementation review and reader trials, which remain pending. This remains a working draft. The existing [measurement starter](measurement.md) retains its separate format-pilot status. Continue, when drafted, with [6.2 Conditional states and ignored outcomes](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-2).

@@ -1,0 +1,14 @@
+Initial answer-panel HTML before md_in_html was enabled; preserved authoring/rendering failure, not final output.
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** For label a, sum full probabilities over strings b whose q3,q1 bits equal a in that order. The corresponding projector is diagonal on precisely those strings; it includes q0,q2 as unrestricted coordinates. `[0]` removes one execution dimension, not a qubit dimension. The separate author transfer executes 17 four-qubit cases, checking the prepared vectors with an independent indexed-gate reference and then the native marginal with compatible-index sums.
+
+**B.** Orthogonality follows from the finite geometric sum $\sum_{j=0}^3e^{2\pi i j(k-\ell)/4}=4\delta_{k\ell}$. Thus $Q_0=\sum_{k=0}^1|b_k\rangle\langle b_k|$, $Q_1=\sum_{k=2}^3|b_k\rangle\langle b_k|$ are orthogonal complete rank-two projectors. Their probabilities are respectively $\sum_{k=0}^1|\langle b_k|\psi\rangle|^2$ and $\sum_{k=2}^3|\langle b_k|\psi\rangle|^2$. The separate author transfer uses three new prepared states, adding three circuits for twenty transfer circuits total. It computes classical predictions on simulated vectors and does not execute a general-projector hardware measurement. It is author validation, not independent review.
+
+**C.** The missing P1 subspace makes the family incomplete; on input $|1\rangle$ its total would be zero. Completeness must hold on the full state space. A zero-probability event for a particular input is compatible with a complete family and retains its label.
+
+**D.** Interpreting $\langle\psi|P_a|\psi\rangle$ as an outcome probability is the physical postulate. Nonnegativity and unit total follow from Hermitian orthogonal complete projectors and normalization. A conditional state additionally needs an update rule, treated in 6.2. A probability query returns deterministic ideal model predictions; a shot would return one label according to an outcome distribution, with finite-sample reasoning developed in 6.6.
+
+</details>
