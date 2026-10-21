@@ -1,6 +1,6 @@
 # 6. Measurement, Expectation Values, and Statistical Estimation
 
-**Working drafts: sections 6.1–6.2 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
+**Working drafts: sections 6.1–6.3 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
 
 <span id="sec-measurement-expectation-values-and-statistical-estimation-1"></span>
 
@@ -723,4 +723,369 @@ Implementation atol 1e-12, rtol 0; no vector averaging, phase alignment or input
 
 The frozen target is Nielsen and Chuang, 10th Anniversary Edition (2010), §2.2.3, beginning at printed page 84. Its assigned locator is retained; no fresh inspection of the user-local PDF is claimed. The public author source [Preskill, Caltech Chapter 3, §3.1.1](https://www.preskill.caltech.edu/ph219/chap3_15.pdf), equation (3.16), PDF page 8, was checked for the normalized projective branch. The currently served header is October 2018. We use branch/probability reasoning here and defer the density-operator discussion that follows to Chapter 8.
 
-The proofs are complete within the stated finite pure-global ideal-projective scope, with the physical update assumed. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.2.json) separates author execution from independent mathematical/implementation review and reader trials, which remain pending. Continue, when drafted, with [6.3 Observables, spectra, and expectations](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-3).
+The proofs are complete within the stated finite pure-global ideal-projective scope, with the physical update assumed. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.2.json) separates author execution from independent mathematical/implementation review and reader trials, which remain pending. Continue with [6.3 Observables, spectra, and expectations](#sec-measurement-expectation-values-and-statistical-estimation-3).
+
+<span id="sec-measurement-expectation-values-and-statistical-estimation-3"></span>
+
+## 6.3 Observables, spectra, and expectations
+
+A measurement can return a label such as “even.” A physical quantity also assigns a numerical value to that alternative. The **expectation** is the probability-weighted mean of those values; it need not itself be a possible individual outcome. This section connects that definition to a Hermitian matrix and then to FlagQuantum's native expectation requests.
+
+Prerequisites are [6.1](#sec-measurement-expectation-values-and-statistical-estimation-1), for projective Born probabilities, and [2.5](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-5), for the finite-dimensional Hermitian spectral theorem. Conditional-state updates from 6.2 are not needed for the identity proved here. Depth **F** means a complete proof under the stated assumptions: a normalized pure state, a finite Hermitian observable and its projective spectral measurement.
+
+Examples use released FlagQuantum 0.3.1/PyTorch 2.13.0, CPU complex128, absolute implementation tolerance $10^{-12}$ and relative tolerance zero. Native results are exact model expectations, rather than individual shots or hardware data. Numerical eigendecomposition is a classical reference; it is not an implemented physical measurement protocol or an interval certificate.
+
+<span id="formula-code-6-3-outcomes"></span>
+
+### 1. Associate outcome labels with real values
+
+**Formula.** Let $\{P_a\}$ be a complete orthogonal projector family, with real outcome values $\lambda_a$. The observable and its expected value are
+
+$$
+A=\sum_a\lambda_aP_a,\qquad
+\mathbb E_\psi[A]=\sum_a\lambda_a p_a,\qquad
+p_a=\langle\psi|P_a|\psi\rangle.
+$$
+
+When the $\lambda_a$ are distinct, the $P_a$ are the spectral projectors for those distinct eigenvalues. A rank-one refinement may have repeated values; equal-value probabilities can instead be grouped.
+
+**First derivation.** Computational measurement of a qubit with values +1 for label 0 and −1 for label 1 measures $Z=P_0-P_1$. Hence $\langle Z\rangle=p_0-p_1$, not $p_1$, not $p_0+p_1$, and not an amplitude difference. For Ry(θ)|0⟩ this gives $\cos^2(\theta/2)-\sin^2(\theta/2)=\cos\theta$. Individual Z outcomes remain ±1 even when this mean lies between them.
+
+**Native FlagQuantum code → result.** Run the snippets cumulatively from the repository root. Named requests are read with result.expectation(name); each raw expectation has shape (1,), whose leading axis is the execution batch, rather than a qubit or outcome axis.
+
+```python
+import math
+import torch
+import flagquantum as fq
+import examples.foundations.observables as o
+b = o.b
+calls = 0
+def query(circuit, observables):
+    global calls
+    requests = [fq.probabilities()]+[fq.expectation(A,name=name) for name,A in observables.items()]
+    result = fq.run(circuit,outputs=requests,options=b.OPTIONS)
+    v, p = result.statevector(), result.probabilities
+    assert v.shape == (1,2**circuit.n_qubits) and p.shape == v.shape
+    assert v.dtype == b.D and p.dtype == torch.float64
+    values = {}
+    for name in observables:
+        raw = result.expectation(name)
+        assert raw.shape == (1,) and raw.dtype == torch.float64
+        values[name] = raw[0]
+    calls += 1
+    return v[0], p[0], values
+theta = .8
+v, p, native = query(fq.Circuit(1,dtype=b.D).ry(0,theta),{'z':fq.Z(0)})
+mean = p[0]-p[1]
+torch.testing.assert_close(mean,native['z'],rtol=0,atol=b.ATOL)
+assert abs(mean.item()-math.cos(theta)) < b.ATOL
+print(f'Z outcome weights: +1, -1; probabilities {p[0]:.6f}, {p[1]:.6f}; expectation {mean:.6f}.')
+```
+```text
+Z outcome weights: +1, -1; probabilities 0.848353, 0.151647; expectation 0.696707.
+```
+
+<span id="formula-code-6-3-quadratic"></span>
+
+### 2. Prove the spectral expectation identity and reality
+
+**Formula.** Substituting the Born probabilities gives
+
+$$
+\mathbb E_\psi[A]
+=\sum_a\lambda_a\langle\psi|P_a|\psi\rangle
+=\left\langle\psi\middle|\sum_a\lambda_aP_a\middle|\psi\right\rangle
+=\langle\psi|A|\psi\rangle.
+$$
+
+**Complete proof.** The first equality is the definition of a mean for a finite outcome distribution. The second uses distributivity and linearity in the middle operator; the third is the assumed spectral expansion from 2.5. Conversely every finite Hermitian A has that expansion, with real eigenvalues and complete orthogonal spectral projectors, so the identity applies to its projective measurement. Its value is real because the weighted probabilities and weights are real. Equivalently,
+$\overline{\langle\psi|A|\psi\rangle}=\langle\psi|A^\dagger|\psi\rangle=\langle\psi|A|\psi\rangle$.
+No conditional update or ensemble density matrix was used.
+
+**Complex coordinates.** For $\psi=(\alpha,\beta)^T$,
+
+$$
+\langle X\rangle=2\operatorname{Re}(\overline\alpha\beta),\quad
+\langle Y\rangle=2\operatorname{Im}(\overline\alpha\beta),\quad
+\langle Z\rangle=|\alpha|^2-|\beta|^2,
+$$
+
+The matrices used here are
+
+$$
+X=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+Y=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+$$
+
+Multiplying Y by the vector gives $-i\overline\alpha\beta+i\overline\beta\alpha=2\operatorname{Im}(\overline\alpha\beta)$, proving the displayed positive sign. For Ry(θ) followed by P(φ), $\alpha=\cos(\theta/2)$ and $\beta=e^{i\phi}\sin(\theta/2)$. Thus X, Y and Z means are respectively $\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta$. Swapping complex-conjugation order would reverse the Y sign.
+
+```python
+theta, phi = .9, .63
+nativeH = .7*fq.X(0)-.2*fq.Y(0)+1.3*fq.Z(0)
+qubit, _, m = query(fq.Circuit(1,dtype=b.D).ry(0,theta).p(0,phi),
+                    {'x':fq.X(0),'y':fq.Y(0),'z':fq.Z(0),'h':nativeH})
+for name,A,formula in [('x',o.X,math.sin(theta)*math.cos(phi)),
+                       ('y',o.Y,math.sin(theta)*math.sin(phi)),
+                       ('z',o.Z,math.cos(theta))]:
+    quadratic = torch.vdot(qubit,A@qubit)
+    assert abs(quadratic.imag.item()) < b.ATOL
+    assert abs(quadratic.real.item()-formula) < b.ATOL
+    torch.testing.assert_close(m[name],quadratic.real,rtol=0,atol=b.ATOL)
+print('X/Y/Z means:',*(f'{m[name]:.6f}' for name in ('x','y','z')))
+```
+```text
+X/Y/Z means: 0.632950 0.461493 0.621610
+```
+
+<span id="formula-code-6-3-spectrum"></span>
+
+### 3. Translate a non-diagonal observable without treating its mean as an outcome
+
+Take the dimensionless example $H=.7X-.2Y+1.3Z$. The symbol H here names this illustrative observable, rather than a physical device calibration.
+
+**Formula and derivation.** Direct multiplication of the displayed matrices gives $X^2=Y^2=Z^2=I$, $XY=-YX=iZ$, $YZ=-ZY=iX$ and $ZX=-XZ=iY$. Expanding H squared produces the three squared terms and cross terms proportional to $XY+YX$, $XZ+ZX$ and $YZ+ZY$; each cross term is zero by those identities. Consequently
+$H^2=(.7^2+.2^2+1.3^2)I=r^2I$, where $r=\sqrt{2.22}>0$. Its two spectral projectors are
+
+$$
+P_-=\frac{I-H/r}{2},\qquad P_+=\frac{I+H/r}{2},\qquad
+\lambda_-=-r,\quad\lambda_+=r.
+$$
+
+They are Hermitian because H is. Squaring $(I\pm H/r)/2$ and using $H^2/r^2=I$ proves idempotence. Their product is zero and their sum is I. Also $HP_\pm=\pm rP_\pm$, and $rP_+-rP_-=H$. This explicitly proves the claimed spectral family, rather than trusting a numerical eigensolver.
+
+The prediction is $\langle H\rangle=-rp_-+rp_+$. The code compares these probabilities and weights with both a dense quadratic form and the actual native Pauli-sum request. An arbitrary dense Hermitian matrix is evaluated classically here; no native general-matrix expectation API is claimed.
+
+```python
+r = math.sqrt(.7**2+.2**2+1.3**2)
+P = ((o.I-o.H/r)/2,(o.I+o.H/r)/2)
+eigenvalues = (-r,r)
+spectral, probabilities = o.spectral_mean(qubit,eigenvalues,P,('minus','plus'))
+explicit = sum(value*prob for value,prob in zip(eigenvalues,probabilities))
+quadratic = torch.vdot(qubit,o.H@qubit).real
+torch.testing.assert_close(spectral,explicit,rtol=0,atol=b.ATOL)
+torch.testing.assert_close(spectral,quadratic,rtol=0,atol=b.ATOL)
+torch.testing.assert_close(spectral,m['h'],rtol=0,atol=b.ATOL)
+print('H eigenvalues:',*(f'{x:.6f}' for x in eigenvalues))
+print('Spectral probabilities:',*(f'{x:.6f}' for x in probabilities),'; expectation:',f'{spectral:.6f}')
+```
+```text
+H eigenvalues: -1.489966 1.489966
+Spectral probabilities: 0.111112 0.888888 ; expectation: 1.158859
+```
+
+<span id="formula-code-6-3-degenerate"></span>
+
+### 4. Group degenerate eigenvalues and retain correlations
+
+For two qubits, $Z_0Z_1=Z\otimes Z$ has eigenvalue +1 on |00⟩,|11⟩ and −1 on |01⟩,|10⟩.
+
+**Formula.**
+
+$$
+P_{\mathrm{even}}=|00\rangle\langle00|+|11\rangle\langle11|,\qquad
+P_{\mathrm{odd}}=I-P_{\mathrm{even}},\qquad
+\langle Z_0Z_1\rangle=p_{\mathrm{even}}-p_{\mathrm{odd}}.
+$$
+
+**Derivation.** Apply Z to each computational factor: each 1 contributes a minus sign, so the product is $(-1)^{b_0+b_1}$. Grouping equal signs gives the rank-two projectors and the expectation formula. It also yields the scalar check $\sum_j(-1)^{\operatorname{popcount}(j)}p_j$ using the full register index convention.
+
+A basis inside either eigenspace is not unique. If its orthonormal basis columns are B and another basis is BR for a unitary R, then $(BR)(BR)^\dagger=BRR^\dagger B^\dagger=BB^\dagger$. The spectral projector, probability and mean are therefore invariant under that internal basis choice. Different rank-one refinements might imply different disturbances; that separate point from 6.2 does not change their equal-value mean.
+
+For $|\Phi_\phi\rangle=(|00\rangle+e^{i\phi}|11\rangle)/\sqrt2$, local Z means vanish but $\langle Z_0Z_1\rangle=1$. A product's expectation is not generally a product of expectations. The XX and YY means are $\cos\phi$ and $-\cos\phi$, preserving relative-phase information.
+
+```python
+bell, pbell, bm = query(fq.Circuit(2,dtype=b.D).h(0).cx(0,1).p(0,.6),
+                         {'z0':fq.Z(0),'z1':fq.Z(1),'zz':fq.Z(0)@fq.Z(1),
+                          'xx':fq.X(0)@fq.X(1),'yy':fq.Y(0)@fq.Y(1)})
+parity, labels = b.parity_family(2)
+zz, probabilities = o.spectral_mean(bell,(1,-1),parity,labels)
+scalar = sum((-1)**j.bit_count()*pbell[j] for j in range(4))
+torch.testing.assert_close(zz,scalar,rtol=0,atol=b.ATOL)
+torch.testing.assert_close(zz,bm['zz'],rtol=0,atol=b.ATOL)
+# Rotate an orthonormal basis within the even eigenspace; its projector is unchanged.
+u = torch.tensor([1,0,0,1j],dtype=b.D)/math.sqrt(2)
+w = torch.tensor([1,0,0,-1j],dtype=b.D)/math.sqrt(2)
+rotated = torch.outer(u,u.conj())+torch.outer(w,w.conj())
+torch.testing.assert_close(rotated,parity[0],rtol=0,atol=b.ATOL)
+assert abs(bm['zz'].item()-bm['z0'].item()*bm['z1'].item()-1)<b.ATOL
+print(f'ZZ mean {zz:.6f}; product of local Z means {bm["z0"]*bm["z1"]:.6f}; even probability {probabilities[0]:.6f}.')
+print(f'XX {bm["xx"]:.6f}; YY {bm["yy"]:.6f}; internal eigenbasis rotation preserves the even projector.')
+```
+```text
+ZZ mean 1.000000; product of local Z means 0.000000; even probability 1.000000.
+XX 0.825336; YY -0.825336; internal eigenbasis rotation preserves the even projector.
+```
+
+<span id="formula-code-6-3-support"></span>
+
+### 5. Translate qubit support separately from matrix tensor order
+
+**Formula.** In the established q0-leftmost three-qubit basis, the observable
+
+$$
+A_3=.6X_0Y_2-.4Z_1
+=.6(X\otimes I\otimes Y)-.4(I\otimes Z\otimes I)
+$$
+
+has expectation $\psi^\dagger A_3\psi$. The omitted qubit in each term contributes an identity, rather than being deleted from the register.
+
+**Derivation.** Acting on each tensor-basis state applies the named local matrix to its declared factor. Extending by linearity gives the displayed full-register matrix and its quadratic form. Operators on disjoint qubits commute as tensor factors, so naming Y(q2) first does not make it the leftmost dense tensor factor. Dense order is determined by the register convention.
+
+**API contract.** For native Observable objects, @ constructs products on **disjoint** qubits, + and − form real sums, and * multiplies by a real scalar. Observable @ Observable is not unrestricted same-qubit matrix multiplication; observable * observable is unsupported. These conventions were checked in the released API before execution. The code uses reversed, nonadjacent native support and compares with an independently indexed preparation and the explicit dense spectral reference.
+
+```python
+factors = b.complex_factors(3)
+circuit = fq.Circuit(3,dtype=b.D)
+for q,factor in enumerate(factors):
+    circuit.unitary(q,unitary=b.prepare_matrix(torch.tensor(factor,dtype=b.D)))
+circuit.ry(1,.27).cx(2,0).p(2,-.52)
+nativeA = .6*(fq.Y(2)@fq.X(0))-.4*fq.Z(1)
+register, _, values = query(circuit,{'a':nativeA})
+A = .6*torch.kron(torch.kron(o.X,o.I),o.Y)-.4*torch.kron(torch.kron(o.I,o.Z),o.I)
+weights, projectors, names = o.numerical_spectrum(A)
+spectral3, _ = o.spectral_mean(register,weights,projectors,names)
+torch.testing.assert_close(spectral3,values['a'],rtol=0,atol=b.ATOL)
+torch.testing.assert_close(spectral3,o.dense_mean(register,A),rtol=0,atol=b.ATOL)
+print(f'Nonadjacent Y(q2) @ X(q0), with local Z(q1) term: expectation {spectral3:.6f}.')
+```
+```text
+Nonadjacent Y(q2) @ X(q0), with local Z(q1) term: expectation 0.441497.
+```
+
+<span id="formula-code-6-3-linearity"></span>
+
+### 6. Prove linearity without inventing simultaneous outcomes
+
+**Formula.** For Hermitian A,B and real scalars s,t,
+
+$$
+\langle sA+tB\rangle
+=\psi^\dagger(sA+tB)\psi
+=s\langle A\rangle+t\langle B\rangle.
+$$
+
+**Derivation and boundary.** Distribute the middle matrix and scalar multiplication in the inner product. Real coefficients keep the sum Hermitian. This proof requires no commutation between A and B. It therefore establishes equality of expectations, not the existence of a joint measurement assigning both values simultaneously to each system.
+
+For X+Z, $(X+Z)^2=2I$ and trace zero gives eigenvalues ±√2. These are not the candidate sums −2,0,+2 of two hypothetical simultaneous Pauli outcomes. Separately estimating term means is a possible experimental strategy, but its shot allocation, covariance and uncertainty need additional analysis in later sections. A native exact simulator request does not supply that experimental analysis.
+
+```python
+state, _, lm = query(fq.Circuit(1,dtype=b.D).ry(0,.31),
+                       {'x':fq.X(0),'z':fq.Z(0),'sum':fq.X(0)+fq.Z(0)})
+torch.testing.assert_close(lm['sum'],lm['x']+lm['z'],rtol=0,atol=b.ATOL)
+torch.testing.assert_close(lm['sum'],o.dense_mean(state,o.X+o.Z),rtol=0,atol=b.ATOL)
+spectrum = torch.linalg.eigvalsh(o.X+o.Z)
+torch.testing.assert_close(spectrum,torch.tensor([-math.sqrt(2),math.sqrt(2)],dtype=torch.float64),rtol=0,atol=b.ATOL)
+print(f'Linearity: mean(X+Z) = mean(X)+mean(Z) = {lm["sum"]:.6f}.')
+print('Spectrum of X+Z: -sqrt(2), +sqrt(2); not the set -2, 0, +2 from adding hypothetical simultaneous Pauli outcomes.')
+```
+```text
+Linearity: mean(X+Z) = mean(X)+mean(Z) = 1.257392.
+Spectrum of X+Z: -sqrt(2), +sqrt(2); not the set -2, 0, +2 from adding hypothetical simultaneous Pauli outcomes.
+```
+
+<span id="formula-code-6-3-range"></span>
+
+### 7. Preserve units and bound the mean using the spectrum
+
+**Formula.** Since $p_a\ge0$ and $\sum_ap_a=1$,
+
+$$
+\lambda_{\min}\le\sum_a\lambda_ap_a\le\lambda_{\max}.
+$$
+
+**Derivation.** Multiply each inequality $\lambda_{\min}\le\lambda_a\le\lambda_{\max}$ by nonnegative $p_a$ and sum. This proves a convex spectral bound for a normalized input. It does not make every mean a spectral outcome. For an affine recalibration $A'=sA+tI$, the same projectors give weights $\lambda'_a=s\lambda_a+t$ and $\langle A'\rangle=s\langle A\rangle+t$. Negative s reverses spectral order but does not invalidate the identity.
+
+A physical unit belongs consistently to both the matrix and its eigenvalue weights; probabilities are dimensionless. For illustration only, interpret the preceding H entries in meV, shift all energies by +0.25 meV and convert to eV with $1\,\mathrm{meV}=10^{-3}\,\mathrm{eV}$. The code verifies the identical probability weights and converted spectral mean. This is an explicitly declared example unit, not an inferred device Hamiltonian.
+
+```python
+# Treat H and its eigenvalues as an illustrative energy in meV; no physical calibration is implied.
+shift_meV = .25
+energy_eV = (spectral+shift_meV)*1e-3
+weights_eV = tuple((value+shift_meV)*1e-3 for value in eigenvalues)
+converted, same_prob = o.spectral_mean(qubit,weights_eV,P,('minus','plus'))
+torch.testing.assert_close(converted,energy_eV,rtol=0,atol=b.ATOL)
+torch.testing.assert_close(same_prob,b.born(qubit,P,('minus','plus')),rtol=0,atol=b.ATOL)
+assert -r-b.ATOL <= spectral.item() <= r+b.ATOL
+print(f'Original illustrative H mean {spectral:.6f} meV; after +0.25 meV and conversion: {energy_eV:.9f} eV.')
+print('The eigenprojectors and their probabilities are unchanged; every outcome value uses the same declared energy conversion.')
+```
+```text
+Original illustrative H mean 1.158859 meV; after +0.25 meV and conversion: 0.001408859 eV.
+The eigenprojectors and their probabilities are unchanged; every outcome value uses the same declared energy conversion.
+```
+
+<span id="formula-code-6-3-contracts"></span>
+
+### 8. Validate observables and numerical spectra before interpreting a result
+
+**Contract.** The observable must be a finite Hermitian matrix on the same Hilbert space as the normalized state. The eigenvalue list must contain finite real values, one for each declared projector. The helper rejects complex weights, Boolean values masquerading as eigenvalues, malformed shapes and non-Hermitian matrices; it does not repair them by replacing A with $(A+A^\dagger)/2$ or normalizing an input.
+
+The classical numerical reference uses torch.linalg.eigh after Hermiticity validation. It reconstructs A and verifies the resulting complete projector family. It uses rank-one column labels, **without** merging nearby eigenvalues by a tolerance or claiming a canonical eigenbasis at degeneracy. The spectral-mean identity is invariant under phase choices for the eigenvectors and unitary rotations inside an exactly degenerate eigenspace, as proved above. Floating residual tests do not certify exact degeneracy or an interval error bound. A tiny imaginary quadratic-form residual is checked explicitly before the real part is returned.
+
+```python
+assert o.invalid_checks() == 10
+weights, projectors, labels = o.numerical_spectrum(o.H)
+numerical, _ = o.spectral_mean(qubit,weights,projectors,labels)
+torch.testing.assert_close(numerical,spectral,rtol=0,atol=b.ATOL)
+assert calls == 5
+print('10 invalid contracts rejected; analytic and numerical spectra agree; five actual native body circuits.')
+print('Exact expectations are deterministic model values, not individual outcomes, finite-shot estimates or a hardware measurement recipe.')
+```
+```text
+10 invalid contracts rejected; analytic and numerical spectra agree; five actual native body circuits.
+Exact expectations are deterministic model values, not individual outcomes, finite-shot estimates or a hardware measurement recipe.
+```
+
+### Complete program and expected output
+
+Run the [complete example](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/observables.py):
+
+    python examples/foundations/observables.py
+
+It executes 41 actual native statevector circuits: 15 single-qubit angle pairs, 17 two-qubit inputs/phases and nine three-qubit inputs. Checks compare native exact means, closed amplitudes, analytic projectors, scalar parity sums, dense quadratic forms and numerical spectral reconstruction. This is implementation evidence; the full proof does not depend on the tested sample size.
+
+Run the body/output checker:
+
+    python scripts/check_observables_prose.py
+
+It executes all eight cumulative snippets, with five native circuit calls, then the complete program, checking their exact expected outputs.
+
+Expected output of the complete program:
+
+```text
+15 single-qubit circuits: X/Y/Z signs, closed amplitudes and native/analytic-spectral/dense H expectations passed.
+17 two-qubit circuits: degenerate ZZ projectors, parity signs, XX/YY correlations and native/numerical-spectral/dense sums passed.
+9 three-qubit circuits: reversed nonadjacent Pauli supports, independently indexed states and dense spectral means passed.
+10 malformed observable/state/eigenvalue contracts rejected; no Hermitian or state normalization repair.
+41 actual CPU complex128 circuits; native exact expectations, not single-shot outcomes, a hardware measurement protocol or an interval certificate.
+```
+
+### Understanding checks and transfer exercises
+
+**6.3-A — New complex coefficients.** Prepare a two-qubit complex product and apply Ry(q0,θ),CX(q0,q1),P(q1,−.39). For $A=.41Y_0X_1-.23X_0Z_1+.17Z_1$, compare the native Pauli-sum expectation with a numerical spectral sum and a dense quadratic form. Explain why no eigensolver phase alignment is required.
+
+**6.3-B — Larger reversed support.** On four qubits, test $.31Y_3X_0-.27Z_2+.12X_1$ after Ry(q2,.33),CX(q3,q0),P(q0,−.46). Write the full tensor matrix in q0-leftmost order. Check all basis inputs and a complex product against an independently indexed preparation.
+
+**6.3-C — Outcome or expectation?** Can Z measurement have an individual outcome 0 on a qubit in |+⟩? What is its mean? Why does $\langle X+Z\rangle=\langle X\rangle+\langle Z\rangle$ not imply a joint per-shot assignment of X and Z values?
+
+**6.3-D — Units and an offset.** Change the illustrative H calibration to $H'=-2H+.5I$, all in meV. Give its eigenvalues and mean in eV. Do the probabilities change? What if a numerical solver returns different eigenvectors inside a degenerate subspace?
+
+<details markdown="1">
+<summary>Answers and reasoning for 6.3</summary>
+
+**A.** Use $Y\otimes X$, $X\otimes Z$ and $I\otimes Z$ in the dense matrix. Its Hermitian eigensolver yields columns $v_j$, probabilities $|\langle v_j|\psi\rangle|^2$ and weights $\lambda_j$. Replacing a column by $e^{i\chi_j}v_j$ leaves $v_jv_j^\dagger$ and the squared overlap unchanged. Three fresh angles are checked in the separate author transfer; that execution is not independent review.
+
+**B.** The matrix is $.31(X\otimes I\otimes I\otimes Y)-.27(I\otimes I\otimes Z\otimes I)+.12(I\otimes X\otimes I\otimes I)$. Native Y(q3) @ X(q0) still names this q0-leftmost matrix. The transfer checks sixteen basis inputs and one complex product, for twenty transfer circuits together with A.
+
+**C.** Z has only outcomes +1 and −1, each with probability 1/2 for |+⟩, giving mean zero. Linearity follows from inner-product distributivity without any joint probability assumption. In particular X+Z has eigenvalues ±√2, not −2,0,+2.
+
+**D.** With the original eigenvalues ±r, the new eigenvalues are $.5\mp2r$ meV, or $10^{-3}(.5\mp2r)$ eV; their order reverses under the negative multiplier. The mean is $10^{-3}(.5-2\langle H\rangle)$ eV. Projectors and their probabilities remain unchanged, up to relabeling. Degenerate eigenspace rotations preserve the grouped projector; individual refined probabilities may change but their equal-weight sum does not.
+
+</details>
+
+### Sources, depth and next step
+
+The frozen source target is Nielsen and Chuang, 10th Anniversary Edition (2010), §2.2.5, beginning at printed page 87; its assigned locator is retained without claiming fresh inspection of the user-local PDF. A publicly accessible author source checked for this section is [John Preskill, Caltech Chapter 2, §2.1](https://www.preskill.caltech.edu/ph219/chap2_15.pdf), equations (2.4)–(2.9), PDF pages 5–6; its served header says July 2015. These give the finite spectral/projective setup and weighted expectation identity. Our proof and worked translations are supplied above; mixed-state formulas and statistical estimators are deferred.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.3.json) keeps author checks distinct from independent mathematics/implementation review and reader trials, which remain pending. Continue, when drafted, with [6.4 Measuring in another basis](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-4).

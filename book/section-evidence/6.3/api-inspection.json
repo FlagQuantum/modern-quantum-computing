@@ -1,0 +1,33 @@
+{
+  "runtime": {
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0",
+    "numpy": "2.5.4"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "expectation": {
+    "signature": "(observable: 'Observable', *, name: 'str | None' = None) -> 'OutputRequest'",
+    "source_sha256": "3352ea2a2475e16e1e38dfed4b13d8a72257ddfddd391970c29bfe2f233d9ed8"
+  },
+  "run": {
+    "signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+    "source_sha256": "a9b43ad881e7b3a32433a04dae54a0bf9978ca99bc5dbb815405ee1e85493b68"
+  },
+  "Observable": {
+    "signature": "(terms: 'tuple[_PauliTerm, ...]') -> None",
+    "source_sha256": "7fef56f9907962249d6ea785db64fcd814f8498bb9ba1ad8fe908ed53cacd6a6"
+  },
+  "X": {
+    "signature": "(qubit: 'int | None | Omitted' = OMITTED, *, wire: 'int | None | Omitted' = OMITTED) -> 'Observable'",
+    "source_sha256": "cbb88dbeb4caa842102bbd3f0291b081af61a7f2a0b36fa84f34249f638a32b3"
+  },
+  "Y": {
+    "signature": "(qubit: 'int | None | Omitted' = OMITTED, *, wire: 'int | None | Omitted' = OMITTED) -> 'Observable'",
+    "source_sha256": "7834fe2c2debce03c8287d80db71d6e5768151e8b5bcaae536ea58a3d3bd1e1a"
+  },
+  "Z": {
+    "signature": "(qubit: 'int | None | Omitted' = OMITTED, *, wire: 'int | None | Omitted' = OMITTED) -> 'Observable'",
+    "source_sha256": "2f1e30972b525f1d354c5dc8359fa74d2008838d8e741189e452b3b3842b8cfc"
+  },
+  "note": "API source inspection plus actual native requests in body/complete/transfer; unsupported Observable * Observable probe happened before circuit execution. Correct disjoint product syntax is @."
+}

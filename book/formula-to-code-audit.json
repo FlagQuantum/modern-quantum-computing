@@ -149,5 +149,11 @@
     "command": "python scripts/check_conditional_states_prose.py",
     "record": "book/section-records/6.2.json",
     "status": "author-verified draft"
+  },
+  "new_section_6_3": {
+    "units": 8,
+    "command": "python scripts/check_observables_prose.py",
+    "record": "book/section-records/6.3.json",
+    "status": "author-verified draft"
   }
 }

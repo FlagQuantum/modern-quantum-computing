@@ -1,0 +1,112 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-measurement-expectation-values-and-statistical-estimation-3",
+  "ref": "6.3",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+  "depth": "F",
+  "result": "Spectral expectation identity",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-1",
+    "sec-complex-vectors-operators-and-numerical-reasoning-5"
+  ],
+  "assumptions": [
+    "Finite Hermitian observable, normalized pure global state and projective spectral measurement.",
+    "Native real Pauli sums on declared register support; numerical spectra are explicit classical references."
+  ],
+  "proof_obligations": [
+    "Real spectral weights and complete orthogonal Born probabilities.",
+    "Full weighted-eigenvalue to inner-product identity and reality.",
+    "Analytic tilted-qubit spectral projectors from H squared.",
+    "Degenerate projector grouping, internal-basis invariance and correlated-product counterexample.",
+    "Local support versus dense tensor-factor order.",
+    "Linearity without assuming simultaneous noncommuting outcomes.",
+    "Convex spectral bounds and affine unit conversion.",
+    "Hermitian/normalized-state contracts; numerical eigendecomposition does not certify exact degeneracy or intervals."
+  ],
+  "formula_code_units": [
+    "formula-code-6-3-outcomes",
+    "formula-code-6-3-quadratic",
+    "formula-code-6-3-spectrum",
+    "formula-code-6-3-degenerate",
+    "formula-code-6-3-support",
+    "formula-code-6-3-linearity",
+    "formula-code-6-3-range",
+    "formula-code-6-3-contracts"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.2.5",
+      "edition": "10th Anniversary Edition (2010)",
+      "printed_page_start": 87,
+      "inspection": "Assigned locator retained; no fresh user-local PDF inspection claimed."
+    },
+    {
+      "author": "John Preskill",
+      "url": "https://www.preskill.caltech.edu/ph219/chap2_15.pdf",
+      "served_header_update": "July 2015",
+      "locator": "Section 2.1, equations (2.4)-(2.9), PDF pages 5-6",
+      "inspection": "Official author public PDF inspected this session for the finite spectral and mean identity."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/observables.py",
+    "command": "python examples/foundations/observables.py",
+    "prose_check_command": "python scripts/check_observables_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 41,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 5,
+    "separate_transfer_circuits": 20,
+    "execution_ledger": {
+      "complete": 41,
+      "body_assembly": 5,
+      "body_plus_complete_checker": 46,
+      "separate_transfer": 20,
+      "total_section63_circuits": 112,
+      "note": "API multiplication probe executed zero circuits. Previous-section regression and future remote CI counted separately."
+    },
+    "checks": [
+      "15 single-qubit closed-state/X/Y/Z/analytic-spectrum cases.",
+      "17 two-qubit phase/basis/complex cases; degenerate parity and correlated Pauli expectations.",
+      "9 three-qubit basis/complex cases with reversed nonadjacent support.",
+      "20 fresh two/four-qubit cases checked by scalar quadratic sums and indexed preparations.",
+      "10 malformed contracts rejected; actual cumulative body stdout matches."
+    ],
+    "tolerance": "Absolute 1e-12, relative zero; no state/Hermitian repair or eigenspace clustering; no interval certificate.",
+    "unplanned_example_execution_failures": "None; unsupported product syntax discovered in pre-execution API inspection is recorded separately.",
+    "limitations": "Native exact real Pauli-sum expectations; general dense spectra are classical checks. No shot statistics, hardware readout recipe, mixed-state update or native general-matrix expectation claim.",
+    "script_sha256": "f45eed25ed43fce90417c6eb12063de270c488f396e681833535eaeb7b282bf1"
+  },
+  "assessment": {
+    "tasks": [
+      "6.3-A new complex coefficients",
+      "6.3-B larger reversed support",
+      "6.3-C expectation versus outcome",
+      "6.3-D units and offset"
+    ],
+    "answers": "Supplied; reader trial not run."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Eight actual cumulative body units and exact expected outputs, complete 41-circuit program, 20 new transfer cases and scoped 6.2 regression passed. Strict new site build, all 71 local page links and actual browser including expanded answers passed. Frozen scope/prerequisites/depth unchanged."
+  },
+  "production": {
+    "next_draft": "6.4 Measuring in another basis",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Actual local IAB 1280x720 screenshots checked weighted-spectral/quadratic identity, reality, all three explicit Pauli matrices and Y sign, tilted-H projectors, and final expanded answers including four-qubit tensors and affine eigenvalue conversion. No garbling or clipping in inspected formulas.",
+    "final_clarification": "Expanded the Pauli matrices and opposite-order cross products after example execution. All Python/text fenced fragments stayed byte-identical; no unnecessary circuit rerun."
+  }
+}

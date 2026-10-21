@@ -1,0 +1,32 @@
+{
+  "section": "6.3",
+  "state": "author-verified draft",
+  "complete_circuits": 41,
+  "body_fragments": 8,
+  "body_circuits": 5,
+  "separate_transfer_circuits": 20,
+  "execution_ledger": {
+    "complete": 41,
+    "body_assembly": 5,
+    "body_plus_complete_checker": 46,
+    "separate_transfer": 20,
+    "total_section63_circuits": 112,
+    "note": "API multiplication probe executed zero circuits. Previous-section regression and future remote CI counted separately."
+  },
+  "invalid_contracts": 10,
+  "example_execution_failures": "None",
+  "api_probe": "Unsupported observable * observable rejected before execution; @ contract inspected and used.",
+  "strict_build": "passed",
+  "links": "71 pages; all local links/fragments resolve; unique IDs",
+  "formula_display": "Actual local IAB 1280x720 screenshots checked weighted-spectral/quadratic identity, reality, all three explicit Pauli matrices and Y sign, tilted-H projectors, and final expanded answers including four-qubit tensors and affine eigenvalue conversion. No garbling or clipping in inspected formulas.",
+  "details_render": {
+    "rendered_pages": 71,
+    "details_blocks": 18,
+    "math_wrappers_in_details": 77,
+    "raw_answer_markup_findings": [],
+    "note": "StaticHTMLparsecheck;visualformulaQAseparatelysampled6.1and5.8."
+  },
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

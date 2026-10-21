@@ -1,0 +1,23 @@
+{
+  "examples/foundations/observables.py": "f45eed25ed43fce90417c6eb12063de270c488f396e681833535eaeb7b282bf1",
+  "scripts/check_observables_prose.py": "35732827f955da402dfa9cd792c644eb9e59504613416ed6b61b6cb57eb1841c",
+  "book/section-records/6.3.json": "19824c501eccc07b1217b995277002364adfdfd79b0b9530e446630c2ccebfc7",
+  "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md": "8b16082fe73cce9723b3a25dc9fa6d4ee74700ac03bace3f36c6a07b34cdeacb",
+  "book/section-evidence/6.3/api-inspection.json": "fc3d2d3652ff1fc9e0ae8d5515a29be64525db72406b160db887fa9ae38dfc6f",
+  "book/section-evidence/6.3/api-probe-note.json": "6a4668ec304425143e60fda1342c7eb23544799e6e8803599f8014a15a81e00a",
+  "book/section-evidence/6.3/body-assembly.stdout.txt": "e0fbe6bd4cf8ffdaa1582070e997fe5b04d1fa14bc071c4d6b6f4599e3645c38",
+  "book/section-evidence/6.3/build.stderr.txt": "30e21cc6b874f714277cc4dd564d2d75d8dc30e270aaa97b6ef990a0b7c0673a",
+  "book/section-evidence/6.3/build.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/6.3/complete.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/6.3/complete.stdout.txt": "b22111511121b918928c1f44fd59a06dfec1175731bd90ef21380ddb71da5e97",
+  "book/section-evidence/6.3/details-render.stdout.json": "5b04da51d3cf7787b0366acaa4afff2509c902e26eaca940fc00d23aed2ad416",
+  "book/section-evidence/6.3/links.stdout.txt": "20bffb5a15a78bb0c5bf00a0188c1b1134343386667359661286d25365ecd1a8",
+  "book/section-evidence/6.3/prose.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/6.3/prose.stdout.txt": "8522a51bfd97a794882342e62756f392f732d15db7eea26ca33f5507045541f0",
+  "book/section-evidence/6.3/regression62.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/6.3/regression62.stdout.txt": "5f4c9f67626ba453685216c603cd0f5287d9be354679700faa9d3b814f751c50",
+  "book/section-evidence/6.3/transfer.py": "a82b36b5f1d58ba7e1497928430a72b86fe70f1820978f0a0e04fef91e42a9f7",
+  "book/section-evidence/6.3/transfer.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/6.3/transfer.stdout.txt": "93991c4a5dc3faa9612295313ff97334618629ffac04ad7422285167efba46d5",
+  "book/section-evidence/6.3/validation.json": "cf232d0279278aa5508318ddb038d58146985d7d3776f26f74cfe7b61e638256"
+}

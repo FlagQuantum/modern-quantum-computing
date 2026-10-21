@@ -47,6 +47,29 @@
       ],
       "status": "draft",
       "next_transition": "6.3 Observables, spectra, and expectations."
+    },
+    {
+      "ref": "6.3",
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-3",
+      "title": "Observables, spectra, and expectations",
+      "depth": "F",
+      "requires": [
+        "sec-measurement-expectation-values-and-statistical-estimation-1",
+        "sec-complex-vectors-operators-and-numerical-reasoning-5"
+      ],
+      "question": "How do real spectral outcome values and Born probabilities produce an expectation, and how does that identity map to native FlagQuantum observables?",
+      "entry": "6.1 complete projective probabilities; 2.5 finite Hermitian spectral theorem and degenerate subspaces.",
+      "exit": "Prove the weighted-spectral/quadratic identity, reality, spectral bounds and real linearity; distinguish outcome, expectation, correlated product and measurement protocol.",
+      "worked_case": "Z readout; complex Pauli-Y signs; tilted H; degenerate ZZ; reversed nonadjacent Pauli support; noncommuting sum and affine units.",
+      "boundary": "Finite normalized pure inputs and Hermitian observables; native real Pauli sums, explicit classical spectra. No general hardware readout protocol, variance/shot statistics or mixed-state expectations.",
+      "code_plan": "Actual fq.expectation named requests and result.expectation; @ on disjoint observables, * real scalar; dense and explicit-projector checks.",
+      "independent_check": "Closed one-qubit amplitudes/means and analytic H projectors; scalar parity sums; indexed preparations and numerical spectral reconstructions.",
+      "transfer_task": "New complex Hermitian two-qubit Pauli sum and reversed nonadjacent four-qubit support.",
+      "source_locators": [
+        "NC:2.2.5"
+      ],
+      "status": "draft",
+      "next_transition": "6.4 Measuring in another basis."
     }
   ]
 }

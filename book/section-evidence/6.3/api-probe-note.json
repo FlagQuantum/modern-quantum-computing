@@ -1,0 +1,6 @@
+{
+  "observation": "Inspection of the released Observable class establishes real scalar multiplication with *, disjoint-qubit tensor products with @, and real sums with +/-.",
+  "initial_probe": "A trial Observable * Observable expression raised TypeError before any circuit execution; no supported API or mathematical failure claimed.",
+  "resolution": "Read actual __matmul__ and __mul__ implementations, use @ for disjoint support and scalar * for coefficients, then execute all final examples.",
+  "circuits_executed_by_probe": 0
+}

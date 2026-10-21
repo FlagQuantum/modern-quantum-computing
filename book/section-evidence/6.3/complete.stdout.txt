@@ -1,0 +1,5 @@
+15 single-qubit circuits: X/Y/Z signs, closed amplitudes and native/analytic-spectral/dense H expectations passed.
+17 two-qubit circuits: degenerate ZZ projectors, parity signs, XX/YY correlations and native/numerical-spectral/dense sums passed.
+9 three-qubit circuits: reversed nonadjacent Pauli supports, independently indexed states and dense spectral means passed.
+10 malformed observable/state/eigenvalue contracts rejected; no Hermitian or state normalization repair.
+41 actual CPU complex128 circuits; native exact expectations, not single-shot outcomes, a hardware measurement protocol or an interval certificate.
