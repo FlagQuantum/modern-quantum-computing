@@ -1,6 +1,6 @@
 # 3. Single-Qubit States and Rotations
 
-**Working draft: sections 3.1–3.3 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, all pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working draft: sections 3.1–3.4 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, all pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-single-qubit-states-and-rotations-1"></span>
 
@@ -619,4 +619,190 @@ Absolute tolerance is $10^{-12}$ with zero relative tolerance for these unit-sca
 
 Assigned sources: Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), [NC:1.2](../references/proof-sources.md#source-nc-1-2), especially **printed p.15, Eqs.(1.3)–(1.4)** for the half-angle representative, and [NC:2.1.3](../references/proof-sources.md#source-nc-2-1-3), **printed p.65, Figure 2.2** for the Pauli matrix conventions. These locations were consulted. The coordinate/inverse proofs, numerical checks, exercises and sphere illustration here are original exposition; no textbook page or figure is reproduced.
 
-Depth **F**: the representative, quadratic components, unit-sphere identity, inverse and uniqueness on rays are derived, including pole cases. This is pure-state geometry in a chosen basis, not a physical measurement of all three coordinates from one qubit, a mixed-state treatment or a generalization to arbitrary multi-qubit states. See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.3.json) for author execution and pending independent reviews. Next: [3.4 Closed-system evolution and generators](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-4).
+Depth **F**: the representative, quadratic components, unit-sphere identity, inverse and uniqueness on rays are derived, including pole cases. This is pure-state geometry in a chosen basis, not a physical measurement of all three coordinates from one qubit, a mixed-state treatment or a generalization to arbitrary multi-qubit states. See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.3.json) for author execution and pending independent reviews. Continue with the working draft [3.4 Closed-system evolution and generators](#sec-single-qubit-states-and-rotations-4).
+
+<span id="sec-single-qubit-states-and-rotations-4"></span>
+
+## 3.4 Closed-system evolution and generators
+
+A normalized state describes a qubit at an instant. To predict a later state we need an additional physical assumption about dynamics. Normalization alone does not specify how the amplitudes change, how quickly they change, or which matrix describes a particular device.
+
+The prerequisites are [3.1](#sec-single-qubit-states-and-rotations-1), for pure states and phase equivalence, and [2.6](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-6), for Hermitian matrix exponentials and their derivatives. The earlier mathematics establishes what a proposed exponential does; this section supplies its physical interpretation and derives the generator of a differentiable unitary evolution.
+
+### Adopt unitary evolution, then specify the model
+
+**Closed-system evolution postulate.** Between the times under consideration, a closed quantum system evolves by a complex-linear unitary map. Write
+
+$$
+|\psi(t)\rangle=U(t)|\psi(0)\rangle,\qquad
+U(t)^\dagger U(t)=U(t)U(t)^\dagger=I,\qquad U(0)=I.
+$$
+
+Here $U(t)$ abbreviates evolution from the fixed reference time zero to $t$. The same operator acts on every allowed initial state. “Closed” refers to the system included in the model: interactions with omitted systems cannot simply be ignored without justification. The ideal model excludes intermediate measurements. Effective control Hamiltonians may describe a driven qubit under additional approximations; a simulator's norm check does not establish those approximations for hardware.
+
+We adopt this postulate; we do not derive it from the computational-basis probability rule. Unitarity implies preservation of every inner product:
+
+$$
+\langle U\phi|U\psi\rangle
+=\langle\phi|U^\dagger U|\psi\rangle
+=\langle\phi|\psi\rangle.
+$$
+
+In particular it preserves normalization and orthogonality. Preserving the norm of just one chosen input does not establish this all-input operator property.
+
+### Differentiate the operator, not just one trajectory
+
+Assume every entry of $U(t)$ is differentiable with respect to real time. A dot denotes this derivative. Finite matrices obey the ordinary product rule entry by entry, and differentiating an adjoint gives the adjoint of the derivative. Differentiating $UU^\dagger=I$ therefore gives
+
+$$
+\dot U U^\dagger+U\dot U^\dagger=0.
+$$
+
+Let $\hbar>0$ denote the reduced Planck constant and define the time-local generator in energy units by
+
+$$
+\mathcal H(t)=i\hbar\dot U(t)U(t)^\dagger.
+$$
+
+This script letter denotes the **Hamiltonian**, not the Hadamard gate. For physical time, $\dot U$ has units of inverse time, so $\mathcal H$ has energy units because $\hbar$ has units of energy times time. Take its adjoint and use the differentiated identity:
+
+$$
+\begin{aligned}
+\mathcal H(t)^\dagger
+&=-i\hbar U(t)\dot U(t)^\dagger\\
+&=i\hbar\dot U(t)U(t)^\dagger=\mathcal H(t).
+\end{aligned}
+$$
+
+Thus a differentiable unitary curve has a Hermitian generator. This is a mathematical consequence of the assumed dynamics. Determining which Hamiltonian represents a particular physical system still requires physical modeling and evidence.
+
+Now differentiate the state equation, keeping the initial state fixed. Since $\mathcal H U=i\hbar\dot U$, we obtain the **Schrödinger equation**
+
+$$
+i\hbar\frac{d}{dt}|\psi(t)\rangle
+=\mathcal H(t)|\psi(t)\rangle.
+$$
+
+Conversely, if this equation holds with Hermitian $\mathcal H(t)$, the product rule gives
+
+$$
+\frac{d}{dt}\langle\psi|\psi\rangle
+=\frac{i}{\hbar}\langle\psi|\mathcal H^\dagger|\psi\rangle
+ -\frac{i}{\hbar}\langle\psi|\mathcal H|\psi\rangle=0.
+$$
+
+The cancellation checks norm conservation for the differential equation. It does not determine the Hamiltonian from normalization data.
+
+### Constant generator: solution and its boundary
+
+For a time-independent Hermitian $\mathcal H$, 2.6 supplies
+
+$$
+U(t)=\exp\!\left(-\frac{it\mathcal H}{\hbar}\right),\qquad
+\dot U=-\frac{i}{\hbar}\mathcal H U.
+$$
+
+The exponent is dimensionless. The sign follows by dividing $i\hbar\dot U=\mathcal H U$ by $i\hbar$, using $1/i=-i$. The spectral result in 2.6 proves unitarity; it is not an instruction to exponentiate each matrix entry separately.
+
+For completeness, this solution is unique for $U(0)=I$. If $V(t)$ satisfies the same constant-generator equation, differentiate $e^{it\mathcal H/\hbar}V(t)$. The two terms cancel because the exponential commutes with its fixed generator, leaving derivative zero. Its value at zero is $I$, hence $V(t)=e^{-it\mathcal H/\hbar}$.
+
+If $\mathcal H|E\rangle=E|E\rangle$, then $U(t)|E\rangle=e^{-iEt/\hbar}|E\rangle$: an energy eigenstate's ray stays fixed while its representative acquires phase. Different energy components can acquire different phases. For a real constant energy shift $c$,
+
+$$
+U_{\mathcal H+cI}(t)=e^{-ict/\hbar}U_{\mathcal H}(t).
+$$
+
+For this isolated-state comparison the shift changes only a common phase. The statement concerns a scalar multiple of the identity, not a separate shift on only one basis component.
+
+A time-dependent Hamiltonian still satisfies the generator identity and differential equation above. But $\exp[-it\mathcal H(t)/\hbar]$ is generally not their solution: differentiating it introduces the changing generator, and Hamiltonians at different times need not commute. The constant-generator proof cannot be reused by substituting a new matrix at each time. General time-dependent solution methods are outside this section.
+
+### A complete specified example, with declared units
+
+Choose a reference time $t_0>0$, write $\tau=t/t_0$, and define the dimensionless matrix $K=t_0\mathcal H/\hbar$. Then $i\,d|\psi\rangle/d\tau=K|\psi\rangle$. For the specified model
+
+$$
+K=\begin{pmatrix}2&-i\\i&2\end{pmatrix},\qquad
+U(\tau)=e^{-2i\tau}
+\begin{pmatrix}\cos\tau&-\sin\tau\\\sin\tau&\cos\tau\end{pmatrix}.
+$$
+
+To connect the two formulas, $K$ has normalized eigenvectors $(1,i)^T/\sqrt2$ and $(1,-i)^T/\sqrt2$, with eigenvalues $3$ and $1$. Insert their projectors and phases $e^{-3i\tau},e^{-i\tau}$ into the spectral exponential from 2.6. Factoring out $e^{-2i\tau}$, and using $e^{i\tau}+e^{-i\tau}=2\cos\tau$ and $e^{i\tau}-e^{-i\tau}=2i\sin\tau$, gives the displayed matrix.
+
+For input $|0\rangle$, its coordinates and computational-basis probabilities are
+
+$$
+U(\tau)|0\rangle=e^{-2i\tau}
+\begin{pmatrix}\cos\tau\\\sin\tau\end{pmatrix},\qquad
+p(0)=\cos^2\tau,\quad p(1)=\sin^2\tau.
+$$
+
+The common phase disappears from these probabilities. The matrix is a declared mathematical model; no device frequency or energy scale has been measured here.
+
+The full runnable program is [closed_evolution.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/closed_evolution.py). In the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples), run:
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/closed_evolution.py
+```
+
+The script's variable `t` stores the dimensionless $\tau$, not a claim of seconds. It compares `torch.matrix_exp(-1j*t*K)` with independent scalar-complex formulas for the matrix and its **analytic** derivative. It then applies the computed unitary with the actual released FlagQuantum 0.3.1 API:
+
+```python
+circuit = fq.Circuit(1, dtype=torch.complex128)
+circuit.unitary(0, unitary=u)
+result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
+```
+
+| Mathematical obligation | Executed check |
+|---|---|
+| $U=e^{-i\tau K}$ | `torch.matrix_exp` versus the independent sine/cosine matrix |
+| $i\dot U=KU$, with derivative in $\tau$ | `1j*closed_derivative(t)` versus `K@closed_matrix(t)` |
+| Recover the generator | `1j*derivative@reference.mH` versus `K` |
+| Unitarity and inverse time | `u.mH@u` versus identity; exponential at negative time versus `u.mH` |
+| Constant-generator composition | Exponential at `t+.13` versus the product at `t` and `.13` |
+| Actual coherent matrix application | FlagQuantum runs from both basis states and their equal superposition |
+| Born probabilities | `result.probabilities` versus squared moduli and the independent trigonometric pair |
+
+`OPTIONS` requires PyTorch CPU complex128 statevector execution and disables fallback and approximation. The script checks finite outputs, dtype and the `(1,2)` batch shape. Supplying a generic unitary to a simulator is not a Hamiltonian-synthesis or physical-control experiment.
+
+Expected output:
+
+```text
+t/pi=0.000000: P(0)=1.000000000, P(1)=0.000000000
+t/pi=0.166667: P(0)=0.750000000, P(1)=0.250000000
+t/pi=0.250000: P(0)=0.500000000, P(1)=0.500000000
+t/pi=0.500000: P(0)=0.000000000, P(1)=1.000000000
+t/pi=1.000000: P(0)=1.000000000, P(1)=0.000000000
+Closed matrix, analytic derivative, Hermitian generator and FlagQuantum agree (atol=1e-12).
+Different constant generators: same U(1)=I, orthogonal plus-state rays at t=0.5.
+One preserved input does not certify unitarity; non-Hermitian counterexample checked.
+No shots, hardware calibration or time-dependent solver invoked.
+```
+
+Absolute tolerance is $10^{-12}$ with zero relative tolerance for these bounded matrices and probabilities. The derivative check evaluates a derived analytic expression; it is not finite-difference data or a measured rate. The final two witnesses protect the interpretation: $K_0=0$ and $K_1=\operatorname{diag}(0,2\pi)$ both give $U(1)=I$, yet at $\tau=1/2$ they send an equal superposition to orthogonal rays. A single endpoint therefore does not uniquely identify even a constant generator. Separately, $B=\operatorname{diag}(0,i)$ gives $e^{-iB}=\operatorname{diag}(1,e)$, preserving input $|0\rangle$ while amplifying $|1\rangle$. Checking only the first input would miss its failure of unitarity.
+
+### Understanding checks and transfer problems
+
+**3.4-A — Sign and units.** Starting from $U(t)^\dagger U(t)=I$, or the equivalent differentiated identity used above, derive the adjoint of $i\hbar\dot U U^\dagger$. What goes wrong with the proposal $\mathcal H=\hbar\dot U U^\dagger$ without the factor $i$?
+
+**3.4-B — Stationary ray.** For the worked $K$, compute the evolution of $(1,i)^T/\sqrt2$ and explain why a fixed ray does not imply a zero eigenvalue.
+
+**3.4-C — Infer a generator?** Consider two claims separately: (i) $U(1)=I$ determines a unique constant Hermitian generator; (ii) preserving the norm of initial state $|0\rangle$ at every time certifies unitarity on every input. Refute each claim with its corresponding counterexample from the program.
+
+**3.4-D — Changing Hamiltonian.** Which hypothesis in the constant-generator solution fails when the matrix varies with time? Does generator Hermiticity cease to follow from a differentiable unitary curve?
+
+### Answers
+
+**A.** The product rule gives $U\dot U^\dagger=-\dot U U^\dagger$. Therefore $(i\hbar\dot U U^\dagger)^\dagger=-i\hbar U\dot U^\dagger=i\hbar\dot U U^\dagger$. Without $i$, the proposed matrix is anti-Hermitian instead. Also $\hbar$ is needed when time and Hamiltonian retain physical time and energy units; the dimensionless convention explicitly rescales both.
+
+**B.** Multiplication by $K$ gives eigenvalue $3$. The state becomes $e^{-3i\tau}(1,i)^T/\sqrt2$, with the same ray. A nonzero eigenvalue can change a common phase without changing an isolated pure-state ray.
+
+**C.** No. The two constant Hermitian matrices $0$ and $\operatorname{diag}(0,2\pi)$ have the same endpoint but different intermediate evolutions. In a separate non-Hermitian example, $\operatorname{diag}(0,i)$ preserves the chosen initial basis state while amplifying another. Endpoint identification and all-input unitarity are different questions.
+
+**D.** The solution proof assumes the same fixed matrix at every time and uses its commuting exponential derivative. With a varying matrix, those steps do not establish the proposed exponential. The identity $\mathcal H(t)=i\hbar\dot U U^\dagger$ is still Hermitian at each time for a differentiable unitary curve; constancy was not needed for that derivation.
+
+### Source, limits, and next step
+
+The assigned source is [NC:2.2.2](../references/proof-sources.md#source-nc-2-2-2), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), **printed pp.81–84**: unitary evolution, the continuous-time equation and the constant-Hamiltonian solution, especially Eqs.(2.84), (2.86), and (2.90)–(2.91). These pages were consulted. The differentiable-generator derivation, specified matrix checks and counterexamples here are original exposition. The single-endpoint example explicitly avoids interpreting an exponential representation as a unique reconstruction of the physical Hamiltonian.
+
+Depth **P**: adopt the physical evolution postulate and derive its stated differentiable/fixed-generator consequences. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.4.json) separates author execution from pending independent mathematical, implementation and reader review. No open-system dynamics, time-dependent solution algorithm, hardware calibration or general rotation decomposition is claimed. Next: [3.5 Pauli algebra and rotation matrices](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5).

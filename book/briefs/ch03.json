@@ -23,7 +23,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.3 have working drafts; next production assignment3.4. Independent acceptance pending."
+      "next_transition": "Sections3.1\u20133.4 have working drafts; next production assignment3.5. Independent acceptance pending."
     },
     {
       "ref": "3.2",
@@ -46,7 +46,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.3 have working drafts; next production assignment3.4. Independent acceptance pending."
+      "next_transition": "Sections3.1\u20133.4 have working drafts; next production assignment3.5. Independent acceptance pending."
     },
     {
       "ref": "3.3",
@@ -70,7 +70,30 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "3.4 Closed-system evolution and generators."
+      "next_transition": "Sections3.1\u20133.4 have working drafts; next production assignment3.5. Independent acceptance pending."
+    },
+    {
+      "ref": "3.4",
+      "section_id": "sec-single-qubit-states-and-rotations-4",
+      "title": "Closed-system evolution and generators",
+      "question": "Which part of closed-system evolution is a physical assumption, and how does a differentiable unitary curve determine a Hermitian generator?",
+      "entry": "Exact3.1 pure-state postulates and2.6 Hermitian exponentials/derivatives; matrix product rule and time/energy units stated locally.",
+      "exit": "Adopt unitary evolution; derive H=i*hbar*dotU*Udagger and its Hermiticity, state equation and constant-H solution; explain endpoint nonuniqueness and time-dependent limits.",
+      "worked_case": "Frequency matrix K=[[2,-i],[i,2]] in a declared time unit, U(t)=exp(-2it)[[cos t,-sin t],[sin t,cos t]]; diagonal energy shift and endpoint identity counterexample.",
+      "boundary": "P depth: no derivation of the physical postulate from norm preservation, no time-dependent exponential substitution, no general rotation algebra or calibrated device Hamiltonian claim.",
+      "code_plan": "CPU complex128 matrix_exp versus independent scalar closed matrix/analytic derivative and released FlagQuantum0.3.1 generic-unitary application to both basis columns and a superposition.",
+      "independent_check": "Five displayed times, explicit derivative/generator identities, inverse/group/norm checks, global scalar shift, non-Hermitian single-input false witness and different generators with same endpoint.",
+      "transfer_task": "Repair sign/units in generator, compute stationary eigenstate, refute endpoint uniqueness and single-state norm certification, explain time-dependent boundary; full answers.",
+      "source_locators": [
+        "NC:2.2.2"
+      ],
+      "depth": "P",
+      "requires": [
+        "sec-single-qubit-states-and-rotations-1",
+        "sec-complex-vectors-operators-and-numerical-reasoning-6"
+      ],
+      "status": "draft",
+      "next_transition": "3.5 Pauli algebra and rotation matrices."
     }
   ]
 }

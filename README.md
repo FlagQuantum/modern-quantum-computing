@@ -10,7 +10,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8 and 3.1–3.3, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8 and 3.1–3.4, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Start reading
 
@@ -32,6 +32,7 @@ An open English textbook that connects quantum computing equations to executable
 - [Read 3.1: The pure-state postulate and physical equivalence](docs/chapters/ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-1) · normalization, Born probabilities and phase-aware comparisons
 - [Read 3.2: Relative phase and interference](docs/chapters/ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-2) · full complex cross-term derivation, shifted analyzers and runnable phase scans
 - [Read 3.3: The Bloch-sphere representation](docs/chapters/ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-3) · Pauli coordinates, full sphere/inverse proofs and original geometric illustration
+- [Read 3.4: Closed-system evolution and generators](docs/chapters/ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-4) · unitary postulate, Hermitian generator and verified constant evolution
 - [Book introduction](docs/index.md)
 - [Quantum-classical hybrid patterns and implementations](docs/hybrid-computing.md)
 - [Core results, proof depth and exact sources](docs/proof-plan.md) · [Adopted seven-volume plan](docs/volume-plan.md)
@@ -77,6 +78,7 @@ python examples/foundations/verification_contracts.py
 python examples/foundations/pure_states.py
 python examples/foundations/relative_phase.py
 python examples/foundations/bloch_sphere.py
+python examples/foundations/closed_evolution.py
 python examples/measurement.py
 python examples/gradients.py
 python examples/omalley2016/verify_h2_vqe.py

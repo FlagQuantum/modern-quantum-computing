@@ -1,0 +1,115 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-single-qubit-states-and-rotations-4",
+  "ref": "3.4",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+  "question": "Which part of closed-system evolution is a physical assumption, and how does a differentiable unitary curve determine a Hermitian generator?",
+  "requires": [
+    "sec-single-qubit-states-and-rotations-1",
+    "sec-complex-vectors-operators-and-numerical-reasoning-6"
+  ],
+  "depth": "P",
+  "result": "Closed-system evolution and Hermitian generators",
+  "entry": "Exact3.1 pure-state postulates and2.6 Hermitian exponentials/derivatives; matrix product rule and time/energy units stated locally.",
+  "exit": "Adopt unitary evolution; derive H=i*hbar*dotU*Udagger and its Hermiticity, state equation and constant-H solution; explain endpoint nonuniqueness and time-dependent limits.",
+  "assumptions": [
+    "Differentiable finite-dimensional complex-linear unitary U(t), with fixed reference time U(0)=I",
+    "Closed-system evolution is adopted as a physical postulate, not derived from a single-state norm test",
+    "Hamiltonian=i*hbar*dotU*Udagger; constant Hamiltonian only for exponential solution",
+    "Declared reference time t0 and dimensionless tau=t/t0,K=t0*Hamiltonian/hbar in code; no calibrated device model"
+  ],
+  "symbols": {
+    "U,dotU": "Evolution from reference zero and its entrywise time derivative",
+    "Hamiltonian,hbar": "Calligraphic H denotes Hamiltonian in energy units; hbar is the reduced Planck constant",
+    "tau,K": "Dimensionless time and specified constant matrix in the worked example",
+    "c,I": "Real scalar energy shift and identity"
+  },
+  "local_start_checks": {
+    "brief": "Prepared before prose; exact3.1/2.6 prerequisites, P depth and NC:2.2.2 retained.",
+    "prerequisite": "2.6 supplies matrix exponential, unitarity and derivative for fixed Hermitian input;3.1 supplies state/ray and probability conventions. No3.3/3.5 prerequisite imported.",
+    "source": "Consulted cached user-supplied NC printed81\u201384, especially2.84,2.86,2.90\u20132.91. No textbook text/images uploaded.",
+    "independent_reference": "Standard-library scalar closed matrix and analytic derivative versus matrix_exp; all-column/superposition actual FlagQuantum application.",
+    "scope": "No frozen435-section,50-chapter,7-volume or16-batch changes; no paper audit or PDF edition change."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.2.2",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        81,
+        82,
+        83,
+        84
+      ],
+      "use": "Unitary postulate, continuous-time equation, constant-Hermitian exponential and effective-control scope. Endpoint nonuniqueness is explicitly qualified."
+    },
+    {
+      "supplementary": "Installed released FlagQuantum0.3.1",
+      "use": "Inspected Circuit.unitary alias of any(self,*qubits,unitary=...,name=any); actual unitary(0,unitary=u), run/probabilities/statevector tested."
+    }
+  ],
+  "derivation_obligations": [
+    "State physical postulate separately from mathematical consequences",
+    "Product-rule differentiation of U*Udagger=I and Hermitian generator derivation",
+    "Derive state Schrodinger equation, units and norm cancellation",
+    "Fixed-generator exponential solution and uniqueness using2.6",
+    "Stationary eigenstate ray and scalar energy-shift common phase",
+    "Explicit2x2 spectral-to-trigonometric matrix and probabilities",
+    "Distinguish endpoint nonuniqueness, all-input unitarity and varying-generator boundary"
+  ],
+  "implementation": {
+    "path": "examples/foundations/closed_evolution.py",
+    "command": "python examples/foundations/closed_evolution.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "architecture": "arm64",
+      "system": "Darwin",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_run": "passed",
+    "dependencies": "Pinned requirements-examples.txt; genuine released FlagQuantum wheel in existing mqc-writing-venv with shared Torch support provenance in1.2; no editable FlagQuantum source",
+    "checks": [
+      "Five time points: matrix_exp versus independent scalar sine/cosine complex matrix",
+      "Analytic closed derivative satisfies i*dotU=K*U and recovers K via i*dotU*Udagger",
+      "Adjoint/inverse time, constant composition, unitarity and norm checks",
+      "Released FlagQuantum generic unitary applied to both basis inputs and their coherent equal superposition",
+      "Born probabilities checked against reference squared moduli and cosine/sine formula",
+      "Scalar generator shift changes only common phase",
+      "Different Hermitian generators share identity endpoint but map plus input to orthogonal rays at midpoint",
+      "Non-Hermitian diag0,i preserves one input while amplifying another; operator unitarity fails"
+    ],
+    "tolerance": "atol1e-12, rtol0 for bounded matrices/amplitudes/probabilities; no numerical derivative or bitwise claim",
+    "limitations": "Generic unitary simulator operation is not Hamiltonian synthesis, hardware calibration, a sampled experiment or a time-dependent solver. Derivative is independently evaluated analytic formula, not measured data.",
+    "expected_output_check": "Passed exact comparison with section expected-output block",
+    "script_sha256": "c8330d61f7804a26f7de0c0296c530a1b84dc6be91f2fa25ab2a840bac172c59"
+  },
+  "assessment": {
+    "derivation": "3.4-A",
+    "stationary_ray": "3.4-B",
+    "counterexamples": "3.4-C",
+    "time_dependence": "3.4-D",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed Python3.12.14/released FlagQuantum0.3.1/PyTorch2.13.0 CPU complex128 execution, exact expected-output comparison, independent scalar matrix/analytic derivative, generator, all-column/superposition and counterexample checks. Frozen baseline/depth/prerequisite/source/brief, prose scan, strict MkDocs build and links/anchors across57 pages passed. Actual browser inspection confirmed Hermitian generator and Schrodinger formulas, explicit units, closed matrix and probability formulas; no raw LaTeX or math-error text observed. Independent reviews and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      2,
+      4
+    ],
+    "word_count_approx": 1583,
+    "page_status": "Unmeasured section envelope; equations and code table require later print/workload calibration without changing P scope.",
+    "next_draft": "3.5 Pauli algebra and rotation matrices",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}
