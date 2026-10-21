@@ -23,7 +23,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices.",
+      "editorial_revision_2026_10_21": {
+        "task": "Complete adjacent formula/derivation/code/checked-output units in the four existing sections; no new section.",
+        "scope": "Retain frozen results, proof depths, source locators, prerequisite IDs and public anchors; replace incomplete excerpts with cumulative runnable fragments.",
+        "validation_plan": "Run marked body fragments in fresh per-section namespaces with exact displayed stdout and independent assertions; run complete companion examples; strict site build, local links/anchors and actual formula-display inspection.",
+        "acceptance": "Author validation only; independent review/reader trials remain pending."
+      }
     },
     {
       "ref": "3.2",
@@ -46,7 +52,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices.",
+      "editorial_revision_2026_10_21": {
+        "task": "Complete adjacent formula/derivation/code/checked-output units in the four existing sections; no new section.",
+        "scope": "Retain frozen results, proof depths, source locators, prerequisite IDs and public anchors; replace incomplete excerpts with cumulative runnable fragments.",
+        "validation_plan": "Run marked body fragments in fresh per-section namespaces with exact displayed stdout and independent assertions; run complete companion examples; strict site build, local links/anchors and actual formula-display inspection.",
+        "acceptance": "Author validation only; independent review/reader trials remain pending."
+      }
     },
     {
       "ref": "3.3",
@@ -99,7 +111,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-6"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices.",
+      "editorial_revision_2026_10_21": {
+        "task": "Complete adjacent formula/derivation/code/checked-output units in the four existing sections; no new section.",
+        "scope": "Retain frozen results, proof depths, source locators, prerequisite IDs and public anchors; replace incomplete excerpts with cumulative runnable fragments.",
+        "validation_plan": "Run marked body fragments in fresh per-section namespaces with exact displayed stdout and independent assertions; run complete companion examples; strict site build, local links/anchors and actual formula-display inspection.",
+        "acceptance": "Author validation only; independent review/reader trials remain pending."
+      }
     },
     {
       "ref": "3.5",
@@ -151,7 +169,13 @@
         "sec-single-qubit-states-and-rotations-5"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices.",
+      "editorial_revision_2026_10_21": {
+        "task": "Complete adjacent formula/derivation/code/checked-output units in the four existing sections; no new section.",
+        "scope": "Retain frozen results, proof depths, source locators, prerequisite IDs and public anchors; replace incomplete excerpts with cumulative runnable fragments.",
+        "validation_plan": "Run marked body fragments in fresh per-section namespaces with exact displayed stdout and independent assertions; run complete companion examples; strict site build, local links/anchors and actual formula-display inspection.",
+        "acceptance": "Author validation only; independent review/reader trials remain pending."
+      }
     },
     {
       "ref": "3.7",

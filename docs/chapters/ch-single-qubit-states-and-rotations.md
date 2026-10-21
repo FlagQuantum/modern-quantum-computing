@@ -10,6 +10,8 @@ A simulator stores an array. A physical state is not identified with every detai
 
 The prerequisite is [2.2 Inner products, adjoints, and orthogonality](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-2), including its Cauchy–Schwarz equality condition. We introduce the physical assumptions here; they do not follow from linear algebra. By the end, you should be able to distinguish vector equality, pure-state equivalence and agreement of probabilities in one measurement setting.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. `python scripts/check_formula_code.py --section 3.1` checks the actual displayed outputs and the complete companion program. Finite checks validate implementations; they do not establish the physical postulates or replace general proofs.
+
 ### The postulates: a unit vector, an equivalence, and an outcome rule
 
 For an ideal qubit described by a **pure state**, the state space is the two-dimensional complex inner-product space $\mathbb C^2$. Pure states are the scope of this section, not a claim that every physical qubit always has such a description. Correlations with an environment and uncertain preparations will require a more general description later.
@@ -54,12 +56,59 @@ Nonnegativity follows from squared complex moduli. The sum-one statement is a co
 
 In the code, this coordinate calculation becomes:
 
+<span id="formula-code-3-1-born"></span>
+
+**Formula → code: normalization and Born probabilities.** The amplitudes $\alpha,\beta$ occupy the two entries of `u`. Compute squared moduli, then compare with the hand probabilities $3/4,1/4$; squaring the complex amplitudes themselves gives a different result.
+
+<!-- formula-code: 3.1-born -->
 ```python
-u = torch.tensor([sqrt(3)/2, .5j], dtype=torch.complex128)
-probabilities = u.abs().square()  # [0.75, 0.25]; not u.square()
+import torch
+from math import sqrt
+D = torch.complex128
+u = torch.tensor([sqrt(3)/2, .5j], dtype=D)
+probabilities = u.abs().square()
+reference = torch.tensor([.75,.25], dtype=torch.float64)
+torch.testing.assert_close(probabilities, reference, rtol=0, atol=1e-12)
+assert abs(torch.vdot(u,u).item()-1) < 1e-12
+assert u.square()[1].real.item() == -.25
+print([round(x,9) for x in probabilities.tolist()], tuple(u.shape))
 ```
 
+```text
+[0.75, 0.25] (2,)
+```
+
+The complex overlap checks normalization. These are coordinates and ideal probabilities under the stated postulates, not a measured frequency or a demonstration of the postulates.
+
 For a nonzero raw vector $v=(a,b)^T$, a unit representative is $v/\sqrt{|a|^2+|b|^2}$. Dividing $(1,i)^T$ by $\sqrt2$ is a choice of normalized description, not a laboratory preparation procedure. The zero vector cannot represent a state because no division can make its norm one. Our executable comparison rejects unnormalized inputs instead of silently repairing them.
+
+<span id="formula-code-3-1-normalization"></span>
+
+**Formula → code: normalize a description and validate its domain.** Divide by the nonzero norm of the raw mathematical vector. The comparison routine's validator is deliberately stricter: it rejects nonunit inputs instead of silently performing this conversion.
+
+<!-- formula-code: 3.1-normalization -->
+```python
+from examples.foundations.pure_states import unit_qubit
+raw = torch.tensor([2,2j], dtype=D)
+assert torch.vdot(raw,raw).real.item() == 8
+normalized = raw/torch.linalg.vector_norm(raw)
+unit_qubit(normalized)
+torch.testing.assert_close(normalized,
+    torch.tensor([1,1j],dtype=D)/sqrt(2), rtol=0, atol=1e-12)
+for bad in [torch.zeros(2,dtype=D), raw]:
+    try:
+        unit_qubit(bad)
+    except ValueError:
+        continue
+    raise AssertionError("Invalid state accepted")
+print("raw norm squared=8; normalized probabilities=[0.5, 0.5]")
+```
+
+```text
+raw norm squared=8; normalized probabilities=[0.5, 0.5]
+```
+
+The expected squared norm is $4+4=8$. Normalization is arithmetic on a representation; no physical preparation is supplied by that division.
 
 ### Global phase invariance, with its logical limit
 
@@ -82,6 +131,32 @@ $$
 
 All three give $(p(0),p(1))=(1/2,1/2)$. The first two differ by a common multiplier $i$. The first and third cannot: their nonzero first coordinates require a multiplier $1$, while their second coordinates require $-1$. Their **relative phase** differs. Section 3.2 will show how a subsequent interference experiment can reveal the difference. Here we only establish that they are different rays under the stated rule.
 
+<span id="formula-code-3-1-global-relative"></span>
+
+**Formula → code: equal probabilities can conceal different rays.** Store the three displayed vectors as `a`, `b`, and `chi`. Compute overlaps independently with scalar complex arithmetic before comparing the tensor routine.
+
+<!-- formula-code: 3.1-global-relative -->
+```python
+a = torch.tensor([1,1j], dtype=D)/sqrt(2)
+b = 1j*a
+chi = torch.tensor([1,-1j], dtype=D)/sqrt(2)
+for vector in [b,chi]:
+    torch.testing.assert_close(vector.abs().square(),a.abs().square(),
+                               rtol=0,atol=1e-12)
+scalar_ab = sum(x.conjugate()*y for x,y in zip(a.tolist(),b.tolist()))
+scalar_ac = sum(x.conjugate()*y for x,y in zip(a.tolist(),chi.tolist()))
+assert abs(scalar_ab-1j) < 1e-12 and abs(scalar_ac) < 1e-12
+assert abs(torch.vdot(a,b).item()-scalar_ab) < 1e-12
+assert abs(torch.vdot(a,chi).item()-scalar_ac) < 1e-12
+print("same basis probabilities; overlap(a,b)=i; overlap(a,chi)=0")
+```
+
+```text
+same basis probabilities; overlap(a,b)=i; overlap(a,chi)=0
+```
+
+The overlap moduli are one and zero. The former confirms the common phase; the latter refutes equivalence despite identical probability pairs.
+
 “Global” applies to the entire vector being compared. Changing the sign of only one amplitude is not global. Nor should a phase attached to one branch of a larger state be discarded as if it multiplied the entire larger state.
 
 ### A phase-aware comparison derived from the inner product
@@ -101,11 +176,37 @@ $$
 
 Since $\operatorname{Re}(zc)\leq|c|$, the smallest squared distance is $2-2|c|$. For $c\ne0$, choose $z=c^*/|c|$ to attain it. If $c=0$, every phase gives squared distance $2$; no phase can align these orthogonal vectors into equality. The implementation computes a residual directly:
 
+<span id="formula-code-3-1-alignment"></span>
+
+**Formula → code: align using the conjugated overlap.** Compute the residual directly. This helper assumes finite matching unit vectors, checked above; the full companion routine validates that domain itself.
+
+<!-- formula-code: 3.1-alignment -->
 ```python
-c = torch.vdot(a, b)                    # conjugates a, as the overlap requires
-phase = c.conj() / c.abs() if c.abs().item() != 0 else 1.0
-distance = torch.linalg.vector_norm(a - phase*b).item()
+def aligned(a,b):
+    c = torch.vdot(a,b)
+    phase = c.conj()/c.abs() if c.abs().item() != 0 else 1
+    return torch.linalg.vector_norm(a-phase*b).item()
+raw_distance = torch.linalg.vector_norm(a-b).item()
+assert abs(raw_distance-sqrt(2)) < 1e-12
+assert aligned(a,b) < 1e-12
+assert abs(aligned(a,chi)-sqrt(2)) < 1e-12
+e0,e1 = torch.tensor([1,0],dtype=D),torch.tensor([0,1],dtype=D)
+assert abs(aligned(e0,e1)-sqrt(2)) < 1e-12
+c = torch.vdot(a,b)
+wrong = torch.linalg.vector_norm(a-(c/c.abs())*b).item()
+assert abs(wrong-2) < 1e-12
+print(f"raw={raw_distance:.9f}; aligned={aligned(a,b):.9f}")
+print(f"relative-sign={aligned(a,chi):.9f}; wrong alignment={wrong:.9f}")
 ```
+
+```text
+raw=1.414213562; aligned=0.000000000
+relative-sign=1.414213562; wrong alignment=2.000000000
+```
+
+The exact zero-overlap pair exercises the branch that must avoid division by zero. Its nonzero residual prevents that branch from being misreported as equivalence.
+
+
 
 At zero overlap, `phase=1` is only a convention for evaluating the distance. It is not a claim of equivalence. For nearly zero overlap, the selected phase can be sensitive to roundoff, while the distance remains near $\sqrt2$. Near equivalence, directly subtracting $2-2|c|$ can also lose small differences through cancellation; the script uses the aligned residual, with an explicit absolute tolerance. A small residual is numerical evidence under that tolerance, not an exact mathematical identity.
 
@@ -122,6 +223,43 @@ python examples/foundations/pure_states.py
 
 The script first checks the complex-coordinate example against explicit scalar arithmetic and the hand overlap values. It then runs the real-amplitude cases $H|0\rangle$ and $ZH|0\rangle$ in released FlagQuantum 0.3.1. These preparation gates are the earlier Chapter 1 preview; their general theory is not a prerequisite for the postulates here. Their independently specified reference coordinates are $(1,1)^T/\sqrt2$ and $(1,-1)^T/\sqrt2$.
 
+<span id="formula-code-3-1-execution"></span>
+
+**Formula → code: compare actual simulator outputs with hand states.** Run both specified preparations independently in released FlagQuantum 0.3.1. Read the single batch element only after checking its shape and type, and compare complex amplitudes as well as probabilities.
+
+<!-- formula-code: 3.1-execution -->
+```python
+import flagquantum as fq
+OPTIONS = fq.ExecutionOptions(
+    mode="statevector",backend="pytorch",device="cpu",
+    precision="complex128",allow_backend_fallback=False,
+    allow_approximate=False,
+)
+for label,sign in [("H",1),("H then Z",-1)]:
+    circuit = fq.Circuit(1,dtype=D)
+    circuit.h(0)
+    if sign == -1:
+        circuit.z(0)
+    result = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+    batch,p = result.statevector(),result.probabilities
+    assert batch.shape == p.shape == (1,2)
+    state = unit_qubit(batch[0])
+    assert p.dtype == torch.float64 and p.device.type == "cpu"
+    assert torch.isfinite(p).all()
+    hand = torch.tensor([1,sign],dtype=D)/sqrt(2)
+    torch.testing.assert_close(state,hand,rtol=0,atol=1e-12)
+    torch.testing.assert_close(p[0],hand.abs().square(),rtol=0,atol=1e-12)
+    assert aligned(state,1j*state) < 1e-12
+    print(label,[round(x,9) for x in p[0].tolist()])
+```
+
+```text
+H [0.5, 0.5]
+H then Z [0.5, 0.5]
+```
+
+The phase multiplication in the final assertion changes a stored diagnostic array. It is not a submitted gate. Both circuits return the same computational probabilities while their coherent statevectors differ.
+
 The actual API-to-formula correspondence is:
 
 | Formula or obligation | Executed code |
@@ -135,7 +273,7 @@ The actual API-to-formula correspondence is:
 
 `OPTIONS` requires the PyTorch CPU complex128 statevector method and disallows backend fallback and approximation. Statevector inspection is a simulator diagnostic, not a physical-device readout. The script checks the raw batch shape `(1,2)` before selecting its single state.
 
-Expected output in the author-tested environment:
+Expected output:
 
 ```text
 complex example: P(0)=0.500000000, P(1)=0.500000000
@@ -183,6 +321,8 @@ In 3.1 we found different pure states with identical computational-basis probabi
 
 The prerequisites are [3.1](#sec-single-qubit-states-and-rotations-1), for normalized pure states and Born probabilities, and [2.3](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-3), for linear maps, matrix order and basis coordinates. We will derive the complex interference term in full and identify when a chosen experiment can, or cannot, reveal relative phase. General evolution postulates, measurement updates and noise models remain for later sections.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. `python scripts/check_formula_code.py --section 3.2` checks the actual displayed outputs and the complete companion program. Finite checks validate implementations; they do not establish the physical postulates or replace general proofs.
+
 ### Specify the phase and the experiment
 
 For nonzero amplitudes, write
@@ -225,6 +365,33 @@ D(\phi)H|0\rangle
 $$
 
 The rightmost matrix acts first. This is an active preparation, with no intermediate measurement. Separate ideal runs either read the computational basis directly or apply an analyzer and then read it. The code's two runs do not measure one qubit and subsequently reuse its pre-measurement amplitudes.
+
+<span id="formula-code-3-2-preparation"></span>
+
+**Formula → code: preserve the preparation order.** Define the displayed $H$ and $D(\phi)$ matrices in the fixed basis. The matrix on the right acts first; compare the result with the hand amplitudes, not just their squared moduli.
+
+<!-- formula-code: 3.2-preparation -->
+```python
+import torch,cmath
+from math import sqrt,pi,cos
+D = torch.complex128
+H = torch.tensor([[1,1],[1,-1]],dtype=D)/sqrt(2)
+def phase_matrix(phi):
+    return torch.diag(torch.tensor([1,cmath.exp(1j*phi)],dtype=D))
+e0 = torch.tensor([1,0],dtype=D)
+phi = pi/3
+prepared = phase_matrix(phi)@H@e0
+hand = torch.tensor([1,cmath.exp(1j*phi)],dtype=D)/sqrt(2)
+torch.testing.assert_close(prepared,hand,rtol=0,atol=1e-12)
+assert abs(torch.vdot(prepared,prepared).item()-1) < 1e-12
+print([round(x,9) for x in prepared.abs().square().tolist()])
+```
+
+```text
+[0.5, 0.5]
+```
+
+The norm check verifies the specified example. The algebra above establishes preservation for every input under these ideal maps.
 
 ### Derive the interference term before substituting a phase
 
@@ -273,6 +440,32 @@ $$
 
 This identity explains why the analyzer matters: its complex coefficients select which part of the overlap contributes. To interpret all outputs as probabilities, the full analyzer must preserve normalization, as we checked explicitly for our chosen maps.
 
+<span id="formula-code-3-2-cross-term"></span>
+
+**Formula → code: retain the complex cross term.** Choose $\alpha=3i/5$ and $\beta=-4i/5$. Their overlap contribution is $-12/25$, so the independently predicted probabilities are $(1/50,49/50)$. This complex fixture also detects a missing conjugate.
+
+<!-- formula-code: 3.2-cross-term -->
+```python
+alpha,beta = .6j,-.8j
+state = torch.tensor([alpha,beta],dtype=D)
+measured = (H@state).abs().square()
+cross = alpha.conjugate()*beta
+prediction = torch.tensor([.5+cross.real,.5-cross.real],
+                          dtype=torch.float64)
+reference = torch.tensor([.02,.98],dtype=torch.float64)
+torch.testing.assert_close(measured,reference,rtol=0,atol=1e-12)
+torch.testing.assert_close(prediction,reference,rtol=0,atol=1e-12)
+assert abs((.5+(alpha*beta).real)-.98) < 1e-12
+assert abs(prediction[0].item()-.5) > .4
+print([round(x,9) for x in measured.tolist()])
+```
+
+```text
+[0.02, 0.98]
+```
+
+Discarding the cross term predicts $1/2$; omitting its conjugation predicts $49/50$ for output 0. Both mistakes give plausible probabilities but disagree with the direct amplitude calculation.
+
 ### Balanced fringes and a probability-only mistake
 
 For $r=s=1/\sqrt2$, direct computational-basis probabilities are always $(1/2,1/2)$. After $H$ they become
@@ -301,6 +494,32 @@ $$
 
 The minimum is $1/50=0.02$ and the maximum $49/50=0.98$. Defining the fringe visibility for this scan as $\mathcal V=(p_{\max}-p_{\min})/(p_{\max}+p_{\min})$, we obtain $\mathcal V=2rs=24/25$. This definition presumes the specified phase scan and ideal analyzer. Reduced contrast here comes from unequal amplitudes; it is not evidence of decoherence.
 
+<span id="formula-code-3-2-visibility"></span>
+
+**Formula → code: fringe range and visibility.** The phase scan has fixed magnitudes $r=3/5$, $s=4/5$. Predict extrema at phases zero and $\pi$, then verify their coordinates under the analyzer.
+
+<!-- formula-code: 3.2-visibility -->
+```python
+r,s = .6,.8
+outputs = []
+for phi in [0,pi]:
+    state = torch.tensor([r,s*cmath.exp(1j*phi)],dtype=D)
+    p0 = (H@state).abs().square()[0].item()
+    assert abs(p0-(.5+r*s*cos(phi))) < 1e-12
+    outputs.append(p0)
+pmax,pmin = outputs
+visibility = (pmax-pmin)/(pmax+pmin)
+assert abs(pmin-.02) < 1e-12 and abs(pmax-.98) < 1e-12
+assert abs(visibility-.96) < 1e-12
+print(f"min={pmin:.2f}; max={pmax:.2f}; visibility={visibility:.2f}")
+```
+
+```text
+min=0.02; max=0.98; visibility=0.96
+```
+
+The contrast below one follows here from the two fixed unequal amplitudes. This ideal calculation contains no decoherence model.
+
 ### One analyzer can miss a difference
 
 The states $(|0\rangle+i|1\rangle)/\sqrt2$ and $(|0\rangle-i|1\rangle)/\sqrt2$ from 3.1 give the same probabilities both directly and after $H$. Their phases are $\pi/2$ and $-\pi/2$, and cosine is even. Thus **different rays need not produce different probabilities in every chosen setting**.
@@ -322,6 +541,33 @@ $$
 
 Choosing $\delta=\pi/2$ produces $p_\delta(0)=1$ for the positive-i state and $0$ for the negative-i state. This is an ideal distinguishing setting for this specified pair, not a claim that arbitrary different pure states are perfectly distinguishable.
 
+<span id="formula-code-3-2-analyzer"></span>
+
+**Formula → code: the analyzer selects which relative phase is visible.** The two rays with $\phi=\pm\pi/2$ agree under the plain analyzer. A known shift $\delta=\pi/2$ reveals their difference. Also check that an absent path contributes no phase dependence.
+
+<!-- formula-code: 3.2-analyzer -->
+```python
+delta = pi/2
+for label,phi in [("+i",pi/2),("-i",-pi/2)]:
+    state = torch.tensor([1,cmath.exp(1j*phi)],dtype=D)/sqrt(2)
+    plain = (H@state).abs().square()[0].item()
+    shifted = (H@phase_matrix(-delta)@state).abs().square()[0].item()
+    assert abs(plain-.5) < 1e-12
+    assert abs(shifted-.5*(1+cos(phi-delta))) < 1e-12
+    print(label,f"plain={plain:.1f}; shifted={shifted:.1f}")
+for phi in [0,pi/3,pi]:
+    absent = torch.tensor([0,cmath.exp(1j*phi)],dtype=D)
+    torch.testing.assert_close((H@absent).abs().square(),
+        torch.tensor([.5,.5],dtype=torch.float64),rtol=0,atol=1e-12)
+```
+
+```text
++i plain=0.5; shifted=1.0
+-i plain=0.5; shifted=0.0
+```
+
+This is a distinguishing setting for this specified orthogonal pair. It is not a procedure for perfectly distinguishing arbitrary different pure states.
+
 We can also describe the plain $H$ analyzer as reading coordinates in the basis $|+\rangle=(|0\rangle+|1\rangle)/\sqrt2$, $|-\rangle=(|0\rangle-|1\rangle)/\sqrt2$. Their overlaps with the input are the sum and difference amplitudes above. By 2.3, this passive coordinate description uses the conjugate-transpose basis matrix. Here it equals $H$ itself. The equivalence of the probability calculations does not mean merely changing coordinate labels physically applies a gate: the code actively applies $H$ before a fixed computational-basis readout.
 
 ### Formula-to-code experiment and independent verification
@@ -335,15 +581,54 @@ python examples/foundations/relative_phase.py
 
 The central released FlagQuantum 0.3.1 construction is:
 
+<span id="formula-code-3-2-execution"></span>
+
+**Formula → code: execute the two readout settings as separate circuits.** The chronological calls below implement preparation $D(\phi)H$ and optional analyzer $HD(-\delta)$. Compare the actual statevector against matrix action, and the probabilities against the independently derived cosine fringe.
+
+<!-- formula-code: 3.2-execution -->
 ```python
-circuit = fq.Circuit(1, dtype=torch.complex128)
-circuit.h(0)
-circuit.phase(0, theta=phi)
-if recombine:
-    circuit.phase(0, theta=-delta)
+import flagquantum as fq
+OPTIONS = fq.ExecutionOptions(
+    mode="statevector",backend="pytorch",device="cpu",
+    precision="complex128",allow_backend_fallback=False,
+    allow_approximate=False,
+)
+def execute(phi,delta=0,recombine=True):
+    circuit = fq.Circuit(1,dtype=D)
     circuit.h(0)
-result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
+    circuit.phase(0,theta=phi)
+    expected = phase_matrix(phi)@H@e0
+    if recombine:
+        circuit.phase(0,theta=-delta)
+        circuit.h(0)
+        expected = H@phase_matrix(-delta)@expected
+    result = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+    batch,p = result.statevector(),result.probabilities
+    assert batch.shape == p.shape == (1,2)
+    assert batch.dtype == D and p.dtype == torch.float64
+    assert batch.device.type == p.device.type == "cpu"
+    assert torch.isfinite(batch).all() and torch.isfinite(p).all()
+    torch.testing.assert_close(batch[0],expected,rtol=0,atol=1e-12)
+    torch.testing.assert_close(p[0],expected.abs().square(),rtol=0,atol=1e-12)
+    if recombine:
+        fringe = [.5*(1+cos(phi-delta)),.5*(1-cos(phi-delta))]
+        torch.testing.assert_close(p[0],torch.tensor(fringe,dtype=torch.float64),
+                                   rtol=0,atol=1e-12)
+    return [round(x,9) for x in p[0].tolist()]
+print("direct",execute(pi/2,recombine=False))
+print("plain",execute(pi/2))
+print("shifted",execute(pi/2,delta=pi/2))
 ```
+
+```text
+direct [0.5, 0.5]
+plain [0.5, 0.5]
+shifted [1.0, 0.0]
+```
+
+These are ideal probabilities from independent executions. No intermediate measurement or reuse of pre-measurement amplitudes is implied. The full program additionally checks operation-order failures and a 17-point phase sweep.
+
+
 
 | Mathematical step | Code and check |
 |---|---|
@@ -356,7 +641,7 @@ result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
 
 The installed release's `phase` operator schema takes one qubit and parameter `theta`; its matrix is $D(\theta)$ as defined here. We inspected and executed this API. We use `phase`, rather than assuming a similarly named axis rotation has identical coordinate phases. General rotation conventions belong to 3.5.
 
-Expected output in the author-tested environment:
+Expected output:
 
 ```text
 phi/pi=0.0: direct=(0.500000000, 0.500000000), after H=(1.000000000, 0.000000000)
@@ -762,6 +1047,8 @@ A normalized state describes a qubit at an instant. To predict a later state we 
 
 The prerequisites are [3.1](#sec-single-qubit-states-and-rotations-1), for pure states and phase equivalence, and [2.6](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-6), for Hermitian matrix exponentials and their derivatives. The earlier mathematics establishes what a proposed exponential does; this section supplies its physical interpretation and derives the generator of a differentiable unitary evolution.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. `python scripts/check_formula_code.py --section 3.4` checks the actual displayed outputs and the complete companion program. Finite checks validate implementations; they do not establish the physical postulates or replace general proofs.
+
 ### Adopt unitary evolution, then specify the model
 
 **Closed-system evolution postulate.** Between the times under consideration, a closed quantum system evolves by a complex-linear unitary map. Write
@@ -782,6 +1069,36 @@ $$
 $$
 
 In particular it preserves normalization and orthogonality. Preserving the norm of just one chosen input does not establish this all-input operator property.
+
+<span id="formula-code-3-4-unitarity"></span>
+
+**Formula → code: compare a specified unitary curve with a matrix exponential.** For this numerical fixture use dimensionless time $\tau=t/t_0$ and $K=t_0\mathcal H/\hbar$, with $K=\left(\begin{smallmatrix}2&-i\\i&2\end{smallmatrix}\right)$. This is the worked model developed below; it does not identify a device Hamiltonian.
+
+<!-- formula-code: 3.4-unitarity -->
+```python
+import torch,cmath
+from math import sin,cos,pi,sqrt
+D = torch.complex128
+I = torch.eye(2,dtype=D)
+K = torch.tensor([[2,-1j],[1j,2]],dtype=D)
+def closed(tau):
+    e = cmath.exp(-2j*tau)
+    return e*torch.tensor([[cos(tau),-sin(tau)],
+                           [sin(tau),cos(tau)]],dtype=D)
+tau = .4
+U = closed(tau)
+torch.testing.assert_close(U,torch.linalg.matrix_exp(-1j*tau*K),
+                           rtol=0,atol=1e-12)
+torch.testing.assert_close(U.mH@U,I,rtol=0,atol=1e-12)
+torch.testing.assert_close(closed(0),I,rtol=0,atol=1e-12)
+print("U(0)=I and full-matrix unitarity verified")
+```
+
+```text
+U(0)=I and full-matrix unitarity verified
+```
+
+The full-matrix identity checks both orthonormal columns. Checking a single input norm would be weaker. The mathematical derivation of this closed expression and its physical unit convention remain explicit below.
 
 ### Differentiate the operator, not just one trajectory
 
@@ -826,6 +1143,36 @@ $$
 
 The cancellation checks norm conservation for the differential equation. It does not determine the Hamiltonian from normalization data.
 
+<span id="formula-code-3-4-generator"></span>
+
+**Formula → code: differentiate analytically and recover the generator.** The derivative here is with respect to $\tau$, so the identity is $K=iU' U^\dagger$. Differentiate the scalar sine, cosine and common phase explicitly; this supplies a reference independent of matrix-exponential differentiation.
+
+<!-- formula-code: 3.4-generator -->
+```python
+def derivative(tau):
+    e,c,s = cmath.exp(-2j*tau),cos(tau),sin(tau)
+    return torch.tensor([
+        [e*(-2j*c-s),e*(2j*s-c)],
+        [e*(-2j*s+c),e*(-2j*c-s)],
+    ],dtype=D)
+dU = derivative(tau)
+recovered = 1j*dU@U.mH
+torch.testing.assert_close(recovered,K,rtol=0,atol=1e-12)
+torch.testing.assert_close(recovered.mH,recovered,rtol=0,atol=1e-12)
+torch.testing.assert_close(1j*dU,K@U,rtol=0,atol=1e-12)
+psi = U@torch.tensor([1,0],dtype=D)
+dpsi = dU@torch.tensor([1,0],dtype=D)
+assert abs(2*torch.vdot(psi,dpsi).real.item()) < 1e-12
+assert not torch.allclose(dU@U.mH,K,rtol=0,atol=1e-12)
+print("Hermitian K recovered; Schrodinger equation and zero norm rate checked")
+```
+
+```text
+Hermitian K recovered; Schrodinger equation and zero norm rate checked
+```
+
+Omitting $i$ fails generator reconstruction. With physical time the formula additionally carries $\hbar$; replacing $t$ by a dimensionless number without rescaling the Hamiltonian would change its meaning.
+
 ### Constant generator: solution and its boundary
 
 For a time-independent Hermitian $\mathcal H$, 2.6 supplies
@@ -846,6 +1193,31 @@ U_{\mathcal H+cI}(t)=e^{-ict/\hbar}U_{\mathcal H}(t).
 $$
 
 For this isolated-state comparison the shift changes only a common phase. The statement concerns a scalar multiple of the identity, not a separate shift on only one basis component.
+
+<span id="formula-code-3-4-shift"></span>
+
+**Formula → code: constant-generator phases and composition.** Check the energy-shift relation on the whole matrix, an eigenstate's phase, and the same-generator group law. The scalar shift is a multiple of the identity.
+
+<!-- formula-code: 3.4-shift -->
+```python
+shift = .7
+shifted = torch.linalg.matrix_exp(-1j*tau*(K+shift*I))
+torch.testing.assert_close(shifted,cmath.exp(-1j*tau*shift)*U,
+                           rtol=0,atol=1e-12)
+eigenstate = torch.tensor([1,1j],dtype=D)/sqrt(2)
+torch.testing.assert_close(U@eigenstate,
+    cmath.exp(-3j*tau)*eigenstate,rtol=0,atol=1e-12)
+torch.testing.assert_close(closed(tau)@closed(.13),closed(tau+.13),
+                           rtol=0,atol=1e-12)
+torch.testing.assert_close(closed(-tau),U.mH,rtol=0,atol=1e-12)
+print("identity shift gives common phase; eigenphase, group law and inverse agree")
+```
+
+```text
+identity shift gives common phase; eigenphase, group law and inverse agree
+```
+
+The eigenvalue here is 3, so a stationary ray can have nonzero energy in the declared units. These checks use one fixed generator; they do not implement a time-dependent solver.
 
 A time-dependent Hamiltonian still satisfies the generator identity and differential equation above. But $\exp[-it\mathcal H(t)/\hbar]$ is generally not their solution: differentiating it introduces the changing generator, and Hamiltonians at different times need not commute. The constant-generator proof cannot be reused by substituting a new matrix at each time. General time-dependent solution methods are outside this section.
 
@@ -880,11 +1252,42 @@ python examples/foundations/closed_evolution.py
 
 The script's variable `t` stores the dimensionless $\tau$, not a claim of seconds. It compares `torch.matrix_exp(-1j*t*K)` with independent scalar-complex formulas for the matrix and its **analytic** derivative. It then applies the computed unitary with the actual released FlagQuantum 0.3.1 API:
 
+<span id="formula-code-3-4-execution"></span>
+
+**Formula → code: execute the specified evolution and read ideal probabilities.** At $\tau=\pi/6$, the hand result for input $|0\rangle$ is $e^{-i\pi/3}(\sqrt3/2,1/2)^T$. Compare that complex vector with the generic-unitary API output before comparing probabilities.
+
+<!-- formula-code: 3.4-execution -->
 ```python
-circuit = fq.Circuit(1, dtype=torch.complex128)
-circuit.unitary(0, unitary=u)
-result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
+import flagquantum as fq
+OPTIONS = fq.ExecutionOptions(
+    mode="statevector",backend="pytorch",device="cpu",
+    precision="complex128",allow_backend_fallback=False,
+    allow_approximate=False,
+)
+tau = pi/6
+u = torch.linalg.matrix_exp(-1j*tau*K)
+circuit = fq.Circuit(1,dtype=D)
+circuit.unitary(0,unitary=u)
+result = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+batch,p = result.statevector(),result.probabilities
+assert batch.shape == p.shape == (1,2)
+assert batch.dtype == D and p.dtype == torch.float64
+assert batch.device.type == p.device.type == "cpu"
+assert torch.isfinite(batch).all() and torch.isfinite(p).all()
+hand = cmath.exp(-1j*pi/3)*torch.tensor([sqrt(3)/2,.5],dtype=D)
+torch.testing.assert_close(batch[0],hand,rtol=0,atol=1e-12)
+torch.testing.assert_close(p[0],torch.tensor([.75,.25],dtype=torch.float64),
+                           rtol=0,atol=1e-12)
+print([round(x,9) for x in p[0].tolist()])
 ```
+
+```text
+[0.75, 0.25]
+```
+
+The array `u` contains the entire unitary, including its common phase. Supplying it to an ideal simulator is not hardware synthesis, calibration, or a measurement of the reference time $t_0$.
+
+
 
 | Mathematical obligation | Executed check |
 |---|---|
@@ -913,6 +1316,34 @@ No shots, hardware calibration or time-dependent solver invoked.
 ```
 
 Absolute tolerance is $10^{-12}$ with zero relative tolerance for these bounded matrices and probabilities. The derivative check evaluates a derived analytic expression; it is not finite-difference data or a measured rate. The final two witnesses protect the interpretation: $K_0=0$ and $K_1=\operatorname{diag}(0,2\pi)$ both give $U(1)=I$, yet at $\tau=1/2$ they send an equal superposition to orthogonal rays. A single endpoint therefore does not uniquely identify even a constant generator. Separately, $B=\operatorname{diag}(0,i)$ gives $e^{-iB}=\operatorname{diag}(1,e)$, preserving input $|0\rangle$ while amplifying $|1\rangle$. Checking only the first input would miss its failure of unitarity.
+
+<span id="formula-code-3-4-failures"></span>
+
+**Formula → code: separate endpoint identification from all-input unitarity.** The two Hermitian generators have identical evolution at $\tau=1$ but different intermediate action. A separate non-Hermitian generator preserves one selected input while amplifying another.
+
+<!-- formula-code: 3.4-failures -->
+```python
+alternative = torch.diag(torch.tensor([0,2*pi],dtype=D))
+torch.testing.assert_close(torch.linalg.matrix_exp(-1j*alternative),I,
+                           rtol=0,atol=1e-12)
+plus = torch.tensor([1,1],dtype=D)/sqrt(2)
+midpoint = torch.linalg.matrix_exp(-.5j*alternative)@plus
+assert abs(torch.vdot(plus,midpoint).item()) < 1e-12
+bad = torch.diag(torch.tensor([0,1j],dtype=D))
+B = torch.linalg.matrix_exp(-1j*bad)
+torch.testing.assert_close(B[:,0],torch.tensor([1,0],dtype=D),
+                           rtol=0,atol=1e-12)
+assert torch.linalg.vector_norm(B[:,1]).item() > 2
+assert not torch.allclose(B.mH@B,I,rtol=0,atol=1e-12)
+print("same endpoint, orthogonal midpoint rays; "
+      "one preserved input misses amplification")
+```
+
+```text
+same endpoint, orthogonal midpoint rays; one preserved input misses amplification
+```
+
+Both are counterexamples to over-interpreting a successful test. Neither claims that the specified good Hamiltonian is non-Hermitian or that endpoint ambiguity prevents forward simulation.
 
 ### Understanding checks and transfer problems
 
@@ -1299,6 +1730,8 @@ A sequence of gates is a product of matrices, and reading that product in the wr
 
 The prerequisite is [3.5](#sec-single-qubit-states-and-rotations-5), including its rotation matrices, Pauli products and Bloch-axis conventions. We use the earlier orthogonality and phase conventions through that preparation. The factorization is an existence result with a reproducible choice of angles, not a claim that its angles are unique, continuous or optimal for hardware.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. `python scripts/check_formula_code.py --section 3.6` checks the actual displayed outputs and the complete companion program. Finite checks validate implementations; they do not establish the physical postulates or replace general proofs.
+
 ### Chronological order and noncommutativity
 
 If the first gate is $A$ and the second is $B$, the state becomes $B(A|\psi\rangle)=(BA)|\psi\rangle$. Thus a circuit written chronologically as `rx(theta)` then `rz(phi)` implements $R_z(\phi)R_x(\theta)$.
@@ -1328,6 +1761,46 @@ R_x(\pi/2)R_z(\pi/2)|0\rangle
 $$
 
 Their Bloch points are $(1,0,0)$ and $(0,-1,0)$. These are different rays, with squared overlap $1/2$, even though both give computational-basis probabilities $(1/2,1/2)$. A probability-only check in that setting would miss the order error.
+
+<span id="formula-code-3-6-order"></span>
+
+**Formula → code: chronological calls become a right-to-left matrix product.** Define the three matrices from 3.5 explicitly. Test the same-axis sum rule and the displayed different-axis witness using complex amplitudes and the independently predicted rays.
+
+<!-- formula-code: 3.6-order -->
+```python
+import torch,cmath
+from math import cos,sin,pi,sqrt,atan2
+D = torch.complex128
+I = torch.eye(2,dtype=D)
+def rx(t):
+    c,s = cos(t/2),sin(t/2)
+    return torch.tensor([[c,-1j*s],[-1j*s,c]],dtype=D)
+def ry(t):
+    c,s = cos(t/2),sin(t/2)
+    return torch.tensor([[c,-s],[s,c]],dtype=D)
+def rz(t):
+    return torch.diag(torch.tensor([cmath.exp(-.5j*t),
+                                    cmath.exp(.5j*t)],dtype=D))
+for rotation in [rx,ry,rz]:
+    torch.testing.assert_close(rotation(.4)@rotation(.7),rotation(1.1),
+                               rtol=0,atol=1e-12)
+e0 = torch.tensor([1,0],dtype=D)
+first = rz(pi/2)@rx(pi/2)@e0
+reverse = rx(pi/2)@rz(pi/2)@e0
+phase = cmath.exp(-1j*pi/4)
+torch.testing.assert_close(first,phase*torch.tensor([1,1],dtype=D)/sqrt(2),
+                           rtol=0,atol=1e-12)
+torch.testing.assert_close(reverse,phase*torch.tensor([1,-1j],dtype=D)/sqrt(2),
+                           rtol=0,atol=1e-12)
+assert abs(abs(torch.vdot(first,reverse).item())**2-.5) < 1e-12
+print("same-axis angles add; reversed quarter turns have squared overlap=0.5")
+```
+
+```text
+same-axis angles add; reversed quarter turns have squared overlap=0.5
+```
+
+The equal computational probabilities do not certify equal rays. The actual chronological API calls are checked below against these matrices.
 
 ### State the factorization with its phase
 
@@ -1370,6 +1843,37 @@ $$
 
 This derivation justifies the canonical form we will match; it is not an unproved inference from a general unitary's appearance. There are two choices of the square root of $\eta$: adding $\pi$ to $\alpha$ changes $V$ to $-V$. Both can lead to a valid factorization of the same $U$.
 
+<span id="formula-code-3-6-canonical"></span>
+
+**Formula → code: remove one operator-wide phase and check the column form.** Compute the two-by-two determinant from scalar entries, then form $V=e^{-i\alpha}U$. The local helper validates the finite unitary input contract instead of projecting an invalid matrix onto it.
+
+<!-- formula-code: 3.6-canonical -->
+```python
+def remove_phase(U):
+    if (U.shape != (2,2) or U.dtype != D or U.device.type != "cpu"
+            or U.layout != torch.strided or not torch.isfinite(U).all()):
+        raise ValueError("Expected finite CPU complex128 2x2 matrix")
+    if not torch.allclose(U.mH@U,I,rtol=0,atol=1e-12):
+        raise ValueError("Expected unitary; no automatic repair")
+    rows = U.tolist()
+    eta = rows[0][0]*rows[1][1]-rows[0][1]*rows[1][0]
+    alpha = .5*cmath.phase(eta)
+    return alpha,cmath.exp(-1j*alpha)*U
+H = torch.tensor([[1,1],[1,-1]],dtype=D)/sqrt(2)
+alpha,V = remove_phase(H)
+a,c = V[0,0].item(),V[1,0].item()
+canonical = torch.tensor([[a,-c.conjugate()],[c,a.conjugate()]],dtype=D)
+torch.testing.assert_close(V,canonical,rtol=0,atol=1e-12)
+assert abs(alpha-pi/2) < 1e-12
+print(f"Hadamard: alpha/pi={alpha/pi:.6f}; canonical column form agrees")
+```
+
+```text
+Hadamard: alpha/pi=0.500000; canonical column form agrees
+```
+
+The scalar determinant is $-1$ for this hand matrix. With the stated argument branch, its chosen square-root phase is $e^{i\pi/2}$. A different valid square-root branch must also change the phase-removed matrix.
+
 ### Multiply the rotations and extract the angles
 
 Multiplying $R_y(\gamma)$ by the two diagonal $Z$ rotations gives
@@ -1398,6 +1902,31 @@ $$
 
 Consequently the first column is exactly $(a,c)^T$. The second column has the required form $(-c^*,a^*)^T$, completing the factorization proof in the generic case. Independent choices of argument branches may change the angles while leaving the reconstructed matrix unchanged.
 
+<span id="formula-code-3-6-generic"></span>
+
+**Formula → code: solve for the generic Euler angles.** Extract the phases of the two nonzero first-column entries. `atan2` fixes the middle-angle range; the linear combinations of entry phases solve the two equations in the derivation.
+
+<!-- formula-code: 3.6-generic -->
+```python
+def generic_angles(V):
+    a,c = V[0,0].item(),V[1,0].item()
+    if abs(a) == 0 or abs(c) == 0:
+        raise ValueError("Use an endpoint convention for a zero entry")
+    A,C = cmath.phase(a),cmath.phase(c)
+    return C-A,2*atan2(abs(c),abs(a)),-C-A
+beta,gamma,delta = generic_angles(V)
+reconstructed = cmath.exp(1j*alpha)*(rz(beta)@ry(gamma)@rz(delta))
+torch.testing.assert_close(reconstructed,H,rtol=0,atol=5e-12)
+assert 0 < gamma < pi
+print([round(x/pi,6) for x in [alpha,beta,gamma,delta]])
+```
+
+```text
+[0.5, 0.0, 0.5, 1.0]
+```
+
+The output lists $(\alpha,\beta,\gamma,\delta)$ in units of $\pi$. Reconstruction checks the full target, not the uniqueness of these coordinates. Endpoint entries require the separate formulas below.
+
 ### Resolve the endpoint cases instead of taking undefined arguments
 
 When a first-column entry vanishes, its complex argument is undefined. These are singularities of the angle coordinates; $U$ remains unitary and invertible.
@@ -1411,6 +1940,49 @@ For the first row, substitution gives $V=\operatorname{diag}(a,a^*)$; moving an 
 
 Near these endpoints, tiny entry errors can strongly change the argument of the small entry and hence the individual Euler angles. The matrix can still be reconstructed accurately. The implementation chooses a documented endpoint convention when an entry magnitude is at most $10^{-12}$; this deliberately approximates sufficiently small entries by zero. It claims reconstruction within a declared tolerance, not exact symbolic angles or continuous parameter extraction from noisy data.
 
+<span id="formula-code-3-6-endpoints"></span>
+
+**Formula → code: branch before computing an undefined entry phase.** Use the exact endpoint conventions with the declared numerical threshold $10^{-12}$, then require full reconstruction within $5\times10^{-12}$. The threshold makes a bounded approximation near an endpoint, not an exact symbolic zero test.
+
+<!-- formula-code: 3.6-endpoints -->
+```python
+def factor(U):
+    alpha,V = remove_phase(U)
+    a,c = V[0,0].item(),V[1,0].item()
+    if abs(c) <= 1e-12:
+        beta,gamma,delta,branch = -2*cmath.phase(a),0.,0.,"north"
+    elif abs(a) <= 1e-12:
+        beta,gamma,delta,branch = 2*cmath.phase(c),pi,0.,"south"
+    else:
+        beta,gamma,delta = generic_angles(V)
+        branch = "generic"
+    rebuilt = cmath.exp(1j*alpha)*(rz(beta)@ry(gamma)@rz(delta))
+    torch.testing.assert_close(rebuilt,U,rtol=0,atol=5e-12)
+    return alpha,beta,gamma,delta,branch
+X = torch.tensor([[0,1],[1,0]],dtype=D)
+for label,target in [("I",I),("X",X),("H",H)]:
+    print(label,factor(target)[-1])
+for middle in [1e-13,1e-9,pi-1e-13,pi-1e-9]:
+    target = cmath.exp(.37j)*(rz(.8)@ry(middle)@rz(-.3))
+    factor(target)
+try:
+    factor(torch.diag(torch.tensor([1,2],dtype=D)))
+except ValueError:
+    pass
+else:
+    raise AssertionError("Nonunitary input accepted")
+print("4 near-endpoint reconstructions and nonunitary rejection passed")
+```
+
+```text
+I north
+X south
+H generic
+4 near-endpoint reconstructions and nonunitary rejection passed
+```
+
+The literal identity and $X$ matrices exercise the two singular-coordinate cases. The near-endpoint fixtures lie on both sides of the chosen threshold. Reconstruction is the output criterion; angle continuity is not promised.
+
 ### Runnable reconstruction and actual gate order
 
 The complete example is [composing_rotations.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/composing_rotations.py). It reuses the scalar matrix and coordinate helpers from the preceding example, so run it from this repository in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples):
@@ -1422,15 +1994,55 @@ python examples/foundations/composing_rotations.py
 
 The central chronological circuit, using released FlagQuantum 0.3.1, is:
 
+<span id="formula-code-3-6-execution"></span>
+
+**Formula → code: run the decomposition in chronological order.** For a coherent positive-$i$ input, compare the three native rotations with a direct application of the literal Hadamard matrix. Restore $e^{i\alpha}$ only in diagnostic array arithmetic.
+
+<!-- formula-code: 3.6-execution -->
 ```python
-circuit = fq.Circuit(1, dtype=torch.complex128)
-circuit.rz(0, theta=delta)
-circuit.ry(0, theta=gamma)
-circuit.rz(0, theta=beta)
-result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
-state_v = result.statevector()[0]
-state_u = cmath.exp(1j*alpha) * state_v
+import flagquantum as fq
+OPTIONS = fq.ExecutionOptions(
+    mode="statevector",backend="pytorch",device="cpu",
+    precision="complex128",allow_backend_fallback=False,
+    allow_approximate=False,
+)
+alpha,beta,gamma,delta,_ = factor(H)
+outputs = []
+for direct in [False,True]:
+    circuit = fq.Circuit(1,dtype=D)
+    circuit.h(0)
+    circuit.phase(0,theta=pi/2)
+    if direct:
+        circuit.unitary(0,unitary=H)
+    else:
+        circuit.rz(0,theta=delta)
+        circuit.ry(0,theta=gamma)
+        circuit.rz(0,theta=beta)
+    result = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+    batch,p = result.statevector(),result.probabilities
+    assert batch.shape == p.shape == (1,2)
+    assert batch.dtype == D and p.dtype == torch.float64
+    assert batch.device.type == p.device.type == "cpu"
+    assert torch.isfinite(batch).all() and torch.isfinite(p).all()
+    torch.testing.assert_close(p[0],batch[0].abs().square(),
+                               rtol=0,atol=5e-12)
+    outputs.append(batch[0])
+state_v,state_u = outputs
+hand = H@torch.tensor([1,1j],dtype=D)/sqrt(2)
+torch.testing.assert_close(state_u,hand,rtol=0,atol=5e-12)
+torch.testing.assert_close(cmath.exp(1j*alpha)*state_v,hand,
+                           rtol=0,atol=5e-12)
+assert not torch.allclose(state_v,hand,rtol=0,atol=5e-12)
+print("direct and phase-restored rotation outputs agree; omitted phase fails")
 ```
+
+```text
+direct and phase-restored rotation outputs agree; omitted phase fails
+```
+
+The submitted sequence implements $V=R_z(\beta)R_y(\gamma)R_z(\delta)$. The factor multiplying its returned array is a comparison operation, not an additional submitted global-phase gate. The complete program below also runs both chronological quarter-turn orders and tests four inputs for every target.
+
+
 
 The last line is diagnostic array arithmetic. The submitted three-gate circuit implements $V$, not a separately executed global-phase gate. `OPTIONS` requires CPU PyTorch complex128 statevector execution and disables fallback and approximation.
 

@@ -106,6 +106,29 @@
     "word_count_approx": 1924,
     "page_status": "Unmeasured section envelope; print density and reader workload require later calibration.",
     "next_draft": "3.3 The Bloch-sphere representation",
-    "pdf": "Existing PDF sample edition and release version unchanged."
-  }
+    "pdf": "Existing PDF sample edition and release version unchanged.",
+    "word_count_after_formula_code_backfill": 2564,
+    "backfill_layout_note": "New adjacent code/output units increase workload; print pagination remains unmeasured. No proof-depth reduction, new section or PDF edition/version change."
+  },
+  "editorial_revisions": [
+    {
+      "date": "2026-10-21",
+      "kind": "complete-chapter3-formula-code-correspondence",
+      "base_commit": "f032f6cfceee2386ff485bd0d8865c837c2de58d",
+      "scope": "Existing section only; mathematical proof/interpretation sentences, all displayed equations, source locators, prerequisite/depth contracts and prior public anchors preserved. Incomplete Python excerpts replaced by cumulative checked units.",
+      "fragments": [
+        "3.2-preparation",
+        "3.2-cross-term",
+        "3.2-visibility",
+        "3.2-analyzer",
+        "3.2-execution"
+      ],
+      "command": "python scripts/check_formula_code.py --section 3.2",
+      "execution": "Passed5body fragments with exact displayed stdout and assertions, plus exact complete-companion stdout; full15-section/61fragment regression passed.",
+      "environment": "Python3.12.14, released FlagQuantum0.3.1 wheel, PyTorch2.13.0/NumPy2.5.4, macOSARM64CPU complex128/float64. Execution venv re-created with shared pinned Torch support and separately installed official FlagQuantum wheel.",
+      "math_display": "Actual local browser inspection of one new unit per requested section plus full-page AX raw-LaTeX/error scan passed. Strict MkDocs build and58-page links/fragment/unique-ID checks passed.",
+      "body_section_sha256": "5f67da9a4277c365ebdf704b0e1163f193f76626594b7c54cd4203e4455b504a",
+      "review_status": "Author execution/production checks only. Independent mathematical and implementation review, reader trial and acceptance remain pending."
+    }
+  ]
 }

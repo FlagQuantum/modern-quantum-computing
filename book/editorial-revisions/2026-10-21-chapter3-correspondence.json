@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-21",
+  "baseline": "writing-baseline-v1.0",
+  "base_commit": "f032f6cfceee2386ff485bd0d8865c837c2de58d",
+  "new_sections": 0,
+  "new_units": 20,
+  "regression": "15sections/61body fragments and15complete companion-program exact outputs passed.",
+  "preservation": "All pre-existing display equations, prose proof/interpretation sentences and public span IDs preserved. Replaced incomplete Python excerpts and standardized complete-output labels.",
+  "sections": {
+    "3.1": {
+      "date": "2026-10-21",
+      "kind": "complete-chapter3-formula-code-correspondence",
+      "base_commit": "f032f6cfceee2386ff485bd0d8865c837c2de58d",
+      "scope": "Existing section only; mathematical proof/interpretation sentences, all displayed equations, source locators, prerequisite/depth contracts and prior public anchors preserved. Incomplete Python excerpts replaced by cumulative checked units.",
+      "fragments": [
+        "3.1-born",
+        "3.1-normalization",
+        "3.1-global-relative",
+        "3.1-alignment",
+        "3.1-execution"
+      ],
+      "command": "python scripts/check_formula_code.py --section 3.1",
+      "execution": "Passed5body fragments with exact displayed stdout and assertions, plus exact complete-companion stdout; full15-section/61fragment regression passed.",
+      "environment": "Python3.12.14, released FlagQuantum0.3.1 wheel, PyTorch2.13.0/NumPy2.5.4, macOSARM64CPU complex128/float64. Execution venv re-created with shared pinned Torch support and separately installed official FlagQuantum wheel.",
+      "math_display": "Actual local browser inspection of one new unit per requested section plus full-page AX raw-LaTeX/error scan passed. Strict MkDocs build and58-page links/fragment/unique-ID checks passed.",
+      "body_section_sha256": "4872bc16b9b2cb6c0d1c06dfafc81e5ce06b1490def57dd57864f669b1b18957",
+      "review_status": "Author execution/production checks only. Independent mathematical and implementation review, reader trial and acceptance remain pending."
+    },
+    "3.2": {
+      "date": "2026-10-21",
+      "kind": "complete-chapter3-formula-code-correspondence",
+      "base_commit": "f032f6cfceee2386ff485bd0d8865c837c2de58d",
+      "scope": "Existing section only; mathematical proof/interpretation sentences, all displayed equations, source locators, prerequisite/depth contracts and prior public anchors preserved. Incomplete Python excerpts replaced by cumulative checked units.",
+      "fragments": [
+        "3.2-preparation",
+        "3.2-cross-term",
+        "3.2-visibility",
+        "3.2-analyzer",
+        "3.2-execution"
+      ],
+      "command": "python scripts/check_formula_code.py --section 3.2",
+      "execution": "Passed5body fragments with exact displayed stdout and assertions, plus exact complete-companion stdout; full15-section/61fragment regression passed.",
+      "environment": "Python3.12.14, released FlagQuantum0.3.1 wheel, PyTorch2.13.0/NumPy2.5.4, macOSARM64CPU complex128/float64. Execution venv re-created with shared pinned Torch support and separately installed official FlagQuantum wheel.",
+      "math_display": "Actual local browser inspection of one new unit per requested section plus full-page AX raw-LaTeX/error scan passed. Strict MkDocs build and58-page links/fragment/unique-ID checks passed.",
+      "body_section_sha256": "5f67da9a4277c365ebdf704b0e1163f193f76626594b7c54cd4203e4455b504a",
+      "review_status": "Author execution/production checks only. Independent mathematical and implementation review, reader trial and acceptance remain pending."
+    },
+    "3.4": {
+      "date": "2026-10-21",
+      "kind": "complete-chapter3-formula-code-correspondence",
+      "base_commit": "f032f6cfceee2386ff485bd0d8865c837c2de58d",
+      "scope": "Existing section only; mathematical proof/interpretation sentences, all displayed equations, source locators, prerequisite/depth contracts and prior public anchors preserved. Incomplete Python excerpts replaced by cumulative checked units.",
+      "fragments": [
+        "3.4-unitarity",
+        "3.4-generator",
+        "3.4-shift",
+        "3.4-execution",
+        "3.4-failures"
+      ],
+      "command": "python scripts/check_formula_code.py --section 3.4",
+      "execution": "Passed5body fragments with exact displayed stdout and assertions, plus exact complete-companion stdout; full15-section/61fragment regression passed.",
+      "environment": "Python3.12.14, released FlagQuantum0.3.1 wheel, PyTorch2.13.0/NumPy2.5.4, macOSARM64CPU complex128/float64. Execution venv re-created with shared pinned Torch support and separately installed official FlagQuantum wheel.",
+      "math_display": "Actual local browser inspection of one new unit per requested section plus full-page AX raw-LaTeX/error scan passed. Strict MkDocs build and58-page links/fragment/unique-ID checks passed.",
+      "body_section_sha256": "34f403ae7b3f4dbf1b2e9718bc581c292d0a81e6822991c3fd0a58380d2690e8",
+      "review_status": "Author execution/production checks only. Independent mathematical and implementation review, reader trial and acceptance remain pending."
+    },
+    "3.6": {
+      "date": "2026-10-21",
+      "kind": "complete-chapter3-formula-code-correspondence",
+      "base_commit": "f032f6cfceee2386ff485bd0d8865c837c2de58d",
+      "scope": "Existing section only; mathematical proof/interpretation sentences, all displayed equations, source locators, prerequisite/depth contracts and prior public anchors preserved. Incomplete Python excerpts replaced by cumulative checked units.",
+      "fragments": [
+        "3.6-order",
+        "3.6-canonical",
+        "3.6-generic",
+        "3.6-endpoints",
+        "3.6-execution"
+      ],
+      "command": "python scripts/check_formula_code.py --section 3.6",
+      "execution": "Passed5body fragments with exact displayed stdout and assertions, plus exact complete-companion stdout; full15-section/61fragment regression passed.",
+      "environment": "Python3.12.14, released FlagQuantum0.3.1 wheel, PyTorch2.13.0/NumPy2.5.4, macOSARM64CPU complex128/float64. Execution venv re-created with shared pinned Torch support and separately installed official FlagQuantum wheel.",
+      "math_display": "Actual local browser inspection of one new unit per requested section plus full-page AX raw-LaTeX/error scan passed. Strict MkDocs build and58-page links/fragment/unique-ID checks passed.",
+      "body_section_sha256": "4e35c0ac1fba1d9a76f35b5be784ef3698bccf0deb69b99f0f21e0913c1aff3c",
+      "review_status": "Author execution/production checks only. Independent mathematical and implementation review, reader trial and acceptance remain pending."
+    }
+  },
+  "validation": "Author local execution/build/links/browser checks passed; remote CI/deployed checks follow publication. No independent review claimed.",
+  "skills": "Discussion only; no skills package or curriculum restructure implemented.",
+  "pdf": "No sample, release or edition change."
+}

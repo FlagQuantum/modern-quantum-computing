@@ -110,6 +110,50 @@
         "3.7-controlled",
         "3.7-readout-repair"
       ]
+    },
+    "3.1": {
+      "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+      "script": "examples/foundations/pure_states.py",
+      "fragments": [
+        "3.1-born",
+        "3.1-normalization",
+        "3.1-global-relative",
+        "3.1-alignment",
+        "3.1-execution"
+      ]
+    },
+    "3.2": {
+      "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+      "script": "examples/foundations/relative_phase.py",
+      "fragments": [
+        "3.2-preparation",
+        "3.2-cross-term",
+        "3.2-visibility",
+        "3.2-analyzer",
+        "3.2-execution"
+      ]
+    },
+    "3.4": {
+      "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+      "script": "examples/foundations/closed_evolution.py",
+      "fragments": [
+        "3.4-unitarity",
+        "3.4-generator",
+        "3.4-shift",
+        "3.4-execution",
+        "3.4-failures"
+      ]
+    },
+    "3.6": {
+      "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+      "script": "examples/foundations/composing_rotations.py",
+      "fragments": [
+        "3.6-order",
+        "3.6-canonical",
+        "3.6-generic",
+        "3.6-endpoints",
+        "3.6-execution"
+      ]
     }
   }
 }
