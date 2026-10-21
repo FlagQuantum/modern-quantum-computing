@@ -1,0 +1,36 @@
+{
+  "id": "B4",
+  "request": "Audit a paper-style formula against a fresh ideal run, preserving the declared positive analyzer delta. Return a claim disposition and reproducible evidence.",
+  "data": {
+    "profile": "ideal-pure-single-qubit",
+    "state": [
+      [
+        0.7071067811865475,
+        0.0
+      ],
+      [
+        0.7071067811865475,
+        0.0
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "angle_unit": "radian",
+    "phase_radians": [
+      0.23,
+      0.88,
+      1.97
+    ],
+    "readout": {
+      "type": "phase-h",
+      "delta_radians": 0.387
+    },
+    "atol": 1e-10
+  },
+  "claim": {
+    "p0_formula": "(1+cos(phi+delta))/2",
+    "scope": "all supplied phases"
+  }
+}

@@ -1,0 +1,125 @@
+[
+  {
+    "id": "C1",
+    "request": "Reproduce this scan. The scan numbers came from a lab note; resolve any missing units before executing and preserve the original values in your evidence.",
+    "data": {
+      "profile": "ideal-pure-single-qubit",
+      "state": [
+        [
+          0.7071067811865475,
+          0.0
+        ],
+        [
+          0.7071067811865475,
+          0.0
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "phase_radians": [
+        30,
+        75
+      ],
+      "readout": {
+        "type": "phase-h",
+        "delta_radians": 0
+      },
+      "atol": 1e-10
+    }
+  },
+  {
+    "id": "C2",
+    "request": "Execute this ideal absent-path case. Report whether a relative phase can be identified and whether any phase-dependent visibility exists.",
+    "data": {
+      "profile": "ideal-pure-single-qubit",
+      "state": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.8179257296297665,
+          0.5753238225639663
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "phase_radians": [
+        -0.75,
+        0.41,
+        2.11
+      ],
+      "readout": {
+        "type": "phase-h",
+        "delta_radians": 0.61
+      },
+      "atol": 1e-10
+    }
+  },
+  {
+    "id": "C3",
+    "request": "Can the current interference skill execute this circuit without changing its chronological order? Start in |0>, apply phase(phi), then H, then H, then computational readout. Do not silently replace it with H, phase(phi), H. Explain any profile mismatch.",
+    "data": {
+      "initial_basis_state": "0",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "phase_radians": [
+        0.48,
+        1.57
+      ],
+      "chronological_operations": [
+        "D(phi)",
+        "H",
+        "H",
+        "computational readout"
+      ]
+    }
+  },
+  {
+    "id": "C4",
+    "request": "Audit this cached probability result against the fresh ideal experiment. Do not trust the cache without checking the raw prepared state and readout.",
+    "data": {
+      "profile": "ideal-pure-single-qubit",
+      "state": [
+        [
+          0.7071067811865475,
+          0.0
+        ],
+        [
+          0.0,
+          0.7071067811865475
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "phase_radians": [
+        0
+      ],
+      "readout": {
+        "type": "phase-h",
+        "delta_radians": 0
+      },
+      "atol": 1e-10
+    },
+    "cache": {
+      "status": "verified",
+      "probabilities": [
+        [
+          1,
+          0
+        ]
+      ]
+    }
+  }
+]

@@ -1,0 +1,255 @@
+[
+  {
+    "id": "A1",
+    "selected_skills": [
+      "reproduce-qubit-interference"
+    ],
+    "chosen_context": {
+      "profile": "ideal-pure-single-qubit",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "readout": {
+        "type": "phase-h",
+        "delta_radians": 0.419
+      },
+      "atol": 1e-10,
+      "chronological_order": [
+        "prepare supplied state",
+        "D(phi)",
+        "D(-delta)",
+        "H",
+        "computational readout"
+      ]
+    },
+    "clarification_question": "Choose computational readout or phase-h analyzer and supply delta in radians.",
+    "clarification_status": "resolved before execution",
+    "status": "verified",
+    "explanation": "The missing readout was clarified before execution: final analyzer H D(-0.419), delta and supplied phases in radians. Chronological operations are supplied-state preparation, D(phi), D(-delta), H, computational readout. P(0), P(1) at phi=0.14 are 0.9806656566927983, 0.01933434330720168; at phi=1.26 they are 0.83335892455703, 0.16664107544297027. Independent real-coordinate calculations agree within 7.78e-16.",
+    "actual_exit_code": 0,
+    "runtime": {
+      "executable": "/private/tmp/mqc-writing-venv/bin/python",
+      "implementation": "CPython",
+      "python": "3.12.14",
+      "packages": {
+        "flagquantum": "0.3.1",
+        "torch": "2.13.0"
+      }
+    },
+    "elapsed_seconds": 1.0066759159999492,
+    "claim_disposition": {
+      "claim": "No separate user-supplied formula or hardware claim. Requested scoped result only.",
+      "disposition": "ideal experiment verified",
+      "support": "actual helper records plus independent verification"
+    },
+    "evidence_paths": [
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A1/claim-disposition.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A1/clarification.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A1/execution.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A1/explanation.txt",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A1/original-task.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A1/request.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A1/stderr.txt",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A1/stdout.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A1/verification.json"
+    ],
+    "verification": {
+      "passed": true,
+      "result_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/A1/verification.json",
+      "script_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/verify_independently.py",
+      "execution_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/verification-execution.json"
+    },
+    "limitations": [
+      "Ideal deterministic pure-state numerical profile; no hardware, noise or shot statistics.",
+      "Numerical agreement within tolerance does not prove exact equality or a whole-paper claim."
+    ]
+  },
+  {
+    "id": "A2",
+    "selected_skills": [
+      "reproduce-qubit-interference"
+    ],
+    "chosen_context": {
+      "profile": "ideal-pure-single-qubit",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "readout": {
+        "type": "phase-h",
+        "delta_radians": -0.27
+      },
+      "atol": 1e-10,
+      "chronological_order": [
+        "prepare supplied state",
+        "D(phi)",
+        "D(-delta)",
+        "H",
+        "computational readout"
+      ]
+    },
+    "clarification_question": null,
+    "clarification_status": "not needed",
+    "status": "verified",
+    "explanation": "The supplied complex amplitudes were preserved, including their common phase. Chronological operations are preparation, D(phi), D(0.27), H, computational readout. Actual complex output amplitudes and all three probability pairs are in stdout.json. P(0) at phases 0.31, 1.25, 2.4 is respectively 0.0984979280407103, 0.475628247231882, 0.9276060160546765. Sampled P(0) minimum/maximum are 0.0984979280407103 and 0.9276060160546765. Continuous full-scan minimum/maximum are 0.02 and 0.98, with visibility 0.96. Sparse samples do not reach the continuous extrema. Independent verification checks amplitudes, Born probabilities, expanded cross term and both kinds of extrema.",
+    "actual_exit_code": 0,
+    "runtime": {
+      "executable": "/private/tmp/mqc-writing-venv/bin/python",
+      "implementation": "CPython",
+      "python": "3.12.14",
+      "packages": {
+        "flagquantum": "0.3.1",
+        "torch": "2.13.0"
+      }
+    },
+    "elapsed_seconds": 0.5995382920000338,
+    "claim_disposition": {
+      "claim": "No separate user-supplied formula or hardware claim. Requested scoped result only.",
+      "disposition": "ideal experiment verified",
+      "support": "actual helper records plus independent verification"
+    },
+    "evidence_paths": [
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A2/claim-disposition.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A2/execution.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A2/explanation.txt",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A2/original-task.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A2/request.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A2/stderr.txt",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A2/stdout.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A2/verification.json"
+    ],
+    "verification": {
+      "passed": true,
+      "result_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/A2/verification.json",
+      "script_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/verify_independently.py",
+      "execution_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/verification-execution.json"
+    },
+    "limitations": [
+      "Ideal deterministic pure-state numerical profile; no hardware, noise or shot statistics.",
+      "Numerical agreement within tolerance does not prove exact equality or a whole-paper claim."
+    ]
+  },
+  {
+    "id": "A3",
+    "selected_skills": [
+      "reproduce-qubit-interference"
+    ],
+    "chosen_context": {
+      "profile": "ideal-pure-single-qubit",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "readout": {
+        "type": "phase-h",
+        "delta_radians": 0.18
+      },
+      "atol": 1e-10,
+      "chronological_order": [
+        "prepare supplied state",
+        "D(phi)",
+        "D(-delta)",
+        "H",
+        "computational readout"
+      ]
+    },
+    "clarification_question": null,
+    "clarification_status": "not needed",
+    "status": "invalid_input",
+    "explanation": "The state is inadmissible: squared norm 0.5^2+0.9^2=1.06 exceeds the normalization admission tolerance 1e-12 by 0.06. The helper returned invalid_input (exit 2). Amplitudes were preserved; no normalization or experimental predictions were substituted. Independent verification confirms rejection. This is validation evidence, not successful experiment evidence.",
+    "actual_exit_code": 2,
+    "runtime": {
+      "executable": "/private/tmp/mqc-writing-venv/bin/python",
+      "implementation": "CPython",
+      "python": "3.12.14",
+      "packages": {
+        "flagquantum": "0.3.1",
+        "torch": "2.13.0"
+      }
+    },
+    "elapsed_seconds": 0.030587124999328807,
+    "claim_disposition": {
+      "claim": "No separate user-supplied formula or hardware claim. Requested scoped result only.",
+      "disposition": "inadmissible input; no experiment claim verified",
+      "support": "actual helper records plus independent verification"
+    },
+    "evidence_paths": [
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A3/claim-disposition.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A3/execution.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A3/explanation.txt",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A3/original-task.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A3/request.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A3/stderr.txt",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A3/stdout.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A3/verification.json"
+    ],
+    "verification": {
+      "passed": true,
+      "result_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/A3/verification.json",
+      "script_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/verify_independently.py",
+      "execution_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/verification-execution.json"
+    },
+    "limitations": [
+      "Invalid supplied normalization prevents experimental execution; no amplitudes repaired."
+    ]
+  },
+  {
+    "id": "A4",
+    "selected_skills": [
+      "compare-quantum-states-and-operators"
+    ],
+    "chosen_context": {
+      "kind": "isolated pure state",
+      "mode": "global-phase",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10
+    },
+    "clarification_question": null,
+    "clarification_status": "not needed",
+    "status": "within_tolerance",
+    "explanation": "Selected the isolated pure-state comparison skill, with one global phase across the whole state and absolute Euclidean tolerance 1e-10. The helper reports aligned residual 0.0, versus raw residual 0.5632744939138981, and multiplier on b 0.8413609222530211-0.5404736797528128i. Independent phase estimation from a single component, checked on both components, yields residual 1.2412670766236366e-16. Both establish numerical equivalence within tolerance; floating-point agreement is not proof of exact equality.",
+    "actual_exit_code": 0,
+    "runtime": {
+      "executable": "/private/tmp/mqc-writing-venv/bin/python",
+      "implementation": "CPython",
+      "python": "3.12.14",
+      "packages": {
+        "flagquantum": "0.3.1",
+        "torch": "2.13.0"
+      }
+    },
+    "elapsed_seconds": 0.014474708999841823,
+    "claim_disposition": {
+      "claim": "No separate user-supplied formula or hardware claim. Requested scoped result only.",
+      "disposition": "pure states numerically equivalent under one overall phase",
+      "support": "actual helper records plus independent verification"
+    },
+    "evidence_paths": [
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A4/claim-disposition.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A4/execution.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A4/explanation.txt",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A4/original-task.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A4/request.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A4/stderr.txt",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A4/stdout.json",
+      "/private/tmp/mqc-interference-blind-r1/a/outputs/A4/verification.json"
+    ],
+    "verification": {
+      "passed": true,
+      "result_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/A4/verification.json",
+      "script_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/verify_independently.py",
+      "execution_path": "/private/tmp/mqc-interference-blind-r1/a/outputs/verification-execution.json"
+    },
+    "limitations": [
+      "Isolated two-coordinate pure states in caller-declared basis; no controlled or hardware context.",
+      "Numerical equivalence within tolerance does not prove exact equality."
+    ]
+  }
+]

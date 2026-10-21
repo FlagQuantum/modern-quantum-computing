@@ -1,0 +1,1 @@
+The state is inadmissible: squared norm 0.5^2+0.9^2=1.06 exceeds the normalization admission tolerance 1e-12 by 0.06. The helper returned invalid_input (exit 2). Amplitudes were preserved; no normalization or experimental predictions were substituted. Independent verification confirms rejection. This is validation evidence, not successful experiment evidence.

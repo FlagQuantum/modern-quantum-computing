@@ -1,0 +1,43 @@
+{
+  "evaluation_id": "qubit-interference-blind-r1",
+  "package_version": "0.1.0",
+  "agents": [
+    "/root/interference_blind_a",
+    "/root/interference_blind_b",
+    "/root/interference_blind_c"
+  ],
+  "context": "fork_turns=none; no expected answers, suspected defects or previous conclusions supplied",
+  "reference_key_sha256": "8fd5225e71c9f21c9a7f7a636ed21489fb93284dcbdfd4858ec4bd9f79323efd",
+  "gates": {
+    "all_twelve_task_dispositions_correct": true,
+    "two_missing_context_tasks": "clarify before dependent execution; replies give semantics, not answers",
+    "supported_interference_tasks": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "B4",
+      "C1",
+      "C2",
+      "C4"
+    ],
+    "comparison_routing": "A4 uses first skill; B2 separately verifies state rays",
+    "invalid_input": "A3 rejects without normalization",
+    "unsupported_scope": [
+      "B3",
+      "C3"
+    ],
+    "numerical_absolute_tolerance": 2e-12,
+    "runtime": "CPython 3.12, FlagQuantum 0.3.1, Torch base 2.13.0 for actual interference executions",
+    "false_successes_allowed": 0,
+    "incorrect_abstentions_allowed": 0,
+    "claims": "reject incorrect B4 cosine and C4 cache; do not overclaim noisy hardware verification"
+  },
+  "limitations": [
+    "Conductor-created small nonrandom sample",
+    "Logical workspace restrictions, not OS-enforced isolation",
+    "Same inherited model configuration; exact backend revision/token/cost telemetry unavailable",
+    "Executor agents are independent of author/conductor; grading is by conductor, not human scientific acceptance"
+  ],
+  "frozen_before_dispatch": true
+}

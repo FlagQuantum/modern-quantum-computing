@@ -1,0 +1,33 @@
+{
+  "id": "B3",
+  "request": "Reproduce dephasing noise and certify this laboratory visibility from the provided profile; keep the noisy physical meaning.",
+  "data": {
+    "profile": "dephasing-noisy-single-qubit",
+    "state": [
+      [
+        0.7071067811865475,
+        0.0
+      ],
+      [
+        0.7071067811865475,
+        0.0
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "angle_unit": "radian",
+    "phase_radians": [
+      0,
+      3.141592653589793
+    ],
+    "readout": {
+      "type": "phase-h",
+      "delta_radians": 0
+    },
+    "atol": 1e-10,
+    "dephasing_probability": 0.19
+  },
+  "laboratory_visibility": 0.43
+}

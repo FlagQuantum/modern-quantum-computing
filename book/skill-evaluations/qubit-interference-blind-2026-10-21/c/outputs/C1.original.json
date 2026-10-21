@@ -1,0 +1,30 @@
+{
+  "id": "C1",
+  "request": "Reproduce this scan. The scan numbers came from a lab note; resolve any missing units before executing and preserve the original values in your evidence.",
+  "data": {
+    "profile": "ideal-pure-single-qubit",
+    "state": [
+      [
+        0.7071067811865475,
+        0.0
+      ],
+      [
+        0.7071067811865475,
+        0.0
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "phase_radians": [
+      30,
+      75
+    ],
+    "readout": {
+      "type": "phase-h",
+      "delta_radians": 0
+    },
+    "atol": 1e-10
+  }
+}

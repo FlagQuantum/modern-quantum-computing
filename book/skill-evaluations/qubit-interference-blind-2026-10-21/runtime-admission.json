@@ -1,0 +1,97 @@
+{
+  "checks": [
+    {
+      "name": "wrong_python",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "request": {
+        "profile": "ideal-pure-single-qubit",
+        "state": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "basis": [
+          "0",
+          "1"
+        ],
+        "angle_unit": "radian",
+        "phase_radians": [
+          0.14,
+          1.26
+        ],
+        "atol": 1e-10,
+        "readout": {
+          "type": "phase-h",
+          "delta_radians": 0.419
+        }
+      },
+      "stdout": {
+        "contract_version": "0.1.0",
+        "reason": "unsupported_runtime: requires CPython 3.12",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.9.6"
+        },
+        "status": "unsupported"
+      },
+      "stderr": "",
+      "exit_code": 3,
+      "note": "Actual system CPython 3.9.6 is outside declared runtime"
+    },
+    {
+      "name": "missing_packages",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "-S",
+        "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "request": {
+        "profile": "ideal-pure-single-qubit",
+        "state": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "basis": [
+          "0",
+          "1"
+        ],
+        "angle_unit": "radian",
+        "phase_radians": [
+          0.14,
+          1.26
+        ],
+        "atol": 1e-10,
+        "readout": {
+          "type": "phase-h",
+          "delta_radians": 0.419
+        }
+      },
+      "stdout": {
+        "contract_version": "0.1.0",
+        "reason": "Missing pinned example environment: No package metadata was found for flagquantum",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "unsupported"
+      },
+      "stderr": "",
+      "exit_code": 3,
+      "note": "-S disables site packages for a real dependency-admission test"
+    }
+  ]
+}

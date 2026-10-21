@@ -1,0 +1,15 @@
+{
+  "method": "single-component phase ratio, checked on the full state",
+  "norms_squared": [
+    1.0000000000000002,
+    0.9999999999999998
+  ],
+  "alignment_multiplier_on_b": [
+    0.841360922253021,
+    -0.5404736797528129
+  ],
+  "residual": 1.2412670766236366e-16,
+  "phase_error": 1.5700924586837752e-16,
+  "within_tolerance": true,
+  "passed": true
+}

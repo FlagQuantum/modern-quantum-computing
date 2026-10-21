@@ -1,0 +1,7 @@
+{
+  "squared_norm": 1.06,
+  "normalization_error": 0.06000000000000005,
+  "admissible": false,
+  "helper_rejection_agrees": true,
+  "passed": true
+}

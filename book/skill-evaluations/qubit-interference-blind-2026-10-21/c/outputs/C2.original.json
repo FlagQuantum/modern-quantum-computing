@@ -1,0 +1,32 @@
+{
+  "id": "C2",
+  "request": "Execute this ideal absent-path case. Report whether a relative phase can be identified and whether any phase-dependent visibility exists.",
+  "data": {
+    "profile": "ideal-pure-single-qubit",
+    "state": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.8179257296297665,
+        0.5753238225639663
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "angle_unit": "radian",
+    "phase_radians": [
+      -0.75,
+      0.41,
+      2.11
+    ],
+    "readout": {
+      "type": "phase-h",
+      "delta_radians": 0.61
+    },
+    "atol": 1e-10
+  }
+}

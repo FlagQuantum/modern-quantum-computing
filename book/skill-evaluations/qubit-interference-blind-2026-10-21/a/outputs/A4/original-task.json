@@ -1,0 +1,35 @@
+{
+  "id": "A4",
+  "request": "No experiment or phase scan is needed. Compare these two isolated pure states up to one overall phase at absolute Euclidean tolerance 1e-10; save a verified numerical comparison.",
+  "data": {
+    "kind": "state",
+    "a": [
+      [
+        0.31622776601683794,
+        0.6324555320336759
+      ],
+      [
+        0.6324555320336759,
+        0.31622776601683794
+      ]
+    ],
+    "b": [
+      [
+        -0.07576388382032447,
+        0.7030361540550104
+      ],
+      [
+        0.3612105853767467,
+        0.607887253536203
+      ]
+    ],
+    "basis_a": [
+      "0",
+      "1"
+    ],
+    "basis_b": [
+      "0",
+      "1"
+    ]
+  }
+}

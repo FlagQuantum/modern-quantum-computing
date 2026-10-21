@@ -1,0 +1,8 @@
+{
+  "argv": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-interference-blind-r1/c/skills/reproduce-qubit-interference/scripts/interference.py"
+  ],
+  "exit_code": 0,
+  "runtime_seconds": 0.7084467910008243
+}

@@ -1,0 +1,141 @@
+{
+  "B1": {
+    "status": "passed",
+    "checks": [
+      {
+        "experiment": 1,
+        "phi": 0.35,
+        "independent_probabilities": [
+          0.3400000000000001,
+          0.6600000000000001
+        ],
+        "state_error": 1.1102230246251565e-16,
+        "probability_error": 1.6653345369377348e-16
+      },
+      {
+        "experiment": 1,
+        "phi": 1.73,
+        "independent_probabilities": [
+          0.3400000000000001,
+          0.6600000000000001
+        ],
+        "state_error": 1.1102230246251565e-16,
+        "probability_error": 1.6653345369377348e-16
+      }
+    ],
+    "fringe": false,
+    "reason": "D(phi) changes only phases of computational amplitudes, so each probability is constant for every phase."
+  },
+  "B2": {
+    "status": "passed",
+    "checks": [
+      {
+        "experiment": 1,
+        "phi": 0,
+        "independent_probabilities": [
+          0.4999999999999998,
+          0.4999999999999998
+        ],
+        "state_error": 0.0,
+        "probability_error": 0.0
+      },
+      {
+        "experiment": 2,
+        "phi": 0,
+        "independent_probabilities": [
+          0.4999999999999998,
+          0.4999999999999998
+        ],
+        "state_error": 0.0,
+        "probability_error": 0.0
+      }
+    ],
+    "same_probabilities": true,
+    "global_phase_equivalent": false,
+    "determinant": [
+      0.0,
+      -0.9999999999999998
+    ],
+    "overlap": [
+      0.0,
+      0.0
+    ],
+    "ray_distance": 1.414213562373095
+  },
+  "B3": {
+    "status": "boundary_confirmed",
+    "checks": [
+      "Original noisy request rejected with exit 2; no physical simulation or visibility certified."
+    ],
+    "physical_verification": "pending channel semantics and unavailable noise workflow"
+  },
+  "B4": {
+    "status": "passed",
+    "checks": [
+      {
+        "experiment": 1,
+        "phi": 0.23,
+        "independent_probabilities": [
+          0.993850397379547,
+          0.006149602620452607
+        ],
+        "state_error": 1.2412670766236366e-16,
+        "probability_error": 1.1102230246251565e-16
+      },
+      {
+        "experiment": 1,
+        "phi": 0.88,
+        "independent_probabilities": [
+          0.9404585062842686,
+          0.05954149371573113
+        ],
+        "state_error": 1.2412670766236366e-16,
+        "probability_error": 2.220446049250313e-16
+      },
+      {
+        "experiment": 1,
+        "phi": 1.97,
+        "independent_probabilities": [
+          0.4938983148537081,
+          0.5061016851462915
+        ],
+        "state_error": 2.2887833992611187e-16,
+        "probability_error": 2.220446049250313e-16
+      }
+    ],
+    "claim_disposition": "refuted at supplied positive delta",
+    "correct_formula": "(1+cos(phi-delta))/2, up to supplied floating-point normalization",
+    "claim_comparison": [
+      {
+        "phi": 0.23,
+        "delta": 0.387,
+        "actual_p0": 0.993850397379547,
+        "claimed_p0": 0.9078089485395904,
+        "absolute_claim_error": 0.08604144883995657,
+        "claim_within_tolerance": false
+      },
+      {
+        "phi": 0.88,
+        "delta": 0.387,
+        "actual_p0": 0.9404585062842686,
+        "claimed_p0": 0.6495724189655964,
+        "absolute_claim_error": 0.29088608731867227,
+        "claim_within_tolerance": false
+      },
+      {
+        "phi": 1.97,
+        "delta": 0.387,
+        "actual_p0": 0.4938983148537081,
+        "claimed_p0": 0.14616193341472544,
+        "absolute_claim_error": 0.34773638143898267,
+        "claim_within_tolerance": false
+      }
+    ]
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "implementation": "CPython",
+    "executable": "/private/tmp/mqc-writing-venv/bin/python",
+    "elapsed_seconds": 0.0018800830002874136
+  }
+}

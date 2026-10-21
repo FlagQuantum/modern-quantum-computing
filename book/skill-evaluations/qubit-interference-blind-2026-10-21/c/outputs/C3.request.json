@@ -1,0 +1,18 @@
+{
+  "initial_basis_state": "0",
+  "basis": [
+    "0",
+    "1"
+  ],
+  "angle_unit": "radian",
+  "phase_radians": [
+    0.48,
+    1.57
+  ],
+  "chronological_operations": [
+    "D(phi)",
+    "H",
+    "H",
+    "computational readout"
+  ]
+}

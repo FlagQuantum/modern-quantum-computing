@@ -1,0 +1,321 @@
+[
+  {
+    "id": "B1",
+    "selected_skills": [
+      "reproduce-qubit-interference"
+    ],
+    "chosen_context": {
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "atol": 1e-10,
+      "input_preserved": true,
+      "operation_order": [
+        "prepare supplied state",
+        "D(phi)",
+        "computational readout"
+      ]
+    },
+    "clarification_question": null,
+    "status": "verified_no_relative_phase_fringe",
+    "evidence_paths": [
+      "outputs/B1/experiment1.execution.json",
+      "outputs/B1/experiment1.request.json",
+      "outputs/B1/experiment1.stderr.txt",
+      "outputs/B1/experiment1.stdout.json",
+      "outputs/B1/explanation.txt",
+      "outputs/B1/task.json",
+      "outputs/B1/verification.json",
+      "outputs/verify.py",
+      "outputs/verify.stdout.json",
+      "outputs/verify.stderr.txt",
+      "outputs/verify.execution.json",
+      "outputs/verification-summary.json",
+      "outputs/executions.json",
+      "outputs/run.py"
+    ],
+    "verification": {
+      "status": "passed",
+      "checks": [
+        {
+          "experiment": 1,
+          "phi": 0.35,
+          "independent_probabilities": [
+            0.3400000000000001,
+            0.6600000000000001
+          ],
+          "state_error": 1.1102230246251565e-16,
+          "probability_error": 1.6653345369377348e-16
+        },
+        {
+          "experiment": 1,
+          "phi": 1.73,
+          "independent_probabilities": [
+            0.3400000000000001,
+            0.6600000000000001
+          ],
+          "state_error": 1.1102230246251565e-16,
+          "probability_error": 1.6653345369377348e-16
+        }
+      ],
+      "fringe": false,
+      "reason": "D(phi) changes only phases of computational amplitudes, so each probability is constant for every phase."
+    },
+    "limitations": [
+      "Deterministic finite precision numerical checks; no exact equality theorem or hardware evidence."
+    ],
+    "explanation": "Verified direct computational readout at phi=0.35 and 1.73 radians gives (0.34,0.66) both times. There is no final analyzer and no relative-phase probability fringe: multiplying beta by a unit phase leaves its squared modulus unchanged at every phase. The coherent state still carries relative phase; this readout does not reveal it."
+  },
+  {
+    "id": "B2",
+    "selected_skills": [
+      "reproduce-qubit-interference",
+      "compare-quantum-states-and-operators"
+    ],
+    "chosen_context": {
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "atol": 1e-10,
+      "input_preserved": true,
+      "operation_order": [
+        "prepare supplied state",
+        "D(phi)",
+        "D(-delta)",
+        "H",
+        "computational readout"
+      ],
+      "separate_comparison": {
+        "kind": "state",
+        "mode": "global-phase",
+        "metric": "Euclidean",
+        "tolerance": 1e-10
+      }
+    },
+    "clarification_question": null,
+    "status": "verified_experiments_states_not_ray_equivalent",
+    "evidence_paths": [
+      "outputs/B2/comparison.execution.json",
+      "outputs/B2/comparison.request.json",
+      "outputs/B2/comparison.stderr.txt",
+      "outputs/B2/comparison.stdout.json",
+      "outputs/B2/experiment1.execution.json",
+      "outputs/B2/experiment1.request.json",
+      "outputs/B2/experiment1.stderr.txt",
+      "outputs/B2/experiment1.stdout.json",
+      "outputs/B2/experiment2.execution.json",
+      "outputs/B2/experiment2.request.json",
+      "outputs/B2/experiment2.stderr.txt",
+      "outputs/B2/experiment2.stdout.json",
+      "outputs/B2/explanation.txt",
+      "outputs/B2/task.json",
+      "outputs/B2/verification.json",
+      "outputs/verify.py",
+      "outputs/verify.stdout.json",
+      "outputs/verify.stderr.txt",
+      "outputs/verify.execution.json",
+      "outputs/verification-summary.json",
+      "outputs/executions.json",
+      "outputs/run.py"
+    ],
+    "verification": {
+      "status": "passed",
+      "checks": [
+        {
+          "experiment": 1,
+          "phi": 0,
+          "independent_probabilities": [
+            0.4999999999999998,
+            0.4999999999999998
+          ],
+          "state_error": 0.0,
+          "probability_error": 0.0
+        },
+        {
+          "experiment": 2,
+          "phi": 0,
+          "independent_probabilities": [
+            0.4999999999999998,
+            0.4999999999999998
+          ],
+          "state_error": 0.0,
+          "probability_error": 0.0
+        }
+      ],
+      "same_probabilities": true,
+      "global_phase_equivalent": false,
+      "determinant": [
+        0.0,
+        -0.9999999999999998
+      ],
+      "overlap": [
+        0.0,
+        0.0
+      ],
+      "ray_distance": 1.414213562373095
+    },
+    "limitations": [
+      "Deterministic finite precision numerical checks; no exact equality theorem or hardware evidence."
+    ],
+    "explanation": "Both verified ideal experiments return probabilities (0.5,0.5) under the plain H analyzer. Equal probabilities at this setting do not establish state equivalence. The separate global-phase comparison at absolute Euclidean tolerance 1e-10 returns outside_tolerance (exit 1), with zero overlap and aligned residual sqrt(2)=1.414213562373095. The preparations are orthogonal and are not equal up to global phase. With zero overlap, no unique aligning phase exists; the helper deterministically chooses 1."
+  },
+  {
+    "id": "B3",
+    "selected_skills": [],
+    "chosen_context": {
+      "requested_profile": "dephasing-noisy-single-qubit",
+      "dephasing_probability": 0.19,
+      "laboratory_visibility": 0.43,
+      "channel_semantics": "not supplied",
+      "unsupported_helper_probe": "exact untouched raw request; rejected, no experimental evidence"
+    },
+    "clarification_question": "What exact dephasing channel/Kraus map does probability 0.19 denote, and what laboratory data/uncertainty and acceptance criterion support certifying visibility 0.43?",
+    "status": "unsupported_physical_profile_laboratory_claim_unverified",
+    "evidence_paths": [
+      "outputs/B3/clarification.json",
+      "outputs/B3/experiment1.execution.json",
+      "outputs/B3/experiment1.request.json",
+      "outputs/B3/experiment1.stderr.txt",
+      "outputs/B3/experiment1.stdout.json",
+      "outputs/B3/explanation.txt",
+      "outputs/B3/task.json",
+      "outputs/B3/verification.json",
+      "outputs/verify.py",
+      "outputs/verify.stdout.json",
+      "outputs/verify.stderr.txt",
+      "outputs/verify.execution.json",
+      "outputs/verification-summary.json",
+      "outputs/executions.json",
+      "outputs/run.py"
+    ],
+    "verification": {
+      "status": "boundary_confirmed",
+      "checks": [
+        "Original noisy request rejected with exit 2; no physical simulation or visibility certified."
+      ],
+      "physical_verification": "pending channel semantics and unavailable noise workflow"
+    },
+    "limitations": [
+      "No available noisy-channel skill.",
+      "Dephasing channel semantics absent.",
+      "No raw laboratory data, uncertainty model, or acceptance criterion.",
+      "Ideal helper rejection is not evidence about laboratory visibility."
+    ],
+    "explanation": "The requested dephasing-noisy-single-qubit experiment is outside the available ideal interference and pure-state comparison workflows. The untouched noisy request was saved and submitted to the ideal helper only to record its rejection: actual exit 2 invalid_input due to the extra dephasing_probability field. This failed request is not noisy experiment evidence. The noise field and profile were not removed or relabeled. The caller confirms no Kraus map, raw laboratory records, uncertainty model, or acceptance criterion exists beyond the task. Thus the dephasing simulation and laboratory visibility 0.43 remain unverified; neither confirmation nor refutation follows. A defined channel/density-matrix workflow and laboratory statistical evidence are required.",
+    "clarification_answer": "No Kraus map, raw laboratory records, uncertainty model, or acceptance criterion is supplied beyond the original task. Do not assume additional data or physical parameters.",
+    "routing_note": "Available ideal skill inspected for boundary and raw rejection only; not selected as a physical noise simulator."
+  },
+  {
+    "id": "B4",
+    "selected_skills": [
+      "reproduce-qubit-interference"
+    ],
+    "chosen_context": {
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "atol": 1e-10,
+      "input_preserved": true,
+      "operation_order": [
+        "prepare supplied state",
+        "D(phi)",
+        "D(-delta)",
+        "H",
+        "computational readout"
+      ],
+      "analyzer_delta_radians": 0.387
+    },
+    "clarification_question": null,
+    "status": "verified_ideal_run_claim_refuted",
+    "evidence_paths": [
+      "outputs/B4/experiment1.execution.json",
+      "outputs/B4/experiment1.request.json",
+      "outputs/B4/experiment1.stderr.txt",
+      "outputs/B4/experiment1.stdout.json",
+      "outputs/B4/explanation.txt",
+      "outputs/B4/task.json",
+      "outputs/B4/verification.json",
+      "outputs/verify.py",
+      "outputs/verify.stdout.json",
+      "outputs/verify.stderr.txt",
+      "outputs/verify.execution.json",
+      "outputs/verification-summary.json",
+      "outputs/executions.json",
+      "outputs/run.py"
+    ],
+    "verification": {
+      "status": "passed",
+      "checks": [
+        {
+          "experiment": 1,
+          "phi": 0.23,
+          "independent_probabilities": [
+            0.993850397379547,
+            0.006149602620452607
+          ],
+          "state_error": 1.2412670766236366e-16,
+          "probability_error": 1.1102230246251565e-16
+        },
+        {
+          "experiment": 1,
+          "phi": 0.88,
+          "independent_probabilities": [
+            0.9404585062842686,
+            0.05954149371573113
+          ],
+          "state_error": 1.2412670766236366e-16,
+          "probability_error": 2.220446049250313e-16
+        },
+        {
+          "experiment": 1,
+          "phi": 1.97,
+          "independent_probabilities": [
+            0.4938983148537081,
+            0.5061016851462915
+          ],
+          "state_error": 2.2887833992611187e-16,
+          "probability_error": 2.220446049250313e-16
+        }
+      ],
+      "claim_disposition": "refuted at supplied positive delta",
+      "correct_formula": "(1+cos(phi-delta))/2, up to supplied floating-point normalization",
+      "claim_comparison": [
+        {
+          "phi": 0.23,
+          "delta": 0.387,
+          "actual_p0": 0.993850397379547,
+          "claimed_p0": 0.9078089485395904,
+          "absolute_claim_error": 0.08604144883995657,
+          "claim_within_tolerance": false
+        },
+        {
+          "phi": 0.88,
+          "delta": 0.387,
+          "actual_p0": 0.9404585062842686,
+          "claimed_p0": 0.6495724189655964,
+          "absolute_claim_error": 0.29088608731867227,
+          "claim_within_tolerance": false
+        },
+        {
+          "phi": 1.97,
+          "delta": 0.387,
+          "actual_p0": 0.4938983148537081,
+          "claimed_p0": 0.14616193341472544,
+          "absolute_claim_error": 0.34773638143898267,
+          "claim_within_tolerance": false
+        }
+      ]
+    },
+    "limitations": [
+      "Deterministic finite precision numerical checks; no exact equality theorem or hardware evidence."
+    ],
+    "explanation": "The ideal run verifies the declared chronological sequence prepare -> D(phi) -> D(-0.387) -> H -> computational measurement, preserving positive analyzer delta. The paper formula (1+cos(phi+delta))/2 is refuted at all three supplied phases. Fresh p0 values are 0.9938503973795471, 0.9404585062842689, and 0.4938983148537082; independent matrix calculations agree within 2.3e-16. At phi=0.23, the claimed value is 0.9078089485395904, differing by about 0.08604144884, above 1e-10. The matching formula is (1+cos(phi-delta))/2 up to the supplied floating-point normalization. Verified simulation and refuted claim are separate dispositions.",
+    "claim_disposition": "refuted for all supplied phases"
+  }
+]

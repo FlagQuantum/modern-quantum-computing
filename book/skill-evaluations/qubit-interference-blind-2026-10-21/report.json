@@ -1,0 +1,280 @@
+{
+  "skill": "reproduce-qubit-interference",
+  "version": "0.1.0",
+  "status": "independent-agent-tested prototype",
+  "agents": 3,
+  "new_tasks": 12,
+  "passed_tasks": 12,
+  "supported_interference_tasks": 8,
+  "invalid_input_tasks": 1,
+  "unsupported_profile_tasks": 2,
+  "comparison_only_tasks": 1,
+  "actual_flagquantum_circuits": 18,
+  "recorded_helper_calls": 13,
+  "clarification_exchanges": 3,
+  "required_semantic_clarifications": 2,
+  "false_successes": 0,
+  "incorrect_abstentions": 0,
+  "task_grades": [
+    {
+      "id": "A1",
+      "recorded_status": "verified",
+      "selected_skills": [
+        "reproduce-qubit-interference"
+      ],
+      "disposition_passed": true
+    },
+    {
+      "id": "A2",
+      "recorded_status": "verified",
+      "selected_skills": [
+        "reproduce-qubit-interference"
+      ],
+      "disposition_passed": true
+    },
+    {
+      "id": "A3",
+      "recorded_status": "invalid_input",
+      "selected_skills": [
+        "reproduce-qubit-interference"
+      ],
+      "disposition_passed": true
+    },
+    {
+      "id": "A4",
+      "recorded_status": "within_tolerance",
+      "selected_skills": [
+        "compare-quantum-states-and-operators"
+      ],
+      "disposition_passed": true
+    },
+    {
+      "id": "B1",
+      "recorded_status": "verified_no_relative_phase_fringe",
+      "selected_skills": [
+        "reproduce-qubit-interference"
+      ],
+      "disposition_passed": true
+    },
+    {
+      "id": "B2",
+      "recorded_status": "verified_experiments_states_not_ray_equivalent",
+      "selected_skills": [
+        "reproduce-qubit-interference",
+        "compare-quantum-states-and-operators"
+      ],
+      "disposition_passed": true
+    },
+    {
+      "id": "B3",
+      "recorded_status": "unsupported_physical_profile_laboratory_claim_unverified",
+      "selected_skills": [],
+      "disposition_passed": true
+    },
+    {
+      "id": "B4",
+      "recorded_status": "verified_ideal_run_claim_refuted",
+      "selected_skills": [
+        "reproduce-qubit-interference"
+      ],
+      "disposition_passed": true
+    },
+    {
+      "id": "C1",
+      "recorded_status": "verified",
+      "selected_skills": [
+        "reproduce-qubit-interference"
+      ],
+      "disposition_passed": true
+    },
+    {
+      "id": "C2",
+      "recorded_status": "verified",
+      "selected_skills": [
+        "reproduce-qubit-interference"
+      ],
+      "disposition_passed": true
+    },
+    {
+      "id": "C3",
+      "recorded_status": "unsupported_profile_with_separate_derivation",
+      "selected_skills": [
+        "reproduce-qubit-interference"
+      ],
+      "disposition_passed": true
+    },
+    {
+      "id": "C4",
+      "recorded_status": "verified",
+      "selected_skills": [
+        "reproduce-qubit-interference"
+      ],
+      "disposition_passed": true
+    }
+  ],
+  "calls": [
+    {
+      "task": "A1",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 0,
+      "status": "verified",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "a/outputs/A1/execution.json"
+    },
+    {
+      "task": "A2",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 0,
+      "status": "verified",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "a/outputs/A2/execution.json"
+    },
+    {
+      "task": "A3",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 2,
+      "status": "invalid_input",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "a/outputs/A3/execution.json"
+    },
+    {
+      "task": "A4",
+      "skill": "compare-quantum-states-and-operators",
+      "exit_code": 0,
+      "status": "within_tolerance",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "a/outputs/A4/execution.json"
+    },
+    {
+      "task": "B1",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 0,
+      "status": "verified",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "b/outputs/B1/experiment1.execution.json"
+    },
+    {
+      "task": "B2",
+      "skill": "compare-quantum-states-and-operators",
+      "exit_code": 1,
+      "status": "outside_tolerance",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "b/outputs/B2/comparison.execution.json"
+    },
+    {
+      "task": "B2",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 0,
+      "status": "verified",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "b/outputs/B2/experiment1.execution.json"
+    },
+    {
+      "task": "B2",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 0,
+      "status": "verified",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "b/outputs/B2/experiment2.execution.json"
+    },
+    {
+      "task": "B3",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 2,
+      "status": "invalid_input",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "b/outputs/B3/experiment1.execution.json"
+    },
+    {
+      "task": "B4",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 0,
+      "status": "verified",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "b/outputs/B4/experiment1.execution.json"
+    },
+    {
+      "task": "C1",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 0,
+      "status": "verified",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "c/outputs/C1.helper.execution.json"
+    },
+    {
+      "task": "C2",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 0,
+      "status": "verified",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "c/outputs/C2.helper.execution.json"
+    },
+    {
+      "task": "C4",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 0,
+      "status": "verified",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "artifact": "c/outputs/C4.helper.execution.json"
+    }
+  ],
+  "observations": [
+    "Explicit choice between two available packaged skills passed",
+    "B2 uses both skills: identical fixed-setting probabilities do not imply equal state rays",
+    "B3 untouched raw noisy request fails pure-profile schema with actual exit 2; scientific noisy/laboratory scope remains unsupported, not certified",
+    "C3 reports unsupported chronology and separately derives the exact requested order without claiming helper execution",
+    "B4 rejects the wrong plus-delta formula; C4 rejects cached success",
+    "No package defect or numerical discrepancy was found in this blind set; no post-blind tuning performed"
+  ],
+  "grading_role": "author/conductor against frozen reference dispositions and independent matrix oracle",
+  "evaluator_context": "Three no-history agents; raw tasks, catalog, frozen packages and existing interpreter candidates only; no expected answers supplied",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "released_skills": 0,
+  "limitations": [
+    "Small conductor-designed nonrandom task set",
+    "Logical workspace restrictions, not OS-enforced isolation",
+    "Same inherited model configuration; exact backend revision/token/cost telemetry unavailable",
+    "Published cases are regression fixtures after this evaluation",
+    "CI replays frozen numeric evidence; it does not rerun agents or certify arbitrary-paper reproduction"
+  ]
+}

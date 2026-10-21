@@ -1,0 +1,1 @@
+The cached verified status is rejected by fresh raw-state execution. The prepared state is (|0>+i|1>)/sqrt(2); at phi=delta=0, H produces (1+i)/2 and (1-i)/2. Both outcome probabilities are 1/2, contradicting cached (1,0) by about 0.5. Successful helper verification applies to the fresh ideal experiment and does not validate the supplied cache.

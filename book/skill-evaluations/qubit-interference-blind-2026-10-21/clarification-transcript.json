@@ -1,0 +1,26 @@
+[
+  {
+    "agent": "/root/interference_blind_a",
+    "task": "A1",
+    "question": "Please specify computational readout after D(phi), or phase-h readout (H D(-delta), with delta in radians). Dependent execution pending.",
+    "reply": "Use a final phase-h analyzer H D(-delta), with delta = 0.419 radians. Keep all supplied phase values in radians.",
+    "transport": "collaboration.send_message",
+    "numeric_answer_supplied": false
+  },
+  {
+    "agent": "/root/interference_blind_b",
+    "task": "B3",
+    "question": "What exact dephasing channel/Kraus map does probability 0.19 denote, and what laboratory data/uncertainty and acceptance criterion support certifying visibility 0.43?",
+    "reply": "No Kraus map, raw laboratory records, uncertainty model, or acceptance criterion is supplied beyond the original task. Do not assume additional data or physical parameters.",
+    "transport": "collaboration.send_message",
+    "numeric_answer_supplied": false
+  },
+  {
+    "agent": "/root/interference_blind_c",
+    "task": "C1",
+    "question": "Are the original 30 and 75 degrees or radians? I will preserve the values and keep C1 dependent execution pending.",
+    "reply": "The scan values 30 and 75 are in degrees, and the analyzer delta is zero degrees. Convert them explicitly to radians before using the helper and retain the original values in the record.",
+    "transport": "collaboration.send_message",
+    "numeric_answer_supplied": false
+  }
+]

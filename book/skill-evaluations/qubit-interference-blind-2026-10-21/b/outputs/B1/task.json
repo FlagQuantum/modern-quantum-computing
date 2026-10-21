@@ -1,0 +1,30 @@
+{
+  "id": "B1",
+  "request": "Run this explicitly direct computational readout, without a final analyzer. Explain whether its probabilities exhibit a relative-phase fringe.",
+  "data": {
+    "profile": "ideal-pure-single-qubit",
+    "state": [
+      [
+        0.5830951894845301,
+        0.0
+      ],
+      [
+        0.6968058267389375,
+        0.4176860541395485
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "angle_unit": "radian",
+    "phase_radians": [
+      0.35,
+      1.73
+    ],
+    "readout": {
+      "type": "computational"
+    },
+    "atol": 1e-10
+  }
+}

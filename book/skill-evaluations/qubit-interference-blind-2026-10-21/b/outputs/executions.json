@@ -1,0 +1,88 @@
+{
+  "B1": [
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-interference-blind-r1/b/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.873540249999678,
+      "runtime": {
+        "implementation": "CPython",
+        "python": "3.12.14",
+        "executable": "/private/tmp/mqc-writing-venv/bin/python"
+      }
+    }
+  ],
+  "B2": [
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-interference-blind-r1/b/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.5707397920004951,
+      "runtime": {
+        "implementation": "CPython",
+        "python": "3.12.14",
+        "executable": "/private/tmp/mqc-writing-venv/bin/python"
+      }
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-interference-blind-r1/b/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.6106006669997441,
+      "runtime": {
+        "implementation": "CPython",
+        "python": "3.12.14",
+        "executable": "/private/tmp/mqc-writing-venv/bin/python"
+      }
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-interference-blind-r1/b/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 0.015117541999643436,
+      "runtime": {
+        "implementation": "CPython",
+        "python": "3.12.14",
+        "executable": "/private/tmp/mqc-writing-venv/bin/python"
+      }
+    }
+  ],
+  "B3": [
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-interference-blind-r1/b/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "exit_code": 2,
+      "elapsed_seconds": 0.03219587500007037,
+      "runtime": {
+        "implementation": "CPython",
+        "python": "3.12.14",
+        "executable": "/private/tmp/mqc-writing-venv/bin/python"
+      }
+    }
+  ],
+  "B4": [
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-interference-blind-r1/b/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.6045924580002975,
+      "runtime": {
+        "implementation": "CPython",
+        "python": "3.12.14",
+        "executable": "/private/tmp/mqc-writing-venv/bin/python"
+      }
+    }
+  ]
+}

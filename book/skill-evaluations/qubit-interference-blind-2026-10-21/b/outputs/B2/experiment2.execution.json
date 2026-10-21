@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-interference-blind-r1/b/skills/reproduce-qubit-interference/scripts/interference.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.6106006669997441,
+  "runtime": {
+    "implementation": "CPython",
+    "python": "3.12.14",
+    "executable": "/private/tmp/mqc-writing-venv/bin/python"
+  }
+}

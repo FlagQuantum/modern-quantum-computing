@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "experiment": 1,
+      "phi": 0.35,
+      "independent_probabilities": [
+        0.3400000000000001,
+        0.6600000000000001
+      ],
+      "state_error": 1.1102230246251565e-16,
+      "probability_error": 1.6653345369377348e-16
+    },
+    {
+      "experiment": 1,
+      "phi": 1.73,
+      "independent_probabilities": [
+        0.3400000000000001,
+        0.6600000000000001
+      ],
+      "state_error": 1.1102230246251565e-16,
+      "probability_error": 1.6653345369377348e-16
+    }
+  ],
+  "fringe": false,
+  "reason": "D(phi) changes only phases of computational amplitudes, so each probability is constant for every phase."
+}

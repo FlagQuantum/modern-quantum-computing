@@ -1,6 +1,6 @@
 # Agent skills: capability levels and chapter map
 
-**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains 23 proposed task skills; one has an independent-agent-tested prototype (0.1.1: 11/11 fresh blind tasks after a recorded runtime repair; 45 author regression cases). Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.
+**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains 23 proposed task skills; two have independent-agent-tested prototypes: state/operator comparison 0.1.1 and single-qubit interference 0.1.0. Their separate evidence records retain failures, author execution and blind-task outcomes. Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.
 
 [Dual-entry design](dual-entry.md) · [Skill contract](skill-contract.md) · [Paper verification and acceptance](paper-reproduction-standard.md)
 
@@ -128,11 +128,13 @@ Choose state, operator or distribution comparison with the correct phase scope.
 
 ### reproduce-qubit-interference
 
-**L1 · planned · not run · independent acceptance pending.**
+**L1 · independent-agent-tested prototype · blind agent tasks: 12/12; author cases: 35/35 · independent acceptance pending.**
 
 Translate preparation, phase and analyzer formulas into a checked ideal interference experiment.
 
 **Deliverable:** Independent amplitude/fringe references and released FlagQuantum execution.
+
+[Interference prototype, formula-to-code contract and independent blind evaluation](interference-skill-prototype.md).
 
 **Required task skills:** [translate-complex-linear-algebra](#translate-complex-linear-algebra), [compare-quantum-states-and-operators](#compare-quantum-states-and-operators)
 
@@ -393,9 +395,9 @@ Evaluate routing and execution on held-out papers, identifying unsupported requi
 ## Implementation order after this planning pass
 
 1. Preserve the [state/operator blind evaluation](comparison-skill-blind-evaluation.md): 0.1.1 passed 11 fresh tasks after a runtime-contract repair. Gather separate scientific acceptance and reader evidence; published cases are now regression fixtures.
-2. Prototype `reproduce-qubit-interference` using 3.2. Test changed analyzer/sign/order cases and a paper-style claim ledger; this demonstrates one bounded experiment, not L4 paper acceptance.
+2. Preserve the [interference prototype evidence](interference-skill-prototype.md): 35 author cases and 12 new blind-agent tasks passed, including units, analyzer signs, chronology, claim rejection and selection between two runnable skills. Scientific acceptance remains separate.
 3. Add `translate-unitary-evolution` from 3.4–3.6 with units, exact/near endpoints and omitted-phase failure. Reuse the mathematical contracts and independently checked source examples.
 4. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.
 5. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.
 
-This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first bounded prototype is independent-agent-tested; no paper run or new textbook section is performed by this update.
+This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first two bounded prototypes are independent-agent-tested; no paper run or new textbook section is performed by this update.

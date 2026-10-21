@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "evaluation_checkout_base": "3442e4e54a9467825af5e42fd45ad6e4aca825d7",
+  "frozen_at_utc": "2026-10-21T05:21:30.958609+00:00",
+  "sha256": {
+    "SKILL.md": "dd97d0d0bf068caafbfa863d90c4332ca4de0d99d5da54f8cb9a61b871f23f9b",
+    "agents/openai.yaml": "7438e81be272c1c1c3f4679466f022b9d5c9f49d3aea31e2f3eb5e6ada87d2bc",
+    "references/contract.md": "44b01449fa1453ee5c432de41a698daab680e72cc69efbd0ebfddb1adcea18bf",
+    "scripts/interference.py": "0c91a1eef5bf846ba147ff8c275587b3babe7b44a56e67db646d04bf3cb575b4"
+  },
+  "note": "Working-tree package identified by these hashes; checkout base is not its publication commit"
+}

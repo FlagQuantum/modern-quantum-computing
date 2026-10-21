@@ -1,0 +1,20 @@
+[
+  {
+    "agent": "/root/interference_blind_a",
+    "fork_turns": "none",
+    "prompt": "Independently handle the raw user tasks in /private/tmp/mqc-interference-blind-r1/a/tasks.json. Discover available skills from catalog.json and existing interpreters from environment.json in that workspace, then choose what applies. No expected answers supplied. Read/write only this assigned workspace plus listed interpreters and their standard/package libraries; do not read repository, siblings, rubrics or external sources. Preserve supplied skills/catalog/tasks/environment. Save per-task requests, actual stdout/stderr/exit codes, explanations, independent verification scripts/results, actual runtime and any claim dispositions under outputs/. Produce outputs/results.json with id, selected_skills, chosen_context, clarification_question if any, status, evidence_paths, verification, limitations. If semantics are missing, send task ID/question to /root via collaboration.send_message, keep dependent decisions pending until reply, continue independent tasks meanwhile. Do not ask real user through UI tools. Do not install dependencies, modify/publicize the public repo or fabricate executions. Finish with artifact locations and unresolved questions.",
+    "model_configuration": "inherited; exact backend revision not exposed"
+  },
+  {
+    "agent": "/root/interference_blind_b",
+    "fork_turns": "none",
+    "prompt": "Independently handle the raw user tasks in /private/tmp/mqc-interference-blind-r1/b/tasks.json. Discover available skills from catalog.json and existing interpreters from environment.json in that workspace, then choose what applies. No expected answers supplied. Read/write only this assigned workspace plus listed interpreters and their standard/package libraries; do not read repository, siblings, rubrics or external sources. Preserve supplied skills/catalog/tasks/environment. Save per-task requests, actual stdout/stderr/exit codes, explanations, independent verification scripts/results, actual runtime and any claim dispositions under outputs/. Produce outputs/results.json with id, selected_skills, chosen_context, clarification_question if any, status, evidence_paths, verification, limitations. If semantics are missing, send task ID/question to /root via collaboration.send_message, keep dependent decisions pending until reply, continue independent tasks meanwhile. Do not ask real user through UI tools. Do not install dependencies, modify/publicize the public repo or fabricate executions. Finish with artifact locations and unresolved questions.",
+    "model_configuration": "inherited; exact backend revision not exposed"
+  },
+  {
+    "agent": "/root/interference_blind_c",
+    "fork_turns": "none",
+    "prompt": "Independently handle the raw user tasks in /private/tmp/mqc-interference-blind-r1/c/tasks.json. Discover available skills from catalog.json and existing interpreters from environment.json in that workspace, then choose what applies. No expected answers supplied. Read/write only this assigned workspace plus listed interpreters and their standard/package libraries; do not read repository, siblings, rubrics or external sources. Preserve supplied skills/catalog/tasks/environment. Save per-task requests, actual stdout/stderr/exit codes, explanations, independent verification scripts/results, actual runtime and any claim dispositions under outputs/. Produce outputs/results.json with id, selected_skills, chosen_context, clarification_question if any, status, evidence_paths, verification, limitations. If semantics are missing, send task ID/question to /root via collaboration.send_message, keep dependent decisions pending until reply, continue independent tasks meanwhile. Do not ask real user through UI tools. Do not install dependencies, modify/publicize the public repo or fabricate executions. Finish with artifact locations and unresolved questions.",
+    "model_configuration": "inherited; exact backend revision not exposed"
+  }
+]

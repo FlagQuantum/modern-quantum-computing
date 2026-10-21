@@ -1,0 +1,5 @@
+{
+  "question": "Choose computational readout or phase-h analyzer and supply delta in radians.",
+  "answer": "Use a final phase-h analyzer H D(-delta), with delta = 0.419 radians. Keep all supplied phase values in radians.",
+  "source": "parent relayed caller clarification"
+}

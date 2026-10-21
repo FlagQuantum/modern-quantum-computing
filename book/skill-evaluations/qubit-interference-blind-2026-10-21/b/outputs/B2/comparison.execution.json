@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-interference-blind-r1/b/skills/compare-quantum-states-and-operators/scripts/compare.py"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 0.015117541999643436,
+  "runtime": {
+    "implementation": "CPython",
+    "python": "3.12.14",
+    "executable": "/private/tmp/mqc-writing-venv/bin/python"
+  }
+}

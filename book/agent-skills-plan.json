@@ -129,7 +129,7 @@
     {
       "id": "reproduce-qubit-interference",
       "level": "L1",
-      "status": "planned",
+      "status": "independent-agent-tested prototype",
       "task": "Translate preparation, phase and analyzer formulas into a checked ideal interference experiment.",
       "deliverable": "Independent amplitude/fringe references and released FlagQuantum execution.",
       "requires_skills": [
@@ -148,8 +148,12 @@
         "examples/foundations/relative_phase.py",
         "book/section-records/3.2.json"
       ],
-      "behavioral_evaluation": "not run",
-      "independent_acceptance": "pending"
+      "behavioral_evaluation": "blind agent tasks: 12/12; author cases: 35/35",
+      "independent_acceptance": "pending",
+      "prototype_package": "skills/reproduce-qubit-interference/SKILL.md",
+      "evaluation_report": "book/skill-evaluations/qubit-interference-v0.1.0/author-report.json",
+      "blind_evaluation_report": "book/skill-evaluations/qubit-interference-blind-2026-10-21/report.json",
+      "package_version": "0.1.0"
     },
     {
       "id": "convert-bloch-state-coordinates",

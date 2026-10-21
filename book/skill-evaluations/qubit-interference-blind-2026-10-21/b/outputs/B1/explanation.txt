@@ -1,0 +1,1 @@
+Verified direct computational readout at phi=0.35 and 1.73 radians gives (0.34,0.66) both times. There is no final analyzer and no relative-phase probability fringe: multiplying beta by a unit phase leaves its squared modulus unchanged at every phase. The coherent state still carries relative phase; this readout does not reveal it.

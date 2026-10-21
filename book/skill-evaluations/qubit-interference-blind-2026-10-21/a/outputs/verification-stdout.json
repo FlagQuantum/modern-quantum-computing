@@ -1,0 +1,155 @@
+{
+  "passed": true,
+  "tasks": {
+    "A1": {
+      "method": "real 2D rotations and explicit H, squared magnitudes, expanded real cross term and analytic extrema",
+      "records": [
+        {
+          "phase_radians": 0.14,
+          "amplitudes": [
+            [
+              0.9806656566927983,
+              -0.137697227554083
+            ],
+            [
+              0.019334343307201626,
+              0.137697227554083
+            ]
+          ],
+          "probabilities": [
+            0.9806656566927981,
+            0.01933434330720165
+          ],
+          "expanded_p0": 0.9806656566927981,
+          "max_error": 1.4304896245381993e-16
+        },
+        {
+          "phase_radians": 1.26,
+          "amplitudes": [
+            [
+              0.8333589245570294,
+              0.3726551051819639
+            ],
+            [
+              0.16664107544297033,
+              -0.3726551051819639
+            ]
+          ],
+          "probabilities": [
+            0.8333589245570292,
+            0.16664107544297027
+          ],
+          "expanded_p0": 0.8333589245570294,
+          "max_error": 7.771561172376096e-16
+        }
+      ],
+      "fringe": {
+        "continuous_p0_min": 0.0,
+        "continuous_p0_max": 0.9999999999999998,
+        "continuous_visibility": 1.0,
+        "sampled_p0_min": 0.8333589245570292,
+        "sampled_p0_max": 0.9806656566927981
+      },
+      "max_absolute_error": 7.771561172376096e-16,
+      "passed": true
+    },
+    "A2": {
+      "method": "real 2D rotations and explicit H, squared magnitudes, expanded real cross term and analytic extrema",
+      "records": [
+        {
+          "phase_radians": 0.31,
+          "amplitudes": [
+            [
+              0.3100091535664654,
+              -0.048910660859509764
+            ],
+            [
+              -0.3100091535664654,
+              0.8974387982833666
+            ]
+          ],
+          "probabilities": [
+            0.09849792804071031,
+            0.9015020719592896
+          ],
+          "expanded_p0": 0.09849792804071028,
+          "max_error": 3.3306690738754696e-16
+        },
+        {
+          "phase_radians": 1.25,
+          "amplitudes": [
+            [
+              0.5649557721959423,
+              0.395541682625698
+            ],
+            [
+              -0.5649557721959423,
+              0.4529864547981589
+            ]
+          ],
+          "probabilities": [
+            0.47562824723188185,
+            0.524371752768118
+          ],
+          "expanded_p0": 0.475628247231882,
+          "max_error": 1.6653345369377348e-16
+        },
+        {
+          "phase_radians": 2.4,
+          "amplitudes": [
+            [
+              0.25699409589480515,
+              0.9282025914259711
+            ],
+            [
+              -0.25699409589480515,
+              -0.07967445400211416
+            ]
+          ],
+          "probabilities": [
+            0.9276060160546765,
+            0.07239398394532331
+          ],
+          "expanded_p0": 0.9276060160546766,
+          "max_error": 1.2412670766236366e-16
+        }
+      ],
+      "fringe": {
+        "continuous_p0_min": 0.019999999999999962,
+        "continuous_p0_max": 0.98,
+        "continuous_visibility": 0.9600000000000001,
+        "sampled_p0_min": 0.09849792804071031,
+        "sampled_p0_max": 0.9276060160546765
+      },
+      "max_absolute_error": 3.3306690738754696e-16,
+      "passed": true
+    },
+    "A3": {
+      "squared_norm": 1.06,
+      "normalization_error": 0.06000000000000005,
+      "admissible": false,
+      "helper_rejection_agrees": true,
+      "passed": true
+    },
+    "A4": {
+      "method": "single-component phase ratio, checked on the full state",
+      "norms_squared": [
+        1.0000000000000002,
+        0.9999999999999998
+      ],
+      "alignment_multiplier_on_b": [
+        0.841360922253021,
+        -0.5404736797528129
+      ],
+      "residual": 1.2412670766236366e-16,
+      "phase_error": 1.5700924586837752e-16,
+      "within_tolerance": true,
+      "passed": true
+    }
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "executable": "/private/tmp/mqc-writing-venv/bin/python"
+  },
+  "elapsed_seconds": 0.0016092080004455056
+}

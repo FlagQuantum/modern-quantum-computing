@@ -1,0 +1,7 @@
+{
+  "status": "boundary_confirmed",
+  "checks": [
+    "Original noisy request rejected with exit 2; no physical simulation or visibility certified."
+  ],
+  "physical_verification": "pending channel semantics and unavailable noise workflow"
+}

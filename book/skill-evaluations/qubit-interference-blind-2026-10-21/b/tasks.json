@@ -1,0 +1,159 @@
+[
+  {
+    "id": "B1",
+    "request": "Run this explicitly direct computational readout, without a final analyzer. Explain whether its probabilities exhibit a relative-phase fringe.",
+    "data": {
+      "profile": "ideal-pure-single-qubit",
+      "state": [
+        [
+          0.5830951894845301,
+          0.0
+        ],
+        [
+          0.6968058267389375,
+          0.4176860541395485
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "phase_radians": [
+        0.35,
+        1.73
+      ],
+      "readout": {
+        "type": "computational"
+      },
+      "atol": 1e-10
+    }
+  },
+  {
+    "id": "B2",
+    "request": "Two prepared states give the same probabilities under the supplied plain H analyzer. Verify those two ideal experiments. Do equal probabilities here prove the states equivalent up to a global phase? Check that separate equivalence question too, using tolerance 1e-10.",
+    "experiments": [
+      {
+        "profile": "ideal-pure-single-qubit",
+        "state": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.7071067811865475
+          ]
+        ],
+        "basis": [
+          "0",
+          "1"
+        ],
+        "angle_unit": "radian",
+        "phase_radians": [
+          0
+        ],
+        "readout": {
+          "type": "phase-h",
+          "delta_radians": 0
+        },
+        "atol": 1e-10
+      },
+      {
+        "profile": "ideal-pure-single-qubit",
+        "state": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            -0.7071067811865475
+          ]
+        ],
+        "basis": [
+          "0",
+          "1"
+        ],
+        "angle_unit": "radian",
+        "phase_radians": [
+          0
+        ],
+        "readout": {
+          "type": "phase-h",
+          "delta_radians": 0
+        },
+        "atol": 1e-10
+      }
+    ]
+  },
+  {
+    "id": "B3",
+    "request": "Reproduce dephasing noise and certify this laboratory visibility from the provided profile; keep the noisy physical meaning.",
+    "data": {
+      "profile": "dephasing-noisy-single-qubit",
+      "state": [
+        [
+          0.7071067811865475,
+          0.0
+        ],
+        [
+          0.7071067811865475,
+          0.0
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "phase_radians": [
+        0,
+        3.141592653589793
+      ],
+      "readout": {
+        "type": "phase-h",
+        "delta_radians": 0
+      },
+      "atol": 1e-10,
+      "dephasing_probability": 0.19
+    },
+    "laboratory_visibility": 0.43
+  },
+  {
+    "id": "B4",
+    "request": "Audit a paper-style formula against a fresh ideal run, preserving the declared positive analyzer delta. Return a claim disposition and reproducible evidence.",
+    "data": {
+      "profile": "ideal-pure-single-qubit",
+      "state": [
+        [
+          0.7071067811865475,
+          0.0
+        ],
+        [
+          0.7071067811865475,
+          0.0
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "phase_radians": [
+        0.23,
+        0.88,
+        1.97
+      ],
+      "readout": {
+        "type": "phase-h",
+        "delta_radians": 0.387
+      },
+      "atol": 1e-10
+    },
+    "claim": {
+      "p0_formula": "(1+cos(phi+delta))/2",
+      "scope": "all supplied phases"
+    }
+  }
+]

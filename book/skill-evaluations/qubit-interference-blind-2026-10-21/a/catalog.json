@@ -1,0 +1,140 @@
+[
+  {
+    "id": "scope-paper-claims",
+    "description": "Classify claims and record feasibility, source locations, access models and missing artifacts.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "translate-complex-linear-algebra",
+    "description": "Translate complex scalar/vector/operator formulas with explicit coordinate and numerical contracts.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "compare-quantum-states-and-operators",
+    "description": "Compare one- or two-qubit pure states and unitary matrices with explicit basis and phase scope, including a one-control gate context. Use for numerical equivalence checks; density matrices, channels and hardware statistics require another profile.",
+    "available": true,
+    "path": "skills/compare-quantum-states-and-operators/SKILL.md"
+  },
+  {
+    "id": "reproduce-qubit-interference",
+    "description": "Reproduce an ideal single-qubit relative-phase scan with specified preparation and analyzer, using released FlagQuantum and independent amplitude/probability checks. Use for interference predictions; not for noisy data, hardware execution, tomography or generic state equivalence.",
+    "available": true,
+    "path": "skills/reproduce-qubit-interference/SKILL.md"
+  },
+  {
+    "id": "convert-bloch-state-coordinates",
+    "description": "Translate pure-qubit coordinates and phase charts, including poles and sign conventions.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "translate-unitary-evolution",
+    "description": "Translate fixed-generator evolution and single-qubit factorizations with units, order and common phase.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "translate-qubit-ordering",
+    "description": "Translate subsystem labels, supports, permutations and basis-index conventions.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "build-and-check-circuits",
+    "description": "Build a specified circuit or reversible subroutine without changing its input/output semantics.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "measure-and-estimate-observables",
+    "description": "Translate measurement, estimation and state-inference claims into statistical contracts.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "model-composite-states-and-channels",
+    "description": "Model entangled/mixed states, protocols and conditional/channel maps.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "audit-information-and-security-claims",
+    "description": "Audit information/security hypotheses and scoped finite examples without inferring a theorem from samples.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "audit-algorithmic-resource-claims",
+    "description": "Check query/access/precision models, classical baselines and complete logical/physical resource accounting.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "implement-oracle-and-spectral-algorithms",
+    "description": "Implement a selected oracle, arithmetic, Fourier, Hamiltonian or spectral algorithm with its access assumptions.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "train-differentiable-hybrid-models",
+    "description": "Translate gradients, loss functions, optimizers, QAOA and hybrid/classical comparison protocols.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "simulate-noise-and-mitigation",
+    "description": "Specify channels/dynamics and mitigation assumptions with sampling and approximation costs.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "reproduce-error-correction-experiments",
+    "description": "Translate codes, syndrome rounds, decoders and logical operations under declared fault models.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "model-physical-qubit-platforms",
+    "description": "Map physical assumptions, levels/modes, controls, readout and effective models across platform routes.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "compile-and-lower-quantum-programs",
+    "description": "Transform programs through representations and target constraints while preserving declared semantics.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "select-and-validate-classical-simulators",
+    "description": "Choose exact, stabilizer, MPS, contraction or cutting methods for a specified output and error target.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "reproduce-molecular-vqe",
+    "description": "Trace integrals, operators, mappings, reductions, optimizers and reported energy targets for a scoped chemistry claim.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "reproduce-declared-paper-claim",
+    "description": "Select relevant domain workflows and reproduce one registered claim with no silent substitutions.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "assemble-paper-reproduction",
+    "description": "Integrate mandatory paper claims, artifacts, dependencies and reviews into a reproducible report.",
+    "available": false,
+    "path": null
+  },
+  {
+    "id": "transfer-to-unseen-papers",
+    "description": "Evaluate routing and execution on held-out papers, identifying unsupported requirements rather than inventing success.",
+    "available": false,
+    "path": null
+  }
+]

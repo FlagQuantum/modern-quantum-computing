@@ -1,0 +1,7 @@
+{
+  "python_candidates": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/private/tmp/mqc-writing-venv/bin/python"
+  ],
+  "install_allowed": false
+}

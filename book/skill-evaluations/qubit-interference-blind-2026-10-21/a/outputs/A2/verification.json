@@ -1,0 +1,71 @@
+{
+  "method": "real 2D rotations and explicit H, squared magnitudes, expanded real cross term and analytic extrema",
+  "records": [
+    {
+      "phase_radians": 0.31,
+      "amplitudes": [
+        [
+          0.3100091535664654,
+          -0.048910660859509764
+        ],
+        [
+          -0.3100091535664654,
+          0.8974387982833666
+        ]
+      ],
+      "probabilities": [
+        0.09849792804071031,
+        0.9015020719592896
+      ],
+      "expanded_p0": 0.09849792804071028,
+      "max_error": 3.3306690738754696e-16
+    },
+    {
+      "phase_radians": 1.25,
+      "amplitudes": [
+        [
+          0.5649557721959423,
+          0.395541682625698
+        ],
+        [
+          -0.5649557721959423,
+          0.4529864547981589
+        ]
+      ],
+      "probabilities": [
+        0.47562824723188185,
+        0.524371752768118
+      ],
+      "expanded_p0": 0.475628247231882,
+      "max_error": 1.6653345369377348e-16
+    },
+    {
+      "phase_radians": 2.4,
+      "amplitudes": [
+        [
+          0.25699409589480515,
+          0.9282025914259711
+        ],
+        [
+          -0.25699409589480515,
+          -0.07967445400211416
+        ]
+      ],
+      "probabilities": [
+        0.9276060160546765,
+        0.07239398394532331
+      ],
+      "expanded_p0": 0.9276060160546766,
+      "max_error": 1.2412670766236366e-16
+    }
+  ],
+  "fringe": {
+    "continuous_p0_min": 0.019999999999999962,
+    "continuous_p0_max": 0.98,
+    "continuous_visibility": 0.9600000000000001,
+    "sampled_p0_min": 0.09849792804071031,
+    "sampled_p0_max": 0.9276060160546765
+  },
+  "max_absolute_error": 3.3306690738754696e-16,
+  "passed": true
+}

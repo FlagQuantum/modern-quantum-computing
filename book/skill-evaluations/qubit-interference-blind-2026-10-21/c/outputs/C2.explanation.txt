@@ -1,0 +1,1 @@
+The zero |0> amplitude leaves only one occupied path. The scan phase multiplies the whole state by a common phase, so no relative phase is identifiable. The stated analyzer yields probability 1/2 for both outcomes at every supplied phase. Analytic full continuous visibility is exactly 0. This ideal absent-path example does not diagnose noise or decoherence.

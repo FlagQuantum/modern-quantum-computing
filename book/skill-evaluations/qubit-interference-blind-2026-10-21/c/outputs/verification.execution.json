@@ -1,0 +1,8 @@
+{
+  "argv": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "outputs/verify.py"
+  ],
+  "exit_code": 0,
+  "runtime_seconds": 0.018426874999931897
+}

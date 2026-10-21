@@ -1,0 +1,14 @@
+{
+  "skill": "reproduce-qubit-interference",
+  "version": "0.1.0",
+  "scope": "Author execution of normal, boundary, invalid/unsupported and post-freeze author transfer fixtures; independent blind agents are recorded separately",
+  "criteria": {
+    "all_statuses_and_exit_codes_correct": true,
+    "coordinate_and_probability_reference_absolute_tolerance": 2e-12,
+    "all_actual_simulator_records_pass_profile": true,
+    "no_false_success_allowed": true
+  },
+  "reference": "NumPy matrix-product oracle independent of helper scalar formula and Torch/FlagQuantum execution",
+  "record_policy": "Freeze package before fixtures; preserve original logs; record only actual runs; do not count author transfer fixtures as independent agent evaluation",
+  "scientific_acceptance": "pending"
+}

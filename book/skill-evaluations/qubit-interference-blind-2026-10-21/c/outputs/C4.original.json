@@ -1,0 +1,39 @@
+{
+  "id": "C4",
+  "request": "Audit this cached probability result against the fresh ideal experiment. Do not trust the cache without checking the raw prepared state and readout.",
+  "data": {
+    "profile": "ideal-pure-single-qubit",
+    "state": [
+      [
+        0.7071067811865475,
+        0.0
+      ],
+      [
+        0.0,
+        0.7071067811865475
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "angle_unit": "radian",
+    "phase_radians": [
+      0
+    ],
+    "readout": {
+      "type": "phase-h",
+      "delta_radians": 0
+    },
+    "atol": 1e-10
+  },
+  "cache": {
+    "status": "verified",
+    "probabilities": [
+      [
+        1,
+        0
+      ]
+    ]
+  }
+}

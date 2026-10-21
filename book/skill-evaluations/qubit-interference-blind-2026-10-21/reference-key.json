@@ -1,0 +1,74 @@
+{
+  "A1": {
+    "initial": "clarification required",
+    "reply": "Use a final phase-h analyzer H D(-delta), with delta = 0.419 radians. Keep all supplied phase values in radians.",
+    "status": "verified",
+    "skill": "reproduce-qubit-interference"
+  },
+  "A2": {
+    "status": "verified",
+    "skill": "reproduce-qubit-interference",
+    "continuous_visibility": 0.96
+  },
+  "A3": {
+    "status": "invalid_input",
+    "skill": "reproduce-qubit-interference"
+  },
+  "A4": {
+    "status": "within_tolerance",
+    "skill": "compare-quantum-states-and-operators",
+    "residual": 0
+  },
+  "B1": {
+    "status": "verified",
+    "skill": "reproduce-qubit-interference",
+    "probabilities": [
+      0.34,
+      0.66
+    ]
+  },
+  "B2": {
+    "status": "verified",
+    "skill": "reproduce-qubit-interference",
+    "probabilities": [
+      0.5,
+      0.5
+    ],
+    "state_equivalence": "outside_tolerance",
+    "state_ray_residual": 1.4142135623730951
+  },
+  "B3": {
+    "status": "unsupported",
+    "scientific_claim": "no noisy/hardware certification"
+  },
+  "B4": {
+    "status": "verified",
+    "skill": "reproduce-qubit-interference",
+    "claim": "rejected by counterexample"
+  },
+  "C1": {
+    "initial": "clarification required",
+    "reply": "The scan values 30 and 75 are in degrees, and the analyzer delta is zero degrees. Convert them explicitly to radians before using the helper and retain the original values in the record.",
+    "status": "verified",
+    "skill": "reproduce-qubit-interference"
+  },
+  "C2": {
+    "status": "verified",
+    "skill": "reproduce-qubit-interference",
+    "continuous_visibility": 0,
+    "relative_phase_identifiable": false
+  },
+  "C3": {
+    "status": "outside declared chronology; do not claim unchanged profile execution",
+    "supplementary_p0": 1
+  },
+  "C4": {
+    "status": "verified",
+    "skill": "reproduce-qubit-interference",
+    "cache": "rejected",
+    "probabilities": [
+      0.5,
+      0.5
+    ]
+  }
+}

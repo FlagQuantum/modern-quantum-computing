@@ -1,0 +1,21 @@
+{
+  "scope": "Second agent skill: reproduce-qubit-interference 0.1.0, based on existing 3.2; no new textbook sections",
+  "local_checks": {
+    "skill_creator_quick_validate": "passed",
+    "author_execution": "35/35 cases; 167 actual FlagQuantum 0.3.1 circuits",
+    "independent_agent_evaluation": "3 no-history agents; 12/12 new tasks; 18 actual FlagQuantum circuits; two available skill implementations; references withheld",
+    "frozen_blind_evidence_replay": "13 helper requests; hashes, routing, units, contexts, claims and independent matrix references passed",
+    "runtime_admission": "Actual incompatible CPython 3.9.6 and site-disabled CPython 3.12 rejected",
+    "documented_shell_example": "exact displayed output passed",
+    "first_skill_regression": "45 cases and frozen prior blind evidence passed; package unchanged",
+    "existing_prose_regression": "61 body fragments / 15 complete program outputs passed",
+    "strict_mkdocs_build": "passed",
+    "links": "65 pages; local links/fragments resolve, IDs unique",
+    "browser_formula_display": "preparation matrix, complex amplitudes, conjugate/sign, probability expansion and visibility formulas visually checked",
+    "writing_baseline_progress_queue": "byte-identical to pre-task copies; 50 chapters / 435 sections / seven volumes / 16 batches retained",
+    "git_diff_check": "passed"
+  },
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "released_skills": 0
+}

@@ -1,0 +1,52 @@
+{
+  "method": "real 2D rotations and explicit H, squared magnitudes, expanded real cross term and analytic extrema",
+  "records": [
+    {
+      "phase_radians": 0.14,
+      "amplitudes": [
+        [
+          0.9806656566927983,
+          -0.137697227554083
+        ],
+        [
+          0.019334343307201626,
+          0.137697227554083
+        ]
+      ],
+      "probabilities": [
+        0.9806656566927981,
+        0.01933434330720165
+      ],
+      "expanded_p0": 0.9806656566927981,
+      "max_error": 1.4304896245381993e-16
+    },
+    {
+      "phase_radians": 1.26,
+      "amplitudes": [
+        [
+          0.8333589245570294,
+          0.3726551051819639
+        ],
+        [
+          0.16664107544297033,
+          -0.3726551051819639
+        ]
+      ],
+      "probabilities": [
+        0.8333589245570292,
+        0.16664107544297027
+      ],
+      "expanded_p0": 0.8333589245570294,
+      "max_error": 7.771561172376096e-16
+    }
+  ],
+  "fringe": {
+    "continuous_p0_min": 0.0,
+    "continuous_p0_max": 0.9999999999999998,
+    "continuous_visibility": 1.0,
+    "sampled_p0_min": 0.8333589245570292,
+    "sampled_p0_max": 0.9806656566927981
+  },
+  "max_absolute_error": 7.771561172376096e-16,
+  "passed": true
+}
