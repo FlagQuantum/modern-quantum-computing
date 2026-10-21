@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "-c",
+    "import sys, json, importlib.metadata as m; print(json.dumps({\"implementation\":sys.implementation.name,\"python\":sys.version,\"packages\":{x:m.version(x) for x in [\"torch\",\"flagquantum\"]}}))"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 0.06063045900009456,
+  "stdin": null
+}

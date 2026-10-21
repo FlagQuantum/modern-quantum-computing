@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<string>", line 1, in <dictcomp>
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/importlib/metadata.py", line 551, in version
+    return distribution(distribution_name).version
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/importlib/metadata.py", line 524, in distribution
+    return Distribution.from_name(distribution_name)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/importlib/metadata.py", line 187, in from_name
+    raise PackageNotFoundError(name)
+importlib.metadata.PackageNotFoundError: torch

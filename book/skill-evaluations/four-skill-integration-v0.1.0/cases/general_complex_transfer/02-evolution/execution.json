@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/translate-unitary-evolution/scripts/unitary.py"
+  ],
+  "exit_code": 0,
+  "request_sha256": "be4bc4208ea9bb3e15e3e18ad8804ee4b5a86157bc4cb08d05651c89183836ec",
+  "source_request_sha256": "f2dd8e97b76f91b38aa3f660c4e92944e9cacfb16c431872e3525fbb535e83d3",
+  "skill": "translate-unitary-evolution",
+  "request_path": "02-evolution/request.json"
+}

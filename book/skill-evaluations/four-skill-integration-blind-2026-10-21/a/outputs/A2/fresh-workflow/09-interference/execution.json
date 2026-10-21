@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-composition-blind-r1/a/skills/reproduce-qubit-interference/scripts/interference.py"
+  ],
+  "exit_code": 0,
+  "request_sha256": "bff59e1d66c6a9b92b137bc0821ffbb86dcf7d6b6f7ec66b3f04d22b8adaff8a",
+  "source_request_sha256": "07cf3e1803ff51c92b24e6ba3ab7b6aef429502fbbe8b7329616667b6c38bca4",
+  "skill": "reproduce-qubit-interference",
+  "request_path": "09-interference/request.json"
+}

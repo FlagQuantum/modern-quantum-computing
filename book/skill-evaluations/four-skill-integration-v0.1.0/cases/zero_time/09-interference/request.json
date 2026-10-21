@@ -1,0 +1,28 @@
+{
+  "profile": "ideal-pure-single-qubit",
+  "state": [
+    [
+      0.0,
+      0.6
+    ],
+    [
+      0.8,
+      0.0
+    ]
+  ],
+  "basis": [
+    "0",
+    "1"
+  ],
+  "angle_unit": "radian",
+  "phase_radians": [
+    0.17,
+    1.03,
+    2.11
+  ],
+  "readout": {
+    "type": "phase-h",
+    "delta_radians": 0.31
+  },
+  "atol": 1e-10
+}

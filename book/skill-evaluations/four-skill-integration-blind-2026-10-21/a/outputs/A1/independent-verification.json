@@ -1,0 +1,67 @@
+{
+  "method": "64-term matrix Taylor series, scalar list matvec, direct analyzer amplitudes; classical arithmetic, not a circuit",
+  "exponent_multiplier": 1017909.1901574055,
+  "time_seconds": 6.700000000000001e-10,
+  "reference_unitary": [
+    [
+      [
+        0.9199687469174275,
+        -0.18103384139476816
+      ],
+      [
+        -0.34114177876964796,
+        0.06713076599378945
+      ]
+    ],
+    [
+      [
+        0.34114177876964796,
+        -0.06713076599378945
+      ],
+      [
+        0.9199687469174275,
+        -0.18103384139476816
+      ]
+    ]
+  ],
+  "reference_evolved_state": [
+    [
+      0.6956965379376684,
+      -0.3495121403776033
+    ],
+    [
+      0.3815337278525793,
+      0.4982766353554249
+    ]
+  ],
+  "matrix_error": 2.220446049250313e-16,
+  "checks": [
+    {
+      "phase": 0.13,
+      "coordinate_error": 1.3877787807814457e-16,
+      "staged_error": 1.3877787807814457e-16,
+      "whole_vs_staged": 0.0,
+      "probability_error": 1.1102230246251565e-16
+    },
+    {
+      "phase": 1.19,
+      "coordinate_error": 2.220446049250313e-16,
+      "staged_error": 2.220446049250313e-16,
+      "whole_vs_staged": 0.0,
+      "probability_error": 3.3306690738754696e-16
+    },
+    {
+      "phase": 2.37,
+      "coordinate_error": 2.220446049250313e-16,
+      "staged_error": 2.220446049250313e-16,
+      "whole_vs_staged": 0.0,
+      "probability_error": 2.220446049250313e-16
+    }
+  ],
+  "atol": 1e-10,
+  "rtol": 0,
+  "passed": true,
+  "fresh_workflow_status": "verified",
+  "actual_flagquantum_circuits": 15,
+  "limits": "Finite binary64 numerical checks; no interval certification or experimental/hardware evidence."
+}

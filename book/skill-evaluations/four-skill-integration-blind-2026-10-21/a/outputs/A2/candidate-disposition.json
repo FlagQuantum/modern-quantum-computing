@@ -1,0 +1,46 @@
+{
+  "status": "rejected",
+  "full_coordinate_max_error": 0.23555840866018923,
+  "phase_aligned_max_error": 2.2591401799415137e-16,
+  "aligning_multiplier_on_candidate": [
+    0.9555431191959448,
+    -0.2948513987711174
+  ],
+  "overlap_phase_radians": 0.29929999999999995,
+  "candidate_vs_actual_native_zyz_error": 2.3714374201337736e-16,
+  "native_zyz_alpha": -0.29929999999999995,
+  "ray_equivalent": true,
+  "full_coordinates_accepted": false,
+  "reason": "Candidate omits scalar phase retained by full U. An isolated ray match does not satisfy full-coordinate or controlled-operation requirements. Fresh repaired workflow success is separate.",
+  "provenance": "Synthetic candidate for audit, not an executed circuit record",
+  "metadata": "Declared basis, singleton batch shape, dtype and device match expected envelope; declarations do not attest any actual submitted execution. Candidate vector supplied directly; no implicit reshape performed.",
+  "controlled_witness": {
+    "absolute_tolerance": 2e-10,
+    "aligned_residual": 0.29902079233240914,
+    "alignment_multiplier_on_b": [
+      0.9888233207191123,
+      -0.14909205345030166
+    ],
+    "comparison_dimension": 4,
+    "contract_version": "0.1.1",
+    "decision_residual": 0.29902079233240914,
+    "input_dimension": 2,
+    "kind": "unitary",
+    "metric": "frobenius",
+    "mode": "controlled",
+    "overlap": [
+      3.9110862383918894,
+      0.5897027975422346
+    ],
+    "phase_identifiable": true,
+    "phase_scope": "one phase on the full controlled operation",
+    "proof_of_exact_equality": false,
+    "raw_residual": 0.42169600806294205,
+    "runtime": {
+      "implementation": "cpython",
+      "python": "3.12.14"
+    },
+    "status": "outside_tolerance",
+    "validation_atol": 1e-12
+  }
+}

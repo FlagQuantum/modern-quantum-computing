@@ -1,0 +1,1 @@
+{"contract_version": "0.1.0", "reason": "Dimensionless exponent entries must be finite with magnitude at most 32", "runtime": {"implementation": "cpython", "python": "3.12.14"}, "status": "invalid_input"}

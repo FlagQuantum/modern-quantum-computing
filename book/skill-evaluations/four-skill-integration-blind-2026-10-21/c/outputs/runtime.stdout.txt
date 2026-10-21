@@ -1,0 +1,4 @@
+3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]
+{'torch': '2.13.0', 'flagquantum': '0.3.1'}
+/Users/baai/Documents/liuwei/FlagQuantum/molecular_vqe_lab/.venv/lib/python3.12/site-packages/torch/__init__.py
+/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/__init__.py

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-composition-blind-r1/c/skills/translate-complex-linear-algebra/scripts/algebra.py"
+  ],
+  "exit_code": 0,
+  "request_sha256": "60e1ea77b174dc83bad22c6f888f5f40650772b7a7611cf50a24d9ea442f177e",
+  "source_request_sha256": "f0be6264242be7426decea7d56a7677cc02621c6325b31c7fa66c8948d21dc33",
+  "skill": "translate-complex-linear-algebra",
+  "request_path": "04-classical-action/request.json"
+}

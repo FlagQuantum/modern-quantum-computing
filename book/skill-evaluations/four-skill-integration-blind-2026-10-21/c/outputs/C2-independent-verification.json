@@ -1,0 +1,293 @@
+{
+  "method": "Independent standard-library characteristic eigenvalues/spectral-projector exponential and scalar complex arithmetic; no helper/workflow imports",
+  "quantum_execution": false,
+  "checks": [
+    {
+      "check": "independent dimensionless exponent vs saved conversion",
+      "max_absolute_error": 0.0,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "spectral-projector full U vs evolution actual U",
+      "max_absolute_error": 2.220446049250313e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "spectral-projector full U vs classical helper exponential",
+      "max_absolute_error": 2.220446049250313e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "native matrix phase reconstruction",
+      "max_absolute_error": 1.1295700899707568e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "independent evolved state vs literal handoff",
+      "max_absolute_error": 1.1443916996305594e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution supplied/direct coordinates",
+      "max_absolute_error": 1.1443916996305594e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution supplied/direct probabilities",
+      "max_absolute_error": 1.1102230246251565e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution supplied/native-zyz coordinates",
+      "max_absolute_error": 2.7755575615628914e-17,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution supplied/native-zyz probabilities",
+      "max_absolute_error": 0.0,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution zero/direct coordinates",
+      "max_absolute_error": 2.220446049250313e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution zero/direct probabilities",
+      "max_absolute_error": 4.440892098500626e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution zero/native-zyz coordinates",
+      "max_absolute_error": 3.1415896652784323e-17,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution zero/native-zyz probabilities",
+      "max_absolute_error": 0.0,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution one/direct coordinates",
+      "max_absolute_error": 2.220446049250313e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution one/direct probabilities",
+      "max_absolute_error": 4.440892098500626e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution one/native-zyz coordinates",
+      "max_absolute_error": 3.1415896652784323e-17,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution one/native-zyz probabilities",
+      "max_absolute_error": 0.0,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution coherent-control/controlled-direct coordinates",
+      "max_absolute_error": 2.2228841655759984e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution coherent-control/controlled-direct probabilities",
+      "max_absolute_error": 1.1102230246251565e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution coherent-control/controlled-repaired coordinates",
+      "max_absolute_error": 1.1631705747361534e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution coherent-control/controlled-repaired probabilities",
+      "max_absolute_error": 1.3877787807814457e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution coherent-control/controlled-unrepaired coordinates",
+      "max_absolute_error": 1.3877787807814457e-17,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "actual evolution coherent-control/controlled-unrepaired probabilities",
+      "max_absolute_error": 0.0,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "final coordinates phi=0.19",
+      "max_absolute_error": 2.482534153247273e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "staged final coordinates phi=0.19",
+      "max_absolute_error": 2.482534153247273e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "final probabilities phi=0.19",
+      "max_absolute_error": 3.3306690738754696e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "independent scalar cross formula phi=0.19",
+      "max_absolute_error": 5.551115123125783e-17,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "final coordinates phi=0.97",
+      "max_absolute_error": 2.618455766672135e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "staged final coordinates phi=0.97",
+      "max_absolute_error": 2.618455766672135e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "final probabilities phi=0.97",
+      "max_absolute_error": 2.220446049250313e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "independent scalar cross formula phi=0.97",
+      "max_absolute_error": 1.1102230246251565e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "final coordinates phi=2.03",
+      "max_absolute_error": 1.5700924586837752e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "staged final coordinates phi=2.03",
+      "max_absolute_error": 1.5700924586837752e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "final probabilities phi=2.03",
+      "max_absolute_error": 2.220446049250313e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "independent scalar cross formula phi=2.03",
+      "max_absolute_error": 2.42861286636753e-17,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "synthetic submitted chronology prediction 0.19",
+      "max_absolute_error": 3.0436364816617974e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "synthetic submitted chronology prediction 0.97",
+      "max_absolute_error": 1.2412670766236366e-16,
+      "budget": 1e-10,
+      "passed": true
+    },
+    {
+      "check": "synthetic submitted chronology prediction 2.03",
+      "max_absolute_error": 2.2887833992611187e-16,
+      "budget": 1e-10,
+      "passed": true
+    }
+  ],
+  "all_passed": true,
+  "final_outputs": [
+    {
+      "phase_radians": 0.19,
+      "independent_coordinates": [
+        [
+          0.4921396833286108,
+          0.33559441781978605
+        ],
+        [
+          -0.6117560743732476,
+          0.5205088128829778
+        ]
+      ],
+      "independent_probabilities": [
+        0.3548250811785865,
+        0.6451749188214133
+      ]
+    },
+    {
+      "phase_radians": 0.97,
+      "independent_coordinates": [
+        [
+          0.397602268010886,
+          0.750496125606675
+        ],
+        [
+          -0.5172186590555227,
+          0.10560710509608892
+        ]
+      ],
+      "independent_probabilities": [
+        0.7213319980780305,
+        0.2786680019219694
+      ]
+    },
+    {
+      "phase_radians": 2.03,
+      "independent_coordinates": [
+        [
+          -0.1174792262233007,
+          0.9847102599095374
+        ],
+        [
+          -0.002137164821336022,
+          -0.12860702920677355
+        ]
+      ],
+      "independent_probabilities": [
+        0.9834556645651343,
+        0.016544335434865467
+      ]
+    }
+  ],
+  "handoff_provenance_and_metadata_passed": true,
+  "runtime_and_helper_receipts_checked": true,
+  "actual_workflow_flagquantum_circuits": 15,
+  "absolute_coordinate_tolerance": 1e-10,
+  "rtol": 0
+}

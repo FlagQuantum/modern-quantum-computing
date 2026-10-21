@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/translate-complex-linear-algebra/scripts/algebra.py"
+  ],
+  "exit_code": 0,
+  "request_sha256": "292281d15bce30b819ce7e15781f19f58c70d78ea2fff0d66f15aa7ba593a9a5",
+  "source_request_sha256": "f2dd8e97b76f91b38aa3f660c4e92944e9cacfb16c431872e3525fbb535e83d3",
+  "skill": "translate-complex-linear-algebra",
+  "request_path": "04-classical-action/request.json"
+}

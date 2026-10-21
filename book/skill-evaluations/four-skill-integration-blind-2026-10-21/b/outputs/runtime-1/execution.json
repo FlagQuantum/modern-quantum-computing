@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "-c",
+    "import sys, json, importlib.metadata as m; print(json.dumps({\"implementation\":sys.implementation.name,\"python\":sys.version,\"packages\":{x:m.version(x) for x in [\"torch\",\"flagquantum\"]}}))"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.06817579199923784,
+  "stdin": null
+}

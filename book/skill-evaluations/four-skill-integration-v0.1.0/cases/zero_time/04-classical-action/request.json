@@ -1,0 +1,41 @@
+{
+  "coordinates": "literal-complex",
+  "tolerance": {
+    "atol": 1e-10,
+    "rtol": 0
+  },
+  "task": "algebra",
+  "operation": "matvec",
+  "matrix": [
+    [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ]
+  ],
+  "v": [
+    [
+      0,
+      0.6
+    ],
+    [
+      0.8,
+      0
+    ]
+  ]
+}

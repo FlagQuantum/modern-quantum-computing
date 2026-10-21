@@ -1,0 +1,60 @@
+{
+  "method": "64-term matrix Taylor series, scalar list matvec, direct analyzer amplitudes; classical arithmetic, not a circuit",
+  "exponent_multiplier": 1109065.237037173,
+  "time_seconds": 7.300000000000001e-10,
+  "reference_unitary": [
+    [
+      [
+        0.9279505208101115,
+        -0.28633716632429845
+      ],
+      [
+        -0.22797035678122402,
+        0.07034468379810592
+      ]
+    ],
+    [
+      [
+        0.22797035678122402,
+        -0.07034468379810592
+      ],
+      [
+        0.9279505208101115,
+        -0.28633716632429845
+      ]
+    ]
+  ],
+  "reference_evolved_state": [
+    [
+      -0.010573985630400157,
+      0.6130460595245516
+    ],
+    [
+      0.7845672269269528,
+      -0.09228751899070439
+    ]
+  ],
+  "matrix_error": 2.220446049250313e-16,
+  "checks": [
+    {
+      "phase": 0.23,
+      "coordinate_error": 1.6653345369377348e-16,
+      "staged_error": 1.6653345369377348e-16,
+      "whole_vs_staged": 0.0,
+      "probability_error": 3.3306690738754696e-16
+    },
+    {
+      "phase": 0.91,
+      "coordinate_error": 1.716587549445839e-16,
+      "staged_error": 1.716587549445839e-16,
+      "whole_vs_staged": 0.0,
+      "probability_error": 2.220446049250313e-16
+    }
+  ],
+  "atol": 1e-10,
+  "rtol": 0,
+  "passed": true,
+  "fresh_workflow_status": "verified",
+  "actual_flagquantum_circuits": 13,
+  "limits": "Finite binary64 numerical checks; no interval certification or experimental/hardware evidence."
+}

@@ -1,0 +1,422 @@
+{
+  "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+  "fault_injection": null,
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "tolerance_ledger": {
+    "coordinate_max_absolute": 1e-10,
+    "probability_max_absolute": 1e-10,
+    "algebra_elementwise_atol": 1e-10,
+    "rtol": 0,
+    "state_l2_atol": 1.4142135623730953e-10,
+    "operator_frobenius_atol": 2e-10,
+    "reason": "Entrywise epsilon implies l2<=sqrt(d)*epsilon for d=2; matrix Frobenius<=2*epsilon. Local budgets do not imply an arbitrary accumulated-error theorem; final outputs checked separately."
+  },
+  "conversion": {
+    "time_seconds": 6.700000000000001e-10,
+    "exponent_multiplier": 1017909.1901574055,
+    "effective_exponent": [
+      [
+        [
+          0.19430000000000003,
+          0.0
+        ],
+        [
+          0.0,
+          -0.3551000000000001
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.3551000000000001
+        ],
+        [
+          0.19430000000000003,
+          0.0
+        ]
+      ]
+    ],
+    "hbar_provenance": "Caller-declared numerical input, not independently certified"
+  },
+  "phase_witness": {
+    "state_ray": "within_tolerance",
+    "isolated_operator_ray": "within_tolerance",
+    "controlled_operator": "outside_tolerance",
+    "controlled_residual": 0.19422359954727783,
+    "omitted_scalar_phase_radians": -0.19429999999999997,
+    "note": "Outside controlled tolerance is an intentional witness, not failure of the repaired evolution."
+  },
+  "status": "verified",
+  "outputs": [
+    {
+      "phase_radians": 0.13,
+      "statevector": [
+        [
+          0.7955438098047611,
+          0.07649860991482926
+        ],
+        [
+          0.18831966944269787,
+          -0.5707834190508847
+        ]
+      ],
+      "probabilities": [
+        0.6387419906375751,
+        0.3612580093624248
+      ],
+      "classical_reference_state": [
+        [
+          0.7955438098047614,
+          0.07649860991482937
+        ],
+        [
+          0.188319669442698,
+          -0.5707834190508849
+        ]
+      ],
+      "staged_statevector": [
+        [
+          0.7955438098047611,
+          0.07649860991482926
+        ],
+        [
+          0.18831966944269787,
+          -0.5707834190508847
+        ]
+      ],
+      "staged_probabilities": [
+        0.6387419906375751,
+        0.3612580093624248
+      ],
+      "probability_max_absolute_error": 0.0,
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "probability_dtype": "torch.float64",
+      "device": "cpu"
+    },
+    {
+      "phase_radians": 1.19,
+      "statevector": [
+        [
+          0.3580291911553018,
+          0.17593430588619335
+        ],
+        [
+          0.6258342880921574,
+          -0.6702191150222487
+        ]
+      ],
+      "probabilities": [
+        0.15913778170697626,
+        0.8408622182930237
+      ],
+      "classical_reference_state": [
+        [
+          0.35802919115530174,
+          0.1759343058861934
+        ],
+        [
+          0.6258342880921576,
+          -0.670219115022249
+        ]
+      ],
+      "staged_statevector": [
+        [
+          0.3580291911553018,
+          0.17593430588619335
+        ],
+        [
+          0.6258342880921574,
+          -0.6702191150222487
+        ]
+      ],
+      "staged_probabilities": [
+        0.15913778170697626,
+        0.8408622182930237
+      ],
+      "probability_max_absolute_error": 0.0,
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "probability_dtype": "torch.float64",
+      "device": "cpu"
+    },
+    {
+      "phase_radians": 2.37,
+      "statevector": [
+        [
+          0.04974566467033587,
+          -0.20978908433520038
+        ],
+        [
+          0.9341178145771233,
+          -0.28449572480085505
+        ]
+      ],
+      "probabilities": [
+        0.04648609105969532,
+        0.9535139089403047
+      ],
+      "classical_reference_state": [
+        [
+          0.049745664670335754,
+          -0.20978908433520035
+        ],
+        [
+          0.9341178145771236,
+          -0.28449572480085517
+        ]
+      ],
+      "staged_statevector": [
+        [
+          0.04974566467033587,
+          -0.20978908433520038
+        ],
+        [
+          0.9341178145771233,
+          -0.28449572480085505
+        ]
+      ],
+      "staged_probabilities": [
+        0.04648609105969532,
+        0.9535139089403047
+      ],
+      "probability_max_absolute_error": 0.0,
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "probability_dtype": "torch.float64",
+      "device": "cpu"
+    }
+  ],
+  "stage": "complete",
+  "claim_acceptance": "This declared ideal composition only; no independent scientific acceptance or whole-paper claim",
+  "runtime": {
+    "implementation": "cpython",
+    "python": "3.12.14"
+  },
+  "helper_calls": [
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/translate-complex-linear-algebra/scripts/algebra.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "1254b983404debb18888dbcdbf354beb979a6b37785a0083da690878f224df27",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "translate-complex-linear-algebra",
+      "request_path": "01-classical-exponential/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/translate-unitary-evolution/scripts/unitary.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "afb908dd7f09914af42e6eb22558f6ce8f5157df40a86fe06af8e8f1bc7da8d0",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "translate-unitary-evolution",
+      "request_path": "02-evolution/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "f097b2f48d9a654842f74bd2202124788aabe3036dc4f7336dbf2b5dcb0445f7",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "03-full-matrix/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/translate-complex-linear-algebra/scripts/algebra.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "8da833254f4014b9586ba9c8ed948363f8757eeb3bebbad00a7a7ab0bbb286ed",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "translate-complex-linear-algebra",
+      "request_path": "04-classical-action/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "5c0d165476c72c30693e73d4dd8172ea18aecaab6096ec7b4953377999856335",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "05-state-ray-diagnostic/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "7ba379d7c1ec642bcda32f0b67f721925f4c611ba316a871b1c1d429a6d89eff",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "06-isolated-operator-witness/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 1,
+      "request_sha256": "bf7b40c350bab16aafed0e71769c4e2647d3efa36194ba2d8bb8b78405617b76",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "07-controlled-operator-witness/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "bd1458ed40ab475392c8f8808dc9b1784855bf9b013a76d4b9623c1f05c60d77",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "08-state-coordinate-handoff/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "0f47609e62a67bb2508e8e0af62abe65a88a08b8db8b7317446de1cbfa57d439",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "reproduce-qubit-interference",
+      "request_path": "09-interference/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/translate-complex-linear-algebra/scripts/algebra.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "53a727f934b4ed1636c89c84f1a74fb0ff8d17530c5715d1f7976f5fad0a83b0",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "translate-complex-linear-algebra",
+      "request_path": "10-0-classical-readout/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "64853c1e2339a0234ad0526ce66edeec0cc35c613216d7cfe8dc31f333a364b3",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "11-0-continuous-vs-staged/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "a44082b23378f8bf7de40ed9037630a9083b6e970faf6b6e1e5c18febe883e5c",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "12-0-continuous-vs-reference/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/translate-complex-linear-algebra/scripts/algebra.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "e53725a7cd71e084356dba45e5829b33401ddb1b27ec8c3fb0bd719da4c7d5c5",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "translate-complex-linear-algebra",
+      "request_path": "10-1-classical-readout/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "779472d9edb498646ecd7b162e2061f170b938139c6ab4474b4abbba2f7c35c1",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "11-1-continuous-vs-staged/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "a24b4d16e90b7ae1f18f59ccd3aa694a32ffc684af8b68001287c64426334c55",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "12-1-continuous-vs-reference/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/translate-complex-linear-algebra/scripts/algebra.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "01c737f3348364d8252509568cfa4c4aba7f7e90af882793acb668c3f1bfee82",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "translate-complex-linear-algebra",
+      "request_path": "10-2-classical-readout/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "f717e837a1121c3553db93cb3948ea458b798f767044d3f75b24c5b5d393032a",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "11-2-continuous-vs-staged/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "87321adcb82fad9c7b76e43d8e883e4abe82f319ce5522afdd2afee0b16b7564",
+      "source_request_sha256": "ba592fa8972d99647961061f95d0464fcc6a61f4c2e89e5e0682fc6e024051b2",
+      "skill": "compare-quantum-states-and-operators",
+      "request_path": "12-2-continuous-vs-reference/request.json"
+    }
+  ],
+  "handoffs": [
+    {
+      "source": "evolution supplied/direct shape(1,2)",
+      "destination": "interference state(2,)",
+      "action": "Extract exactly one verified sample from documented singleton batch; preserve both complex amplitudes and phase",
+      "normalization_or_phase_repair": false
+    }
+  ],
+  "actual_flagquantum_circuits": 15,
+  "skills": {
+    "translate-complex-linear-algebra": "0.1.1",
+    "translate-unitary-evolution": "0.1.0",
+    "reproduce-qubit-interference": "0.1.0",
+    "compare-quantum-states-and-operators": "0.1.1"
+  },
+  "workflow_is_agent_skill": false
+}

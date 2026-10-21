@@ -1,0 +1,28 @@
+{
+  "agents": [
+    {
+      "name": "/root/composition_blind_a",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-composition-blind-r1/a",
+      "prompt_scope": "Independently handle raw tasks, discover four skills/optional runner/runtime; preserve inputs; assigned workspace/libraries only, no repo/siblings/key/external sources. Select according to actual task; save requests/actual logs/circuit artifacts/independent verifier/separate claim dispositions. Clarify missing semantics first; no installs/publication/fabrication.",
+      "expected_answers_supplied": false,
+      "suspected_defects_or_author_outcomes_supplied": false
+    },
+    {
+      "name": "/root/composition_blind_b",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-composition-blind-r1/b",
+      "prompt_scope": "Independently handle raw tasks, discover four skills/optional runner/runtime; preserve inputs; assigned workspace/libraries only, no repo/siblings/key/external sources. Select according to actual task; save requests/actual logs/circuit artifacts/independent verifier/separate claim dispositions. Clarify missing semantics first; no installs/publication/fabrication.",
+      "expected_answers_supplied": false,
+      "suspected_defects_or_author_outcomes_supplied": false
+    },
+    {
+      "name": "/root/composition_blind_c",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-composition-blind-r1/c",
+      "prompt_scope": "Independently handle raw tasks, discover four skills/optional runner/runtime; preserve inputs; assigned workspace/libraries only, no repo/siblings/key/external sources. Select according to actual task; save requests/actual logs/circuit artifacts/independent verifier/separate claim dispositions. Clarify missing semantics first; no installs/publication/fabrication.",
+      "expected_answers_supplied": false,
+      "suspected_defects_or_author_outcomes_supplied": false
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "clarification_received_from": "root",
+  "semantics": "Generator entries are cyclic Hz = H/h; multiply every entry by 2*pi for angular H/hbar in rad/s; no hbar division. Angles degree*pi/180. Time remains 0.29 ns.",
+  "original": {
+    "profile": "constant-qubit-interference",
+    "generator": {
+      "matrix": [
+        [
+          [
+            250000000.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -180000000.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            180000000.0
+          ],
+          [
+            110000000.0,
+            0.0
+          ]
+        ]
+      ],
+      "unit": "Hz"
+    },
+    "time": {
+      "value": 0.29,
+      "unit": "ns"
+    },
+    "initial_state": [
+      [
+        0.6,
+        0.0
+      ],
+      [
+        0.0,
+        0.8
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "phase_scan": {
+      "values": [
+        13,
+        59,
+        131
+      ],
+      "unit": "degree"
+    },
+    "analyzer": {
+      "delta": 17,
+      "unit": "degree"
+    },
+    "tolerance": {
+      "coordinate_atol": 1e-10,
+      "rtol": 0
+    },
+    "phase_context": "full-coordinates-with-controlled-witness"
+  },
+  "converted": {
+    "profile": "constant-qubit-interference",
+    "generator": {
+      "matrix": [
+        [
+          [
+            1570796326.7948966,
+            0.0
+          ],
+          [
+            -0.0,
+            -1130973355.2923255
+          ]
+        ],
+        [
+          [
+            0.0,
+            1130973355.2923255
+          ],
+          [
+            691150383.7897545,
+            0.0
+          ]
+        ]
+      ],
+      "unit": "rad/s"
+    },
+    "time": {
+      "value": 0.29,
+      "unit": "ns"
+    },
+    "initial_state": [
+      [
+        0.6,
+        0.0
+      ],
+      [
+        0.0,
+        0.8
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "phase_scan": {
+      "values": [
+        0.22689280275926285,
+        1.0297442586766543,
+        2.286381320112572
+      ],
+      "unit": "radian"
+    },
+    "analyzer": {
+      "delta": 0.29670597283903605,
+      "unit": "radian"
+    },
+    "tolerance": {
+      "coordinate_atol": 1e-10,
+      "rtol": 0
+    },
+    "phase_context": "full-coordinates-with-controlled-witness"
+  }
+}

@@ -1,0 +1,235 @@
+[
+  {
+    "id": "B1",
+    "request": "Execute this end-to-end experiment only after resolving its unit conventions. The generator is labeled Hz; the requested readout phases are in degrees. Preserve original values and explicit conversions, and independently verify the result.",
+    "experiment": {
+      "profile": "constant-qubit-interference",
+      "generator": {
+        "matrix": [
+          [
+            [
+              250000000.0,
+              0.0
+            ],
+            [
+              -0.0,
+              -180000000.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              180000000.0
+            ],
+            [
+              110000000.0,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "Hz"
+      },
+      "time": {
+        "value": 0.29,
+        "unit": "ns"
+      },
+      "initial_state": [
+        [
+          0.6,
+          0.0
+        ],
+        [
+          0.0,
+          0.8
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "phase_scan": {
+        "values": [
+          13,
+          59,
+          131
+        ],
+        "unit": "degree"
+      },
+      "analyzer": {
+        "delta": 17,
+        "unit": "degree"
+      },
+      "tolerance": {
+        "coordinate_atol": 1e-10,
+        "rtol": 0
+      },
+      "phase_context": "full-coordinates-with-controlled-witness"
+    }
+  },
+  {
+    "id": "B2",
+    "request": "A collaborator supplies a cached success receipt for the requested experiment. Audit whether it is admissible evidence for this request before accepting any cached numerical claim. You may rerun if necessary, but keep cache disposition separate from fresh-run results.",
+    "experiment": {
+      "profile": "constant-qubit-interference",
+      "generator": {
+        "matrix": [
+          [
+            [
+              1.11896032673e-07,
+              0.0
+            ],
+            [
+              0.0,
+              -1.90881467501e-07
+            ]
+          ],
+          [
+            [
+              0.0,
+              1.90881467501e-07
+            ],
+            [
+              1.11896032673e-07,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "eV"
+      },
+      "time": {
+        "value": 0.63,
+        "unit": "ns"
+      },
+      "hbar": {
+        "value": 6.582119569e-16,
+        "unit": "eV*s"
+      },
+      "initial_state": [
+        [
+          0,
+          0.6
+        ],
+        [
+          0.8,
+          0
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "phase_scan": {
+        "values": [
+          0.17,
+          1.37
+        ],
+        "unit": "radian"
+      },
+      "analyzer": {
+        "delta": 0.11,
+        "unit": "radian"
+      },
+      "tolerance": {
+        "coordinate_atol": 1e-10,
+        "rtol": 0
+      },
+      "phase_context": "full-coordinates-with-controlled-witness"
+    },
+    "cached_receipt": {
+      "status": "verified",
+      "source_request_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "runtime": {
+        "python": "3.12.14"
+      },
+      "claimed_probabilities": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    "fixture_origin": "Synthetic foreign-request receipt, not an executed result"
+  },
+  {
+    "id": "B3",
+    "request": "Audit whether the supplied result budget establishes the original caller's requested probability accuracy. Do not silently replace the requested budget or interpret successful execution as acceptance of the claim.",
+    "experiment": {
+      "profile": "constant-qubit-interference",
+      "generator": {
+        "matrix": [
+          [
+            [
+              8.556755439700001e-08,
+              0.0
+            ],
+            [
+              0.0,
+              -1.77717228363e-07
+            ]
+          ],
+          [
+            [
+              0.0,
+              1.77717228363e-07
+            ],
+            [
+              8.556755439700001e-08,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "eV"
+      },
+      "time": {
+        "value": 0.71,
+        "unit": "ns"
+      },
+      "hbar": {
+        "value": 6.582119569e-16,
+        "unit": "eV*s"
+      },
+      "initial_state": [
+        [
+          0,
+          0.6
+        ],
+        [
+          0.8,
+          0
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "phase_scan": {
+        "values": [
+          0.21,
+          1.23
+        ],
+        "unit": "radian"
+      },
+      "analyzer": {
+        "delta": -0.19,
+        "unit": "radian"
+      },
+      "tolerance": {
+        "coordinate_atol": 1e-10,
+        "rtol": 0
+      },
+      "phase_context": "full-coordinates-with-controlled-witness"
+    },
+    "submitted_budget_receipt": {
+      "requested_coordinate_atol": 1e-10,
+      "producer_atol": 1e-08,
+      "observed_probability_max_absolute_error": 1e-09,
+      "status": "verified"
+    },
+    "claim": "This verified producer receipt certifies the requested1e-10 accuracy.",
+    "fixture_origin": "Synthetic tolerance-consistency counterexample"
+  }
+]

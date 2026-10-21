@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-composition-blind-r1/b/skills/compare-quantum-states-and-operators/scripts/compare.py"
+  ],
+  "exit_code": 0,
+  "request_sha256": "b83254af05aed124f826d84733e8988d4f9cd828fe9b2d9129e96b6c5eb9b18a",
+  "source_request_sha256": "6e6d943a306ac15fbb110886060c77cd4571b5c59cfdbac86cd4bc443fb8fe95",
+  "skill": "compare-quantum-states-and-operators",
+  "request_path": "11-0-continuous-vs-staged/request.json"
+}

@@ -1,0 +1,41 @@
+{
+  "status": "rejected",
+  "expected_producer_envelope": {
+    "basis": [
+      "0",
+      "1"
+    ],
+    "shape": [
+      1,
+      2
+    ],
+    "state_dtype": "torch.complex128",
+    "device": "cpu"
+  },
+  "expected_next_helper_state_shape": [
+    2
+  ],
+  "actual": {
+    "basis": [
+      "1",
+      "0"
+    ],
+    "shape": [
+      1,
+      2
+    ],
+    "state_dtype": "torch.complex128",
+    "device": "cpu"
+  },
+  "basis_matches": false,
+  "shape_matches_producer_envelope": true,
+  "directly_consumable_by_interference": false,
+  "reasons": [
+    "Basis labels are reversed relative to required canonical 0,1; no transformation authorized.",
+    "Envelope has a singleton batch axis; interference accepts exactly one vector and no sample extraction/reshape is authorized here.",
+    "No amplitudes, finiteness/normalization evidence or authentic producer receipt supplied. Metadata is an assertion, not evidence of state values."
+  ],
+  "actions": "No transformation, reshape, invented amplitudes, or fresh substitute experiment executed.",
+  "fixture_origin": "Synthetic metadata audit fixture",
+  "quantum_circuits_executed_for_A3": 0
+}

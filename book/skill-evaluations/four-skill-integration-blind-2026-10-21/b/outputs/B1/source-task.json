@@ -1,0 +1,67 @@
+{
+  "id": "B1",
+  "request": "Execute this end-to-end experiment only after resolving its unit conventions. The generator is labeled Hz; the requested readout phases are in degrees. Preserve original values and explicit conversions, and independently verify the result.",
+  "experiment": {
+    "profile": "constant-qubit-interference",
+    "generator": {
+      "matrix": [
+        [
+          [
+            250000000.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -180000000.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            180000000.0
+          ],
+          [
+            110000000.0,
+            0.0
+          ]
+        ]
+      ],
+      "unit": "Hz"
+    },
+    "time": {
+      "value": 0.29,
+      "unit": "ns"
+    },
+    "initial_state": [
+      [
+        0.6,
+        0.0
+      ],
+      [
+        0.0,
+        0.8
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "phase_scan": {
+      "values": [
+        13,
+        59,
+        131
+      ],
+      "unit": "degree"
+    },
+    "analyzer": {
+      "delta": 17,
+      "unit": "degree"
+    },
+    "tolerance": {
+      "coordinate_atol": 1e-10,
+      "rtol": 0
+    },
+    "phase_context": "full-coordinates-with-controlled-witness"
+  }
+}

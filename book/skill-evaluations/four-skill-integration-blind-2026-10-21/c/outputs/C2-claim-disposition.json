@@ -1,0 +1,83 @@
+{
+  "fresh_run_status": "verified",
+  "scientific_acceptance": "pending; numerical agreement does not confer scientific acceptance",
+  "candidate_claim": "This chronology implements the declared phase-h analyzer.",
+  "candidate_disposition": "rejected",
+  "reason": "Declared phase-h analyzer is H D(-delta). Submitted D(+delta) then H implements H D(+delta); operator and final complex coordinates/probabilities differ.",
+  "synthetic_fixture": true,
+  "candidate_numeric_run_status": "verified",
+  "candidate_numeric_run_meaning": "Valid ideal simulation of the submitted alternative chronology via explicitly changed delta, not acceptance as the declared experiment.",
+  "operator_audit": {
+    "absolute_tolerance": 1e-10,
+    "aligned_residual": 0.5202793649337462,
+    "alignment_multiplier_on_b": [
+      0.9323273456060345,
+      -0.361615431964962
+    ],
+    "comparison_dimension": 2,
+    "contract_version": "0.1.1",
+    "decision_residual": 0.7232308639299239,
+    "input_dimension": 2,
+    "kind": "unitary",
+    "metric": "frobenius",
+    "mode": "coordinates",
+    "overlap": [
+      1.7384685587295876,
+      0.6742879116281449
+    ],
+    "phase_identifiable": true,
+    "phase_scope": "retained",
+    "proof_of_exact_equality": false,
+    "raw_residual": 0.7232308639299239,
+    "runtime": {
+      "implementation": "cpython",
+      "python": "3.12.14"
+    },
+    "status": "outside_tolerance",
+    "validation_atol": 1e-12
+  },
+  "per_phase_audit": [
+    {
+      "phase_radians": 0.19,
+      "declared_probabilities": [
+        0.3548250811785865,
+        0.6451749188214133
+      ],
+      "submitted_probabilities": [
+        0.7039531351270476,
+        0.29604686487295223
+      ],
+      "max_probability_difference": 0.3491280539484611,
+      "coordinate_comparison": "outside_tolerance",
+      "coordinate_l2_residual": 0.572399461785314
+    },
+    {
+      "phase_radians": 0.97,
+      "declared_probabilities": [
+        0.7213319980780305,
+        0.2786680019219694
+      ],
+      "submitted_probabilities": [
+        0.9534985608741438,
+        0.04650143912585622
+      ],
+      "max_probability_difference": 0.23216656279611325,
+      "coordinate_comparison": "outside_tolerance",
+      "coordinate_l2_residual": 0.572399461785314
+    },
+    {
+      "phase_radians": 2.03,
+      "declared_probabilities": [
+        0.9834556645651343,
+        0.016544335434865467
+      ],
+      "submitted_probabilities": [
+        0.8686234216657441,
+        0.13137657833425542
+      ],
+      "max_probability_difference": 0.1148322428993902,
+      "coordinate_comparison": "outside_tolerance",
+      "coordinate_l2_residual": 0.572399461785314
+    }
+  ]
+}

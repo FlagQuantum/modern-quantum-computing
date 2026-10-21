@@ -158,12 +158,22 @@ def render():
             refs='; '.join(f"[{Path(path).name}](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/{path})" for path in skill['candidate_evidence'])
             lines+=['','**Existing candidate evidence:** '+refs+'. These artifacts are not a skill evaluation, an acceptance decision or a whole-paper reproduction claim.']
         lines+=['']
+    pilot=plan['composition_pilot']
+    assert pilot['new_agent_skills']==0 and pilot['scientific_acceptance']=='pending'
+    for field in ('documentation','workflow','author_report','blind_report'):assert (ROOT/pilot[field]).is_file()
+    composition_author=json.loads((ROOT/pilot['author_report']).read_text())
+    composition_blind=json.loads((ROOT/pilot['blind_report']).read_text())
+    assert composition_author['passed']==18 and composition_author['actual_flagquantum_circuits']==142
+    assert composition_blind['passed_tasks']==9 and composition_blind['actual_flagquantum_circuits']==89
+    assert composition_blind['new_agent_skills']==0 and len([s for s in skills.values() if s['status']=='independent-agent-tested prototype'])==4
+    lines+=['## Bounded four-skill composition pilot','',
+            '[Energy offsets and interference](four-skill-integration.md) integrates the four unchanged packages through Chapters 2–3. Eighteen author cases and nine blind-agent tasks passed, with unit/phase/tolerance/metadata/provenance checks and a continuous-circuit comparison. Author executions: 142 simulator circuits; blind executions: 89. Candidate rejection remains separate from fresh-run success. This is one experiment workflow, not a fifth skill or scientific acceptance.','']
     lines+=['## Implementation order after this planning pass','',
             '1. Preserve the [state/operator blind evaluation](comparison-skill-blind-evaluation.md): 0.1.1 passed 11 fresh tasks after a runtime-contract repair. Gather separate scientific acceptance and reader evidence; published cases are now regression fixtures.',
             '2. Preserve the [interference prototype evidence](interference-skill-prototype.md): 35 author cases and 12 new blind-agent tasks passed, including units, analyzer signs, chronology, claim rejection and selection between two runnable skills. Scientific acceptance remains separate.',
             '3. Preserve the [phase-tracked unitary evolution evidence](unitary-evolution-skill-prototype.md): 53 author cases and 12 blind tasks passed, covering units, generator validation, Euler endpoints, controlled phase repair and selection among three skills. Scientific acceptance remains pending.',
             '4. Preserve the [complex linear algebra evidence](complex-algebra-skill-prototype.md): 57 author cases and nine fresh blind retest tasks passed after a tail-metadata underflow repair. Preserve the initial 12-task evidence and original failure; classical and routed FlagQuantum executions are recorded separately. Scientific acceptance remains pending.',
-            '5. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.',
+            '5. Preserve the [bounded four-skill composition evidence](four-skill-integration.md): 18 author cases and nine independent blind tasks. The next broader paper claim needs its own target, domain assumptions and provenance; this pilot does not accept a general paper workflow.',
             '6. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.', '',
             'This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first four bounded prototypes are independent-agent-tested; no paper run or new textbook section is performed by this update.','']
     return '\n'.join(lines),len(skills)

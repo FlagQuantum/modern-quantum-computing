@@ -1,0 +1,82 @@
+{
+  "source_request_sha256": "98b1e77da59dc280d5953094400ed32f4bdf0f68e47abf40ebdfe3def9f78a3f",
+  "fault_injection": "ns-as-s",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "tolerance_ledger": {
+    "coordinate_max_absolute": 1e-10,
+    "probability_max_absolute": 1e-10,
+    "algebra_elementwise_atol": 1e-10,
+    "rtol": 0,
+    "state_l2_atol": 1.4142135623730953e-10,
+    "operator_frobenius_atol": 2e-10,
+    "reason": "Entrywise epsilon implies l2<=sqrt(d)*epsilon for d=2; matrix Frobenius<=2*epsilon. Local budgets do not imply an arbitrary accumulated-error theorem; final outputs checked separately."
+  },
+  "conversion": {
+    "time_seconds": 6.100000000000001e-10,
+    "exponent_multiplier": 926753.1432776378,
+    "effective_exponent": [
+      [
+        [
+          0.2257,
+          0.0
+        ],
+        [
+          0.0,
+          -0.2989
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.2989
+        ],
+        [
+          0.2257,
+          0.0
+        ]
+      ]
+    ],
+    "hbar_provenance": "Caller-declared numerical input, not independently certified"
+  },
+  "status": "rejected_mismatch",
+  "reason": "02-evolution: invalid_input",
+  "stage": "02-evolution",
+  "runtime": {
+    "implementation": "cpython",
+    "python": "3.12.14"
+  },
+  "helper_calls": [
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/translate-complex-linear-algebra/scripts/algebra.py"
+      ],
+      "exit_code": 0,
+      "request_sha256": "5293558f26dcb2b34767f2beb61633b7d5f9c37d5a05496835f20797d247c9d1",
+      "source_request_sha256": "98b1e77da59dc280d5953094400ed32f4bdf0f68e47abf40ebdfe3def9f78a3f",
+      "skill": "translate-complex-linear-algebra",
+      "request_path": "01-classical-exponential/request.json"
+    },
+    {
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/translate-unitary-evolution/scripts/unitary.py"
+      ],
+      "exit_code": 2,
+      "request_sha256": "02df30dddeb4dcf4085f1b9e102aef341c78a35c66750307cf895ca24a2e250b",
+      "source_request_sha256": "98b1e77da59dc280d5953094400ed32f4bdf0f68e47abf40ebdfe3def9f78a3f",
+      "skill": "translate-unitary-evolution",
+      "request_path": "02-evolution/request.json"
+    }
+  ],
+  "handoffs": [],
+  "actual_flagquantum_circuits": 0,
+  "skills": {
+    "translate-complex-linear-algebra": "0.1.1",
+    "translate-unitary-evolution": "0.1.0",
+    "reproduce-qubit-interference": "0.1.0",
+    "compare-quantum-states-and-operators": "0.1.1"
+  },
+  "workflow_is_agent_skill": false
+}

@@ -1,0 +1,13 @@
+{
+  "requested": "Actual noisy hardware probabilities and confidence bound",
+  "status": "unsupported",
+  "reason": "Ideal statevector packages do not execute hardware, noise or shot distributions. No provider, device, calibration/noise model, credentials, actual shot counts, provenance or confidence level supplied. shots=1000 is a requested count, not an observation.",
+  "ideal_substitution_performed": false,
+  "hardware_execution_performed": false,
+  "confidence_bound_computed": false,
+  "necessary_next_information": [
+    "Hardware provider/device and access or authenticated execution artifacts",
+    "Actual per-setting measurement counts and shot totals, circuit/transpilation and timing provenance",
+    "Confidence level and statistical assumptions; noise/calibration data for noise-specific claims"
+  ]
+}

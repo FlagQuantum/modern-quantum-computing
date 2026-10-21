@@ -1,0 +1,30 @@
+{
+  "task": "check",
+  "coordinates": "literal-complex",
+  "tolerance": {
+    "atol": 1e-10,
+    "rtol": 0
+  },
+  "actual": {
+    "shape": [],
+    "dtype": "complex128",
+    "device": "cpu",
+    "values": [
+      [
+        1e-09,
+        0
+      ]
+    ]
+  },
+  "reference": {
+    "shape": [],
+    "dtype": "complex128",
+    "device": "cpu",
+    "values": [
+      [
+        0,
+        0
+      ]
+    ]
+  }
+}

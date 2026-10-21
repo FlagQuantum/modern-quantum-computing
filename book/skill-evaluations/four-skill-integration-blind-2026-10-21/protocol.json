@@ -1,0 +1,44 @@
+{
+  "experiment": "four-skill-interference",
+  "workflow_version": "0.1.0",
+  "agents": [
+    "/root/composition_blind_a",
+    "/root/composition_blind_b",
+    "/root/composition_blind_c"
+  ],
+  "context": "Fresh fork_turns=none; raw tasks, four frozen skill packages, bounded runner and interpreter candidates. No expected answers, failure dispositions or author case outcomes supplied.",
+  "reference_key_sha256": "4dcb397e9d95ef609171ebb3841834753fbf41c3e4fd440241d186029ec0ad2c",
+  "frozen_before_dispatch": true,
+  "gates": {
+    "tasks": 9,
+    "full_experiments": [
+      "A1",
+      "B1",
+      "C1"
+    ],
+    "required_clarifications": [
+      "A1 hbar",
+      "B1 cyclic/angular and degree/radian conversions"
+    ],
+    "candidate_audits": [
+      "A2 full phase",
+      "A3 basis",
+      "B2 cache provenance",
+      "B3 tolerance",
+      "C2 analyzer sign"
+    ],
+    "unsupported": [
+      "C3 hardware/noise/shots certification"
+    ],
+    "false_successes_allowed": 0,
+    "incorrect_abstentions_allowed": 0,
+    "independent_reference": "NumPy eigensystem plus chronological scalar/matrix Born reference; candidate dispositions and fresh-run results separate",
+    "tolerance": "Caller per-coordinate and probability budget; explicit Euclidean/Frobenius dimension conversion, no loosening"
+  },
+  "limitations": [
+    "Small conductor-designed nonrandom sample",
+    "Logical workspace restrictions, not OS-enforced isolation",
+    "Same inherited model family; backend revision/token/cost telemetry unavailable",
+    "Conductor grades; independent scientific acceptance and reader trials remain pending"
+  ]
+}

@@ -398,13 +398,17 @@ Evaluate routing and execution on held-out papers, identifying unsupported requi
 
 **Support sources:** [48.1](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-1), [48.2](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-2), [48.3](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-3), [48.4](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-4), [48.5](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-5), [48.6](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-6), [48.7](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-7), [48.8](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-8), [48.9](section-plans/07-research.md#sec-reading-papers-building-evidence-and-reproducing-results-9)
 
+## Bounded four-skill composition pilot
+
+[Energy offsets and interference](four-skill-integration.md) integrates the four unchanged packages through Chapters 2–3. Eighteen author cases and nine blind-agent tasks passed, with unit/phase/tolerance/metadata/provenance checks and a continuous-circuit comparison. Author executions: 142 simulator circuits; blind executions: 89. Candidate rejection remains separate from fresh-run success. This is one experiment workflow, not a fifth skill or scientific acceptance.
+
 ## Implementation order after this planning pass
 
 1. Preserve the [state/operator blind evaluation](comparison-skill-blind-evaluation.md): 0.1.1 passed 11 fresh tasks after a runtime-contract repair. Gather separate scientific acceptance and reader evidence; published cases are now regression fixtures.
 2. Preserve the [interference prototype evidence](interference-skill-prototype.md): 35 author cases and 12 new blind-agent tasks passed, including units, analyzer signs, chronology, claim rejection and selection between two runnable skills. Scientific acceptance remains separate.
 3. Preserve the [phase-tracked unitary evolution evidence](unitary-evolution-skill-prototype.md): 53 author cases and 12 blind tasks passed, covering units, generator validation, Euler endpoints, controlled phase repair and selection among three skills. Scientific acceptance remains pending.
 4. Preserve the [complex linear algebra evidence](complex-algebra-skill-prototype.md): 57 author cases and nine fresh blind retest tasks passed after a tail-metadata underflow repair. Preserve the initial 12-task evidence and original failure; classical and routed FlagQuantum executions are recorded separately. Scientific acceptance remains pending.
-5. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.
+5. Preserve the [bounded four-skill composition evidence](four-skill-integration.md): 18 author cases and nine independent blind tasks. The next broader paper claim needs its own target, domain assumptions and provenance; this pilot does not accept a general paper workflow.
 6. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.
 
 This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first four bounded prototypes are independent-agent-tested; no paper run or new textbook section is performed by this update.

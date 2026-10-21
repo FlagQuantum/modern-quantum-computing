@@ -1,0 +1,9 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "-c",
+    "import sys; print(sys.implementation.name); print(sys.version)"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.03922654200141551
+}

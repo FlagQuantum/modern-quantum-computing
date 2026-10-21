@@ -1,0 +1,86 @@
+{
+  "status": "verified",
+  "quantum_execution": false,
+  "method": "Independent standard-library Hermitian spectral-projector exponential; direct complex amplitude readout and conjugated cross term. Compares actual saved circuit evidence without importing workflow/skill code.",
+  "runtime": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "requested_atol": 1e-10,
+  "rtol": 0,
+  "unitary_error": 2.0816681711721685e-17,
+  "max_error": 4.440892098500626e-16,
+  "reference_unitary": [
+    [
+      [
+        0.9777223637945094,
+        -0.10511628178580111
+      ],
+      [
+        -0.18064428882616507,
+        0.019421317002049965
+      ]
+    ],
+    [
+      [
+        0.18064428882616507,
+        -0.019421317002049965
+      ],
+      [
+        0.9777223637945094,
+        -0.10511628178580111
+      ]
+    ]
+  ],
+  "reference_evolved_state": [
+    [
+      -0.0814456619894514,
+      0.6021704718783455
+    ],
+    [
+      0.7938306812368375,
+      0.024293547867058146
+    ]
+  ],
+  "records": [
+    {
+      "phase_radians": 0.17,
+      "reference_coordinates": [
+        [
+          0.5016921298548563,
+          0.47660522464402244
+        ],
+        [
+          -0.6168736896367933,
+          0.3749924235469401
+        ]
+      ],
+      "reference_probabilities": [
+        0.47884753331628105,
+        0.5211524666837186
+      ],
+      "max_coordinate_error": 3.1401849173675503e-16,
+      "max_probability_error": 4.440892098500626e-16,
+      "scalar_born_error": 1.1102230246251565e-16
+    },
+    {
+      "phase_radians": 1.37,
+      "reference_coordinates": [
+        [
+          0.09771616827316155,
+          0.9654824493078824
+        ],
+        [
+          -0.21289772805509857,
+          -0.11388480111691987
+        ]
+      ],
+      "reference_probabilities": [
+        0.9417048094635366,
+        0.05829519053646309
+      ],
+      "max_coordinate_error": 2.423651445728339e-16,
+      "max_probability_error": 2.220446049250313e-16,
+      "scalar_born_error": 1.1102230246251565e-16
+    }
+  ],
+  "fresh_runner_status": "verified",
+  "actual_flagquantum_circuits_in_fresh_run": 13
+}

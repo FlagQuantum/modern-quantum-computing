@@ -1,0 +1,12 @@
+{
+  "basis": [
+    "1",
+    "0"
+  ],
+  "shape": [
+    1,
+    2
+  ],
+  "state_dtype": "torch.complex128",
+  "device": "cpu"
+}

@@ -1,0 +1,23 @@
+{
+  "source_request_sha256": "7e9a4f769961bb1e1b4a96746675bac05f9676c8038ddb4cc2ee83b9986b7556",
+  "fault_injection": null,
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "status": "invalid_input",
+  "reason": "State not normalized; no implicit repair",
+  "stage": "preflight",
+  "runtime": {
+    "implementation": "cpython",
+    "python": "3.12.14"
+  },
+  "helper_calls": [],
+  "handoffs": [],
+  "actual_flagquantum_circuits": 0,
+  "skills": {
+    "translate-complex-linear-algebra": "0.1.1",
+    "translate-unitary-evolution": "0.1.0",
+    "reproduce-qubit-interference": "0.1.0",
+    "compare-quantum-states-and-operators": "0.1.1"
+  },
+  "workflow_is_agent_skill": false
+}

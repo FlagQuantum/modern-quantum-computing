@@ -1,0 +1,63 @@
+{
+  "profile": "constant-qubit-interference",
+  "generator": {
+    "matrix": [
+      [
+        [
+          369999999.99999994,
+          0.0
+        ],
+        [
+          0.0,
+          -489999999.99999994
+        ]
+      ],
+      [
+        [
+          0.0,
+          489999999.99999994
+        ],
+        [
+          369999999.99999994,
+          0.0
+        ]
+      ]
+    ],
+    "unit": "rad/s"
+  },
+  "time": {
+    "value": 0.61,
+    "unit": "ns"
+  },
+  "initial_state": [
+    [
+      0,
+      0.6
+    ],
+    [
+      0.8,
+      0
+    ]
+  ],
+  "basis": [
+    "0",
+    "1"
+  ],
+  "phase_scan": {
+    "values": [
+      0.17,
+      1.03,
+      2.11
+    ],
+    "unit": "radian"
+  },
+  "analyzer": {
+    "delta": 0.31,
+    "unit": "radian"
+  },
+  "tolerance": {
+    "coordinate_atol": 1e-10,
+    "rtol": 0
+  },
+  "phase_context": "full-coordinates-with-controlled-witness"
+}

@@ -1,0 +1,143 @@
+[
+  {
+    "id": "B1",
+    "selected_skills": [
+      "translate-complex-linear-algebra",
+      "translate-unitary-evolution",
+      "compare-quantum-states-and-operators",
+      "reproduce-qubit-interference"
+    ],
+    "clarification_question": "Does Hz mean cyclic H/h (multiply by 2*pi), or intended angular H/hbar in rad/s?",
+    "clarification_resolution": "Root clarified cyclic Hz, multiply all entries by 2*pi; angles by pi/180; retain 0.29ns and no hbar division.",
+    "status": "verified",
+    "fresh_run_status": "verified",
+    "candidate_disposition": "No supplied cached candidate; declared ideal experiment verified.",
+    "evidence_paths": [
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B1/source-task.json",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B1/request.json",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B1/runner",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B1/fresh",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B1/independent-verification.json",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/independent_verify.py",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/independent-run",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B1/conversion.json"
+    ],
+    "verification": {
+      "independent_status": "verified",
+      "max_absolute_error": 2.9893669801409083e-16,
+      "atol": 1e-10,
+      "rtol": 0,
+      "actual_flagquantum_circuits": 15,
+      "phase_witness": {
+        "state_ray": "within_tolerance",
+        "isolated_operator_ray": "within_tolerance",
+        "controlled_operator": "outside_tolerance",
+        "controlled_residual": 0.3276148774897251,
+        "omitted_scalar_phase_radians": -0.32798227303477434,
+        "note": "Outside controlled tolerance is an intentional witness, not failure of the repaired evolution."
+      }
+    },
+    "limitations": [
+      "Ideal deterministic CPU complex128 simulation only; no hardware, shots or noise.",
+      "Classical independent checks are separate from recorded FlagQuantum circuits."
+    ]
+  },
+  {
+    "id": "B2",
+    "selected_skills": [
+      "translate-complex-linear-algebra",
+      "translate-unitary-evolution",
+      "compare-quantum-states-and-operators",
+      "reproduce-qubit-interference"
+    ],
+    "clarification_question": null,
+    "clarification_resolution": null,
+    "status": "rejected",
+    "fresh_run_status": "verified",
+    "candidate_disposition": "Cached synthetic receipt rejected independently of successful fresh run.",
+    "evidence_paths": [
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B2/source-task.json",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B2/request.json",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B2/runner",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B2/fresh",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B2/independent-verification.json",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/independent_verify.py",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/independent-run",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B2/cache-disposition.json"
+    ],
+    "verification": {
+      "independent_status": "verified",
+      "max_absolute_error": 4.440892098500626e-16,
+      "atol": 1e-10,
+      "rtol": 0,
+      "actual_flagquantum_circuits": 13,
+      "phase_witness": {
+        "state_ray": "within_tolerance",
+        "isolated_operator_ray": "within_tolerance",
+        "controlled_operator": "outside_tolerance",
+        "controlled_residual": 0.10708720378253317,
+        "omitted_scalar_phase_radians": -0.10709999999999999,
+        "note": "Outside controlled tolerance is an intentional witness, not failure of the repaired evolution."
+      },
+      "cache": {
+        "status": "rejected",
+        "fixture_origin": "Synthetic foreign-request receipt, not an executed result",
+        "cached_source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "actual_request_sha256": "5435375e27275270a4540fe476004ede4ed1fb0fb0e3bad12d4a1ecfc6e00ee4",
+        "hash_matches": false,
+        "reasons": [
+          "Source-request digest mismatch; no admissible link to requested experiment.",
+          "Synthetic cached status and Python string do not attest an executed run.",
+          "Supplied probability claims also disagree with independently verified fresh result."
+        ],
+        "claimed_probability_max_error": 0.4417048094635369,
+        "requested_atol": 1e-10,
+        "fresh_run_accepts_cache": false
+      }
+    },
+    "limitations": [
+      "Ideal deterministic CPU complex128 simulation only; no hardware, shots or noise.",
+      "Classical independent checks are separate from recorded FlagQuantum circuits.",
+      "Caller hbar numerical input is preserved; external provenance/physical accuracy is not certified."
+    ]
+  },
+  {
+    "id": "B3",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "clarification_question": null,
+    "status": "rejected",
+    "candidate_disposition": "Submitted tolerance claim rejected; internal helper correctly returns outside_tolerance at unchanged requested tolerance.",
+    "fresh_run_status": "No fresh quantum execution needed for receipt audit.",
+    "evidence_paths": [
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B3/source-task.json",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B3/request.json",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B3/check-context.json",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B3/helper",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/B3/claim-disposition.json",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/independent_verify.py",
+      "/private/tmp/mqc-composition-blind-r1/b/outputs/independent-run"
+    ],
+    "verification": {
+      "status": "rejected",
+      "fixture_origin": "Synthetic tolerance-consistency counterexample",
+      "quantum_execution": false,
+      "requested_probability_atol": 1e-10,
+      "requested_coordinate_atol": 1e-10,
+      "producer_atol": 1e-08,
+      "producer_budget_ratio": 100.0,
+      "reported_probability_error": 1e-09,
+      "error_to_requested_budget_ratio": 10.0,
+      "independent_check": false,
+      "helper_check_status": "outside_tolerance",
+      "reason": "Reported 1e-9 probability error exceeds 1e-10 requested accuracy by factor 10. Producer 1e-8 tolerance is factor 100 looser; its verified label cannot certify caller budget. Synthetic receipt is audited, not treated as circuit evidence.",
+      "fresh_quantum_run": "not needed for numerical-contract audit"
+    },
+    "limitations": [
+      "Supplied receipt is an explicitly synthetic counterexample, not actual circuit output.",
+      "Scalar check audits claimed observed error against requested budget and does not manufacture upstream probability arrays.",
+      "No conclusion that fresh B3 experiment is inaccurate; fresh execution and candidate acceptance are distinct."
+    ]
+  }
+]

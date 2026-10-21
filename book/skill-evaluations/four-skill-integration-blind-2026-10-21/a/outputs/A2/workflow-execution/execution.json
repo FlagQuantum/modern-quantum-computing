@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-composition-blind-r1/a/workflow/four_skill_interference.py",
+    "--request",
+    "/private/tmp/mqc-composition-blind-r1/a/outputs/A2/source-experiment.json",
+    "--output",
+    "/private/tmp/mqc-composition-blind-r1/a/outputs/A2/fresh-workflow",
+    "--skills-root",
+    "/private/tmp/mqc-composition-blind-r1/a/skills"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 14.968449000001783,
+  "interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+}

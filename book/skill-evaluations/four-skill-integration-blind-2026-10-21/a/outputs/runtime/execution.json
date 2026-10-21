@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "-c",
+    "import sys,importlib.metadata as m; print(sys.version); print(m.version(\"torch\")); print(m.version(\"flagquantum\"))"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.07463954200102307,
+  "interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+}

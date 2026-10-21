@@ -1,0 +1,26 @@
+{
+  "workflow_version": "0.1.0",
+  "checkout_base": "71e2e393620868dcd9c3db7280b8f12425027603",
+  "frozen_at_utc": "2026-10-21T06:57:14.996354+00:00",
+  "sha256": {
+    "examples/integration/four_skill_interference.py": "8e7f7282503840092347db97d1355b1d6312272ffcd92366405dabf7fb45df3c",
+    "examples/integration/interference-request.json": "77b9f71485e30593d8e6589419a583ab64714a800a05ddd8953aa03c150e6299",
+    "skills/compare-quantum-states-and-operators/SKILL.md": "8276bccbad28dcb325f8758717b3236c7af71f6e97b407a9be935b7cc6d37b12",
+    "skills/compare-quantum-states-and-operators/agents/openai.yaml": "e0c97d1b156907457229fc1cb122fedfa43558a12fe2bf4cdb1796d0459760b3",
+    "skills/compare-quantum-states-and-operators/references/contract.md": "0245b1af219db63a8ad0fbd7091fc673ac20ebf39d2c62c5f8548a39c62d115c",
+    "skills/compare-quantum-states-and-operators/scripts/compare.py": "79e6f8d4ff582dfce67845ad284ac5c675778cb32a2ed0203f60f991a0e0e2ba",
+    "skills/reproduce-qubit-interference/SKILL.md": "dd97d0d0bf068caafbfa863d90c4332ca4de0d99d5da54f8cb9a61b871f23f9b",
+    "skills/reproduce-qubit-interference/agents/openai.yaml": "7438e81be272c1c1c3f4679466f022b9d5c9f49d3aea31e2f3eb5e6ada87d2bc",
+    "skills/reproduce-qubit-interference/references/contract.md": "44b01449fa1453ee5c432de41a698daab680e72cc69efbd0ebfddb1adcea18bf",
+    "skills/reproduce-qubit-interference/scripts/interference.py": "0c91a1eef5bf846ba147ff8c275587b3babe7b44a56e67db646d04bf3cb575b4",
+    "skills/translate-complex-linear-algebra/SKILL.md": "8d2a9ac980dd88cc27ccb3e6a84775e909d3b566db65b6d6fe6fcfbb9f336697",
+    "skills/translate-complex-linear-algebra/agents/openai.yaml": "475441448d646757542dbeb44328fa12cc46ecef19cde7594c2dfc4bbdb22332",
+    "skills/translate-complex-linear-algebra/references/contract.md": "e2e787a5c206661f6ee0ff772b24db8c690a8014620d5969dedf6436624599e4",
+    "skills/translate-complex-linear-algebra/scripts/algebra.py": "0a589f15972f342ca28016db269342d10bda15249ef43bc35eb406f0d1068983",
+    "skills/translate-unitary-evolution/SKILL.md": "285f31e779215c540ece3c24101c429cd184abafe23db7cbeb4b01d95a2df84c",
+    "skills/translate-unitary-evolution/agents/openai.yaml": "a369b6988d07e068ad3258cab3f088e971e72709c3a29db71008e71b06e141f1",
+    "skills/translate-unitary-evolution/references/contract.md": "da9a94ec492273b7e80f9441250cde509f657d550aa5ce10454bcfe0899149aa",
+    "skills/translate-unitary-evolution/scripts/unitary.py": "a104869ad1feb3aae4b5bb1a0201247a82837cbaf677f1e42715bdcff85bb0f5"
+  },
+  "note": "One experiment runner plus four unchanged skill packages; not a fifth skill"
+}

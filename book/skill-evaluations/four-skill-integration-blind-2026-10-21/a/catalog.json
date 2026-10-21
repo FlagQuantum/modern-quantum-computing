@@ -1,0 +1,22 @@
+[
+  {
+    "id": "compare-quantum-states-and-operators",
+    "entry": "skills/compare-quantum-states-and-operators/SKILL.md",
+    "description": "Compare one- or two-qubit pure states and unitary matrices with explicit basis and phase scope, including a one-control gate context. Use for numerical equivalence checks; density matrices, channels and hardware statistics require another profile."
+  },
+  {
+    "id": "reproduce-qubit-interference",
+    "entry": "skills/reproduce-qubit-interference/SKILL.md",
+    "description": "Reproduce an ideal single-qubit relative-phase scan with specified preparation and analyzer, using released FlagQuantum and independent amplitude/probability checks. Use for interference predictions; not for noisy data, hardware execution, tomography or generic state equivalence."
+  },
+  {
+    "id": "translate-complex-linear-algebra",
+    "entry": "skills/translate-complex-linear-algebra/SKILL.md",
+    "description": "Translate finite complex vector and matrix formulas into checked classical computations, including conjugation, basis changes, decompositions, matrix functions and conditioned solves. Use for literal coordinate algebra and numerical contracts, not state-ray equivalence, quantum-circuit execution or symbolic proof."
+  },
+  {
+    "id": "translate-unitary-evolution",
+    "entry": "skills/translate-unitary-evolution/SKILL.md",
+    "description": "Translate constant single-qubit generator evolution, active Pauli rotations and phase-tracked ZYZ factorization into verified FlagQuantum circuits. Use when units, gate order or full operator phase matter; not for time-dependent solvers, inverse Hamiltonian identification, noise or hardware."
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-composition-blind-r1/a/skills/compare-quantum-states-and-operators/scripts/compare.py"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 0.025800957999308594,
+  "interpreter": "/private/tmp/mqc-writing-venv/bin/python"
+}

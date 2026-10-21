@@ -1,0 +1,78 @@
+{
+  "id": "B3",
+  "request": "Audit whether the supplied result budget establishes the original caller's requested probability accuracy. Do not silently replace the requested budget or interpret successful execution as acceptance of the claim.",
+  "experiment": {
+    "profile": "constant-qubit-interference",
+    "generator": {
+      "matrix": [
+        [
+          [
+            8.556755439700001e-08,
+            0.0
+          ],
+          [
+            0.0,
+            -1.77717228363e-07
+          ]
+        ],
+        [
+          [
+            0.0,
+            1.77717228363e-07
+          ],
+          [
+            8.556755439700001e-08,
+            0.0
+          ]
+        ]
+      ],
+      "unit": "eV"
+    },
+    "time": {
+      "value": 0.71,
+      "unit": "ns"
+    },
+    "hbar": {
+      "value": 6.582119569e-16,
+      "unit": "eV*s"
+    },
+    "initial_state": [
+      [
+        0,
+        0.6
+      ],
+      [
+        0.8,
+        0
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "phase_scan": {
+      "values": [
+        0.21,
+        1.23
+      ],
+      "unit": "radian"
+    },
+    "analyzer": {
+      "delta": -0.19,
+      "unit": "radian"
+    },
+    "tolerance": {
+      "coordinate_atol": 1e-10,
+      "rtol": 0
+    },
+    "phase_context": "full-coordinates-with-controlled-witness"
+  },
+  "submitted_budget_receipt": {
+    "requested_coordinate_atol": 1e-10,
+    "producer_atol": 1e-08,
+    "observed_probability_max_absolute_error": 1e-09,
+    "status": "verified"
+  },
+  "claim": "This verified producer receipt certifies the requested1e-10 accuracy.",
+  "fixture_origin": "Synthetic tolerance-consistency counterexample"
+}

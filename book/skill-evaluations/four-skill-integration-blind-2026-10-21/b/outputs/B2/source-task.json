@@ -1,0 +1,88 @@
+{
+  "id": "B2",
+  "request": "A collaborator supplies a cached success receipt for the requested experiment. Audit whether it is admissible evidence for this request before accepting any cached numerical claim. You may rerun if necessary, but keep cache disposition separate from fresh-run results.",
+  "experiment": {
+    "profile": "constant-qubit-interference",
+    "generator": {
+      "matrix": [
+        [
+          [
+            1.11896032673e-07,
+            0.0
+          ],
+          [
+            0.0,
+            -1.90881467501e-07
+          ]
+        ],
+        [
+          [
+            0.0,
+            1.90881467501e-07
+          ],
+          [
+            1.11896032673e-07,
+            0.0
+          ]
+        ]
+      ],
+      "unit": "eV"
+    },
+    "time": {
+      "value": 0.63,
+      "unit": "ns"
+    },
+    "hbar": {
+      "value": 6.582119569e-16,
+      "unit": "eV*s"
+    },
+    "initial_state": [
+      [
+        0,
+        0.6
+      ],
+      [
+        0.8,
+        0
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "phase_scan": {
+      "values": [
+        0.17,
+        1.37
+      ],
+      "unit": "radian"
+    },
+    "analyzer": {
+      "delta": 0.11,
+      "unit": "radian"
+    },
+    "tolerance": {
+      "coordinate_atol": 1e-10,
+      "rtol": 0
+    },
+    "phase_context": "full-coordinates-with-controlled-witness"
+  },
+  "cached_receipt": {
+    "status": "verified",
+    "source_request_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "runtime": {
+      "python": "3.12.14"
+    },
+    "claimed_probabilities": [
+      [
+        0.5,
+        0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ]
+  },
+  "fixture_origin": "Synthetic foreign-request receipt, not an executed result"
+}

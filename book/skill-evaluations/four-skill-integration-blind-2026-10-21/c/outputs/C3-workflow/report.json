@@ -1,0 +1,23 @@
+{
+  "source_request_sha256": "8e1c9b03a75a9176a70b3407582d40315c5b1d10800776717e3e3c6823f37dab",
+  "fault_injection": null,
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "status": "unsupported",
+  "reason": "Ideal constant-generator pure-qubit experiment only; no hardware/noise/shot claim",
+  "stage": "preflight",
+  "runtime": {
+    "implementation": "cpython",
+    "python": "3.12.14"
+  },
+  "helper_calls": [],
+  "handoffs": [],
+  "actual_flagquantum_circuits": 0,
+  "skills": {
+    "translate-complex-linear-algebra": "0.1.1",
+    "translate-unitary-evolution": "0.1.0",
+    "reproduce-qubit-interference": "0.1.0",
+    "compare-quantum-states-and-operators": "0.1.1"
+  },
+  "workflow_is_agent_skill": false
+}

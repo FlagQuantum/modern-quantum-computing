@@ -1,0 +1,5 @@
+{
+  "evidence_type": "Classical scalar check of supplied synthetic absolute-error receipt against requested tolerance. Not a circuit execution or fabricated probability pair.",
+  "synthetic_fixture": true,
+  "quantum_execution": false
+}

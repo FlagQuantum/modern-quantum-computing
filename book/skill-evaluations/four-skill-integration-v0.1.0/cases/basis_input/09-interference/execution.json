@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/reproduce-qubit-interference/scripts/interference.py"
+  ],
+  "exit_code": 0,
+  "request_sha256": "c8d869a0fb1113b37b615d9f9805fa95ae968bb5ed7d73f3af979377a556b98e",
+  "source_request_sha256": "f8a098a18356d6a871357bf7a1c5e75d7495d0863b6fe5ba356afb398a9a1942",
+  "skill": "reproduce-qubit-interference",
+  "request_path": "09-interference/request.json"
+}

@@ -1,0 +1,106 @@
+{
+  "status": "verified",
+  "quantum_execution": false,
+  "method": "Independent standard-library Hermitian spectral-projector exponential; direct complex amplitude readout and conjugated cross term. Compares actual saved circuit evidence without importing workflow/skill code.",
+  "runtime": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "requested_atol": 1e-10,
+  "rtol": 0,
+  "unitary_error": 1.5700924586837752e-16,
+  "max_error": 2.9893669801409083e-16,
+  "reference_unitary": [
+    [
+      [
+        0.8484320433501356,
+        -0.42066452400762533
+      ],
+      [
+        -0.3041297463553405,
+        0.10348682737425152
+      ]
+    ],
+    [
+      [
+        0.3041297463553405,
+        -0.10348682737425152
+      ],
+      [
+        0.9289217979745534,
+        -0.18411916573124937
+      ]
+    ]
+  ],
+  "reference_evolved_state": [
+    [
+      0.4262697641106801,
+      -0.4957025114888476
+    ],
+    [
+      0.3297731803982038,
+      0.6810453419550918
+    ]
+  ],
+  "records": [
+    {
+      "phase_radians": 0.22689280275926285,
+      "reference_coordinates": [
+        [
+          0.5676278155495768,
+          0.11361793460166698
+        ],
+        [
+          0.03520866608532698,
+          -0.8146471492516002
+        ]
+      ],
+      "reference_probabilities": [
+        0.335110372048733,
+        0.664889627951267
+      ],
+      "max_coordinate_error": 2.9893669801409083e-16,
+      "max_probability_error": 1.1102230246251565e-16,
+      "scalar_born_error": 1.1102230246251565e-16
+    },
+    {
+      "phase_radians": 1.0297442586766543,
+      "reference_coordinates": [
+        [
+          0.1524739401612773,
+          0.1633940902628249
+        ],
+        [
+          0.4503625414736265,
+          -0.8644233049127581
+        ]
+      ],
+      "reference_probabilities": [
+        0.04994593116112094,
+        0.950054068838879
+      ],
+      "max_coordinate_error": 2.0206364052201326e-16,
+      "max_probability_error": 7.632783294297951e-17,
+      "scalar_born_error": 2.220446049250313e-16
+    },
+    {
+      "phase_radians": 2.286381320112572,
+      "reference_coordinates": [
+        [
+          -0.23336429492222224,
+          -0.33336253391732307
+        ],
+        [
+          0.8362007765571261,
+          -0.36766668073261016
+        ]
+      ],
+      "reference_probabilities": [
+        0.1655894731643243,
+        0.8344105268356757
+      ],
+      "max_coordinate_error": 2.0014830212433605e-16,
+      "max_probability_error": 1.1102230246251565e-16,
+      "scalar_born_error": 1.1102230246251565e-16
+    }
+  ],
+  "fresh_runner_status": "verified",
+  "actual_flagquantum_circuits_in_fresh_run": 15
+}

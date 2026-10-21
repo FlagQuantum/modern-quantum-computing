@@ -1,0 +1,23 @@
+{
+  "source_request_sha256": "6d2baa6fc6c9aa98df70f6df9568fa4302962780809d6da74a314c77b8b73b57",
+  "fault_injection": null,
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "status": "needs_clarification",
+  "reason": "Explicit positive hbar value in eV*s required; no constant lookup",
+  "stage": "preflight",
+  "runtime": {
+    "implementation": "cpython",
+    "python": "3.12.14"
+  },
+  "helper_calls": [],
+  "handoffs": [],
+  "actual_flagquantum_circuits": 0,
+  "skills": {
+    "translate-complex-linear-algebra": "0.1.1",
+    "translate-unitary-evolution": "0.1.0",
+    "reproduce-qubit-interference": "0.1.0",
+    "compare-quantum-states-and-operators": "0.1.1"
+  },
+  "workflow_is_agent_skill": false
+}

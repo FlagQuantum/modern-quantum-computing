@@ -1,0 +1,15 @@
+{
+  "status": "rejected",
+  "fixture_origin": "Synthetic foreign-request receipt, not an executed result",
+  "cached_source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "actual_request_sha256": "5435375e27275270a4540fe476004ede4ed1fb0fb0e3bad12d4a1ecfc6e00ee4",
+  "hash_matches": false,
+  "reasons": [
+    "Source-request digest mismatch; no admissible link to requested experiment.",
+    "Synthetic cached status and Python string do not attest an executed run.",
+    "Supplied probability claims also disagree with independently verified fresh result."
+  ],
+  "claimed_probability_max_error": 0.4417048094635369,
+  "requested_atol": 1e-10,
+  "fresh_run_accepts_cache": false
+}

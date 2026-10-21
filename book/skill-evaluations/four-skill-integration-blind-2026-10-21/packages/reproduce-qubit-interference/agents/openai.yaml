@@ -1,0 +1,3 @@
+interface:
+  display_name: "Reproduce Qubit Interference"
+  short_description: "Reproduce ideal single-qubit interference with checks"

@@ -1,0 +1,236 @@
+{
+  "experiment": "four-skill-interference",
+  "workflow_version": "0.1.0",
+  "status": "independent-agent-tested composition prototype",
+  "agents": 3,
+  "new_tasks": 9,
+  "passed_tasks": 9,
+  "full_experiment_tasks": 3,
+  "candidate_audit_tasks": 5,
+  "unsupported_tasks": 1,
+  "verified_workflow_runs": 6,
+  "unsupported_workflow_runs": 1,
+  "recorded_helper_calls": 110,
+  "actual_flagquantum_circuits": 89,
+  "clarification_exchanges": 2,
+  "false_successes": 0,
+  "incorrect_abstentions": 0,
+  "task_grades": [
+    {
+      "id": "A1",
+      "status": "verified",
+      "selected_skills": [
+        "compare-quantum-states-and-operators",
+        "reproduce-qubit-interference",
+        "translate-complex-linear-algebra",
+        "translate-unitary-evolution"
+      ],
+      "passed": true
+    },
+    {
+      "id": "A2",
+      "status": "rejected",
+      "selected_skills": [
+        "compare-quantum-states-and-operators",
+        "reproduce-qubit-interference",
+        "translate-complex-linear-algebra",
+        "translate-unitary-evolution"
+      ],
+      "passed": true
+    },
+    {
+      "id": "A3",
+      "status": "rejected",
+      "selected_skills": [
+        "translate-complex-linear-algebra",
+        "reproduce-qubit-interference"
+      ],
+      "passed": true
+    },
+    {
+      "id": "B1",
+      "status": "verified",
+      "selected_skills": [
+        "translate-complex-linear-algebra",
+        "translate-unitary-evolution",
+        "compare-quantum-states-and-operators",
+        "reproduce-qubit-interference"
+      ],
+      "passed": true
+    },
+    {
+      "id": "B2",
+      "status": "rejected",
+      "selected_skills": [
+        "translate-complex-linear-algebra",
+        "translate-unitary-evolution",
+        "compare-quantum-states-and-operators",
+        "reproduce-qubit-interference"
+      ],
+      "passed": true
+    },
+    {
+      "id": "B3",
+      "status": "rejected",
+      "selected_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "passed": true
+    },
+    {
+      "id": "C1",
+      "status": "verified",
+      "selected_skills": [
+        "translate-complex-linear-algebra",
+        "translate-unitary-evolution",
+        "reproduce-qubit-interference",
+        "compare-quantum-states-and-operators"
+      ],
+      "passed": true
+    },
+    {
+      "id": "C2",
+      "status": "rejected",
+      "selected_skills": [
+        "translate-complex-linear-algebra",
+        "translate-unitary-evolution",
+        "reproduce-qubit-interference",
+        "compare-quantum-states-and-operators"
+      ],
+      "passed": true
+    },
+    {
+      "id": "C3",
+      "status": "unsupported",
+      "selected_skills": [
+        "reproduce-qubit-interference",
+        "translate-unitary-evolution",
+        "compare-quantum-states-and-operators"
+      ],
+      "passed": true
+    }
+  ],
+  "workflow_runs": [
+    {
+      "task": "A1",
+      "path": "a/outputs/A1/fresh-workflow",
+      "status": "verified",
+      "helper_calls": 18,
+      "actual_flagquantum_circuits": 15
+    },
+    {
+      "task": "A2",
+      "path": "a/outputs/A2/fresh-workflow",
+      "status": "verified",
+      "helper_calls": 15,
+      "actual_flagquantum_circuits": 13
+    },
+    {
+      "task": "B1",
+      "path": "b/outputs/B1/fresh",
+      "status": "verified",
+      "helper_calls": 18,
+      "actual_flagquantum_circuits": 15
+    },
+    {
+      "task": "B2",
+      "path": "b/outputs/B2/fresh",
+      "status": "verified",
+      "helper_calls": 15,
+      "actual_flagquantum_circuits": 13
+    },
+    {
+      "task": "C1",
+      "path": "c/outputs/C1-workflow",
+      "status": "verified",
+      "helper_calls": 18,
+      "actual_flagquantum_circuits": 15
+    },
+    {
+      "task": "C2",
+      "path": "c/outputs/C2-workflow",
+      "status": "verified",
+      "helper_calls": 18,
+      "actual_flagquantum_circuits": 15
+    },
+    {
+      "task": "C3",
+      "path": "c/outputs/C3-workflow",
+      "status": "unsupported",
+      "helper_calls": 0,
+      "actual_flagquantum_circuits": 0
+    }
+  ],
+  "extra_helper_calls": [
+    {
+      "path": "a/outputs/A2/candidate-coordinates/execution.json",
+      "skill": "compare-quantum-states-and-operators",
+      "status": "outside_tolerance",
+      "exit_code": 1
+    },
+    {
+      "path": "a/outputs/A2/candidate-global-phase/execution.json",
+      "skill": "compare-quantum-states-and-operators",
+      "status": "within_tolerance",
+      "exit_code": 0
+    },
+    {
+      "path": "b/outputs/B3/helper/execution.json",
+      "skill": "translate-complex-linear-algebra",
+      "status": "outside_tolerance",
+      "exit_code": 1
+    },
+    {
+      "path": "c/outputs/C2-analyzer-operator-audit.execution.json",
+      "skill": "compare-quantum-states-and-operators",
+      "status": "outside_tolerance",
+      "exit_code": 1
+    },
+    {
+      "path": "c/outputs/C2-candidate-interference.execution.json",
+      "skill": "reproduce-qubit-interference",
+      "status": "verified",
+      "exit_code": 0
+    },
+    {
+      "path": "c/outputs/C2-candidate-vs-declared-0.19.execution.json",
+      "skill": "compare-quantum-states-and-operators",
+      "status": "outside_tolerance",
+      "exit_code": 1
+    },
+    {
+      "path": "c/outputs/C2-candidate-vs-declared-0.97.execution.json",
+      "skill": "compare-quantum-states-and-operators",
+      "status": "outside_tolerance",
+      "exit_code": 1
+    },
+    {
+      "path": "c/outputs/C2-candidate-vs-declared-2.03.execution.json",
+      "skill": "compare-quantum-states-and-operators",
+      "status": "outside_tolerance",
+      "exit_code": 1
+    }
+  ],
+  "observations": [
+    "Four-skill orchestration and independent whole-circuit/staged/analytic agreement passed",
+    "hbar and cyclic/angular/degree conversions clarified before dependent execution; original inputs retained",
+    "Lost phase, reversed basis, stale receipt, weakened budget and wrong analyzer sign candidates rejected separately from successful fresh execution",
+    "Hardware/noise/confidence-bound request remained unsupported, zero circuits; no synthetic fixture counted as execution",
+    "Actual counts include86circuits in six full workflows plus3candidate-interference circuits; classical helpers and unsupported paths add no quantum executions",
+    "No defect in frozen skills or bounded runner was found in this task set; no post-blind changes"
+  ],
+  "grading_role": "author/conductor against registered dispositions and NumPy/scalar/matrix references",
+  "executor_context": "Three fresh no-history agents, raw tasks/four unchanged packages/bounded runner/runtime candidates only; no expected answers supplied",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "new_agent_skills": 0,
+  "released_skills": 0,
+  "limitations": [
+    "Small conductor-designed nonrandom sample",
+    "Logical workspace restrictions, not OS-enforced isolation",
+    "Same inherited model family; backend revision/token/cost telemetry unavailable",
+    "Conductor grades; independent scientific acceptance and reader trials remain pending",
+    "Published tasks become regression fixtures; CI replays numeric evidence, not autonomous agents",
+    "This is one ideal small experiment, not generic paper reproduction or arbitrary workflow acceptance"
+  ]
+}

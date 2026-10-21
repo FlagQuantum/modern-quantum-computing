@@ -2,6 +2,8 @@
 
 **Plan 0.1 · October 21, 2026 · first prototype pilot.** This document proposes a human textbook entry and an agent task entry for *Modern Quantum Computing: A Formula-to-Code Approach*. It changes neither Writing Baseline 1.0 nor its 50 chapters, 435 sections, seven volumes, 16 batches or proof-depth requirements. The [first comparison prototype](comparison-skill-prototype.md) has [independent blind-test evidence](comparison-skill-blind-evaluation.md); scientific acceptance remains pending. The second [interference prototype](interference-skill-prototype.md) is also independently agent-tested. The third [phase-tracked unitary evolution prototype](unitary-evolution-skill-prototype.md), based on 3.4–3.6, passed 53 author cases and 12 independent blind tasks, including unit clarification and actual coherent-control phase repair. The fourth [complex linear algebra prototype](complex-algebra-skill-prototype.md), based on Chapter 2, passed 57 author cases and nine fresh blind retest tasks after a numeric tail-metadata repair; its initial 12-task evidence and original failure are preserved. Its classical computations are separated from actual FlagQuantum execution routed to the evolution skill. No skill package is released.
 
+The [four-skill composition experiment](four-skill-integration.md) now connects energy/time conversion, phase-tracked FlagQuantum evolution, interference readout and independent comparison. It passed 18 author cases and nine independent-agent blind tasks; staged state preparation and a continuous single-circuit path are recorded separately. This is an experiment workflow, not a fifth skill or independent scientific acceptance.
+
 ## Choose an entry
 
 | Reader | Entry | Intended outcome |

@@ -1933,5 +1933,15 @@
   "future_paths": {
     "skill_package": "skills/<task-id>/SKILL.md",
     "run_bundle": "reproductions/<paper-id>/<run-id>/"
+  },
+  "composition_pilot": {
+    "id": "four-skill-interference-v0.1.0",
+    "status": "independent-agent-tested composition prototype",
+    "documentation": "docs/four-skill-integration.md",
+    "workflow": "examples/integration/four_skill_interference.py",
+    "author_report": "book/skill-evaluations/four-skill-integration-v0.1.0/author-report.json",
+    "blind_report": "book/skill-evaluations/four-skill-integration-blind-2026-10-21/report.json",
+    "new_agent_skills": 0,
+    "scientific_acceptance": "pending"
   }
 }

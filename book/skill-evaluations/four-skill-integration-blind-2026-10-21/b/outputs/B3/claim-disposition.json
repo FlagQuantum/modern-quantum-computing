@@ -1,0 +1,15 @@
+{
+  "status": "rejected",
+  "fixture_origin": "Synthetic tolerance-consistency counterexample",
+  "quantum_execution": false,
+  "requested_probability_atol": 1e-10,
+  "requested_coordinate_atol": 1e-10,
+  "producer_atol": 1e-08,
+  "producer_budget_ratio": 100.0,
+  "reported_probability_error": 1e-09,
+  "error_to_requested_budget_ratio": 10.0,
+  "independent_check": false,
+  "helper_check_status": "outside_tolerance",
+  "reason": "Reported 1e-9 probability error exceeds 1e-10 requested accuracy by factor 10. Producer 1e-8 tolerance is factor 100 looser; its verified label cannot certify caller budget. Synthetic receipt is audited, not treated as circuit evidence.",
+  "fresh_quantum_run": "not needed for numerical-contract audit"
+}

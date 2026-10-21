@@ -1,0 +1,80 @@
+{
+  "id": "C2",
+  "request": "Audit whether this proposed readout implementation realizes the experiment's declared analyzer. Compare its predicted output with the declared experiment; report the implementation claim separately from any valid rerun.",
+  "experiment": {
+    "profile": "constant-qubit-interference",
+    "generator": {
+      "matrix": [
+        [
+          [
+            1.77717228363e-07,
+            0.0
+          ],
+          [
+            0.0,
+            -2.5670266319100004e-07
+          ]
+        ],
+        [
+          [
+            0.0,
+            2.5670266319100004e-07
+          ],
+          [
+            1.77717228363e-07,
+            0.0
+          ]
+        ]
+      ],
+      "unit": "eV"
+    },
+    "time": {
+      "value": 0.57,
+      "unit": "ns"
+    },
+    "hbar": {
+      "value": 6.582119569e-16,
+      "unit": "eV*s"
+    },
+    "initial_state": [
+      [
+        0,
+        0.6
+      ],
+      [
+        0.8,
+        0
+      ]
+    ],
+    "basis": [
+      "0",
+      "1"
+    ],
+    "phase_scan": {
+      "values": [
+        0.19,
+        0.97,
+        2.03
+      ],
+      "unit": "radian"
+    },
+    "analyzer": {
+      "delta": 0.37,
+      "unit": "radian"
+    },
+    "tolerance": {
+      "coordinate_atol": 1e-10,
+      "rtol": 0
+    },
+    "phase_context": "full-coordinates-with-controlled-witness"
+  },
+  "submitted_chronology": [
+    "original preparation",
+    "U(t)",
+    "D(phi)",
+    "D(+delta)",
+    "H"
+  ],
+  "claim": "This chronology implements the declared phase-h analyzer.",
+  "fixture_origin": "Synthetic implementation-order/sign candidate"
+}

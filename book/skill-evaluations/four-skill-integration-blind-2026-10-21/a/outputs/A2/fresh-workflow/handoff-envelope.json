@@ -1,0 +1,24 @@
+{
+  "basis": [
+    "0",
+    "1"
+  ],
+  "shape": [
+    1,
+    2
+  ],
+  "dtype": "torch.complex128",
+  "device": "cpu",
+  "source_path": "02-evolution/stdout.json",
+  "source_sha256": "5216e0117bede2e54ecfebcf8e2dc3162b92d0c37b7caf782439acfa6e680288",
+  "state": [
+    [
+      -0.010573985630400157,
+      0.6130460595245515
+    ],
+    [
+      0.7845672269269526,
+      -0.09228751899070439
+    ]
+  ]
+}

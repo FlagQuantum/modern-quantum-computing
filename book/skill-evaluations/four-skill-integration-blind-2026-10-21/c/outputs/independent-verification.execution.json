@@ -1,0 +1,8 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "outputs/independent_verify.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.18963098526000977
+}

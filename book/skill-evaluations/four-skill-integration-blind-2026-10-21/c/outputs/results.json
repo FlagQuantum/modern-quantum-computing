@@ -1,0 +1,109 @@
+[
+  {
+    "id": "C1",
+    "selected_skills": [
+      "translate-complex-linear-algebra",
+      "translate-unitary-evolution",
+      "reproduce-qubit-interference",
+      "compare-quantum-states-and-operators"
+    ],
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "C1-task.json",
+      "C1-request.json",
+      "C1-workflow/report.json",
+      "C1-workflow/continuous-circuit.json",
+      "C1-workflow/handoff-envelope.json",
+      "C1-workflow.execution.json",
+      "independent_verify.py",
+      "C1-independent-verification.json",
+      "C1-claim-disposition.json"
+    ],
+    "verification": {
+      "fresh_run_status": "verified",
+      "independent_checks_passed": true,
+      "independent_verification_path": "C1-independent-verification.json",
+      "candidate_claim_disposition": "not_applicable",
+      "scientific_acceptance": "pending"
+    },
+    "limitations": [
+      "Ideal CPU complex128 statevector simulations only; no hardware or noisy data.",
+      "Independent numerical checks use binary64 and are not exact proofs or outward-rounded certificates.",
+      "Caller-supplied hbar numerical value retained; physical provenance/accuracy not independently certified.",
+      "Continuous-circuit artifact means original preparation and operations in one circuit per supplied phase, not an exhaustive continuous-phase execution."
+    ]
+  },
+  {
+    "id": "C2",
+    "selected_skills": [
+      "translate-complex-linear-algebra",
+      "translate-unitary-evolution",
+      "reproduce-qubit-interference",
+      "compare-quantum-states-and-operators"
+    ],
+    "clarification_question": null,
+    "status": "rejected",
+    "evidence_paths": [
+      "C2-task.json",
+      "C2-request.json",
+      "C2-workflow/report.json",
+      "C2-workflow/continuous-circuit.json",
+      "C2-workflow/handoff-envelope.json",
+      "C2-workflow.execution.json",
+      "independent_verify.py",
+      "C2-independent-verification.json",
+      "C2-claim-disposition.json",
+      "C2-candidate-request.json",
+      "C2-candidate-interference.stdout.txt",
+      "C2-candidate-interference.execution.json",
+      "C2-analyzer-operator-audit.stdout.json"
+    ],
+    "verification": {
+      "fresh_run_status": "verified",
+      "independent_checks_passed": true,
+      "independent_verification_path": "C2-independent-verification.json",
+      "candidate_claim_disposition": "rejected",
+      "scientific_acceptance": "pending"
+    },
+    "limitations": [
+      "Ideal CPU complex128 statevector simulations only; no hardware or noisy data.",
+      "Independent numerical checks use binary64 and are not exact proofs or outward-rounded certificates.",
+      "Caller-supplied hbar numerical value retained; physical provenance/accuracy not independently certified.",
+      "Continuous-circuit artifact means original preparation and operations in one circuit per supplied phase, not an exhaustive continuous-phase execution."
+    ]
+  },
+  {
+    "id": "C3",
+    "selected_skills": [
+      "reproduce-qubit-interference",
+      "translate-unitary-evolution",
+      "compare-quantum-states-and-operators"
+    ],
+    "clarification_question": null,
+    "status": "unsupported",
+    "evidence_paths": [
+      "C3-task.json",
+      "C3-request.json",
+      "C3-workflow/report.json",
+      "C3-workflow.execution.json",
+      "C3-scope-disposition.json"
+    ],
+    "verification": {
+      "requested": "Actual noisy hardware probabilities and confidence bound",
+      "status": "unsupported",
+      "reason": "Ideal statevector packages do not execute hardware, noise or shot distributions. No provider, device, calibration/noise model, credentials, actual shot counts, provenance or confidence level supplied. shots=1000 is a requested count, not an observation.",
+      "ideal_substitution_performed": false,
+      "hardware_execution_performed": false,
+      "confidence_bound_computed": false,
+      "necessary_next_information": [
+        "Hardware provider/device and access or authenticated execution artifacts",
+        "Actual per-setting measurement counts and shot totals, circuit/transpilation and timing provenance",
+        "Confidence level and statistical assumptions; noise/calibration data for noise-specific claims"
+      ]
+    },
+    "limitations": [
+      "No actual noisy quantum execution or hardware statistics profile is supplied. No ideal run is offered as certification."
+    ]
+  }
+]

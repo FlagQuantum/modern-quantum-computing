@@ -1,0 +1,246 @@
+[
+  {
+    "id": "A1",
+    "request": "Carry out the end-to-end physical evolution and interference request, selecting the relevant skills and checking whole-circuit versus staged execution independently. Resolve missing scientific inputs first. Do not infer scientific acceptance from a helper status.",
+    "experiment": {
+      "profile": "constant-qubit-interference",
+      "generator": {
+        "matrix": [
+          [
+            [
+              1.90881467501e-07,
+              0.0
+            ],
+            [
+              0.0,
+              -3.4885233715700006e-07
+            ]
+          ],
+          [
+            [
+              0.0,
+              3.4885233715700006e-07
+            ],
+            [
+              1.90881467501e-07,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "eV"
+      },
+      "time": {
+        "value": 0.67,
+        "unit": "ns"
+      },
+      "initial_state": [
+        [
+          0.8,
+          0.0
+        ],
+        [
+          0.0,
+          0.6
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "phase_scan": {
+        "values": [
+          0.13,
+          1.19,
+          2.37
+        ],
+        "unit": "radian"
+      },
+      "analyzer": {
+        "delta": 0.23,
+        "unit": "radian"
+      },
+      "tolerance": {
+        "coordinate_atol": 1e-10,
+        "rtol": 0
+      },
+      "phase_context": "full-coordinates-with-controlled-witness"
+    }
+  },
+  {
+    "id": "A2",
+    "request": "Audit this submitted state handoff under the experiment's declared full-coordinate/controlled-witness context. Decide whether it can be accepted; diagnose any discrepancy with fresh computation and an independent reference. Keep ray equivalence and complete-operation requirements distinct.",
+    "experiment": {
+      "profile": "constant-qubit-interference",
+      "generator": {
+        "matrix": [
+          [
+            [
+              2.69866902329e-07,
+              0.0
+            ],
+            [
+              0.0,
+              -2.1720994577700003e-07
+            ]
+          ],
+          [
+            [
+              0.0,
+              2.1720994577700003e-07
+            ],
+            [
+              2.69866902329e-07,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "eV"
+      },
+      "time": {
+        "value": 0.73,
+        "unit": "ns"
+      },
+      "hbar": {
+        "value": 6.582119569e-16,
+        "unit": "eV*s"
+      },
+      "initial_state": [
+        [
+          0,
+          0.6
+        ],
+        [
+          0.8,
+          0
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "phase_scan": {
+        "values": [
+          0.23,
+          0.91
+        ],
+        "unit": "radian"
+      },
+      "analyzer": {
+        "delta": 0.19,
+        "unit": "radian"
+      },
+      "tolerance": {
+        "coordinate_atol": 1e-10,
+        "rtol": 0
+      },
+      "phase_context": "full-coordinates-with-controlled-witness"
+    },
+    "submitted_handoff": {
+      "state": [
+        [
+          -0.1908613873735413,
+          0.5826741894751635
+        ],
+        [
+          0.7768989193002181,
+          0.14314604053015592
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "device": "cpu",
+      "claimed_status": "verified"
+    },
+    "fixture_origin": "Synthetic candidate for audit, not an executed circuit record"
+  },
+  {
+    "id": "A3",
+    "request": "Audit the metadata-only handoff proposed below. No basis transformation or sample reshaping has been authorized; determine whether the next stage can consume it as supplied.",
+    "experiment": {
+      "profile": "constant-qubit-interference",
+      "generator": {
+        "matrix": [
+          [
+            [
+              1.51388750087e-07,
+              0.0
+            ],
+            [
+              0.0,
+              -2.04045706639e-07
+            ]
+          ],
+          [
+            [
+              0.0,
+              2.04045706639e-07
+            ],
+            [
+              1.51388750087e-07,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "eV"
+      },
+      "time": {
+        "value": 0.59,
+        "unit": "ns"
+      },
+      "hbar": {
+        "value": 6.582119569e-16,
+        "unit": "eV*s"
+      },
+      "initial_state": [
+        [
+          0,
+          0.6
+        ],
+        [
+          0.8,
+          0
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "phase_scan": {
+        "values": [
+          0.31,
+          1.41
+        ],
+        "unit": "radian"
+      },
+      "analyzer": {
+        "delta": -0.17,
+        "unit": "radian"
+      },
+      "tolerance": {
+        "coordinate_atol": 1e-10,
+        "rtol": 0
+      },
+      "phase_context": "full-coordinates-with-controlled-witness"
+    },
+    "submitted_handoff": {
+      "basis": [
+        "1",
+        "0"
+      ],
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "device": "cpu"
+    },
+    "fixture_origin": "Synthetic metadata audit fixture"
+  }
+]

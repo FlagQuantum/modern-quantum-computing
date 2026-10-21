@@ -1,2 +1,4 @@
 # Raw interpreter output is immutable evaluation evidence, including trailing spaces.
 book/skill-evaluations/complex-algebra-blind-retest-2026-10-21/d/outputs/interpreter_probe_0.stdout -whitespace
+book/skill-evaluations/four-skill-integration-blind-2026-10-21/a/outputs/system-python-runtime/stdout.txt -whitespace
+book/skill-evaluations/four-skill-integration-blind-2026-10-21/b/outputs/runtime-system-version/stdout.txt -whitespace

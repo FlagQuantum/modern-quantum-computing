@@ -1,0 +1,31 @@
+{
+  "A1": {
+    "expected_disposition": "verified",
+    "reply": "Use the explicitly declared numerical conversion hbar=6.582119569e-16 eV*s. No further constant-provenance or accuracy claim is supplied; retain this input and that limitation."
+  },
+  "A2": {
+    "expected_disposition": "rejected"
+  },
+  "A3": {
+    "expected_disposition": "rejected"
+  },
+  "B1": {
+    "expected_disposition": "verified",
+    "reply": "The generator numbers are cyclic frequencies in Hz: multiply every matrix entry by 2pi to obtain angular rad/s. Convert all phase-scan values and analyzer delta from degrees to radians by multiplying by pi/180. Keep time0.29ns; no hbar division is needed for the converted angular generator."
+  },
+  "B2": {
+    "expected_disposition": "rejected"
+  },
+  "B3": {
+    "expected_disposition": "rejected"
+  },
+  "C1": {
+    "expected_disposition": "verified"
+  },
+  "C2": {
+    "expected_disposition": "rejected"
+  },
+  "C3": {
+    "expected_disposition": "unsupported"
+  }
+}

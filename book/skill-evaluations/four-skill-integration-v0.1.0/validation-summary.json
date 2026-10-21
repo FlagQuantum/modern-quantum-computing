@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-10-21T07:10:34.256017+00:00",
+  "workflow_version": "0.1.0",
+  "author_cases": 18,
+  "author_actual_flagquantum_circuits": 142,
+  "blind_tasks": 9,
+  "blind_actual_flagquantum_circuits": 89,
+  "blind_helper_calls": 110,
+  "new_skill_packages": 0,
+  "implemented_skill_packages": 4,
+  "example": "Actual prose bash command executed under pinned runtime; exact displayed output matched",
+  "visual_check": "Actual browser inspected unit conversion, full phase, amplitude column vector, complex-conjugate Born cross term and tolerance formulas; no garbled equations in inspected content",
+  "build": "Strict MkDocs;68 rendered pages, all local links/fragments resolve and IDs unique",
+  "curriculum_and_packages": "Full baseline/progress/435-section queue and all four skills byte-identical to71e2e39; no new sections",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "grading_role": "Author/conductor; fresh executor agents independent of author conversation; no human scientific acceptance inferred"
+}
