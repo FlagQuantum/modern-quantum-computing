@@ -1,6 +1,6 @@
 # 3. Single-Qubit States and Rotations
 
-**Working draft: sections 3.1–3.5 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, all pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working draft: sections 3.1–3.6 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, all pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-single-qubit-states-and-rotations-1"></span>
 
@@ -1000,4 +1000,198 @@ Outputs must be finite CPU complex128 statevectors and float64 probabilities wit
 
 Assigned sources are Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), [NC:2.1.3](../references/proof-sources.md#source-nc-2-1-3), **printed p.65, Figure 2.2**, and [NC:4.2](../references/proof-sources.md#source-nc-4-2), **printed pp.174–175**, especially Eqs.(4.4)–(4.8) and the Bloch-rotation interpretation posed in Exercise 4.6. These locations were consulted. The explicit product derivations, coordinate proof, validation program and original problems here connect those results without reproducing the source's exercises or solutions.
 
-Depth **F**: derive the Pauli products, even/odd exponential sum, half-angle matrices and all three axis actions. The unit-axis extension has its own stated assumptions and proof. See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.5.json) for author execution and pending independent reviews. Hardware pulse conventions and arbitrary mixed-axis decompositions are outside the claims here. Next: [3.6 Composing rotations](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-6).
+Depth **F**: derive the Pauli products, even/odd exponential sum, half-angle matrices and all three axis actions. The unit-axis extension has its own stated assumptions and proof. See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.5.json) for author execution and pending independent reviews. Hardware pulse conventions and arbitrary mixed-axis decompositions are outside the claims here. Continue with the working draft [3.6 Composing rotations](#sec-single-qubit-states-and-rotations-6).
+
+<span id="sec-single-qubit-states-and-rotations-6"></span>
+
+## 3.6 Composing rotations
+
+A sequence of gates is a product of matrices, and reading that product in the wrong direction changes the experiment. This section first makes the order concrete, then proves a constructive result: every single-qubit unitary can be written as three axis rotations with an explicitly tracked common phase.
+
+The prerequisite is [3.5](#sec-single-qubit-states-and-rotations-5), including its rotation matrices, Pauli products and Bloch-axis conventions. We use the earlier orthogonality and phase conventions through that preparation. The factorization is an existence result with a reproducible choice of angles, not a claim that its angles are unique, continuous or optimal for hardware.
+
+### Chronological order and noncommutativity
+
+If the first gate is $A$ and the second is $B$, the state becomes $B(A|\psi\rangle)=(BA)|\psi\rangle$. Thus a circuit written chronologically as `rx(theta)` then `rz(phi)` implements $R_z(\phi)R_x(\theta)$.
+
+For rotations about the same Pauli axis, the multiplication rule from 3.5 gives
+
+$$
+\begin{aligned}
+R_A(\theta)R_A(\phi)
+&=\bigl(\cos(\theta/2)\cos(\phi/2)-\sin(\theta/2)\sin(\phi/2)\bigr)I\\
+&\quad-i\bigl(\cos(\theta/2)\sin(\phi/2)+\sin(\theta/2)\cos(\phi/2)\bigr)A\\
+&=R_A(\theta+\phi).
+\end{aligned}
+$$
+
+Here $A^2=I$; the last step uses the scalar angle-addition formulas. Rotations about different axes generally cannot be combined by adding their angles, and they need not commute.
+
+For a concrete witness, take quarter turns and initial state $|0\rangle$. Direct multiplication of the matrices in 3.5 gives
+
+$$
+\begin{aligned}
+R_z(\pi/2)R_x(\pi/2)|0\rangle
+ &=e^{-i\pi/4}\frac{|0\rangle+|1\rangle}{\sqrt2},\\
+R_x(\pi/2)R_z(\pi/2)|0\rangle
+ &=e^{-i\pi/4}\frac{|0\rangle-i|1\rangle}{\sqrt2}.
+\end{aligned}
+$$
+
+Their Bloch points are $(1,0,0)$ and $(0,-1,0)$. These are different rays, with squared overlap $1/2$, even though both give computational-basis probabilities $(1/2,1/2)$. A probability-only check in that setting would miss the order error.
+
+### State the factorization with its phase
+
+For any two-by-two unitary $U$, we will construct real angles $\alpha,\beta,\gamma,\delta$ such that
+
+$$
+U=e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta),
+\qquad 0\leq\gamma\leq\pi.
+$$
+
+This is a **Z–Y–Z Euler factorization**. Its chronological gate order is $R_z(\delta)$, then $R_y(\gamma)$, then $R_z(\beta)$. The three rotations alone implement $V=e^{-i\alpha}U$. For exact matrix comparison the factor $e^{i\alpha}$ must be restored; the whole-qubit ray comparison can ignore only this common phase.
+
+We prove the result by first removing the common phase, then matching the remaining entries to a product of rotations. No general determinant theorem is needed; the two-by-two determinant expression is derived locally below.
+
+### Derive the unitary column form
+
+Write $U=\begin{pmatrix}u&v\\w&z\end{pmatrix}$. Unitarity means its columns are orthonormal. The first column has $|u|^2+|w|^2=1$; a normalized orthogonal partner is $(-w^*,u^*)^T$. Every possible second column is therefore
+
+$$
+\begin{pmatrix}v\\z\end{pmatrix}
+=\eta\begin{pmatrix}-w^*\\u^*\end{pmatrix},\qquad |\eta|=1.
+$$
+
+To verify the completeness of that form, if $u\ne0$, the orthogonality equation $u^*v+w^*z=0$ gives $v=-w^*z/u^*$. Set $\eta=z/u^*$; the second-column norm then forces $|\eta|=1$. If $u=0$, normalization gives $|w|=1$, orthogonality forces $z=0$, and the unit-length $v$ determines $\eta=-v/w^*$. Thus neither a vanishing entry nor a pole case is omitted.
+
+The scalar phase can be computed directly from the entries:
+
+$$
+uz-vw=\eta\bigl(|u|^2+|w|^2\bigr)=\eta.
+$$
+
+The expression $uz-vw$ is the two-by-two determinant, denoted $\det U$; here its unit modulus follows from the column calculation. Choose any real $\alpha$ satisfying $e^{2i\alpha}=\eta$, for example $\alpha=\tfrac12\arg\eta$ with a fixed branch of the complex argument.
+
+Set $V=e^{-i\alpha}U$, $a=e^{-i\alpha}u$ and $c=e^{-i\alpha}w$. Substituting $\eta=e^{2i\alpha}$ into the second column now gives
+
+$$
+V=\begin{pmatrix}a&-c^*\\c&a^*\end{pmatrix},\qquad
+|a|^2+|c|^2=1.
+$$
+
+This derivation justifies the canonical form we will match; it is not an unproved inference from a general unitary's appearance. There are two choices of the square root of $\eta$: adding $\pi$ to $\alpha$ changes $V$ to $-V$. Both can lead to a valid factorization of the same $U$.
+
+### Multiply the rotations and extract the angles
+
+Multiplying $R_y(\gamma)$ by the two diagonal $Z$ rotations gives
+
+$$
+R_z(\beta)R_y(\gamma)R_z(\delta)=
+\begin{pmatrix}
+e^{-i(\beta+\delta)/2}\cos(\gamma/2)&-e^{-i(\beta-\delta)/2}\sin(\gamma/2)\\
+e^{i(\beta-\delta)/2}\sin(\gamma/2)&e^{i(\beta+\delta)/2}\cos(\gamma/2)
+\end{pmatrix}.
+$$
+
+Suppose first that both $a$ and $c$ are nonzero. Write $a=|a|e^{iA}$, $c=|c|e^{iC}$, with $A=\arg a$ and $C=\arg c$. Choose
+
+$$
+\gamma=2\operatorname{atan2}(|c|,|a|),\qquad
+\beta=C-A,\qquad \delta=-C-A.
+$$
+
+Here $\operatorname{atan2}(y,x)$ is the quadrant-aware polar angle of the real pair $(x,y)$. Its two nonnegative arguments give $0<\gamma<\pi$. Normalization implies $\cos(\gamma/2)=|a|$ and $\sin(\gamma/2)=|c|$. Also
+
+$$
+-\frac{\beta+\delta}{2}=A,\qquad
+\frac{\beta-\delta}{2}=C.
+$$
+
+Consequently the first column is exactly $(a,c)^T$. The second column has the required form $(-c^*,a^*)^T$, completing the factorization proof in the generic case. Independent choices of argument branches may change the angles while leaving the reconstructed matrix unchanged.
+
+### Resolve the endpoint cases instead of taking undefined arguments
+
+When a first-column entry vanishes, its complex argument is undefined. These are singularities of the angle coordinates; $U$ remains unitary and invertible.
+
+| Exact case | One valid choice | Information that remains determined |
+|---|---|---|
+| $c=0$, so $\gamma=0$ and $\lvert a\rvert=1$ | $\delta=0$, $\beta=-2\arg a$ | Only $\beta+\delta$ matters |
+| $a=0$, so $\gamma=\pi$ and $\lvert c\rvert=1$ | $\delta=0$, $\beta=2\arg c$ | Only $\beta-\delta$ matters |
+
+For the first row, substitution gives $V=\operatorname{diag}(a,a^*)$; moving an angle from one outer $Z$ rotation to the other changes nothing. In the second row, it gives $V=\begin{pmatrix}0&-c^*\\c&0\end{pmatrix}$; the sum of the two outer angles drops out. Both rows therefore satisfy the full matrix formula, not just one selected input state.
+
+Near these endpoints, tiny entry errors can strongly change the argument of the small entry and hence the individual Euler angles. The matrix can still be reconstructed accurately. The implementation chooses a documented endpoint convention when an entry magnitude is at most $10^{-12}$; this deliberately approximates sufficiently small entries by zero. It claims reconstruction within a declared tolerance, not exact symbolic angles or continuous parameter extraction from noisy data.
+
+### Runnable reconstruction and actual gate order
+
+The complete example is [composing_rotations.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/composing_rotations.py). It reuses the scalar matrix and coordinate helpers from the preceding example, so run it from this repository in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples):
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/composing_rotations.py
+```
+
+The central chronological circuit, using released FlagQuantum 0.3.1, is:
+
+```python
+circuit = fq.Circuit(1, dtype=torch.complex128)
+circuit.rz(0, theta=delta)
+circuit.ry(0, theta=gamma)
+circuit.rz(0, theta=beta)
+result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
+state_v = result.statevector()[0]
+state_u = cmath.exp(1j*alpha) * state_v
+```
+
+The last line is diagnostic array arithmetic. The submitted three-gate circuit implements $V$, not a separately executed global-phase gate. `OPTIONS` requires CPU PyTorch complex128 statevector execution and disables fallback and approximation.
+
+| Proof step | Executed check |
+|---|---|
+| Column assumptions | Validate finite CPU complex128 shape `(2,2)` and $U^\dagger U$ against identity; no automatic repair |
+| Extract common phase | Scalar `eta = u00*u11-u01*u10`, then `.5*cmath.phase(eta)` |
+| Canonical first column | Form `v = cmath.exp(-1j*alpha)*u`; read `a=v[0,0]`, `c=v[1,0]` |
+| Generic versus endpoint angles | Separate nonzero-argument formulas from the documented small-entry branches |
+| Full operator reconstruction | Compare `exp(i*alpha)*Rz(beta)@Ry(gamma)@Rz(delta)` with the target matrix |
+| Actual circuit implementation | Compare the rotation sequence and a direct `unitary(0, unitary=u)` run on both basis inputs and two coherent inputs |
+| Order and phase failures | Confirm the quarter-turn order witness; demonstrate that omitting the common phase fails matrix comparison even when probabilities agree |
+
+Expected output:
+
+```text
+Rx then Rz: Bloch=(1, 0, 0); Rz then Rx: Bloch=(0, -1, 0).
+40 targets: phase-tracked ZYZ reconstruction and both FlagQuantum paths agree on 4 inputs each.
+Generic, gamma=0 and gamma=pi branches checked; parameter uniqueness is not claimed.
+4 near-endpoint cases, omitted-phase witness and 5 invalid-input rejections passed.
+Unitary-input atol=1e-12; endpoint threshold=1e-12; reconstruction atol=5e-12.
+The three-gate circuit implements V; exp(i*alpha) is diagnostic array arithmetic. No hardware.
+```
+
+The 40 targets comprise 36 known phase/angle fixtures and four literal matrices: $I$, $X$, $Y$ and the Hadamard matrix. Each is tested on $|0\rangle$, $|1\rangle$, $(|0\rangle+|1\rangle)/\sqrt2$ and $(|0\rangle+i|1\rangle)/\sqrt2$ through both simulator paths. The endpoint fixtures are included for every outer-angle/common-phase choice. Four additional targets approach the endpoints from above and below the small-entry threshold.
+
+The unitary-input test has absolute tolerance $10^{-12}$; reconstruction uses $5\times10^{-12}$, with zero relative tolerance. The latter budget is declared to accommodate entries discarded at the endpoint threshold and finite-precision arithmetic. This is an author-tested budget for the specified cases, not a general error theorem for arbitrary perturbed matrices. Shape, dtype, nonfinite and nonunitary input failures are exercised explicitly. No shots, hardware compilation or optimal pulse sequence is claimed.
+
+### Understanding checks and transfer problems
+
+**3.6-A — Translate the order.** A circuit calls `rz(delta)`, `ry(gamma)`, `rz(beta)`. Write its matrix in multiplication order. Would reversing the calls generally produce the same whole-qubit ray? Use the quarter-turn witness rather than assuming all different-axis rotations commute.
+
+**3.6-B — Extract a generic example.** Suppose the phase-removed first column has $a=(\sqrt3/2)e^{-i/5}$ and $c=(1/2)e^{2i/5}$. Find one $\beta,\gamma,\delta$ and verify both first-column phases.
+
+**3.6-C — Resolve a parameter singularity.** For $V=\operatorname{diag}(e^{-it},e^{it})$, find the middle angle and one outer-angle choice. How many pairs of outer angles describe this same matrix? Contrast the condition with an antidiagonal canonical matrix.
+
+**3.6-D — Keep the common phase.** For $U=e^{i\lambda}R_y(\theta)$, why can a three-rotation matrix pass a probability test but fail exact reconstruction of $U$? If a chosen square root changes $\alpha$ to $\alpha+\pi$, what must happen to $V$?
+
+### Answers
+
+**A.** The product is $R_z(\beta)R_y(\gamma)R_z(\delta)$. Different-axis order can change the ray: the quarter-turn $X/Z$ example produces positive-x versus negative-y Bloch points. Some special choices commute or collapse to identity, so the statement is not that reversing every possible sequence always changes the state.
+
+**B.** $A=-1/5$, $C=2/5$, and the magnitudes give $\gamma=\pi/3$. Hence $\beta=3/5$ and $\delta=-1/5$. Their sum is $2/5$, giving phase $-(\beta+\delta)/2=-1/5$ for $a$; their difference is $4/5$, giving $(\beta-\delta)/2=2/5$ for $c$.
+
+**C.** Choose $\gamma=0$, $\beta=2t$, $\delta=0$. Every real choice $\beta=2t-h$, $\delta=h$ has the same sum and describes the same matrix, so there are infinitely many pairs, even before angular periodicity. At $\gamma=\pi$, only the difference matters: $\beta=2\arg c+h$, $\delta=h$ keeps the antidiagonal canonical matrix fixed. The lack of unique angles is not a failure of matrix invertibility.
+
+**D.** Multiplying the whole output state by $e^{i\lambda}$ leaves probabilities and rays unchanged but changes its coordinate array. Exact operator reconstruction must include that factor. Changing the square-root branch sends $V$ to $-V$, so $e^{i(\alpha+\pi)}(-V)=e^{i\alpha}V=U$. A different valid parameter set must reconstruct the changed $V$, rather than keeping its old angles unchanged.
+
+### Source, limits, and next step
+
+The assigned source is [NC:4.2](../references/proof-sources.md#source-nc-4-2), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), **printed pp.175–176**, especially Theorem 4.1 and Eqs.(4.11)–(4.12). Those pages were consulted. The expanded column argument, explicit endpoint choices, numerical extraction convention, original exercises and verification program here supply the intermediate reasoning and executable checks for this selected factorization.
+
+Depth **F**: derive same-axis composition, a concrete noncommuting order, phase-removed unitary form, the Z–Y–Z matrix and all parameter cases. This is not a unique-angle theorem, a hardware-optimal synthesis or an arbitrary controlled-gate implementation. See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.6.json) for author execution and pending independent reviews. Next: [3.7 Physical phase versus numerical equality](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-7).

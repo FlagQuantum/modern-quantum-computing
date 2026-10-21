@@ -1,0 +1,114 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-single-qubit-states-and-rotations-6",
+  "ref": "3.6",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+  "question": "How does circuit order determine a matrix product, and how can every single-qubit unitary be reconstructed by a phase-tracked Z-Y-Z factorization?",
+  "requires": [
+    "sec-single-qubit-states-and-rotations-5"
+  ],
+  "depth": "F",
+  "result": "Rotation composition and Euler parametrization",
+  "entry": "Exact3.5 rotation matrices and Bloch actions; transitive2.3 basis/orthogonality and3.3 orthogonal partner. Local2x2 determinant expression defined without a general determinant theorem.",
+  "exit": "Demonstrate noncommuting orders, derive unitary column form and global phase, multiply ZYZ and extract parameters including both endpoint singular cases.",
+  "assumptions": [
+    "Finite2x2 unitary target in fixed computational basis",
+    "Active column-vector operations; rightmost matrix acts first",
+    "Global phase retained explicitly for full matrix reconstruction",
+    "Generic nonzero entry arguments separated from exact gamma0/pi endpoints",
+    "Numerical endpoint convention has declared threshold and reconstruction budget, not exact/continuous angles"
+  ],
+  "symbols": {
+    "U,V,alpha": "Target, phase-removed unitary and common phase angle",
+    "eta": "Unit-modulus2x2 determinant expression derived from columns",
+    "a,c,A,C": "Canonical first-column entries and their nonzero complex arguments",
+    "beta,gamma,delta": "Outer Z angles and middle Y angle; gamma in0..pi"
+  },
+  "local_start_checks": {
+    "brief": "Prepared before prose; exact3.5 prerequisite, F depth and NC:4.2 locator retained.",
+    "prerequisite": "3.5 supplies rotations and Pauli products; inherited orthogonality/state conventions used explicitly.",
+    "source": "Consulted cached user-supplied NC printed175\u2013176, Theorem4.1 and Eqs4.11\u20134.12; no textbook text/images uploaded.",
+    "independent_reference": "Literal matrices plus scalar-known phase/ZYZ fixtures, entrywise determinant/phase extraction, complete matrix reconstruction and actual distinct circuit paths.",
+    "scope": "Frozen435 sections/50chapters/7volumes/16batches unchanged; no hardware synthesis or PDF edition change."
+  },
+  "sources": [
+    {
+      "locator": "NC:4.2",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        175,
+        176
+      ],
+      "use": "ZYZ existence theorem and entry form; complete expanded column proof and endpoints are original exposition."
+    },
+    {
+      "supplementary": "Installed released FlagQuantum0.3.1 execution",
+      "use": "Actual rz/ry/rz chronological sequence and generic unitary(0,unitary=u) compared on4 inputs per target; global phase multiplication only diagnostic."
+    }
+  ],
+  "proof_obligations": [
+    "Same-axis addition by multiplication and trig identities",
+    "Different-axis quarter-turn order changes rays despite equal computational probabilities",
+    "Derive complete orthogonal-column form including vanishing first entry",
+    "Derive unit-modulus determinant expression and remove its square-root phase",
+    "Multiply ZYZ matrices and solve generic phase/magnitude equations",
+    "Resolve gamma0/pi exact cases and distinguish coordinate singularity from matrix singularity",
+    "Track square-root branch ambiguity and common phase in reconstruction",
+    "Explain near-endpoint instability and declared approximate numerical policy"
+  ],
+  "implementation": {
+    "path": "examples/foundations/composing_rotations.py",
+    "command": "python examples/foundations/composing_rotations.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "architecture": "arm64",
+      "system": "Darwin",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_run": "passed",
+    "dependencies": "Pinned requirements-examples.txt; scalar helpers imported from preceding pauli_rotations.py; genuine released wheel in existing mqc-writing-venv with shared Torch provenance in1.2",
+    "checks": [
+      "Rx/Rz chronological order witness with distinct Bloch points and squared overlap.5",
+      "36known phase/angle fixtures plus literal I,X,Y,Hadamard;40targets total",
+      "Each target through direct generic unitary and extracted3rotation circuit on4 inputs; full phase-restored state and matrix comparison",
+      "Generic, gamma0 and gammapi branches all exercised",
+      "4near-endpoint targets on both sides of threshold",
+      "Omitted-phase witness fails matrix comparison while preserving probabilities",
+      "5invalid input cases: zero, nonunitary scale, wrongshape, wrongdtype, NaN",
+      "Finite CPU complex128 state/float64 probability metadata and batch shape, norm checks"
+    ],
+    "tolerance": "Unitary-input atol1e-12; endpoint entry magnitude<=1e-12; reconstruction atol5e-12; all rtol0. Budget declared for endpoint-discarded entries and roundoff, not a general perturbation theorem.",
+    "limitations": "Three submitted gates implement V; global phase is restored by array arithmetic only. Near-endpoint angles not unique/continuous. No hardware or optimized synthesis.",
+    "expected_output_check": "Passed exact comparison with section expected-output block",
+    "script_sha256": "7c7af70c17fc2bff6409dcc50fb4e321c9da362043ad8197a617ce783b6a2c05"
+  },
+  "assessment": {
+    "order": "3.6-A",
+    "parameter_extraction": "3.6-B",
+    "singular_parameters": "3.6-C",
+    "phase_branch": "3.6-D",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python3.12.14/released FlagQuantum0.3.1/PyTorch2.13.0 CPU complex128 execution and exact expected output;40targets on4inputs via direct/decomposed paths, generic/endpoints,4near-endpoint cases, phase/order witnesses and invalid inputs. Frozen baseline/depth/prerequisite/source/brief, prose scan, strict MkDocs build and links/anchors across57 pages passed. Browser inspection confirmed full ZYZ matrix, angle extraction and endpoint table; no raw LaTeX or math-error text observed. Independent reviews and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 1708,
+    "page_status": "Unmeasured section envelope; equations and boundary tables require later print/workload calibration without changing F scope.",
+    "next_draft": "3.7 Physical phase versus numerical equality",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}

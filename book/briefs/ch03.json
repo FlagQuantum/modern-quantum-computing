@@ -23,7 +23,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.5 have working drafts; next production assignment3.6. Independent acceptance pending."
+      "next_transition": "Sections3.1\u20133.6 have working drafts; next production assignment3.7. Independent acceptance pending."
     },
     {
       "ref": "3.2",
@@ -46,7 +46,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.5 have working drafts; next production assignment3.6. Independent acceptance pending."
+      "next_transition": "Sections3.1\u20133.6 have working drafts; next production assignment3.7. Independent acceptance pending."
     },
     {
       "ref": "3.3",
@@ -70,7 +70,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.5 have working drafts; next production assignment3.6. Independent acceptance pending."
+      "next_transition": "Sections3.1\u20133.6 have working drafts; next production assignment3.7. Independent acceptance pending."
     },
     {
       "ref": "3.4",
@@ -93,7 +93,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-6"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.5 have working drafts; next production assignment3.6. Independent acceptance pending."
+      "next_transition": "Sections3.1\u20133.6 have working drafts; next production assignment3.7. Independent acceptance pending."
     },
     {
       "ref": "3.5",
@@ -117,7 +117,29 @@
         "sec-single-qubit-states-and-rotations-4"
       ],
       "status": "draft",
-      "next_transition": "3.6 Composing rotations."
+      "next_transition": "Sections3.1\u20133.6 have working drafts; next production assignment3.7. Independent acceptance pending."
+    },
+    {
+      "ref": "3.6",
+      "section_id": "sec-single-qubit-states-and-rotations-6",
+      "title": "Composing rotations",
+      "question": "How does circuit order determine a matrix product, and how can every single-qubit unitary be reconstructed by a phase-tracked Z-Y-Z factorization?",
+      "entry": "Exact3.5 rotation matrices and Bloch actions; transitive2.3 basis/orthogonality and3.3 orthogonal partner. Local2x2 determinant expression defined without a general determinant theorem.",
+      "exit": "Demonstrate noncommuting orders, derive unitary column form and global phase, multiply ZYZ and extract parameters including both endpoint singular cases.",
+      "worked_case": "Rx/Rz quarter-turn order witness; generic target plus exact diagonal and antidiagonal endpoint cases, arbitrary common phases and near-endpoint reconstruction.",
+      "boundary": "F depth; global phase retained for matrix comparison but not falsely submitted as a gate. Parameter singularity is not matrix singularity. No hardware synthesis/optimality or controlled-gate construction.",
+      "code_plan": "Released FlagQuantum0.3.1 rz/ry/rz circuit versus direct generic-unitary circuit on4 inputs; scalar complex determinant/phase extraction and explicit reference matrices.",
+      "independent_check": "36targets from known phase/ZYZ grid and literal unitary fixtures, both endpoints, 4near-endpoint cases; wrong order and global-phase omission witnesses; invalid matrix inputs.",
+      "transfer_task": "Diagnose chronological order, derive angles from canonical entries, solve diagonal/antidiagonal freedom and phase-root ambiguity; full answers.",
+      "source_locators": [
+        "NC:4.2"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-single-qubit-states-and-rotations-5"
+      ],
+      "status": "draft",
+      "next_transition": "3.7 Physical phase versus numerical equality."
     }
   ]
 }
