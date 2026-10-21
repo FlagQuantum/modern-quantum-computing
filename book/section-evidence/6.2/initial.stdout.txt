@@ -1,0 +1,3 @@
+17 basis/complex circuits: scalar-mask conditional states, zero branches and repeatability passed.
+18 ordered-support circuits: all six two-qubit selections on a correlated three-qubit register passed.
+4 Bell circuits: conditional correlations, ignored local outcomes and lost phase-sensitive interference passed.

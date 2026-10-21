@@ -1,0 +1,8 @@
+{
+  "failure": "Initial test incorrectly asserted that a normalized probability-weighted vector average always gives plus probability 1 for H then P(theta) input.",
+  "observed": "At theta=.43, the old assertion failed after 41 native preparations. Initial source and stdout/stderr retained.",
+  "analysis": "For this balanced input the normalized average restores the original coherent vector, with plus probability (1+cos(theta))/2. It differs from the correct ignored-Z probability 1/2 except at cosine-zero angles.",
+  "repair": "Use the full phase-dependent analytic reference, explicitly retain pi/2 as an accidental-agreement case, and use theta=0 as the concrete prose counterexample.",
+  "revalidation": "Final full program: 46 circuits passed. Actual body: four preparations passed. Scoped body/full checker and 20 new transfer preparations passed.",
+  "distinction": "Test/reference assumption corrected; no native FlagQuantum failure or API fix claimed."
+}

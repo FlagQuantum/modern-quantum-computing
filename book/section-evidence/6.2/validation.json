@@ -1,0 +1,34 @@
+{
+  "section": "6.2",
+  "state": "author-verified draft",
+  "complete_circuits": 46,
+  "body_fragments": 8,
+  "body_circuits": 4,
+  "separate_transfer_circuits": 20,
+  "execution_ledger": {
+    "initial_failed": 41,
+    "corrected_complete": 46,
+    "body_assembly": 4,
+    "body_plus_complete_checker": 50,
+    "separate_transfer": 20,
+    "total_section62_circuits": 211,
+    "note": "First 41-circuit run failed on a phase-dependent reference assumption. Final complete run, body assembly, initial checker, transfer and expanded-formula checker are separate actual executions. 6.1 regression/future CI separate.",
+    "expanded_body_plus_complete_checker": 50
+  },
+  "invalid_contracts": 10,
+  "rare_event": "1e-20 positive branch retained; squared-norm underflow rejected",
+  "initial_failure": "Phase-dependent vector-average reference assertion; source/trace preserved and corrected, no native API failure",
+  "strict_build": "passed",
+  "links": "71 pages; all local links/fragments resolve; unique IDs",
+  "formula_display": "Actual local IAB 1280x720 visual checks passed: normalized branch fraction, indexed cases, ordered joint probabilities, coarse/fine probability sums, bipartite conditional vector and local ignored-outcome proof. Final-build expanded answer panel also checked; no formula garbling or clipping in inspected displays.",
+  "details_render": {
+    "rendered_pages": 71,
+    "details_blocks": 17,
+    "math_wrappers_in_details": 65,
+    "raw_answer_markup_findings": [],
+    "note": "StaticHTMLparsecheck;visualformulaQAseparatelysampled6.1and5.8."
+  },
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

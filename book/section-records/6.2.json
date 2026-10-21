@@ -1,0 +1,110 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-measurement-expectation-values-and-statistical-estimation-2",
+  "ref": "6.2",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+  "depth": "F",
+  "result": "Selective update and marginal probabilities",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-1"
+  ],
+  "assumptions": [
+    "Normalized pure global input; finite complete Hermitian orthogonal projectors.",
+    "Ideal L\u00fcders update explicitly assumed, not inferred from outcome probabilities.",
+    "A selected state is defined only at positive probability; no additional evolution in joint helper."
+  ],
+  "proof_obligations": [
+    "Normalize the projected branch without phase changes.",
+    "Derive coordinate masks on arbitrary correlated registers.",
+    "Prove repeatability and the treatment of impossible rows.",
+    "Derive ordered joint probabilities including zero-probability rows and normalization.",
+    "Derive ignored-record marginals using total probability; expose interference terms and vector-average counterexample.",
+    "Distinguish ideal coarse projection from fine measurement with a forgotten record.",
+    "Prove invariance of local remote probabilities under ignored local ideal measurement.",
+    "Keep the general density-operator update in Chapter 8."
+  ],
+  "formula_code_units": [
+    "formula-code-6-2-selective",
+    "formula-code-6-2-register",
+    "formula-code-6-2-repeat",
+    "formula-code-6-2-joint",
+    "formula-code-6-2-ignored",
+    "formula-code-6-2-coarse",
+    "formula-code-6-2-correlated",
+    "formula-code-6-2-contracts"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.2.3",
+      "edition": "10th Anniversary Edition (2010)",
+      "printed_page_start": 84,
+      "inspection": "Assigned locator retained; no fresh local textbook PDF inspection claimed."
+    },
+    {
+      "author": "John Preskill",
+      "url": "https://www.preskill.caltech.edu/ph219/chap3_15.pdf",
+      "served_header_update": "October 2018",
+      "locator": "Section 3.1.1, equation (3.16), PDF page 8",
+      "inspection": "Official author public PDF inspected this turn. Density-operator equations following it not imported into this section."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/conditional_states.py",
+    "command": "python examples/foundations/conditional_states.py",
+    "prose_check_command": "python scripts/check_conditional_states_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed after correcting initial test-reference assumption; original failure retained",
+    "complete_program_circuits_per_invocation": 46,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 4,
+    "separate_transfer_circuits": 20,
+    "execution_ledger": {
+      "initial_failed": 41,
+      "corrected_complete": 46,
+      "body_assembly": 4,
+      "body_plus_complete_checker": 50,
+      "separate_transfer": 20,
+      "total_section62_circuits": 211,
+      "note": "First 41-circuit run failed on a phase-dependent reference assumption. Final complete run, body assembly, initial checker, transfer and expanded-formula checker are separate actual executions. 6.1 regression/future CI separate.",
+      "expanded_body_plus_complete_checker": 50
+    },
+    "checks": [
+      "17 basis/complex, 18 ordered correlated-support, four Bell, four one-qubit phase, three coarse/fine cases.",
+      "10 malformed contracts; exact impossible branch; positive 1e-20 event retained; squared-norm underflow rejected.",
+      "20 new four-qubit/Fourier-subspace transfers."
+    ],
+    "tolerance": "Absolute 1e-12, relative zero; no phase alignment, input normalization repair or probability cutoff. Floating checks are not interval certificates or rare-event relative-error guarantees.",
+    "limitations": "Native circuits prepare states; branches and later measurements are classical postprocessing. No native collapse, shots, reset, hardware, density-operator update or reduced-state vector claimed.",
+    "script_sha256": "f39227ed8ac576d3eba9f71ab3bfa80556506f26494eb2bda8617cf21cd52ebc"
+  },
+  "assessment": {
+    "tasks": [
+      "6.2-A ordered four-qubit masks",
+      "6.2-B complex Fourier subspaces",
+      "6.2-C record versus amplitude",
+      "6.2-D update assumptions"
+    ],
+    "answers": "Supplied; reader trial not run."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Final eight body units and complete program pass exact expected outputs; 20 transfer preparations and scoped 6.1 body/full regression passed. Frozen baseline/435-section queue unchanged. Strict new build and all 71 pages local links passed. Actual browser including expanded answers passed."
+  },
+  "production": {
+    "next_draft": "6.3 Observables, spectra, and expectations",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Actual local IAB 1280x720 visual checks passed: normalized branch fraction, indexed cases, ordered joint probabilities, coarse/fine probability sums, bipartite conditional vector and local ignored-outcome proof. Final-build expanded answer panel also checked; no formula garbling or clipping in inspected displays."
+  }
+}

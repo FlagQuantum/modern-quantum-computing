@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/private/tmp/mqc62/conditional_states.py", line 175, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/private/tmp/mqc62/conditional_states.py", line 156, in main
+    assert abs(b.born(normalized,Q,other)[0].item()-1)<ATOL
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

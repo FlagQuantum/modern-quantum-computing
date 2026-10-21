@@ -12,7 +12,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7, 4.1–4.8, 5.1–5.8 and 6.1, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7, 4.1–4.8, 5.1–5.8 and 6.1–6.2, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Two entry points: learners and agents
 
@@ -165,3 +165,5 @@ Section [5.7 Approximation, synthesis, and precision](docs/chapters/ch-gates-rev
 Section [5.8 Circuit identities and safe transformations](docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md#sec-gates-reversible-computation-and-circuit-synthesis-8) proves exact cancellation, commutation and conjugation conditions, with phase-sensitive counterexamples, eight checked units and 355 complete-program circuits. Chapter 5 has eight working drafts; independent acceptance remains pending.
 
 Section [6.1 Measurement outcomes and the Born rule](docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-1) opens Chapter 6 with the projective-probability postulate, positivity/normalization derivations and eight checked formula-to-code units. The 163 complete-program circuits distinguish native computational marginals from classical general-projector predictions. Independent acceptance remains pending.
+
+Section [6.2 Conditional states and ignored outcomes](docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-2) now derives pure-global ideal projective branches, repeatability, ordered joint probabilities and ignored-record marginals. Eight checked formula-to-code units distinguish coarse projection from forgotten fine records and reject vector averaging; 46 complete-program preparations are followed by explicit classical branch postprocessing. Independent acceptance remains pending.

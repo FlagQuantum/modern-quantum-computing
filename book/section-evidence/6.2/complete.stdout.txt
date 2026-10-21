@@ -1,0 +1,8 @@
+17 basis/complex circuits: scalar-mask conditional states, zero branches and repeatability passed.
+18 ordered-support circuits: all six two-qubit selections on a correlated three-qubit register passed.
+4 Bell circuits: conditional correlations, ignored local outcomes and lost phase-sensitive interference passed.
+4 single-qubit circuits: joint tables normalize, while normalized averaged statevectors give a wrong later probability.
+3 coarse/fine circuits: parity-only projection preserves within-event coherence; forgetting a fine record does not.
+10 invalid contracts rejected; positive 1e-20 branch retained; squared-norm underflow explicitly rejected.
+46 actual CPU complex128 preparation circuits; conditional branches and later probabilities are classical postprocessing, not native collapse or shots.
+Implementation atol 1e-12, rtol 0; no vector averaging, phase alignment or input normalization repair; density-operator update deferred to Chapter 8.

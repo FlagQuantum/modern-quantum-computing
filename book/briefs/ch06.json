@@ -18,13 +18,35 @@
       "worked_case": "Complexqubit,010/111register,marginal(q2,q0),paritycoarsegrain,XXrank2projectors onphaseBellstate,globalphaseinvariance.",
       "boundary": "Normalized pure states,completeorthogonalprojectors;probabilitiesonly.Conditionalstates6.2,observables6.3,basis-changeprotocol6.4,POVMs6.5,samples6.6 deferred.",
       "code_plan": "NativeFQstatevector/fullandselectedcomputationalprobabilities;generalprojectorsoriginalclassicalpostprocessor,notclaimednativeprojectivemeasurementAPI.",
-      "independent_check": "Allbasisandcomplex1–3qubits,15orderednative3qubitmarginals,closedBellXXcosine/parity/sparse references;12malformedcontracts.",
+      "independent_check": "Allbasisandcomplex1\u20133qubits,15orderednative3qubitmarginals,closedBellXXcosine/parity/sparse references;12malformedcontracts.",
       "transfer_task": "4qubitnonadjacentmarginalwith17basis/complexinputs;3new2qubitstates andFourier-rank2projectors,20actualcircuits.",
       "source_locators": [
         "NC:2.2.5"
       ],
       "status": "draft",
       "next_transition": "6.2 Conditional states and ignored outcomes."
+    },
+    {
+      "ref": "6.2",
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-2",
+      "title": "Conditional states and ignored outcomes",
+      "depth": "F",
+      "requires": [
+        "sec-measurement-expectation-values-and-statistical-estimation-1"
+      ],
+      "question": "Given a declared ideal projective update, what state is assigned to a selected nonzero branch, and how are later probabilities computed when its outcome is ignored?",
+      "entry": "6.1 pure global states, orthogonal complete projectors and Born probabilities; normalized conditional vector is an additional ideal-update assumption.",
+      "exit": "Prove branch normalization, repeatability, ordered sequential joint and ignored-outcome marginal probabilities; distinguish coarse projection from fine measurement with a forgotten record, without averaging vectors.",
+      "worked_case": "Complex qubit; ordered register masks; Bell correlations; Z-then-plus interference; parity-versus-fine within-event coherence.",
+      "boundary": "Pure global inputs and finite projectors; branch enumeration is classical postprocessing of an actual simulated preparation. No native collapse or shots, no mixed-state operator update before Chapter 8.",
+      "code_plan": "Use released native FQ preparation and exact computational probability queries; explicit branch/joint helpers with zero/rare-event contracts.",
+      "independent_check": "Scalar coordinate masks, closed phase formulas, independently indexed prepared states and unnormalized ordered projector products.",
+      "transfer_task": "New nonadjacent four-qubit selections and complex Fourier rank-two projections.",
+      "source_locators": [
+        "NC:2.2.3"
+      ],
+      "status": "draft",
+      "next_transition": "6.3 Observables, spectra, and expectations."
     }
   ]
 }
