@@ -1,0 +1,130 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-single-qubit-states-and-rotations-3",
+  "ref": "3.3",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+  "question": "How does a normalized two-component complex state modulo global phase become one real unit-sphere point, including the poles?",
+  "requires": [
+    "sec-single-qubit-states-and-rotations-1",
+    "sec-complex-vectors-operators-and-numerical-reasoning-3"
+  ],
+  "depth": "F",
+  "result": "Pure-qubit Bloch-sphere parametrization",
+  "entry": "Exact3.1 pure-state/Born postulates and2.3 maps/basis coordinates. Pauli matrices, spherical-angle conventions and local quadratic forms introduced here;3.2 not required.",
+  "exit": "Prove half-angle representative, explicit Pauli quadratic coordinates, unit-sphere identity and inverse/ray uniqueness; diagnose pole ambiguity and Y-sign mistakes.",
+  "assumptions": [
+    "Normalized pure qubit modulo global phase in a fixed computational basis",
+    "Explicit X,Y,Z matrix signs and real quadratic coordinate definitions",
+    "Theta in[0,pi], azimuth modulo2pi and undefined azimuth at poles",
+    "No operational general-observable, generator or mixed-state postulate imported"
+  ],
+  "symbols": {
+    "alpha,beta,c": "Complex amplitudes and alpha-conjugate times beta",
+    "theta,phi,gamma": "Polar/azimuthal/global phase angles in radians",
+    "x,y,z": "Real Bloch coordinates, not particle position",
+    "X,Y,Z": "Explicit Pauli matrices defining quadratic forms"
+  },
+  "local_start_checks": {
+    "brief": "Prepared before prose; exact3.1 and2.3 prerequisites, F depth and canonical locators retained.",
+    "prerequisite": "Earlier usable drafts supply pure-state rays, Born rule and matrix/basis operations;3.2 not imported as a prerequisite.",
+    "source": "Consulted cached user-supplied NC printed13\u201315 and65; exact used locations p15 Eqs1.3\u20131.4 and p65 Figure2.2. No third-party text/images uploaded.",
+    "independent_reference": "Hand six-axis points, independent scalar coordinate product, angular formulas, two-chart inverse and orthogonal partner checks.",
+    "scope": "No frozen scope/depth/dependency/volume changes; original scientific illustration added; PDF sample edition unchanged."
+  },
+  "sources": [
+    {
+      "locator": "NC:1.2",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        13,
+        14,
+        15
+      ],
+      "use": "Qubit amplitude/normalization context and half-angle sphere representative, especially Eqs1.3\u20131.4 on15."
+    },
+    {
+      "locator": "NC:2.1.3",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        65
+      ],
+      "use": "Pauli matrix sign conventions, Figure2.2."
+    },
+    {
+      "supplementary": "Installed released FlagQuantum0.3.1 execution",
+      "use": "Actual Circuit.x/h/z/phase preparation cases, strict run/probabilities/statevector API; no expectation-value API invoked."
+    }
+  ],
+  "proof_obligations": [
+    "Global-phase removal, angular domains and both pole exceptions",
+    "Explicit Pauli quadratic expansions and positive-Y sign",
+    "Global-phase invariance and unit-sphere identity for normalized pure states",
+    "Half-angle substitution yielding spherical coordinates",
+    "Surjectivity by inverse formula with explicit south-pole case",
+    "Uniqueness on rays via magnitudes and conjugated amplitude product",
+    "Stable two-chart representative formulas without small denominators",
+    "Computational-basis probabilities from z and orthogonal partner giving antipodal point"
+  ],
+  "implementation": {
+    "path": "examples/foundations/bloch_sphere.py",
+    "command": "python examples/foundations/bloch_sphere.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "matplotlib": "3.11.2",
+      "architecture": "arm64",
+      "system": "Darwin",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_run": "passed",
+    "dependencies": "Pinned requirements-examples.txt; genuine released FlagQuantum wheel in existing mqc-writing-venv with shared installed Torch support provenance recorded in1.2",
+    "checks": [
+      "Six released FlagQuantum axis-state preparations checked against hand statevectors, Bloch points and Born probabilities",
+      "Worked state sqrt3/2,i/2 gives0,sqrt3/2,1/2",
+      "169 constructed angular vectors compared via explicit matrices, scalar complex arithmetic and spherical formulas",
+      "Unit length, global phase invariance, inverse point/ray recovery and orthogonal antipodes across grid",
+      "Exact cardinal poles and2 near-pole inversions; azimuth redundancy retained",
+      "Transposed Y witness fails with positive-i state",
+      "Six invalid inputs rejected: zero/unnormalized/wrong-dtype state; origin/off-sphere/nonfinite point"
+    ],
+    "tolerance": "atol1e-12, rtol0 for unit-scale coordinates, norm and ray-overlap checks; no silent normalization",
+    "limitations": "Angular grid vectors are mathematical fixtures, not169 FlagQuantum preparations. Quadratic forms are simulator/mathematical diagnostics; no shots, hardware or expectation-value API evidence.",
+    "expected_output_check": "Passed exact comparison with section expected-output block",
+    "script_sha256": "5fe748de694df7508554c37cd721cc9c8fea21a07072b299d4a02d328f6f953d"
+  },
+  "illustration": {
+    "path": "docs/assets/figures/bloch-pure-state.svg",
+    "source": "scripts/plot_bloch_sphere.py",
+    "command": "python scripts/plot_bloch_sphere.py",
+    "provenance": "Original Matplotlib scientific illustration, no third-party artwork; depicts theta=pi/3,phi=pi/2 and worked state",
+    "svg_sha256": "3b2d99b9fcdf99c3e5735fb40f81b0852d13f7a407c3913d1df3318d8777a0ca"
+  },
+  "assessment": {
+    "derivation": "3.3-A",
+    "debugging": "3.3-B",
+    "inverse_and_poles": "3.3-C",
+    "geometry_transfer": "3.3-D",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python3.12.14/released FlagQuantum0.3.1/PyTorch2.13.0 CPU complex128 execution and exact expected-output comparison; scalar/matrix/angular references,169-pair grid, cardinal and near-pole inverse/ray checks, antipodes/global phases/Y-sign witness and invalid-input checks. Original Matplotlib figure generated and visually inspected. Frozen baseline/depth/prerequisite/source/brief checks, prose scan, strict MkDocs build and links/anchors across57 pages passed. Actual browser inspection confirmed Pauli matrices, coordinate expansions, inverse formulas and inline sphere illustration; no raw LaTeX or math-error text observed. Independent reviews and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 1927,
+    "page_status": "Unmeasured section envelope; figure and code-table print density require later calibration.",
+    "next_draft": "3.4 Closed-system evolution and generators",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}

@@ -23,7 +23,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "3.2 now has a working draft; next production assignment3.3. General measurements remain in Chapter6."
+      "next_transition": "Sections3.1\u20133.3 have working drafts; next production assignment3.4. Independent acceptance pending."
     },
     {
       "ref": "3.2",
@@ -46,7 +46,31 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "3.3 The Bloch-sphere representation."
+      "next_transition": "Sections3.1\u20133.3 have working drafts; next production assignment3.4. Independent acceptance pending."
+    },
+    {
+      "ref": "3.3",
+      "section_id": "sec-single-qubit-states-and-rotations-3",
+      "title": "The Bloch-sphere representation",
+      "question": "How does a normalized two-component complex state modulo global phase become one real unit-sphere point, including the poles?",
+      "entry": "Exact3.1 pure-state/Born postulates and2.3 maps/basis coordinates. Pauli matrices, spherical-angle conventions and local quadratic forms introduced here;3.2 not required.",
+      "exit": "Prove half-angle representative, explicit Pauli quadratic coordinates, unit-sphere identity and inverse/ray uniqueness; diagnose pole ambiguity and Y-sign mistakes.",
+      "worked_case": "Six cardinal rays plus alpha=sqrt3/2,beta=i/2 with point(0,sqrt3/2,1/2); phase-equivalent inverse representatives, positive-y sign and orthogonal antipodes.",
+      "boundary": "F depth; pure-state geometry in fixed computational basis. Pauli products/generators in3.5; operational expectation values in6.3; mixed-state ball in Chapter8.",
+      "code_plan": "Torch complex128 explicit quadratic forms versus independent scalar coordinates on a spherical grid; stable two-chart inversion, released FlagQuantum0.3.1 cardinal/equatorial circuit states. Original static scientific sphere figure.",
+      "independent_check": "Six hand coordinate triples,169 angle pairs including poles, nontrivial global phase, inverse overlap, orthogonal partner and wrong Y sign; invalid state/sphere domains; near-pole reconstruction.",
+      "transfer_task": "Compute a non-cardinal point and computational probabilities, explain half angles/antipodes and pole ambiguity, repair a Y transpose bug, reject origin as a pure state; full answers.",
+      "source_locators": [
+        "NC:1.2",
+        "NC:2.1.3"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-single-qubit-states-and-rotations-1",
+        "sec-complex-vectors-operators-and-numerical-reasoning-3"
+      ],
+      "status": "draft",
+      "next_transition": "3.4 Closed-system evolution and generators."
     }
   ]
 }

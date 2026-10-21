@@ -161,6 +161,16 @@
       "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
       "record": "book/section-records/3.2.json",
       "author_execution": "passed: Python3.12.14, released FlagQuantum0.3.1, PyTorch2.13.0, CPU complex128; scalar amplitudes/analytic fringe and17-point sweep; no shots or hardware"
+    },
+    "sec-single-qubit-states-and-rotations-3": {
+      "state": "draft",
+      "brief": "book/briefs/ch03.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+      "record": "book/section-records/3.3.json",
+      "author_execution": "passed: Python3.12.14, released FlagQuantum0.3.1, PyTorch2.13.0, CPU complex128; scalar/matrix/angular references, inverse-ray and169-pair checks; no expectation-value API or hardware"
     }
   },
   "existing_pilots": [

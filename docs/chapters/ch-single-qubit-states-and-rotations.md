@@ -1,6 +1,6 @@
 # 3. Single-Qubit States and Rotations
 
-**Working draft: sections 3.1–3.2 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, all pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working draft: sections 3.1–3.3 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, all pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-single-qubit-states-and-rotations-1"></span>
 
@@ -399,4 +399,224 @@ Comparisons use absolute tolerance $10^{-12}$ and zero relative tolerance for un
 
 The assigned source is [NC:2.2.7](../references/proof-sources.md#source-nc-2-2-7), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), **§2.2.7, printed p.93**, including the global/relative-phase distinction and the pair in Eq.(2.121). The source was consulted; the fringe derivation, shifted-analyzer experiment, independent checks and exercises here are original exposition. The local $H,D$ transfer rules and execution assumptions are stated explicitly, rather than importing the later general evolution theory.
 
-Depth **F**: the probability expansion, phase dependence, normalization, range and analyzer choice are derived, including zero-amplitude and fixed-setting limits. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.2.json) separates author checks from pending independent reviews and reader trials. A controlled ideal phase scan does not validate hardware control, establish coherence of an unknown preparation or reconstruct an arbitrary unknown state from one outcome. Next: [3.3 The Bloch-sphere representation](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-3).
+Depth **F**: the probability expansion, phase dependence, normalization, range and analyzer choice are derived, including zero-amplitude and fixed-setting limits. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.2.json) separates author checks from pending independent reviews and reader trials. A controlled ideal phase scan does not validate hardware control, establish coherence of an unknown preparation or reconstruct an arbitrary unknown state from one outcome. Continue with the working draft [3.3 The Bloch-sphere representation](#sec-single-qubit-states-and-rotations-3).
+
+<span id="sec-single-qubit-states-and-rotations-3"></span>
+
+## 3.3 The Bloch-sphere representation
+
+A pure qubit has two complex amplitudes, but not four independently meaningful real coordinates: normalization removes one degree of freedom, and global phase removes another. The Bloch sphere gives the remaining information a concrete geometric representation. We will construct the map, prove that its points have unit length, and recover a state from any point on the sphere.
+
+The prerequisites are [3.1](#sec-single-qubit-states-and-rotations-1), for pure states, global phase and computational-basis probabilities, and [2.3](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-3), for matrices and basis coordinates. Section 3.2 is not required for this derivation. We keep the computational basis and matrix conventions fixed throughout.
+
+### Remove the common phase and introduce two angles
+
+Write a normalized state as $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$. If $\alpha\ne0$, write $\alpha=|\alpha|e^{i\gamma}$ and multiply the whole vector by $e^{-i\gamma}$. The new first amplitude is real and positive; the second retains only its phase relative to the first. Choose a polar angle $\theta\in[0,\pi]$ so that
+
+$$
+|\alpha|=\cos(\theta/2),\qquad
+|\beta|=\sin(\theta/2).
+$$
+
+Such an angle exists because both magnitudes are nonnegative and their squares sum to one. For example, $\theta=2\arccos|\alpha|$. When both amplitudes are nonzero, define $\phi=\arg\beta-\arg\alpha$ modulo $2\pi$. Then a representative of the same ray is
+
+$$
+|\psi(\theta,\phi)\rangle
+=\cos(\theta/2)|0\rangle
+ +e^{i\phi}\sin(\theta/2)|1\rangle,
+\qquad 0\leq\phi<2\pi.
+$$
+
+We used the phase equivalence from 3.1, not a physical operation that prepares this representative. The angles are in radians. At $\theta=0$, the second amplitude vanishes, so $\phi$ has no effect. At $\theta=\pi$, the first amplitude vanishes and the vector is $e^{i\phi}|1\rangle$, equivalent to $|1\rangle$ for every $\phi$. Thus the azimuth $\phi$ is not unique at either pole. If the original $\alpha$ is zero, choose $|1\rangle$ directly rather than attempting to compute its phase.
+
+### Define the Pauli matrices before using them
+
+Introduce three matrices, with the indicated signs:
+
+$$
+X=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
+Y=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\qquad
+Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+$$
+
+These are the Pauli matrices, also denoted $\sigma_x,\sigma_y,\sigma_z$. Here they define three scalar **quadratic forms**: multiply a vector by a matrix and take its inner product with the original vector. Define the Bloch coordinates by
+
+$$
+x=\langle\psi|X|\psi\rangle,\qquad
+y=\langle\psi|Y|\psi\rangle,\qquad
+z=\langle\psi|Z|\psi\rangle.
+$$
+
+We will derive these numbers directly, so no spectral theorem or general observable-measurement rule is needed. Their operational interpretation as expectation values is developed in 6.3; Pauli multiplication and rotation generators are developed in 3.5.
+
+Set $c=\alpha^*\beta$. Multiplying each matrix by $(\alpha,\beta)^T$ gives
+
+$$
+\begin{aligned}
+x&=(\alpha^*,\beta^*)\begin{pmatrix}\beta\\\alpha\end{pmatrix}
+  =c+c^*=2\operatorname{Re}c,\\
+y&=(\alpha^*,\beta^*)\begin{pmatrix}-i\beta\\i\alpha\end{pmatrix}
+  =-ic+ic^*=2\operatorname{Im}c,\\
+z&=(\alpha^*,\beta^*)\begin{pmatrix}\alpha\\-\beta\end{pmatrix}
+  =|\alpha|^2-|\beta|^2.
+\end{aligned}
+$$
+
+All three are real, as the component formulas establish. The sign of $y$ matters: the state $(|0\rangle+i|1\rangle)/\sqrt2$ has $c=i/2$, hence $y=+1$. Replacing $Y$ by its transpose reverses this sign. Tests restricted to real amplitudes would not reveal that mistake because they have $\operatorname{Im}c=0$.
+
+For a common phase $u$ of modulus one, $(u\alpha)^*(u\beta)=\alpha^*\beta$ and both squared magnitudes are unchanged. Consequently $(x,y,z)$ depends only on the ray, not on its chosen global-phase representative.
+
+### Prove that the image is the unit sphere
+
+Using $(\operatorname{Re}c)^2+(\operatorname{Im}c)^2=|c|^2$, expand
+
+$$
+\begin{aligned}
+x^2+y^2+z^2
+&=4|\alpha|^2|\beta|^2
+  +\bigl(|\alpha|^2-|\beta|^2\bigr)^2\\
+&=|\alpha|^4+2|\alpha|^2|\beta|^2+|\beta|^4\\
+&=\bigl(|\alpha|^2+|\beta|^2\bigr)^2=1.
+\end{aligned}
+$$
+
+Thus every normalized pure qubit gives a point on the surface of a real unit sphere. An unnormalized input would instead give squared Bloch length equal to its fourth power of norm; silently accepting it would break the state contract. Our code rejects such inputs.
+
+Substitute the angular representative. Its product $c$ is $\cos(\theta/2)\sin(\theta/2)e^{i\phi}$. Using $2\sin(\theta/2)\cos(\theta/2)=\sin\theta$ and $\cos^2(\theta/2)-\sin^2(\theta/2)=\cos\theta$ gives
+
+$$
+(x,y,z)=(\sin\theta\cos\phi,\ \sin\theta\sin\phi,\ \cos\theta).
+$$
+
+These are spherical coordinates: $\theta$ is measured down from positive $z$, and $\phi$ is measured in the $xy$ plane from positive $x$ toward positive $y$. This derivation explains the half angles in the statevector. Substituting $\cos\theta,\sin\theta$ into the amplitudes would generally place the point at polar angle $2\theta$ instead.
+
+![Original Bloch-sphere illustration showing the polar and azimuthal angles and the worked pure state.](../assets/figures/bloch-pure-state.svg)
+
+*Original illustration:* $\alpha=\sqrt3/2$, $\beta=i/2$ gives $\theta=\pi/3$, $\phi=\pi/2$ and $(x,y,z)=(0,\sqrt3/2,1/2)$. The arrow represents a state coordinate vector, not the position of a particle or a universal physical orientation of every kind of qubit.
+
+### Recover a state and prove uniqueness up to phase
+
+Let $(x,y,z)$ be any real point with $x^2+y^2+z^2=1$. If $z>-1$, choose
+
+$$
+\alpha=\sqrt{\frac{1+z}{2}},\qquad
+\beta=\frac{x+iy}{2\alpha}.
+$$
+
+Here $\alpha>0$. Since $x^2+y^2=1-z^2$, we have
+
+$$
+|\beta|^2=\frac{1-z^2}{2(1+z)}=\frac{1-z}{2},
+\qquad |\alpha|^2+|\beta|^2=1,
+\qquad \alpha^*\beta=\frac{x+iy}{2}.
+$$
+
+Substitution into the coordinate formulas recovers the given point. At $z=-1$, the sphere equation forces $x=y=0$; choose $(\alpha,\beta)=(0,1)$. Every sphere point therefore comes from a pure state.
+
+For uniqueness, two states with this point have the same $|\alpha|^2=(1+z)/2$, $|\beta|^2=(1-z)/2$ and $\alpha^*\beta=(x+iy)/2$. If $|\alpha|>0$, select the positive-real first amplitude in each representative. They then have the same $\alpha$ and the same $\beta=(x+iy)/(2\alpha)$. If $\alpha=0$, both are equivalent to $|1\rangle$. Hence equal points imply the same ray; together with global-phase invariance, this proves a one-to-one correspondence between pure-state rays and the unit sphere.
+
+The first inverse formula is numerically unsuitable near the south pole because its denominator tends to zero. Our executable uses two choices of representative, sometimes called **coordinate charts**. For $z\geq0$ it uses the formula above. For $z<0$ it selects a positive-real second amplitude instead:
+
+$$
+\beta=\sqrt{\frac{1-z}{2}},\qquad
+\alpha=\frac{x-iy}{2\beta}.
+$$
+
+This again gives $\alpha^*\beta=(x+iy)/2$ and the required squared magnitudes. In either selected region the denominator amplitude is at least $1/\sqrt2$. The reconstructed array may change by a global phase across the chart boundary; its ray remains the same. Compare the reconstructed ray or its Bloch coordinates, not raw amplitudes from different phase conventions.
+
+### Landmark states, probabilities, and antipodes
+
+The six axis points are:
+
+| State representative | Bloch point |
+|---|---|
+| $\lvert0\rangle$ | $(0,0,1)$ |
+| $\lvert1\rangle$ | $(0,0,-1)$ |
+| $(\lvert0\rangle+\lvert1\rangle)/\sqrt2$ | $(1,0,0)$ |
+| $(\lvert0\rangle-\lvert1\rangle)/\sqrt2$ | $(-1,0,0)$ |
+| $(\lvert0\rangle+i\lvert1\rangle)/\sqrt2$ | $(0,1,0)$ |
+| $(\lvert0\rangle-i\lvert1\rangle)/\sqrt2$ | $(0,-1,0)$ |
+
+From normalization and $z=|\alpha|^2-|\beta|^2$, adding and subtracting the equations gives the computational-basis probabilities
+
+$$
+p(0)=\frac{1+z}{2}=\cos^2(\theta/2),\qquad
+p(1)=\frac{1-z}{2}=\sin^2(\theta/2).
+$$
+
+Our worked point has probabilities $3/4,1/4$. Equal $z$ coordinates mean equal probabilities in this setting, not equal states. The equator $z=0$ contains an entire circle of different rays with the same probability pair.
+
+For an orthogonal partner of $|\psi\rangle$, choose $|\psi_\perp\rangle=-\beta^*|0\rangle+\alpha^*|1\rangle$. It is normalized and
+
+$$
+\langle\psi|\psi_\perp\rangle
+=-\alpha^*\beta^*+\beta^*\alpha^*=0.
+$$
+
+Its product of amplitudes is $(-\beta^*)^*\alpha^*=-\alpha^*\beta$, and its squared magnitudes are swapped. Its Bloch point is therefore $(-x,-y,-z)$, the **antipode** of the original point. Since the map is one-to-one on rays, the antipodal point corresponds to that orthogonal ray. In particular, orthogonal $|0\rangle,|1\rangle$ sit at opposite poles, not at perpendicular radius vectors. Do not identify the ordinary angle between sphere radii with the angle between complex statevectors.
+
+### Runnable formula-to-code checks
+
+The complete program is [bloch_sphere.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/bloch_sphere.py). In the [pinned Python 3.12 example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples), run:
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/bloch_sphere.py
+```
+
+| Derived formula or obligation | Executed implementation |
+|---|---|
+| Explicit $X,Y,Z$ quadratic forms | `torch.vdot(v, matrix @ v)` for each declared complex128 Pauli matrix |
+| $x=2\operatorname{Re}(\alpha^*\beta)$ and $y=2\operatorname{Im}(\alpha^*\beta)$ | Independent standard-library `c = alpha.conjugate()*beta`, then `2*c.real`, `2*c.imag` |
+| $z=\lvert\alpha\rvert^2-\lvert\beta\rvert^2$ | Independent `abs(alpha)**2-abs(beta)**2` |
+| Angular sphere formula | Compare with `(sin(theta)*cos(phi), sin(theta)*sin(phi), cos(theta))` |
+| Inverse with two phase conventions | `inverse(point)` chooses the larger amplitude as its denominator |
+| Recovered state agrees up to phase | Check `abs(torch.vdot(v, restored))` against one, and compare reconstructed coordinates |
+| Six independently specified axis rays | Compare actual FlagQuantum statevectors and probabilities with hand coordinates |
+
+The simulator cases use released FlagQuantum 0.3.1: the initial circuit, `x(0)`, `h(0)`, `h(0)` followed by `z(0)`, and `h(0)` followed by `phase(0, theta=±pi/2)`. These are specified preparation examples with hand coordinate references, not an assumption that you already know the general gate theory. The code requests `fq.probabilities()` and inspects `result.statevector()` with strict CPU complex128 statevector options; fallback and approximation are disabled. It does not invoke an expectation-value API. The 169 angular test states are constructed mathematical vectors, not 169 claimed FlagQuantum preparations or physical experiments.
+
+Expected output:
+
+```text
+|0>: Bloch=(0.000000000, 0.000000000, 1.000000000)
+|1>: Bloch=(0.000000000, 0.000000000, -1.000000000)
+|+>: Bloch=(1.000000000, 0.000000000, 0.000000000)
+|->: Bloch=(-1.000000000, 0.000000000, 0.000000000)
+|+i>: Bloch=(0.000000000, 1.000000000, 0.000000000)
+|-i>: Bloch=(0.000000000, -1.000000000, 0.000000000)
+worked state: Bloch=(0.000000000, 0.866025404, 0.500000000); P(0)=0.750000000
+169 angle pairs: scalar/matrix/spherical coordinates, unit length and inverse-ray checks passed.
+Global phases, orthogonal antipodes, poles, 2 near-pole cases and Y-sign witness checked.
+6 invalid-input cases rejected; atol=1e-12. No shots, hardware or expectation-value API.
+```
+
+The matrix and scalar calculations use different representations, reducing the risk of checking a shared matrix-sign error against itself. The angular grid includes both poles and thirteen azimuths at each polar angle; repeated pole rays intentionally check phase redundancy. Two additional near-pole cases test inverse reconstruction without dividing by a small amplitude. Global phases and orthogonal partners are checked across the grid. A deliberately transposed $Y$ gives the wrong sign for the positive-i state. Zero/unnormalized/wrong-dtype states and zero/off-sphere/nonfinite points supply six rejected inputs.
+
+Absolute tolerance is $10^{-12}$ with zero relative tolerance for these unit-scale comparisons. Inputs must have the declared shape, dtype and finite CPU coordinates. Numerical grid agreement does not replace the proofs or establish correctness for every floating-point input. Reproduce the original figure with `python scripts/plot_bloch_sphere.py`; it uses the pinned Matplotlib/NumPy environment and writes the SVG illustration.
+
+### Understanding checks and transfer problems
+
+**3.3-A — Compute a point.** For $\alpha=\sqrt3/2$, $\beta=i/2$, derive the three coordinates, the angles, and the computational-basis probabilities. Which coordinates change if the entire vector is multiplied by $i$?
+
+**3.3-B — Diagnose the sign.** A program transposes every Pauli matrix before computing its quadratic form. Which coordinates are affected? Give a state that catches the error and explain why real-amplitude tests miss it.
+
+**3.3-C — Poles and phase conventions.** Reconstruct the south pole. Why can you not divide by $\alpha$ there, and why can different values of $\phi$ still specify the same ray? At the point $(0,1,0)$, compare a representative with positive-real first amplitude and one with positive-real second amplitude.
+
+**3.3-D — Geometry is not a classical arrow state.** Can $(0,0,0)$ represent a pure qubit under this map? Are perpendicular Bloch radius vectors necessarily orthogonal qubit states? Use the north pole and positive-x point as a concrete test.
+
+### Answers
+
+**A.** $\alpha^*\beta=i\sqrt3/4$, so $(x,y,z)=(0,\sqrt3/2,1/2)$. The chosen angles are $\theta=\pi/3$, $\phi=\pi/2$. Probabilities are $3/4,1/4$. A common phase changes none of the coordinates because the conjugated product and squared magnitudes are invariant.
+
+**B.** $X^T=X$ and $Z^T=Z$, while $Y^T=-Y$. Only $y$ changes sign. The positive-i state should have $y=1$ but gives $-1$ with the error. Real amplitudes have $y=0$ either way and cannot detect it.
+
+**C.** At the south pole choose $(0,1)^T$. The first-amplitude formula divides by zero; the second chart has $\beta=1$ and $\alpha=0$. In angular notation, $e^{i\phi}|1\rangle$ differs only by a common phase. At $(0,1,0)$, the two representatives can be $(1,i)^T/\sqrt2$ and $(-i,1)^T/\sqrt2$; the second is $-i$ times the first. Their arrays differ, but their Bloch points and rays agree.
+
+**D.** The origin has length zero, violating the proved unit-sphere identity for a normalized pure state. Its later mixed-state interpretation requires Chapter 8; do not silently normalize it into a pure state. Perpendicular Bloch radii do not imply orthogonal kets: $|0\rangle$ and $(|0\rangle+|1\rangle)/\sqrt2$ have inner product $1/\sqrt2$, not zero. Orthogonal pure-state rays correspond to antipodes.
+
+### Sources, scope, and next step
+
+Assigned sources: Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), [NC:1.2](../references/proof-sources.md#source-nc-1-2), especially **printed p.15, Eqs.(1.3)–(1.4)** for the half-angle representative, and [NC:2.1.3](../references/proof-sources.md#source-nc-2-1-3), **printed p.65, Figure 2.2** for the Pauli matrix conventions. These locations were consulted. The coordinate/inverse proofs, numerical checks, exercises and sphere illustration here are original exposition; no textbook page or figure is reproduced.
+
+Depth **F**: the representative, quadratic components, unit-sphere identity, inverse and uniqueness on rays are derived, including pole cases. This is pure-state geometry in a chosen basis, not a physical measurement of all three coordinates from one qubit, a mixed-state treatment or a generalization to arbitrary multi-qubit states. See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.3.json) for author execution and pending independent reviews. Next: [3.4 Closed-system evolution and generators](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-4).
