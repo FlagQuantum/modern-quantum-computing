@@ -1,6 +1,6 @@
 # 3. Single-Qubit States and Rotations
 
-**Working draft: sections 3.1–3.4 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, all pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working draft: sections 3.1–3.5 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, all pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-single-qubit-states-and-rotations-1"></span>
 
@@ -805,4 +805,199 @@ Absolute tolerance is $10^{-12}$ with zero relative tolerance for these bounded 
 
 The assigned source is [NC:2.2.2](../references/proof-sources.md#source-nc-2-2-2), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), **printed pp.81–84**: unitary evolution, the continuous-time equation and the constant-Hamiltonian solution, especially Eqs.(2.84), (2.86), and (2.90)–(2.91). These pages were consulted. The differentiable-generator derivation, specified matrix checks and counterexamples here are original exposition. The single-endpoint example explicitly avoids interpreting an exponential representation as a unique reconstruction of the physical Hamiltonian.
 
-Depth **P**: adopt the physical evolution postulate and derive its stated differentiable/fixed-generator consequences. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.4.json) separates author execution from pending independent mathematical, implementation and reader review. No open-system dynamics, time-dependent solution algorithm, hardware calibration or general rotation decomposition is claimed. Next: [3.5 Pauli algebra and rotation matrices](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-5).
+Depth **P**: adopt the physical evolution postulate and derive its stated differentiable/fixed-generator consequences. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.4.json) separates author execution from pending independent mathematical, implementation and reader review. No open-system dynamics, time-dependent solution algorithm, hardware calibration or general rotation decomposition is claimed. Continue with the working draft [3.5 Pauli algebra and rotation matrices](#sec-single-qubit-states-and-rotations-5).
+
+<span id="sec-single-qubit-states-and-rotations-5"></span>
+
+## 3.5 Pauli algebra and rotation matrices
+
+A rotation gate is an exponential of a Hermitian generator. For a general matrix we might need a numerical exponential; for the Pauli matrices, their multiplication rules reduce every power to one of two terms. This gives explicit formulas and lets us check exactly which direction a positive angle rotates a Bloch vector.
+
+The prerequisites are [3.3](#sec-single-qubit-states-and-rotations-3), including the Pauli signs and Bloch coordinates, and [3.4](#sec-single-qubit-states-and-rotations-4), for generator conventions. Convergence of the matrix exponential series comes from the mathematical preparation in 2.6. Angles below are real numbers in radians. We use active operations on column statevectors in the fixed computational basis.
+
+### Derive the multiplication rules
+
+Recall the matrices with their order of coordinates fixed:
+
+$$
+X=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
+Y=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\qquad
+Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+$$
+
+Each is Hermitian and squares to $I$. For $Y$, for example, both diagonal entries of $Y^2$ are $(-i)i=1$ and both off-diagonal entries are zero. The squares of $X$ and $Z$ follow by the same direct multiplication.
+
+Order matters for different matrices. Multiplying $X$ and $Y$ gives
+
+$$
+XY=\begin{pmatrix}i&0\\0&-i\end{pmatrix}=iZ.
+$$
+
+The other two forward cyclic products are $YZ=\begin{pmatrix}0&i\\i&0\end{pmatrix}=iX$ and $ZX=\begin{pmatrix}0&1\\-1&0\end{pmatrix}=iY$. Taking adjoints reverses multiplication: $YX=(XY)^\dagger=(iZ)^\dagger=-iZ$, and likewise for the other reversed pairs. Thus all nine products are:
+
+| Left factor / right factor | $X$ | $Y$ | $Z$ |
+|---|---|---|---|
+| $X$ | $I$ | $iZ$ | $-iY$ |
+| $Y$ | $-iZ$ | $I$ | $iX$ |
+| $Z$ | $iY$ | $-iX$ | $I$ |
+
+Read a row as the left matrix and a column as the right matrix. In particular, $XY$ and $YX$ have opposite signs. Define the **commutator** $[A,B]=AB-BA$ and **anticommutator** $\{A,B\}=AB+BA$. The table gives $[X,Y]=2iZ$ and $\{X,Y\}=0$, with analogous cyclic relations. Each same-matrix anticommutator is $2I$.
+
+For later use in this section, take a real unit axis $n=(n_x,n_y,n_z)$ and set $N=n_xX+n_yY+n_zZ$. It is Hermitian because its coefficients are real. Expanding its square and grouping opposite orders gives
+
+$$
+\begin{aligned}
+N^2&=n_x^2X^2+n_y^2Y^2+n_z^2Z^2\\
+&\quad+n_xn_y\{X,Y\}+n_yn_z\{Y,Z\}+n_zn_x\{Z,X\}\\
+&=(n_x^2+n_y^2+n_z^2)I=I.
+\end{aligned}
+$$
+
+The unit-axis assumption is essential. A nonunit vector generally changes the scale of the generator; it cannot be inserted into an identity that assumes $N^2=I$.
+
+### Sum the exponential by even and odd powers
+
+Let $A$ be one of $X,Y,Z$, or the Hermitian unit-axis matrix $N$ above. Since $A^2=I$, its even powers are $A^{2k}=I$ and its odd powers $A^{2k+1}=A$. The absolutely convergent exponential series may therefore be grouped as
+
+$$
+\begin{aligned}
+e^{-i\theta A/2}
+&=\sum_{k=0}^{\infty}\frac{(-1)^k(\theta/2)^{2k}}{(2k)!}I
+ -i\sum_{k=0}^{\infty}\frac{(-1)^k(\theta/2)^{2k+1}}{(2k+1)!}A\\
+&=\cos(\theta/2)I-i\sin(\theta/2)A.
+\end{aligned}
+$$
+
+The last line identifies the scalar cosine and sine series. Define this operator as $R_A(\theta)$. If $c=\cos(\theta/2)$ and $s=\sin(\theta/2)$, then
+
+$$
+R_A(\theta)^\dagger R_A(\theta)
+=(cI+isA)(cI-isA)=(c^2+s^2)I=I.
+$$
+
+Also $R_A(-\theta)=R_A(\theta)^\dagger$, so the negative angle is the inverse. Substituting the three matrices gives
+
+$$
+R_x(\theta)=\begin{pmatrix}c&-is\\-is&c\end{pmatrix},\qquad
+R_y(\theta)=\begin{pmatrix}c&-s\\s&c\end{pmatrix},\qquad
+R_z(\theta)=\begin{pmatrix}e^{-i\theta/2}&0\\0&e^{i\theta/2}\end{pmatrix}.
+$$
+
+The minus signs are fixed by the exponent $-i\theta A/2$ and the chosen $Y$ matrix; they are not interchangeable implementation details. For a constant Hamiltonian $\mathcal H=\hbar\omega A/2$, where $\omega$ has units of inverse time, 3.4 gives $U(t)=R_A(\omega t)$. The angle is $\theta=\omega t$.
+
+### Derive why the parameter is the Bloch rotation angle
+
+Write the input amplitudes as $\alpha,\beta$, and set $q=\alpha^*\beta$. By 3.3, $x=2\operatorname{Re}q$, $y=2\operatorname{Im}q$, $z=|\alpha|^2-|\beta|^2$. Use the explicit matrices to compute the transformed amplitudes and then these same three coordinates.
+
+For $R_x$, $\alpha'=c\alpha-is\beta$ and $\beta'=-is\alpha+c\beta$. Multiplication gives
+
+$$
+\begin{aligned}
+q'&=(c\alpha^*+is\beta^*)(-is\alpha+c\beta)
+   =c^2q+s^2q^*-icsz,\\
+z'&=(c^2-s^2)z+4cs\operatorname{Im}q.
+\end{aligned}
+$$
+
+Taking twice the real and imaginary parts yields $x'=x$, $y'=(c^2-s^2)y-2csz$. Since $c^2-s^2=\cos\theta$ and $2cs=\sin\theta$, the half angles have combined into the full angle $\theta$.
+
+For $R_y$, the amplitudes are $\alpha'=c\alpha-s\beta$, $\beta'=s\alpha+c\beta$. Their product and squared-magnitude difference are
+
+$$
+q'=c^2q-s^2q^*+csz,\qquad
+z'=(c^2-s^2)z-4cs\operatorname{Re}q.
+$$
+
+For $R_z$, the two amplitudes acquire opposite half-angle phases, giving $q'=e^{i\theta}q$ and $z'=z$. Applying Euler's identity to this product and collecting all three cases gives:
+
+| Active gate | Output Bloch coordinates $(x',y',z')$ |
+|---|---|
+| $R_x(\theta)$ | $(x,\ y\cos\theta-z\sin\theta,\ y\sin\theta+z\cos\theta)$ |
+| $R_y(\theta)$ | $(x\cos\theta+z\sin\theta,\ y,\ -x\sin\theta+z\cos\theta)$ |
+| $R_z(\theta)$ | $(x\cos\theta-y\sin\theta,\ x\sin\theta+y\cos\theta,\ z)$ |
+
+These are the ordinary right-handed active rotation formulas about the indicated Cartesian axes. This calculation explains the factor $1/2$ in the generator convention: it makes the parameter $\theta$ the Bloch-vector rotation angle. Omitting that factor doubles the angle in these coordinate formulas.
+
+Check the direction on landmarks. At $\theta=\pi/2$, $R_x$ maps the north pole $(0,0,1)$ to $(0,-1,0)$, while $R_y$ maps it to $(1,0,0)$. Meanwhile $R_z$ maps the positive-x point $(1,0,0)$ to $(0,1,0)$. A positive angle does not mean every initial state moves toward positive coordinates; the signs follow the axis and active-operation convention.
+
+### Track matrix phase separately from the state ray
+
+The exponential formula gives
+
+$$
+R_A(\pi)=-iA,\qquad R_A(2\pi)=-I,\qquad R_A(4\pi)=I.
+$$
+
+A $2\pi$ rotation therefore returns the same whole-qubit ray, but changes the representative's sign. Its matrix is not $I$. The whole-qubit state comparison in 3.1 permits this common phase; a test of the operator's stated matrix convention must retain it.
+
+Similarly, define the phase matrix $D(\theta)=\operatorname{diag}(1,e^{i\theta})$ locally. Its exact relation to an axis rotation is
+
+$$
+D(\theta)=e^{i\theta/2}R_z(\theta).
+$$
+
+They give the same ray on an isolated one-qubit input, but their arrays differ by the displayed phase. Testing $R_z$ only on $|0\rangle$ and only through computational-basis probabilities would miss both diagonal phase signs. We check coherent inputs and statevector coordinates as well.
+
+### Runnable checks against the released API
+
+The complete program is [pauli_rotations.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/pauli_rotations.py). In the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples), run:
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/pauli_rotations.py
+```
+
+The actual FlagQuantum 0.3.1 calls are `circuit.rx(0, theta=theta)`, `ry(0, theta=theta)` and `rz(0, theta=theta)`, followed by `fq.run(..., outputs=[fq.probabilities()], options=OPTIONS)`. The installed release's three matrix implementations were inspected and executed. `OPTIONS` specifies CPU PyTorch complex128 statevector simulation with fallback and approximation disabled.
+
+| Derived result | Independent executable comparison |
+|---|---|
+| All nine Pauli products | Matrix multiplication against the complete signed product table |
+| Explicit $R_x,R_y,R_z$ matrices | Standard-library trigonometric entries against `torch.matrix_exp(-.5j*theta*matrix)` |
+| Actual gate matrix convention | Released gate output on both basis columns and two coherent input states against the explicit matrix action |
+| Active Bloch rotation | Scalar amplitude coordinates against the full-angle Cartesian formulas above |
+| Inverse and unitarity | Negative-angle matrix versus adjoint; product with adjoint versus identity |
+| Unit-axis generalization | Three real unit axes, their squared generators, and exponential/closed-form comparisons |
+| Operator phase | Exact $2\pi/4\pi$ matrix checks and actual `phase` gate output against $e^{i\theta/2}R_z(\theta)$ |
+
+The coherent inputs are $(1,1)^T/\sqrt2$ and $(1,i)^T/\sqrt2$, prepared with `h` and, for the latter, `phase(pi/2)`. Each axis is checked at 17 angles $\theta=k\pi/7$ for integers $-8\leq k\leq8$, including negative and non-cardinal angles. This gives 51 angle/axis cases, with four actual gate runs per case. Separate landmark, periodicity and phase-gate checks cover additional values.
+
+Expected output:
+
+```text
+All 9 Pauli products checked, including reversed-order signs.
+Rx(pi/2), input zero: Bloch=(0, -1, 0)
+Ry(pi/2), input zero: Bloch=(1, 0, 0)
+Rz(pi/2), input plus: Bloch=(0, 1, 0)
+51 angle/axis cases: explicit matrices, exponentials and FlagQuantum agree on 4 inputs each.
+2pi gives -I; 4pi gives I; phase(theta)=exp(i*theta/2)*Rz(theta).
+Inverse/norm checks, 3 general unit axes and a nonunit-axis failure witness passed (atol=1e-12).
+Angles are radians; no shots, hardware or mixed-axis decomposition invoked.
+```
+
+Outputs must be finite CPU complex128 statevectors and float64 probabilities with batch shape `(1,2)`. Bloch-reference tensors are explicitly float64; a default float32 conversion would weaken a $10^{-12}$ comparison. All numerical comparisons use absolute tolerance $10^{-12}$ and zero relative tolerance for these bounded inputs. The program also rejects the shortcut for generator $2X$: its square is $4I$, so the stated sine/cosine coefficients do not apply unchanged. These are author execution checks of specified ideal cases, not experimental validation or a proof for all floating-point inputs.
+
+### Understanding checks and transfer problems
+
+**3.5-A — Repair the angle.** A program implements `exp(-1j*theta*X)` and labels its parameter the Bloch rotation angle. Starting at the north pole, compute the point for `theta=pi/4`. What convention or formula must be changed?
+
+**3.5-B — Derive a unit-axis gate.** Let $n=(3/5,4/5,0)$. Prove $N^2=I$ for $N=(3/5)X+(4/5)Y$, then write its rotation exponential without calling a matrix exponential. Why does the same shortcut fail for $N=2X$?
+
+**3.5-C — Diagnose a sign test.** A test checks only the output probabilities of $R_z(\pi/2)|0\rangle$ and passes an implementation with the exponent's sign reversed. Give a coherent input and a Bloch coordinate that distinguishes the two signs.
+
+**3.5-D — Matrix or ray?** Explain why $R_x(2\pi)$ can fail a matrix-equality-to-identity test but pass a whole-qubit ray comparison. Find the exact phase relating $D(\pi/2)$ to $R_z(\pi/2)$.
+
+### Answers
+
+**A.** The implementation is $R_x(2\theta)$. At `theta=pi/4` it sends $(0,0,1)$ to $(0,-1,0)$, a Bloch rotation by $\pi/2$. Use the factor $1/2$ in the exponent if the API parameter is to denote the Bloch angle, or explicitly rename/rescale the parameter. Changing only the documentation of the output direction does not repair an inconsistent convention.
+
+**B.** $N^2=(9/25+16/25)I+(12/25)(XY+YX)=I$. Thus $R_N(\theta)=\cos(\theta/2)I-i\sin(\theta/2)[(3/5)X+(4/5)Y]$. For $2X$, powers reduce using $(2X)^2=4I$, giving $e^{-i\theta X}=\cos\theta I-i\sin\theta X$, not the unchanged half-angle formula with $2X$ inserted.
+
+**C.** Use the positive-x state $(|0\rangle+|1\rangle)/\sqrt2$. The stated convention produces $y'=1$, while the reversed sign gives $y'=-1$. Both implementations preserve the computational-basis probabilities of the north-pole input, so that test does not determine their relative phase convention.
+
+**D.** The matrix is $-I$, so direct equality to $I$ is false. Every whole-qubit vector is multiplied by the common phase $-1$, preserving its ray. The phase matrix obeys $D(\pi/2)=e^{i\pi/4}R_z(\pi/2)$; these matrices are equal only after including that factor.
+
+### Sources, scope, and next step
+
+Assigned sources are Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), [NC:2.1.3](../references/proof-sources.md#source-nc-2-1-3), **printed p.65, Figure 2.2**, and [NC:4.2](../references/proof-sources.md#source-nc-4-2), **printed pp.174–175**, especially Eqs.(4.4)–(4.8) and the Bloch-rotation interpretation posed in Exercise 4.6. These locations were consulted. The explicit product derivations, coordinate proof, validation program and original problems here connect those results without reproducing the source's exercises or solutions.
+
+Depth **F**: derive the Pauli products, even/odd exponential sum, half-angle matrices and all three axis actions. The unit-axis extension has its own stated assumptions and proof. See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.5.json) for author execution and pending independent reviews. Hardware pulse conventions and arbitrary mixed-axis decompositions are outside the claims here. Next: [3.6 Composing rotations](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-6).

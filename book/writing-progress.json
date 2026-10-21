@@ -181,6 +181,16 @@
       "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
       "record": "book/section-records/3.4.json",
       "author_execution": "passed: Python3.12.14, released FlagQuantum0.3.1, PyTorch2.13.0, CPU complex128; independent matrix/analytic derivative and coherent application checks; no hardware or time-dependent solver"
+    },
+    "sec-single-qubit-states-and-rotations-5": {
+      "state": "draft",
+      "brief": "book/briefs/ch03.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+      "record": "book/section-records/3.5.json",
+      "author_execution": "passed: Python3.12.14, released FlagQuantum0.3.1, PyTorch2.13.0, CPU complex128;9 products,51 angle/axis cases with4 inputs each, scalar Bloch/explicit matrix/exponential checks; no hardware"
     }
   },
   "existing_pilots": [

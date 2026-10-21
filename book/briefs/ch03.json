@@ -23,7 +23,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.4 have working drafts; next production assignment3.5. Independent acceptance pending."
+      "next_transition": "Sections3.1\u20133.5 have working drafts; next production assignment3.6. Independent acceptance pending."
     },
     {
       "ref": "3.2",
@@ -46,7 +46,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.4 have working drafts; next production assignment3.5. Independent acceptance pending."
+      "next_transition": "Sections3.1\u20133.5 have working drafts; next production assignment3.6. Independent acceptance pending."
     },
     {
       "ref": "3.3",
@@ -70,7 +70,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.4 have working drafts; next production assignment3.5. Independent acceptance pending."
+      "next_transition": "Sections3.1\u20133.5 have working drafts; next production assignment3.6. Independent acceptance pending."
     },
     {
       "ref": "3.4",
@@ -93,7 +93,31 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-6"
       ],
       "status": "draft",
-      "next_transition": "3.5 Pauli algebra and rotation matrices."
+      "next_transition": "Sections3.1\u20133.5 have working drafts; next production assignment3.6. Independent acceptance pending."
+    },
+    {
+      "ref": "3.5",
+      "section_id": "sec-single-qubit-states-and-rotations-5",
+      "title": "Pauli algebra and rotation matrices",
+      "question": "How do Pauli products determine rotation exponentials, and which matrix signs make the parameter the active Bloch rotation angle?",
+      "entry": "Exact3.3 Pauli coordinates and3.4 Hermitian-generator dynamics; convergent exponential series inherited through2.6.",
+      "exit": "Derive all Pauli products, even/odd exponential sum, explicit Rx/Ry/Rz and their Bloch-coordinate actions; distinguish2pi matrix sign and phase/Rz relation.",
+      "worked_case": "Rx(pi/2)|0> gives negative-y, Ry(pi/2)|0> gives positive-x, Rz(pi/2)|+> gives positive-y; explicit matrix columns and phase conventions.",
+      "boundary": "F depth; no Euler decomposition or mixed-axis composition derivation, which remain3.6. Arbitrary real unit-axis involution derived locally without adding a numbered prerequisite.",
+      "code_plan": "Released FlagQuantum0.3.1 rx/ry/rz matrices checked through both basis columns and two coherent inputs against scalar closed matrices and torch matrix_exp; scalar Bloch rotation reference.",
+      "independent_check": "All9 Pauli products;17angles per axis,2pi/4pi, inverse/norm, 3 unit axes beyond coordinate axes, nonunit-axis counterexample and actual phase-gate relation.",
+      "transfer_task": "Diagnose half-angle/sign bugs, derive arbitrary unit-axis square, distinguish2pi matrix versus ray equivalence, compare phase and Rz; full answers.",
+      "source_locators": [
+        "NC:2.1.3",
+        "NC:4.2"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-single-qubit-states-and-rotations-3",
+        "sec-single-qubit-states-and-rotations-4"
+      ],
+      "status": "draft",
+      "next_transition": "3.6 Composing rotations."
     }
   ]
 }

@@ -266,7 +266,7 @@
         "sec-single-qubit-states-and-rotations-4"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-single-qubit-states-and-rotations.md"
     },
     {

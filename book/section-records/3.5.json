@@ -1,0 +1,124 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-single-qubit-states-and-rotations-5",
+  "ref": "3.5",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+  "question": "How do Pauli products determine rotation exponentials, and which matrix signs make the parameter the active Bloch rotation angle?",
+  "requires": [
+    "sec-single-qubit-states-and-rotations-3",
+    "sec-single-qubit-states-and-rotations-4"
+  ],
+  "depth": "F",
+  "result": "Pauli multiplication and rotation exponential",
+  "entry": "Exact3.3 Pauli coordinates and3.4 Hermitian-generator dynamics; convergent exponential series inherited through2.6.",
+  "exit": "Derive all Pauli products, even/odd exponential sum, explicit Rx/Ry/Rz and their Bloch-coordinate actions; distinguish2pi matrix sign and phase/Rz relation.",
+  "assumptions": [
+    "Explicit fixed-basis Hermitian Pauli matrices with squares I",
+    "Real angles in radians; complex-linear active operations on column states",
+    "Involution shortcut requires A squared=I and Hermiticity for unitarity",
+    "General-axis coefficients are real and have Euclidean unit length",
+    "Convergent exponential series inherited from2.6; no Euler decomposition imported"
+  ],
+  "symbols": {
+    "X,Y,Z,N": "Pauli matrices and real unit-axis generator",
+    "theta,c,s": "Bloch rotation parameter in radians, cosine and sine of half angle",
+    "alpha,beta,q": "Amplitudes and their conjugated product alpha-star beta",
+    "x,y,z": "Bloch coordinates from3.3",
+    "D": "Explicit diagonal phase matrix, related to Rz by common phase"
+  },
+  "local_start_checks": {
+    "brief": "Prepared before prose; exact3.3/3.4 prerequisites, F depth and canonical locators retained.",
+    "prerequisite": "3.3 supplies Pauli signs/Bloch formulas;3.4 supplies Hermitian evolution and transitive2.6 exponential convergence.",
+    "source": "Consulted cached user-supplied NC printed65 and174\u2013175; no third-party textbook text/images uploaded.",
+    "independent_reference": "Signed9-product table, scalar trigonometric matrices and amplitude Bloch coordinates, Cartesian rotation formulas and matrix_exp.",
+    "scope": "No frozen scope/depth/dependency/volume changes; mixed-axis decomposition remains3.6; PDF edition unchanged."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.1.3",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        65
+      ],
+      "use": "Figure2.2 Pauli conventions."
+    },
+    {
+      "locator": "NC:4.2",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        174,
+        175
+      ],
+      "use": "Eqs4.4\u20134.8 rotation exponentials and unit-axis form; Bloch rotation interpretation in Exercise4.6. Exposition/proofs/examples are original."
+    },
+    {
+      "supplementary": "Installed released FlagQuantum0.3.1",
+      "use": "Inspected simulation/matrices.py rx_mat/ry_mat/rz_mat and phase_mat; actual Circuit.rx/ry/rz/phase(theta=...) execution checked."
+    }
+  ],
+  "proof_obligations": [
+    "All9 products via squares, cyclic direct multiplication and reversed adjoints",
+    "Define commutator/anticommutator and derive general real unit-axis N squared=I",
+    "Group absolute exponential series into even/odd sums and derive explicit three matrices",
+    "Unitarity, inverse and Hamiltonian angle convention",
+    "Compute conjugated amplitude products and norm differences for all3 gates, yielding active Bloch action and full-angle meaning",
+    "Track pi,2pi,4pi matrix phases and exact phase/Rz relation",
+    "State unit-axis and operator-versus-whole-ray comparison limitations"
+  ],
+  "implementation": {
+    "path": "examples/foundations/pauli_rotations.py",
+    "command": "python examples/foundations/pauli_rotations.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "architecture": "arm64",
+      "system": "Darwin",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_run": "passed",
+    "dependencies": "Pinned requirements-examples.txt; genuine released FlagQuantum wheel in existing mqc-writing-venv; shared Torch support provenance in1.2; no editable FlagQuantum source",
+    "checks": [
+      "All9 signed Pauli products checked",
+      "17angles per axis k*pi/7,-8<=k<=8;51cases with4 actual gate inputs each",
+      "Explicit scalar trigonometric matrices versus torch matrix_exp and full released output coordinates",
+      "Independent scalar Bloch coordinates versus active full-angle Cartesian transforms; explicit float64 reference tensors",
+      "Rx north->negative-y, Ry north->positive-x, Rz positive-x->positive-y landmark witnesses",
+      "Unitarity, inverse, unit norms and2pi/4pi matrix checks",
+      "3 non-coordinate real unit axes at3 angles; shortcut fails for nonunit2X",
+      "Actual phase gate at3 angles and4inputs each compared with exact e^(i theta/2)Rz relation",
+      "Finite CPU complex128 state/float64 probability metadata and batch shape checked"
+    ],
+    "tolerance": "atol1e-12, rtol0 for bounded matrices/states/float64 Bloch references; no float32 default cast",
+    "limitations": "Ideal specified single-qubit cases only; no shots, calibrated pulses, arbitrary mixed-axis decomposition or independent-review claim.",
+    "expected_output_check": "Passed exact comparison with section expected-output block",
+    "script_sha256": "fcfb7f1b4c64d926d7394b6f3b0dd2e0553bbca931d4b7d1e48a9e062044eab6"
+  },
+  "assessment": {
+    "half_angle": "3.5-A",
+    "unit_axis": "3.5-B",
+    "sign_debugging": "3.5-C",
+    "matrix_vs_ray": "3.5-D",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python3.12.14/released FlagQuantum0.3.1/PyTorch2.13.0 CPU complex128 execution and exact expected output;9 products,51angle/axis cases with4 inputs each, explicit matrices/exponentials/scalar Bloch references, inverse/norm,3unit axes, phase periodicity and nonunit-axis witness. Frozen baseline/depth/prerequisite/source/brief, prose scan, strict MkDocs build and links/anchors across57 pages passed. Browser inspection confirmed even/odd series, explicit rotation matrices, active-coordinate table and operator-phase formulas; no raw LaTeX or math-error text observed. Independent reviews and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 1652,
+    "page_status": "Unmeasured section envelope; tables/equations need later print/workload calibration without downgrading F depth.",
+    "next_draft": "3.6 Composing rotations",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}
