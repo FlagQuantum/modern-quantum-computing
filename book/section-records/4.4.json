@@ -1,0 +1,133 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-4",
+  "ref": "4.4",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+  "depth": "F",
+  "result": "Ordered-support multi-qubit action",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+    "sec-composite-systems-tensor-products-and-qubit-ordering-3"
+  ],
+  "question": "How does a2^k-square matrix act on an ordered possibly nonadjacent support of an n-qubit register?",
+  "assumptions": [
+    "Finite n>=1; nonempty support1<=k<=n with distinct in-range integer labels",
+    "Global qubit0 is most significant; support position0 is most significant local bit",
+    "Explicit row/column local basis and matching matrix dimension",
+    "Linear embedding accepts general maps; deterministic circuit admission separately requires unitary matrix",
+    "General joint amplitudes, not only product input states; spectator bits unchanged by basis prescription"
+  ],
+  "proof_obligations": [
+    "Extract local tuple and J_k index independently of global J_n",
+    "Unique global linear extension of declared images of every computational basis vector",
+    "Derive spectator-delta matrix entries and boxed sum over2^k local input labels",
+    "Reduce k1 to4.3, and treat kn without silently restoring ascending order",
+    "Unitary criterion and adjoint from partition into fixed-spectator amplitude groups",
+    "Spectator computational distribution invariance for arbitrary joint coefficients",
+    "Complex asymmetric4x4 local matrix and finite Fourier boundary unitarity proof"
+  ],
+  "formula_code_units": [
+    "formula-code-4-4-local-indices",
+    "formula-code-4-4-order-witness",
+    "formula-code-4-4-amplitude-sum",
+    "formula-code-4-4-complex-matrix",
+    "formula-code-4-4-nonadjacent",
+    "formula-code-4-4-full-support",
+    "formula-code-4-4-spectator",
+    "formula-code-4-4-invalid-contracts"
+  ],
+  "local_start_checks": {
+    "brief": "Persisted before implementation/prose with exact prerequisites, result/depth and source locators",
+    "prerequisite": "4.2 index theorem and4.3 local embedding are explained drafts; no permutation/reshape theorem imported",
+    "independent_reference": "Hand controlled-order witness, output/input dense entry formula, independent input-centric scalar scatter with binary parser, explicit complex matrix and Fourier signs",
+    "scope": "Unchanged50chapters435sections7volumes16batches; no newskill,paper task or PDF edition change"
+  },
+  "sources": [
+    {
+      "locator": "NC:2.1.7",
+      "edition": "10th Anniversary Edition (2010)",
+      "use": "Assigned tensor-product background; prior4.1 source chain retained",
+      "current_session_inspection": "Not claimed; prior user-local PDF access unavailable"
+    },
+    {
+      "locator": "NC:4.3",
+      "use": "Assigned controlled-operation background; explicit controlled matrix and original proof supplied locally",
+      "current_session_inspection": "Not claimed; source assignment is not review acceptance"
+    },
+    {
+      "source": "Installed released FlagQuantum0.3.1 Circuit.unitary alias to Circuit.any",
+      "use": "Inspected actual source signature any(self,*qubits,unitary,name), forwarding supplied tuple; executed generic2/3qubit matrices on ordered adjacent/nonadjacent supports"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/ordered_supports.py",
+    "command": "python examples/foundations/ordered_supports.py",
+    "prose_check_command": "python scripts/check_ordered_supports_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "architecture": "arm64",
+      "system": "Darwin",
+      "device": "cpu",
+      "precision": "complex128",
+      "probability_dtype": "float64"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 100,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 5,
+    "separate_transfer_circuits": 1,
+    "author_execution_ledger": {
+      "initial_API_probe_circuits": 2,
+      "standalone_example_circuits": 100,
+      "body_plus_complete_companion_circuits": 105,
+      "separate_transfer_circuits": 1,
+      "total_section44_circuits": 208,
+      "note": "Prior4.1/4.2/4.3 regression and futureCI invocations are separate; no new blind-agent evaluation requested or claimed."
+    },
+    "checks": [
+      "C on(2,0)versus(0,2),input100 yields indices4versus5; exact full-state references",
+      "88complex-U basis cases:2two-qubit orders,6three-qubit ordered pairs,2nonadjacent4qubit pairs",
+      "Two complex products:full scalar/dense/statevector comparisons and spectator probabilities",
+      "Eight Fourier8x8 basis cases on full ordered support(2,0,1); body checks explicit global sign pattern",
+      "Single-factor reduction to independent4.3embedding; global unitarity and general nonunitary mathematical reference",
+      "10malformed support/matrix/precision/nonfinite/nonunitary cases rejected before dependent execution",
+      "8cumulative body fragments and exact complete-program expected stdout",
+      "Separate four-qubit1011 with support(3,1) ->1111 transfer,full16coordinates/probabilities"
+    ],
+    "tolerance": "atol1e-12,rtol0; no normalization/phase alignment, support sorting or backend fallback/approximation",
+    "script_sha256": "3b7a5d15833dd00bccbe3c87de22ee18b5fdcc71e241093c3876859e91cb1c89",
+    "unplanned_failures": "none in current author execution",
+    "limitations": "Small ideal CPU dense-reference registers; no general all-size/framework guarantee, physical SWAP/routing, device mapping, noisy measurement, shots or hardware execution"
+  },
+  "assessment": {
+    "tasks": [
+      "4.4-A new nonadjacent support, actual transfer execution",
+      "4.4-B sorting and symmetric-test pitfall",
+      "4.4-C four-term amplitude sum for nonproduct input",
+      "4.4-D phase-sensitive full-support verification limits"
+    ],
+    "answers": "All supplied; no reader trial"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Exact full-program and8body outputs, separate transfer, previous4.1\u20134.3regressions, strict MkDocs and69-page link/anchor checks passed; actual browser formula display checked. Remote CI/deployment reported after publication."
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 2741,
+    "page_status": "Unmeasured draft envelope; no reduction of F proof depth",
+    "next_draft": "4.5 Permutations, SWAP, and relabeling",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual browser screenshots: basis-extension definition, spectator-delta entries, boxed local-input sum, full complex4x4 matrix with roots/imaginary entries. No garbling or clipping in inspected formula regions."
+  }
+}

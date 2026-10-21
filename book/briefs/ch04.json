@@ -70,6 +70,30 @@
       ],
       "status": "draft",
       "next_transition": "4.4 Multiple-qubit operators and ordered supports."
+    },
+    {
+      "ref": "4.4",
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-4",
+      "title": "Multiple-qubit operators and ordered supports",
+      "question": "How does a local2^k-by2^k matrix act on an ordered possibly nonadjacent support without sorting away its meaning?",
+      "entry": "4.2 bit-tuple/index bijection and4.3 single-factor embedding; explicit local basis and distinct support labels.",
+      "exit": "Derive general ordered-support coefficient action, basis-matrix entries and unitarity; distinguish fixed spectator fibers and ordered tuple from its set.",
+      "worked_case": "Three-qubit100 with controlled flip on support(2,0) versus(0,2); asymmetric complex4x4 U, nonadjacent4qubit supports and full3qubit support.",
+      "boundary": "F depth. No silent sorting, SWAP/routing, tensor-axis implementation theorem, hardware mapping or cross-framework claim; later sections own those.",
+      "code_plan": "Independent scalar scatter/local-index reference versus full embedding and released Circuit.unitary(*support) execution; adjacent formula/code/output units.",
+      "independent_check": "All2qubit ordered pairs, all3qubit ordered pairs, two4qubit nonadjacent pairs; full3qubit support and one-factor reference, complex superpositions, target-order error witnesses, malformed support/matrix rejection.",
+      "transfer_task": "Translate a new ordered support, derive spectator restrictions, diagnose sorting and symmetric-test pitfalls, explain unchanged spectator probabilities; answers supplied.",
+      "source_locators": [
+        "NC:2.1.7",
+        "NC:4.3"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-3"
+      ],
+      "status": "draft",
+      "next_transition": "4.5 Permutations, SWAP, and relabeling."
     }
   ]
 }

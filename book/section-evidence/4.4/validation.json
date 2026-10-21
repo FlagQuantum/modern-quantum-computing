@@ -1,0 +1,16 @@
+{
+  "section": "4.4",
+  "body_fragments": 8,
+  "body_expected_outputs": "exact comparison passed",
+  "complete_program": "100circuits;exact expected output and full reference assertions passed",
+  "transfer": "separate1circuit all16coordinates/probabilities passed",
+  "prior_chapter4_regressions": "4.1,4.2,4.3passed in their own scopes",
+  "strict_mkdocs": "passed",
+  "links": "69rendered pages;alllocal links/fragments resolve;IDs unique",
+  "formula_display": "Passed actual browser screenshots: basis-extension definition, spectator-delta entries, boxed local-input sum, full complex4x4 matrix with roots/imaginary entries. No garbling or clipping in inspected formula regions.",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "drafts": 25,
+  "accepted": 0,
+  "independent_review": "pending;no new agent blind tests or reader trial",
+  "prior_4_3_full_remote_CI": "39571123736 completed/success"
+}

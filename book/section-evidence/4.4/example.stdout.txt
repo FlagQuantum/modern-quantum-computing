@@ -1,0 +1,9 @@
+Support is an ordered tuple; its first qubit is the most significant local bit.
+Input100, support(2, 0): occupied global index 4.
+Input100, support(0, 2): occupied global index 5.
+88 basis/support circuits: complex asymmetric gate;2/3qubit ordered pairs and4qubit nonadjacent supports.
+Complex input, support(2, 0): 0.349879763, 0.025120237, 0.116626588, 0.008373412, 0.349879763, 0.025120237, 0.116626588, 0.008373412.
+Complex input, support(0, 2): 0.317134573, 0.317134573, 0.105711524, 0.105711524, 0.057865427, 0.057865427, 0.019288476, 0.019288476.
+8 full-support circuits: dimension8 Fourier matrix on ordered support(2,0,1).
+Single-factor reduction, global unitarity, nonunitary reference and10invalid-input cases checked.
+100 actual CPU complex128 circuits; atol=1e-12,rtol=0; no sorting, shots, routing or hardware.

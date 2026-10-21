@@ -1,0 +1,18 @@
+{
+  "sha256": {
+    "example.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "example.stdout.txt": "cfe08bf20a781a6886bd0407bf120c38607169a704825b672f5fbb8c20fb7bc1",
+    "previous41.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "previous41.stdout.txt": "ebe32f5fedfc64e850bd43d4cafd3ffd9c47aa61be3bb6fa915864c6ebcbe746",
+    "previous42.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "previous42.stdout.txt": "f45233f0e4d56320885a1edd3cf9d2a70150228c6a7e6c4cfb79488267fa99c4",
+    "previous43.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "previous43.stdout.txt": "2eb0ef77f9144b24240bc965e3638c4188c151c6b567fa6009841384fa41e950",
+    "prose.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prose.stdout.txt": "707498c23bf7ce7db785e02a60195014aa33ba7d617c8a4755d818941c495b53",
+    "transfer.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "transfer.stdout.txt": "e14235e12c3df71fdd4c52fa708db791da396315763bf0884586698ca2763ce7",
+    "transfer_check.py": "92a3cd4f81850f24db83ea2ad325805762f571d9e93757446d4f585bc445da10",
+    "validation.json": "4750e14bd8ec6e97d9f1782272069327b651f4641f11f0ad9252896cdd10f6bb"
+  }
+}

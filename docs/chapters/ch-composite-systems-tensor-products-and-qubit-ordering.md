@@ -1,6 +1,6 @@
 # 4. Composite Systems, Tensor Products, and Qubit Ordering
 
-**Working drafts: sections 4.1–4.3 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 4.1–4.4 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-composite-systems-tensor-products-and-qubit-ordering-1"></span>
 
@@ -1020,4 +1020,350 @@ Adjoint/unitarity identities and 6 invalid-input cases checked.
 
 Depth **F**: construction and uniqueness on a product basis, matrix entries, coefficient action, general single-factor embedding and the adjoint/unitarity criterion are derived explicitly. The assigned background remains Nielsen and Chuang, 10th Anniversary Edition, §2.1.7, following the source chain in 4.1. No new inspection of the user-local textbook PDF is claimed here: access was unavailable in the preceding source check. The proofs, examples and translations above are original and self-contained relative to the stated drafts.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.3.json) separates author execution, its initial reference-layout failure and repair, and pending independent mathematical, implementation and reader review. This is a working draft, not an accepted section. Next: [4.4 Multiple-qubit operators and ordered supports](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-4).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.3.json) separates author execution, its initial reference-layout failure and repair, and pending independent mathematical, implementation and reader review. This is a working draft, not an accepted section. Continue with [4.4 Multiple-qubit operators and ordered supports](#sec-composite-systems-tensor-products-and-qubit-ordering-4).
+
+<span id="sec-composite-systems-tensor-products-and-qubit-ordering-4"></span>
+
+## 4.4 Multiple-qubit operators and ordered supports
+
+A four-by-four matrix describes an operation on two qubits, but it does not specify which two qubits of a larger register are involved, or which one supplies the more significant local bit. The ordered support supplies that missing information. Silently sorting its labels can change an implemented operation while leaving matrix dimensions, normalization and even some test outputs unchanged.
+
+We use the bit-tuple/index bijection from [4.2](#sec-composite-systems-tensor-products-and-qubit-ordering-2) and the basis-defined local embedding from [4.3](#sec-composite-systems-tensor-products-and-qubit-ordering-3). This section generalizes the latter to several selected, possibly nonadjacent qubits. It does not yet implement a permutation, SWAP, routing algorithm or tensor-axis optimization; those belong to later sections.
+
+### Specify an ordered local basis
+
+Fix an n-qubit register with global order `q0,...,q(n-1)`, qubit 0 most significant. Let
+
+$$
+S=(s_0,\ldots,s_{k-1}),\qquad 1\leq k\leq n,
+$$
+
+be a tuple of **distinct**, in-range integer qubit labels. Its underlying set tells us which qubits participate. Its order tells us how to interpret the matrix's rows and columns. For a global bit tuple b, define
+
+$$
+b_S=(b_{s_0},\ldots,b_{s_{k-1}}),\qquad
+r_S(b)=J_k(b_S)=\sum_{j=0}^{k-1}b_{s_j}2^{k-1-j}.
+$$
+
+The global index is still $J_n(b)$. The first element of S supplies the most significant **local** bit, even when it is the least significant global qubit. Local and global positions answer different indexing questions.
+
+A matrix U on this support has shape $(2^k,2^k)$ and local basis order `00,...,11` for two qubits. Entry $U_{\alpha\beta}$ maps local input basis index $\beta$ to output index $\alpha$. If S contains repeated labels, these k local bits would not describe k distinct factors. We reject that input instead of inventing an interpretation.
+
+<span id="formula-code-4-4-local-indices"></span>
+
+**Formula → local index extraction → checked result.** Run the cumulative blocks below in order, from the repository root. The helpers belong to the complete example; they are not new FlagQuantum APIs.
+
+```python
+from examples.foundations.register_indices import basis_index
+from examples.foundations.ordered_supports import (
+    support_tuple, controlled_flip, complex_gate, dense_embedding,
+    scalar_scatter, input_product, execute, checked_matrix,
+)
+bits = (1, 0, 0)
+for support in ((2, 0), (0, 2)):
+    local_bits = tuple(bits[q] for q in support)
+    print(support, 'local bits', local_bits, 'local index', basis_index(local_bits))
+```
+
+```text
+(2, 0) local bits (0, 1) local index 1
+(0, 2) local bits (1, 0) local index 2
+```
+
+The global tuple and index have not changed: `100` is global index 4 in both rows. What changed is the column selected from the local matrix.
+
+### An order-sensitive operator before a general formula
+
+Consider the explicit matrix
+
+$$
+C=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{pmatrix}.
+$$
+
+Its columns give $00\mapsto00$, $01\mapsto01$, $10\mapsto11$, $11\mapsto10$. Equivalently, it flips the second local bit when the first local bit is 1. This is a controlled flip, defined here by its basis action. Each column is a different unit basis vector, so $C^\dagger C=I$; no assumption about gate synthesis is needed.
+
+On global input `100`, support `(2,0)` selects local input `01`, which C leaves unchanged. Support `(0,2)` selects local input `10`, which C changes to `11`; the global output is then `101`. The unused qubit 1 remains 0 in either case.
+
+<span id="formula-code-4-4-order-witness"></span>
+
+**Formula → actual FlagQuantum call → full-coordinate verification.** The installed FlagQuantum 0.3.1 method accepts positional qubit arguments: `circuit.unitary(*support, unitary=C)`. The star expands the tuple without sorting it. The program prepares `100` and compares the entire returned vector with the corresponding unit basis vector.
+
+```python
+import torch
+import flagquantum as fq
+from examples.foundations.tensor_spaces import OPTIONS
+C = controlled_flip()
+for support, expected_index in [((2, 0), 4), ((0, 2), 5)]:
+    circuit = fq.Circuit(3, dtype=torch.complex128)
+    circuit.x(0)
+    circuit.unitary(*support, unitary=C)
+    result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
+    assert result.statevector().shape == result.probabilities.shape == (1, 8)
+    expected = torch.zeros(8, dtype=torch.complex128)
+    expected[expected_index] = 1
+    torch.testing.assert_close(result.statevector()[0], expected,
+                               rtol=0, atol=1e-12)
+    print(support, 'occupied global index', int(result.probabilities[0].argmax()))
+```
+
+```text
+(2, 0) occupied global index 4
+(0, 2) occupied global index 5
+```
+
+The two supports have the same underlying set. Changing their order while keeping C fixed changes the operator. No physical SWAP was submitted by these calls. Converting the matrix to another local basis can describe the same operation, but that conversion must be explicit; 4.5 develops the required permutation language. A symmetric matrix or a symmetric input could hide this mistake, which is why this witness uses an asymmetric controlled action and input.
+
+### Derive the general ordered-support action
+
+Write $c[S\leftarrow a]$ for the global tuple obtained by replacing the bits at positions $s_0,\ldots,s_{k-1}$ by the respective bits of the local tuple a, retaining every spectator bit. Distinct support labels make this replacement unambiguous. Let $U_{a,d}$ abbreviate $U_{J_k(a),J_k(d)}$. Define the global linear map by
+
+$$
+\mathcal E_S(U)|c\rangle
+=\sum_{a\in\{0,1\}^k}U_{a,c_S}|c[S\leftarrow a]\rangle.
+$$
+
+The global computational vectors form a basis, so this prescription has a unique linear extension, just as in 4.3. Reading the coefficient of an output tuple b gives
+
+$$
+[\mathcal E_S(U)]_{b,c}
+=U_{b_S,c_S}\prod_{q\notin S}\delta_{b_qc_q}.
+$$
+
+The product is over spectator positions; when there are none, its value is one. A nonzero matrix element requires all spectator bits to agree. The selected bits, however, can change jointly and need not factor into independent one-qubit actions.
+
+For a joint vector $|\psi\rangle=\sum_c\psi_c|c\rangle$, where $\psi_c$ abbreviates $\psi_{J_n(c)}$, linearity gives a sum over all input tuples. The spectator deltas force those tuples to agree with b outside S. Every remaining input is uniquely $b[S\leftarrow d]$ for one local d. Therefore
+
+$$
+\boxed{\psi'_b=\sum_{d\in\{0,1\}^k}U_{b_S,d}\,\psi_{b[S\leftarrow d]}.}
+$$
+
+This is the requested amplitude update. It uses $2^k$ possible local inputs for each global output, rather than assuming the input vector factors across S and its complement. For $k=1$ it reduces to the single-factor coefficient formula in 4.3. For $k=n$ it acts on the whole register with the explicitly declared local order; ascending order is not silently restored.
+
+<span id="formula-code-4-4-amplitude-sum"></span>
+
+**Formula → two independent constructions → checked result.** `dense_embedding()` implements the matrix-entry equation by output/input enumeration and weighted local indices. `scalar_scatter()` instead visits each input amplitude, enumerates its local outputs, replaces bits and accumulates into global indices using a binary-string parser. It uses no dense embedding, Kronecker routine or reshape. Their agreement is checked on a general complex vector, not just one basis input.
+
+```python
+from math import sqrt
+z = torch.tensor([1, 1j, 2, -1j, -2, 3j, 1, -1j],
+                  dtype=torch.complex128)/sqrt(22)
+M = dense_embedding(C, 3, (2, 0))
+reference = torch.tensor(scalar_scatter(C, z.tolist(), 3, (2, 0)),
+                         dtype=torch.complex128)
+torch.testing.assert_close(M @ z, reference, rtol=0, atol=1e-12)
+print(tuple(M.shape), 'dense and scalar amplitudes agree')
+```
+
+```text
+(8, 8) dense and scalar amplitudes agree
+```
+
+This is a mathematical reference-vector check. It does not claim that the simulator prepared z. Actual execution on every tested basis input and separate complex product preparations follows below.
+
+### Use a complex matrix that mixes local amplitudes
+
+A permutation-only test does not exercise addition of different local input amplitudes. Build a richer local matrix from
+
+$$
+R=\begin{pmatrix}\sqrt3/2&-i/2\\-i/2&\sqrt3/2\end{pmatrix},\qquad
+H=\frac1{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix},\qquad U=C(R\otimes H).
+$$
+
+The order within $R\otimes H$ refers to the first and second **local** support positions. Its entries are $(R\otimes H)_{ab,cd}=R_{ac}H_{bd}$, by expanding both factor actions on product-basis vectors. Both R and H are unitary; summing products of these entries makes their two column-inner-product factors each a delta, so $R\otimes H$ is unitary. C permutes orthonormal output rows, hence U is unitary as well. Explicit multiplication gives
+
+$$
+U=\frac1{2\sqrt2}\begin{pmatrix}
+\sqrt3&\sqrt3&-i&-i\\
+\sqrt3&-\sqrt3&-i&i\\
+-i&i&\sqrt3&-\sqrt3\\
+-i&-i&\sqrt3&\sqrt3
+\end{pmatrix}.
+$$
+
+<span id="formula-code-4-4-complex-matrix"></span>
+
+**Formula → local matrix → checked unitarity.** This construction is classical matrix arithmetic. The final four-by-four matrix will be passed to FlagQuantum on an ordered pair of qubits, without assuming they are adjacent.
+
+```python
+U = complex_gate()
+hand = torch.tensor([[sqrt(3), sqrt(3), -1j, -1j],
+                     [sqrt(3), -sqrt(3), -1j, 1j],
+                     [-1j, 1j, sqrt(3), -sqrt(3)],
+                     [-1j, -1j, sqrt(3), sqrt(3)]],
+                    dtype=torch.complex128)/(2*sqrt(2))
+torch.testing.assert_close(U, hand, rtol=0, atol=1e-12)
+torch.testing.assert_close(U.mH @ U, torch.eye(4, dtype=torch.complex128),
+                           rtol=0, atol=1e-12)
+print('local matrix dimension:', U.shape[0], '; unitary:', True)
+```
+
+```text
+local matrix dimension: 4 ; unitary: True
+```
+
+<span id="formula-code-4-4-nonadjacent"></span>
+
+**Formula → actual nonadjacent execution → checked results.** Independently prepare three specified factors, then use U on `(2,0)` and `(0,2)`. Both scalar and dense references compare the complete complex state, with no phase alignment. Correct probabilities alone would not verify all matrix phases.
+
+```python
+factors = [(.6, .8j), (sqrt(3)/2, .5j), (1/sqrt(2), 1j/sqrt(2))]
+initial = input_product(factors)
+outputs = {}
+for support in ((2, 0), (0, 2)):
+    state, probability = execute(U, 3, support, factors)
+    reference = torch.tensor(scalar_scatter(U, initial.tolist(), 3, support),
+                             dtype=torch.complex128)
+    torch.testing.assert_close(state, reference, rtol=0, atol=1e-12)
+    torch.testing.assert_close(state, dense_embedding(U, 3, support) @ initial,
+                               rtol=0, atol=1e-12)
+    outputs[support] = (state, probability)
+    print(support, [round(p, 9) for p in probability.tolist()])
+```
+
+```text
+(2, 0) [0.349879763, 0.025120237, 0.116626588, 0.008373412, 0.349879763, 0.025120237, 0.116626588, 0.008373412]
+(0, 2) [0.317134573, 0.317134573, 0.105711524, 0.105711524, 0.057865427, 0.057865427, 0.019288476, 0.019288476]
+```
+
+The complete program also checks all basis inputs for both two-qubit support orders, all six ordered pairs in a three-qubit register, and the nonadjacent orders `(3,1)` and `(1,3)` in a four-qubit register. This gives $2\cdot4+6\cdot8+2\cdot16=88$ basis/support circuits for U. A support tuple and its sorted version are separate cases.
+
+### Include the full-support boundary and spectator probabilities
+
+For a fixed spectator bit tuple, the supported amplitudes form a length-$2^k$ vector. The global map applies the same U to each such vector without mixing spectator tuples. These groups partition all global basis labels. Summing squared norms over the groups proves that unitary U gives a unitary global map; the adjoint is $\mathcal E_S(U^\dagger)$. Conversely, a nonunitary U is detected on at least one local input vector while fixing any spectator basis word, so its embedding cannot be a deterministic unitary gate. The linear embedding formula still makes mathematical sense for such a matrix.
+
+When $k=n$, there is one group and no spectator label. To test this boundary, use the explicitly defined eight-dimensional Fourier matrix
+
+$$
+F_{r,c}=\frac1{\sqrt8}\exp(2\pi i r c/8),\qquad r,c=0,\ldots,7.
+$$
+
+The inner product of two columns is a finite geometric sum: it is one for equal columns, while for different columns its ratio is a nontrivial eighth root of unity, giving $(1-1)/(1-\mathrm{ratio})=0$. Thus F is unitary. This finite check supplies the needed fact here; quantum Fourier algorithms are developed later.
+
+For support `(2,0,1)` and global input `001`, the local input is `100`, column 4. That column has entries $(-1)^r/\sqrt8$. Since the least significant local bit is global qubit 1, the global sign is $(-1)^{b_1}$. Uniform probabilities would miss an incorrect sign pattern.
+
+<span id="formula-code-4-4-full-support"></span>
+
+**Formula → full-support execution → phase-sensitive verification.** The block executes one boundary case; the complete program checks all eight basis inputs for this support.
+
+```python
+import cmath
+from math import pi
+F = torch.tensor([[cmath.exp(2j*pi*r*c/8)/sqrt(8) for c in range(8)]
+                  for r in range(8)], dtype=torch.complex128)
+state, probability = execute(F, 3, (2, 0, 1), [(1, 0), (1, 0), (0, 1)])
+expected = torch.tensor([1, 1, -1, -1, 1, 1, -1, -1],
+                         dtype=torch.complex128)/sqrt(8)
+torch.testing.assert_close(state, expected, rtol=0, atol=1e-12)
+print('full-support probabilities:', [round(p, 3) for p in probability.tolist()])
+```
+
+```text
+full-support probabilities: [0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125]
+```
+
+For any fixed spectator word t, the norm preservation argument also proves
+
+$$
+\sum_a|\psi'_{S=a,T=t}|^2=\sum_d|\psi_{S=d,T=t}|^2,
+$$
+
+where T is the complement of S in ascending global order and the subscripts denote the unique global tuple with those assignments. This preserves the spectator's computational probability, even for a general joint vector. It does not say that the joint state is unchanged, or introduce a general measurement-update theorem.
+
+<span id="formula-code-4-4-spectator"></span>
+
+**Formula → explicit spectator sum → checked result.** In the three-qubit example, qubit 1 is the spectator, so its outcome-0 positions are `000,001,100,101`.
+
+```python
+rows = (0, 1, 4, 5)
+before = sum(abs(initial[i].item())**2 for i in rows)
+for support in ((2, 0), (0, 2)):
+    after = sum(outputs[support][1][i].item() for i in rows)
+    assert abs(before-after) < 1e-12
+    print(support, f'spectator probability0: {before:.9f} -> {after:.9f}')
+```
+
+```text
+(2, 0) spectator probability0: 0.750000000 -> 0.750000000
+(0, 2) spectator probability0: 0.750000000 -> 0.750000000
+```
+
+### Validate contracts and run the complete program
+
+The [complete example](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/ordered_supports.py) uses CPython 3.12, released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU. It checks finite complex128 states, float64 probabilities and the exact singleton-batch shapes before extracting rows. Approximation and backend fallback are disabled. Floating comparisons use absolute tolerance $10^{-12}$ and zero relative tolerance, without normalizing or aligning phases.
+
+The dense mathematical reference accepts arbitrary finite local linear maps. The circuit helper separately requires a unitary local matrix. Both reject dimension, support and precision errors before dependent execution. Neither sorts a support, clips an index, silently removes duplicates or changes matrix entries to fit a requested gate.
+
+<span id="formula-code-4-4-invalid-contracts"></span>
+
+**Contract → rejected input → checked result.** A repeated support label is not a smaller gate, and a wrong matrix dimension is not repaired by resizing it.
+
+```python
+invalid = [lambda: support_tuple(3, (0, 0)),
+           lambda: support_tuple(3, (0, 3)),
+           lambda: checked_matrix(U, 1),
+           lambda: checked_matrix(2*U, 2, unitary=True)]
+rejected = 0
+for action in invalid:
+    try:
+        action()
+    except ValueError:
+        rejected += 1
+assert rejected == 4
+print('duplicate support, range, dimension, nonunitarity:', rejected, 'rejected')
+```
+
+```text
+duplicate support, range, dimension, nonunitarity: 4 rejected
+```
+
+Run from the repository root in the existing pinned environment:
+
+```bash
+python examples/foundations/ordered_supports.py
+python scripts/check_ordered_supports_prose.py
+```
+
+The complete program executes 100 circuits: two controlled-order witnesses, 88 basis/support cases for U, two complex products and eight full-support Fourier cases. The eight cumulative body fragments execute five circuits. These counts describe separate invocations. Dense global matrices are small-system references, not scalable implementation requirements. Passing these checks does not certify arbitrary register sizes, compiler routing, remote count strings, noise or hardware execution.
+
+Expected output of the complete program:
+
+```text
+Support is an ordered tuple; its first qubit is the most significant local bit.
+Input100, support(2, 0): occupied global index 4.
+Input100, support(0, 2): occupied global index 5.
+88 basis/support circuits: complex asymmetric gate;2/3qubit ordered pairs and4qubit nonadjacent supports.
+Complex input, support(2, 0): 0.349879763, 0.025120237, 0.116626588, 0.008373412, 0.349879763, 0.025120237, 0.116626588, 0.008373412.
+Complex input, support(0, 2): 0.317134573, 0.317134573, 0.105711524, 0.105711524, 0.057865427, 0.057865427, 0.019288476, 0.019288476.
+8 full-support circuits: dimension8 Fourier matrix on ordered support(2,0,1).
+Single-factor reduction, global unitarity, nonunitary reference and10invalid-input cases checked.
+100 actual CPU complex128 circuits; atol=1e-12,rtol=0; no sorting, shots, routing or hardware.
+```
+
+### Understanding checks and transfer exercises
+
+**4.4-A — Translate a new support.** In a four-qubit register, take S=`(3,1)` and input `1011`. Extract the local input bits and index. Apply C and reconstruct the global output, keeping spectators fixed.
+
+**4.4-B — Diagnose sorting.** A collaborator sorts `(2,0)` before submitting C, claiming that the same qubit set means the same operator. Give the counterexample from the section. Why would an identity matrix be a poor test of this claim?
+
+**4.4-C — Trace the sum.** For n=3, S=`(2,0)` and output b=`101`, list all four possible global input tuples in the boxed amplitude update. State which local matrix row is used. Does the input need to factor into independent qubit states?
+
+**4.4-D — Interpret a limited success.** All computational probabilities agree for two implementations of the Fourier boundary case. What additional check is required here, and which sign pattern should the declared input produce? Explain why this still does not certify the whole framework.
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** The selected bits are `(b3,b1)=(1,0)`, local `10`, index 2. C maps that to `11`, so q3 remains 1 and q1 changes to 1; q0=1 and q2=1 stay fixed. The output is `1111`, global index 15. The separate author transfer check actually executes this four-qubit case and compares every amplitude and probability; its one circuit is outside the complete program's 100-circuit count.
+
+**B.** On input `100`, support `(2,0)` produces `100` while `(0,2)` produces `101`. The identity matrix is invariant under changing local basis order and acts trivially in both cases, so agreement for that special matrix would not establish the general claim. Changing a support's order while holding a general matrix fixed changes its meaning.
+
+**C.** Output `101` has spectator q1=0 and local output `(b2,b0)=(1,1)`, row 3. Local inputs `00,01,10,11` correspond respectively to global inputs `000,100,001,101`. Therefore the output amplitude is $U_{3,0}\psi_{000}+U_{3,1}\psi_{100}+U_{3,2}\psi_{001}+U_{3,3}\psi_{101}$. This expansion applies to an arbitrary joint vector; no product-state assumption appears.
+
+**D.** Compare the full complex vector, including its declared phase convention. The expected signs in global order are `+,+,-,-,+,+,-,-`, divided by sqrt(8). Equal probabilities do not test those signs. The check still concerns particular matrices, inputs, precision and a released backend; it is not an all-size or all-backend correctness theorem.
+
+</details>
+
+### Sources, depth and next step
+
+Depth **F**: unique basis extension, ordered local-index extraction, matrix entries, the full local-input sum and the unitary/spectator arguments are derived explicitly. The assigned background locators remain Nielsen and Chuang, 10th Anniversary Edition, §2.1.7 and §4.3. The derivation here explicitly fixes the local basis and support convention. Its proof and worked translations are original, using the explained prerequisite drafts and the actual released API checked above; source-access provenance is recorded separately in the section record.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.4.json) separates author execution from pending independent mathematical, implementation and reader review. This remains a working draft. Continue, when drafted, with [4.5 Permutations, SWAP, and relabeling](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-5).

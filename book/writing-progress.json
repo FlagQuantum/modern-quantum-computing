@@ -241,6 +241,16 @@
       "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
       "record": "book/section-records/4.3.json",
       "author_execution": "passed:CPython3.12.14,FlagQuantum0.3.1,Torch2.13.0 CPUcomplex128;32basis/support cases,2complex products,7body units and separate transfer; initial stride-reference failure preserved"
+    },
+    "sec-composite-systems-tensor-products-and-qubit-ordering-4": {
+      "state": "draft",
+      "brief": "book/briefs/ch04.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+      "record": "book/section-records/4.4.json",
+      "author_execution": "passed:CPython3.12.14,FlagQuantum0.3.1,Torch2.13.0 CPUcomplex128;100circuit complete example,8cumulative formula/code/output units,phase-sensitive full-support and nonadjacent tests;separate transfer,no hardware"
     }
   },
   "existing_pilots": [
