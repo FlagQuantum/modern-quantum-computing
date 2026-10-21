@@ -1,0 +1,318 @@
+{
+  "actual_flagquantum_circuits": 6,
+  "versions": {
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0"
+  },
+  "execution": {
+    "mode": "statevector",
+    "backend": "pytorch",
+    "device": "cpu",
+    "precision": "complex128",
+    "fallback": false,
+    "approximation": false
+  },
+  "chronology": [
+    "prepare original state",
+    "U(t)",
+    "D(phi)",
+    "D(-delta)",
+    "H"
+  ],
+  "records": [
+    {
+      "phase_radians": 0.0,
+      "statevector": [
+        [
+          6.123233995736766e-17,
+          0.0
+        ],
+        [
+          1.0,
+          -5.507486642067839e-33
+        ]
+      ],
+      "probabilities": [
+        3.749399456654644e-33,
+        1.0
+      ],
+      "classical_reference_state": [
+        [
+          0.0,
+          -6.123233995736765e-17
+        ],
+        [
+          0.9999999999999998,
+          6.123233995736765e-17
+        ]
+      ],
+      "staged_statevector": [
+        [
+          2.83276944882399e-16,
+          0.0
+        ],
+        [
+          1.0,
+          -5.507486642067838e-33
+        ]
+      ],
+      "staged_probabilities": [
+        8.024582750190571e-32,
+        1.0
+      ],
+      "probability_max_absolute_error": 7.649642804525106e-32,
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "probability_dtype": "torch.float64",
+      "device": "cpu"
+    },
+    {
+      "phase_radians": 0.7225663103256524,
+      "statevector": [
+        [
+          0.1249444651847703,
+          -0.3306559326618259
+        ],
+        [
+          0.8750555348152299,
+          0.3306559326618259
+        ]
+      ],
+      "probabilities": [
+        0.12494446518477025,
+        0.8750555348152301
+      ],
+      "classical_reference_state": [
+        [
+          0.12494446518477009,
+          -0.3306559326618259
+        ],
+        [
+          0.8750555348152297,
+          0.3306559326618259
+        ]
+      ],
+      "staged_statevector": [
+        [
+          0.12494446518477038,
+          -0.3306559326618259
+        ],
+        [
+          0.8750555348152298,
+          0.33065593266182597
+        ]
+      ],
+      "staged_probabilities": [
+        0.12494446518477025,
+        0.8750555348152299
+      ],
+      "probability_max_absolute_error": 2.220446049250313e-16,
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "probability_dtype": "torch.float64",
+      "device": "cpu"
+    },
+    {
+      "phase_radians": 1.5707963267948966,
+      "statevector": [
+        [
+          0.5000000000000001,
+          -0.5
+        ],
+        [
+          0.4999999999999999,
+          0.49999999999999994
+        ]
+      ],
+      "probabilities": [
+        0.5000000000000001,
+        0.4999999999999999
+      ],
+      "classical_reference_state": [
+        [
+          0.49999999999999994,
+          -0.4999999999999999
+        ],
+        [
+          0.49999999999999983,
+          0.4999999999999999
+        ]
+      ],
+      "staged_statevector": [
+        [
+          0.5000000000000001,
+          -0.4999999999999999
+        ],
+        [
+          0.49999999999999994,
+          0.49999999999999994
+        ]
+      ],
+      "staged_probabilities": [
+        0.5000000000000001,
+        0.4999999999999999
+      ],
+      "probability_max_absolute_error": 0.0,
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "probability_dtype": "torch.float64",
+      "device": "cpu"
+    },
+    {
+      "phase_radians": 3.141592653589793,
+      "statevector": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          -0.0,
+          0.0
+        ]
+      ],
+      "probabilities": [
+        1.0,
+        0.0
+      ],
+      "classical_reference_state": [
+        [
+          0.9999999999999998,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "staged_statevector": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          -0.0,
+          0.0
+        ]
+      ],
+      "staged_probabilities": [
+        1.0,
+        0.0
+      ],
+      "probability_max_absolute_error": 0.0,
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "probability_dtype": "torch.float64",
+      "device": "cpu"
+    },
+    {
+      "phase_radians": 4.303981935418017,
+      "statevector": [
+        [
+          0.6985739453173901,
+          0.4588773128419907
+        ],
+        [
+          0.3014260546826098,
+          -0.45887731284199074
+        ]
+      ],
+      "probabilities": [
+        0.6985739453173901,
+        0.30142605468260986
+      ],
+      "classical_reference_state": [
+        [
+          0.6985739453173899,
+          0.45887731284199057
+        ],
+        [
+          0.30142605468260986,
+          -0.45887731284199057
+        ]
+      ],
+      "staged_statevector": [
+        [
+          0.6985739453173903,
+          0.45887731284199057
+        ],
+        [
+          0.3014260546826099,
+          -0.4588773128419907
+        ]
+      ],
+      "staged_probabilities": [
+        0.6985739453173904,
+        0.30142605468260986
+      ],
+      "probability_max_absolute_error": 2.220446049250313e-16,
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "probability_dtype": "torch.float64",
+      "device": "cpu"
+    },
+    {
+      "phase_radians": 6.283185307179586,
+      "statevector": [
+        [
+          6.123233995736766e-17,
+          0.0
+        ],
+        [
+          1.0,
+          -1.2246467991473535e-16
+        ]
+      ],
+      "probabilities": [
+        3.749399456654644e-33,
+        1.0
+      ],
+      "classical_reference_state": [
+        [
+          0.0,
+          6.123233995736765e-17
+        ],
+        [
+          0.9999999999999998,
+          -6.123233995736765e-17
+        ]
+      ],
+      "staged_statevector": [
+        [
+          2.83276944882399e-16,
+          0.0
+        ],
+        [
+          1.0,
+          -1.2246467991473532e-16
+        ]
+      ],
+      "staged_probabilities": [
+        8.024582750190571e-32,
+        1.0
+      ],
+      "probability_max_absolute_error": 7.649642804525106e-32,
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "probability_dtype": "torch.float64",
+      "device": "cpu"
+    }
+  ]
+}

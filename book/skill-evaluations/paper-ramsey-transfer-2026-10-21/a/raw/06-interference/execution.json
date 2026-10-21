@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-paper-transfer/packet/skills/reproduce-qubit-interference/scripts/interference.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.6437642079999932,
+  "script_sha256": "0c91a1eef5bf846ba147ff8c275587b3babe7b44a56e67db646d04bf3cb575b4",
+  "request_sha256": "a9bff812f061ac958b7e87ee78931aca275237f41b3c26e9abffbcd57e9688b5",
+  "stdout_sha256": "96052c53ab8cee1ed66d881739dbccb21d4705f4b718588c01431ed11838a558",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

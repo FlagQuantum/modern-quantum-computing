@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-paper-transfer/packet/four_skill_interference.py",
+    "--request",
+    "/private/tmp/mqc-paper-transfer/b/request.json",
+    "--output",
+    "/private/tmp/mqc-paper-transfer/b/run",
+    "--skills-root",
+    "/private/tmp/mqc-paper-transfer/packet/skills"
+  ],
+  "exit_code": 0,
+  "request_sha256": "297ed807c3988dfda2b05762f8f4462f7fc0ae8265d52cf69728de12bd9bee1b"
+}

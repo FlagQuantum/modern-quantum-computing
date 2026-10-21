@@ -1,0 +1,65 @@
+{
+  "id": "liu2016-vacuum-ramsey-transfer-v0.1.0",
+  "date": "2026-10-21",
+  "evaluator_role": "author/conductor grading independent software agents",
+  "protocol_frozen_before_dispatch": true,
+  "agents": [
+    {
+      "identity": "/root/paper_transfer_a",
+      "task": "source extraction and ideal vacuum fringe",
+      "passed": true,
+      "helper_calls": 12,
+      "actual_flagquantum_circuits": 21
+    },
+    {
+      "identity": "/root/paper_transfer_b",
+      "task": "caller-defined frequency/time/identity-phase transfer",
+      "passed": true,
+      "helper_calls": 24,
+      "actual_flagquantum_circuits": 19
+    },
+    {
+      "identity": "/root/paper_transfer_c",
+      "task": "three candidate claim audits",
+      "passed": true,
+      "claims_adjudicated": 3,
+      "helper_calls": 10,
+      "actual_flagquantum_circuits": 25
+    }
+  ],
+  "supported_tasks_passed": 2,
+  "candidate_audits_passed": 3,
+  "false_successes": 0,
+  "incorrect_abstentions": 0,
+  "blind_helper_calls": 46,
+  "blind_actual_flagquantum_circuits": 65,
+  "author_supported_cases": 2,
+  "author_negative_and_scope_cases": 6,
+  "author_helper_calls": 44,
+  "author_actual_flagquantum_circuits": 37,
+  "clarification_exchanges": 0,
+  "clarification_note": "Tasks explicitly permit a labeled compatible ideal pulse convention. All agents distinguished it from unique physical-pulse inference; no dependent unknown was guessed. This pilot does not test a live clarification exchange.",
+  "original_failure_policy": "Deliberately incorrect candidate runs are retained; verified helper execution does not accept the candidate claim. No frozen skill/runner defect or unplanned failed scientific execution found.",
+  "blind_context": "Fresh fork_turns=none; original PDF, source locators, raw task, four existing skill packages and optional frozen composition runner only. Private reference key not provided. Agent C receives ungraded candidate claims. No parent outcomes or author example supplied.",
+  "limits": [
+    "Small conductor-selected sample with source-locator hints",
+    "Logical workspace restrictions, not OS-enforced isolation",
+    "Same inherited model family; exact backend revision/token/cost unavailable",
+    "Independent agent evaluation is not human scholarly acceptance",
+    "Future replay of these now-public tasks is regression, not fresh blind evidence"
+  ],
+  "source_pdf_redistributed": false,
+  "new_skills": 0,
+  "new_textbook_sections": 0,
+  "skill_packages_changed": false,
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "gates": {
+    "G0": "protocol frozen before agent dispatch",
+    "G1": "author translation and independent software-agent evidence; scholarly acceptance pending",
+    "G2": "passed scoped numerical checks",
+    "G3": "passed scoped claim comparison; broader claims out of scope",
+    "G4": "archived evidence plus fresh regression rerun",
+    "G5": "pending independent scientific acceptance"
+  }
+}

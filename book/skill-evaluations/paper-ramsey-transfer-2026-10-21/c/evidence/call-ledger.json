@@ -1,0 +1,112 @@
+[
+  {
+    "name": "01-first-H-preparation",
+    "command": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "/private/tmp/mqc-paper-transfer/packet/skills/translate-complex-linear-algebra/scripts/algebra.py"
+    ],
+    "exit_code": 0,
+    "actual_flagquantum_circuits": 0,
+    "status": "verified",
+    "request_sha256": "62e727e1c28507d853bfc74b6405eceee58ec3e3393d96de1e4eeca3d5817088"
+  },
+  {
+    "name": "02-first-Ry-pulse",
+    "command": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "/private/tmp/mqc-paper-transfer/packet/skills/translate-unitary-evolution/scripts/unitary.py"
+    ],
+    "exit_code": 0,
+    "actual_flagquantum_circuits": 9,
+    "status": "verified",
+    "request_sha256": "2c7bb910b620be2a9f83647bb6195be448b0a5dc09f2148d3529a1e48e846c5e"
+  },
+  {
+    "name": "03-first-pulse-state",
+    "command": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "/private/tmp/mqc-paper-transfer/packet/skills/compare-quantum-states-and-operators/scripts/compare.py"
+    ],
+    "exit_code": 0,
+    "actual_flagquantum_circuits": 0,
+    "status": "within_tolerance",
+    "request_sha256": "0a9bc4f932c0de98ce3f9f2273e4416c2c1519d5a9f8f004bb63e340ffdea58b"
+  },
+  {
+    "name": "04-H-vs-Ry-operator",
+    "command": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "/private/tmp/mqc-paper-transfer/packet/skills/compare-quantum-states-and-operators/scripts/compare.py"
+    ],
+    "exit_code": 1,
+    "actual_flagquantum_circuits": 0,
+    "status": "outside_tolerance",
+    "request_sha256": "1e3288974e9b15f18e25940e764a43df625698b47d350f00555e01a7c436fc4b"
+  },
+  {
+    "name": "05-correct-analyzer-HZ",
+    "command": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "/private/tmp/mqc-paper-transfer/packet/skills/translate-complex-linear-algebra/scripts/algebra.py"
+    ],
+    "exit_code": 0,
+    "actual_flagquantum_circuits": 0,
+    "status": "verified",
+    "request_sha256": "dc38a2d3d34f39770a932252fe3e725a312b3ce0030433fdecba58cc5e0ea23f"
+  },
+  {
+    "name": "06-HZ-vs-Ry",
+    "command": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "/private/tmp/mqc-paper-transfer/packet/skills/compare-quantum-states-and-operators/scripts/compare.py"
+    ],
+    "exit_code": 0,
+    "actual_flagquantum_circuits": 0,
+    "status": "within_tolerance",
+    "request_sha256": "905ffaa4f3c1967ed5b13a8bd2b208ef290c3345770a273b44491b9c7e9aff6a"
+  },
+  {
+    "name": "07-C1-candidate-same-H",
+    "command": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "/private/tmp/mqc-paper-transfer/packet/skills/reproduce-qubit-interference/scripts/interference.py"
+    ],
+    "exit_code": 0,
+    "actual_flagquantum_circuits": 6,
+    "status": "verified",
+    "request_sha256": "22a45549defeeaa67e26585d455cbed64f209d3e8d88b38a38ad3d0b089fbbfd"
+  },
+  {
+    "name": "08-C1-corrected-analyzer",
+    "command": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "/private/tmp/mqc-paper-transfer/packet/skills/reproduce-qubit-interference/scripts/interference.py"
+    ],
+    "exit_code": 0,
+    "actual_flagquantum_circuits": 6,
+    "status": "verified",
+    "request_sha256": "75c6909eb9cea84d755d2f9153a86db709b71ebd82f8fbe89f35c47927be5e92"
+  },
+  {
+    "name": "09-C2-candidate-unchanged",
+    "command": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "/private/tmp/mqc-paper-transfer/packet/skills/reproduce-qubit-interference/scripts/interference.py"
+    ],
+    "exit_code": 0,
+    "actual_flagquantum_circuits": 2,
+    "status": "verified",
+    "request_sha256": "50bc909d670b19d62c82cc52f209f77c111eb578d74ff066156ef626ce6ccd33"
+  },
+  {
+    "name": "10-C2-converted-radians",
+    "command": [
+      "/private/tmp/mqc-writing-venv/bin/python",
+      "/private/tmp/mqc-paper-transfer/packet/skills/reproduce-qubit-interference/scripts/interference.py"
+    ],
+    "exit_code": 0,
+    "actual_flagquantum_circuits": 2,
+    "status": "verified",
+    "request_sha256": "faeaa004c1a76d4c28b02d20699ff64612212c57cc261214eaf6fac538a9dbef"
+  }
+]

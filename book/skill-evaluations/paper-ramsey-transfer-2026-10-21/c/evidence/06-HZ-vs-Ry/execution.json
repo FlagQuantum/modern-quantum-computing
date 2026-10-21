@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-paper-transfer/packet/skills/compare-quantum-states-and-operators/scripts/compare.py"
+  ],
+  "exit_code": 0,
+  "actual_flagquantum_circuits": 0,
+  "status": "within_tolerance",
+  "request_sha256": "905ffaa4f3c1967ed5b13a8bd2b208ef290c3345770a273b44491b9c7e9aff6a"
+}

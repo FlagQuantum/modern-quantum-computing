@@ -1,5 +1,7 @@
 # Modern Quantum Computing: A Formula-to-Code Approach
 
+The [scoped Ramsey paper-to-skills pilot](docs/paper-ramsey-transfer.md) tests original-source translation, explicit pulse conventions, units and claim boundaries with the four existing prototypes. Scientific acceptance remains pending.
+
 *Theory, Algorithms, and Reproducible Experiments with FlagQuantum*
 
 **Wei Liu** · [liuwei01@baai.ac.cn](mailto:liuwei01@baai.ac.cn)

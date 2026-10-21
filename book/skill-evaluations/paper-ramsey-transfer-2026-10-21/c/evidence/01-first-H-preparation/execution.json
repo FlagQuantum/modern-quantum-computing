@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-paper-transfer/packet/skills/translate-complex-linear-algebra/scripts/algebra.py"
+  ],
+  "exit_code": 0,
+  "actual_flagquantum_circuits": 0,
+  "status": "verified",
+  "request_sha256": "62e727e1c28507d853bfc74b6405eceee58ec3e3393d96de1e4eeca3d5817088"
+}

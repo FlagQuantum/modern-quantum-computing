@@ -1,0 +1,256 @@
+{
+  "status": "verified",
+  "claim_scope": "Compatible ideal convention for vacuum-WPD Ramsey fringe only, and a caller-specified new constant-generator instance. Not a whole-paper reproduction.",
+  "source": {
+    "url": "https://arxiv.org/pdf/1608.04908v1",
+    "supplied_pdf_sha256": "80f85a393022d002156381613121f09b5050bded82d13e3f9684574e88b7e134",
+    "locators": [
+      "PDF page 2, Figure 1d and caption",
+      "PDF page 2, left column vacuum-WPD Ramsey discussion following Eq. (2)",
+      "PDF page 3, opening left-column paragraph"
+    ],
+    "reading_method": "Visually inspected rendered PDF pages 2\u20133; source prose/images are not embedded in result."
+  },
+  "source_vs_new_instance_ledger": {
+    "source_supported": [
+      "Ramsey sequence with two balanced qubit operations, relative phase, cavity as WPD, final computational readout.",
+      "Vacuum WPD does not collect path information in this ideal case.",
+      "Ground-state fringe is (1-cos(phi))/2.",
+      "Experimental phase is incorporated into the first microwave pulse by adjusting its phase (page 3)."
+    ],
+    "explicit_chosen_convention": [
+      "Basis |0>=|g>, |1>=|e>; column state vectors and left matrix action.",
+      "H1=H2=Ry(pi/2)= [[1,-1],[1,1]]/sqrt(2), both full matrices including chosen phases.",
+      "H1 prepares (|g>+|e>)/sqrt(2); final H2 gives the source minus-cosine ground readout.",
+      "Skill analyzer H D(-delta), delta=pi, equals chosen H2; chronological analyzer calls D(-pi), H.",
+      "Physical pulse phases, axes and common phase are not uniquely identified by the population curve; these matrices are an explicit compatible completion.",
+      "Caller evolution is placed between preparation and analysis; that mathematical new instance is distinct from the source implementation of phase in H1."
+    ],
+    "caller_new_instance": {
+      "cyclic_frequency_hz": 125000000.0,
+      "duration_ns": 0.83,
+      "imposed_identity_phase_radians": 0.17,
+      "source_reported_parameter": false
+    },
+    "additional_chosen_checks": {
+      "extra_phase_scan_radians": [
+        0,
+        1.5707963267948966,
+        3.141592653589793,
+        4.71238898038469,
+        6.283185307179586
+      ],
+      "interpretation": "Each scan phase is added after the new fixed evolution; first point phi_extra=0 is the requested new endpoint.",
+      "coherent_control_witness": "Auxiliary mathematical phase-scope check supplied by runner; not claimed as the paper apparatus."
+    }
+  },
+  "derivation": {
+    "sign_convention": "Positive excited-amplitude relative phase means c_e/c_g gains exp(+i*omega*t); with U=exp(-iGt), G= kappa I - omega |e><e|.",
+    "cyclic_to_angular": "omega=2*pi*f; rad/s generator already equals H/hbar, so no hbar division is applied.",
+    "omega_rad_per_s": 785398163.3974483,
+    "kappa_rad_per_s": 204819277.10843375,
+    "t_seconds": 8.3e-10,
+    "relative_phase_radians": 0.6518804756198822,
+    "identity_phase_factor": [
+      0.9855847669095608,
+      -0.16918234906699603
+    ],
+    "generator_rad_per_s": [
+      [
+        [
+          204819277.10843375,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -580578886.2890146,
+          0.0
+        ]
+      ]
+    ],
+    "dimensionless_exponent": [
+      [
+        [
+          0.17,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -0.4818804756198821,
+          0.0
+        ]
+      ]
+    ],
+    "full_U": [
+      [
+        [
+          0.9855847669095608,
+          -0.16918234906699603
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.8861249905195067,
+          0.46344633041680705
+        ]
+      ]
+    ],
+    "full_preanalyzer_state": [
+      [
+        0.6969136721159132,
+        -0.11962998628234246
+      ],
+      [
+        0.6265849897752083,
+        0.32770604295374556
+      ]
+    ],
+    "full_final_state_formula": "exp(-i*0.17)/2 * [1-exp(i*(theta+phi_extra)), 1+exp(i*(theta+phi_extra))]",
+    "probabilities_formula": "[(1-cos(theta+phi_extra))/2, (1+cos(theta+phi_extra))/2]",
+    "decomposition_phase_caution": "Imposed kappa*t=0.17 is distinct from canonical ZYZ alpha and from total trace phase; retain the full generator and U."
+  },
+  "new_instance_endpoint": {
+    "additional_scan_phase_radians": 0,
+    "total_relative_phase_radians": 0.6518804756198822,
+    "reference_state": [
+      [
+        0.049729888195026994,
+        -0.31631433974190143
+      ],
+      [
+        0.9358548787145335,
+        0.14713199067490546
+      ]
+    ],
+    "scalar_reference_state": [
+      [
+        0.049729888195027036,
+        -0.31631433974190154
+      ],
+      [
+        0.9358548787145338,
+        0.14713199067490554
+      ]
+    ],
+    "reference_probabilities": [
+      0.10252782330624492,
+      0.8974721766937547
+    ],
+    "errors": {
+      "coordinate_max_absolute": 7.376145397762941e-17,
+      "probability_max_absolute": 4.163336342344337e-17,
+      "matrix_vs_scalar_coordinate": 2.3714374201337736e-16,
+      "born_vs_cosine_probability": 3.3306690738754696e-16
+    },
+    "actual_state": [
+      [
+        0.04972988819502704,
+        -0.3163143397419015
+      ],
+      [
+        0.9358548787145335,
+        0.14713199067490548
+      ]
+    ],
+    "actual_probabilities": [
+      0.10252782330624496,
+      0.8974721766937547
+    ]
+  },
+  "numerical_acceptance": {
+    "coordinate_and_probability_atol": 1e-10,
+    "rtol": 0,
+    "max_final_coordinate_error": 3.3306690738754696e-16,
+    "max_final_probability_error": 4.440892098500626e-16,
+    "max_U_error": 5.551115123125783e-17,
+    "all_pass": true,
+    "comparison_metric_conversion": {
+      "coordinate_max_absolute": 1e-10,
+      "probability_max_absolute": 1e-10,
+      "algebra_elementwise_atol": 1e-10,
+      "rtol": 0,
+      "state_l2_atol": 1.4142135623730953e-10,
+      "operator_frobenius_atol": 2e-10,
+      "reason": "Entrywise epsilon implies l2<=sqrt(d)*epsilon for d=2; matrix Frobenius<=2*epsilon. Local budgets do not imply an arbitrary accumulated-error theorem; final outputs checked separately."
+    },
+    "phase_witness": {
+      "state_ray": "within_tolerance",
+      "isolated_operator_ray": "within_tolerance",
+      "controlled_operator": "outside_tolerance",
+      "controlled_residual": 0.1559007402432861,
+      "omitted_scalar_phase_radians": 0.1559402378099411,
+      "note": "Outside controlled tolerance is an intentional witness, not failure of the repaired evolution."
+    },
+    "note": "Final coordinate max errors checked independently; Euclidean/Frobenius helper budgets are separately declared."
+  },
+  "actual_counters": {
+    "composition_runner_calls": 1,
+    "skill_helper_calls": 24,
+    "calls_by_skill": {
+      "translate-complex-linear-algebra": 7,
+      "translate-unitary-evolution": 1,
+      "compare-quantum-states-and-operators": 15,
+      "reproduce-qubit-interference": 1
+    },
+    "actual_flagquantum_circuits": 19,
+    "independently_checked_final_scan_points": 5,
+    "independent_reference_quantum_circuits": 0,
+    "circuit_breakdown": {
+      "unitary_evolution": 9,
+      "interference": 5,
+      "continuous_composition": 5
+    }
+  },
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "unsupported_broader_claims": [
+    "Unique calibrated physical pulse matrices or a uniquely inferred generator from population data.",
+    "Reproduction of cavity coherent-state/cat-state entanglement, tomography, delayed-choice postselection, decoherence, hardware fidelities, or experimental counts.",
+    "Experimental use of the caller frequency, duration, identity offset, extra scan, or auxiliary controlled witness.",
+    "Global phase observability in isolated computational populations; full coordinates retained by contract and controlled diagnostic gives a separate context.",
+    "Exact symbolic theorem or full continuous-scan experimental validation from finite samples."
+  ],
+  "evidence_files": [
+    "request.json",
+    "runner.execution.json",
+    "runner.stdout.txt",
+    "runner.stderr.txt",
+    "run/report.json",
+    "run/continuous-circuit.json",
+    "run/handoff-envelope.json",
+    "independent-reference.json",
+    "reproduce.py"
+  ],
+  "runner_sha256": "8e7f7282503840092347db97d1355b1d6312272ffcd92366405dabf7fb45df3c"
+}

@@ -33,6 +33,8 @@ The agent entry has **four independent-agent-tested prototypes** among 23 propos
 
 The [four-skill composition experiment](four-skill-integration.md) now connects energy/time conversion, phase-tracked FlagQuantum evolution, interference readout and independent comparison. It passed 18 author cases and nine independent-agent blind tasks; staged state preparation and a continuous single-circuit path are recorded separately. This is an experiment workflow, not a fifth skill or independent scientific acceptance.
 
+The [scoped Ramsey paper-to-skills pilot](paper-ramsey-transfer.md) now tests original-source translation, pulse/readout conventions and claim boundaries with the four prototypes. Its independent software-agent evidence remains separate from pending scientific acceptance.
+
 ## Educational aim
 
 Our aim is a rigorous modern classic that helps present and future learners enter quantum computing. The [editorial charter](editorial-charter.md) sets standards for depth, accessibility, review and long-term maintenance. The curriculum includes foundations, quantum information, modern algorithms, differentiable computing, fault tolerance, physical implementations, quantum compilation, simulation and reproducible research.

@@ -20,6 +20,7 @@ nav:
       - Third skill - phase-tracked evolution: unitary-evolution-skill-prototype.md
       - Fourth skill - complex linear algebra: complex-algebra-skill-prototype.md
       - Four-skill composition experiment: four-skill-integration.md
+      - Paper-to-skills Ramsey transfer: paper-ramsey-transfer.md
       - Task contract and evaluation: skill-contract.md
       - Paper verification and acceptance: paper-reproduction-standard.md
   - Writing baseline 1.0: writing-baseline.md

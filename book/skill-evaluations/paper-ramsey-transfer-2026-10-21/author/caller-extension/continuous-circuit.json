@@ -1,0 +1,73 @@
+{
+  "actual_flagquantum_circuits": 1,
+  "versions": {
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0"
+  },
+  "execution": {
+    "mode": "statevector",
+    "backend": "pytorch",
+    "device": "cpu",
+    "precision": "complex128",
+    "fallback": false,
+    "approximation": false
+  },
+  "chronology": [
+    "prepare original state",
+    "U(t)",
+    "D(phi)",
+    "D(-delta)",
+    "H"
+  ],
+  "records": [
+    {
+      "phase_radians": 0.0,
+      "statevector": [
+        [
+          0.04972988819502704,
+          -0.3163143397419015
+        ],
+        [
+          0.9358548787145335,
+          0.14713199067490548
+        ]
+      ],
+      "probabilities": [
+        0.10252782330624496,
+        0.8974721766937547
+      ],
+      "classical_reference_state": [
+        [
+          0.04972988819502705,
+          -0.3163143397419015
+        ],
+        [
+          0.9358548787145333,
+          0.14713199067490554
+        ]
+      ],
+      "staged_statevector": [
+        [
+          0.04972988819502704,
+          -0.3163143397419015
+        ],
+        [
+          0.9358548787145335,
+          0.14713199067490548
+        ]
+      ],
+      "staged_probabilities": [
+        0.10252782330624496,
+        0.8974721766937547
+      ],
+      "probability_max_absolute_error": 0.0,
+      "shape": [
+        1,
+        2
+      ],
+      "state_dtype": "torch.complex128",
+      "probability_dtype": "torch.float64",
+      "device": "cpu"
+    }
+  ]
+}

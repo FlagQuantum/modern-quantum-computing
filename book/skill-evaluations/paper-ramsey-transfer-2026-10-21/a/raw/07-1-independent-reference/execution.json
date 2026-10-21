@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-paper-transfer/packet/skills/compare-quantum-states-and-operators/scripts/compare.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.018344916999922134,
+  "script_sha256": "79e6f8d4ff582dfce67845ad284ac5c675778cb32a2ed0203f60f991a0e0e2ba",
+  "request_sha256": "d217423fe39a0090dfa997df7e098f06749d4555d9eba93dfe6ca213036c2a46",
+  "stdout_sha256": "f77f4e8c6fde6a52427f9414fd69ecb8d7fcc2a97c3c66e364cd2a55c0fd0984",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

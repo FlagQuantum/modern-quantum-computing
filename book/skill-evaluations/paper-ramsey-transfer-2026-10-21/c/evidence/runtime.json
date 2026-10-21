@@ -1,0 +1,10 @@
+{
+  "implementation": "CPython",
+  "python": "3.12.14",
+  "packages": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "torch": "2.13.0",
+    "flagquantum": "0.3.1"
+  }
+}

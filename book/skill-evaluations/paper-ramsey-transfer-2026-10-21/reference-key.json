@@ -1,0 +1,25 @@
+{
+  "main_grid_pi": [
+    0,
+    0.23,
+    0.5,
+    1,
+    1.37,
+    2
+  ],
+  "main_target": "(1-cos(pi*x))/2",
+  "readout_convention": "H2=H Z; state after H1=(1,1)/sqrt2; literal H2=H yields opposite fringe; compatible ideal completion, not uniquely inferred physical pulse",
+  "basis": [
+    "g=0",
+    "e=1"
+  ],
+  "phase_units": "x is phi/pi, not radians",
+  "extension": {
+    "cyclic_frequency_Hz": 125000000.0,
+    "duration_ns": 0.83,
+    "identity_offset_rad_s": 204819277.10843375,
+    "generator": "c I - 2pi f |1><1|",
+    "phi": 0.6518804756198822
+  },
+  "bounds": "eps=1e-10 rtol=0, retain full coordinates; distinguish source claim/caller extension/full hardware"
+}

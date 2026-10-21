@@ -1,0 +1,36 @@
+{
+  "experiment": "liu2016-vacuum-ramsey-transfer",
+  "source": "https://arxiv.org/pdf/1608.04908v1",
+  "status": "verified_in_declared_ideal_scope",
+  "source_target": "vacuum-WPD ideal ground-state probability only",
+  "basis": [
+    "g=0",
+    "e=1"
+  ],
+  "pulse_convention": "H1=Ry(pi/2), H2=Ry(pi/2)=H Z; chosen compatible ideal completion, not uniquely reconstructed laboratory pulses",
+  "source_axis": [
+    0,
+    0.23,
+    0.5,
+    1,
+    1.37,
+    2
+  ],
+  "probabilities_g": [
+    3.749399456654644e-33,
+    0.12494446518477025,
+    0.5000000000000001,
+    1.0,
+    0.6985739453173901,
+    3.749399456654644e-33
+  ],
+  "caller_extension_probability_g": 0.10252782330624496,
+  "worst_coordinate_or_probability_error": 3.3306690738754696e-16,
+  "actual_flagquantum_circuits": 32,
+  "helper_calls": 39,
+  "quantum_cavity_simulated": false,
+  "hardware_data_compared": false,
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "new_skills": 0
+}

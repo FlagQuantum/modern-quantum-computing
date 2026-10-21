@@ -70,6 +70,7 @@ jobs:
       - run: python scripts/check_algebra_retest_evidence.py
       - run: python scripts/check_four_skill_integration.py
       - run: python scripts/check_four_skill_blind_evidence.py
+      - run: python scripts/check_paper_ramsey_transfer.py
       - run: python examples/measurement.py
       - run: python examples/gradients.py
       - run: python examples/omalley2016/h2_vqe_model.py

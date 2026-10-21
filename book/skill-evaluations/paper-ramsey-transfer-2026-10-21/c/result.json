@@ -1,0 +1,339 @@
+{
+  "status": "completed",
+  "tolerance": {
+    "atol": 1e-10,
+    "rtol": 0,
+    "probabilities": "maximum absolute; no relative allowance",
+    "comparison_helper": "Euclidean/Frobenius absolute 1e-10, not entrywise substitution"
+  },
+  "source": {
+    "url": "https://arxiv.org/pdf/1608.04908v1",
+    "local_path": "/private/tmp/mqc-paper-transfer/packet/paper.pdf",
+    "sha256": "80f85a393022d002156381613121f09b5050bded82d13e3f9684574e88b7e134",
+    "pages": [
+      2,
+      3
+    ],
+    "inspection": "Extracted complete relevant pages and visually inspected both rendered pages. No paper text copied into result artifact.",
+    "locators": {
+      "C1": "p.2, left column Ramsey discussion, paragraph before Eq.(2) and vacuum-WPD paragraph after Eq.(2); p.3 opening continuation about pulse phase",
+      "C2": "p.3, Fig.2 panels (a),(b), horizontal phase axes labelled phi (pi)",
+      "C3": "p.2 Eqs.(2)-(4); p.3 Fig.2 caption and cavity tomography discussion / Fig.3 / conditional post-selection discussion"
+    }
+  },
+  "runtime": {
+    "implementation": "CPython",
+    "python": "3.12.14",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "torch": "2.13.0",
+      "flagquantum": "0.3.1"
+    }
+  },
+  "derivation": {
+    "basis": "g=0, e=1 is an explicit audit convention, not independently fixed by named pulse labels",
+    "D": "diag(1,exp(i phi)); vacuum coupling acts as identity",
+    "candidate": "H D(phi) H |0> = ((1+exp(i phi))/2,(1-exp(i phi))/2); Pg=(1+cos phi)/2",
+    "paper_consistent_example": "Ry(pi/2) D(phi) Ry(pi/2)|0> = ((1-exp(i phi))/2,(1+exp(i phi))/2); Pg=(1-cos phi)/2",
+    "pulse_matrices": {
+      "standard_H": [
+        [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            -0.7071067811865475,
+            0.0
+          ]
+        ]
+      ],
+      "paper_consistent_Ry_pi_over_2": [
+        [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            -0.7071067811865475,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      ],
+      "second_analyzer_equivalence": "Ry(pi/2)=H Z. In supplied interference helper use delta=pi, meaning D(-pi) then H. First pulse may be H or Ry(pi/2) on |0>, but these are not equal operators."
+    },
+    "limits": "This supplies one consistent ideal convention; the quoted text does not uniquely specify the full microwave pulse matrices, axes, rotating frame, or phases."
+  },
+  "claims": {
+    "C1": {
+      "disposition": "partially supported; compound claim rejected",
+      "supported": "The first-pulse plus superposition is explicitly stated. g=0 is a legitimate declared convention.",
+      "rejected": "Using standard H for both named pulses and the stated plus phase with g=0 yields the complementary ground-state fringe.",
+      "counterexample": {
+        "phase_radians": 0,
+        "candidate_Pg": 1.0,
+        "corrected_Pg": 3.749399456654644e-33,
+        "paper_Pg": 0.0,
+        "candidate_absolute_error": 1.0,
+        "corrected_absolute_error": 3.749399456654644e-33
+      },
+      "fresh_candidate_helper_status": "verified",
+      "fresh_corrected_helper_status": "verified",
+      "claim_accepted": false,
+      "records": [
+        {
+          "phase_radians": 0,
+          "candidate_Pg": 1.0,
+          "corrected_Pg": 3.749399456654644e-33,
+          "paper_Pg": 0.0,
+          "candidate_absolute_error": 1.0,
+          "corrected_absolute_error": 3.749399456654644e-33
+        },
+        {
+          "phase_radians": 1.5707963267948966,
+          "candidate_Pg": 0.5000000000000001,
+          "corrected_Pg": 0.5000000000000001,
+          "paper_Pg": 0.49999999999999994,
+          "candidate_absolute_error": 1.6653345369377348e-16,
+          "corrected_absolute_error": 1.6653345369377348e-16
+        },
+        {
+          "phase_radians": 3.141592653589793,
+          "candidate_Pg": 3.749399456654644e-33,
+          "corrected_Pg": 1.0,
+          "paper_Pg": 1.0,
+          "candidate_absolute_error": 1.0,
+          "corrected_absolute_error": 0.0
+        },
+        {
+          "phase_radians": 6.283185307179586,
+          "candidate_Pg": 1.0,
+          "corrected_Pg": 3.749399456654644e-33,
+          "paper_Pg": 0.0,
+          "candidate_absolute_error": 1.0,
+          "corrected_absolute_error": 3.749399456654644e-33
+        },
+        {
+          "phase_radians": 0.7225663103256524,
+          "candidate_Pg": 0.8750555348152299,
+          "corrected_Pg": 0.12494446518477025,
+          "paper_Pg": 0.1249444651847702,
+          "candidate_absolute_error": 0.7501110696304597,
+          "corrected_absolute_error": 4.163336342344337e-17
+        },
+        {
+          "phase_radians": 4.303981935418017,
+          "candidate_Pg": 0.30142605468260975,
+          "corrected_Pg": 0.6985739453173901,
+          "paper_Pg": 0.6985739453173901,
+          "candidate_absolute_error": 0.3971478906347804,
+          "corrected_absolute_error": 0.0
+        }
+      ],
+      "operator_comparison_status": "outside_tolerance",
+      "operator_residual": 1.9999999999999998
+    },
+    "C2": {
+      "disposition": "rejected",
+      "reason": "Figure coordinates are phi/pi (axis phi (pi)), so phi_radians=pi*x. A phase plot does not imply numeric axis values already in radians.",
+      "source_x": [
+        0.23,
+        1.37
+      ],
+      "converted_radians": [
+        0.7225663103256524,
+        4.303981935418017
+      ],
+      "records": [
+        {
+          "figure_x_pi_units": 0.23,
+          "required_phase_radians": 0.7225663103256524,
+          "candidate_input_radians": 0.23,
+          "candidate_Pg": 0.013166802497312594,
+          "converted_Pg": 0.12494446518477025,
+          "paper_Pg": 0.1249444651847702,
+          "absolute_discrepancy": 0.11177766268745765
+        },
+        {
+          "figure_x_pi_units": 1.37,
+          "required_phase_radians": 4.303981935418017,
+          "candidate_input_radians": 1.37,
+          "candidate_Pg": 0.4002751395012135,
+          "converted_Pg": 0.6985739453173901,
+          "paper_Pg": 0.6985739453173901,
+          "absolute_discrepancy": 0.2982988058161766
+        }
+      ],
+      "claim_accepted": false,
+      "fresh_candidate_helper_status": "verified",
+      "fresh_corrected_helper_status": "verified"
+    },
+    "C3": {
+      "disposition": "rejected as unsupported overreach",
+      "claim_accepted": false,
+      "verified_scope": "Ideal pure single-qubit vacuum-WPD Ramsey limit only, under the explicitly chosen pulse/readout convention.",
+      "countermodel": "A bare isolated qubit with the same preparation, phase and analyzer yields the identical ideal vacuum fringe without any cavity, eraser, noise model or hardware. The matched scalar curve cannot identify those extra mechanisms.",
+      "missing_required_evidence": [
+        "Joint qubit-cavity Hilbert-space state and entangling interaction, coherent/cat-state preparation, finite overlaps and phase conventions",
+        "Specified erasure/post-selection measurement instrument, outcomes and conditional probabilities; a pure qubit phase scan contains no eraser",
+        "Open-system dynamics and independently specified decoherence/Kerr parameters, appropriate mixed-state/channel solver and convergence checks",
+        "Actual experimental data, acquisition/measurement-error model and statistical comparison; simulator probabilities are not hardware counts"
+      ],
+      "source_specific_scope": "Fig.2 distinguishes symbols as measured data and solid lines as simulations including decoherence and Kerr imperfections. Fig.3 addresses cavity tomography; its evidence cannot be inferred from a vacuum statevector scan."
+    }
+  },
+  "missing_assumptions": [
+    "Unique physical pulse matrices are not fixed by the name Hadamard: choose/calibrate axes, phase reference and readout mapping before claiming a physical implementation.",
+    "Figure x must be multiplied by pi; retained source coordinates and converted values are recorded.",
+    "A mathematically separated phase D(phi) represents the described tunable relative phase; p.3 says the actual experimental phase is incorporated in H1.",
+    "No time, generator, hbar, cavity parameters or noise rates were invented for a physical evolution claim."
+  ],
+  "acceptance_separation": "All verified helper runs establish their explicitly declared ideal computations. Candidate claims were evaluated separately against the paper and fresh numerical results; verified candidate helper status is not candidate scientific acceptance.",
+  "actual_counts": {
+    "helper_calls": 10,
+    "flagquantum_circuits": 25,
+    "classical_algebra_calls": 2,
+    "comparison_calls": 3,
+    "unitary_helper_calls": 1,
+    "interference_helper_calls": 4,
+    "hardware_executions": 0,
+    "shots": 0,
+    "noise_simulations": 0,
+    "joint_qubit_cavity_simulations": 0,
+    "human_scientific_reviews": 0
+  },
+  "calls": [
+    {
+      "name": "01-first-H-preparation",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-paper-transfer/packet/skills/translate-complex-linear-algebra/scripts/algebra.py"
+      ],
+      "exit_code": 0,
+      "actual_flagquantum_circuits": 0,
+      "status": "verified",
+      "request_sha256": "62e727e1c28507d853bfc74b6405eceee58ec3e3393d96de1e4eeca3d5817088"
+    },
+    {
+      "name": "02-first-Ry-pulse",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-paper-transfer/packet/skills/translate-unitary-evolution/scripts/unitary.py"
+      ],
+      "exit_code": 0,
+      "actual_flagquantum_circuits": 9,
+      "status": "verified",
+      "request_sha256": "2c7bb910b620be2a9f83647bb6195be448b0a5dc09f2148d3529a1e48e846c5e"
+    },
+    {
+      "name": "03-first-pulse-state",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-paper-transfer/packet/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "actual_flagquantum_circuits": 0,
+      "status": "within_tolerance",
+      "request_sha256": "0a9bc4f932c0de98ce3f9f2273e4416c2c1519d5a9f8f004bb63e340ffdea58b"
+    },
+    {
+      "name": "04-H-vs-Ry-operator",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-paper-transfer/packet/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 1,
+      "actual_flagquantum_circuits": 0,
+      "status": "outside_tolerance",
+      "request_sha256": "1e3288974e9b15f18e25940e764a43df625698b47d350f00555e01a7c436fc4b"
+    },
+    {
+      "name": "05-correct-analyzer-HZ",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-paper-transfer/packet/skills/translate-complex-linear-algebra/scripts/algebra.py"
+      ],
+      "exit_code": 0,
+      "actual_flagquantum_circuits": 0,
+      "status": "verified",
+      "request_sha256": "dc38a2d3d34f39770a932252fe3e725a312b3ce0030433fdecba58cc5e0ea23f"
+    },
+    {
+      "name": "06-HZ-vs-Ry",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-paper-transfer/packet/skills/compare-quantum-states-and-operators/scripts/compare.py"
+      ],
+      "exit_code": 0,
+      "actual_flagquantum_circuits": 0,
+      "status": "within_tolerance",
+      "request_sha256": "905ffaa4f3c1967ed5b13a8bd2b208ef290c3345770a273b44491b9c7e9aff6a"
+    },
+    {
+      "name": "07-C1-candidate-same-H",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-paper-transfer/packet/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "exit_code": 0,
+      "actual_flagquantum_circuits": 6,
+      "status": "verified",
+      "request_sha256": "22a45549defeeaa67e26585d455cbed64f209d3e8d88b38a38ad3d0b089fbbfd"
+    },
+    {
+      "name": "08-C1-corrected-analyzer",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-paper-transfer/packet/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "exit_code": 0,
+      "actual_flagquantum_circuits": 6,
+      "status": "verified",
+      "request_sha256": "75c6909eb9cea84d755d2f9153a86db709b71ebd82f8fbe89f35c47927be5e92"
+    },
+    {
+      "name": "09-C2-candidate-unchanged",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-paper-transfer/packet/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "exit_code": 0,
+      "actual_flagquantum_circuits": 2,
+      "status": "verified",
+      "request_sha256": "50bc909d670b19d62c82cc52f209f77c111eb578d74ff066156ef626ce6ccd33"
+    },
+    {
+      "name": "10-C2-converted-radians",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "/private/tmp/mqc-paper-transfer/packet/skills/reproduce-qubit-interference/scripts/interference.py"
+      ],
+      "exit_code": 0,
+      "actual_flagquantum_circuits": 2,
+      "status": "verified",
+      "request_sha256": "faeaa004c1a76d4c28b02d20699ff64612212c57cc261214eaf6fac538a9dbef"
+    }
+  ],
+  "scientific_acceptance": "No claim of human scientific review or whole-paper reproduction."
+}

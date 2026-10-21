@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-paper-transfer/packet/skills/reproduce-qubit-interference/scripts/interference.py"
+  ],
+  "exit_code": 0,
+  "actual_flagquantum_circuits": 2,
+  "status": "verified",
+  "request_sha256": "50bc909d670b19d62c82cc52f209f77c111eb578d74ff066156ef626ce6ccd33"
+}

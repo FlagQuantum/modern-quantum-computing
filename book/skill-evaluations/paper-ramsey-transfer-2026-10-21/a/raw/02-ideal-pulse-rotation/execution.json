@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-paper-transfer/packet/skills/translate-unitary-evolution/scripts/unitary.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.6900707080003485,
+  "script_sha256": "a104869ad1feb3aae4b5bb1a0201247a82837cbaf677f1e42715bdcff85bb0f5",
+  "request_sha256": "2c7bb910b620be2a9f83647bb6195be448b0a5dc09f2148d3529a1e48e846c5e",
+  "stdout_sha256": "cb704713c2b83d48d962cc87cbabbc9a4b51a7980a064bc1995ff10520e65f5c",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/compare-quantum-states-and-operators/scripts/compare.py"
+  ],
+  "exit_code": 0,
+  "request_sha256": "dd5bc7fc8bdc2246d83aea4731b8a4171b5605b5cf38f9df3954d2f7d4a90604",
+  "source_request_sha256": "ac6dd184488d2db58a4528e1f0b98d1fa58a628b824c8a49962e76c177f01af1",
+  "skill": "compare-quantum-states-and-operators",
+  "request_path": "11-2-continuous-vs-staged/request.json"
+}

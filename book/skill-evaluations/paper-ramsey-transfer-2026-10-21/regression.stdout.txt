@@ -1,0 +1,1 @@
+{"archived_blind_task_dispositions": 5, "fresh_example_circuits": 32, "fresh_archived_helper_circuits": 59, "new_blind_tests": 0, "scientific_acceptance": "pending"}

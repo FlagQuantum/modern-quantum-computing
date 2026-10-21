@@ -1,0 +1,18 @@
+{
+  "executable": "/private/tmp/mqc-writing-venv/bin/python",
+  "implementation": "cpython",
+  "python": "3.12.14",
+  "full_version": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "torch": "2.13.0",
+  "flagquantum": "0.3.1",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "execution": {
+    "allow_approximate": false,
+    "allow_backend_fallback": false,
+    "backend": "pytorch",
+    "device": "cpu",
+    "mode": "statevector",
+    "precision": "complex128"
+  }
+}

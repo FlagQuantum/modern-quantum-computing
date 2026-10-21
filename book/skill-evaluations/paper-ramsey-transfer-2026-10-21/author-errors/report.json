@@ -1,0 +1,55 @@
+{
+  "cases": [
+    {
+      "case": "literal-H2",
+      "candidate_origin": "deliberately constructed incorrect interpretation, not paper data",
+      "helper_status": "verified",
+      "candidate_disposition": "inconsistent_with_declared_target",
+      "max_probability_error": 0.7501110696304597,
+      "actual_flagquantum_circuits": 2
+    },
+    {
+      "case": "axis-as-radians",
+      "candidate_origin": "deliberately constructed incorrect interpretation, not paper data",
+      "helper_status": "verified",
+      "candidate_disposition": "inconsistent_with_declared_target",
+      "max_probability_error": 0.2982988058161766,
+      "actual_flagquantum_circuits": 2
+    },
+    {
+      "case": "Hz-as-angular",
+      "candidate_origin": "deliberately constructed incorrect interpretation, not paper data",
+      "helper_status": "verified",
+      "candidate_disposition": "inconsistent_with_declared_target",
+      "max_probability_error": 0.09983922067034658,
+      "actual_flagquantum_circuits": 1
+    },
+    {
+      "case": "identity-phase-coordinates",
+      "candidate_origin": "synthetic phase-stripped vector derived from actual fresh evolution output",
+      "helper_status": "outside_tolerance",
+      "decision_residual": 0.16979536560483208,
+      "candidate_disposition": "rejected_for_full_coordinates",
+      "actual_flagquantum_circuits": 0
+    },
+    {
+      "case": "identity-phase-global-phase",
+      "candidate_origin": "synthetic phase-stripped vector derived from actual fresh evolution output",
+      "helper_status": "within_tolerance",
+      "decision_residual": 1.2794688166302258e-16,
+      "candidate_disposition": "same_isolated_ray_only",
+      "actual_flagquantum_circuits": 0
+    },
+    {
+      "case": "whole-paper-hardware-claim",
+      "candidate_origin": "deliberately constructed scope overclaim",
+      "candidate_disposition": "out_of_scope",
+      "reason": "No cavity Hilbert space, noise, calibration, shot data or experimental uncertainty in this ideal claim run",
+      "actual_flagquantum_circuits": 0
+    }
+  ],
+  "passed": 6,
+  "actual_flagquantum_circuits": 5,
+  "helper_calls": 5,
+  "scientific_acceptance": "pending"
+}

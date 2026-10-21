@@ -1,0 +1,4 @@
+source p_g: 0.000000000 0.124944465 0.500000000 1.000000000 0.698573945 0.000000000
+caller extension p_g: 0.102527823
+actual FlagQuantum circuits: 32
+scientific acceptance: pending

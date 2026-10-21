@@ -1,0 +1,6 @@
+{
+  "command": ["/private/tmp/mqc-writing-venv/bin/python", "/private/tmp/mqc-paper-transfer/c/audit.py"],
+  "stdout_path": "audit.stdout.txt",
+  "stderr_path": "audit.stderr.txt",
+  "exit_code": 0
+}

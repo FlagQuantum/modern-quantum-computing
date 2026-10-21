@@ -1,0 +1,59 @@
+{
+  "basis": [
+    "0=g",
+    "1=e"
+  ],
+  "initial_state": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0
+    ]
+  ],
+  "chronology": [
+    "A",
+    "D(phi)",
+    "A"
+  ],
+  "pulse_matrix": [
+    [
+      [
+        0.7071067811865475,
+        0.0
+      ],
+      [
+        -0.7071067811865475,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.7071067811865475,
+        0.0
+      ],
+      [
+        0.7071067811865475,
+        0.0
+      ]
+    ]
+  ],
+  "phase_radians": [
+    0.0,
+    0.7225663103256524,
+    1.5707963267948966,
+    3.141592653589793,
+    4.303981935418017,
+    6.283185307179586
+  ],
+  "execution": {
+    "allow_approximate": false,
+    "allow_backend_fallback": false,
+    "backend": "pytorch",
+    "device": "cpu",
+    "mode": "statevector",
+    "precision": "complex128"
+  }
+}

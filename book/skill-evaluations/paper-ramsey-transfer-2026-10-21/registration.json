@@ -1,0 +1,49 @@
+{
+  "id": "liu2016-vacuum-ramsey-transfer-v0.1.0",
+  "base_commit": "921bb3325d3e0445a744df24cc0194dca1a61cea",
+  "source": {
+    "url": "https://arxiv.org/pdf/1608.04908v1",
+    "sha256": "80f85a393022d002156381613121f09b5050bded82d13e3f9684574e88b7e134",
+    "locators": "PDF pp.2\u20133, Fig.1d, vacuum-WPD paragraph after Eq.(2); Fig.2 phase-axis label",
+    "redistribution": "Original source is kept in local evaluation packet only; public evidence contains original analysis, locators and hashes."
+  },
+  "frozen_reference_sha256": "a65c43f51d3c5231f53b6e37ef994b5d8bbb62ffab154040127da37f153ebace",
+  "packet_sha256": {
+    "four_skill_interference.py": "8e7f7282503840092347db97d1355b1d6312272ffcd92366405dabf7fb45df3c",
+    "paper.pdf": "80f85a393022d002156381613121f09b5050bded82d13e3f9684574e88b7e134",
+    "skills/compare-quantum-states-and-operators/SKILL.md": "8276bccbad28dcb325f8758717b3236c7af71f6e97b407a9be935b7cc6d37b12",
+    "skills/compare-quantum-states-and-operators/agents/openai.yaml": "e0c97d1b156907457229fc1cb122fedfa43558a12fe2bf4cdb1796d0459760b3",
+    "skills/compare-quantum-states-and-operators/references/contract.md": "0245b1af219db63a8ad0fbd7091fc673ac20ebf39d2c62c5f8548a39c62d115c",
+    "skills/compare-quantum-states-and-operators/scripts/compare.py": "79e6f8d4ff582dfce67845ad284ac5c675778cb32a2ed0203f60f991a0e0e2ba",
+    "skills/reproduce-qubit-interference/SKILL.md": "dd97d0d0bf068caafbfa863d90c4332ca4de0d99d5da54f8cb9a61b871f23f9b",
+    "skills/reproduce-qubit-interference/agents/openai.yaml": "7438e81be272c1c1c3f4679466f022b9d5c9f49d3aea31e2f3eb5e6ada87d2bc",
+    "skills/reproduce-qubit-interference/references/contract.md": "44b01449fa1453ee5c432de41a698daab680e72cc69efbd0ebfddb1adcea18bf",
+    "skills/reproduce-qubit-interference/scripts/interference.py": "0c91a1eef5bf846ba147ff8c275587b3babe7b44a56e67db646d04bf3cb575b4",
+    "skills/translate-complex-linear-algebra/SKILL.md": "8d2a9ac980dd88cc27ccb3e6a84775e909d3b566db65b6d6fe6fcfbb9f336697",
+    "skills/translate-complex-linear-algebra/agents/openai.yaml": "475441448d646757542dbeb44328fa12cc46ecef19cde7594c2dfc4bbdb22332",
+    "skills/translate-complex-linear-algebra/references/contract.md": "e2e787a5c206661f6ee0ff772b24db8c690a8014620d5969dedf6436624599e4",
+    "skills/translate-complex-linear-algebra/scripts/algebra.py": "0a589f15972f342ca28016db269342d10bda15249ef43bc35eb406f0d1068983",
+    "skills/translate-unitary-evolution/SKILL.md": "285f31e779215c540ece3c24101c429cd184abafe23db7cbeb4b01d95a2df84c",
+    "skills/translate-unitary-evolution/agents/openai.yaml": "a369b6988d07e068ad3258cab3f088e971e72709c3a29db71008e71b06e141f1",
+    "skills/translate-unitary-evolution/references/contract.md": "da9a94ec492273b7e80f9441250cde509f657d550aa5ce10454bcfe0899149aa",
+    "skills/translate-unitary-evolution/scripts/unitary.py": "a104869ad1feb3aae4b5bb1a0201247a82837cbaf677f1e42715bdcff85bb0f5"
+  },
+  "task_sha256": {
+    "a": "d5eae58ab3b77cd2958fc52f9e419226ee329c620a81d946cfb85053ef09808c",
+    "b": "4cde75ae0d97169e2fbf53b49b66bea02ac92d8616a0aedd2835c0c6910b7b06",
+    "c": "c4d2201af92e0fa4cc4a992285d05dc7111d0157e67194b43bababd876addc07"
+  },
+  "gates": [
+    "source mapping and explicit compatible convention",
+    "four skills actually used across full supported tasks",
+    "correct phase-axis/Hz/ns conversions",
+    "full-phase coordinates independently checked",
+    "each error claim adjudicated separately",
+    "no unqualified whole-paper/hardware acceptance"
+  ],
+  "false_successes_allowed": 0,
+  "independent_scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "new_skills": 0,
+  "new_textbook_sections": 0
+}

@@ -1,0 +1,8 @@
+{
+  "command": ["/private/tmp/mqc-writing-venv/bin/python", "/private/tmp/mqc-paper-transfer/a/reproduce.py"],
+  "stdout_path": "workflow.stdout.txt",
+  "stderr_path": "workflow.stderr.txt",
+  "exit_code": 0,
+  "stdin": null,
+  "exit_evidence": "exec session 67406 completed with exit_code 0"
+}

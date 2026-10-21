@@ -1,0 +1,43 @@
+{
+  "runtime": "CPython 3.12.14; FlagQuantum 0.3.1; Torch 2.13.0; macOS ARM64 CPU complex128",
+  "prose_expected_stdout": "Exact equality with actual author CLI stdout",
+  "fresh_regression": {
+    "archived_blind_task_dispositions": 5,
+    "fresh_example_circuits": 32,
+    "fresh_archived_helper_circuits": 59,
+    "new_blind_tests": 0,
+    "scientific_acceptance": "pending"
+  },
+  "strict_mkdocs": "passed",
+  "rendered_links": "69 pages, all local links/fragments resolve; unique IDs",
+  "visual_formula_review": {
+    "method": "Actual in-app browser screenshots after strict build",
+    "inspected": [
+      "canonical H and D matrices",
+      "compatible Ry=HZ matrices and square roots",
+      "complex output column vector",
+      "Born probability and analyzer mapping",
+      "2pi frequency conversion, projector and scalar identity phase"
+    ],
+    "result": "No garbling, clipping or unexpected literal TeX in inspected formula regions"
+  },
+  "conductor_adapter_history": [
+    {
+      "stage": "first regression checker integration",
+      "result": "failed before helper replay",
+      "reason": "C1 raw verdict is partially supported; compound claim rejected, while initial adapter incorrectly required the string to begin rejected",
+      "repair": "Check retained compound rejection and independently grade correct preparation and wrong full-H statement; no raw agent evidence, task, skill or runner changed"
+    }
+  ],
+  "source_access_note": "System pdftotext unavailable; original PDF page was rendered with installed pdftoppm and visually inspected. Temporary HTTP server required sandbox escalation. Neither affects scientific execution.",
+  "unchanged": [
+    "all four skill packages",
+    "frozen composition runner",
+    "Writing Baseline 1.0",
+    "book/writing-progress.json",
+    "all 435 writing-queue entries"
+  ],
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "source_pdf_or_images_uploaded": false
+}
