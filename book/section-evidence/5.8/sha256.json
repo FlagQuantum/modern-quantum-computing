@@ -1,0 +1,22 @@
+{
+  "examples/foundations/circuit_rewrites.py": "c60a62f54782e6debd8ad0301cd6ec68e2bb038ea0cda691cb97251f5f86a9e1",
+  "scripts/check_circuit_rewrites_prose.py": "0f6a42273115902f29b39638d5d14905b6f7e7d1ff99bed530d7184c398cbd2e",
+  "book/section-records/5.8.json": "34b0134b2b3ffa0df46edbf085723d8b932f5a5d8169f1c47595c23fb345c1e8",
+  "book/section-evidence/5.8/api-inspection.json": "9b344f722a2a7c649fe18dc68ce3ba743677b75bcc7b02d0b3e1350d14b379e3",
+  "book/section-evidence/5.8/body-assembly.stdout.txt": "d1e05bc10b1ecc01a93a5db66bb64999517e6f48548ba0c93878d1bb3ee670aa",
+  "book/section-evidence/5.8/build.stderr.txt": "9fe4c25a460e6e27f3dc3c6d97540b47b6c6e25ce8c7b2540f97ad8341a18ffc",
+  "book/section-evidence/5.8/build.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.8/complete.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.8/complete.stdout.txt": "02b32afb459e84b29330a453638f391c82a69dd759d666a1c5b5c7481f3c1c52",
+  "book/section-evidence/5.8/links.stdout.txt": "8b952c3a7239e1e078aa26f4587b3a8840fcec9a0df3b5cf8409a3ad31bf3c99",
+  "book/section-evidence/5.8/prose.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.8/prose.stdout.txt": "0b5f57448794c28aa3423a24b1f38bf654601b8e7577f203040983c54c5ae0d1",
+  "book/section-evidence/5.8/regression56.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.8/regression56.stdout.txt": "efd051fc1342f7807b2c0450a420d71e689df93637992d65b73f3fe51a212783",
+  "book/section-evidence/5.8/regression57.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.8/regression57.stdout.txt": "2edaac1296d12dde9b36a9e13a690b626cad75923b9903f766fa969d9031a219",
+  "book/section-evidence/5.8/transfer.py": "862e5aac1c857023c703357d02e23e33073bd83a694ceba54b0921c4fbdde9b3",
+  "book/section-evidence/5.8/transfer.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.8/transfer.stdout.txt": "4cc1a364ca789b20a6aafa2353ab4de457f79fc7b478fc85c6880dc60fb7bcff",
+  "book/section-evidence/5.8/validation.json": "b971be166c8543cb80987f899937e81e8c7bbb01d1589496c989da97f1e36fa9"
+}

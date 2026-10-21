@@ -1,0 +1,19 @@
+{
+  "section": "5.8",
+  "state": "author-verified draft",
+  "complete_circuits": 355,
+  "body_fragments": 8,
+  "body_circuits": 21,
+  "separate_transfer_circuits": 36,
+  "execution_ledger_total": 788,
+  "invalid_contracts": 10,
+  "example_execution_failures": "None",
+  "regressions": "5.6/5.7scopedbodyandfullpassed",
+  "strict_build": "passed",
+  "links": "70renderedpages;alllocal links/fragmentsresolve;IDsunique",
+  "formula_display": "ActualIAB1280x720screenshots passed:Pauli/Hmatrices andsquares,control/targetcommutatorsandRZZpropagation,HconjugationincludingexplicitYsignmatrices,noncommutingrotationdifferenceandketstates,controlledRxphasecompensation.No garbling orclipping ininspectedformulas;proseketlabels renderedasmathematics.",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "independent_review": "pending",
+  "reader_trial": "notrun",
+  "chapter_status": "EightChapter5workingdrafts,notchapteracceptance"
+}

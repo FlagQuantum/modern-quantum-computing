@@ -164,6 +164,30 @@
       ],
       "status": "draft",
       "next_transition": "5.8 Circuit identities and safe transformations."
+    },
+    {
+      "ref": "5.8",
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-8",
+      "title": "Circuit identities and safe transformations",
+      "depth": "F",
+      "requires": [
+        "sec-gates-reversible-computation-and-circuit-synthesis-1",
+        "sec-gates-reversible-computation-and-circuit-synthesis-2"
+      ],
+      "question": "When does a local gate rewrite preserve the full operator in every surrounding circuit?",
+      "entry": "5.1 chronological products andunitary inverses;5.2 coherent controls andsupport contracts.",
+      "exit": "Prove exact cancellation/rotation merge/disjoint andselected shared-support commutation/basis conjugation;give noncommuting andphase-losing witnesses;prove conservative cancellation invariant andtermination.",
+      "worked_case": "Ordered CX supports,full-turn rotations,CX/Rz parity propagation,H/Ry sign,controlled Rx(pi) phase compensation,nested cancellation.",
+      "boundary": "Fixed finite ideal unitary programs;literalradian angles andexplicit qubit positions;no noisy/reset/classical/gradient orhardware optimization promise.",
+      "code_plan": "Native namedgatesincludingRZZ/CRx;independent scalar-index full matrices;book-side cancellation only.",
+      "independent_check": "Allbasis pluscomplex products;native rewritepaths,correlated input,wrongorder/phase witnesses;10malformedcontracts.",
+      "transfer_task": "Newnested cancellation angles on3qubits andnegative-pi controlledrotation onreversed nonadjacent support;allbasis andcomplex inputs.",
+      "source_locators": [
+        "NC:4.2",
+        "NC:4.3"
+      ],
+      "status": "draft",
+      "next_transition": "6.1 Measurement outcomes and the Born rule."
     }
   ]
 }

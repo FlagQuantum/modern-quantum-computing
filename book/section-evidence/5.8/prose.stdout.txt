@@ -1,0 +1,2 @@
+8 cumulative 5.8 prose fragments: exact outputs and assertions passed.
+Complete 5.8 example: exact expected-output comparison passed.

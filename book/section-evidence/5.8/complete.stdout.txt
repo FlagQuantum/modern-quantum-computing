@@ -1,0 +1,8 @@
+15 cancellation programs: exact inverses, nested pairs, zero/full-turn and ordered-support boundaries passed.
+12 same-generator/phase merges: basis and complex vectors checked without modulo-2*pi rotation deletion.
+Disjoint supports: all 3-qubit basis/complex inputs plus 2 correlated-input circuits passed.
+6 valid shared-support commutations and CX/Rz-to-RZZ propagation passed; unchanged-target-Rz swap rejected by full operators.
+9 Hadamard conjugations: axes and the Ry angle sign passed at generic, zero and full-turn angles.
+Noncommuting rotations and controlled Rx(pi)-to-X phase witness passed; corrected control phase retained.
+355 actual CPU complex128 circuits; full-phase atol 1e-12, rtol 0; 10 malformed contracts rejected.
+Conservative book-side cancellation only; no native optimizer, approximate rewrite, gradient, measurement, noise or hardware claim.

@@ -1,0 +1,1 @@
+36 new-angle/support transfer circuits passed: nested cancellation and negative-pi control phase on reversed nonadjacent qubits.

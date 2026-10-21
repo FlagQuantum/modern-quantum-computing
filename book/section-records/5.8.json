@@ -1,0 +1,111 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-8",
+  "ref": "5.8",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+  "depth": "F",
+  "result": "Gate cancellation and commutation under explicit conditions",
+  "requires": [
+    "sec-gates-reversible-computation-and-circuit-synthesis-1",
+    "sec-gates-reversible-computation-and-circuit-synthesis-2"
+  ],
+  "assumptions": [
+    "Fixedfiniteidealunitaryprogram;fulloperatorphase andordered supports",
+    "Samegenerators/parameterconventions whereinvoked;commutinggenerators forangle-independentcommutation",
+    "Bookhelperfixedliteralradians andn<=4dense-reference guard;notFQlimitation"
+  ],
+  "proof_obligations": [
+    "Sameordered-support inverse cancellation;explicitPauli/H squares andCX basis map",
+    "SameHermitiangenerator spectral merge;Pauli2pi phase andP2pi identity",
+    "Disjointsupportbasis proof andlinear extension toentangledinputs",
+    "CXcontrolZ/targetXcommutation andtargetZ propagation toZZ",
+    "Hadamardconjugation includingnegativeY generator",
+    "ExplicitnoncommutingRx/Rz difference andanalyzerwitness",
+    "ControlledRx(pi) phasecompensation,notbareCX",
+    "Stackpassprefixmatrix invariant,finite termination andfulloperatorcontext preservation;subspaceidentityboundary"
+  ],
+  "formula_code_units": [
+    "formula-code-5-8-cancellation",
+    "formula-code-5-8-generators",
+    "formula-code-5-8-disjoint",
+    "formula-code-5-8-shared",
+    "formula-code-5-8-basis",
+    "formula-code-5-8-noncommuting",
+    "formula-code-5-8-phase",
+    "formula-code-5-8-pass"
+  ],
+  "sources": [
+    {
+      "locators": [
+        "NC:4.2",
+        "NC:4.3"
+      ],
+      "edition": "10th Anniversary Edition (2010)",
+      "inspection": "Assignedbackgroundlocators retained;allselectedidentitiesproved locally;no freshuser-localPDFinspectionclaimed"
+    },
+    {
+      "source": "InstalledreleasedFQ0.3.1namedgateimplementations/IRandactualexecution",
+      "evidence": "book/section-evidence/5.8/api-inspection.json"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/circuit_rewrites.py",
+    "command": "python examples/foundations/circuit_rewrites.py",
+    "prose_check_command": "python scripts/check_circuit_rewrites_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 355,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 21,
+    "separate_transfer_circuits": 36,
+    "execution_ledger": {
+      "initial_complete": 355,
+      "body_assembly": 21,
+      "body_plus_complete_checker": 376,
+      "separate_transfer": 36,
+      "total_section58_circuits": 788,
+      "note": "Initial355runstagedtemporarilythenarchived;finalcheckeralsochecksexplicitRUNS==355assertaddedafterinitialpass.Noothercode/outputchange.Priorregressions/futureCIseparate."
+    },
+    "checks": [
+      "110cancellation,72merge,20disjoint/correlated,75shared/propagation,54Hconjugation,6noncommuting,18controlledphasecircuits",
+      "Allbasisandcomplexfullmatrixreferences,notprobability-onlyequivalence",
+      "10malformedcontracts;21actualbodycircuits/exactoutputs and36newparameter/placementtransfercircuits"
+    ],
+    "tolerance": "Fullcomplexvector/matrixatol1e-12,rtol0;no phasealignment,state repair orintervalcertificate;rewritedecisionsdo notuseallclose",
+    "unplanned_execution_failures": "None",
+    "limitations": "Conservativebook-sidecancellationnotnativeoptimizer;nonzeromergeillustratedseparately;nohardware/noise/reset/dynamicgradientclaim",
+    "script_sha256": "c60a62f54782e6debd8ad0301cd6ec68e2bb038ea0cda691cb97251f5f86a9e1"
+  },
+  "assessment": {
+    "tasks": [
+      "5.8-A nestednonadjacentcancellation",
+      "5.8-B negativepicontrolphase",
+      "5.8-C tinyanglerule",
+      "5.8-D inputsubspaceconditions"
+    ],
+    "answers": "Supplied;readertrialnotrun"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "355completeprogramcircuits,8actualbodyfragments/21circuits and36newangle/supporttransfercircuits passed.Fullphase/vector/operator references and10malformedcontractchecks passed.5.6/5.7scopedbody/fullregressions passed.Frozen435sectionstructure unchanged.StrictMkDocs,70page links andactualbrowserformulas passed;independent/readerreviews pending."
+  },
+  "production": {
+    "next_draft": "6.1 Measurement outcomes and the Born rule",
+    "chapter_status": "All8Chapter5sectionsdrafted;notchapteracceptance",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "ActualIAB1280x720screenshots passed:Pauli/Hmatrices andsquares,control/targetcommutatorsandRZZpropagation,HconjugationincludingexplicitYsignmatrices,noncommutingrotationdifferenceandketstates,controlledRxphasecompensation.No garbling orclipping ininspectedformulas;proseketlabels renderedasmathematics.",
+    "editorial_validation": "FinalexplicitH/Ysquare/conjugation proof andkettypesetting edits retainedall8Python/stdoutfragmentsbyte-identical toexecutedversions.Strictbuild/linkrepeatedaftertypesetting;no unnecessarycircuitreruns."
+  }
+}

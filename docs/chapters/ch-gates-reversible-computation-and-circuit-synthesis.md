@@ -1,6 +1,6 @@
 # 5. Gates, Reversible Computation, and Circuit Synthesis
 
-**Working drafts: sections 5.1–5.7 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 5.1–5.8 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-1"></span>
 
@@ -2458,4 +2458,356 @@ Synthesis error, angle rounding and floating-point residuals are separate; no ha
 
 Assigned source: Nielsen and Chuang, 10th Anniversary Edition (2010), Appendix 3, beginning at printed page 617. Its assigned locator is retained; no fresh inspection of the user-local textbook PDF is claimed. Public companion verification used [Dawson and Nielsen (2005), quant-ph/0505030v2](https://arxiv.org/pdf/quant-ph/0505030v2): §2 and Theorem 1 (PDF pages 2–4), the recurrence in §3 (pages 4–7), the balanced-commutator ingredient in §4.1 (pages 8–9) and the fixed-dimension extension in §5 (pages 10–12). The local bounds above are proved explicitly, not outsourced to numerical tests. General residual decomposition, quantitative coarse-net coverage and valid geometric constants remain deferred at the frozen R depth. No numerical search result here is substituted for those obligations.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.7.json) records actual author execution and separates it from independent mathematical review, implementation review and reader trials, which remain pending. This remains a working draft. Continue, when drafted, with [5.8 Circuit identities and safe transformations](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-8).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.7.json) records actual author execution and separates it from independent mathematical review, implementation review and reader trials, which remain pending. This remains a working draft. Continue with [5.8 Circuit identities and safe transformations](#sec-gates-reversible-computation-and-circuit-synthesis-8).
+
+<span id="sec-gates-reversible-computation-and-circuit-synthesis-8"></span>
+
+## 5.8 Circuit identities and safe transformations
+
+A gate replacement must state the operator it preserves, its ordered support and its parameter/phase conventions. Testing a few output probabilities cannot establish that the replacement is safe in a larger program. This section proves a small rewrite vocabulary and implements a conservative cancellation pass, with explicit counterexamples to broader rules. Prerequisites are [5.1](#sec-gates-reversible-computation-and-circuit-synthesis-1), for call order and inverses, and [5.2](#sec-gates-reversible-computation-and-circuit-synthesis-2), for coherent controls and ancilla contracts.
+
+Every identity below concerns fixed ideal finite-dimensional unitary operators, with basis order $|q_0\cdots q_{n-1}\rangle$ and no discarded global phase. The tests use released FlagQuantum 0.3.1/PyTorch 2.13.0 on CPU complex128, full-vector absolute tolerance $10^{-12}$ and relative tolerance zero, without phase alignment or state repair. Proofs establish the identities; numerical tests check the implementation and its gate conventions. No floating-point interval certificate is claimed.
+
+<span id="formula-code-5-8-cancellation"></span>
+
+### 1. Cancel an inverse only on the same ordered support
+
+**Formula.** Work with fixed ideal unitary gates and the full operator phase. Define
+
+$$
+X=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+Y=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\quad
+H=\frac1{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}.
+$$
+
+Their squares are I. A chronological pair $(U,U^\dagger)$ therefore has matrix $U^\dagger U=I$. In particular H,H; X,X; Y,Y; Z,Z; and two identical CNOTs cancel. A CNOT with control c and target t maps $(a,b)$ to $(a,b\oplus a)$; applying it twice returns $(a,b)$ with no phase.
+
+**Derivation.** The support is part of the operator. $CX_{0,1}$ and $CX_{1,0}$ do not form an inverse pair merely because their unordered qubit sets agree: on $|10\rangle$, chronological $CX_{0,1},CX_{1,0}$ gives $|01\rangle$. Nor can two inverse instructions be canceled across an intervening gate without an additional identity. The CNOT proof extends from every basis vector to every complex input by linearity. For the complex entries, $Y^2=\operatorname{diag}((-i)i,i(-i))=I$. For H, multiplying the two displayed integer matrices gives $H^2=\tfrac12\begin{pmatrix}2&0\\0&2\end{pmatrix}=I$. The off-diagonal X exchanges the two coordinates twice, while diagonal Z squares each sign to one.
+
+**FlagQuantum code → verification result.** `cancellation` is an original, deliberately conservative book helper, not a native optimizer. Its instruction is `(name, ordered_qubit_tuple, angle_tuple)`. It removes only adjacent declared inverses and exact zero-angle instructions. It never uses approximate equality to decide a rewrite. The independent matrix reference fills coordinates from scalar gate entries and bit updates. Snippets below are cumulative; run from the repository root.
+
+```python
+import math
+import torch
+import flagquantum as fq
+import examples.foundations.circuit_rewrites as w
+f2 = w.complex_factors(2)
+program = (('h',(0,),()), ('cx',(0,1),()),
+           ('rx',(1,),(.37,)), ('rx',(1,),(-.37,)),
+           ('cx',(0,1),()), ('h',(0,),()))
+reduced = w.cancellation(2, program)
+assert reduced == ()
+for candidate in (program, reduced):
+    v, _ = w.run(w.compile_program(2, candidate), f2)
+    torch.testing.assert_close(v, w.product_input(f2), rtol=0, atol=w.ATOL)
+print('Nested exact cancellation: six instructions -> zero; full complex vector preserved.')
+```
+```text
+Nested exact cancellation: six instructions -> zero; full complex vector preserved.
+```
+
+<span id="formula-code-5-8-generators"></span>
+
+### 2. Merge rotations with the same generator and preserve full-turn phase
+
+**Formula.** For the same Hermitian generator G on the same ordered support,
+
+$$
+e^{-i\phi G/2}e^{-i\theta G/2}=e^{-i(\theta+\phi)G/2}.
+$$
+
+For a Pauli generator $G\in\{X,Y,Z\}$, $G^2=I$ gives
+$R_G(\theta)=\cos(\theta/2)I-i\sin(\theta/2)G$. Also define $P(\theta)=\operatorname{diag}(1,e^{i\theta})$, $S=P(\pi/2)$ and $T=P(\pi/4)$. Their phase angles add as well, with $S^\dagger=P(-\pi/2)$ and $T^\dagger=P(-\pi/4)$.
+
+**Derivation.** In an orthonormal eigenbasis of Hermitian G, each eigenvalue λ contributes scalar factors $e^{-i\phi\lambda/2}e^{-i\theta\lambda/2}=e^{-i(\theta+\phi)\lambda/2}$; conjugating back proves the formula. For the Pauli expression, separate even and odd powers of the exponential series, using $G^{2k}=I$ and $G^{2k+1}=G$. Thus inverse angles cancel, but $R_G(2\pi)=-I$ and $R_G(4\pi)=I$. By contrast $P(2\pi)=I$. A modulo-$2\pi$ rule valid for P cannot be copied to R.
+
+More generally, commuting Hermitian generators yield commuting exponentials: their matrix powers commute term by term in the convergent finite-matrix exponential series. Distinct axes do not satisfy this sufficient condition. Special angles may nevertheless produce commuting gates; noncommuting generators do not forbid every angle-specific identity.
+
+**FlagQuantum code → verification result.** The merge below is constructed explicitly. The cancellation helper does not merge general nonzero angles, so it avoids silently adding a floating-point angle-rounding step. If an implementation does merge, the mathematical identity is exact while the represented sum's rounding belongs in [5.7](#sec-gates-reversible-computation-and-circuit-synthesis-7)'s error ledger. All angles here are radians.
+
+```python
+f1 = w.complex_factors(1)
+left = fq.Circuit(1, dtype=w.D).ry(0, .23).ry(0, .37)
+right = fq.Circuit(1, dtype=w.D).ry(0, .23+.37)
+reference = w.explicit('y', .23+.37) @ w.product_input(f1)
+for block in (left, right):
+    v, _ = w.run(block, f1)
+    torch.testing.assert_close(v, reference, rtol=0, atol=w.ATOL)
+v, _ = w.run(fq.Circuit(1, dtype=w.D).rz(0, 2*math.pi), f1)
+torch.testing.assert_close(v, -w.product_input(f1), rtol=0, atol=w.ATOL)
+assert w.cancellation(1, (('rz',(0,),(2*math.pi,)),)) != ()
+print('Same-axis merge passed; Rz(2*pi) retains minus identity and is not deleted.')
+```
+```text
+Same-axis merge passed; Rz(2*pi) retains minus identity and is not deleted.
+```
+
+<span id="formula-code-5-8-disjoint"></span>
+
+### 3. Commute disjoint supports without assuming a product input
+
+**Formula.** If A and B act on disjoint ordered supports, their full-register embeddings commute. In coordinates placing those supports first,
+
+$$
+(A\otimes I)(I\otimes B)=A\otimes B=(I\otimes B)(A\otimes I).
+$$
+
+**Derivation.** On a basis vector $|a\rangle\otimes|b\rangle$, either order gives
+$\sum_{a',b'}A_{a'a}B_{b'b}|a'\rangle\otimes|b'\rangle$. Scalar entries commute, and the same finite sum results. Those product basis vectors span the joint space, so the identity also holds for entangled inputs. A common permutation back to physical register coordinates conjugates both products by the same permutation and preserves equality. Spectator factors remain identity. This is a statement about operator supports, not about whether a particular state happens to be separable.
+
+**FlagQuantum code → verification result.** q0 and q2 are nonadjacent positions in a three-qubit register. Independent full matrices verify placement, and the complete program additionally checks a correlated q0/q2 input. No qubit is physically moved when call order is exchanged.
+
+```python
+f3 = w.complex_factors(3)
+left = (('rx',(0,),(.41,)), ('rz',(2,),(-.37,)))
+right = tuple(reversed(left))
+reference = w.matrix(3, left) @ w.product_input(f3)
+for candidate in (left, right):
+    v, _ = w.run(w.compile_program(3, candidate), f3)
+    torch.testing.assert_close(v, reference, rtol=0, atol=w.ATOL)
+print('Nonadjacent disjoint Rx(q0)/Rz(q2) commute with every spectator coordinate preserved.')
+```
+```text
+Nonadjacent disjoint Rx(q0)/Rz(q2) commute with every spectator coordinate preserved.
+```
+
+<span id="formula-code-5-8-shared"></span>
+
+### 4. Distinguish control-side commutation from target-side propagation
+
+**Formula.** Let $C=CX_{c,t}$. Its projector form is $|0\rangle\langle0|_c\otimes I_t+|1\rangle\langle1|_c\otimes X_t$. It follows that
+
+$$
+[C,Z_c]=0,\qquad[C,X_t]=0,\qquad CZ_tC=Z_cZ_t,
+$$
+
+where $[A,B]=AB-BA$. Consequently C commutes with $R_z$ on its control and $R_x$ on its target, but moving target $R_z$ through C changes the operator:
+
+$$
+C R_{z,t}(\theta)C=R_{ZZ,c,t}(\theta)
+:=e^{-i\theta Z_cZ_t/2},\qquad
+R_{z,t}(\theta)C=C R_{ZZ,c,t}(\theta).
+$$
+
+**Derivation.** Z on c is diagonal in the two control projectors; X on t commutes with both target blocks I and X. Thus both commute with C, and so do their exponential series. To check the third identity, apply the rightmost C to $|a,b\rangle$, apply Z on the updated target $b\oplus a$, then undo C. The resulting sign is $(-1)^{a\oplus b}=(-1)^a(-1)^b$, the sign from $Z_cZ_t$. Conjugating each exponential power establishes the RZZ identity. Multiplication by C on the left gives the second equation since $C^2=I$.
+
+Read the last equality carefully: chronological C,Rz(target) equals chronological RZZ,C. It does not equal chronological Rz(target),C at a generic angle. Sharing a qubit therefore neither automatically forbids commutation nor automatically permits it. In this convention RZZ has diagonal entries $e^{-i\theta/2},e^{i\theta/2},e^{i\theta/2},e^{-i\theta/2}$ on $|00\rangle,|01\rangle,|10\rangle,|11\rangle$.
+
+**FlagQuantum code → verification result.** Released 0.3.1's named `rzz` was actually executed and checked against those entries. Introducing RZZ changes the required gate alphabet; no decrease in a hardware cost is inferred from this algebraic propagation.
+
+```python
+cx = ('cx',(0,1),())
+for name, q in (('rz', 0), ('rx', 1)):
+    gate = (name,(q,),(.31,))
+    reference = w.matrix(2, (cx, gate)) @ w.product_input(f2)
+    for candidate in ((cx, gate), (gate, cx)):
+        v, _ = w.run(w.compile_program(2, candidate), f2)
+        torch.testing.assert_close(v, reference, rtol=0, atol=w.ATOL)
+rz = ('rz',(1,),(.61,)); rzz = ('rzz',(0,1),(.61,))
+reference = w.matrix(2, (cx, rz)) @ w.product_input(f2)
+for candidate in ((cx, rz), (rzz, cx)):
+    v, _ = w.run(w.compile_program(2, candidate), f2)
+    torch.testing.assert_close(v, reference, rtol=0, atol=w.ATOL)
+assert not torch.allclose(w.matrix(2,(cx,rz)), w.matrix(2,(rz,cx)), rtol=0, atol=w.ATOL)
+print('Control Rz / target Rx commute; target Rz propagates to RZZ, not unchanged Rz.')
+```
+```text
+Control Rz / target Rx commute; target Rz propagates to RZZ, not unchanged Rz.
+```
+
+<span id="formula-code-5-8-basis"></span>
+
+### 5. Carry both the axis and angle sign through a basis change
+
+**Formula.** Direct multiplication of the matrices in unit 1 gives
+
+$$
+HXH=Z,\qquad HZH=X,\qquad HYH=-Y.
+$$
+
+Therefore
+
+$$
+H R_x(\theta)H=R_z(\theta),\quad
+H R_z(\theta)H=R_x(\theta),\quad
+H R_y(\theta)H=R_y(-\theta).
+$$
+
+**Derivation.** For example, explicit multiplication gives $HY=\frac{i}{\sqrt2}\begin{pmatrix}1&-1\\-1&-1\end{pmatrix}$ and $YH=-\frac{i}{\sqrt2}\begin{pmatrix}1&-1\\-1&-1\end{pmatrix}$, so $HY=-YH$. Likewise $HX=ZH$ and $HZ=XH$. Multiply each identity by H on the right and use $H^2=I$. Conjugating a power gives $H G^k H=(HGH)^k$, because each pair of intermediate H factors cancels. The exponential series thus satisfies $H e^A H=e^{HAH}$. The Y case changes its Hermitian generator from Y to −Y, which negates θ. Dropping that sign would give the inverse rotation at a generic angle. The chronological H,rotation,H call list has the same palindromic product; no call-order reversal is hidden here.
+
+**FlagQuantum code → verification result.** Test all three axes directly, including the negative Ry angle. The complete program repeats this on both basis inputs and a complex input, at generic, zero and full-turn angles.
+
+```python
+for name, out, sign in (('rx','z',1), ('rz','x',1), ('ry','y',-1)):
+    block = fq.Circuit(1, dtype=w.D).h(0)
+    getattr(block, name)(0, .47)
+    block.h(0)
+    v, _ = w.run(block, f1)
+    reference = w.explicit(out, sign*.47) @ w.product_input(f1)
+    torch.testing.assert_close(v, reference, rtol=0, atol=w.ATOL)
+print('H-conjugated Rx, Rz and Ry passed; Ry requires the negative angle.')
+```
+```text
+H-conjugated Rx, Rz and Ry passed; Ry requires the negative angle.
+```
+
+<span id="formula-code-5-8-noncommuting"></span>
+
+### 6. Turn an invalid axis swap into a measurable counterexample
+
+**Formula.** Since $XZ=-iY$ and $ZX=iY$, expanding the two Pauli rotation formulas yields
+
+$$
+R_x(\theta)R_z(\phi)-R_z(\phi)R_x(\theta)
+=2i\sin(\theta/2)\sin(\phi/2)Y.
+$$
+
+**Derivation.** The identity and single-Pauli terms agree in both products and cancel on subtraction. Their cross terms are $-\sin(\theta/2)\sin(\phi/2)XZ$ and the same scalar times ZX; insert the two products to obtain the displayed difference. At $\theta=\phi=\pi/2$, its operator norm is one. At a zero angle the difference instead vanishes, illustrating why a special passing fixture is not a general commutation rule.
+
+On input $|0\rangle$, chronological Rx(π/2),Rz(π/2) produces $e^{-i\pi/4}|+\rangle$, whereas reversed calls produce $e^{-i\pi/4}(|0\rangle-i|1\rangle)/\sqrt2$. Their computational-basis probabilities agree. Append H to read their phase difference: the first circuit has p(0)=1 and the second p(0)=1/2. Matching those probabilities before the analyzer would miss the invalid rewrite.
+
+**FlagQuantum code → verification result.** Both actual outputs are checked against their separately ordered matrix products, including full phase. The differing analyzer probabilities are expected evidence against the proposed swap, not an execution failure.
+
+```python
+h = ('h',(0,),())
+first = (('rx',(0,),(math.pi/2,)), ('rz',(0,),(math.pi/2,)), h)
+second = (('rz',(0,),(math.pi/2,)), ('rx',(0,),(math.pi/2,)), h)
+p0 = []
+for candidate in (first, second):
+    v, p = w.run(w.compile_program(1, candidate), [(1,0)])
+    reference = w.matrix(1, candidate) @ torch.tensor([1,0], dtype=w.D)
+    torch.testing.assert_close(v, reference, rtol=0, atol=w.ATOL)
+    p0.append(p[0].item())
+assert abs(p0[0]-1) < w.ATOL and abs(p0[1]-.5) < w.ATOL
+print('Invalid axis-swap analyzer p(0):', *(f'{p:.6f}' for p in p0))
+```
+```text
+Invalid axis-swap analyzer p(0): 1.000000 0.500000
+```
+
+<span id="formula-code-5-8-phase"></span>
+
+### 7. Preserve a replacement phase before controlling a block
+
+**Formula.** $R_x(\pi)=-iX$. These are different phase-exact matrices. Controlling the rotation gives
+
+$$
+CR_x(\pi)=P_c(-\pi/2)\,CX_{c,t},
+$$
+
+rather than bare CNOT.
+
+**Derivation.** On control zero both sides act as identity. On control one, the phase gate contributes $e^{-i\pi/2}=-i$ and CNOT contributes X, matching $R_x(\pi)$. For input $|+,0\rangle$, the native controlled rotation gives $(|00\rangle-i|11\rangle)/\sqrt2$; bare CNOT gives $(|00\rangle+|11\rangle)/\sqrt2$. A further CNOT disentangles the target in each case; H on the control gives p(00)=1/2 and 1 respectively. The compensated CNOT restores the first result. This extends [5.2](#sec-gates-reversible-computation-and-circuit-synthesis-2)'s coherent-control convention to gate replacement.
+
+A whole isolated state may be compared up to a global phase under an explicitly declared ray contract. A reusable controlled subroutine cannot silently inherit that weaker contract. Here every rewrite preserves the full matrix, so no phase alignment is used to accept the wrong candidate.
+
+**FlagQuantum code → verification result.** All three candidate paths run. The complete program also checks native CRx(π) and its compensated replacement on every two-qubit basis input and a complex product.
+
+```python
+native = (('crx',(0,1),(math.pi,)),)
+wrong = (cx,)
+corrected = (('p',(0,),(-math.pi/2,)), cx)
+tail = (cx, ('h',(0,),()))
+f = [(1/math.sqrt(2),1/math.sqrt(2)), (1,0)]
+p00 = []
+for candidate in (native, wrong, corrected):
+    v, p = w.run(w.compile_program(2, candidate+tail), f)
+    torch.testing.assert_close(v, w.matrix(2,candidate+tail) @ w.product_input(f), rtol=0, atol=w.ATOL)
+    p00.append(p[0].item())
+assert max(abs(p-e) for p,e in zip(p00,(.5,1.,.5))) < w.ATOL
+print('Native / bare CX / compensated CX analyzer p(00):', *(f'{p:.6f}' for p in p00))
+```
+```text
+Native / bare CX / compensated CX analyzer p(00): 0.500000 1.000000 0.500000
+```
+
+<span id="formula-code-5-8-pass"></span>
+
+### 8. Prove a small safe pass, and state the limits of the proof
+
+**Formula and derivation.** The cancellation pass scans a finite instruction list once, maintaining a stack. Its invariant is that the stack's chronological matrix equals that of the processed input prefix. Initially both are identity. Pushing a gate left-multiplies both matrices by that gate. If the new gate is the adjacent inverse of the stack top on exactly the same ordered support, popping replaces their product by identity. Skipping an exact zero-angle gate also preserves identity. These are all branches, so induction proves the invariant for the complete list. Each iteration consumes one input instruction, hence termination; stack length never exceeds input length. The helper does not attempt a general search or reordering pass.
+
+Its admitted fixed pairs are H/X/Y/Z/CX with themselves and S/S†,T/T† in either order. Rotation, P, CRx and RZZ pairs cancel only for identical gate/support declarations and exactly opposite fixed angles. A small nonzero angle is retained. No approximate `allclose` predicate licenses a rewrite. Numeric nonzero-angle merges in unit 2 are deliberately outside this pass.
+
+If a replacement has full operator identity $A=B$, then $LAR=LBR$ in any surrounding unitary program; the same holds after tensoring with spectators and after coherent control. If instead A and B agree only on an initialized-ancilla subspace, the preceding prefix must place the actual joint input in that subspace at the replacement site. Merely saying that a qubit was clean at program start is insufficient. This pass uses full operator identities and no hidden clean-ancilla assumptions.
+
+The mathematical identities do not assert equality of two noisy gate implementations, pulses, timings or gradients of a dynamically rebound program. These helpers accept fixed numeric radians and reject unknown gate kinds. Tensor/lazy parameters are not detached or evaluated into constants. A hardware optimizer or differentiable rewrite system needs additional contracts. The released nonunitary-adjoint admission boundary recorded in [5.1](#sec-gates-reversible-computation-and-circuit-synthesis-1) remains guarded there; no native fix is claimed here.
+
+**Code → verification result.** The n≤4 bound is a teaching guard shared with the dense independent reference, not a FlagQuantum limit. Unsupported barriers, measurements and reset operations are not reordered or removed; they are outside this abstract unitary language. Check invalid shape/type/support/angle contracts separately from mathematically invalid proposed equivalences.
+
+```python
+invalid = [lambda: w.cancellation(0, ()),
+           lambda: w.cancellation(2, (('cx',(0,0),()),)),
+           lambda: w.compile_program(2, (('cx',(0,2),()),)),
+           lambda: w.compile_program(1, (('rz',(0,),(float('nan'),)),)),
+           lambda: w.compile_program(1, (('rx',(0,),(True,)),)),
+           lambda: w.compile_program(1, (('reset',(0,),()),)),
+           lambda: w.cancellation(1, [('h',(0,),())]),
+           lambda: w.compile_program(1, (('h',(0,),(1.,)),)),
+           lambda: w.compile_program(1, (('ry',(0,),()),)),
+           lambda: w.cancellation(2, (('cx',(True,1),()),))]
+for call in invalid:
+    try:
+        call()
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('Malformed rewrite contract admitted')
+assert w.cancellation(1, (('rz',(0,),(1e-14,)),)) != ()
+assert w.RUNS == 21
+print('Ten malformed contracts rejected; tiny nonzero angle retained; 21 actual body circuits verified.')
+```
+```text
+Ten malformed contracts rejected; tiny nonzero angle retained; 21 actual body circuits verified.
+```
+
+### Complete example and verification results
+
+Run `python examples/foundations/circuit_rewrites.py` from the repository root. The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/circuit_rewrites.py) runs 355 actual circuits: 110 cancellation-path circuits, 72 merge circuits, 20 disjoint/correlated-input circuits, 75 shared-support/propagation circuits, 54 basis-conjugation circuits, 6 noncommuting-axis circuits and 18 controlled-phase circuits. Equivalent paths are compared with an independent scalar-index matrix, on every basis input and a complex product. The invalid-order/phase candidates are tested against their own correct references, then rejected as equivalences. Their expected disagreement is not recorded as a simulation failure. The actual body checker separately runs all eight cumulative snippets, containing 21 circuits, and compares their printed results exactly.
+
+Expected output of the complete program:
+
+```text
+15 cancellation programs: exact inverses, nested pairs, zero/full-turn and ordered-support boundaries passed.
+12 same-generator/phase merges: basis and complex vectors checked without modulo-2*pi rotation deletion.
+Disjoint supports: all 3-qubit basis/complex inputs plus 2 correlated-input circuits passed.
+6 valid shared-support commutations and CX/Rz-to-RZZ propagation passed; unchanged-target-Rz swap rejected by full operators.
+9 Hadamard conjugations: axes and the Ry angle sign passed at generic, zero and full-turn angles.
+Noncommuting rotations and controlled Rx(pi)-to-X phase witness passed; corrected control phase retained.
+355 actual CPU complex128 circuits; full-phase atol 1e-12, rtol 0; 10 malformed contracts rejected.
+Conservative book-side cancellation only; no native optimizer, approximate rewrite, gradient, measurement, noise or hardware claim.
+```
+
+### Understanding checks and transfer exercises
+
+**5.8-A — A new nested cancellation on a nonadjacent pair.** In a three-qubit register, use chronological H(q2),Rz(q0,−.27),CX(q2,q0),Rx(q1,.83),Rx(q1,−.83),CX(q2,q0),Rz(q0,.27),H(q2). Reduce it and check all eight basis inputs and a complex product. Which support order must be retained?
+
+**5.8-B — Transfer the controlled phase.** Replace CRx(q2,q0,−π) by a phase-compensated CNOT. Derive the sign of the control phase, then verify both paths on all eight basis inputs and a complex product.
+
+**5.8-C — An unsafe tolerance rule.** Why must `Rz(1e-14)` remain under a phase-exact identity contract even if one float comparison says it is close to identity? Can a deliberately approximate rewrite still be useful?
+
+**5.8-D — A reusable proof obligation.** You found a rewrite that works when a workspace is zero. What must be checked before using it after an arbitrary preceding block? Why is comparing the workspace probability alone insufficient?
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** The Rx pair cancels first, exposing two CX(q2,q0) instructions. They cancel, exposing the opposite Rz angles, which cancel and expose H(q2),H(q2). The final list is empty. Reversing one CNOT's control/target would invalidate that cancellation. The separate author transfer runs the original and empty program on nine inputs: 18 actual circuits.
+
+**B.** $R_x(-\pi)=iX$, so the correction is P(q2,+π/2), followed by CX(q2,q0). The phase belongs on the control q2 and commutes with this CNOT. The separate author transfer compares the native and compensated paths on nine inputs, adding 18 circuits for 36 transfer circuits total. This is author validation, not independent agent review.
+
+**C.** It is not mathematically the identity; repeated use or phase-sensitive surrounding operations can expose the difference. A bounded approximate rewrite may be useful under a separately declared synthesis-error budget, as in 5.7. The acceptance condition must change explicitly, rather than borrowing an implementation `allclose` tolerance as an exact proof.
+
+**D.** The preceding block must map the actual joint input into the promised input subspace at that exact site, including any correlations with retained registers. One must also verify the intended operation on retained information and its phases, not just whether the workspace returns to a particular marginal probability. Full operator equality avoids such a restricted-input obligation; a subspace identity does not.
+
+</details>
+
+### Chapter synthesis, sources and next step
+
+Chapter 5 has connected call order and inversion, coherent controls, reversible embeddings and workspace reuse, exact universality, selected decompositions, approximation budgets and safe identities. A replacement can now be judged by its full operator contract, permitted alphabet, phase, support, input-subspace assumptions and error budget. Eight working drafts do not constitute independent chapter acceptance.
+
+Depth **F**: the displayed cancellation, generator, support, conjugation and controlled-phase identities are proved explicitly, and the finite cancellation pass has an invariant and termination proof. Assigned background is Nielsen and Chuang, 10th Anniversary Edition (2010), §§4.2–4.3. These assigned locators are retained; no fresh inspection of the user-local textbook PDF is claimed. Released named gate behavior, including CRx and RZZ half-angle conventions, was checked by actual execution and source provenance. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.8.json) separates author checks from independent mathematical/implementation review and reader trials, which remain pending.
+
+Continue, when drafted, with [6.1 Measurement outcomes and the Born rule](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-1).
+
+<!-- end-section-5.8 -->
