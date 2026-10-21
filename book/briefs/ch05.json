@@ -24,6 +24,30 @@
       ],
       "status": "draft",
       "next_transition": "5.2 Controlled operations and ancillas."
+    },
+    {
+      "ref": "5.2",
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-2",
+      "title": "Controlled operations and ancillas",
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-4",
+        "sec-gates-reversible-computation-and-circuit-synthesis-1"
+      ],
+      "question": "How do coherent controls act, and what contract makes an auxiliary qubit clean and reusable?",
+      "entry": "4.1 product spaces,4.4 ordered support action and5.1 finite unitary composition/inversion.",
+      "exit": "Prove controlled block unitarity and superposition action; explain phase kickback and compute/use/uncompute with specified initial ancilla and preserved computational labels.",
+      "worked_case": "Complex superposition control,controlled phase,real native control block; coherent parity recorded on output then workspace uncomputed; bad initial blank and data-change counterexamples.",
+      "boundary": "Fixed ideal unitary pure states; no mid-circuit reset API, noise, general Boolean synthesis or measurement-feedback implementation; cleanup proof has explicit data/workspace preservation assumptions.",
+      "code_plan": "Actual named cx/ccx and Circuit.control plus generic controlled matrix under unitary guard; full complex reference amplitudes and ancilla-leakage/probability checks.",
+      "independent_check": "All basis inputs,complex controls,nonadjacent supports,multi-target matrix,native-block control,phase analyzer,coherent workspace stages and wrong initial/data conditions; invalid contracts.",
+      "transfer_task": "New phase-controlled matrix and reversed placement,wrong output initialization,uncompute/data-change conditions and leakage interpretation; full answers.",
+      "source_locators": [
+        "NC:4.3"
+      ],
+      "status": "draft",
+      "next_transition": "5.3 Classical logic made reversible."
     }
   ]
 }

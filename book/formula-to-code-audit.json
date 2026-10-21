@@ -1,7 +1,7 @@
 {
   "date": "2026-10-21",
   "baseline": "writing-baseline-v1.0",
-  "scope": "Presentation audit of30drafted sections; prior backfills retained;5.1adds8adjacent formula/derivation/code/result units. Independent acceptance remains pending.",
+  "scope": "Presentation audit of31drafted sections; prior backfills retained;5.2adds8adjacent formula/derivation/code/result units. Independent acceptance remains pending.",
   "finding": "Executable companion scripts and end-of-section correspondence tables do not by themselves provide adjacent formula-to-code teaching in the body.",
   "priority_backfill": [],
   "secondary_review": [],
@@ -44,7 +44,7 @@
   ],
   "previous_completed": [
     "4.1: adjacent formula/code/output units checked and published in2103c86.",
-    "2.1\u20132.8,3.3,3.5,3.7:41adjacent formula/code/output units, complete companion programs, execution checks, local browser/math and strict build/link checks."
+    "2.1–2.8,3.3,3.5,3.7:41adjacent formula/code/output units, complete companion programs, execution checks, local browser/math and strict build/link checks."
   ],
   "verification_manifest": "book/formula-code-examples.json",
   "verification_command": "python scripts/check_formula_code.py",
@@ -95,5 +95,11 @@
     "command": "python scripts/check_circuit_composition_prose.py",
     "record": "book/section-records/5.1.json",
     "status": "author-verified draft; native admission boundary guarded and reported"
+  },
+  "new_section_5_2": {
+    "units": 8,
+    "command": "python scripts/check_controlled_ancillas_prose.py",
+    "record": "book/section-records/5.2.json",
+    "status": "author-verified draft"
   }
 }

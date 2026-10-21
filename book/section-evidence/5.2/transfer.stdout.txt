@@ -1,0 +1,1 @@
+New chi=.31,theta=-.52 reversed-support phase transfer:2actual circuits; explicit trig reference agrees without phase alignment.

@@ -1,0 +1,39 @@
+{
+  "control": {
+    "signature": "(self, n_controls: 'int', ctrl_qubits: 'Iterable[int] | int') -> \"'Circuit'\"",
+    "source_sha256": "53cc40e3530101b784ebfe1ba6c652a9470f48319396c9813c682c4958840010"
+  },
+  "cx": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "ccx": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "p": {
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_sha256": "6d543c29ebd4dd3fd902f739acfb227c66d51bb271e6b0f336d636c79bf7f286"
+  },
+  "unitary": {
+    "signature": "(self, *qubits: 'int', unitary: 'Any', name: 'str' = 'any') -> \"'Circuit'\"",
+    "source_sha256": "96337b06d545c524e778dd66a635d7a78266cb3092e73138fd7692ce6dd7dfc8"
+  },
+  "compose": {
+    "signature": "(self, other: \"'Circuit | CircuitIR'\", *, qubits: 'Iterable[int] | int | None' = None, qubit_map: 'Mapping[int, int] | None' = None) -> \"'Circuit'\"",
+    "source_sha256": "429b14f7904190dc2781d095dbe35fd2b48f175a891d0b1cae632f4de711aac9"
+  },
+  "adjoint": {
+    "signature": "(self) -> \"'Circuit'\"",
+    "source_sha256": "451241babf123e4230f73d3535e7d3c217aec3e0df9073c8a0cbfa87c2cc1128"
+  },
+  "runtime": {
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0",
+    "numpy": "2.5.4"
+  },
+  "distribution": {
+    "installed_site_packages": true,
+    "editable_direct_url": null
+  }
+}

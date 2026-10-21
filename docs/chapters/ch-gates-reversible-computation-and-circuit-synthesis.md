@@ -1,6 +1,6 @@
 # 5. Gates, Reversible Computation, and Circuit Synthesis
 
-**Working draft: section 5.1 · Writing Baseline 1.0 · October 21, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 5.1–5.2 · Writing Baseline 1.0 · October 21, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-1"></span>
 
@@ -341,4 +341,322 @@ These checks do not certify arbitrary backend versions, differentiable inverse p
 
 Depth **F**: chronological product induction, finite two-sided inverse-product proof, empty-circuit boundary, source/destination block semantics and preserved local embeddings are explicit. The assigned background locator is Nielsen and Chuang, 10th Anniversary Edition, §4.1. No fresh inspection of the user-local PDF is claimed. The installed released FlagQuantum methods were inspected and actually exercised; the native nonunitary admission discrepancy and workaround are documented without inventing an API or weakening the unitary theorem.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.1.json) separates author execution, the preserved failure and subsequent passing checks from pending independent mathematical, implementation and reader reviews. This remains a working draft. Continue, when drafted, with [5.2 Controlled operations and ancillas](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-2).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.1.json) separates author execution, the preserved failure and subsequent passing checks from pending independent mathematical, implementation and reader reviews. This remains a working draft. Continue with [5.2 Controlled operations and ancillas](#sec-gates-reversible-computation-and-circuit-synthesis-2).
+
+
+<span id="sec-gates-reversible-computation-and-circuit-synthesis-2"></span>
+
+## 5.2 Controlled operations and ancillas
+
+A control qubit selects a unitary coherently: both branches survive when the control is in superposition. An auxiliary qubit is a register with an explicitly assigned role and input state. Allocating it is only the beginning; if it is temporary workspace, its final state and correlations must be checked before reuse.
+
+Prerequisites are [4.1](ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), [4.4](ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-4) and [5.1](#sec-gates-reversible-computation-and-circuit-synthesis-1). We retain q0 as the most significant statevector bit, column-vector left action, declared ordered supports and fixed ideal unitary circuits. All examples use the released CPU complex128 environment stated above. The book runner explicitly prepares the supplied normalized input factors outside the tested block, calls `fq.run` with statevector/PyTorch/CPU/complex128 options and `fq.probabilities()`, and checks the batch-one statevector and probabilities before returning their unbatched vectors. Backend fallback and approximation are disabled; source code is linked below. The eight cumulative units pair each mathematical claim with a concrete check. Run from the repository root; [controlled_ancillas.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/controlled_ancillas.py) contains the helpers and exhaustive small-register checks.
+
+<span id="formula-code-5-2-blocks"></span>
+
+### 1. Orthogonal controls give unitary blocks
+
+**Formula.** Let the control be the first qubit of an ordered support and let $U$ be a unitary on its target register. With $P_b=|b\rangle\langle b|$,
+
+$$
+C(U)=P_0\otimes I+P_1\otimes U
+=\begin{pmatrix}I&0\\0&U\end{pmatrix}.
+$$
+
+**Derivation.** $P_b^\dagger=P_b$, $P_b^2=P_b$, $P_0P_1=P_1P_0=0$ and $P_0+P_1=I$. Expanding the product therefore gives
+
+$$
+C(U)^\dagger C(U)=P_0\otimes I+P_1\otimes U^\dagger U=I.
+$$
+
+The reverse product is also identity. Conversely, restricting this equality to $|1\rangle\otimes|\psi\rangle$ forces $U^\dagger U=I$. This is a unitary-controlled operation, not a way to make an arbitrary nonunitary map into a gate. For two controls, replace $P_1$ by $Q=|11\rangle\langle11|$ and $P_0$ by $I-Q$; the same orthogonal-projector proof applies. The companion program checks named CCX on all eight basis states and a complex superposition.
+
+**Code.** Imports below are cumulative. `controlled_matrix` is an explicitly named book helper, not a native constructor. It checks finite CPU complex128 qubit matrices and numerical unitarity, then forms the displayed blocks. All angles below are dimensionless radians. No phase alignment or normalization repair is used.
+
+```python
+import sys
+sys.path.insert(0, '.')
+import torch
+import flagquantum as fq
+from math import sqrt
+from flagquantum.errors import CapabilityError, ValidationError
+from examples.foundations import controlled_ancillas as ca
+from examples.foundations.circuit_composition import product_input, rx, rz
+D=ca.DTYPE
+I=torch.eye(2,dtype=D)
+C=ca.controlled_matrix(ca.X)
+assert torch.equal(C[:2,:2],I) and torch.equal(C[2:,2:],ca.X)
+torch.testing.assert_close(C.mH@C,torch.eye(4,dtype=D),rtol=0,atol=ca.ATOL)
+print('C(X): identity/target blocks and unitary product verified')
+```
+
+```text
+C(X): identity/target blocks and unitary product verified
+```
+
+<span id="formula-code-5-2-superposition"></span>
+
+### 2. A superposed control evolves coherently
+
+**Formula.** For normalized target $|\psi\rangle$ and $|\alpha|^2+|\beta|^2=1$,
+
+$$
+C(U)(\alpha|0\rangle+\beta|1\rangle)|\psi\rangle
+=\alpha|0\rangle|\psi\rangle+\beta|1\rangle U|\psi\rangle.
+$$
+
+**Derivation.** Apply $P_0$ and $P_1$ to each control component; each projector keeps one component and kills the other. There is no intermediate control measurement. More generally an already correlated input $|0\rangle|\psi_0\rangle+|1\rangle|\psi_1\rangle$ becomes $|0\rangle|\psi_0\rangle+|1\rangle U|\psi_1\rangle$, where the branch vectors need not be normalized. If both control coefficients are nonzero, the product input's output is a product state exactly when $U|\psi\rangle$ is proportional to $|\psi\rangle$: comparing the two control components of a proposed product forces both target vectors to be proportional; the converse follows by factoring the target vector out.
+
+For $U=X$ and target zero, the two target vectors are orthogonal. The example is therefore correlated, with complex coordinates in order 00,01,10,11:
+
+$$
+0.6|00\rangle+0.8i|11\rangle.
+$$
+
+**Code and verification.** The actual named gate is `cx(control,target)`. A separate reference places the two nonzero amplitudes explicitly.
+
+```python
+v,p=ca.run(fq.Circuit(2,dtype=D).cx(0,1),[(.6,.8j),(1,0)])
+expected=torch.tensor([.6,0,0,.8j],dtype=D)
+torch.testing.assert_close(v,expected,rtol=0,atol=ca.ATOL)
+print('CX: amplitudes [0.6,0,0,0.8i]; probabilities [0.36,0,0,0.64]')
+```
+
+```text
+CX: amplitudes [0.6,0,0,0.8i]; probabilities [0.36,0,0,0.64]
+```
+
+<span id="formula-code-5-2-phase"></span>
+
+### 3. A target phase becomes a relative control phase
+
+**Formula.** If $U|\psi\rangle=e^{i\phi}|\psi\rangle$, the previous output factors as
+
+$$
+(\alpha|0\rangle+\beta e^{i\phi}|1\rangle)|\psi\rangle.
+$$
+
+**Derivation.** The phase multiplies only the control-one branch. In particular $C(e^{i\chi}U)$ is generally different from $e^{i\chi}C(U)$: the latter multiplies the zero branch too. With a plus control, $C(I)$ preserves plus whereas $C(-I)$ produces minus. Applying H to the control then gives zero versus one. An overall phase that is dispensable for an isolated target gate cannot be silently discarded before controlling that gate.
+
+**Code and verification.** The target remains zero in both experiments; every complex output coordinate, not just the control probability, is checked.
+
+```python
+for sign,index in ((1,0),(-1,2)):
+    block=fq.Circuit(2,dtype=D).unitary(0,1,unitary=ca.controlled_matrix(sign*I)).h(0)
+    v,p=ca.run(block,[(1/sqrt(2),1/sqrt(2)),(1,0)])
+    expected=torch.zeros(4,dtype=D);expected[index]=1
+    torch.testing.assert_close(v,expected,rtol=0,atol=ca.ATOL)
+print('C(I) then H(control): 00; C(-I) then H(control): 10')
+```
+
+```text
+C(I) then H(control): 00; C(-I) then H(control): 10
+```
+
+<span id="formula-code-5-2-native"></span>
+
+### 4. Control a whole block with explicit placement
+
+**Formula.** Orthogonality of the projectors also yields
+
+$$
+C(V)C(U)=P_0\otimes I+P_1\otimes VU=C(VU).
+$$
+
+**Derivation.** Expand the four terms; the two mixed-projector terms vanish. Thus controlling chronological U-then-V preserves that call order and yields the controlled total matrix VU.
+
+**Code.** In the tested released API, `source.control(1,ctrl_qubits=(1,))` returns a new circuit. The original source uses q0 as target and the added control is q1, outside the source register. This native placement differs from the conventional control-first support used above. `compose(native,qubits=(1,0))` explicitly maps old target q0 to new q1 and old control q1 to new q0. A generic controlled matrix on ordered support `(0,1)` provides a separate implementation for comparison. The reference below is a direct branch calculation with $U=R_z(-0.4)R_x(0.7)$, not another controlled simulator call.
+
+```python
+source=fq.Circuit(1,dtype=D).rx(0,.7).rz(0,-.4)
+native=source.control(1,ctrl_qubits=(1,))
+assert native is not source and native.n_qubits==2
+assert len(source.to_ir().instructions)==2
+mapped=fq.Circuit(2,dtype=D).compose(native,qubits=(1,0))
+factors=[(.6,.8j),(1,0)]
+U=rz(-.4)@rx(.7)
+expected=torch.cat((torch.tensor([.6,0],dtype=D),.8j*U[:,0]))
+for block in (mapped,fq.Circuit(2,dtype=D).unitary(0,1,unitary=ca.controlled_matrix(U))):
+    v,p=ca.run(block,factors)
+    torch.testing.assert_close(v,expected,rtol=0,atol=ca.ATOL)
+print('Native controlled block and explicit controlled matrix match the same complex branch reference')
+```
+
+```text
+Native controlled block and explicit controlled matrix match the same complex branch reference
+```
+
+<span id="formula-code-5-2-workspace"></span>
+
+### 5. Initialize, compute, use and uncompute
+
+**Contract and formula.** Reserve q0,q1 as data D, q2 as workspace a, and q3 as output t. Both auxiliary inputs are explicitly zero; their roles differ: a must be returned to zero, whereas t carries the computed answer. Let $f(x,y)=x\mathbin{\oplus}y$ and let $\sum_{x,y}|\gamma_{xy}|^2=1$. The basis kets below are always ordered q0,q1,a,t:
+
+$$
+\begin{aligned}
+\sum_{x,y}\gamma_{xy}|xy,0,0\rangle
+&\xrightarrow{C}\sum_{x,y}\gamma_{xy}|xy,f(x,y),0\rangle\\
+&\xrightarrow{\mathrm{CX}_{a,t}}\sum_{x,y}\gamma_{xy}|xy,f(x,y),f(x,y)\rangle\\
+&\xrightarrow{C^\dagger}\sum_{x,y}\gamma_{xy}|xy,0,f(x,y)\rangle.
+\end{aligned}
+$$
+
+**Derivation.** C calls CX(q0,a), then CX(q1,a), so its basis action is $a\mapsto a\oplus x\oplus y$. The use step changes t and preserves both data labels and the computed a label. The inverse calls CX(q1,a), then CX(q0,a), so a returns to $f\oplus y\oplus x=0$ on every branch. Linearity extends this to all complex data amplitudes. The workspace consequently factors out as zero (with the declared register ordering); the data and output can remain correlated. This does not copy arbitrary unknown amplitudes into an independent state. It coherently records a basis function.
+
+**Code and verification.** The helper constructs those actual named gates and calls native `compute.adjoint()` for their reverse. `workspace_reference` independently loops over the four data labels and scatters amplitudes into all sixteen output coordinates. No dense full-register gate is used by that reference.
+
+```python
+compute=fq.Circuit(4,dtype=D).cx(0,2).cx(1,2)
+used=fq.Circuit(4,dtype=D).compose(compute).cx(2,3)
+cleaned=fq.Circuit(4,dtype=D).compose(used).compose(compute.adjoint())
+factors=ca.data_factors()
+data=product_input(factors)
+for stage,block in (('use',used),('clean',cleaned)):
+    v,p=ca.run(block,factors+[(1,0),(1,0)])
+    torch.testing.assert_close(v,ca.workspace_reference(data,stage),rtol=0,atol=ca.ATOL)
+    if stage=='clean':assert ca.prob_one(p,2)<ca.ATOL
+print('Complex data: all16 amplitudes match after use and uncompute; clean workspace P(1)<1e-12')
+```
+
+```text
+Complex data: all16 amplitudes match after use and uncompute; clean workspace P(1)<1e-12
+```
+
+<span id="formula-code-5-2-contracts"></span>
+
+### 6. A cleanup guarantee has preconditions
+
+**Formula.** For a pure final state expressed by data/output label r and workspace bit a,
+
+$$
+|\Psi\rangle=\sum_r z_{r0}|r,0\rangle+\sum_r z_{r1}|r,1\rangle,
+\qquad P(a=1)=\sum_r|z_{r1}|^2.
+$$
+
+**Derivation.** Orthogonality removes all cross terms in the marginal probability. Exactly zero leakage forces every $z_{r1}=0$ and hence a factorized zero workspace. Here r groups the other qubits conceptually; the code still uses q0,q1,a,q3 order. A computed leakage below tolerance is numerical evidence, not an exact certificate.
+
+Initializing a to one instead gives $a=1\oplus f$ after compute, and restores a to one after uncompute; the recorded output is complemented. Alternatively, start correctly but flip x after use: the inverse uses the changed value, leaving $a=f(x,y)\oplus y\oplus(x\oplus1)=1$. Applying a block's adjoint is not sufficient if the inputs it expects have changed. Preserving the relevant data and computed workspace labels during use is a sufficient condition for this construction, not a necessary condition for every possible cleanup algorithm.
+
+**Code and verification.** Both deliberately incorrect contracts are executed and their incorrect final states are predicted, rather than treated as successful cleanups.
+
+```python
+for stage,blank in (('clean',1),('bad-data',0)):
+    v,p=ca.run(ca.workspace(stage),factors+ca.basis_factors((blank,0)))
+    expected=ca.workspace_reference(data,stage,blank=blank)
+    torch.testing.assert_close(v,expected,rtol=0,atol=ca.ATOL)
+    assert abs(ca.prob_one(p,2)-1)<ca.ATOL
+print('Wrong blank and data changed before inverse: both leave workspace P(1)=1')
+```
+
+```text
+Wrong blank and data changed before inverse: both leave workspace P(1)=1
+```
+
+<span id="formula-code-5-2-interference"></span>
+
+### 7. Forgetting a workspace is not uncomputing it
+
+**Formula.** Starting from 00, H on data followed by CX creates $(|00\rangle+|11\rangle)/\sqrt2$. Without cleanup, a final H on data gives
+
+$$
+\frac{|00\rangle+|01\rangle+|10\rangle-|11\rangle}{2},\qquad P(q0=0)=\tfrac12.
+$$
+
+With an additional CX before that final H, the two CX gates cancel and the output is 00, with $P(q0=0)=1$.
+
+**Derivation.** Expand H on the first factor of each of the two branches. Their workspace labels differ, so ignoring that label does not make the amplitudes interfere as if it were absent. Uncomputing removes the correlation and restores the interference. A unitary cannot send both orthogonal inputs $|0\rangle_a,|1\rangle_a$ to the same $|0\rangle_a$, since it preserves their inner product. Physical reset involves a different operation and environment contract. No reset or measurement API is used here.
+
+**Code and verification.** This intentionally small experiment checks both the entire vector and the marginal data probability.
+
+```python
+for clean,probability in ((False,.5),(True,1.)):
+    block=fq.Circuit(2,dtype=D).h(0).cx(0,1)
+    if clean:block.cx(0,1)
+    block.h(0)
+    v,p=ca.run(block,[(1,0),(1,0)])
+    expected=torch.tensor([1,0,0,0] if clean else [.5,.5,.5,-.5],dtype=D)
+    torch.testing.assert_close(v,expected,rtol=0,atol=ca.ATOL)
+    assert abs(p[:2].sum().item()-probability)<ca.ATOL
+print('Data P(0): dirty workspace 0.5; uncomputed workspace 1.0')
+```
+
+```text
+Data P(0): dirty workspace 0.5; uncomputed workspace 1.0
+```
+
+<span id="formula-code-5-2-boundaries"></span>
+
+### 8. Reject unsupported contracts explicitly
+
+**Formula and boundary.** A projector $P=\operatorname{diag}(1,0)$ fails $P^\dagger P=I$, so the controlled-unitary theorem does not apply. Numerical unitarity checks use absolute tolerance $10^{-12}$ and relative tolerance zero; they do not prove exact symbolic unitarity. Wrong shapes, nonfinite entries and the wrong precision are also refused by the book helper.
+
+**Code.** Native block control in FlagQuantum 0.3.1 requires newly added control qubits outside the original source register. Its custom-matrix controlled form is not implemented: it raises `CapabilityError`. The explicitly constructed unitary C(U) route above is executable. We do not silently replace an unsupported native operation with an unreported approximation. The workspace helper also refuses an undeclared `reset` stage; this is our helper contract, not a claim to have called a native reset method.
+
+```python
+rejected=0
+checks=[(ValueError,lambda:ca.controlled_matrix(2*ca.X)),
+        (ValidationError,lambda:source.control(1,ctrl_qubits=(0,))),
+        (CapabilityError,lambda:fq.Circuit(1,dtype=D).unitary(0,unitary=ca.X).control(1,ctrl_qubits=(1,))),
+        (ValueError,lambda:ca.workspace('reset'))]
+for error,action in checks:
+    try:action()
+    except error:rejected+=1
+assert rejected==4 and ca.RUNS==11
+print('4 invalid contracts rejected; 11 actual body circuits; no reset or hardware execution')
+```
+
+```text
+4 invalid contracts rejected; 11 actual body circuits; no reset or hardware execution
+```
+
+### Run the complete example
+
+```bash
+python examples/foundations/controlled_ancillas.py
+python scripts/check_controlled_ancillas_prose.py
+```
+
+The complete program runs **100 actual circuits**: 47 generic controlled-unitary cases (all basis inputs, complex products, reversed/nonadjacent supports and a two-target matrix), 16 named CX cases, nine CCX cases, six native block-control cases, two phase analyzers, eighteen workspace-stage/contract cases and two interference cases. Direct branch sums, scalar ordered-support action and bit-index scatter references check full complex coordinates. Ten invalid contracts are rejected. The eight cumulative body fragments run eleven additional circuits; a separate unseen-parameter transfer below is also executed by the author. These finite implementation checks supplement the general projector and linearity proofs; they are not independent review.
+
+Expected output of the complete program:
+
+```text
+Controlled matrix uses ordered support(control,target...); no measurement of the control.
+47generic controlled circuits: basis,complex,nonadjacent and two-target cases; scalar/branch references agree.
+16named CX basis circuits and9CCX basis/superposition circuits checked.
+6native block-control circuits: added controlq1,targetq0,then explicit placement map; source retained.
+2controlled-phase analyzer circuits: C(I) ->00; C(-I) ->10; target global phase is observable on control.
+18parity workspace circuits: coherent stages,clean ancilla,wrong blank,data-change and initial-output boundaries.
+2coherence circuits: data P0=0.5without cleanup,1.0with uncompute;10invalid contracts rejected.
+100 actual CPU complex128 circuits; atol=1e-12,rtol=0; no control measurement,reset,shots or hardware.
+```
+
+### Understanding checks and transfer exercises
+
+**5.2-A — Transfer the control phase.** Use $U=e^{0.31i}R_x(-0.52)$, target zero and control $(0.6,0.8i)$. Give all four amplitudes and implement the gate on ordered support (1,0), with q1 as control. Which entries must be permuted relative to control-first coordinates?
+
+**5.2-B — Output initialization.** In the parity example, keep workspace zero but initialize t to one. Which qubit is cleaned, and what remains in t? Does a nonzero output imply failed cleanup?
+
+**5.2-C — Scope of cleanup.** Why does changing data before the displayed inverse break its guarantee? Does the example prove that no computation can ever change data and clean an ancilla?
+
+**5.2-D — Numerical evidence.** Is $P(a=1)<10^{-12}$ an exact proof of zero workspace? Would checking only computational probabilities detect dropping the target's global phase before control?
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** Put $c=\cos(0.26)$ and $s=\sin(0.26)$. Since $R_x(-0.52)|0\rangle=c|0\rangle+i s|1\rangle$, control-first coordinates are $(0.6,0,0.8i e^{0.31i}c,-0.8e^{0.31i}s)$. In q0,q1 order with target q0 and control q1 they are $(0.6,0.8i e^{0.31i}c,0,-0.8e^{0.31i}s)$. The author separately executes the generic controlled matrix with support (1,0), checks this explicit trigonometric reference, and compares the native phase-tracked named-gate block controlled on added q1. No phase alignment is applied.
+
+**B.** The final branch is $|xy,0,1\mathbin{\oplus}f(x,y)
+angle$. Workspace a is cleaned, while t correctly holds a complemented output under the changed input contract. Cleanup is specified per role, not by requiring every qubit to be zero. The complete program checks this case independently.
+
+**C.** The inverse reads changed computational labels and therefore need not undo the stored old function value. The sufficient unchanged-label contract has been violated. This is a counterexample to an unconditional guarantee, not an impossibility theorem for all algorithms that change data; an alternative cleanup may retain or reconstruct the necessary information.
+
+**D.** No: the inequality is a finite-precision numerical check. The exact factorization statement follows from the zero sum of nonnegative squared amplitudes. Raw computational probabilities can miss a phase discrepancy, but the control H analyzer converts the branch phase into different probabilities. Exact vector checks and explicit phase context remain required.
+
+</details>
+
+### Sources, limits and next step
+
+Depth **F**: the orthogonal-projector proof of controlled unitarity, coherent superposition action, controlled-product identity, basis-wise compute/use/uncompute proof and zero-workspace criterion are supplied explicitly. Assigned background: Nielsen and Chuang, 10th Anniversary Edition (2010), §4.3. No fresh inspection of the local third-party PDF is claimed. Installed released FlagQuantum source/signatures for `cx`, `ccx`, `control`, `compose` and `adjoint` were inspected or exercised; numerical matrices retain their full phase. Named-gate inverse use stays within the unitary scope and preserves the previously documented [5.1 boundary](#formula-code-5-1-boundaries).
+
+The examples cover fixed ideal pure-state circuits, not reset, noisy channels, hardware feedback, gradients or fault-tolerant ancilla preparation. No resource-optimal decomposition is claimed. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.2.json) separates author execution from independent mathematical review, implementation review and reader trials, all still pending. This is a working draft. Next, when drafted: [5.3 Classical logic made reversible](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-3).

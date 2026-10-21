@@ -1,0 +1,108 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-2",
+  "ref": "5.2",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+  "depth": "F",
+  "result": "Controlled-unitary block form and ancilla contracts",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+    "sec-composite-systems-tensor-products-and-qubit-ordering-4",
+    "sec-gates-reversible-computation-and-circuit-synthesis-1"
+  ],
+  "assumptions": [
+    "Orthogonal computational control projectors; fixed finite unitary target matrix with retained phase",
+    "Explicit ordered support and full-register bit indexing; ideal pure states",
+    "Ancilla roles, initial blank and output states specified; use preserves relevant data/workspace labels for displayed cleanup"
+  ],
+  "proof_obligations": [
+    "Controlled block unitarity in both directions and converse",
+    "Coherent general branch action and product-output criterion",
+    "Controlled phase and composition identity",
+    "Coherent compute/use/uncompute by basis action and linearity",
+    "Zero marginal workspace leakage implies factorized zero state; finite tolerance not exact proof"
+  ],
+  "formula_code_units": [
+    "formula-code-5-2-blocks",
+    "formula-code-5-2-superposition",
+    "formula-code-5-2-phase",
+    "formula-code-5-2-native",
+    "formula-code-5-2-workspace",
+    "formula-code-5-2-contracts",
+    "formula-code-5-2-interference",
+    "formula-code-5-2-boundaries"
+  ],
+  "sources": [
+    {
+      "locator": "NC:4.3",
+      "edition": "10th Anniversary Edition (2010)",
+      "current_session_inspection": "Assigned background; no fresh local PDF inspection claimed"
+    },
+    {
+      "source": "Released FlagQuantum0.3.1 installed control/cx/ccx/unitary/compose/adjoint source and executions",
+      "evidence": "book/section-evidence/5.2/api-inspection.json"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/controlled_ancillas.py",
+    "command": "python examples/foundations/controlled_ancillas.py",
+    "prose_check_command": "python scripts/check_controlled_ancillas_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 100,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 11,
+    "separate_transfer_circuits": 2,
+    "execution_ledger": {
+      "initial_complete": 100,
+      "body_assembly": 11,
+      "body_and_complete_checker": 111,
+      "separate_transfer": 2,
+      "total_section52_circuits": 335,
+      "note": "Earlier-section regressions and future CI invocations separate. No independent agent review requested or claimed.",
+      "final_body_and_complete_checker": 111
+    },
+    "checks": [
+      "47generic,16CX,9CCX,6native-block-control,2controlled-phase,18workspace,2interference circuits",
+      "All computational basis inputs,complex superpositions,multiple targets,reversed/nonadjacent supports",
+      "Direct branch sum and independent scalar/bit-index references; every complex coordinate",
+      "Wrong blank,changed data,nonzero initial output,10invalid contracts",
+      "8actual body outputs and complete-program stdout exact match",
+      "Separate phase-tracked native versus generic reversed-support transfer with new angles"
+    ],
+    "tolerance": "atol1e-12,rtol0; no phase alignment, normalization repair, approximate/fallback backend",
+    "unplanned_execution_failures": "None in complete,body or transfer executions",
+    "limitations": "Ideal fixed unitary circuits; native custom-matrix control unsupported and explicitly rejected. No reset,shots,noise,hardware,gradients or exact numerical certificates claimed.",
+    "script_sha256": "de69979766f98f466b409f1f3f151f8dd658b5bcf11cffe8e30bca309c61300e"
+  },
+  "assessment": {
+    "tasks": [
+      "5.2-A new phase/reversed-support transfer",
+      "5.2-B nonzero output initialization",
+      "5.2-C cleanup scope",
+      "5.2-D tolerance/phase validation"
+    ],
+    "answers": "Supplied; no reader trial"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "100 complete circuits,8actualbody fragments/11circuits and2new-parameter transfer circuits passed; final body and complete stdout rerun exact. Scoped5.1regression passed. Frozen curriculum/proof/baseline/skill generators agree, strictMkDocs and70page local links/unique fragments passed. Actual browser key formulas inspected. Independent reviews pending."
+  },
+  "production": {
+    "next_draft": "5.3 Classical logic made reversible",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual IAB1280x720 screenshots of controlled block/projector unitarity, coherent superposition and multiline compute/use/uncompute amplitudes. Final superposition page reloaded after visible native-gate body additions; no garbling or clipping in inspected regions."
+  }
+}

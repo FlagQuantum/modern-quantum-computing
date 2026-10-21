@@ -1,0 +1,18 @@
+{
+  "examples/foundations/controlled_ancillas.py": "de69979766f98f466b409f1f3f151f8dd658b5bcf11cffe8e30bca309c61300e",
+  "scripts/check_controlled_ancillas_prose.py": "562404bd76aaa7e505e0154b1fc5caa8a27baba28af6e22baaed5beda44a6176",
+  "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md": "636bae6eca5faa30e551c12a93053b9aad7f3f15fbc91c4b2bd72c19c0da6c93",
+  "book/section-evidence/5.2/api-inspection.json": "85340899c8a08923b5f29ff22cd62956976f21b29cf2f1a3200fe14c83a86fc6",
+  "book/section-evidence/5.2/complete.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.2/complete.stdout.txt": "8f4e0fb7eaa0e44474fb8bda7cf4a9b23d5f258a328d711556c5478c50ca2da1",
+  "book/section-evidence/5.2/prose-final.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.2/prose-final.stdout.txt": "9825ea3bc6dbb00d6b2a9882ae056b5f9123965c3236e6eef3d535d21520f76f",
+  "book/section-evidence/5.2/prose.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.2/prose.stdout.txt": "9825ea3bc6dbb00d6b2a9882ae056b5f9123965c3236e6eef3d535d21520f76f",
+  "book/section-evidence/5.2/regression51.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.2/regression51.stdout.txt": "605b0b06dab43f13da110fa3e11d42a942613b9dcca3442efa3966b4a2d5d7bc",
+  "book/section-evidence/5.2/transfer.py": "abad5b1c48d0215ebf5eb3ccf669dc46361fba4ce12e86e3969b10ef3f3579b1",
+  "book/section-evidence/5.2/transfer.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.2/transfer.stdout.txt": "b737484331412d3cdbe81146989606b5730f2c87d4c53c2feeb4a09ec828e16c",
+  "book/section-evidence/5.2/validation.json": "dba4a35dcdfde9e00736d3ab6c0c98d78a419c2f6b95ae489d0b78abc5219216"
+}

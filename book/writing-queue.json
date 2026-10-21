@@ -448,7 +448,7 @@
         "sec-gates-reversible-computation-and-circuit-synthesis-1"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md"
     },
     {

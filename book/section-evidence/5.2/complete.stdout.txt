@@ -1,0 +1,8 @@
+Controlled matrix uses ordered support(control,target...); no measurement of the control.
+47generic controlled circuits: basis,complex,nonadjacent and two-target cases; scalar/branch references agree.
+16named CX basis circuits and9CCX basis/superposition circuits checked.
+6native block-control circuits: added controlq1,targetq0,then explicit placement map; source retained.
+2controlled-phase analyzer circuits: C(I) ->00; C(-I) ->10; target global phase is observable on control.
+18parity workspace circuits: coherent stages,clean ancilla,wrong blank,data-change and initial-output boundaries.
+2coherence circuits: data P0=0.5without cleanup,1.0with uncompute;10invalid contracts rejected.
+100 actual CPU complex128 circuits; atol=1e-12,rtol=0; no control measurement,reset,shots or hardware.

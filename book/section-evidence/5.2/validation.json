@@ -1,0 +1,18 @@
+{
+  "section": "5.2",
+  "state": "author-verified draft",
+  "complete_circuits_per_invocation": 100,
+  "body_fragments": 8,
+  "body_circuits_per_invocation": 11,
+  "transfer_circuits": 2,
+  "author_execution_ledger_total": 335,
+  "invalid_contracts": 10,
+  "initial_failures": "No complete/body/transfer execution failure",
+  "regressions": "Scoped5.1actualbodyandcomplete output passed",
+  "strict_build": "passed",
+  "links": "70pages; local links/fragments resolve,IDs unique",
+  "formula_display": "Passed actual IAB1280x720 screenshots of controlled block/projector unitarity, coherent superposition and multiline compute/use/uncompute amplitudes. Final superposition page reloaded after visible native-gate body additions; no garbling or clipping in inspected regions.",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

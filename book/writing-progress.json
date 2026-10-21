@@ -301,6 +301,16 @@
       "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
       "record": "book/section-records/5.1.json",
       "author_execution": "passed after explicit book-side custom-unitarity guard; original released-adjoint admission failure preserved; FQ0.3.1/Torch2.13.0CPUcomplex128"
+    },
+    "sec-gates-reversible-computation-and-circuit-synthesis-2": {
+      "state": "draft",
+      "brief": "book/briefs/ch05.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+      "record": "book/section-records/5.2.json",
+      "author_execution": "passed: released FQ0.3.1/Torch2.13.0CPUcomplex128; controlled branch and workspace scalar references"
     }
   },
   "existing_pilots": [
