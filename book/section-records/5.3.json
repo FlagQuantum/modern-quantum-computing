@@ -1,0 +1,108 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-3",
+  "ref": "5.3",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+  "depth": "F",
+  "result": "Reversible embedding of a Boolean function",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+    "sec-gates-reversible-computation-and-circuit-synthesis-2"
+  ],
+  "assumptions": [
+    "Finite fixed deterministic Boolean function;positive widths and XOR output register",
+    "Input-first MSB coordinates; orthogonal computational basis",
+    "For clean circuit construction,fresh zero workspace,acyclic Boolean gate list,retained input/intermediates during output copy"
+  ],
+  "proof_obligations": [
+    "Noninjective overwrite contradicts inner-product preservation",
+    "Unique inverse and self-inverse XOR map on the entire input/output basis",
+    "Both unitary products from orthogonality/bijection; coherent linear extension",
+    "Boolean primitives and multi-output ordering",
+    "Topological finite Boolean computation and copy-output/reverse-compute on declared subspace",
+    "Wrong blank and altered data boundaries; phase kickback; existence versus efficiency"
+  ],
+  "formula_code_units": [
+    "formula-code-5-3-collision",
+    "formula-code-5-3-oracle",
+    "formula-code-5-3-primitives",
+    "formula-code-5-3-outputs",
+    "formula-code-5-3-recipe",
+    "formula-code-5-3-cleanup",
+    "formula-code-5-3-coherence",
+    "formula-code-5-3-limits"
+  ],
+  "sources": [
+    {
+      "locator": "NC:3.1.2",
+      "edition": "10th Anniversary Edition (2010)",
+      "current_session_inspection": "Assigned background; no fresh PDF inspection claimed"
+    },
+    {
+      "source": "Installed released FlagQuantum0.3.1 named gates and unitary/compose/adjoint",
+      "evidence": "book/section-evidence/5.3/api-inspection.json"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/reversible_logic.py",
+    "command": "python examples/foundations/reversible_logic.py",
+    "prose_check_command": "python scripts/check_reversible_logic_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 267,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 14,
+    "separate_transfer_circuits": 18,
+    "execution_ledger": {
+      "initial_passing_coverage": 250,
+      "complete_with_added_native_half_adder_coverage": 267,
+      "body_assembly": 14,
+      "body_and_complete_checker": 281,
+      "separate_transfer": 18,
+      "total_section53_circuits": 830,
+      "note": "Passing250coverage stage retained before17nativehalf-adder basis/complex checks added. Earlier-section regressions and future CI invocations separate; no independent agent review claimed."
+    },
+    "checks": [
+      "All16two-input single-output truth tables:allbasis,complex and double-oracle",
+      "Two-output half-adder dense and named-gate all16basis/complex paths; dense involution",
+      "32namedprimitive circuits;36fivequbit network/stage checks including arbitrary initial workspace",
+      "Exact full complex comparisons,phase kickback,entangled input,wrong blank/changed data,11malformed contracts",
+      "8actualbody exact stdout and completeprogram output",
+      "New majority truth table from threshold definition:16basis andcomplex named,1densecomplex"
+    ],
+    "tolerance": "atol1e-12,rtol0; no phase alignment,normalization repair,fallback or approximation",
+    "unplanned_execution_failures": "None; initial passing coverage retained",
+    "limitations": "Dense helper n+m<=6 is book memory guard,not native limit. No efficient general synthesis,reset,noise,hardware,gradient or physical erasure claims.",
+    "script_sha256": "b4afee77afec8fdb756a03b012165ccc81927f99dbebb1576517620e7b68dc25"
+  },
+  "assessment": {
+    "tasks": [
+      "5.3-A majority transfer",
+      "5.3-B arbitrary half-adder output",
+      "5.3-C correct inverse scope",
+      "5.3-D efficiency and coherence"
+    ],
+    "answers": "Supplied; reader trial not run"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "267complete circuits,8actualbody units/14circuits and18new majority transfer circuits passed; exact body and complete stdout passed. Initial250passing coverage retained. Scoped5.1/5.2actualbody/full examples passed. Frozen curriculum/proof/baseline/skill checks agree; strictMkDocs and70page local links/unique IDs passed. Actual browser formulas inspected. Independent reviews and reader trial pending."
+  },
+  "production": {
+    "next_draft": "5.4 Uncomputation and reusable workspace",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual IAB1280x720 screenshots of XOR embedding,basis inner-product/unitarity proof,inverse statevector index,and concrete plus general compute/copy-output/uncompute formulas. No garbling or clipping in inspected regions. One browser authority timeout recovered on permitted single retry."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "section": "5.3",
+  "state": "author-verified draft",
+  "complete_circuits": 267,
+  "body_fragments": 8,
+  "body_circuits": 14,
+  "separate_transfer_circuits": 18,
+  "execution_ledger_total": 830,
+  "initial_coverage": "250passing runs retained;17nativehalf-adder checks added",
+  "invalid_contracts": 11,
+  "execution_failures": "None",
+  "regressions": "5.1and5.2scopedbodyandcompletepassed",
+  "strict_build": "passed",
+  "links": "70pages; local links/fragments resolve and IDs unique",
+  "formula_display": "Passed actual IAB1280x720 screenshots of XOR embedding,basis inner-product/unitarity proof,inverse statevector index,and concrete plus general compute/copy-output/uncompute formulas. No garbling or clipping in inspected regions. One browser authority timeout recovered on permitted single retry.",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

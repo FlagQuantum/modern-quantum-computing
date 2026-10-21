@@ -1,0 +1,7 @@
+16 Boolean functions: all8 basis inputs,complex input and U_f squared checked;160circuits.
+Two-output half-adder table [0,2,2,1]: all16 inputs,complex input and roundtrip;18circuits.
+Named X,CX,CCX constructions of NOT,AND,XOR,OR: all target bits and complex inputs;32circuits.
+g(a,b,c)=(a AND b) XOR c: all32 network inputs,complex input and3coherent stages;36circuits.
+Minus-target phase kickback and2wrong-contract witnesses:3circuits; workspace failures predicted.
+Entangled input checked;11invalid contracts rejected;250actual CPUcomplex128 circuits,atol1e-12,rtol0.
+Dense oracle helper limited to n+m<=6; no efficient-synthesis,reset,shots,noise or hardware claim.

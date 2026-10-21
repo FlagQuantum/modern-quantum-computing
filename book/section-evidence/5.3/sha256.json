@@ -1,0 +1,22 @@
+{
+  "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md": "ae659bbdbc52076a3971527b55b98c965d814f996a5e4039c45a3d38520a4af6",
+  "examples/foundations/reversible_logic.py": "b4afee77afec8fdb756a03b012165ccc81927f99dbebb1576517620e7b68dc25",
+  "scripts/check_reversible_logic_prose.py": "aa0e0683d81cdfcb245236185ea0e8c41c973d6a60b5879f30d9ffc35dfa65f3",
+  "book/section-evidence/5.3/api-inspection.json": "232c103a0f18b048598fe5a4fbcaf39aeef76b311754da78c93cebb3f8f9a01f",
+  "book/section-evidence/5.3/body-assembly.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.3/body-assembly.stdout.txt": "098d19c28a72494b8027d5f3229cf757dcf846924956700a7c20af9c69dca787",
+  "book/section-evidence/5.3/complete-initial.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.3/complete-initial.stdout.txt": "2fb6290aff286c87eaf35d3df3629a5b2abee19ead84b21cd0413669d0b96ef4",
+  "book/section-evidence/5.3/complete.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.3/complete.stdout.txt": "cb34284dd88c7d40bd03138d5af2f75fff7391f5452069f85c75bc09dd2fb2a7",
+  "book/section-evidence/5.3/prose.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.3/prose.stdout.txt": "844fc1cd2b2487832fa3abc7f2d64918a9b28314adf57223fd878fded919af3b",
+  "book/section-evidence/5.3/regression51.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.3/regression51.stdout.txt": "605b0b06dab43f13da110fa3e11d42a942613b9dcca3442efa3966b4a2d5d7bc",
+  "book/section-evidence/5.3/regression52.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.3/regression52.stdout.txt": "9825ea3bc6dbb00d6b2a9882ae056b5f9123965c3236e6eef3d535d21520f76f",
+  "book/section-evidence/5.3/transfer.py": "68e7d20752c5f260cf595be4e4416867820d2ef514b09f03a61773a696c20c73",
+  "book/section-evidence/5.3/transfer.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.3/transfer.stdout.txt": "ae1f9002e56ae467409eb18b34377376136346881eb6c10ebd79bd29b24cbb6b",
+  "book/section-evidence/5.3/validation.json": "e8d3e7f9a2ea8cfdd531cc27ec7dc2caf2e9aa6f975faa7d729cb8457c0192ec"
+}

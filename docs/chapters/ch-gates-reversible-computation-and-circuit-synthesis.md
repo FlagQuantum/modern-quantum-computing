@@ -1,6 +1,6 @@
 # 5. Gates, Reversible Computation, and Circuit Synthesis
 
-**Working drafts: sections 5.1–5.2 · Writing Baseline 1.0 · October 21, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 5.1–5.3 · Writing Baseline 1.0 · October 21, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-1"></span>
 
@@ -659,4 +659,364 @@ angle$. Workspace a is cleaned, while t correctly holds a complemented output un
 
 Depth **F**: the orthogonal-projector proof of controlled unitarity, coherent superposition action, controlled-product identity, basis-wise compute/use/uncompute proof and zero-workspace criterion are supplied explicitly. Assigned background: Nielsen and Chuang, 10th Anniversary Edition (2010), §4.3. No fresh inspection of the local third-party PDF is claimed. Installed released FlagQuantum source/signatures for `cx`, `ccx`, `control`, `compose` and `adjoint` were inspected or exercised; numerical matrices retain their full phase. Named-gate inverse use stays within the unitary scope and preserves the previously documented [5.1 boundary](#formula-code-5-1-boundaries).
 
-The examples cover fixed ideal pure-state circuits, not reset, noisy channels, hardware feedback, gradients or fault-tolerant ancilla preparation. No resource-optimal decomposition is claimed. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.2.json) separates author execution from independent mathematical review, implementation review and reader trials, all still pending. This is a working draft. Next, when drafted: [5.3 Classical logic made reversible](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-3).
+The examples cover fixed ideal pure-state circuits, not reset, noisy channels, hardware feedback, gradients or fault-tolerant ancilla preparation. No resource-optimal decomposition is claimed. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.2.json) separates author execution from independent mathematical review, implementation review and reader trials, all still pending. This is a working draft. Continue with [5.3 Classical logic made reversible](#sec-gates-reversible-computation-and-circuit-synthesis-3).
+
+
+<span id="sec-gates-reversible-computation-and-circuit-synthesis-3"></span>
+
+## 5.3 Classical logic made reversible
+
+Classical AND forgets which of several inputs produced zero. A closed unitary circuit cannot forget that distinction: its full input/output map must be invertible. The remedy is to retain enough information, write a function value into a separate output register, and clean any temporary workspace without erasing the retained answer.
+
+Prerequisites: [4.2](ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-2) for basis indices and [5.2](#sec-gates-reversible-computation-and-circuit-synthesis-2) for coherent controls and explicit ancilla contracts. All gates here act ideally on finite qubit registers, q0 is the most significant bit, and XOR means bitwise addition modulo two. The eight cumulative formula–derivation–code–result units below use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 precision. Run from the repository root in the pinned example environment. The companion [reversible_logic.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/reversible_logic.py) contains all helpers and complete tests.
+
+<span id="formula-code-5-3-collision"></span>
+
+### 1. Why an irreversible truth table is not a unitary gate
+
+**Formula.** AND is a deterministic function $f:\{0,1\}^2\to\{0,1\}$ with table $(0,0,0,1)$ in input order 00,01,10,11. Trying to overwrite a fixed two-qubit input by $|0,f(x)\rangle$ gives, among others,
+
+$$
+|00\rangle\longmapsto|00\rangle,\qquad
+|01\rangle\longmapsto|00\rangle.
+$$
+
+**Derivation.** The inputs have inner product zero, while the proposed outputs have inner product one. A unitary preserves inner products, so this cannot be its action. The difficulty is information loss, not the particular gate notation. If extra output labels distinguish the colliding inputs, the full map may be reversible; those labels then hold information that cannot simply be discarded inside a unitary circuit. For an in-place map between equally sized computational bases, bijectivity is necessary and sufficient for its basis permutation to be unitary.
+
+**Code and verification.** This first check is classical matrix algebra: there is deliberately no attempt to submit a nonunitary AND-overwrite matrix as a FlagQuantum gate. The following units construct the valid unitary embedding.
+
+```python
+import sys
+sys.path.insert(0,'.')
+import torch
+import flagquantum as fq
+from math import sqrt
+from examples.foundations import reversible_logic as rl
+D=rl.DTYPE
+and_table=[0,0,0,1]
+overwrite=torch.zeros((4,4),dtype=D)
+for x,fx in enumerate(and_table):overwrite[fx,x]=1
+assert torch.vdot(overwrite[:,0],overwrite[:,1]).item()==1
+assert not torch.equal(overwrite.mH@overwrite,torch.eye(4,dtype=D))
+print('AND overwrite merges orthogonal columns: not a unitary operation')
+```
+
+```text
+AND overwrite merges orthogonal columns: not a unitary operation
+```
+
+<span id="formula-code-5-3-oracle"></span>
+
+### 2. Preserve the input and XOR into an output register
+
+**Theorem and formula.** Let $f:\{0,1\}^n\to\{0,1\}^m$ be any fixed finite deterministic function, with positive integers n,m. Bitwise XOR acts on the m output bits. Define
+
+$$
+U_f|x\rangle|y\rangle=|x\rangle|y\mathbin{\oplus}f(x)\rangle.
+$$
+
+Then $U_f$ extends uniquely by linearity to a unitary and $U_f^2=I$, even when f is many-to-one. A zero output gives the familiar $|x,0\rangle\mapsto|x,f(x)\rangle$; the definition must also specify nonzero y.
+
+**Derivation.** For any output pair $(x',y')$, its unique preimage is $(x',y'\oplus f(x'))$. Applying the map twice restores y because each bit satisfies $b\oplus b=0$. Thus the basis map is bijective and self-inverse. For basis pairs, orthogonality follows explicitly:
+
+$$
+\langle x',y'|U_f^\dagger U_f|x,y\rangle
+=\delta_{x'x}\,\delta_{y'\oplus f(x'),\,y\oplus f(x)}
+=\delta_{x'x}\delta_{y'y}.
+$$
+
+When $x'\ne x$ the first delta is zero; when $x'=x$, XOR by the same bit string is invertible. This proves $U_f^\dagger U_f=I$; bijectivity also proves the reverse product and the self-inverse claim. Consequently $U_f^\dagger=U_f$. In coordinates, using q0 as the most significant bit and input register first,
+
+$$
+j=2^m x+y,\qquad (U_f v)_{2^m x+y}=v_{2^m x+(y\oplus f(x))}.
+$$
+
+**Code and verification.** `oracle_matrix` is a bounded book helper that builds this permutation, not a native oracle compiler. `oracle_reference` independently pulls each output coordinate from its inverse input. `rl.run` prepares normalized input factors outside the block and actually calls FlagQuantum with the pinned statevector/PyTorch/CPU/complex128 options, probabilities enabled, and fallback/approximation disabled. It checks batch-one shapes, precision and probabilities before returning unbatched vectors. No phase alignment or normalization repair is used.
+
+```python
+U=rl.oracle_matrix(and_table,2,1)
+assert torch.equal(U@U,torch.eye(8,dtype=D))
+block=fq.Circuit(3,dtype=D).unitary(0,1,2,unitary=U)
+factors=rl.complex_factors(3)
+initial=rl.product_input(factors)
+v,p=rl.run(block,factors)
+torch.testing.assert_close(v,rl.oracle_reference(initial,and_table,2,1),rtol=0,atol=rl.ATOL)
+roundtrip=fq.Circuit(3,dtype=D).compose(block).compose(block)
+v,p=rl.run(roundtrip,factors)
+torch.testing.assert_close(v,initial,rtol=0,atol=rl.ATOL)
+print('AND XOR-embedding: complex input matches inverse-index reference; U_f twice restores all coordinates')
+```
+
+```text
+AND XOR-embedding: complex input matches inverse-index reference; U_f twice restores all coordinates
+```
+
+<span id="formula-code-5-3-primitives"></span>
+
+### 3. Translate Boolean gates into X, CX and CCX
+
+**Formulas.** With fresh target t initially zero, retain a,b and write a Boolean gate into t:
+
+$$
+\begin{aligned}
+\mathrm{NOT}:&\quad t\mapsto t\oplus1\oplus a,\\
+\mathrm{XOR}:&\quad t\mapsto t\oplus a\oplus b,\\
+\mathrm{AND}:&\quad t\mapsto t\oplus ab,\\
+\mathrm{OR}:&\quad t\mapsto t\oplus a\oplus b\oplus ab.
+\end{aligned}
+$$
+
+**Derivation.** NOT a equals $1\oplus a$. AND is the bit product ab, so its XOR embedding is CCX(a,b,t). XOR requires two CX gates to the same target. The four pairs 00,01,10,11 give $a\oplus b\oplus ab=0,1,1,1$, proving the OR identity. Every displayed operation is defined for both t values; each is a permutation rather than a destructive overwrite. A direct NOT on a single retained computational bit is already the reversible X gate; the two-qubit NOT embedding additionally preserves the original a.
+
+**Code.** These are actual released named gates. The loop tests complex input vectors, including a superposed target. The complete example additionally checks every computational basis input, including target one. The input controls of a CCX must refer to distinct qubits; repeated Boolean inputs should be simplified first (for example $a\land a=a$, $a\oplus a=0$).
+
+```python
+named={
+ 'NOT':(fq.Circuit(2,dtype=D).x(1).cx(0,1),[1,0],1),
+ 'AND':(fq.Circuit(3,dtype=D).ccx(0,1,2),[0,0,0,1],2),
+ 'XOR':(fq.Circuit(3,dtype=D).cx(0,2).cx(1,2),[0,1,1,0],2),
+ 'OR':(fq.Circuit(3,dtype=D).cx(0,2).cx(1,2).ccx(0,1,2),[0,1,1,1],2)
+}
+for name,(c,table,n) in named.items():
+    factors=rl.complex_factors(n+1)
+    v,p=rl.run(c,factors)
+    expected=rl.oracle_reference(rl.product_input(factors),table,n,1)
+    torch.testing.assert_close(v,expected,rtol=0,atol=rl.ATOL)
+print('NOT,AND,XOR,OR: named gates match four independently indexed complex-output references')
+```
+
+```text
+NOT,AND,XOR,OR: named gates match four independently indexed complex-output references
+```
+
+<span id="formula-code-5-3-outputs"></span>
+
+### 4. Keep multiple output bits in their declared order
+
+**Formula.** A half-adder has sum $s=a\oplus b$ and carry $c=ab$. Declare output order (s,c), so its encoded integer is $f(a,b)=2s+c$. This gives table $(0,2,2,1)$ and embedding
+
+$$
+|a,b,u,v\rangle\longmapsto
+|a,b,u\oplus(a\oplus b),v\oplus ab\rangle.
+$$
+
+**Derivation.** The first output bit is the most significant bit of the two-bit output register. Thus input 01 produces output 10, encoded as two, whereas input 11 produces 01, encoded as one. This is a four-qubit embedding that preserves both inputs, not an in-place two-qubit addition. Each output is XORed with its own declared initial bit, so arbitrary u,v are valid. There is no carry-workspace to clean in this direct construction.
+
+**Code and verification.** The two implementations below share only the declared truth table: one uses a dense permutation matrix and the other three named gates. Every complex coordinate is compared with the scalar inverse-index reference.
+
+```python
+half_table=[0,2,2,1]
+dense=fq.Circuit(4,dtype=D).unitary(0,1,2,3,unitary=rl.oracle_matrix(half_table,2,2))
+half=fq.Circuit(4,dtype=D).cx(0,2).cx(1,2).ccx(0,1,3)
+factors=rl.complex_factors(4)
+expected=rl.oracle_reference(rl.product_input(factors),half_table,2,2)
+for c in (dense,half):
+    v,p=rl.run(c,factors)
+    torch.testing.assert_close(v,expected,rtol=0,atol=rl.ATOL)
+print('Half-adder (sum,carry): encoded table [0,2,2,1]; dense and named-gate complex vectors agree')
+```
+
+```text
+Half-adder (sum,carry): encoded table [0,2,2,1]; dense and named-gate complex vectors agree
+```
+
+<span id="formula-code-5-3-recipe"></span>
+
+### 5. Turn a finite classical circuit into a reversible computation
+
+**Construction.** A finite deterministic truth table has a finite Boolean expression: OR the input minterms for which each output bit is one, using NOT for zero-valued input literals; a constant-zero output has no true minterms. AND, OR and NOT can be realized using the identities above. This establishes existence, not an efficient implementation of an arbitrary table.
+
+Process the resulting acyclic classical gate list in topological order. Retain the input bits; assign a distinct fresh zero workspace qubit to each computed intermediate gate output. Implement each gate with its XOR embedding, leaving all prior inputs and stored gate results intact. If a Boolean gate repeats the same input, simplify it as noted above. For a NOT gate, use X on its fresh target followed by CX from its input. A constant one uses X on its fresh target; constant zero needs no gate.
+
+**Formula and proof.** Induct over the gate list. Initially the input x is retained and every fresh target is zero. If earlier stored values agree with the classical evaluation, the next XOR embedding writes exactly the next classical gate value into its zero target, changing none of those stored values. Hence a finite unitary computation C satisfies, on the specified input subspace,
+
+$$
+C|x\rangle|0^r\rangle=|x\rangle|h(x)\rangle,
+$$
+
+where h includes all stored intermediate values and output values. The action on other workspace inputs is still unitary, but is not generally this classical computation. This induction does not claim that its chosen workspace is minimal.
+
+**Concrete code.** For $g(a,b,c)=(a\land b)\oplus c$, reserve q0,q1,q2 for data, q3 for temporary AND value w and q4 for output y. The intermediate is $w=ab$, computed by one CCX. This small network needs only the AND intermediate; its final XOR will be written directly to y in the next unit.
+
+```python
+compute=fq.Circuit(5,dtype=D).ccx(0,1,3)
+factors=rl.complex_factors(3)+[(1,0),(1,0)]
+initial=rl.product_input(factors)
+v,p=rl.run(compute,factors)
+torch.testing.assert_close(v,rl.network_reference(initial,'compute'),rtol=0,atol=rl.ATOL)
+expected_leak=.64*.3
+assert abs(rl.probability_one(p,3)-expected_leak)<rl.ATOL
+print('AND workspace computed coherently; P(w=1)=0.192 before cleanup')
+```
+
+```text
+AND workspace computed coherently; P(w=1)=0.192 before cleanup
+```
+
+<span id="formula-code-5-3-cleanup"></span>
+
+### 6. Retain the answer and reverse temporary computation
+
+**Formula.** For the concrete network, with arbitrary output bit y and zero initial w,
+
+$$
+\begin{aligned}
+|a,b,c,0,y\rangle
+&\longmapsto |a,b,c,ab,y\rangle\\
+&\longmapsto |a,b,c,ab,y\oplus ab\oplus c\rangle\\
+&\longmapsto |a,b,c,0,y\oplus g(a,b,c)\rangle.
+\end{aligned}
+$$
+
+**Derivation.** The use step calls CX(w,y) and CX(c,y), leaving the data and w unchanged. The inverse of the AND computation toggles w by ab again, restoring zero. The final state retains the answer in y; reversing the *entire* used circuit would also erase that answer.
+
+For the general stored classical computation C of unit 5, append an m-qubit output register Y and CX each stored output bit into its corresponding Y bit. These CX gates preserve x and the entire stored h(x). Now apply $C^\dagger$ on X and workspace only. On each basis component the overall map is
+
+$$
+|x,0^r,y\rangle\longmapsto|x,h(x),y\rangle
+\longmapsto|x,h(x),y\oplus f(x)\rangle
+\longmapsto|x,0^r,y\oplus f(x)\rangle.
+$$
+
+The inverse step is valid because its input X/workspace is exactly the previously computed pair; the retained output register is not a target of that inverse. Linearity proves the same statement for any superposition $\sum_{x,y}\alpha_{xy}|x,0^r,y\rangle$, including correlated X,Y inputs. All nonzero final amplitudes have zero workspace, so it factors out and can be reused. The data/output need not factorize. Copying stored computational-basis labels by CX does not make independent copies of an unknown quantum state, as established in 4.7. Section 5.4 develops broader workspace reuse contracts and tradeoffs; this is the finite Boolean construction needed here.
+
+**Code and verification.** The actual inverse is built from the named compute block, whose unitary gates satisfy the precondition of native `adjoint`. We inspect the full vectors both before and after cleanup.
+
+```python
+used=fq.Circuit(5,dtype=D).compose(compute).cx(3,4).cx(2,4)
+cleaned=fq.Circuit(5,dtype=D).compose(used).compose(compute.adjoint())
+for stage,c in (('use',used),('clean',cleaned)):
+    v,p=rl.run(c,factors)
+    torch.testing.assert_close(v,rl.network_reference(initial,stage),rtol=0,atol=rl.ATOL)
+    if stage=='clean':assert rl.probability_one(p,3)<rl.ATOL
+print('Use retains answer; inverse of compute restores workspace zero; all32 complex coordinates checked')
+```
+
+```text
+Use retains answer; inverse of compute restores workspace zero; all32 complex coordinates checked
+```
+
+<span id="formula-code-5-3-coherence"></span>
+
+### 7. Test wrong blanks, changed data and coherent outputs
+
+**Boundary formulas.** If the initial workspace bit is w rather than zero, the displayed network instead produces
+
+$$
+|a,b,c,w,y\rangle\longmapsto
+|a,b,c,w,y\oplus w\oplus ab\oplus c\rangle.
+$$
+
+Thus a wrong blank is returned unchanged but contaminates the answer. If a is flipped before the inverse, starting with w=0, the workspace ends at $ab\oplus(a\oplus1)b=b$. For b=1 it is certainly dirty. These are contract failures, not numerical noise.
+
+**Coherent action.** An oracle is a linear quantum operation, not an instruction to sample x and evaluate f classically. For example
+
+$$
+U_f\sum_x\alpha_x|x\rangle|0\rangle
+=\sum_x\alpha_x|x,f(x)\rangle.
+$$
+
+For a one-bit output prepared in $|-\rangle=(|0\rangle-|1\rangle)/\sqrt2$, the identity $X|-\rangle=-|-\rangle$ gives
+
+$$
+U_f\sum_x\alpha_x|x\rangle|-\rangle
+=\sum_x(-1)^{f(x)}\alpha_x|x\rangle|-\rangle.
+$$
+
+**Derivation and verification.** On each basis branch, XOR by zero is identity and XOR by one applies X. Factoring its minus-target eigenvalue out gives the branch sign. Computational probabilities alone miss that sign; the code checks exact complex coordinates with no phase alignment. The complete program also checks an entangled input made by H and CX before the oracle.
+
+```python
+for stage,bits in (('clean',(1,1,0,1,0)),('bad-data',(1,1,0,0,0))):
+    f=rl.basis_factors(bits)
+    v,p=rl.run(rl.network(stage),f)
+    torch.testing.assert_close(v,rl.network_reference(rl.product_input(f),stage),rtol=0,atol=rl.ATOL)
+    assert abs(rl.probability_one(p,3)-1)<rl.ATOL
+f=rl.complex_factors(2)+[(1/sqrt(2),-1/sqrt(2))]
+v,p=rl.run(fq.Circuit(3,dtype=D).ccx(0,1,2),f)
+expected=rl.product_input(f);expected[6:]*=-1
+# Indices6,7 are input11 followed by either output bit.
+torch.testing.assert_close(v,expected,rtol=0,atol=rl.ATOL)
+print('Wrong blank and changed data fail as predicted; minus-target AND branch phase verified')
+```
+
+```text
+Wrong blank and changed data fail as predicted; minus-target AND branch phase verified
+```
+
+<span id="formula-code-5-3-limits"></span>
+
+### 8. Distinguish existence, implementation and efficiency
+
+**Resource statement.** A dense $U_f$ for n+m qubits has $2^{n+m}$ basis columns and $2^{2(n+m)}$ stored matrix entries. Building that matrix proves no efficient synthesis theorem. A truth-table minterm construction can also be exponential in n. For a *given* classical Boolean circuit with L intermediate gate results, the construction above uses at most L stored result qubits plus the separate output register. Its named-gate compute and reverse use a constant number of X/CX/CCX gates per Boolean gate, with additional CX gates for the m output bits. These are logical counts; hardware connectivity and decomposition costs are outside this statement.
+
+**Input/output contract.** The dense helper accepts positive literal integer n,m with n+m at most six and exactly $2^n$ literal integer table entries in $[0,2^m)$. It preserves declared input-first/output-second bit order. Its six-qubit bound is an educational memory guard, not a FlagQuantum limit. The helper does not parse arbitrary Python callables, validate a supplied implementation against an unstated paper, or synthesize an efficient hardware oracle. Approximate, probabilistic and externally stateful functions require different specifications.
+
+**Code and verification.** Wrong widths, Boolean-as-integer entries, out-of-range outputs and undeclared workspace operations are rejected before running a circuit. A simulated leakage below $10^{-12}$ is numerical evidence of cleanup; the mathematical factorization follows from the exact basis proof above, not from treating a floating-point tolerance as a theorem.
+
+```python
+rejected=0
+for action in (lambda:rl.oracle_matrix([0,0,0,True],2,1),
+               lambda:rl.oracle_matrix([0,0,0,2],2,1),
+               lambda:rl.oracle_matrix([0,0,0,1],2,5),
+               lambda:rl.network('reset')):
+    try:action()
+    except ValueError:rejected+=1
+assert rejected==4 and rl.RUNS==14
+print('4 malformed contracts rejected;14 actual body circuits; no reset or synthesis API invented')
+```
+
+```text
+4 malformed contracts rejected;14 actual body circuits; no reset or synthesis API invented
+```
+
+### Run the complete example
+
+```bash
+python examples/foundations/reversible_logic.py
+python scripts/check_reversible_logic_prose.py
+```
+
+The complete program executes **267 actual circuits**: 160 runs cover all sixteen two-input/one-output truth tables on every basis input, a complex product and a self-inverse roundtrip; 35 runs compare dense and named-gate half-adders on every basis input and a complex product, plus a dense roundtrip; 32 runs check the four named Boolean gate constructions; 36 runs check all basis inputs of the five-qubit network, a complex full-register product and three coherent stages with initially zero workspace; three runs cover minus-target phase and two wrong-contract witnesses; one more checks an entangled input. The latter prepares $(|00\rangle+|11\rangle)/\sqrt2$ on the AND inputs before its XOR embedding, and verifies $(|000\rangle+|111\rangle)/\sqrt2$ on all coordinates. Eleven malformed contracts are rejected.
+
+The eight actual body fragments run fourteen circuits in a separate invocation, and their complete printed output is checked exactly. An additional majority-function transfer is recorded below. Initial 250-run evidence is retained from before adding the seventeen named-gate half-adder basis/complex checks; it was a passing coverage stage, not a failed run. Small exhaustive examples validate these implementations; they do not replace the general bijection and construction proofs.
+
+Expected output of the complete program:
+
+```text
+16 Boolean functions: all8 basis inputs,complex input and U_f squared checked;160circuits.
+Two-output half-adder table [0,2,2,1]: dense and named-gate paths,all16 inputs,complex input and roundtrip;35circuits.
+Named X,CX,CCX constructions of NOT,AND,XOR,OR: all target bits and complex inputs;32circuits.
+g(a,b,c)=(a AND b) XOR c: all32 network inputs,complex input and3coherent stages;36circuits.
+Minus-target phase kickback and2wrong-contract witnesses:3circuits; workspace failures predicted.
+Entangled input checked;11invalid contracts rejected;267actual CPUcomplex128 circuits,atol1e-12,rtol0.
+Dense oracle helper limited to n+m<=6; no efficient-synthesis,reset,shots,noise or hardware claim.
+```
+
+### Understanding checks and transfer exercises
+
+**5.3-A — A new Boolean function.** The three-input majority function equals one when at least two inputs are one. Derive a circuit with three CCX gates and no workspace beyond its XOR output. Test arbitrary output bits and a complex superposition.
+
+**5.3-B — Nonzero output.** For the half-adder, take input 11 and initial output 10. What are the final output bits? Why is this not a malfunction of the function embedding?
+
+**5.3-C — Retain versus erase.** Why does reversing the entire computation after copying into a separate output preserve the copied answer, while reversing the entire used block in the concrete network would erase it? Specify which registers each inverse targets.
+
+**5.3-D — Classical and quantum scope.** Does this construction imply an efficient oracle for every truth table? Can it evaluate both branches by first measuring a superposed input and then preparing the classical answer? Explain both limits.
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** Majority is $ab\oplus ac\oplus bc$. With zero, one, two or three ones in the input, the number of true pair products is respectively zero, zero, one or three; its parity is therefore zero, zero, one or one. Apply `ccx(0,1,3)`, `ccx(0,2,3)`, then `ccx(1,2,3)`. The target becomes its initial bit XOR majority. The separate author transfer tests all sixteen input/output basis states and one complex product on this named-gate circuit, then a dense permutation on the same complex input: eighteen actual executions. The reference table is independently generated from the threshold test $a+b+c\ge2$, not from the pair-product expression. This special simplification does not establish a minimal circuit theorem or eliminate workspace from every Boolean computation.
+
+**B.** On 11, the function output (sum,carry) is 01, so $10\oplus01=11$. Only a zero initial output returns the function value without an XOR offset; the unitary is specified on all initial outputs.
+
+**C.** In the general construction, the copied output Y is separate and untouched by the inverse of C, which targets only X and its computed workspace. In the concrete network, `compute.adjoint()` acts on the AND computation only; the retained y is not a target. Inverting the whole `used` block would first undo the XOR writes to y and then undo the AND computation, returning y to its initial state. Reversibility alone does not choose which answer is to be retained; register roles do.
+
+**D.** No efficient implementation follows from a dense permutation or minterm existence proof: either may have exponential size. If an algorithm assumes oracle access, the oracle's actual construction and cost still need accounting. Measuring the input destroys coherent branch phases and correlations, so measure/evaluate/reprepare is not the unitary $U_f$ on an arbitrary superposition. The minus-target example distinguishes the required phase-sensitive action from a mere list of classical output probabilities.
+
+</details>
+
+### Sources, depth and next step
+
+Depth **F**: the collision/inner-product obstruction, inverse-pair bijection, both-sided unitarity, self-inverse XOR embedding, finite Boolean-circuit construction and its zero-workspace cleanup proof are explicit. Assigned background: Nielsen and Chuang, 10th Anniversary Edition (2010), §3.1.2. No fresh inspection of the user-local PDF is claimed. The source/signatures of the installed released FlagQuantum named gates, custom unitary placement and native compose/adjoint were inspected or exercised; the book helpers are separately labeled. This section does not introduce a new native compiler API. The prior [nonunitary adjoint boundary](#formula-code-5-1-boundaries) is preserved; all inverse blocks here contain named unitary gates.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.3.json) records execution, exact expected outputs, a separate new-function transfer and the finite resource guard. Independent mathematical review, implementation review and reader trials remain pending. No reset, physical erasure, noise, hardware or efficient general synthesis was executed or claimed. Continue, when drafted, with [5.4 Uncomputation and reusable workspace](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4).

@@ -1,0 +1,1 @@
+New majority threshold table:16basis and1complex native circuits,1dense complex circuit;18actual runs passed.

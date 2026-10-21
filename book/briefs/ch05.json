@@ -48,6 +48,29 @@
       ],
       "status": "draft",
       "next_transition": "5.3 Classical logic made reversible."
+    },
+    {
+      "ref": "5.3",
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-3",
+      "title": "Classical logic made reversible",
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+        "sec-gates-reversible-computation-and-circuit-synthesis-2"
+      ],
+      "question": "How can information-losing Boolean logic be embedded into a coherent reversible circuit with declared workspace?",
+      "entry": "4.2 bit indexing;5.2 coherent controls and ancilla input/cleanup contracts.",
+      "exit": "Prove XOR embedding is bijective,self-inverse and unitary; construct finite Boolean-gate embeddings and clean temporary storage while preserving an answer.",
+      "worked_case": "AND collision versus valid XOR oracle; NOT/AND/XOR/OR; two-output half-adder; g=(a AND b) XOR c using one workspace; majority transfer.",
+      "boundary": "Finite deterministic tables and fixed ideal unitary circuits; explicit zero initial workspace and arbitrary XOR target. Dense helper limited to6total qubits; no efficient general synthesis claim.",
+      "code_plan": "Actual named X,CX,CCX,custom unitary,compose and adjoint; direct inverse-index and scalar bit-network references.",
+      "independent_check": "All16two-input Boolean functions on all basis columns,complex vectors and involution; named/dense half-adder; all32network inputs and coherent stages; phase and malformed contracts.",
+      "transfer_task": "New majority threshold function,native pair-product gates,arbitrary outputs and complex inputs; full answers.",
+      "source_locators": [
+        "NC:3.1.2"
+      ],
+      "status": "draft",
+      "next_transition": "5.4 Uncomputation and reusable workspace."
     }
   ]
 }
