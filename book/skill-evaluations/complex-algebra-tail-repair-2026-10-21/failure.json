@@ -1,0 +1,104 @@
+{
+  "request": {
+    "task": "function",
+    "coordinates": "literal-complex",
+    "tolerance": {
+      "atol": 1e-11,
+      "rtol": 1e-12
+    },
+    "kind": "exp",
+    "units": "dimensionless",
+    "matrix": [
+      [
+        [
+          1e-100,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1e-100,
+          0
+        ]
+      ]
+    ]
+  },
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "skills/translate-complex-linear-algebra/scripts/algebra.py"
+  ],
+  "exit_code": 0,
+  "actual_stdout": {
+    "checks": {
+      "scalar_taylor_order40": {
+        "max_absolute_error": 0.0,
+        "max_element_budget": 1.0999999999999999e-11,
+        "passed": true
+      }
+    },
+    "claim_acceptance": "Not inferred from internal verification",
+    "contract_version": "0.1.0",
+    "execution": {
+      "classical_tensor_only": true,
+      "device": "cpu",
+      "dtype": "complex128"
+    },
+    "quantum_execution": false,
+    "result": {
+      "mathematical_infinity_norm_tail_bound": 0.0,
+      "shape": [
+        2,
+        2
+      ],
+      "tail_bound_excludes_roundoff": true,
+      "value": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      ]
+    },
+    "runtime": {
+      "implementation": "cpython",
+      "python": "3.12.14"
+    },
+    "status": "verified",
+    "task": "function",
+    "tolerance": {
+      "atol": 1e-11,
+      "rtol": 1e-12
+    },
+    "versions": {
+      "torch": "2.13.0"
+    }
+  },
+  "actual_stderr": "",
+  "observed_defect": "For positive rho=1e-100, the order-40 nonzero Taylor tail-bound expression underflows to a displayed zero. The matrix result is correct, but zero must not be presented as the analytic positive bound.",
+  "log_bound_reference": -9554.63309305705,
+  "discovery": "Author boundary audit after first blind set, not discovered by an executor agent",
+  "initial_published_commit": "92c51b5c3c4c59dfb4af0c12d1fed41ac4ddc388"
+}

@@ -1,0 +1,7 @@
+{
+  "python_candidates": [
+    "/usr/bin/python3",
+    "/private/tmp/mqc-writing-venv/bin/python"
+  ],
+  "install_allowed": false
+}

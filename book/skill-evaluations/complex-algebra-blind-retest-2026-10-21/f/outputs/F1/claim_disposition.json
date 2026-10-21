@@ -1,0 +1,7 @@
+{
+  "status": "accepted_with_scope",
+  "output": "exp(0)=I_2; exact identity independently established from the power series.",
+  "metadata": "Tail 0 is correct for rho=0, log bound null correctly represents the zero-input special case, underflow flag false. All omitted Taylor terms vanish exactly. The helper explicitly excludes roundoff and disclaims interval certification.",
+  "certified": "For this input, exact mathematical identity and numerical agreement at atol=1e-11, rtol=1e-12; displayed metadata is consistent.",
+  "not_certified": "No general matrix-exponential forward-error interval, upstream computation, quantum execution, hardware claim, or scientific acceptance."
+}

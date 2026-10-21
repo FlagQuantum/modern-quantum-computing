@@ -1,0 +1,1 @@
+{"contract_version": "0.1.1", "reason": "Finite real component within declared bound required", "runtime": {"implementation": "cpython", "python": "3.12.14"}, "status": "invalid_input"}

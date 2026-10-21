@@ -1,0 +1,334 @@
+[
+  {
+    "id": "F1",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "task": "function",
+      "kind": "exp",
+      "coordinates": "literal-complex",
+      "units": "dimensionless",
+      "execution": "classical CPU complex128; no FlagQuantum or quantum circuit",
+      "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "torch": "2.13.0"
+    },
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F1/claim_disposition.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F1/execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F1/independent_verification.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F1/original_task.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F1/request.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F1/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F1/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/verify_independent.py",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/run_tasks.py",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/finalize.py"
+    ],
+    "verification": {
+      "id": "F1",
+      "reference_exact_rational": [
+        [
+          [
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "0"
+          ]
+        ]
+      ],
+      "checks": [
+        {
+          "index": [
+            0,
+            0
+          ],
+          "absolute_error": 0.0,
+          "reference_scaled_budget": 1.0999999999999999e-11,
+          "passed": true
+        },
+        {
+          "index": [
+            0,
+            1
+          ],
+          "absolute_error": 0.0,
+          "reference_scaled_budget": 1e-11,
+          "passed": true
+        },
+        {
+          "index": [
+            1,
+            0
+          ],
+          "absolute_error": 0.0,
+          "reference_scaled_budget": 1e-11,
+          "passed": true
+        },
+        {
+          "index": [
+            1,
+            1
+          ],
+          "absolute_error": 0.0,
+          "reference_scaled_budget": 1.0999999999999999e-11,
+          "passed": true
+        }
+      ],
+      "metadata_audit": {
+        "zero_input_exact": true,
+        "exp_zero_identity_exact": true,
+        "rho": 0,
+        "all_taylor_terms_above_degree_zero_vanish": true,
+        "expected_truncation_tail": 0,
+        "expected_log_tail": null,
+        "expected_underflow_clamped": false,
+        "expected_interval_certificate": false,
+        "expected_excludes_roundoff": true,
+        "metadata_passed": true
+      },
+      "passed": true,
+      "limitations": [
+        "Exact rational reference treats the supplied decimal coordinates as exact; returned binary64 values are checked against its conversion under the declared asymmetric tolerance.",
+        "No interval or hardware/circuit accuracy certificate is inferred."
+      ]
+    },
+    "limitations": "No general matrix-exponential forward-error interval, upstream computation, quantum execution, hardware claim, or scientific acceptance."
+  },
+  {
+    "id": "F2",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "task": "function",
+      "kind": "polynomial",
+      "coordinates": "literal-complex",
+      "units": "dimensionless",
+      "execution": "classical CPU complex128; no FlagQuantum or quantum circuit",
+      "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "torch": "2.13.0"
+    },
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F2/claim_disposition.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F2/execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F2/independent_verification.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F2/original_task.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F2/request.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F2/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F2/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/verify_independent.py",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/run_tasks.py",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/finalize.py"
+    ],
+    "verification": {
+      "id": "F2",
+      "reference_exact_rational": [
+        [
+          [
+            "138411/500000",
+            "0"
+          ],
+          [
+            "0",
+            "27173/250000"
+          ]
+        ],
+        [
+          [
+            "0",
+            "-15929/250000"
+          ],
+          [
+            "134663/500000",
+            "0"
+          ]
+        ]
+      ],
+      "checks": [
+        {
+          "index": [
+            0,
+            0
+          ],
+          "absolute_error": 0.0,
+          "reference_scaled_budget": 1.0276822e-11,
+          "passed": true
+        },
+        {
+          "index": [
+            0,
+            1
+          ],
+          "absolute_error": 0.0,
+          "reference_scaled_budget": 1.0108691999999999e-11,
+          "passed": true
+        },
+        {
+          "index": [
+            1,
+            0
+          ],
+          "absolute_error": 1.3877787807814457e-17,
+          "reference_scaled_budget": 1.0063716e-11,
+          "passed": true
+        },
+        {
+          "index": [
+            1,
+            1
+          ],
+          "absolute_error": 0.0,
+          "reference_scaled_budget": 1.0269325999999999e-11,
+          "passed": true
+        }
+      ],
+      "metadata_audit": {
+        "method": "exact rational direct matrix powers summed in ascending coefficient order",
+        "powers": [
+          [
+            [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            [
+              [
+                "0",
+                "0"
+              ],
+              [
+                "1",
+                "0"
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                "0",
+                "11/100"
+              ],
+              [
+                "29/100",
+                "0"
+              ]
+            ],
+            [
+              [
+                "-17/100",
+                "0"
+              ],
+              [
+                "0",
+                "13/100"
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                "-307/5000",
+                "0"
+              ],
+              [
+                "0",
+                "87/1250"
+              ]
+            ],
+            [
+              [
+                "0",
+                "-51/1250"
+              ],
+              [
+                "-331/5000",
+                "0"
+              ]
+            ]
+          ]
+        ]
+      },
+      "passed": true,
+      "limitations": [
+        "Exact rational reference treats the supplied decimal coordinates as exact; returned binary64 values are checked against its conversion under the declared asymmetric tolerance.",
+        "No interval or hardware/circuit accuracy certificate is inferred."
+      ]
+    },
+    "limitations": "No quantum execution, symbolic general theorem, or paper acceptance."
+  },
+  {
+    "id": "F3",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "task": "function",
+      "kind": "sqrt",
+      "coordinates": "literal-complex",
+      "units": "dimensionless",
+      "execution": "classical CPU complex128; no FlagQuantum or quantum circuit",
+      "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "torch": "2.13.0 per runtime probe"
+    },
+    "clarification_question": {
+      "question": "Which matrix square-root domain and branch convention should be used for sqrt(-I)?",
+      "asked_to": "/root",
+      "answer": "No square-root branch or domain is supplied. Keep this request unsupported, without selecting a branch or claiming a unique answer. A separate explanation of ambiguity is appropriate.",
+      "disposition": "unsupported; no branch selected"
+    },
+    "status": "unsupported",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F3/claim_disposition.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F3/clarification.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F3/execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F3/original_task.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F3/request.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F3/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/F3/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/verify_independent.py",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/run_tasks.py",
+      "/private/tmp/mqc-algebra-blind-r2/f/outputs/finalize.py"
+    ],
+    "verification": {
+      "status": "unsupported",
+      "actual_helper_exit_code": 3,
+      "no_dependent_branch_computation": true,
+      "explanation": "Distinct roots demonstrate need for branch; helper rejects sqrt scope."
+    },
+    "limitations": "No selected square-root answer, branch implementation, or unsupported-as-inequality inference."
+  }
+]

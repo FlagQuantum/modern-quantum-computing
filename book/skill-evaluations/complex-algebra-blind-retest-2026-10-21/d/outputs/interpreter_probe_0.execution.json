@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "-c",
+    "import sys,importlib.metadata as m; print(sys.version); print(m.version(\"torch\"))"
+  ],
+  "stdin_path": null,
+  "exit_code": 1,
+  "elapsed_seconds": 0.0438690185546875,
+  "started_unix_seconds": 1792563319.262995,
+  "stdout_path": "interpreter_probe_0.stdout",
+  "stderr_path": "interpreter_probe_0.stderr"
+}

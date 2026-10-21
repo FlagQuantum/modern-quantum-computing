@@ -1,0 +1,23 @@
+{
+  "D1": {
+    "numeric_matrix_exponential": "accepted_within_declared_tolerance",
+    "reported_tail_metadata": "accepted_as_floating_estimates_with_underflow_clamp",
+    "exact_general_theorem": "not_claimed",
+    "roundoff_or_interval_accuracy_certificate": "not_claimed",
+    "explanation": "Returned identity agrees within budget with high precision diagonal scalar exponentials. Positive analytic Taylor remainder is smaller than binary64; helper correctly clamps its ordinary record to min positive float and retains its logarithm. Truncation tail excludes roundoff."
+  },
+  "D2": {
+    "hermitian_within_budget": "accepted",
+    "normal_within_budget": "accepted",
+    "unitary_within_budget": "rejected",
+    "orthogonal_projector_within_budget": "accepted",
+    "exact_orthogonal_projection": "rejected_for_supplied_finite_values",
+    "explanation": "Both Hermiticity and idempotence pass the declared elementwise budget. A=c[[1,-i],[i,1]] has A^2=2c A, so c slightly below 1/2 is not exactly idempotent. Internal verified status means tests evaluated, not every property true."
+  },
+  "D3": {
+    "requested_matvec_admission": "rejected_invalid_input",
+    "computed_action": "not_produced",
+    "shape_repair": "not_performed",
+    "explanation": "v is a 1 by 2 array of complex scalars, not a length-2 vector. Requested no flattening/repair is honored by rejecting it."
+  }
+}

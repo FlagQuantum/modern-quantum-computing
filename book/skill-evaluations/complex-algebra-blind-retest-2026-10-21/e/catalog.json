@@ -1,0 +1,117 @@
+[
+  {
+    "id": "scope-paper-claims",
+    "description": "Classify claims and record feasibility, source locations, access models and missing artifacts.",
+    "implementation": null
+  },
+  {
+    "id": "translate-complex-linear-algebra",
+    "description": "Translate complex scalar/vector/operator formulas with explicit coordinate and numerical contracts.",
+    "implementation": "skills/translate-complex-linear-algebra/SKILL.md"
+  },
+  {
+    "id": "compare-quantum-states-and-operators",
+    "description": "Choose state, operator or distribution comparison with the correct phase scope.",
+    "implementation": "skills/compare-quantum-states-and-operators/SKILL.md"
+  },
+  {
+    "id": "reproduce-qubit-interference",
+    "description": "Translate preparation, phase and analyzer formulas into a checked ideal interference experiment.",
+    "implementation": "skills/reproduce-qubit-interference/SKILL.md"
+  },
+  {
+    "id": "convert-bloch-state-coordinates",
+    "description": "Translate pure-qubit coordinates and phase charts, including poles and sign conventions.",
+    "implementation": null
+  },
+  {
+    "id": "translate-unitary-evolution",
+    "description": "Translate fixed-generator evolution and single-qubit factorizations with units, order and common phase.",
+    "implementation": "skills/translate-unitary-evolution/SKILL.md"
+  },
+  {
+    "id": "translate-qubit-ordering",
+    "description": "Translate subsystem labels, supports, permutations and basis-index conventions.",
+    "implementation": null
+  },
+  {
+    "id": "build-and-check-circuits",
+    "description": "Build a specified circuit or reversible subroutine without changing its input/output semantics.",
+    "implementation": null
+  },
+  {
+    "id": "measure-and-estimate-observables",
+    "description": "Translate measurement, estimation and state-inference claims into statistical contracts.",
+    "implementation": null
+  },
+  {
+    "id": "model-composite-states-and-channels",
+    "description": "Model entangled/mixed states, protocols and conditional/channel maps.",
+    "implementation": null
+  },
+  {
+    "id": "audit-information-and-security-claims",
+    "description": "Audit information/security hypotheses and scoped finite examples without inferring a theorem from samples.",
+    "implementation": null
+  },
+  {
+    "id": "audit-algorithmic-resource-claims",
+    "description": "Check query/access/precision models, classical baselines and complete logical/physical resource accounting.",
+    "implementation": null
+  },
+  {
+    "id": "implement-oracle-and-spectral-algorithms",
+    "description": "Implement a selected oracle, arithmetic, Fourier, Hamiltonian or spectral algorithm with its access assumptions.",
+    "implementation": null
+  },
+  {
+    "id": "train-differentiable-hybrid-models",
+    "description": "Translate gradients, loss functions, optimizers, QAOA and hybrid/classical comparison protocols.",
+    "implementation": null
+  },
+  {
+    "id": "simulate-noise-and-mitigation",
+    "description": "Specify channels/dynamics and mitigation assumptions with sampling and approximation costs.",
+    "implementation": null
+  },
+  {
+    "id": "reproduce-error-correction-experiments",
+    "description": "Translate codes, syndrome rounds, decoders and logical operations under declared fault models.",
+    "implementation": null
+  },
+  {
+    "id": "model-physical-qubit-platforms",
+    "description": "Map physical assumptions, levels/modes, controls, readout and effective models across platform routes.",
+    "implementation": null
+  },
+  {
+    "id": "compile-and-lower-quantum-programs",
+    "description": "Transform programs through representations and target constraints while preserving declared semantics.",
+    "implementation": null
+  },
+  {
+    "id": "select-and-validate-classical-simulators",
+    "description": "Choose exact, stabilizer, MPS, contraction or cutting methods for a specified output and error target.",
+    "implementation": null
+  },
+  {
+    "id": "reproduce-molecular-vqe",
+    "description": "Trace integrals, operators, mappings, reductions, optimizers and reported energy targets for a scoped chemistry claim.",
+    "implementation": null
+  },
+  {
+    "id": "reproduce-declared-paper-claim",
+    "description": "Select relevant domain workflows and reproduce one registered claim with no silent substitutions.",
+    "implementation": null
+  },
+  {
+    "id": "assemble-paper-reproduction",
+    "description": "Integrate mandatory paper claims, artifacts, dependencies and reviews into a reproducible report.",
+    "implementation": null
+  },
+  {
+    "id": "transfer-to-unseen-papers",
+    "description": "Evaluate routing and execution on held-out papers, identifying unsupported requirements rather than inventing success.",
+    "implementation": null
+  }
+]

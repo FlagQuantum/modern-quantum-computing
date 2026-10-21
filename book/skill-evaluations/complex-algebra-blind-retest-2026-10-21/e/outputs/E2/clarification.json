@@ -1,0 +1,5 @@
+{
+  "question": "Do columns of S represent new basis in old coordinates (passive), or an active map?",
+  "answer": "Use passive-new-in-old: the columns of S are the new basis in old coordinates, and v is in old coordinates. Return S^-1*v and S^-1*A*S, preserving the Gram metric.",
+  "source": "/root collaboration message"
+}

@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-algebra-blind-r2/f/skills/translate-complex-linear-algebra/scripts/algebra.py"
+  ],
+  "exit_code": 3,
+  "elapsed_seconds": 0.8026616659990395,
+  "quantum_execution": false
+}

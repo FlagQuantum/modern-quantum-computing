@@ -1,0 +1,10 @@
+[
+  {
+    "claim": "Literal coordinates equal within supplied budget",
+    "disposition": "rejected_outside_tolerance"
+  },
+  {
+    "claim": "A phase-aligned state-ray comparison answers request",
+    "disposition": "not_applicable; request retains literal phase and has dimension one"
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "E1",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "coordinates": "literal-complex",
+      "task": "dimensionless diagonal matrix exponential",
+      "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "torch": "2.13.0",
+      "device": "cpu",
+      "dtype": "complex128",
+      "quantum_execution": false
+    },
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E1/claim_dispositions.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E1/execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E1/original_task.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E1/request.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E1/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E1/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E1/verification.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/runtime_discovery.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verify.py",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verification_execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verification_stdout.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verification_stderr.txt"
+    ],
+    "verification": {
+      "independent_check_passed": true,
+      "method": "250-digit Decimal.exp on exact binary64 inputs (diagonal formula), independent of Taylor/helper/Torch",
+      "results": "/private/tmp/mqc-algebra-blind-r2/e/outputs/E1/verification.json",
+      "claim_dispositions": "/private/tmp/mqc-algebra-blind-r2/e/outputs/E1/claim_dispositions.json"
+    },
+    "limitations": [
+      "Binary64 identity loses scalar shifts of order 1e-76 while satisfying supplied absolute/relative tolerance.",
+      "Truncation tail excludes roundoff; positive clamped tail and log are floating records, not outward-rounded total-error certificates.",
+      "Classical CPU computation only."
+    ]
+  },
+  {
+    "id": "E2",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "coordinates": "literal-complex",
+      "task": "passive-new-in-old basis conversion with Gram metric",
+      "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "torch": "2.13.0",
+      "device": "cpu",
+      "dtype": "complex128",
+      "quantum_execution": false
+    },
+    "clarification_question": {
+      "question": "Do columns of S represent new basis in old coordinates (passive) or an active map?",
+      "answer": "Use passive-new-in-old; v is in old coordinates; return inverse-S coordinates and conjugated operator preserving Gram metric.",
+      "resolved": true,
+      "source": "/root collaboration reply; saved clarification.json"
+    },
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E2/claim_dispositions.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E2/clarification.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E2/execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E2/original_task.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E2/request.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E2/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E2/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E2/verification.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/runtime_discovery.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verify.py",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verification_execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verification_stdout.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verification_stderr.txt"
+    ],
+    "verification": {
+      "independent_check_passed": true,
+      "method": "Explicit 2x2 inverse/determinant and Gram eigenvalue condition formula in Python complex arithmetic, independent of linear solves/SVD/Torch",
+      "results": "/private/tmp/mqc-algebra-blind-r2/e/outputs/E2/verification.json",
+      "claim_dispositions": "/private/tmp/mqc-algebra-blind-r2/e/outputs/E2/claim_dispositions.json"
+    },
+    "limitations": [
+      "Independent 2x2 formulas use floating complex arithmetic, not symbolic proof or outward-rounded intervals.",
+      "Direction was explicitly resolved by parent before execution.",
+      "Classical CPU computation only."
+    ]
+  },
+  {
+    "id": "E3",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "coordinates": "literal-complex",
+      "task": "strict metadata-aware elementwise check without phase alignment",
+      "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+      "runtime": {
+        "implementation": "cpython",
+        "python": "3.12.14"
+      },
+      "torch": "2.13.0",
+      "device": "cpu",
+      "dtype": "complex128",
+      "quantum_execution": false
+    },
+    "clarification_question": null,
+    "status": "outside_tolerance",
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E3/claim_dispositions.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E3/execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E3/original_task.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E3/request.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E3/stderr.txt",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E3/stdout.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/E3/verification.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/runtime_discovery.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verify.py",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verification_execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verification_stdout.json",
+      "/private/tmp/mqc-algebra-blind-r2/e/outputs/verification_stderr.txt"
+    ],
+    "verification": {
+      "independent_check_passed": true,
+      "method": "80-digit Decimal complex-modulus elementwise comparison of exact binary64 values; metadata gate first",
+      "results": "/private/tmp/mqc-algebra-blind-r2/e/outputs/E3/verification.json",
+      "claim_dispositions": "/private/tmp/mqc-algebra-blind-r2/e/outputs/E3/claim_dispositions.json"
+    },
+    "limitations": [
+      "Supplied shape/dtype/device metadata is compared but does not attest an upstream producer.",
+      "Outside tolerance is the valid comparison outcome, not an execution failure.",
+      "Classical coordinate check only; no phase alignment or quantum execution."
+    ]
+  }
+]

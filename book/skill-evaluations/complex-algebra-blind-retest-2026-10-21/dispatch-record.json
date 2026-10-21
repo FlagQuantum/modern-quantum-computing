@@ -1,0 +1,28 @@
+{
+  "agents": [
+    {
+      "name": "/root/algebra_blind_d",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-algebra-blind-r2/d",
+      "prompt_scope": "Independently handle raw tasks using available catalog/packages/runtime. Assigned workspace and listed libraries only; no siblings/repo/key/external source. Preserve inputs; save actual requests/execution logs/independent code and separate claim dispositions. Clarify missing semantics before dependent execution; no installs/publication.",
+      "expected_answers_supplied": false,
+      "suspected_defect_or_prior_conclusions_supplied": false
+    },
+    {
+      "name": "/root/algebra_blind_e",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-algebra-blind-r2/e",
+      "prompt_scope": "Independently handle raw tasks using available catalog/packages/runtime. Assigned workspace and listed libraries only; no siblings/repo/key/external source. Preserve inputs; save actual requests/execution logs/independent code and separate claim dispositions. Clarify missing semantics before dependent execution; no installs/publication.",
+      "expected_answers_supplied": false,
+      "suspected_defect_or_prior_conclusions_supplied": false
+    },
+    {
+      "name": "/root/algebra_blind_f",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-algebra-blind-r2/f",
+      "prompt_scope": "Independently handle raw tasks using available catalog/packages/runtime. Assigned workspace and listed libraries only; no siblings/repo/key/external source. Preserve inputs; save actual requests/execution logs/independent code and separate claim dispositions. Clarify missing semantics before dependent execution; no installs/publication.",
+      "expected_answers_supplied": false,
+      "suspected_defect_or_prior_conclusions_supplied": false
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import argparse,copy,hashlib,json,math,platform,shutil,subprocess,sys,tempfile
 from collections import Counter
 from pathlib import Path
 import numpy as np
-ROOT=Path(__file__).resolve().parents[1];PACKAGE=ROOT/'skills/translate-complex-linear-algebra';EVIDENCE=ROOT/'book/skill-evaluations/complex-algebra-v0.1.0'
+ROOT=Path(__file__).resolve().parents[1];PACKAGE=ROOT/'skills/translate-complex-linear-algebra';EVIDENCE=ROOT/'book/skill-evaluations/complex-algebra-v0.1.1'
 def enc(x):
  a=np.asarray(x);return np.stack((a.real,a.imag),axis=-1).tolist()
 def dec(x):
@@ -49,6 +49,12 @@ def verify(q,o):
   else:
    vals,vec=np.linalg.eig(a);ref=vec@np.diag(np.exp(vals))@np.linalg.inv(vec)
   close(dec(r['value']),ref)
+  if q['kind']=='exp' and o['contract_version']=='0.1.1':
+   rho=max(sum(abs(z) for z in row) for row in a)
+   if rho:
+    assert r['mathematical_infinity_norm_tail_bound']>0
+    close(r['tail_log_upper_expression'],41*math.log(rho)-math.lgamma(42)-math.log1p(-rho/42))
+   else:assert r['mathematical_infinity_norm_tail_bound']==0 and r['tail_log_upper_expression'] is None
  elif t=='solve':
   a,b=dec(q['matrix']),dec(q['rhs']);x=np.linalg.solve(a,b);close(dec(r['solution']),x);close(r['condition_2'],np.linalg.cond(a))
   if 'candidate' in q:
@@ -87,6 +93,8 @@ def main():
  q=checkq([1],[1]);q['actual']['device']='cuda';add('device_mismatch','error',q,'invalid_input')
  for name,q,status in [('singular_basis',request('basis',matrix=enc(np.eye(2)),basis_columns=enc([[1,0],[0,0]]),v=enc([1,0]),direction='passive-new-in-old',max_condition=1e8),'invalid_input'),('active_ambiguous',request('basis',matrix=enc(np.eye(2)),basis_columns=enc(np.eye(2)),v=enc([1,0]),direction='active',max_condition=1e8),'unsupported'),('condition_limit',request('solve',matrix=enc(np.diag([1,1e-10])),rhs=enc([1,0]),max_condition=1e8),'unsupported'),('tiny_nonhermitian',request('decompose',kind='hermitian',matrix=enc([[0,1e-15j],[0,0]])),'invalid_input'),('non_square_spectral',request('decompose',kind='hermitian',matrix=enc([[1,2,3],[4,5,6]])),'invalid_input'),('physical_function',request('function',kind='exp',matrix=enc(np.eye(2)*.1),units='J'),'unsupported'),('exponential_bound',request('function',kind='exp',matrix=enc(np.eye(2)*1.1),units='dimensionless'),'unsupported'),('log_branch',request('function',kind='log',matrix=enc(-np.eye(2)),units='dimensionless'),'unsupported'),('shape_inner',request('algebra',operation='inner',v=enc([1]),w=enc([1,2])),'invalid_input'),('bool_tolerance',{**request('classify',matrix=enc(np.eye(2))),'tolerance':{'atol':True,'rtol':0}},'invalid_input'),('loose_tolerance',{**request('classify',matrix=enc(np.eye(2))),'tolerance':{'atol':1e-3,'rtol':0}},'invalid_input'),('extra_field',{**request('classify',matrix=enc(np.eye(2))),'shots':100},'invalid_input')]:add(name,'error',q,status)
  q=request('classify',matrix=enc(np.eye(2)));q.pop('tolerance');add('missing_tolerance','error',q,'invalid_input')
+ add('tiny_positive_tail_exp','boundary',request('function',kind='exp',units='dimensionless',matrix=enc(np.eye(2)*1e-100)))
+ add('zero_tail_exp','boundary',request('function',kind='exp',units='dimensionless',matrix=enc(np.zeros((2,2)))))
  add('new_rectangular_product','author-transfer',request('algebra',operation='matmul',left=enc([[.17+.29j,-.63j,1.19]]),right=enc([[.83j,.13],[-.41,.37j],[.59,-.71]])))
  add('new_nonnormal_polynomial','author-transfer',request('function',kind='polynomial',units='dimensionless',matrix=enc([[.17j,.31-.41j],[.23j,-.19]]),coefficients=enc([.61j,-.37,1.13j,.29])))
  add('new_basis','author-transfer',request('basis',matrix=enc([[.3,.2j],[-.7j,.9]]),basis_columns=enc([[1,.217j],[.137,1]]),v=enc([.613j,-.791]),direction='passive-new-in-old',max_condition=100))
@@ -102,7 +110,7 @@ def main():
   for name,raw in [('nan','{"x":NaN}'),('duplicate','{"task":"a","task":"b"}'),('syntax','{')]:
    p=subprocess.run([sys.executable,str(pkg/'scripts/algebra.py')],input=raw,capture_output=True,text=True);o=json.loads(p.stdout);assert p.returncode==2
    logs.append(dict(name=name,category='error',raw_request=raw,actual_stdout=o,actual_stderr=p.stderr,actual_exit_code=p.returncode,passed=True))
- report=dict(skill=PACKAGE.name,version='0.1.0',passed=len(logs),counts=dict(Counter(c['category'] for c in logs)),actual_flagquantum_circuits=0,author_helper_calls=len(logs),package_sha256=hashes,environment={'python':platform.python_version(),'numpy':np.__version__},reference='Separate NumPy indexed algebra/LAPACK, analytic nilpotent/Jordan functions, exact diagonal conditioned examples and subspace-projector checks; NumPy and Torch may share numerical backend families, not independent proofs',evaluator_role='author/conductor',scientific_acceptance='pending',reader_trial='not run',cases=logs)
+ report=dict(skill=PACKAGE.name,version='0.1.1',passed=len(logs),counts=dict(Counter(c['category'] for c in logs)),actual_flagquantum_circuits=0,author_helper_calls=len(logs),package_sha256=hashes,environment={'python':platform.python_version(),'numpy':np.__version__},reference='Separate NumPy indexed algebra/LAPACK, analytic nilpotent/Jordan functions, exact diagonal conditioned examples and subspace-projector checks; NumPy and Torch may share numerical backend families, not independent proofs',evaluator_role='author/conductor',scientific_acceptance='pending',reader_trial='not run',cases=logs)
  if args.record:
   path=EVIDENCE/'author-report.json';assert not path.exists();path.write_text(json.dumps(report,indent=2)+'\n')
  print(json.dumps({k:report[k] for k in ('passed','counts','actual_flagquantum_circuits')}))

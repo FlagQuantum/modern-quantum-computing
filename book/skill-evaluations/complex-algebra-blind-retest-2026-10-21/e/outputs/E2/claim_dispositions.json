@@ -1,0 +1,10 @@
+[
+  {
+    "claim": "Passive coordinate/operator conversion",
+    "disposition": "supported_after_explicit_clarification"
+  },
+  {
+    "claim": "Nonorthogonal coordinates preserve original norm with Gram metric",
+    "disposition": "supported; naive Euclidean metric changes squared length"
+  }
+]

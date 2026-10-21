@@ -1,0 +1,36 @@
+{
+  "id": "F1",
+  "request": "Compute the exponential and audit both output and approximation metadata for this zero matrix; state what is and is not certified.",
+  "data": {
+    "task": "function",
+    "coordinates": "literal-complex",
+    "tolerance": {
+      "atol": 1e-11,
+      "rtol": 1e-12
+    },
+    "kind": "exp",
+    "units": "dimensionless",
+    "matrix": [
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    ]
+  }
+}

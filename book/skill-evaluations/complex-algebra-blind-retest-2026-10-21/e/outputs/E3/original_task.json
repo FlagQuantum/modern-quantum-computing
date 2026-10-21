@@ -1,0 +1,38 @@
+{
+  "id": "E3",
+  "request": "Compare literal complex coordinates without phase alignment.",
+  "data": {
+    "task": "check",
+    "coordinates": "literal-complex",
+    "tolerance": {
+      "atol": 1e-11,
+      "rtol": 1e-12
+    },
+    "actual": {
+      "shape": [
+        1
+      ],
+      "dtype": "complex128",
+      "device": "cpu",
+      "values": [
+        [
+          0.9998195054299763,
+          0.018998856853967315
+        ]
+      ]
+    },
+    "reference": {
+      "shape": [
+        1
+      ],
+      "dtype": "complex128",
+      "device": "cpu",
+      "values": [
+        [
+          1,
+          0
+        ]
+      ]
+    }
+  }
+}

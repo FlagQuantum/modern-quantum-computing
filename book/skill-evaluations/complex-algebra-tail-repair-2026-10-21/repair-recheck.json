@@ -1,0 +1,102 @@
+{
+  "request": {
+    "task": "function",
+    "coordinates": "literal-complex",
+    "tolerance": {
+      "atol": 1e-11,
+      "rtol": 1e-12
+    },
+    "kind": "exp",
+    "units": "dimensionless",
+    "matrix": [
+      [
+        [
+          1e-100,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1e-100,
+          0
+        ]
+      ]
+    ]
+  },
+  "exit_code": 0,
+  "actual_stdout": {
+    "checks": {
+      "scalar_taylor_order40": {
+        "max_absolute_error": 0.0,
+        "max_element_budget": 1.0999999999999999e-11,
+        "passed": true
+      }
+    },
+    "claim_acceptance": "Not inferred from internal verification",
+    "contract_version": "0.1.1",
+    "execution": {
+      "classical_tensor_only": true,
+      "device": "cpu",
+      "dtype": "complex128"
+    },
+    "quantum_execution": false,
+    "result": {
+      "mathematical_infinity_norm_tail_bound": 5e-324,
+      "shape": [
+        2,
+        2
+      ],
+      "tail_bound_excludes_roundoff": true,
+      "tail_bound_underflow_clamped": true,
+      "tail_log_upper_expression": -9554.63309305705,
+      "tail_numeric_record_is_interval_certificate": false,
+      "value": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      ]
+    },
+    "runtime": {
+      "implementation": "cpython",
+      "python": "3.12.14"
+    },
+    "status": "verified",
+    "task": "function",
+    "tolerance": {
+      "atol": 1e-11,
+      "rtol": 1e-12
+    },
+    "versions": {
+      "torch": "2.13.0"
+    }
+  },
+  "actual_stderr": "",
+  "version": "0.1.1",
+  "passed": true,
+  "note": "Original failed request now retains a positive underflow-clamped bound and finite logarithm; no interval certificate claimed"
+}

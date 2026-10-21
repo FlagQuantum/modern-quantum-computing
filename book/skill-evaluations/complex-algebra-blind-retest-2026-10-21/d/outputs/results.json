@@ -1,0 +1,256 @@
+[
+  {
+    "id": "D1",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+      "python": "CPython 3.12.14",
+      "torch": "2.13.0",
+      "device": "cpu",
+      "dtype": "complex128",
+      "coordinates": "literal-complex",
+      "execution_type": "classical_tensor_and_scalar_computation",
+      "quantum_execution": false,
+      "selection_rationale": "All requests concern literal finite matrix algebra. Selected helper matches pinned runtime; /usr/bin/python3 is 3.9.6 with no Torch and is unsuitable. No phase/state interpretation needed."
+    },
+    "clarification_question": null,
+    "status": "verified",
+    "execution_exit_code": 0,
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D1.request.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D1.stdout",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D1.stderr",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D1.execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/claim_dispositions.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verification.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.stdout",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.stderr",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/source_hashes.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/run.py"
+    ],
+    "verification": {
+      "status": "passed",
+      "method": "180-digit Decimal diagonal scalar exponential; independent analytic-tail expression",
+      "numeric_check": {
+        "passed": true,
+        "max_absolute_error": "2.29999999999999979214947646549683312587217518795778836870894537700722914126727542186553244E-90",
+        "max_element_budget": "1.09999999999999993748563404486537246689762531426381997334829065948724746704101562500000000022999999999999997458887660127847526511245355452164743483230864830916553655687365150129449E-11",
+        "elementwise_errors": [
+          "2.29999999999999979214947646549683312587217518795778836870894537700722914126727542186553244E-90",
+          "0",
+          "0",
+          "1.69999999999999996959300736621179488312864050997787702873855903331793778161987057846451164100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000E-90"
+        ]
+      },
+      "metadata_audit": {
+        "rho": "2.29999999999999979214947646549683312587217518795778836870894537700722914126727542186553243262897977778401161312797481755712686485289670292030645189164508642912849105489119490296450E-90",
+        "positive_analytic_tail_estimate": "2.02494089741158853145608119292871029946278170453727135125927389744643124015451078092735450410500090460627294094580399255286278051658192699287123316505678288472942344188361016754105E-3725",
+        "analytic_log_tail_estimate": "-8576.42393088915101668613105579493103870643334506985615598136232953216180222812864606481663200123258310692767064425468061975810495886074716212454244313286107248256458386451470554998",
+        "reported_log_absolute_error": "9.4462370425895574034801231665493014384401863767046783819777187135393518336799876741689307232935574531938024189504113925283787545755686713892751743541613548529445002E-13",
+        "ordinary_bound_is_positive_min_binary64": true,
+        "true_tail_below_min_binary64": true,
+        "clamp_flag_correct": true,
+        "excludes_roundoff_flag_correct": true,
+        "not_interval_flag_correct": true,
+        "log_consistent_to_1e-10": true
+      },
+      "matrix_exponential_reference": [
+        [
+          [
+            "1.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000229999999999999979214947646549683312587217518795778836870894537700722914126727542186553244",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0.999999999999999999999999999999999999999999999999999999999999999999999999999999999999999998300000000000000030406992633788205116871359490022122971261440966682062218380129421535488359",
+            "0"
+          ]
+        ]
+      ],
+      "scope": "finite declared matrix only; Decimal results are high precision estimates, not outward-rounded intervals"
+    },
+    "claim_disposition": {
+      "numeric_matrix_exponential": "accepted_within_declared_tolerance",
+      "reported_tail_metadata": "accepted_as_floating_estimates_with_underflow_clamp",
+      "exact_general_theorem": "not_claimed",
+      "roundoff_or_interval_accuracy_certificate": "not_claimed",
+      "explanation": "Returned identity agrees within budget with high precision diagonal scalar exponentials. Positive analytic Taylor remainder is smaller than binary64; helper correctly clamps its ordinary record to min positive float and retains its logarithm. Truncation tail excludes roundoff."
+    },
+    "limitations": [
+      "Finite input numerical audit only; no exact general theorem or quantum execution.",
+      "High precision Decimal reference and analytic tail are estimates, not outward-rounded interval certificates. Tail bound excludes roundoff."
+    ]
+  },
+  {
+    "id": "D2",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+      "python": "CPython 3.12.14",
+      "torch": "2.13.0",
+      "device": "cpu",
+      "dtype": "complex128",
+      "coordinates": "literal-complex",
+      "execution_type": "classical_tensor_and_scalar_computation",
+      "quantum_execution": false,
+      "selection_rationale": "All requests concern literal finite matrix algebra. Selected helper matches pinned runtime; /usr/bin/python3 is 3.9.6 with no Torch and is unsuitable. No phase/state interpretation needed."
+    },
+    "clarification_question": null,
+    "status": "verified",
+    "execution_exit_code": 0,
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D2.request.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D2.stdout",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D2.stderr",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D2.execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/claim_dispositions.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verification.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.stdout",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.stderr",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/source_hashes.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/run.py"
+    ],
+    "verification": {
+      "status": "passed",
+      "method": "180-digit Decimal manual conjugation/matrix multiplication on binary64 input values",
+      "tests": {
+        "hermitian": {
+          "passed": true,
+          "max_absolute_error": "0E-53",
+          "max_element_budget": "1.04999999999999992738907141715102651760173550204307693908441494324265501597621951277413676335663328398339899649727158248424530029296875E-11",
+          "elementwise_errors": [
+            "0E-53",
+            "0E-53",
+            "0E-53",
+            "0E-53"
+          ]
+        },
+        "unitary": {
+          "passed": false,
+          "max_absolute_error": "0.500000000000000222044604925031283432823045461545143383482334912930322712298902843031100928783416748046875000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "max_element_budget": "1.099999999999999937485634044865372466897625314263819973348290659487247467041015625E-11",
+          "elementwise_errors": [
+            "0.500000000000000222044604925031283432823045461545143383482334912930322712298902843031100928783416748046875000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "0.499999999999999777955395074968716567176954538454856616517665087069677287701097156968899071216583251953125000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "0.499999999999999777955395074968716567176954538454856616517665087069677287701097156968899071216583251953125000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "0.500000000000000222044604925031283432823045461545143383482334912930322712298902843031100928783416748046875000000000000000000000000000000000000000000000000000000000000000000000000000"
+          ]
+        },
+        "normal": {
+          "passed": true,
+          "max_absolute_error": "0E-106",
+          "max_element_budget": "1.04999999999999991628684117089946380185881668079065236653130950313142707700090385775948387852233850156285758078816084206708125819505317627526868196757847684352782380301505327224731E-11",
+          "elementwise_errors": [
+            "0E-106",
+            "0E-106",
+            "0E-106",
+            "0E-106"
+          ]
+        },
+        "idempotent": {
+          "passed": true,
+          "max_absolute_error": "1.110223024625156293904598786524631121334823349129303227122989028430311009287834167480468750E-16",
+          "max_element_budget": "1.04999999999999992738907141715102651760173550204307693908441494324265501597621951277413676335663328398339899649727158248424530029296875E-11",
+          "elementwise_errors": [
+            "1.110223024625156293904598786524631121334823349129303227122989028430311009287834167480468750E-16",
+            "1.110223024625156293904598786524631121334823349129303227122989028430311009287834167480468750E-16",
+            "1.110223024625156293904598786524631121334823349129303227122989028430311009287834167480468750E-16",
+            "1.110223024625156293904598786524631121334823349129303227122989028430311009287834167480468750E-16"
+          ]
+        }
+      },
+      "orthogonal_projector_within_budget": true,
+      "exact_idempotence": false,
+      "exact_input_diagonal_defect": "1.110223024625156293904598786524631121334823349129303227122989028430311009287834167480468750E-16",
+      "explanation": "A=c[[1,-i],[i,1]], so A^2=2c A. Here c differs from 1/2, hence numerical projection identity passes but exact idempotence fails."
+    },
+    "claim_disposition": {
+      "hermitian_within_budget": "accepted",
+      "normal_within_budget": "accepted",
+      "unitary_within_budget": "rejected",
+      "orthogonal_projector_within_budget": "accepted",
+      "exact_orthogonal_projection": "rejected_for_supplied_finite_values",
+      "explanation": "Both Hermiticity and idempotence pass the declared elementwise budget. A=c[[1,-i],[i,1]] has A^2=2c A, so c slightly below 1/2 is not exactly idempotent. Internal verified status means tests evaluated, not every property true."
+    },
+    "limitations": [
+      "Finite input numerical audit only; no exact general theorem or quantum execution.",
+      "Within-budget orthogonal projection classification does not imply exact idempotence; exact claim fails for supplied finite values."
+    ]
+  },
+  {
+    "id": "D3",
+    "selected_skills": [
+      "translate-complex-linear-algebra"
+    ],
+    "chosen_context": {
+      "interpreter": "/private/tmp/mqc-writing-venv/bin/python",
+      "python": "CPython 3.12.14",
+      "torch": "2.13.0",
+      "device": "cpu",
+      "dtype": "complex128",
+      "coordinates": "literal-complex",
+      "execution_type": "classical_tensor_and_scalar_computation",
+      "quantum_execution": false,
+      "selection_rationale": "All requests concern literal finite matrix algebra. Selected helper matches pinned runtime; /usr/bin/python3 is 3.9.6 with no Torch and is unsuitable. No phase/state interpretation needed."
+    },
+    "clarification_question": null,
+    "status": "invalid_input",
+    "execution_exit_code": 2,
+    "evidence_paths": [
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D3.request.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D3.stdout",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D3.stderr",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/D3.execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/claim_dispositions.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.py",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verification.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.stdout",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.stderr",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/independent_verify.execution.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/source_hashes.json",
+      "/private/tmp/mqc-algebra-blind-r2/d/outputs/run.py"
+    ],
+    "verification": {
+      "status": "passed",
+      "method": "independent nested-list scalar-pair schema admission",
+      "raw_complex_array_shape": [
+        1,
+        2
+      ],
+      "required_matvec_vector_shape": [
+        2
+      ],
+      "valid_vector": false,
+      "helper_rejection_confirmed": true,
+      "input_preserved": true,
+      "limitation": "Helper error wording is generic (finite real component) instead of explicitly naming the extra array axis; rejection itself is correct."
+    },
+    "claim_disposition": {
+      "requested_matvec_admission": "rejected_invalid_input",
+      "computed_action": "not_produced",
+      "shape_repair": "not_performed",
+      "explanation": "v is a 1 by 2 array of complex scalars, not a length-2 vector. Requested no flattening/repair is honored by rejecting it."
+    },
+    "limitations": [
+      "Finite input numerical audit only; no exact general theorem or quantum execution.",
+      "No action output exists because supplied array is not a vector. Helper error message does not directly name the shape issue."
+    ]
+  }
+]

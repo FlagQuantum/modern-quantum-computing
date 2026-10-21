@@ -9,6 +9,9 @@ ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'book/skill-evaluations/compl
 ALG='translate-complex-linear-algebra';UNIT='translate-unitary-evolution';COMPARE='compare-quantum-states-and-operators'
 def load(p):return json.loads(p.read_text())
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def verify_initial(q,o):
+ verify(q,o)
+
 def main():
  p=argparse.ArgumentParser();p.add_argument('--record',action='store_true');args=p.parse_args();assert sys.version_info[:2]==(3,12)
  if (BASE/'evidence-manifest.json').exists():
@@ -17,7 +20,10 @@ def main():
  for name,digest in load(BASE/'input-freeze.json')['files'].items():
   parts=Path(name).parts;path=BASE/'packages'/Path(*parts[2:]) if parts[1]=='skills' else BASE/name;assert sha(path)==digest,name
  for f in (BASE/'packages').rglob('*'):
-  if f.is_file():assert f.read_bytes()==(ROOT/'skills'/f.relative_to(BASE/'packages')).read_bytes()
+  if f.is_file():
+   if f.relative_to(BASE/'packages').parts[0]==ALG:
+    old=ROOT/'book/skill-evaluations/complex-algebra-v0.1.0/package-freeze.json';assert sha(f)==load(old)['sha256'][str(f.relative_to(BASE/'packages'/ALG))]
+   else:assert f.read_bytes()==(ROOT/'skills'/f.relative_to(BASE/'packages')).read_bytes()
  grades=[];calls=[];circuits=0
  for g in 'abc':
   folder=BASE/g;tasks={t['id']:t for t in load(folder/'tasks.json')};results={t['id']:t for t in load(folder/'outputs/results.json')};assert set(tasks)==set(results)
@@ -47,7 +53,7 @@ def main():
    assert o['status']==key[ident]['status'] and execution['exit_code']=={'verified':0,'within_tolerance':0,'outside_tolerance':1,'invalid_input':2,'unsupported':3}[o['status']]
    if package==ALG:
     if o['status'] in ('verified','within_tolerance','outside_tolerance'):
-     verify(q,o)
+     verify_initial(q,o)
      if 'checks' in o:assert all(c['passed'] for c in o['checks'].values())
     if ident=='A3':assert o['result']['identity_tests']['idempotent']['passed'] and not o['result']['orthogonal_projector_within_budget']
     if ident=='B2':
@@ -62,7 +68,7 @@ def main():
    with tempfile.TemporaryDirectory(prefix='mqc-algebra-blind-replay-') as tmp:
     helper=Path(tmp)/Path(cmd[1]).name;helper.write_bytes((BASE/'packages'/package/'scripts'/helper.name).read_bytes());proc=subprocess.run([sys.executable,str(helper)],input=json.dumps(q),capture_output=True,text=True,cwd=tmp,timeout=60)
    out=json.loads(proc.stdout);assert proc.returncode==execution['exit_code'] and out['status']==o['status'] and not proc.stderr
-   if package==ALG and out['status'] in ('verified','within_tolerance','outside_tolerance'):verify(q,out)
+   if package==ALG and out['status'] in ('verified','within_tolerance','outside_tolerance'):verify_initial(q,out)
    elif package==UNIT:verify_unitary(q,out)
    calls.append({'task':ident,'skill':package,'status':o['status'],'exit_code':execution['exit_code'],'artifact':str(path.relative_to(BASE))})
  assert len(grades)==len(calls)==12 and circuits==9,(len(grades),len(calls),circuits)

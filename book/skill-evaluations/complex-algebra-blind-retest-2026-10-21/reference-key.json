@@ -1,0 +1,39 @@
+{
+  "D1": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "D2": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "D3": {
+    "status": "invalid_input",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "E1": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "E2": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra",
+    "reply": "Use passive-new-in-old: the columns of S are the new basis in old coordinates, and v is in old coordinates. Return S^-1*v and S^-1*A*S, preserving the Gram metric."
+  },
+  "E3": {
+    "status": "outside_tolerance",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "F1": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "F2": {
+    "status": "verified",
+    "skill": "translate-complex-linear-algebra"
+  },
+  "F3": {
+    "status": "unsupported",
+    "skill": "translate-complex-linear-algebra"
+  }
+}

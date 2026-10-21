@@ -107,12 +107,14 @@
         "book/section-records/2.7.json",
         "book/section-records/2.8.json"
       ],
-      "behavioral_evaluation": "blind agent tasks: 12/12; author cases: 55/55",
+      "behavioral_evaluation": "fresh blind retest: 9/9; author cases: 57/57",
       "independent_acceptance": "pending",
       "prototype_package": "skills/translate-complex-linear-algebra/SKILL.md",
-      "package_version": "0.1.0",
-      "evaluation_report": "book/skill-evaluations/complex-algebra-v0.1.0/author-report.json",
-      "blind_evaluation_report": "book/skill-evaluations/complex-algebra-blind-2026-10-21/report.json"
+      "package_version": "0.1.1",
+      "evaluation_report": "book/skill-evaluations/complex-algebra-v0.1.1/author-report.json",
+      "blind_evaluation_report": "book/skill-evaluations/complex-algebra-blind-retest-2026-10-21/report.json",
+      "initial_blind_evaluation_report": "book/skill-evaluations/complex-algebra-blind-2026-10-21/report.json",
+      "repair_evidence": "book/skill-evaluations/complex-algebra-tail-repair-2026-10-21/failure.json"
     },
     {
       "id": "compare-quantum-states-and-operators",

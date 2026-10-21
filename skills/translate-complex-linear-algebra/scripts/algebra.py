@@ -2,7 +2,7 @@
 """Small dense complex algebra with explicit shape, coordinate and tolerance contracts."""
 import cmath,json,math,sys
 from importlib.metadata import version,PackageNotFoundError
-VERSION='0.1.0'
+VERSION='0.1.1'
 class Invalid(ValueError):pass
 class Unsupported(ValueError):pass
 
@@ -143,7 +143,11 @@ def main_run(q):
             for k in range(1,41):
                 term=[[z/k for z in row] for row in mm(term,a)];ref=[[ref[i][j]+term[i][j] for j in range(n)] for i in range(n)]
             checks['scalar_taylor_order40']=check(arr(value),ref,tol)
-            result['mathematical_infinity_norm_tail_bound']=rho**41/math.factorial(41)/(1-rho/42)
+            tail=rho**41/math.factorial(41)/(1-rho/42)
+            result['tail_log_upper_expression']=41*math.log(rho)-math.lgamma(42)-math.log1p(-rho/42) if rho else None
+            result['tail_bound_underflow_clamped']=bool(rho and tail==0)
+            result['mathematical_infinity_norm_tail_bound']=max(tail,math.nextafter(0.,1.)) if rho else 0.
+            result['tail_numeric_record_is_interval_certificate']=False
             result['tail_bound_excludes_roundoff']=True
         else:raise Unsupported('function kinds: polynomial, exp; no logarithm or square-root branch selection')
         if q['units']!='dimensionless':raise Unsupported('Function argument/coefficient profile requires dimensionless input; clarify physical conversion before execution')

@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-algebra-blind-r2/e/skills/translate-complex-linear-algebra/scripts/algebra.py"
+  ],
+  "stdin": "request.json",
+  "exit_code": 0,
+  "elapsed_seconds": 0.5481403330013563,
+  "quantum_execution": false
+}

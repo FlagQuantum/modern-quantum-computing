@@ -1,0 +1,6 @@
+{
+  "question": "Which matrix square-root domain and branch convention should be used for sqrt(-I)?",
+  "asked_to": "/root",
+  "answer": "No square-root branch or domain is supplied. Keep this request unsupported, without selecting a branch or claiming a unique answer. A separate explanation of ambiguity is appropriate.",
+  "disposition": "unsupported; no branch selected"
+}

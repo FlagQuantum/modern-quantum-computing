@@ -1,0 +1,119 @@
+[
+  {
+    "id": "D1",
+    "request": "Compute this dimensionless matrix exponential. Independently audit the numerical result and reported approximation/error metadata without claiming an exact general theorem.",
+    "data": {
+      "task": "function",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "kind": "exp",
+      "units": "dimensionless",
+      "matrix": [
+        [
+          [
+            2.3e-90,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -1.7e-90,
+            0.0
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "id": "D2",
+    "request": "Evaluate the defining operator identities; check the projection claim independently.",
+    "data": {
+      "task": "classify",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "matrix": [
+        [
+          [
+            0.4999999999999999,
+            0.0
+          ],
+          [
+            0.0,
+            -0.4999999999999999
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.4999999999999999
+          ],
+          [
+            0.4999999999999999,
+            0.0
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "id": "D3",
+    "request": "Compute the matrix action on this supplied array without flattening or repairing its shape.",
+    "data": {
+      "task": "algebra",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "operation": "matvec",
+      "matrix": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      ],
+      "v": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      ]
+    }
+  }
+]

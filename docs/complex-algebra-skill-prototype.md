@@ -1,6 +1,6 @@
 # Complex linear algebra: fourth agent skill
 
-**Prototype 0.1.0 · October 21, 2026 · scientific acceptance pending.** This bounded L1 package implements selected contracts across [Chapter 2, sections 2.1–2.8](chapters/ch-complex-vectors-operators-and-numerical-reasoning.md). No new textbook section is written.
+**Prototype 0.1.1 · October 21, 2026 · scientific acceptance pending.** This bounded L1 package implements selected contracts across [Chapter 2, sections 2.1–2.8](chapters/ch-complex-vectors-operators-and-numerical-reasoning.md). No new textbook section is written.
 
 [Skill instructions](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/skills/translate-complex-linear-algebra/SKILL.md) · [Complete task schemas and numerical contract](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/skills/translate-complex-linear-algebra/references/contract.md) · [Capability catalog](agent-skills.md)
 
@@ -129,18 +129,27 @@ Here $A=\operatorname{diag}(1,2^{-30})$, $b=(1,0)^T$, $x_*=(1,0)^T$ and $c=(1,1)
 
 ## Evidence and acceptance
 
-The frozen package passed **55 author cases**: 21 normal, 12 boundary, 19 error and three author-transfer cases. These are 55 actual helper invocations and **zero quantum circuits**. References include separate NumPy computations, analytic diagonal/nilpotent/Jordan examples, projector checks and exact conditioned examples. Torch and NumPy can share numerical algorithm/backend families; their agreement is numerical evidence, not an independent proof.
+The frozen package passed **57 author cases**: 21 normal, 14 boundary, 19 error and three author-transfer cases. These are 57 actual helper invocations and **zero quantum circuits**. References include separate NumPy computations, analytic diagonal/nilpotent/Jordan examples, projector checks and exact conditioned examples. Torch and NumPy can share numerical algorithm/backend families; their agreement is numerical evidence, not an independent proof.
 
-**All 12 new tasks passed their registered disposition gates across three independent agents:** seven supported algebra tasks (including an intentionally failing comparison), two invalid inputs, one unsupported logarithm request, one actual FlagQuantum evolution task and one comparison-only task. There were 12 recorded helper calls: ten to this algebra helper, one to comparison and one to evolution. The algebra helper executed zero circuits; the routed evolution task executed nine actual FlagQuantum circuits. Two required semantics were clarified before execution; a third exchange confirmed the unsupported logarithm scope. No package defect or post-blind tuning occurred.
+**All 12 new tasks passed their registered disposition gates across three independent agents:** seven supported algebra tasks (including an intentionally failing comparison), two invalid inputs, one unsupported logarithm request, one actual FlagQuantum evolution task and one comparison-only task. There were 12 recorded helper calls: ten to this algebra helper, one to comparison and one to evolution. The algebra helper executed zero circuits; the routed evolution task executed nine actual FlagQuantum circuits. Two required semantics were clarified before execution; a third exchange confirmed the unsupported logarithm scope. No package defect surfaced in this initial set. A subsequent author boundary audit found the error-metadata issue described below; the initial package, outcomes and failure are retained.
 
-Independent-agent task evidence is recorded separately in the [blind report](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/complex-algebra-blind-2026-10-21/report.json), alongside the [author report](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/complex-algebra-v0.1.0/author-report.json). Agents receive raw tasks and four available skill packages, not expected answers. Actual FlagQuantum executions from a routing task are attributed to the selected evolution skill, never this classical helper.
+### Recorded repair and fresh blind retest
+
+The initially pushed 0.1.0 version computed the analytic Taylor-tail expression directly in binary64. For a positive matrix scale of 1e-100 it displayed a zero bound through underflow, despite a strictly positive analytic expression. The matrix exponential remained correct. The [original failure record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/complex-algebra-tail-repair-2026-10-21/failure.json) is preserved.
+
+Version 0.1.1 keeps the logarithm of the analytic expression and flags/clamps an underflowed positive bound to the smallest positive binary64 number; only the zero input norm reports zero. The ordinary and log values remain floating estimates, not interval certificates. Two added author boundary cases check tiny positive and zero input scales.
+
+Three additional fresh agents received nine new tasks without expected answers or a defect description. **All nine retest tasks passed**, including independent high-precision/analytic audits of tiny and zero exponential metadata, a new convention clarification, literal phase-sensitive comparison and unsupported branch selection. Their nine calls are classical; zero quantum circuits were executed in this retest. See the [fresh retest report](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/complex-algebra-blind-retest-2026-10-21/report.json). These are separate from the original twelve tasks; do not combine the two rounds into an unqualified first-pass success.
+
+Independent-agent task evidence is recorded separately in the [blind report](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/complex-algebra-blind-2026-10-21/report.json), alongside the [author report](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/skill-evaluations/complex-algebra-v0.1.1/author-report.json). Agents receive raw tasks and four available skill packages, not expected answers. Actual FlagQuantum executions from a routing task are attributed to the selected evolution skill, never this classical helper.
 
 ```bash
 python scripts/check_algebra_skill.py
 python scripts/check_algebra_blind_evidence.py
+python scripts/check_algebra_retest_evidence.py
 ```
 
-The second command grades/replays archived evidence; it does not rerun autonomous agents. The task sample is small and conductor-designed; agents use no prior history but the same inherited model family. Workspace restrictions are logical rather than OS-enforced. Scientific acceptance and reader trials remain pending. No skill is released as accepted, and no arbitrary-paper reproduction ability is certified.
+The latter two commands grade/replay archived evidence; they do not rerun autonomous agents. The task sample is small and conductor-designed; agents use no prior history but the same inherited model family. Workspace restrictions are logical rather than OS-enforced. Scientific acceptance and reader trials remain pending. No skill is released as accepted, and no arbitrary-paper reproduction ability is certified.
 
 ## Failure boundaries and transfer checks
 

@@ -1,0 +1,14 @@
+{
+  "/usr/bin/python3": {
+    "stdout": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'torch'\n",
+    "exit_code": 1,
+    "elapsed_seconds": 0.018008584000199335
+  },
+  "/private/tmp/mqc-writing-venv/bin/python": {
+    "stdout": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]\n2.13.0\n",
+    "stderr": "",
+    "exit_code": 0,
+    "elapsed_seconds": 0.5373319160007668
+  }
+}

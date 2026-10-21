@@ -1,0 +1,124 @@
+[
+  {
+    "id": "F1",
+    "request": "Compute the exponential and audit both output and approximation metadata for this zero matrix; state what is and is not certified.",
+    "data": {
+      "task": "function",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "kind": "exp",
+      "units": "dimensionless",
+      "matrix": [
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "id": "F2",
+    "request": "Compute this matrix polynomial in ascending coefficient order and verify via direct powers.",
+    "data": {
+      "task": "function",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "kind": "polynomial",
+      "units": "dimensionless",
+      "matrix": [
+        [
+          [
+            0.0,
+            0.11
+          ],
+          [
+            0.29,
+            0.0
+          ]
+        ],
+        [
+          [
+            -0.17,
+            0.0
+          ],
+          [
+            0.0,
+            0.13
+          ]
+        ]
+      ],
+      "coefficients": [
+        [
+          0.31,
+          0.0
+        ],
+        [
+          0.0,
+          0.43
+        ],
+        [
+          -0.23,
+          0.0
+        ]
+      ]
+    }
+  },
+  {
+    "id": "F3",
+    "request": "Compute the square-root branch for this matrix under the provided skill, without a domain or branch convention supplied.",
+    "data": {
+      "task": "function",
+      "coordinates": "literal-complex",
+      "tolerance": {
+        "atol": 1e-11,
+        "rtol": 1e-12
+      },
+      "kind": "sqrt",
+      "units": "dimensionless",
+      "matrix": [
+        [
+          [
+            -1.0,
+            0.0
+          ],
+          [
+            -0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            -0.0,
+            0.0
+          ],
+          [
+            -1.0,
+            0.0
+          ]
+        ]
+      ]
+    }
+  }
+]

@@ -1,0 +1,1 @@
+{"contract_version": "0.1.1", "reason": "function kinds: polynomial, exp; no logarithm or square-root branch selection", "runtime": {"implementation": "cpython", "python": "3.12.14"}, "status": "unsupported"}

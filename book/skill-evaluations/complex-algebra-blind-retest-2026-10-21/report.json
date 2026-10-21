@@ -1,0 +1,150 @@
+{
+  "skill": "translate-complex-linear-algebra",
+  "version": "0.1.1",
+  "status": "independent-agent-tested prototype",
+  "agents": 3,
+  "new_tasks": 9,
+  "passed_tasks": 9,
+  "supported_tasks": 7,
+  "invalid_input_tasks": 1,
+  "unsupported_tasks": 1,
+  "recorded_helper_calls": 9,
+  "algebra_quantum_circuits": 0,
+  "routed_flagquantum_circuits": 0,
+  "clarification_exchanges": 2,
+  "required_semantic_clarifications": 1,
+  "false_successes": 0,
+  "incorrect_abstentions": 0,
+  "task_grades": [
+    {
+      "id": "D1",
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "D2",
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "D3",
+      "status": "invalid_input",
+      "passed": true
+    },
+    {
+      "id": "E1",
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "E2",
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "E3",
+      "status": "outside_tolerance",
+      "passed": true
+    },
+    {
+      "id": "F1",
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "F2",
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "F3",
+      "status": "unsupported",
+      "passed": true
+    }
+  ],
+  "calls": [
+    {
+      "task": "D1",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "d/outputs/D1.execution.json"
+    },
+    {
+      "task": "D2",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "d/outputs/D2.execution.json"
+    },
+    {
+      "task": "D3",
+      "status": "invalid_input",
+      "exit_code": 2,
+      "artifact": "d/outputs/D3.execution.json"
+    },
+    {
+      "task": "E1",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "e/outputs/E1/execution.json"
+    },
+    {
+      "task": "E2",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "e/outputs/E2/execution.json"
+    },
+    {
+      "task": "E3",
+      "status": "outside_tolerance",
+      "exit_code": 1,
+      "artifact": "e/outputs/E3/execution.json"
+    },
+    {
+      "task": "F1",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "f/outputs/F1/execution.json"
+    },
+    {
+      "task": "F2",
+      "status": "verified",
+      "exit_code": 0,
+      "artifact": "f/outputs/F2/execution.json"
+    },
+    {
+      "task": "F3",
+      "status": "unsupported",
+      "exit_code": 3,
+      "artifact": "f/outputs/F3/execution.json"
+    }
+  ],
+  "independent_decimal_tail_checks": [
+    {
+      "task": "D1",
+      "decimal_precision": 180,
+      "analytic_tail_log": -8576.42393088915,
+      "recorded_bound_positive": true,
+      "underflow_flag": true
+    },
+    {
+      "task": "E1",
+      "decimal_precision": 180,
+      "analytic_tail_log": -7209.10704543964,
+      "recorded_bound_positive": true,
+      "underflow_flag": true
+    }
+  ],
+  "initial_evaluation": "Initial0.1.0:12/12 tasks passed; author subsequently found numeric tail-bound underflow outside that set. Initial package, reports and failing record preserved.",
+  "repair": "0.1.1 retains finite log of positive analytic expression, flags/clamps ordinary positive underflow; zero norm alone reports zero. Numeric records remain non-interval estimates.",
+  "grading_role": "author/conductor against registered dispositions, NumPy/analytic/exact references and180-digit Decimal tail checks",
+  "executor_context": "Three additional fresh fork_turns=none agents; no expected answers, suspected defect description or prior conclusions supplied",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "released_skills": 0,
+  "limitations": [
+    "Small conductor-designed nonrandom sample",
+    "Logical workspace isolation, same inherited model family; exact backend/token/cost telemetry unavailable",
+    "Conductor grades outcomes; independent scientific acceptance pending",
+    "Published tasks are regression fixtures; CI replay is not new autonomous agent testing"
+  ]
+}

@@ -1,4 +1,4 @@
-# Complex linear algebra contract 0.1.0
+# Complex linear algebra contract 0.1.1
 
 ## Sources, scope and shared representation
 
@@ -52,7 +52,7 @@ Require `matrix` and `kind`. `hermitian` requires a square Hermitian input befor
 
 Require square `matrix`, `kind`, `units:"dimensionless"`. `polynomial` also requires 1..9 complex `coefficients` in ascending degree order. Evaluate with Horner's matrix rule and check against independently summed matrix powers. Constant coefficients multiply the identity, not an all-ones matrix.
 
-`exp` computes the matrix exponential, not entrywise exponential. It is bounded to infinity norm (maximum absolute row sum) <=1, and checks Torch matrix_exp against an independent scalar-list order-40 Taylor sum. Report mathematical truncation tail bound `rho^41/41!/(1-rho/42)`; it excludes roundoff, so it is not an interval accuracy certificate. Non-Hermitian inputs are permitted and no norm-preservation claim follows. No silent input rescaling. Physical energy/time conversion and qubit circuit realization belong to the phase-tracked evolution skill. Logarithm/square-root branch selection, arbitrary functions and time-dependent evolution are excluded.
+`exp` computes the matrix exponential, not entrywise exponential. It is bounded to infinity norm (maximum absolute row sum) <=1, and checks Torch matrix_exp against an independent scalar-list order-40 Taylor sum. Report mathematical truncation tail bound `rho^41/41!/(1-rho/42)`; it excludes roundoff, so it is not an interval accuracy certificate. For positive rho, a binary64 underflow in the displayed bound is clamped to the smallest positive binary64 number and flagged; the log of the analytic expression is retained. Only rho=0 reports a zero bound. The recorded ordinary/log values are floating estimates, not outward-rounded interval certificates. Non-Hermitian inputs are permitted and no norm-preservation claim follows. No silent input rescaling. Physical energy/time conversion and qubit circuit realization belong to the phase-tracked evolution skill. Logarithm/square-root branch selection, arbitrary functions and time-dependent evolution are excluded.
 
 ### solve — section 2.7
 

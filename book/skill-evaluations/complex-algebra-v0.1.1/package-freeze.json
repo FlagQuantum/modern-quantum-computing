@@ -1,0 +1,12 @@
+{
+  "version": "0.1.1",
+  "evaluation_checkout_base": "92c51b5c3c4c59dfb4af0c12d1fed41ac4ddc388",
+  "frozen_at_utc": "2026-10-21T06:14:04.781135+00:00",
+  "sha256": {
+    "SKILL.md": "8d2a9ac980dd88cc27ccb3e6a84775e909d3b566db65b6d6fe6fcfbb9f336697",
+    "agents/openai.yaml": "475441448d646757542dbeb44328fa12cc46ecef19cde7594c2dfc4bbdb22332",
+    "references/contract.md": "e2e787a5c206661f6ee0ff772b24db8c690a8014620d5969dedf6436624599e4",
+    "scripts/algebra.py": "0a589f15972f342ca28016db269342d10bda15249ef43bc35eb406f0d1068983"
+  },
+  "note": "Repair of numeric tail metadata; original failure and initial independent evaluation retained"
+}

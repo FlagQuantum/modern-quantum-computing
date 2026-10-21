@@ -1,0 +1,13 @@
+{
+  "method": "80-digit Decimal complex-modulus elementwise comparison of exact binary64 values; metadata gate first",
+  "passed": true,
+  "metadata_match": true,
+  "within_tolerance": false,
+  "errors": [
+    "0.018999714209622966102825503292173296941460194586044837169815189514222353968015055"
+  ],
+  "budgets": [
+    "1.0999999999999999374856340448653724668976253142638199733482906594872474670410156E-11"
+  ],
+  "phase_alignment": false
+}

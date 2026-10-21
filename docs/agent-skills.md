@@ -1,6 +1,6 @@
 # Agent skills: capability levels and chapter map
 
-**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains 23 proposed task skills; four have independent-agent-tested prototypes: state/operator comparison 0.1.1, single-qubit interference 0.1.0, phase-tracked unitary evolution 0.1.0 and complex linear algebra 0.1.0. Their separate evidence records retain failures, author execution and blind-task outcomes. Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.
+**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains 23 proposed task skills; four have independent-agent-tested prototypes: state/operator comparison 0.1.1, single-qubit interference 0.1.0, phase-tracked unitary evolution 0.1.0 and complex linear algebra 0.1.1. Their separate evidence records retain failures, author execution and blind-task outcomes. Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.
 
 [Dual-entry design](dual-entry.md) · [Skill contract](skill-contract.md) · [Paper verification and acceptance](paper-reproduction-standard.md)
 
@@ -98,7 +98,7 @@ Classify claims and record feasibility, source locations, access models and miss
 
 ### translate-complex-linear-algebra
 
-**L1 · independent-agent-tested prototype · blind agent tasks: 12/12; author cases: 55/55 · independent acceptance pending.**
+**L1 · independent-agent-tested prototype · fresh blind retest: 9/9; author cases: 57/57 · independent acceptance pending.**
 
 Translate complex scalar/vector/operator formulas with explicit coordinate and numerical contracts.
 
@@ -403,7 +403,7 @@ Evaluate routing and execution on held-out papers, identifying unsupported requi
 1. Preserve the [state/operator blind evaluation](comparison-skill-blind-evaluation.md): 0.1.1 passed 11 fresh tasks after a runtime-contract repair. Gather separate scientific acceptance and reader evidence; published cases are now regression fixtures.
 2. Preserve the [interference prototype evidence](interference-skill-prototype.md): 35 author cases and 12 new blind-agent tasks passed, including units, analyzer signs, chronology, claim rejection and selection between two runnable skills. Scientific acceptance remains separate.
 3. Preserve the [phase-tracked unitary evolution evidence](unitary-evolution-skill-prototype.md): 53 author cases and 12 blind tasks passed, covering units, generator validation, Euler endpoints, controlled phase repair and selection among three skills. Scientific acceptance remains pending.
-4. Preserve the [complex linear algebra evidence](complex-algebra-skill-prototype.md): 55 author cases and 12 blind tasks passed. Classical calculations and actual routed FlagQuantum execution are recorded separately; scientific acceptance remains pending.
+4. Preserve the [complex linear algebra evidence](complex-algebra-skill-prototype.md): 57 author cases and nine fresh blind retest tasks passed after a tail-metadata underflow repair. Preserve the initial 12-task evidence and original failure; classical and routed FlagQuantum executions are recorded separately. Scientific acceptance remains pending.
 5. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.
 6. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.
 

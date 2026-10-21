@@ -1,0 +1,6044 @@
+{
+  "skill": "translate-complex-linear-algebra",
+  "version": "0.1.1",
+  "passed": 57,
+  "counts": {
+    "normal": 21,
+    "boundary": 14,
+    "error": 19,
+    "author-transfer": 3
+  },
+  "actual_flagquantum_circuits": 0,
+  "author_helper_calls": 57,
+  "package_sha256": {
+    "SKILL.md": "8d2a9ac980dd88cc27ccb3e6a84775e909d3b566db65b6d6fe6fcfbb9f336697",
+    "agents/openai.yaml": "475441448d646757542dbeb44328fa12cc46ecef19cde7594c2dfc4bbdb22332",
+    "references/contract.md": "e2e787a5c206661f6ee0ff772b24db8c690a8014620d5969dedf6436624599e4",
+    "scripts/algebra.py": "0a589f15972f342ca28016db269342d10bda15249ef43bc35eb406f0d1068983"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.4"
+  },
+  "reference": "Separate NumPy indexed algebra/LAPACK, analytic nilpotent/Jordan functions, exact diagonal conditioned examples and subspace-projector checks; NumPy and Torch may share numerical backend families, not independent proofs",
+  "evaluator_role": "author/conductor",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "cases": [
+    {
+      "name": "inner_conjugate",
+      "category": "normal",
+      "request": {
+        "task": "algebra",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "operation": "inner",
+        "v": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "w": [
+          [
+            2.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "independent_scalar_reference": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.3162277660168379e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "shape": [],
+          "squared_norm_v": 2.0000000000000004,
+          "squared_norm_w": 5.999999999999999,
+          "value": [
+            3.0,
+            -1.0
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "algebra",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "outer_complex",
+      "category": "normal",
+      "request": {
+        "task": "algebra",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "operation": "outer",
+        "v": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            2.0,
+            0.0
+          ]
+        ],
+        "w": [
+          [
+            1.0,
+            2.0
+          ],
+          [
+            -0.0,
+            -1.0
+          ],
+          [
+            3.0,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "independent_scalar_reference": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.6e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "shape": [
+            2,
+            3
+          ],
+          "value": [
+            [
+              [
+                2.0,
+                1.0
+              ],
+              [
+                -1.0,
+                0.0
+              ],
+              [
+                0.0,
+                3.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                -4.0
+              ],
+              [
+                -0.0,
+                2.0
+              ],
+              [
+                6.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "algebra",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "adjoint_rectangular",
+      "category": "normal",
+      "request": {
+        "task": "algebra",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "operation": "adjoint",
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ],
+            [
+              3.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              4.0
+            ],
+            [
+              5.0,
+              0.0
+            ],
+            [
+              0.0,
+              6.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "independent_scalar_reference": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.6e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "shape": [
+            3,
+            2
+          ],
+          "value": [
+            [
+              [
+                1.0,
+                -0.0
+              ],
+              [
+                0.0,
+                -4.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                -2.0
+              ],
+              [
+                5.0,
+                -0.0
+              ]
+            ],
+            [
+              [
+                3.0,
+                -0.0
+              ],
+              [
+                0.0,
+                -6.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "algebra",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "matvec_rectangular",
+      "category": "normal",
+      "request": {
+        "task": "algebra",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "operation": "matvec",
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ],
+            [
+              3.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              4.0,
+              0.0
+            ],
+            [
+              5.0,
+              0.0
+            ],
+            [
+              6.0,
+              0.0
+            ]
+          ]
+        ],
+        "v": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            2.0,
+            0.0
+          ],
+          [
+            0.0,
+            3.0
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "independent_scalar_reference": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 3.416609194718914e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "shape": [
+            2
+          ],
+          "value": [
+            [
+              0.0,
+              14.0
+            ],
+            [
+              10.0,
+              22.0
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "algebra",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "ordered_product",
+      "category": "normal",
+      "request": {
+        "task": "algebra",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "operation": "matmul",
+        "left": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "right": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "independent_scalar_reference": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "shape": [
+            2,
+            2
+          ],
+          "value": [
+            [
+              [
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "algebra",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "nonorthogonal",
+      "category": "normal",
+      "request": {
+        "task": "basis",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "basis_columns": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        ],
+        "v": [
+          [
+            0.0,
+            2.0
+          ],
+          [
+            3.0,
+            0.0
+          ]
+        ],
+        "direction": "passive-new-in-old",
+        "max_condition": 100000000.0
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "action_reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.3e-11,
+            "passed": true
+          },
+          "coordinate_reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.3e-11,
+            "passed": true
+          },
+          "metric": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 2.2999999999999998e-11,
+            "passed": true
+          },
+          "operator_intertwining": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "condition_2": 2.6180339887498953,
+          "direction": "passive: x_old=S*x_new; B=S^-1*A*S",
+          "gram": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                2.0,
+                0.0
+              ]
+            ]
+          ],
+          "gram_squared_length": 13.0,
+          "new_coordinates": [
+            [
+              -3.0,
+              2.0
+            ],
+            [
+              3.0,
+              0.0
+            ]
+          ],
+          "new_euclidean_squared_length": 22.0,
+          "new_operator": [
+            [
+              [
+                -1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ],
+          "old_squared_length": 13.0
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "basis",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "complex_orthonormal",
+      "category": "normal",
+      "request": {
+        "task": "basis",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "basis_columns": [
+          [
+            [
+              0.7071067811865475,
+              0.0
+            ],
+            [
+              0.7071067811865475,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.7071067811865475
+            ],
+            [
+              -0.0,
+              -0.7071067811865475
+            ]
+          ]
+        ],
+        "v": [
+          [
+            0.0,
+            2.0
+          ],
+          [
+            3.0,
+            0.0
+          ]
+        ],
+        "direction": "passive-new-in-old",
+        "max_condition": 100000000.0
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "action_reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.3e-11,
+            "passed": true
+          },
+          "coordinate_reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.3e-11,
+            "passed": true
+          },
+          "metric": {
+            "max_absolute_error": 1.7763568394002505e-15,
+            "max_element_budget": 2.2999999999999998e-11,
+            "passed": true
+          },
+          "operator_intertwining": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0707106781186547e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "condition_2": 1.0000000000000002,
+          "direction": "passive: x_old=S*x_new; B=S^-1*A*S",
+          "gram": [
+            [
+              [
+                0.9999999999999998,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.9999999999999998,
+                0.0
+              ]
+            ]
+          ],
+          "gram_squared_length": 12.999999999999998,
+          "new_coordinates": [
+            [
+              0.0,
+              -0.7071067811865476
+            ],
+            [
+              -0.0,
+              3.5355339059327378
+            ]
+          ],
+          "new_euclidean_squared_length": 13.000000000000002,
+          "new_operator": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0
+              ]
+            ],
+            [
+              [
+                -0.0,
+                1.0
+              ],
+              [
+                -0.0,
+                0.0
+              ]
+            ]
+          ],
+          "old_squared_length": 13.0
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "basis",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "uniform_tiny",
+      "category": "normal",
+      "request": {
+        "task": "basis",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "basis_columns": [
+          [
+            [
+              1e-15,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1e-15,
+              0.0
+            ]
+          ]
+        ],
+        "v": [
+          [
+            0.0,
+            2.0
+          ],
+          [
+            3.0,
+            0.0
+          ]
+        ],
+        "direction": "passive-new-in-old",
+        "max_condition": 100000000.0
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "action_reconstruction": {
+            "max_absolute_error": 4.440892098500626e-16,
+            "max_element_budget": 1.3e-11,
+            "passed": true
+          },
+          "coordinate_reconstruction": {
+            "max_absolute_error": 4.440892098500626e-16,
+            "max_element_budget": 1.3e-11,
+            "passed": true
+          },
+          "metric": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 2.2999999999999998e-11,
+            "passed": true
+          },
+          "operator_intertwining": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0000000000000001e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "condition_2": 1.0,
+          "direction": "passive: x_old=S*x_new; B=S^-1*A*S",
+          "gram": [
+            [
+              [
+                1e-30,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1e-30,
+                0.0
+              ]
+            ]
+          ],
+          "gram_squared_length": 13.0,
+          "new_coordinates": [
+            [
+              0.0,
+              1999999999999999.8
+            ],
+            [
+              3000000000000000.0,
+              0.0
+            ]
+          ],
+          "new_euclidean_squared_length": 1.3e+31,
+          "new_operator": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "old_squared_length": 13.0
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "basis",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "classify_hermitian",
+      "category": "normal",
+      "request": {
+        "task": "classify",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              2.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "adjoint_identity": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.1999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "classification_is_exact_theorem": false,
+          "identity_tests": {
+            "hermitian": {
+              "max_absolute_error": 0.0,
+              "max_element_budget": 1.1999999999999999e-11,
+              "passed": true
+            },
+            "idempotent": {
+              "max_absolute_error": 3.0,
+              "max_element_budget": 1.1999999999999999e-11,
+              "passed": false
+            },
+            "normal": {
+              "max_absolute_error": 0.0,
+              "max_element_budget": 1.5e-11,
+              "passed": true
+            },
+            "unitary": {
+              "max_absolute_error": 4.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": false
+            }
+          },
+          "orthogonal_projector_within_budget": false
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "classify",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "classify_unitary",
+      "category": "normal",
+      "request": {
+        "task": "classify",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "adjoint_identity": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "classification_is_exact_theorem": false,
+          "identity_tests": {
+            "hermitian": {
+              "max_absolute_error": 2.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": false
+            },
+            "idempotent": {
+              "max_absolute_error": 1.4142135623730951,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": false
+            },
+            "normal": {
+              "max_absolute_error": 0.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": true
+            },
+            "unitary": {
+              "max_absolute_error": 0.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": true
+            }
+          },
+          "orthogonal_projector_within_budget": false
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "classify",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "classify_oblique",
+      "category": "normal",
+      "request": {
+        "task": "classify",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "adjoint_identity": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "classification_is_exact_theorem": false,
+          "identity_tests": {
+            "hermitian": {
+              "max_absolute_error": 1.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": false
+            },
+            "idempotent": {
+              "max_absolute_error": 0.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": true
+            },
+            "normal": {
+              "max_absolute_error": 1.0,
+              "max_element_budget": 1.1999999999999999e-11,
+              "passed": false
+            },
+            "unitary": {
+              "max_absolute_error": 1.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": false
+            }
+          },
+          "orthogonal_projector_within_budget": false
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "classify",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "classify_nilpotent",
+      "category": "normal",
+      "request": {
+        "task": "classify",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "adjoint_identity": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "classification_is_exact_theorem": false,
+          "identity_tests": {
+            "hermitian": {
+              "max_absolute_error": 1.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": false
+            },
+            "idempotent": {
+              "max_absolute_error": 1.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": false
+            },
+            "normal": {
+              "max_absolute_error": 1.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": false
+            },
+            "unitary": {
+              "max_absolute_error": 1.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": false
+            }
+          },
+          "orthogonal_projector_within_budget": false
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "classify",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "classify_zero",
+      "category": "normal",
+      "request": {
+        "task": "classify",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "adjoint_identity": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "classification_is_exact_theorem": false,
+          "identity_tests": {
+            "hermitian": {
+              "max_absolute_error": 0.0,
+              "max_element_budget": 1e-11,
+              "passed": true
+            },
+            "idempotent": {
+              "max_absolute_error": 0.0,
+              "max_element_budget": 1e-11,
+              "passed": true
+            },
+            "normal": {
+              "max_absolute_error": 0.0,
+              "max_element_budget": 1e-11,
+              "passed": true
+            },
+            "unitary": {
+              "max_absolute_error": 1.0,
+              "max_element_budget": 1.0999999999999999e-11,
+              "passed": false
+            }
+          },
+          "orthogonal_projector_within_budget": true
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "classify",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "spectral_complex",
+      "category": "normal",
+      "request": {
+        "task": "decompose",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "hermitian",
+        "matrix": [
+          [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              -0.0,
+              -1.0
+            ],
+            [
+              2.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "eigenpairs": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.2121320343559642e-11,
+            "passed": true
+          },
+          "orthonormal_columns": {
+            "max_absolute_error": 2.220446049250313e-16,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          },
+          "reconstruction": {
+            "max_absolute_error": 4.440892098500626e-16,
+            "max_element_budget": 1.1999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "eigenvalues": [
+            1.0,
+            3.0
+          ],
+          "eigenvectors_columns": [
+            [
+              [
+                -0.7071067811865475,
+                0.0
+              ],
+              [
+                0.7071067811865475,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                -0.7071067811865475
+              ],
+              [
+                0.0,
+                -0.7071067811865475
+              ]
+            ]
+          ],
+          "gauge": "Do not compare eigenvector phases or bases inside degenerate subspaces; use eigenspace projectors",
+          "reconstruction": [
+            [
+              [
+                1.9999999999999996,
+                0.0
+              ],
+              [
+                0.0,
+                0.9999999999999999
+              ]
+            ],
+            [
+              [
+                0.0,
+                -0.9999999999999999
+              ],
+              [
+                1.9999999999999996,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "decompose",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "spectral_degenerate",
+      "category": "boundary",
+      "request": {
+        "task": "decompose",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "hermitian",
+        "matrix": [
+          [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "eigenpairs": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.1999999999999999e-11,
+            "passed": true
+          },
+          "orthonormal_columns": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          },
+          "reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.1999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "eigenvalues": [
+            0.0,
+            2.0,
+            2.0
+          ],
+          "eigenvectors_columns": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "gauge": "Do not compare eigenvector phases or bases inside degenerate subspaces; use eigenspace projectors",
+          "reconstruction": [
+            [
+              [
+                2.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                2.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "decompose",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "spectral_zero",
+      "category": "boundary",
+      "request": {
+        "task": "decompose",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "hermitian",
+        "matrix": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "eigenpairs": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1e-11,
+            "passed": true
+          },
+          "orthonormal_columns": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          },
+          "reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "eigenvalues": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "eigenvectors_columns": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ],
+          "gauge": "Do not compare eigenvector phases or bases inside degenerate subspaces; use eigenspace projectors",
+          "reconstruction": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "decompose",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "svd_wide",
+      "category": "boundary",
+      "request": {
+        "task": "decompose",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "svd",
+        "matrix": [
+          [
+            [
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "left_unitary": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          },
+          "reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.4e-11,
+            "passed": true
+          },
+          "right_unitary": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "gauge": "Full factors retain rectangular null directions; paired singular-vector phases/subspace bases are nonunique",
+          "kernel_is_exact": false,
+          "kernel_residual_max_absolute": 0.0,
+          "numerical_rank": 2,
+          "rank_relative_cutoff": 1e-12,
+          "reconstruction": [
+            [
+              [
+                3.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                4.0
+              ]
+            ]
+          ],
+          "right_numerical_kernel_projector": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "sigma": [
+            [
+              [
+                4.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                3.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "singular_values": [
+            4.0,
+            3.0
+          ],
+          "u": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "vh": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "decompose",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "svd_tall",
+      "category": "boundary",
+      "request": {
+        "task": "decompose",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "svd",
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "left_unitary": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          },
+          "reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.1999999999999999e-11,
+            "passed": true
+          },
+          "right_unitary": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "gauge": "Full factors retain rectangular null directions; paired singular-vector phases/subspace bases are nonunique",
+          "kernel_is_exact": false,
+          "kernel_residual_max_absolute": 0.0,
+          "numerical_rank": 2,
+          "rank_relative_cutoff": 1e-12,
+          "reconstruction": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                2.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "right_numerical_kernel_projector": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "sigma": [
+            [
+              [
+                2.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "singular_values": [
+            2.0,
+            1.0
+          ],
+          "u": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ],
+          "vh": [
+            [
+              [
+                -0.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "decompose",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "svd_zero",
+      "category": "boundary",
+      "request": {
+        "task": "decompose",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "svd",
+        "matrix": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "left_unitary": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          },
+          "reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1e-11,
+            "passed": true
+          },
+          "right_unitary": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "gauge": "Full factors retain rectangular null directions; paired singular-vector phases/subspace bases are nonunique",
+          "kernel_is_exact": false,
+          "kernel_residual_max_absolute": 0.0,
+          "numerical_rank": 0,
+          "rank_relative_cutoff": 1e-12,
+          "reconstruction": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "right_numerical_kernel_projector": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ],
+          "sigma": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "singular_values": [
+            0.0,
+            0.0
+          ],
+          "u": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ],
+          "vh": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "decompose",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "svd_repeated",
+      "category": "boundary",
+      "request": {
+        "task": "decompose",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "svd",
+        "matrix": [
+          [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "left_unitary": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          },
+          "reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.1999999999999999e-11,
+            "passed": true
+          },
+          "right_unitary": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "gauge": "Full factors retain rectangular null directions; paired singular-vector phases/subspace bases are nonunique",
+          "kernel_is_exact": false,
+          "kernel_residual_max_absolute": 0.0,
+          "numerical_rank": 2,
+          "rank_relative_cutoff": 1e-12,
+          "reconstruction": [
+            [
+              [
+                2.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                2.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "right_numerical_kernel_projector": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ],
+          "sigma": [
+            [
+              [
+                2.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                2.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "singular_values": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "u": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ],
+          "vh": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "decompose",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "svd_tiny_retained",
+      "category": "boundary",
+      "request": {
+        "task": "decompose",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "svd",
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1e-13,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "left_unitary": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          },
+          "reconstruction": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          },
+          "right_unitary": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "gauge": "Full factors retain rectangular null directions; paired singular-vector phases/subspace bases are nonunique",
+          "kernel_is_exact": false,
+          "kernel_residual_max_absolute": 1e-13,
+          "numerical_rank": 1,
+          "rank_relative_cutoff": 1e-12,
+          "reconstruction": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1e-13,
+                0.0
+              ]
+            ]
+          ],
+          "right_numerical_kernel_projector": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ],
+          "sigma": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1e-13,
+                0.0
+              ]
+            ]
+          ],
+          "singular_values": [
+            1.0,
+            1e-13
+          ],
+          "u": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ],
+          "vh": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "decompose",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "nilpotent_polynomial",
+      "category": "normal",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "polynomial",
+        "units": "dimensionless",
+        "matrix": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "coefficients": [
+          [
+            2.0,
+            0.0
+          ],
+          [
+            0.0,
+            3.0
+          ],
+          [
+            -1.0,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "power_series_vs_horner": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.3e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "shape": [
+            2,
+            2
+          ],
+          "value": [
+            [
+              [
+                2.0,
+                0.0
+              ],
+              [
+                0.0,
+                3.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                2.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "function",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "exp_nilpotent",
+      "category": "normal",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "exp",
+        "units": "dimensionless",
+        "matrix": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.5
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "scalar_taylor_order40": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "mathematical_infinity_norm_tail_bound": 1.37575926612067e-62,
+          "shape": [
+            2,
+            2
+          ],
+          "tail_bound_excludes_roundoff": true,
+          "tail_bound_underflow_clamped": false,
+          "tail_log_upper_expression": -142.4412699933727,
+          "tail_numeric_record_is_interval_certificate": false,
+          "value": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.5
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "function",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "exp_diagonal",
+      "category": "normal",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "exp",
+        "units": "dimensionless",
+        "matrix": [
+          [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              -0.0,
+              -0.7
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "scalar_taylor_order40": {
+            "max_absolute_error": 3.3766115072321297e-16,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "mathematical_infinity_norm_tail_bound": 1.3548460654351077e-56,
+          "shape": [
+            2,
+            2
+          ],
+          "tail_bound_excludes_roundoff": true,
+          "tail_bound_underflow_clamped": false,
+          "tail_log_upper_expression": -128.64107736463333,
+          "tail_numeric_record_is_interval_certificate": false,
+          "value": [
+            [
+              [
+                0.9553364891256063,
+                0.2955202066613396
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.7648421872844886,
+                -0.644217687237691
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "function",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "exp_jordan",
+      "category": "normal",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "exp",
+        "units": "dimensionless",
+        "matrix": [
+          [
+            [
+              0.0,
+              0.13
+            ],
+            [
+              0.237,
+              -0.119
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.13
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "scalar_taylor_order40": {
+            "max_absolute_error": 1.2412670766236366e-16,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "mathematical_infinity_norm_tail_bound": 8.893709373974701e-67,
+          "shape": [
+            2,
+            2
+          ],
+          "tail_bound_excludes_roundoff": true,
+          "tail_bound_underflow_clamped": false,
+          "tail_log_upper_expression": -152.08785701568522,
+          "tail_numeric_record_is_interval_certificate": false,
+          "value": [
+            [
+              [
+                0.991561893714788,
+                0.12963414261969483
+              ],
+              [
+                0.2504266317821484,
+                -0.08727257355119206
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.991561893714788,
+                0.12963414261969483
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "function",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "exp_hermitian",
+      "category": "normal",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "exp",
+        "units": "dimensionless",
+        "matrix": [
+          [
+            [
+              0.2,
+              0.0
+            ],
+            [
+              0.0,
+              0.1
+            ]
+          ],
+          [
+            [
+              -0.0,
+              -0.1
+            ],
+            [
+              0.3,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "scalar_taylor_order40": {
+            "max_absolute_error": 2.7755575615628914e-17,
+            "max_element_budget": 1.135639404566868e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "mathematical_infinity_norm_tail_bound": 1.4594414591828177e-66,
+          "shape": [
+            2,
+            2
+          ],
+          "tail_bound_excludes_roundoff": true,
+          "tail_bound_underflow_clamped": false,
+          "tail_log_upper_expression": -151.5925623372859,
+          "tail_numeric_record_is_interval_certificate": false,
+          "value": [
+            [
+              [
+                1.2277238314641852,
+                0.0
+              ],
+              [
+                0.0,
+                0.1286702142044947
+              ]
+            ],
+            [
+              [
+                0.0,
+                -0.1286702142044947
+              ],
+              [
+                1.3563940456686798,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "function",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "solve_generic",
+      "category": "normal",
+      "request": {
+        "task": "solve",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ]
+        ],
+        "rhs": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            2.0,
+            0.0
+          ]
+        ],
+        "max_condition": 100000000.0
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "solve_residual": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.1999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "condition_2": 2.7694070421290826,
+          "largest_singular_value": 2.488489984622653,
+          "smallest_singular_value": 0.8985641860394548,
+          "solution": [
+            [
+              0.6,
+              1.2
+            ],
+            [
+              -1.4,
+              1.2
+            ]
+          ],
+          "solver_backward_residual_2": 0.0
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "solve",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "solve_zero_rhs",
+      "category": "boundary",
+      "request": {
+        "task": "solve",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "rhs": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "candidate": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "max_condition": 100000000.0
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "solve_residual": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "candidate": {
+            "absolute_forward_error_bound_2": 1.0,
+            "bound_note": "Exact-arithmetic conditioning inequality for declared A,b; floating residual/SVD are estimates, not interval certificates",
+            "candidate_forward_accuracy_certified": false,
+            "normwise_backward_error": 1.0,
+            "observed_distance_to_computed_solution_2": 1.0,
+            "relative_forward_error_bound_2": null,
+            "relative_residual_2": null,
+            "residual_2": 1.0,
+            "residual_within_elementwise_budget": false
+          },
+          "condition_2": 1.0,
+          "largest_singular_value": 1.0,
+          "smallest_singular_value": 1.0,
+          "solution": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "solver_backward_residual_2": 0.0
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "solve",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "small_residual_large_error",
+      "category": "boundary",
+      "request": {
+        "task": "solve",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-08,
+          "rtol": 0
+        },
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              9.313225746154785e-10,
+              0.0
+            ]
+          ]
+        ],
+        "rhs": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "candidate": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "max_condition": 10000000000.0
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "solve_residual": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1e-08,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "candidate": {
+            "absolute_forward_error_bound_2": 1.0,
+            "bound_note": "Exact-arithmetic conditioning inequality for declared A,b; floating residual/SVD are estimates, not interval certificates",
+            "candidate_forward_accuracy_certified": false,
+            "normwise_backward_error": 3.8576644134996e-10,
+            "observed_distance_to_computed_solution_2": 1.0,
+            "relative_forward_error_bound_2": 1.0,
+            "relative_residual_2": 9.313225746154785e-10,
+            "residual_2": 9.313225746154785e-10,
+            "residual_within_elementwise_budget": true
+          },
+          "condition_2": 1073741824.0,
+          "largest_singular_value": 1.0,
+          "smallest_singular_value": 9.313225746154785e-10,
+          "solution": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "solver_backward_residual_2": 0.0
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "solve",
+        "tolerance": {
+          "atol": 1e-08,
+          "rtol": 0.0
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "literal_phase_is_different",
+      "category": "boundary",
+      "request": {
+        "task": "check",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "actual": {
+          "shape": [
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        "reference": {
+          "shape": [
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      },
+      "expected_status": "outside_tolerance",
+      "actual_stdout": {
+        "checks": {},
+        "contract_version": "0.1.1",
+        "quantum_execution": false,
+        "result": {
+          "comparison": {
+            "max_absolute_error": 1.4142135623730951,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": false
+          },
+          "phase_alignment": false,
+          "reference_side": "reference",
+          "shape": [
+            1
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "outside_tolerance",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 1,
+      "passed": true
+    },
+    {
+      "name": "check_same",
+      "category": "normal",
+      "request": {
+        "task": "check",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "actual": {
+          "shape": [
+            2
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              2.0,
+              0.0
+            ]
+          ]
+        },
+        "reference": {
+          "shape": [
+            2
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              2.0,
+              0.0
+            ]
+          ]
+        }
+      },
+      "expected_status": "within_tolerance",
+      "actual_stdout": {
+        "checks": {},
+        "contract_version": "0.1.1",
+        "quantum_execution": false,
+        "result": {
+          "comparison": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.1999999999999999e-11,
+            "passed": true
+          },
+          "phase_alignment": false,
+          "reference_side": "reference",
+          "shape": [
+            2
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "within_tolerance",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "tiny_signal_relative_only",
+      "category": "boundary",
+      "request": {
+        "task": "check",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 0,
+          "rtol": 1e-08
+        },
+        "actual": {
+          "shape": [
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "reference": {
+          "shape": [
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              1e-12,
+              0.0
+            ]
+          ]
+        }
+      },
+      "expected_status": "outside_tolerance",
+      "actual_stdout": {
+        "checks": {},
+        "contract_version": "0.1.1",
+        "quantum_execution": false,
+        "result": {
+          "comparison": {
+            "max_absolute_error": 1e-12,
+            "max_element_budget": 1e-20,
+            "passed": false
+          },
+          "phase_alignment": false,
+          "reference_side": "reference",
+          "shape": [
+            1
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "outside_tolerance",
+        "tolerance": {
+          "atol": 0.0,
+          "rtol": 1e-08
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 1,
+      "passed": true
+    },
+    {
+      "name": "complex_modulus_not_components",
+      "category": "boundary",
+      "request": {
+        "task": "check",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-09,
+          "rtol": 0
+        },
+        "actual": {
+          "shape": [
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              1e-09,
+              1e-09
+            ]
+          ]
+        },
+        "reference": {
+          "shape": [
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "expected_status": "outside_tolerance",
+      "actual_stdout": {
+        "checks": {},
+        "contract_version": "0.1.1",
+        "quantum_execution": false,
+        "result": {
+          "comparison": {
+            "max_absolute_error": 1.4142135623730951e-09,
+            "max_element_budget": 1e-09,
+            "passed": false
+          },
+          "phase_alignment": false,
+          "reference_side": "reference",
+          "shape": [
+            1
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "outside_tolerance",
+        "tolerance": {
+          "atol": 1e-09,
+          "rtol": 0.0
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 1,
+      "passed": true
+    },
+    {
+      "name": "broadcast_shape",
+      "category": "error",
+      "request": {
+        "task": "check",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "actual": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "reference": {
+          "shape": [
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Exact shape/dtype/device equality required before arithmetic; no broadcasting or casts",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "dtype_mismatch",
+      "category": "error",
+      "request": {
+        "task": "check",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "actual": {
+          "shape": [
+            1
+          ],
+          "dtype": "float32",
+          "device": "cpu",
+          "values": [
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        "reference": {
+          "shape": [
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Exact shape/dtype/device equality required before arithmetic; no broadcasting or casts",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "device_mismatch",
+      "category": "error",
+      "request": {
+        "task": "check",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "actual": {
+          "shape": [
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cuda",
+          "values": [
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        "reference": {
+          "shape": [
+            1
+          ],
+          "dtype": "complex128",
+          "device": "cpu",
+          "values": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Exact shape/dtype/device equality required before arithmetic; no broadcasting or casts",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "singular_basis",
+      "category": "error",
+      "request": {
+        "task": "basis",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "basis_columns": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "v": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "direction": "passive-new-in-old",
+        "max_condition": 100000000.0
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Singular matrix is not an invertible basis/solve input",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "active_ambiguous",
+      "category": "error",
+      "request": {
+        "task": "basis",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "basis_columns": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "v": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "direction": "active",
+        "max_condition": 100000000.0
+      },
+      "expected_status": "unsupported",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Clarify active/passive and column convention; supported direction passive-new-in-old",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "unsupported"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 3,
+      "passed": true
+    },
+    {
+      "name": "condition_limit",
+      "category": "error",
+      "request": {
+        "task": "solve",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1e-10,
+              0.0
+            ]
+          ]
+        ],
+        "rhs": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "max_condition": 100000000.0
+      },
+      "expected_status": "unsupported",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Condition number exceeds caller limit; no trustworthy-solve certification",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "unsupported"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 3,
+      "passed": true
+    },
+    {
+      "name": "tiny_nonhermitian",
+      "category": "error",
+      "request": {
+        "task": "decompose",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "hermitian",
+        "matrix": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1e-15
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Hermitian input required, scale-relative max-entry tolerance 1e-12; no symmetrization",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "non_square_spectral",
+      "category": "error",
+      "request": {
+        "task": "decompose",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "hermitian",
+        "matrix": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          [
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Square matrix required",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "physical_function",
+      "category": "error",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "exp",
+        "matrix": [
+          [
+            [
+              0.1,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.1,
+              0.0
+            ]
+          ]
+        ],
+        "units": "J"
+      },
+      "expected_status": "unsupported",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Function argument/coefficient profile requires dimensionless input; clarify physical conversion before execution",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "unsupported"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 3,
+      "passed": true
+    },
+    {
+      "name": "exponential_bound",
+      "category": "error",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "exp",
+        "matrix": [
+          [
+            [
+              1.1,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.1,
+              0.0
+            ]
+          ]
+        ],
+        "units": "dimensionless"
+      },
+      "expected_status": "unsupported",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Matrix exponential requires infinity norm <=1; explicitly rescale elsewhere, no silent replacement",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "unsupported"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 3,
+      "passed": true
+    },
+    {
+      "name": "log_branch",
+      "category": "error",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "log",
+        "matrix": [
+          [
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              -0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              -0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ]
+        ],
+        "units": "dimensionless"
+      },
+      "expected_status": "unsupported",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "function kinds: polynomial, exp; no logarithm or square-root branch selection",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "unsupported"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 3,
+      "passed": true
+    },
+    {
+      "name": "shape_inner",
+      "category": "error",
+      "request": {
+        "task": "algebra",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "operation": "inner",
+        "v": [
+          [
+            1,
+            0
+          ]
+        ],
+        "w": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Vector dimensions differ",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "bool_tolerance",
+      "category": "error",
+      "request": {
+        "task": "classify",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": true,
+          "rtol": 0
+        },
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "atol/rtol must be finite nonnegative numbers <=1e-8",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "loose_tolerance",
+      "category": "error",
+      "request": {
+        "task": "classify",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 0.001,
+          "rtol": 0
+        },
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "atol/rtol must be finite nonnegative numbers <=1e-8",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "extra_field",
+      "category": "error",
+      "request": {
+        "task": "classify",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "shots": 100
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Missing/extra task fields; required coordinates,matrix,task,tolerance",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "missing_tolerance",
+      "category": "error",
+      "request": {
+        "task": "classify",
+        "coordinates": "literal-complex",
+        "matrix": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Required: task,coordinates,tolerance and task-specific fields",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "tiny_positive_tail_exp",
+      "category": "boundary",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "exp",
+        "units": "dimensionless",
+        "matrix": [
+          [
+            [
+              1e-100,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1e-100,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "scalar_taylor_order40": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "mathematical_infinity_norm_tail_bound": 5e-324,
+          "shape": [
+            2,
+            2
+          ],
+          "tail_bound_excludes_roundoff": true,
+          "tail_bound_underflow_clamped": true,
+          "tail_log_upper_expression": -9554.63309305705,
+          "tail_numeric_record_is_interval_certificate": false,
+          "value": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "function",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "zero_tail_exp",
+      "category": "boundary",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "exp",
+        "units": "dimensionless",
+        "matrix": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "scalar_taylor_order40": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0999999999999999e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "mathematical_infinity_norm_tail_bound": 0.0,
+          "shape": [
+            2,
+            2
+          ],
+          "tail_bound_excludes_roundoff": true,
+          "tail_bound_underflow_clamped": false,
+          "tail_log_upper_expression": null,
+          "tail_numeric_record_is_interval_certificate": false,
+          "value": [
+            [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "function",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "new_rectangular_product",
+      "category": "author-transfer",
+      "request": {
+        "task": "algebra",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "operation": "matmul",
+        "left": [
+          [
+            [
+              0.17,
+              0.29
+            ],
+            [
+              -0.0,
+              -0.63
+            ],
+            [
+              1.19,
+              0.0
+            ]
+          ]
+        ],
+        "right": [
+          [
+            [
+              0.0,
+              0.83
+            ],
+            [
+              0.13,
+              0.0
+            ]
+          ],
+          [
+            [
+              -0.41,
+              0.0
+            ],
+            [
+              0.0,
+              0.37
+            ]
+          ],
+          [
+            [
+              0.59,
+              0.0
+            ],
+            [
+              -0.71,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "independent_scalar_reference": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.0610254307645591e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "shape": [
+            1,
+            2
+          ],
+          "value": [
+            [
+              [
+                0.4614,
+                0.3994
+              ],
+              [
+                -0.5896999999999999,
+                0.0377
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "algebra",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "new_nonnormal_polynomial",
+      "category": "author-transfer",
+      "request": {
+        "task": "function",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "kind": "polynomial",
+        "units": "dimensionless",
+        "matrix": [
+          [
+            [
+              0.0,
+              0.17
+            ],
+            [
+              0.31,
+              -0.41
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.23
+            ],
+            [
+              -0.19,
+              0.0
+            ]
+          ]
+        ],
+        "coefficients": [
+          [
+            0.0,
+            0.61
+          ],
+          [
+            -0.37,
+            0.0
+          ],
+          [
+            0.0,
+            1.13
+          ],
+          [
+            0.29,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "power_series_vs_horner": {
+            "max_absolute_error": 1.1188630228279524e-16,
+            "max_element_budget": 1.0754597492616505e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "shape": [
+            2,
+            2
+          ],
+          "value": [
+            [
+              [
+                -0.09279510999999999,
+                0.6249465799999999
+              ],
+              [
+                -0.24851605,
+                0.15534175
+              ]
+            ],
+            [
+              [
+                0.046779699999999994,
+                -0.12251295000000001
+              ],
+              [
+                -0.026165060000000004,
+                0.75414373
+              ]
+            ]
+          ]
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "function",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "new_basis",
+      "category": "author-transfer",
+      "request": {
+        "task": "basis",
+        "coordinates": "literal-complex",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "matrix": [
+          [
+            [
+              0.3,
+              0.0
+            ],
+            [
+              0.0,
+              0.2
+            ]
+          ],
+          [
+            [
+              -0.0,
+              -0.7
+            ],
+            [
+              0.9,
+              0.0
+            ]
+          ]
+        ],
+        "basis_columns": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.217
+            ]
+          ],
+          [
+            [
+              0.137,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "v": [
+          [
+            0.0,
+            0.613
+          ],
+          [
+            -0.791,
+            0.0
+          ]
+        ],
+        "direction": "passive-new-in-old",
+        "max_condition": 100
+      },
+      "expected_status": "verified",
+      "actual_stdout": {
+        "checks": {
+          "action_reconstruction": {
+            "max_absolute_error": 1.1103585416259206e-16,
+            "max_element_budget": 1.02828e-11,
+            "passed": true
+          },
+          "coordinate_reconstruction": {
+            "max_absolute_error": 1.1188630228279524e-16,
+            "max_element_budget": 1.0791e-11,
+            "passed": true
+          },
+          "metric": {
+            "max_absolute_error": 0.0,
+            "max_element_budget": 1.100145e-11,
+            "passed": true
+          },
+          "operator_intertwining": {
+            "max_absolute_error": 1.3877787807814457e-17,
+            "max_element_budget": 1.10519e-11,
+            "passed": true
+          }
+        },
+        "claim_acceptance": "Not inferred from internal verification",
+        "contract_version": "0.1.1",
+        "execution": {
+          "classical_tensor_only": true,
+          "device": "cpu",
+          "dtype": "complex128"
+        },
+        "quantum_execution": false,
+        "result": {
+          "condition_2": 1.289377833830096,
+          "direction": "passive: x_old=S*x_new; B=S^-1*A*S",
+          "gram": [
+            [
+              [
+                1.018769,
+                0.0
+              ],
+              [
+                0.137,
+                0.217
+              ]
+            ],
+            [
+              [
+                0.137,
+                -0.217
+              ],
+              [
+                1.047089,
+                0.0
+              ]
+            ]
+          ],
+          "gram_squared_length": 1.00145,
+          "new_coordinates": [
+            [
+              -0.023306172354614726,
+              0.7839541308020697
+            ],
+            [
+              -0.7878070543874177,
+              -0.10740171591988354
+            ]
+          ],
+          "new_euclidean_squared_length": 1.2473023403965666,
+          "new_operator": [
+            [
+              [
+                0.14795009721238644,
+                0.005042308440027041
+              ],
+              [
+                -0.0010941809314858665,
+                0.03680517109508785
+              ]
+            ],
+            [
+              [
+                0.10303083668190305,
+                -0.7006907962562836
+              ],
+              [
+                1.0520499027876136,
+                -0.0050423084400270345
+              ]
+            ]
+          ],
+          "old_squared_length": 1.00145
+        },
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "verified",
+        "task": "basis",
+        "tolerance": {
+          "atol": 1e-11,
+          "rtol": 1e-12
+        },
+        "versions": {
+          "torch": "2.13.0"
+        }
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 0,
+      "passed": true
+    },
+    {
+      "name": "nan",
+      "category": "error",
+      "raw_request": "{\"x\":NaN}",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Nonstandard JSON constant NaN",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "duplicate",
+      "category": "error",
+      "raw_request": "{\"task\":\"a\",\"task\":\"b\"}",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Duplicate key task",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    },
+    {
+      "name": "syntax",
+      "category": "error",
+      "raw_request": "{",
+      "actual_stdout": {
+        "contract_version": "0.1.1",
+        "reason": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "invalid_input"
+      },
+      "actual_stderr": "",
+      "actual_exit_code": 2,
+      "passed": true
+    }
+  ]
+}

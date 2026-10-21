@@ -1,0 +1,34 @@
+{
+  "evaluation_id": "complex-algebra-blind-r2",
+  "version": "0.1.1",
+  "agents": [
+    "/root/algebra_blind_d",
+    "/root/algebra_blind_e",
+    "/root/algebra_blind_f"
+  ],
+  "context": "Fresh fork_turns=none agents, raw tasks and available packages/runtime only; no expected answers, defect description or prior conclusions",
+  "reference_key_sha256": "28c4ee847a2fba70f4348ca882dfef92a93e46b1fe096b3cd00d46687464be01",
+  "frozen_before_dispatch": true,
+  "gates": {
+    "tasks": 9,
+    "required_clarifications": [
+      "E2 passive/active convention"
+    ],
+    "numeric_outputs": "Independent analytic/scalar/NumPy references and honest finite error metadata; inspect extreme-scale and zero inputs",
+    "invalid": [
+      "D3"
+    ],
+    "unsupported": [
+      "F3"
+    ],
+    "outside": [
+      "E3"
+    ],
+    "false_successes_allowed": 0
+  },
+  "limitations": [
+    "Small conductor-designed nonrandom sample",
+    "Logical workspace isolation, same inherited model family; exact backend/token/cost telemetry unavailable",
+    "Conductor grades outcomes; independent scientific acceptance pending"
+  ]
+}

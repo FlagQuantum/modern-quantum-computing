@@ -1,0 +1,14 @@
+[
+  {
+    "task": "E2",
+    "question": "Do the columns represent a passive new basis in old coordinates or an active map?",
+    "reply": "Use passive-new-in-old: the columns of S are the new basis in old coordinates, and v is in old coordinates. Return S^-1*v and S^-1*A*S, preserving the Gram metric.",
+    "expected_output_supplied": false
+  },
+  {
+    "task": "F3",
+    "question": "Please clarify desired square-root branch/domain.",
+    "reply": "No square-root branch or domain is supplied. Keep this request unsupported, without selecting a branch or claiming a unique answer. A separate explanation of ambiguity is appropriate.",
+    "expected_output_supplied": false
+  }
+]

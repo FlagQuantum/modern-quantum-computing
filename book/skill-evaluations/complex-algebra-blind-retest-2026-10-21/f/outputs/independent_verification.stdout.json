@@ -1,0 +1,221 @@
+[
+  {
+    "id": "F1",
+    "reference_exact_rational": [
+      [
+        [
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "0"
+        ]
+      ],
+      [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "0"
+        ]
+      ]
+    ],
+    "checks": [
+      {
+        "index": [
+          0,
+          0
+        ],
+        "absolute_error": 0.0,
+        "reference_scaled_budget": 1.0999999999999999e-11,
+        "passed": true
+      },
+      {
+        "index": [
+          0,
+          1
+        ],
+        "absolute_error": 0.0,
+        "reference_scaled_budget": 1e-11,
+        "passed": true
+      },
+      {
+        "index": [
+          1,
+          0
+        ],
+        "absolute_error": 0.0,
+        "reference_scaled_budget": 1e-11,
+        "passed": true
+      },
+      {
+        "index": [
+          1,
+          1
+        ],
+        "absolute_error": 0.0,
+        "reference_scaled_budget": 1.0999999999999999e-11,
+        "passed": true
+      }
+    ],
+    "metadata_audit": {
+      "zero_input_exact": true,
+      "exp_zero_identity_exact": true,
+      "rho": 0,
+      "all_taylor_terms_above_degree_zero_vanish": true,
+      "expected_truncation_tail": 0,
+      "expected_log_tail": null,
+      "expected_underflow_clamped": false,
+      "expected_interval_certificate": false,
+      "expected_excludes_roundoff": true,
+      "metadata_passed": true
+    },
+    "passed": true,
+    "limitations": [
+      "Exact rational reference treats the supplied decimal coordinates as exact; returned binary64 values are checked against its conversion under the declared asymmetric tolerance.",
+      "No interval or hardware/circuit accuracy certificate is inferred."
+    ]
+  },
+  {
+    "id": "F2",
+    "reference_exact_rational": [
+      [
+        [
+          "138411/500000",
+          "0"
+        ],
+        [
+          "0",
+          "27173/250000"
+        ]
+      ],
+      [
+        [
+          "0",
+          "-15929/250000"
+        ],
+        [
+          "134663/500000",
+          "0"
+        ]
+      ]
+    ],
+    "checks": [
+      {
+        "index": [
+          0,
+          0
+        ],
+        "absolute_error": 0.0,
+        "reference_scaled_budget": 1.0276822e-11,
+        "passed": true
+      },
+      {
+        "index": [
+          0,
+          1
+        ],
+        "absolute_error": 0.0,
+        "reference_scaled_budget": 1.0108691999999999e-11,
+        "passed": true
+      },
+      {
+        "index": [
+          1,
+          0
+        ],
+        "absolute_error": 1.3877787807814457e-17,
+        "reference_scaled_budget": 1.0063716e-11,
+        "passed": true
+      },
+      {
+        "index": [
+          1,
+          1
+        ],
+        "absolute_error": 0.0,
+        "reference_scaled_budget": 1.0269325999999999e-11,
+        "passed": true
+      }
+    ],
+    "metadata_audit": {
+      "method": "exact rational direct matrix powers summed in ascending coefficient order",
+      "powers": [
+        [
+          [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              "0",
+              "11/100"
+            ],
+            [
+              "29/100",
+              "0"
+            ]
+          ],
+          [
+            [
+              "-17/100",
+              "0"
+            ],
+            [
+              "0",
+              "13/100"
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              "-307/5000",
+              "0"
+            ],
+            [
+              "0",
+              "87/1250"
+            ]
+          ],
+          [
+            [
+              "0",
+              "-51/1250"
+            ],
+            [
+              "-331/5000",
+              "0"
+            ]
+          ]
+        ]
+      ]
+    },
+    "passed": true,
+    "limitations": [
+      "Exact rational reference treats the supplied decimal coordinates as exact; returned binary64 values are checked against its conversion under the declared asymmetric tolerance.",
+      "No interval or hardware/circuit accuracy certificate is inferred."
+    ]
+  }
+]

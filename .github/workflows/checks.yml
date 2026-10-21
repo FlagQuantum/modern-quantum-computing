@@ -67,6 +67,7 @@ jobs:
       - run: python scripts/check_unitary_blind_evidence.py
       - run: python scripts/check_algebra_skill.py
       - run: python scripts/check_algebra_blind_evidence.py
+      - run: python scripts/check_algebra_retest_evidence.py
       - run: python examples/measurement.py
       - run: python examples/gradients.py
       - run: python examples/omalley2016/h2_vqe_model.py

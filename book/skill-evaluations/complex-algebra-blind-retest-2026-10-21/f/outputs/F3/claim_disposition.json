@@ -1,0 +1,6 @@
+{
+  "status": "unsupported",
+  "reason": "The provided helper excludes square-root branch selection, and no domain or branch convention was supplied.",
+  "ambiguity": "Both iI and -iI square to -I; more generally this matrix admits distinct square roots. This explains nonuniqueness without selecting any output.",
+  "not_certified": "No selected square-root answer, branch implementation, or unsupported-as-inequality inference."
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "claim": "Returned exponential satisfies supplied tolerance",
+    "disposition": "supported_by_independent_high_precision_diagonal_formula"
+  },
+  {
+    "claim": "Tail record describes truncation only, excluding roundoff",
+    "disposition": "supported; positive analytic tail underflows binary64, log retained and clamp flagged"
+  },
+  {
+    "claim": "Displayed tail certifies total numerical error",
+    "disposition": "not_claimed_and_false_for_this_run",
+    "evidence": "Actual error about 7e-76 exceeds 5e-324"
+  }
+]

@@ -5,7 +5,7 @@ description: Translate finite complex vector and matrix formulas into checked cl
 
 # Translate complex linear algebra
 
-**Prototype 0.1.0.** Read [the task schemas and numerical contract](references/contract.md) for the selected task. Sources are textbook Chapter 2, sections 2.1–2.8. These are explained drafts; numerical verification does not confer scientific acceptance.
+**Prototype 0.1.1.** Read [the task schemas and numerical contract](references/contract.md) for the selected task. Sources are textbook Chapter 2, sections 2.1–2.8. These are explained drafts; numerical verification does not confer scientific acceptance.
 
 Resolve shapes, literal coordinate order, conjugation, multiplication order, units and the requested error budget before executing. Vectors here need not be normalized quantum states. Inner products conjugate the first argument; dyads conjugate the second vector. A transpose is not an adjoint. Missing basis direction, physical conversion, or desired tolerance needs clarification, not a guess.
 

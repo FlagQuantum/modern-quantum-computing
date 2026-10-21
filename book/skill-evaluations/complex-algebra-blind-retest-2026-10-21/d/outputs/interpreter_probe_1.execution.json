@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "-c",
+    "import sys,importlib.metadata as m; print(sys.version); print(m.version(\"torch\"))"
+  ],
+  "stdin_path": null,
+  "exit_code": 0,
+  "elapsed_seconds": 0.0410313606262207,
+  "started_unix_seconds": 1792563319.3073988,
+  "stdout_path": "interpreter_probe_1.stdout",
+  "stderr_path": "interpreter_probe_1.stderr"
+}
