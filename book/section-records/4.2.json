@@ -1,0 +1,161 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+  "ref": "4.2",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+  "question": "How does an ordered list of named qubits determine a unique computational-basis coordinate, and how can an output index be decoded without confusing labels and significance?",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-1"
+  ],
+  "depth": "F",
+  "result": "Bijection between bit tuples and statevector indices",
+  "entry": "Use 4.1 finite product bases and its finite-basis Born convention; extend the ordered product to n distinguishable qubits. No later permutation/local-operator theorem assumed.",
+  "exit": "Prove the most-significant-qubit index bijection and its inverse, preserve leading zeros and distinguish qubit labels, tuple positions, basis indices, amplitudes and outcome probabilities.",
+  "assumptions": [
+    "Positive finite qubit count; distinct application labels in declared order",
+    "Each qubit basis is ordered0,1; position0 is most significant",
+    "Zero-based global statevector index; row-major lexicographic product-basis listing",
+    "Pure register vector and finite-basis Born convention from4.1; no measurement update imported",
+    "Named labels are application metadata, not a new framework or hardware API"
+  ],
+  "symbols": {
+    "L,ell_k": "ordered distinct application labels; integer qubit position k",
+    "b_k": "literal0/1 bit in tensor-factor position k",
+    "J_n": "lexicographic bit-tuple to zero-based integer index",
+    "B_n,k": "inverse bit from quotient and remainder",
+    "psi_j": "complex amplitude at coordinate j, not an observed outcome"
+  },
+  "local_start_checks": {
+    "brief": "Prepared before prose, preserving the exact4.1 prerequisite, NC:2.1.7 target and F depth",
+    "prerequisite": "4.1 draft supplies product bases, normalization, independent preparation matrix and finite-basis Born rule; no later permutation/local-operator theorem assumed",
+    "source": "Retained NC background from4.1; current user-local PDF read attempted but macOS denied access even outside sandbox. Do not claim a fresh page inspection. Public Preskill section2.3.1 Eq2.46 independently consulted for labeled product-factor context. Index theorem is proved here, not attributed as a quotation.",
+    "independent_reference": "Exact integer recurrence and quotient proofs; binary parser/formatter independent of index helpers; hand complex amplitudes and every complete basis state checked against actual released execution",
+    "scope": "50chapters,435sections,7volumes,16batches unchanged; no skill, paper audit or PDF release change"
+  },
+  "sources": [
+    {
+      "locator": "NC:2.1.7",
+      "edition": "10th Anniversary Edition (2010)",
+      "use": "Assigned tensor-product background and prior4.1 source chain",
+      "current_session_access": "Denied by macOS file access; no fresh NC page-review claim"
+    },
+    {
+      "supplementary": "J.Preskill, Chapter2 Foundations I: States and Ensembles, section2.3.1 Eq2.46, printed14/PDF14",
+      "url": "https://www.preskill.caltech.edu/ph229/notes/chap2.pdf#page=14",
+      "use": "Consulted labeled two-factor state notation only; not a source for framework ordering or our original binary-bijection proof"
+    },
+    {
+      "supplementary": "Installed released FlagQuantum0.3.1",
+      "use": "Actual Circuit/x/unitary/run/statevector/probabilities and ExecutionOptions tested; integer qubit0 most significant verified exhaustively for two/three qubits"
+    }
+  ],
+  "proof_obligations": [
+    "Extend finite ordered product basis to n factors and count2^n labels",
+    "Derive append-bit recurrence from lexicographic enumeration",
+    "Inductively derive sum of weighted bits and its legal range",
+    "Prove each inverse bit by separating more-significant/equal/less-significant terms",
+    "Prove inverse recomposition with n unique Euclidean divisions",
+    "Conclude injectivity and surjectivity; alternative first-difference proof in answers",
+    "Apply indexed Born rule without equating coordinates and shot records",
+    "Independently expand the complex product, including negative110 amplitude"
+  ],
+  "formula_code_units": [
+    {
+      "anchor": "formula-code-4-2-register-order",
+      "role": "explicit names/integer qubit positions/significance"
+    },
+    {
+      "anchor": "formula-code-4-2-forward-index",
+      "role": "recurrence and actual nonpalindromic basis preparation"
+    },
+    {
+      "anchor": "formula-code-4-2-inverse-index",
+      "role": "quotient/remainder and fixed-width decoding"
+    },
+    {
+      "anchor": "formula-code-4-2-basis-preparations",
+      "role": "all12basis states with independent string oracle"
+    },
+    {
+      "anchor": "formula-code-4-2-reversal-witness",
+      "role": "actual100 witness for wrong least-significant-first formula"
+    },
+    {
+      "anchor": "formula-code-4-2-complex-product",
+      "role": "released API calls and independent complex amplitudes"
+    },
+    {
+      "anchor": "formula-code-4-2-indexed-born",
+      "role": "negative amplitude versus probability at index6"
+    },
+    {
+      "anchor": "formula-code-4-2-input-boundaries",
+      "role": "invalid-index/Boolean/duplicate-label rejection"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/register_indices.py",
+    "command": "python examples/foundations/register_indices.py",
+    "prose_check_command": "python scripts/check_register_indices_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "architecture": "arm64",
+      "system": "Darwin",
+      "device": "cpu",
+      "precision": "complex128",
+      "probability_dtype": "float64"
+    },
+    "author_run": "passed",
+    "mathematical_fixtures": 510,
+    "complete_program_circuits_per_invocation": 14,
+    "cumulative_body_fragments": 8,
+    "body_fragment_circuits_per_invocation": 15,
+    "initial_author_execution_4_2_circuits": 44,
+    "count_note": "Initial standalone program14 plus prose checker body15 and its complete-program subprocess14. Future CI reruns are separate; prior4.1 regression is not included in4.2 counts. Separate4.2-B five-qubit transfer check adds1circuit.",
+    "checks": [
+      "510exact tuples of width1..8: recurrence vs independent binary parsing and inverse vs fixed-width formatting",
+      "All4two-qubit and8three-qubit basis vectors and probabilities, exactzero/one complex reference",
+      "Additional nonpalindromic100 basis preparation distinguishes4from1",
+      "Independent complex product state, all8probabilities and negative110amplitude -sqrt6/5",
+      "Shape1x2^n before selecting batch row; finite CPU complex128/float64, approximation/fallback disabled",
+      "Leading zeros and range endpoints, n>=1,12malformed-input cases",
+      "8cumulative body blocks and whole-program expected stdout exact; previous4.1checker remains independently scoped"
+    ],
+    "tolerance": "atol1e-12,rtol0 for floating coordinates/probabilities; exact integer arithmetic for index identities",
+    "script_sha256": "89504b3d4626fc7767b77da9ec3c42d0b81d85ebe0cb27646a0f5ddb6185898a",
+    "limitations": "Small ideal statevector registers only; no sampling, hardware, remote count encoding, marginal-output order, permutation/SWAP, entangled-state preparation or resource-scale certification",
+    "author_transfer_circuits": 1
+  },
+  "assessment": {
+    "tasks": [
+      "4.2-A fixed-width labels",
+      "4.2-B five-qubit transfer; independently author-executed1circuit, full32-coordinate/probability reference",
+      "4.2-C matching forward/inverse convention bug",
+      "4.2-D amplitude/probability/outcome distinction",
+      "4.2-E independent leading-difference bijection proof"
+    ],
+    "answers": "All supplied; no reader trial"
+  },
+  "review": {
+    "author_checks": "Complete program,8cumulative body fragments, separate five-qubit transfer and previous4.1regression passed; strict MkDocs build and69-page local-link/anchor checks passed; actual browser formula inspection passed. Remote CI/deployment reported separately after publication.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 2933,
+    "page_status": "Unmeasured; retain F proofs and worked correspondence while later calibrating print layout",
+    "next_draft": "4.3 Local operators on a composite register",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual browser screenshot inspection: forward sum/boxed result, recurrence, inverse floors and modulo, reconstruction identity, indexed Born formula and full8-component complex column; no garbling or clipping in inspected regions."
+  }
+}

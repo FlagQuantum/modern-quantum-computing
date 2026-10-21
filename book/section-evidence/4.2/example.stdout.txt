@@ -1,0 +1,11 @@
+Register order (most to least significant): signal, reference, flag.
+110 -> 6 ; 6 -> (1, 1, 0)
+510 mathematical basis labels (n=1..8): index, inverse and independent strings agree.
+FlagQuantum 2 qubits: 00->0, 01->1, 10->2, 11->3.
+FlagQuantum 3 qubits: 000->0, 001->1, 010->2, 011->3, 100->4, 101->5, 110->6, 111->7.
+12 actual basis-preparation circuits: full complex states and probabilities checked.
+Complex product probabilities: 0.135000000, 0.045000000, 0.135000000, 0.045000000, 0.240000000, 0.080000000, 0.240000000, 0.080000000.
+Index 6 is 110: amplitude real=-0.489897949; probability=0.240000000.
+Reversed-significance witness, leading zeros and 12 malformed-input cases checked.
+14 actual simulator circuits total; CPU complex128, atol=1e-12, rtol=0.
+No sampling, hardware layout, SWAP or marginal-order claim.

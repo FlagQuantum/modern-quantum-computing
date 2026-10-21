@@ -1,0 +1,1 @@
+4.2-B: 10010 -> 18; all 32 amplitudes/probabilities checked; 1 additional simulator circuit.

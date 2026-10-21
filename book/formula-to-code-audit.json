@@ -1,7 +1,7 @@
 {
   "date": "2026-10-21",
   "baseline": "writing-baseline-v1.0",
-  "scope": "Presentation audit of22drafted sections. Requested Chapter2 and completeChapter3 backfill author-checked; independent review and acceptance remain pending.",
+  "scope": "Presentation audit of23drafted sections. Chapter2 and completeChapter3 backfills retained; new4.2 has8adjacent formula/derivation/code/output units. Independent review and acceptance remain pending.",
   "finding": "Executable companion scripts and end-of-section correspondence tables do not by themselves provide adjacent formula-to-code teaching in the body.",
   "priority_backfill": [],
   "secondary_review": [],
@@ -47,5 +47,11 @@
     "2.1\u20132.8,3.3,3.5,3.7:41adjacent formula/code/output units, complete companion programs, execution checks, local browser/math and strict build/link checks."
   ],
   "verification_manifest": "book/formula-code-examples.json",
-  "verification_command": "python scripts/check_formula_code.py"
+  "verification_command": "python scripts/check_formula_code.py",
+  "new_section_4_2": {
+    "units": 8,
+    "command": "python scripts/check_register_indices_prose.py",
+    "record": "book/section-records/4.2.json",
+    "status": "author-verified draft"
+  }
 }

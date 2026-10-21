@@ -24,7 +24,29 @@
         "sec-single-qubit-states-and-rotations-1"
       ],
       "status": "draft",
-      "next_transition": "4.2 Registers, labels, and basis indices."
+      "next_transition": "4.2 now has an author-verified working draft; next production assignment is4.3 Local operators on a composite register."
+    },
+    {
+      "ref": "4.2",
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+      "title": "Registers, labels, and basis indices",
+      "question": "How does an ordered list of named qubits determine a unique computational-basis coordinate, and how can an output index be decoded without confusing labels and significance?",
+      "entry": "Use 4.1 finite product bases and its finite-basis Born convention; extend the ordered product to n distinguishable qubits. No later permutation/local-operator theorem assumed.",
+      "exit": "Prove the most-significant-qubit index bijection and its inverse, preserve leading zeros and distinguish qubit labels, tuple positions, basis indices, amplitudes and outcome probabilities.",
+      "worked_case": "Ordered labels(signal,reference,flag); tuple110 maps to6, reversed011 to3; exhaustive two/three-qubit X preparations; a three-qubit complex product with nonuniform probabilities.",
+      "boundary": "F depth; n>=1 finite qubit register. Named labels are explicit application metadata, not a named-register API claim. No SWAP, marginal-support order, hardware mapping, sampling or arbitrary joint-state inference.",
+      "code_plan": "Strict Python integer index/inverse helpers versus independent binary-string parsing/formatting; actual released FQ0.3.1 X preparations for all4+8 basis states and one complex product, full state/probability/shape checks; cumulative exact-output body fragments.",
+      "independent_check": "510 mathematical bit tuples for n1..8, independent strings and range endpoints; nonpalindromic110/011 and100/001;12actual basis circuits; hand complex scalar products for a separate joint preparation; malformed bits, sizes, indices and duplicate labels rejected.",
+      "transfer_task": "Decode leading-zero index3 for4qubits, locate named preparations under a declared register order, diagnose reversed significance and reason about a superposition index versus a sampled result; answers included.",
+      "source_locators": [
+        "NC:2.1.7"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-1"
+      ],
+      "status": "draft",
+      "next_transition": "4.3 Local operators on a composite register, following the frozen queue."
     }
   ]
 }

@@ -1,6 +1,6 @@
 # 4. Composite Systems, Tensor Products, and Qubit Ordering
 
-**Working draft: section 4.1 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 4.1–4.2 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-composite-systems-tensor-products-and-qubit-ordering-1"></span>
 
@@ -354,4 +354,357 @@ The assigned source is [NC:2.1.7](../references/proof-sources.md#source-nc-2-1-7
 
 For the separately stated physical composition assumption, supplementary **§2.2.8, printed pp.93–94**, especially Postulate 4 on p.94, was consulted. The finite-basis probability rule uses the measurement postulate of **§2.2.3, printed pp.84–85**, already introduced in its qubit form in 3.1. The mathematical definition does not itself establish either physical postulate.
 
-Depth **F**: construct the finite product space, prove product-basis orthonormality and dimension, and derive product amplitudes, inner products and normalization. This section does not establish a general bit-string convention, local-operator tensor formulas, permutations or entanglement classification. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.1.json) separates author execution from pending independent reviews. Next: [4.2 Registers, labels, and basis indices](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-2).
+Depth **F**: construct the finite product space, prove product-basis orthonormality and dimension, and derive product amplitudes, inner products and normalization. This section does not establish a general bit-string convention, local-operator tensor formulas, permutations or entanglement classification. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.1.json) separates author execution from pending independent reviews. Continue with [4.2 Registers, labels, and basis indices](#sec-composite-systems-tensor-products-and-qubit-ordering-2).
+
+<span id="sec-composite-systems-tensor-products-and-qubit-ordering-2"></span>
+
+## 4.2 Registers, labels, and basis indices
+
+A simulator returns an array. To interpret its entry at index 6, we need more than the number of qubits: we need the ordered subsystem labels, the basis of each subsystem, the significance of each bit and the meaning of the array's axes. A consistent convention makes those choices explicit before a state is prepared or a result is read.
+
+The prerequisite is [4.1](#sec-composite-systems-tensor-products-and-qubit-ordering-1). We use its ordered product bases, the physical composition assumption for independently prepared pure qubits, and the finite-basis Born rule. No general local-operator embedding, permutation or measurement-update theorem is assumed here. Those have separate homes in later sections.
+
+### An ordered register, rather than a set of names
+
+An **n-qubit register**, in this section, is an ordered collection of n distinguishable qubits, with $n\geq1$. Each qubit has the specified ordered basis $(|0\rangle,|1\rangle)$. Write its application labels as
+
+$$
+L=(\ell_0,\ell_1,\ldots,\ell_{n-1}),\qquad
+\mathcal H_L=\mathbb C^2_{\ell_0}\otimes\cdots\otimes\mathbb C^2_{\ell_{n-1}}.
+$$
+
+The subscripts identify tensor factors, not numbers to be added. The order determines how a bit tuple is read:
+
+$$
+|b_0\cdots b_{n-1}\rangle_L
+=|b_0\rangle_{\ell_0}\otimes\cdots\otimes|b_{n-1}\rangle_{\ell_{n-1}},\qquad b_k\in\{0,1\}.
+$$
+
+For this book, position 0 is the **most significant** position: it has the largest binary weight. In the released FlagQuantum examples, position k is addressed as integer qubit k. A descriptive name such as `signal` has no intrinsic binary weight. The application associates that name with an integer explicitly; a Python dictionary's appearance does not define a physical layout.
+
+Take $L=(\mathrm{signal},\mathrm{reference},\mathrm{flag})$. Then a label `110` means signal is in basis state 1, reference in basis state 1 and flag in basis state 0. It does not mean integer qubit 110. It also does not assert that an arbitrary register is already in this basis state.
+
+<span id="formula-code-4-2-register-order"></span>
+
+**Formula → FlagQuantum-facing code → checked result.** Run the cumulative Python blocks in this section in order, from the repository root in the pinned environment. The names below are application metadata; no named-register API is being claimed.
+
+```python
+from examples.foundations.register_indices import (
+    register_labels, basis_index, basis_bits, prepare_basis,
+)
+labels = register_labels(('signal', 'reference', 'flag'))
+print([(q, label, 2**(len(labels)-1-q))
+       for q, label in enumerate(labels)])
+```
+
+```text
+[(0, 'signal', 4), (1, 'reference', 2), (2, 'flag', 1)]
+```
+
+The first column is the integer used in `circuit.x(q)` or `circuit.unitary(q, ...)`; the last is the bit weight in a global basis index. Neither is a hardware-qubit assignment. Distinct names are required so that decoding an outcome does not assign two different positions to the same name.
+
+### Derive the forward map from the product basis
+
+Extend the pair enumeration in 4.1 by listing bit tuples lexicographically, with 0 before 1 at each position. The rightmost bit changes fastest. There are $2^n$ product-basis vectors by repeated application of 4.1's dimension result.
+
+Let $J_n(b_0,\ldots,b_{n-1})$ be the zero-based position of one tuple in that list. Appending a final bit places two entries under each old prefix: prefix followed by 0, then prefix followed by 1. Therefore
+
+$$
+J_1(b_0)=b_0,\qquad J_{n+1}(b_0,\ldots,b_n)=2J_n(b_0,\ldots,b_{n-1})+b_n.
+$$
+
+Starting with $J_1=b_0$, substitute this relation once to get $J_2=2b_0+b_1$, and once more to get $J_3=4b_0+2b_1+b_2$. In general, if the formula holds for n, multiplication by 2 increases every old exponent by one and appending $b_n$ supplies the new exponent-zero term. Induction proves
+
+$$
+\boxed{J_n(b)=\sum_{k=0}^{n-1}b_k2^{n-1-k}.}
+$$
+
+It follows that $0\leq J_n(b)\leq\sum_{r=0}^{n-1}2^r=2^n-1$. These are exactly the legal positions of a length-$2^n$ statevector. This ordering is a representation choice, not an additional quantum-mechanical law.
+
+<span id="formula-code-4-2-forward-index"></span>
+
+**Formula → recurrence → actual basis preparation.** The loop below implements the recurrence directly. It then compares the predicted position with a released FlagQuantum preparation. The single-qubit X operation has matrix $\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$, so it sends $|0\rangle$ to $|1\rangle$. The helper starts a three-qubit circuit in its zero basis state and calls `x(q)` at positions whose bits are 1. The general matrix-embedding proof is deferred to 4.3; here we check the actual preparation semantics.
+
+```python
+import torch
+bits = (1, 1, 0)
+j = 0
+for b in bits:
+    j = 2*j + b
+assert j == basis_index(bits)
+state, probability = prepare_basis(bits)
+expected = torch.zeros(8, dtype=torch.complex128)
+expected[j] = 1
+# Check the whole vector, including phase, rather than only its largest entry.
+torch.testing.assert_close(state, expected, rtol=0, atol=1e-12)
+print('110 ->', j, '; occupied index:', int(probability.argmax()))
+```
+
+```text
+110 -> 6 ; occupied index: 6
+```
+
+This is a non-palindromic test. Reversing the same three bits gives `011`, whose index is 3. A test using only `000`, `111` or `101` could miss a complete bit reversal.
+
+### Prove the inverse and the bijection
+
+For an integer $j\in\{0,\ldots,2^n-1\}$, define
+
+$$
+B_{n,k}(j)=\left\lfloor\frac{j}{2^{n-1-k}}\right\rfloor\bmod2,\qquad k=0,\ldots,n-1.
+$$
+
+Here floor means integer quotient, and modulo 2 returns the remainder 0 or 1. To show this recovers $b_k$ from $j=J_n(b)$, separate the sum into more significant positions, position k and less significant positions:
+
+$$
+j=2^{n-k}A+b_k2^{n-1-k}+r,\qquad 0\leq r<2^{n-1-k},
+$$
+
+where $A=\sum_{h<k}b_h2^{k-1-h}$ is an integer. Division and floor give $2A+b_k$; modulo 2 removes the even term $2A$. Consequently $B_{n,k}(J_n(b))=b_k$, including the last position where $r=0$.
+
+We must also check the other direction, rather than assume that a left inverse covers every integer. Euclidean division writes $j=2q+r_0$ uniquely with $r_0\in\{0,1\}$. Dividing q again gives its final bit; repeat n times. Because $j<2^n$, the quotient after n divisions is zero. Reversing these equalities reconstructs
+
+$$
+j=\sum_{k=0}^{n-1}B_{n,k}(j)2^{n-1-k}=J_n(B_n(j)).
+$$
+
+Both compositions are identities. The map is therefore a bijection: no two tuples share an index, and no legal index is omitted. The proof uses exact integers and establishes the result for every finite n in scope; a numerical test alone would not do that.
+
+<span id="formula-code-4-2-inverse-index"></span>
+
+**Formula → integer quotient/remainder → decoded result.** In Python, `//` is integer quotient and `%` is remainder. The register size remains an input because the integer 3 by itself does not tell us how many leading zeros to retain.
+
+```python
+recovered = tuple((j // 2**(3-1-k)) % 2 for k in range(3))
+assert recovered == basis_bits(j, 3) == (1, 1, 0)
+print(dict(zip(labels, recovered)))
+print('index 3, width 4:', basis_bits(3, 4))
+```
+
+```text
+{'signal': 1, 'reference': 1, 'flag': 0}
+index 3, width 4: (0, 0, 1, 1)
+```
+
+The same integer 3 labels `11` in a two-qubit register, `011` in a three-qubit register and `0011` in a four-qubit register. Dropping the width loses part of the state-coordinate convention.
+
+### Validate the convention independently of the helpers
+
+A forward map and inverse could both contain the same reversal bug and still pass a round-trip test. To avoid that circular check, the complete program also uses Python's independent base-two string parser and fixed-width formatter for all 510 tuples of sizes 1 through 8. These mathematical checks allocate no quantum statevectors.
+
+The required simulator check is smaller and exhaustive: every two-qubit and three-qubit basis input. For each input the reference places amplitude 1 at the index obtained from independent binary-string parsing, amplitude 0 elsewhere, and checks every complex coordinate and probability returned by FlagQuantum.
+
+<span id="formula-code-4-2-basis-preparations"></span>
+
+**Formula → independent reference → all 12 actual preparations.** The following block makes twelve fresh simulator circuits. `argmax()` is used only to display a basis state's unique occupied position; it is not a sampling operation.
+
+```python
+from itertools import product
+for n in (2, 3):
+    observed = []
+    for bits in product((0, 1), repeat=n):
+        text = ''.join(map(str, bits))
+        independent_index = int(text, 2)
+        state, probability = prepare_basis(bits)
+        expected = torch.zeros(2**n, dtype=torch.complex128)
+        expected[independent_index] = 1
+        torch.testing.assert_close(state, expected, rtol=0, atol=1e-12)
+        torch.testing.assert_close(probability, expected.abs().square(),
+                                   rtol=0, atol=1e-12)
+        assert basis_bits(independent_index, n) == bits
+        observed.append(f'{text}->{int(probability.argmax())}')
+    print(f'{n} qubits: ' + ', '.join(observed))
+```
+
+```text
+2 qubits: 00->0, 01->1, 10->2, 11->3
+3 qubits: 000->0, 001->1, 010->2, 011->3, 100->4, 101->5, 110->6, 111->7
+```
+
+<span id="formula-code-4-2-reversal-witness"></span>
+
+As a separate failure witness, a least-significant-position-0 calculation would assign `(1,0,0)` the index 1. Under our declared convention, the actual prepared state occupies index 4. The wrong rule addresses a different amplitude. It is not repaired by changing a printed qubit name.
+
+```python
+state, probability = prepare_basis((1, 0, 0))
+wrong_index = sum(b*2**q for q, b in enumerate((1, 0, 0)))
+print('declared 100 index:', int(probability.argmax()))
+print('reversed-significance index:', wrong_index)
+print('amplitude at wrong index:', abs(state[wrong_index].item()))
+```
+
+```text
+declared 100 index: 4
+reversed-significance index: 1
+amplitude at wrong index: 0.0
+```
+
+If a different external convention is declared, conversion must be explicit. Deriving permutation matrices and implementing SWAP belong to 4.5, and cross-framework conversion to 4.8. Here we establish the coordinate contract those sections will use.
+
+### A basis index addresses an amplitude, not a whole state
+
+For a general normalized register vector, write
+
+$$
+|\psi\rangle=\sum_{j=0}^{2^n-1}\psi_j|B_n(j)\rangle_L,\qquad
+\sum_j|\psi_j|^2=1.
+$$
+
+The symbol $\psi_j$ is a complex amplitude. It is not the integer j and not the probability of j. Applying the finite-basis Born rule from 4.1 gives
+
+$$
+\Pr(\text{computational outcome }b)=|\psi_{J_n(b)}|^2.
+$$
+
+No measurement has occurred merely because a simulator exposes `statevector()`. Our example requests exact-model probabilities; no finite-shot record, measurement update or hardware count is generated.
+
+To make this distinction concrete, independently prepare the three factors
+
+$$
+a=\begin{pmatrix}3/5\\4i/5\end{pmatrix},\quad
+b=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix},\quad
+c=\begin{pmatrix}\sqrt3/2\\1/2\end{pmatrix}.
+$$
+
+Repeated use of 4.1 gives $\psi_{J_3(u,v,w)}=a_u b_v c_w$. Listing the products in the now-proved order yields
+
+$$
+\psi=\frac1{10\sqrt2}
+\begin{pmatrix}3\sqrt3\\3\\3i\sqrt3\\3i\\4i\sqrt3\\4i\\-4\sqrt3\\-4\end{pmatrix}.
+$$
+
+For instance, `110` has index 6 and amplitude $a_1b_1c_0=-\sqrt6/5$; the minus sign comes from $i^2=-1$. Its probability is $6/25=0.24$. A norm-only or probability-only check would not detect every phase error, so we also compare the complete vector with this hand expansion.
+
+<span id="formula-code-4-2-complex-product"></span>
+
+**Formula → scalar products → actual released FlagQuantum calls.** The first-column preparation matrix `prepare_matrix()` was derived in 4.1. Each loop iteration assigns one factor to its declared integer qubit. This is independent preparation, not an entangling circuit.
+
+```python
+from math import sqrt
+import flagquantum as fq
+from examples.foundations.tensor_spaces import prepare_matrix, OPTIONS
+
+factors = ([.6, .8j], [1/sqrt(2), 1j/sqrt(2)], [sqrt(3)/2, .5])
+circuit = fq.Circuit(3, dtype=torch.complex128)
+for q, factor in enumerate(factors):
+    circuit.unitary(q, unitary=prepare_matrix(
+        torch.tensor(factor, dtype=torch.complex128)))
+result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
+assert result.statevector().shape == result.probabilities.shape == (1, 8)
+state, probability = result.statevector()[0], result.probabilities[0]
+hand = [z/(10*sqrt(2)) for z in
+        [3*sqrt(3), 3, 3j*sqrt(3), 3j, 4j*sqrt(3), 4j, -4*sqrt(3), -4]]
+torch.testing.assert_close(state, torch.tensor(hand, dtype=torch.complex128),
+                           rtol=0, atol=1e-12)
+print([round(p, 3) for p in probability.tolist()])
+```
+
+```text
+[0.135, 0.045, 0.135, 0.045, 0.24, 0.08, 0.24, 0.08]
+```
+
+The leading axis of shape `(1,8)` is one simulated sample, not an additional qubit. Extracting its only row leaves the eight-coordinate register vector. The code checks that shape before extraction; blindly flattening arbitrary batches could combine different states.
+
+<span id="formula-code-4-2-indexed-born"></span>
+
+**Formula → indexed Born rule → checked result.** Use the bit tuple to obtain the array index, then square the modulus at that position. The displayed amplitude is negative, while its probability is nonnegative.
+
+```python
+j = basis_index((1, 1, 0))
+assert abs(state[j].item() + sqrt(6)/5) < 1e-12
+assert abs(abs(state[j].item())**2 - probability[j].item()) < 1e-12
+print('bits:', basis_bits(j, 3), '; index:', j)
+print(f'amplitude real={state[j].real.item():.9f}; probability={probability[j].item():.9f}')
+```
+
+```text
+bits: (1, 1, 0) ; index: 6
+amplitude real=-0.489897949; probability=0.240000000
+```
+
+The probability 0.24 does not say that a particular next shot must return `110`. Choosing `argmax()` for this superposition would choose one most probable outcome, with a possible tie; it would not simulate a draw from the distribution or reconstruct the state. Sampling and statistical uncertainty are developed in Chapter 6.
+
+### Executable contract, boundaries and complete output
+
+The helpers in [register_indices.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/register_indices.py) accept literal integer bits, a positive integer width and an in-range integer index. Boolean and floating-point inputs are rejected instead of being silently converted, as are duplicate labels. Zero qubits are outside this section's execution profile; this does not deny the mathematical usefulness of an empty tensor product elsewhere. Large-register storage limits are also separate: a length-$2^n$ dense array grows exponentially, even though this index formula uses only n bits.
+
+<span id="formula-code-4-2-input-boundaries"></span>
+
+**Contract → rejected input → checked result.** An invalid request is not evidence for a different physical state. We neither clip an out-of-range index nor reduce it modulo the vector length.
+
+```python
+checks = [lambda: basis_bits(8, 3), lambda: basis_index((True, 0)),
+          lambda: register_labels(('signal', 'signal'))]
+rejected = 0
+for check in checks:
+    try:
+        check()
+    except ValueError:
+        rejected += 1
+assert rejected == 3
+print('invalid index, Boolean bit, duplicate label:', rejected, 'rejected')
+```
+
+```text
+invalid index, Boolean bit, duplicate label: 3 rejected
+```
+
+Use the existing [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples), CPython 3.12, FlagQuantum 0.3.1 and PyTorch 2.13.0. No framework installation or extra API is introduced by this section.
+
+```bash
+python examples/foundations/register_indices.py
+python scripts/check_register_indices_prose.py
+```
+
+The complete program uses CPU complex128 states, float64 probabilities, absolute tolerance $10^{-12}$ and zero relative tolerance, with approximation and backend fallback disabled. Integer index identities are checked exactly. It executes fourteen circuits: twelve exhaustive basis preparations, one complex product and one additional reversed-significance witness. The cumulative body fragments execute fifteen circuits, because their first `110` example is separate from the exhaustive table. Neither count includes any hardware run.
+
+Expected output of the complete program:
+
+```text
+Register order (most to least significant): signal, reference, flag.
+110 -> 6 ; 6 -> (1, 1, 0)
+510 mathematical basis labels (n=1..8): index, inverse and independent strings agree.
+FlagQuantum 2 qubits: 00->0, 01->1, 10->2, 11->3.
+FlagQuantum 3 qubits: 000->0, 001->1, 010->2, 011->3, 100->4, 101->5, 110->6, 111->7.
+12 actual basis-preparation circuits: full complex states and probabilities checked.
+Complex product probabilities: 0.135000000, 0.045000000, 0.135000000, 0.045000000, 0.240000000, 0.080000000, 0.240000000, 0.080000000.
+Index 6 is 110: amplitude real=-0.489897949; probability=0.240000000.
+Reversed-significance witness, leading zeros and 12 malformed-input cases checked.
+14 actual simulator circuits total; CPU complex128, atol=1e-12, rtol=0.
+No sampling, hardware layout, SWAP or marginal-order claim.
+```
+
+The verification is deliberately bounded. A successful three-qubit check does not certify arbitrary register sizes, reordered subset outputs, compiler remapping, remote-provider count strings or physical-device readout. Each such interface needs its own declared convention and test. We also do not recover a state from a single bit-string outcome.
+
+### Understanding checks and transfer exercises
+
+**4.2-A — Decode before assigning names.** For $L=(\mathrm{control},\mathrm{data0},\mathrm{data1},\mathrm{flag})$, decode index 3 and state which named qubits have bit 1. What changes if only the register width is changed to two? Explain why the index alone is insufficient.
+
+**4.2-B — Transfer the preparation.** In a five-qubit register with order $(\mathrm{flag},\mathrm{a},\mathrm{b},\mathrm{c},\mathrm{d})$, prepare only flag and c in basis state 1. Give the bit string and occupied index. Write the relevant `x(q)` calls, and give a full-vector reference rather than relying on `argmax()` alone.
+
+**4.2-C — Debug a self-consistent mistake.** A programmer weights position k by $2^k$, uses an inverse that returns least-significant bits first, and reports that every round-trip test passed. Explain why this does not verify the declared convention. Supply a three-qubit preparation that distinguishes the two conventions and the two predicted indices.
+
+**4.2-D — A coordinate versus an outcome.** In the worked complex product, what are $\psi_6$ and $p(110)$? If one computational readout returns `110`, does it establish that the input state was $|110\rangle$? Can the eight simulator amplitudes be read from a single hardware shot? Distinguish the mathematical state, the ideal probability array and an observed bit string.
+
+**4.2-E — Complete the bijection argument.** Suppose two n-bit tuples differ first at position k. Show that the weight of this leading difference exceeds the maximum possible cancellation by all less significant positions. Explain how that gives another proof of injectivity, and why the range and cardinality then imply surjectivity.
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** Fixed width four gives `0011`: control=0, data0=0, data1=1, flag=1. Width two gives `11`; it belongs to a different two-factor register and has no automatic assignment to the four original names. The integer is the same, but the domain and tensor-factor labels differ.
+
+**B.** Flag is position 0 and c is position 3, so the tuple is `10010` and $j=16+2=18$. The calls are `circuit = fq.Circuit(5, dtype=torch.complex128)`, then `circuit.x(0)` and `circuit.x(3)`. A reference is a complex128 vector of length 32 with entry 18 equal to 1 and every other entry zero. Under the declared ideal simulator options, compare all coordinates with absolute tolerance $10^{-12}$ and relative tolerance zero, as in the two/three-qubit tests. The author separately executed this five-qubit transfer check and compared all 32 amplitudes and probabilities. Its one additional circuit is recorded separately from the fourteen-circuit complete example and fifteen-circuit body fragments.
+
+**C.** Matching forward and inverse bugs can cancel. Their round trip tests internal consistency, not the external tensor-factor contract. Prepare qubit 0 alone in state 1 in a three-qubit register. The declared tuple `100` occupies index 4; the reversed-significance rule predicts 1. The complete program actually executes this witness, in addition to its exhaustive tables.
+
+**D.** $\psi_6=-\sqrt6/5$ and $p(110)=6/25$. The nonzero probability permits that outcome even though the initial vector has eight nonzero components, so the single observation does not identify the prior vector as one basis state. A simulator's statevector is a model-access output; a shot is one drawn outcome. Neither a probability array nor a full complex vector is delivered by one computational-basis shot. State inference requires additional preparations and measurement settings, addressed later.
+
+**E.** The leading difference contributes magnitude $2^{n-1-k}$. The total magnitude of all later possible differences is at most $\sum_{r=0}^{n-2-k}2^r=2^{n-1-k}-1$, with an empty sum equal to zero at the last position. It cannot cancel the leading contribution, so the indices differ. There are $2^n$ tuples and $2^n$ integers in the established range; an injection between these two finite sets uses every index. This supplies a second complete bijection argument, independent of the quotient/remainder construction.
+
+</details>
+
+### Source, depth and review status
+
+Depth **F**: the recurrence, closed form, inverse identities and bijection are proved, with an alternative leading-difference argument in the answers. The retained background locator is Nielsen and Chuang, 10th Anniversary Edition, §2.1.7, for ordered tensor products, as used in 4.1. The explicit index proof and examples here are original. [Preskill, Chapter 2, §2.3.1, Eq. (2.46)](https://www.preskill.caltech.edu/ph229/notes/chap2.pdf#page=14) is supplementary context for labeled product factors; it does not prescribe FlagQuantum's array order. The latter is checked against the released implementation by the exhaustive preparations above.
+
+The [4.2 section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.2.json) records source-access limits, actual execution and separate pending mathematical, implementation and reader reviews. This is an author-verified working draft, not an accepted section. Continue, when drafted, with [4.3 Local operators on a composite register](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-3).

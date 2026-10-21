@@ -1,0 +1,16 @@
+{
+  "section": "4.2",
+  "complete_example": "passed exact stdout and assertions",
+  "body_fragments": 8,
+  "body_expected_outputs": "all passed exact comparisons",
+  "prior_4_1_regression": "passed7fragments and complete example",
+  "transfer_4_2_B": "passed actual5qubit preparation and full32-coordinate/probability checks",
+  "strict_site_build": "passed",
+  "local_links": "69rendered pages; all local links/fragments resolve; IDs unique",
+  "formula_display": "Passed actual browser screenshot inspection: forward sum/boxed result, recurrence, inverse floors and modulo, reconstruction identity, indexed Born formula and full8-component complex column; no garbling or clipping in inspected regions.",
+  "unchanged_structural_scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "drafts": 23,
+  "accepted_sections": 0,
+  "independent_review": "pending; no agent or reader trial invoked for this section",
+  "source_access": "Current-session NC local PDF blocked by macOS; no fresh NC inspection claimed. Public Preskill Eq2.46 context consulted; original full index proof provided."
+}
