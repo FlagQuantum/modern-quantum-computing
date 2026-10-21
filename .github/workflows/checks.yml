@@ -59,6 +59,7 @@ jobs:
       - run: python examples/foundations/tensor_spaces.py
       - run: python scripts/check_tensor_spaces_prose.py
       - run: python scripts/check_formula_code.py
+      - run: python scripts/check_comparison_skill.py
       - run: python examples/measurement.py
       - run: python examples/gradients.py
       - run: python examples/omalley2016/h2_vqe_model.py

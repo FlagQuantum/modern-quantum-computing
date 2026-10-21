@@ -1,0 +1,3015 @@
+{
+  "skill": "compare-quantum-states-and-operators",
+  "version": "0.1.0",
+  "status": "author-verified prototype",
+  "evaluated_at_utc": "2026-10-21T04:37:36.356671+00:00",
+  "evaluator_role": "authoring agent; programmatic CLI evaluation",
+  "independent_agent_forward_test": "not run",
+  "independent_acceptance": "pending",
+  "reader_trial": "not run",
+  "held_out_scope": "Six post-package-freeze author-designed transfer cases; not blind independent evaluation",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0",
+    "numpy": "2.5.4"
+  },
+  "package_sha256": {
+    "SKILL.md": "e7dcac94f21b61268fda83bb30d9f7634c3b6916db2ccd4bd4948389288b68be",
+    "agents/openai.yaml": "e0c97d1b156907457229fc1cb122fedfa43558a12fe2bf4cdb1796d0459760b3",
+    "references/contract.md": "d5a1cba79cf724b55b08d7ca80c7cf9d171ab853eaefde2c7ac11c85b9e1af98",
+    "scripts/compare.py": "4ec18a41ae4e022a5f46362a6ce2ed5a563a18bb1b425154493ed9e78f1495c5"
+  },
+  "counts": {
+    "normal": 11,
+    "boundary": 7,
+    "error": 21,
+    "held-out-transfer": 6
+  },
+  "passed": 45,
+  "false_successes": 0,
+  "incorrect_abstentions": 0,
+  "unexpected_exceptions": 0,
+  "framework_runs": [
+    {
+      "angle": 0,
+      "shape": [
+        1,
+        4
+      ],
+      "dtype": "torch.complex128",
+      "probabilities": [
+        [
+          0.4999999999999999,
+          0.0,
+          0.4999999999999999,
+          0.0
+        ]
+      ]
+    },
+    {
+      "angle": 1.5707963267948966,
+      "shape": [
+        1,
+        4
+      ],
+      "dtype": "torch.complex128",
+      "probabilities": [
+        [
+          0.4999999999999999,
+          0.0,
+          0.4999999999999999,
+          0.0
+        ]
+      ]
+    },
+    {
+      "angle": 3.141592653589793,
+      "shape": [
+        1,
+        4
+      ],
+      "dtype": "torch.complex128",
+      "probabilities": [
+        [
+          0.4999999999999999,
+          0.0,
+          0.4999999999999999,
+          0.0
+        ]
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "name": "same_state",
+      "category": "normal",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.0,
+        "alignment_multiplier_on_b": [
+          1.0,
+          -0.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.0,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          0.9999999999999998,
+          0.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 0.0,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "state_global_i",
+      "category": "normal",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.0,
+            0.7071067811865475
+          ],
+          [
+            0.0,
+            0.7071067811865475
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.0,
+        "alignment_multiplier_on_b": [
+          0.0,
+          -1.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.0,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          0.0,
+          0.9999999999999998
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 1.414213562373095,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "coordinates_retain_i",
+      "category": "normal",
+      "request": {
+        "kind": "state",
+        "mode": "coordinates",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.0,
+            0.7071067811865475
+          ],
+          [
+            0.0,
+            0.7071067811865475
+          ]
+        ]
+      },
+      "expected_status": "outside_tolerance",
+      "expected_residual": 1.4142135623730951,
+      "actual_exit_code": 1,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.0,
+        "alignment_multiplier_on_b": [
+          0.0,
+          -1.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 1.414213562373095,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "coordinates",
+        "overlap": [
+          0.0,
+          0.9999999999999998
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "retained",
+        "proof_of_exact_equality": false,
+        "raw_residual": 1.414213562373095,
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "relative_sign_same_probabilities",
+      "category": "normal",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            -0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "outside_tolerance",
+      "expected_residual": 1.4142135623730951,
+      "actual_exit_code": 1,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 1.414213562373095,
+        "alignment_multiplier_on_b": [
+          1.0,
+          0.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 1.414213562373095,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          0.0,
+          0.0
+        ],
+        "phase_identifiable": false,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 1.414213562373095,
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "isolated_minus_I",
+      "category": "normal",
+      "request": {
+        "kind": "unitary",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "b": [
+          [
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              -0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              -0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.0,
+        "alignment_multiplier_on_b": [
+          -1.0,
+          0.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.0,
+        "input_dimension": 2,
+        "kind": "unitary",
+        "metric": "frobenius",
+        "mode": "global-phase",
+        "overlap": [
+          -2.0,
+          0.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 2.8284271247461903,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "columns_are_not_operator_equivalence",
+      "category": "normal",
+      "request": {
+        "kind": "unitary",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "b": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "outside_tolerance",
+      "expected_residual": 2,
+      "actual_exit_code": 1,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 2.0,
+        "alignment_multiplier_on_b": [
+          1.0,
+          0.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 2.0,
+        "input_dimension": 2,
+        "kind": "unitary",
+        "metric": "frobenius",
+        "mode": "global-phase",
+        "overlap": [
+          0.0,
+          0.0
+        ],
+        "phase_identifiable": false,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 2.0,
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "controlled_target_phase",
+      "category": "normal",
+      "request": {
+        "kind": "unitary",
+        "mode": "controlled",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "b": [
+          [
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              -0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              -0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "outside_tolerance",
+      "expected_residual": 2.8284271247461903,
+      "actual_exit_code": 1,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 2.8284271247461903,
+        "alignment_multiplier_on_b": [
+          1.0,
+          0.0
+        ],
+        "comparison_dimension": 4,
+        "contract_version": "0.1.0",
+        "decision_residual": 2.8284271247461903,
+        "input_dimension": 2,
+        "kind": "unitary",
+        "metric": "frobenius",
+        "mode": "controlled",
+        "overlap": [
+          0.0,
+          0.0
+        ],
+        "phase_identifiable": false,
+        "phase_scope": "one phase on the full controlled operation",
+        "proof_of_exact_equality": false,
+        "raw_residual": 2.8284271247461903,
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "controlled_equal",
+      "category": "normal",
+      "request": {
+        "kind": "unitary",
+        "mode": "controlled",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ]
+        ],
+        "b": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.0,
+        "alignment_multiplier_on_b": [
+          1.0,
+          -0.0
+        ],
+        "comparison_dimension": 4,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.0,
+        "input_dimension": 2,
+        "kind": "unitary",
+        "metric": "frobenius",
+        "mode": "controlled",
+        "overlap": [
+          4.0,
+          0.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the full controlled operation",
+        "proof_of_exact_equality": false,
+        "raw_residual": 0.0,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "zero_overlap_poles",
+      "category": "boundary",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "outside_tolerance",
+      "expected_residual": 1.4142135623730951,
+      "actual_exit_code": 1,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 1.4142135623730951,
+        "alignment_multiplier_on_b": [
+          1.0,
+          0.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 1.4142135623730951,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          0.0,
+          0.0
+        ],
+        "phase_identifiable": false,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 1.4142135623730951,
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "four_coordinate_state",
+      "category": "boundary",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "basis_b": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "a": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.0,
+        "alignment_multiplier_on_b": [
+          -1.0,
+          0.0
+        ],
+        "comparison_dimension": 4,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.0,
+        "input_dimension": 4,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          -1.0,
+          0.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 2.0,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "four_dimensional_unitary",
+      "category": "boundary",
+      "request": {
+        "kind": "unitary",
+        "mode": "global-phase",
+        "basis_a": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "basis_b": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "a": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "b": [
+          [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.0,
+        "alignment_multiplier_on_b": [
+          0.0,
+          -1.0
+        ],
+        "comparison_dimension": 4,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.0,
+        "input_dimension": 4,
+        "kind": "unitary",
+        "metric": "frobenius",
+        "mode": "global-phase",
+        "overlap": [
+          0.0,
+          4.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 2.8284271247461903,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "inclusive",
+      "category": "boundary",
+      "request": {
+        "kind": "state",
+        "mode": "coordinates",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.9999999999995453,
+            0.0
+          ],
+          [
+            9.536743164061055e-07,
+            0.0
+          ]
+        ],
+        "atol": 9.536743164062139e-07
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 9.536743164062139e-07,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 9.536743164062139e-07,
+        "aligned_residual": 9.536743164062139e-07,
+        "alignment_multiplier_on_b": [
+          1.0,
+          -0.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 9.536743164062139e-07,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "coordinates",
+        "overlap": [
+          0.9999999999995453,
+          0.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "retained",
+        "proof_of_exact_equality": false,
+        "raw_residual": 9.536743164062139e-07,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "just_below",
+      "category": "boundary",
+      "request": {
+        "kind": "state",
+        "mode": "coordinates",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.9999999999995453,
+            0.0
+          ],
+          [
+            9.536743164061055e-07,
+            0.0
+          ]
+        ],
+        "atol": 9.536743164062138e-07
+      },
+      "expected_status": "outside_tolerance",
+      "expected_residual": 9.536743164062139e-07,
+      "actual_exit_code": 1,
+      "actual_output": {
+        "absolute_tolerance": 9.536743164062138e-07,
+        "aligned_residual": 9.536743164062139e-07,
+        "alignment_multiplier_on_b": [
+          1.0,
+          -0.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 9.536743164062139e-07,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "coordinates",
+        "overlap": [
+          0.9999999999995453,
+          0.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "retained",
+        "proof_of_exact_equality": false,
+        "raw_residual": 9.536743164062139e-07,
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "just_above",
+      "category": "boundary",
+      "request": {
+        "kind": "state",
+        "mode": "coordinates",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.9999999999995453,
+            0.0
+          ],
+          [
+            9.536743164061055e-07,
+            0.0
+          ]
+        ],
+        "atol": 9.53674316406214e-07
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 9.536743164062139e-07,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 9.53674316406214e-07,
+        "aligned_residual": 9.536743164062139e-07,
+        "alignment_multiplier_on_b": [
+          1.0,
+          -0.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 9.536743164062139e-07,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "coordinates",
+        "overlap": [
+          0.9999999999995453,
+          0.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "retained",
+        "proof_of_exact_equality": false,
+        "raw_residual": 9.536743164062139e-07,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "near_zero_overlap",
+      "category": "boundary",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            1e-13,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "outside_tolerance",
+      "expected_residual": 1.4142135623730243,
+      "actual_exit_code": 1,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 1.4142135623730243,
+        "alignment_multiplier_on_b": [
+          1.0,
+          -0.0
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 1.4142135623730243,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          1e-13,
+          0.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 1.4142135623730243,
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "zero_state",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "State must already have unit squared norm within 1e-12",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "nonunit_state",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "State must already have unit squared norm within 1e-12",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "mismatched_shape",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Input dimensions differ",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "missing_context",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": null,
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Choose coordinates, global-phase or controlled explicitly",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "unknown_mode",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "per-column",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Choose coordinates, global-phase or controlled explicitly",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "boolean_coordinate",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            true,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Expected real JSON numbers, not strings or booleans",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "string_coordinate",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            "1",
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Expected real JSON numbers, not strings or booleans",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "bad_pair",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Complex entries must be [real, imaginary] pairs",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "unsupported_density",
+      "category": "error",
+      "request": {
+        "kind": "density",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "unsupported",
+      "expected_residual": null,
+      "actual_exit_code": 3,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Only pure statevectors and square unitaries; no density/channel/shot profile",
+        "status": "unsupported"
+      },
+      "passed": true
+    },
+    {
+      "name": "basis_mismatch",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "1",
+          "0"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "unsupported",
+      "expected_residual": null,
+      "actual_exit_code": 3,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Canonical computational basis required for both inputs; transform explicitly first",
+        "status": "unsupported"
+      },
+      "passed": true
+    },
+    {
+      "name": "negative_tolerance",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "atol": -1
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Comparison atol must be a finite absolute number in [1e-14,1e-6]",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "too_loose_tolerance",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "atol": 1
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Comparison atol must be a finite absolute number in [1e-14,1e-6]",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "controlled_state",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "controlled",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Controlled mode requires a target unitary",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "extra_field",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "normalize": true
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Required keys: kind, mode, basis_a, basis_b, a, b; optional atol only",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "absent_mode",
+      "category": "error",
+      "request": {
+        "kind": "state",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Required keys: kind, mode, basis_a, basis_b, a, b; optional atol only",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "nonunitary",
+      "category": "error",
+      "request": {
+        "kind": "unitary",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "b": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Matrix must already be unitary: entrywise U\u2020U tolerance 1e-12",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "controlled_large_target",
+      "category": "error",
+      "request": {
+        "kind": "unitary",
+        "mode": "controlled",
+        "basis_a": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "basis_b": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "a": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ],
+        "b": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "expected_status": "unsupported",
+      "expected_residual": null,
+      "actual_exit_code": 3,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Controlled profile supports one control and a dimension-2 target only",
+        "status": "unsupported"
+      },
+      "passed": true
+    },
+    {
+      "name": "nan",
+      "category": "error",
+      "request": null,
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "raw_request": "{\"kind\":NaN}",
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Nonstandard JSON constant: NaN",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "infinity",
+      "category": "error",
+      "request": null,
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "raw_request": "{\"kind\":Infinity}",
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Nonstandard JSON constant: Infinity",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "syntax",
+      "category": "error",
+      "request": null,
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "raw_request": "{",
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "duplicate",
+      "category": "error",
+      "request": null,
+      "expected_status": "invalid_input",
+      "expected_residual": null,
+      "raw_request": "{\"kind\":\"state\",\"kind\":\"unitary\"}",
+      "actual_exit_code": 2,
+      "actual_output": {
+        "contract_version": "0.1.0",
+        "reason": "Duplicate JSON key: kind",
+        "status": "invalid_input"
+      },
+      "passed": true
+    },
+    {
+      "name": "complex_nonlandmark_ray",
+      "category": "held-out-transfer",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.18257418583505536,
+            0.3651483716701107
+          ],
+          [
+            -0.5477225575051661,
+            0.7302967433402214
+          ]
+        ],
+        "b": [
+          [
+            -0.1078505501308847,
+            0.39374474663559916
+          ],
+          [
+            -0.895340043402083,
+            0.17804364637382977
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 1.1443916996305594e-16,
+        "alignment_multiplier_on_b": [
+          0.7445071602338416,
+          -0.6676144758470574
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 1.1443916996305594e-16,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          0.7445071602338414,
+          0.6676144758470572
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 0.7148326234387438,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "complex_nonlandmark_coordinates",
+      "category": "held-out-transfer",
+      "request": {
+        "kind": "state",
+        "mode": "coordinates",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.18257418583505536,
+            0.3651483716701107
+          ],
+          [
+            -0.5477225575051661,
+            0.7302967433402214
+          ]
+        ],
+        "b": [
+          [
+            -0.1078505501308847,
+            0.39374474663559916
+          ],
+          [
+            -0.895340043402083,
+            0.17804364637382977
+          ]
+        ]
+      },
+      "expected_status": "outside_tolerance",
+      "expected_residual": 0.7148326234387439,
+      "actual_exit_code": 1,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 1.1443916996305594e-16,
+        "alignment_multiplier_on_b": [
+          0.7445071602338416,
+          -0.6676144758470574
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.7148326234387438,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "coordinates",
+        "overlap": [
+          0.7445071602338414,
+          0.6676144758470572
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "retained",
+        "proof_of_exact_equality": false,
+        "raw_residual": 0.7148326234387438,
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "complex_four_coordinate_ray",
+      "category": "held-out-transfer",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "basis_b": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "a": [
+          [
+            0.3333333333333333,
+            -0.16666666666666666
+          ],
+          [
+            0.16666666666666666,
+            -0.3333333333333333
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            -0.16666666666666666,
+            0.6666666666666666
+          ]
+        ],
+        "b": [
+          [
+            -0.16666666666666666,
+            -0.3333333333333333
+          ],
+          [
+            -0.3333333333333333,
+            -0.16666666666666666
+          ],
+          [
+            0.5,
+            -0.0
+          ],
+          [
+            0.6666666666666666,
+            0.16666666666666666
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 6.1679056923619804e-18,
+        "alignment_multiplier_on_b": [
+          1.2335811384723961e-17,
+          1.0
+        ],
+        "comparison_dimension": 4,
+        "contract_version": "0.1.0",
+        "decision_residual": 6.1679056923619804e-18,
+        "input_dimension": 4,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          1.2335811384723961e-17,
+          -1.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 1.4142135623730951,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "generic_unitary_phase",
+      "category": "held-out-transfer",
+      "request": {
+        "kind": "unitary",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            [
+              0.914308110939416,
+              0.0
+            ],
+            [
+              -0.3881073168018976,
+              0.11581618589483945
+            ]
+          ],
+          [
+            [
+              0.3881073168018976,
+              0.11581618589483945
+            ],
+            [
+              0.914308110939416,
+              0.0
+            ]
+          ]
+        ],
+        "b": [
+          [
+            [
+              0.6807089352542728,
+              0.6104053302475313
+            ],
+            [
+              -0.3662692385389453,
+              -0.17288008320942502
+            ]
+          ],
+          [
+            [
+              0.2116281140573681,
+              0.34533204254878824
+            ],
+            [
+              0.6807089352542728,
+              0.6104053302475313
+            ]
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 2.066152991748491e-16,
+        "alignment_multiplier_on_b": [
+          0.7445071602338416,
+          -0.6676144758470574
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 2.066152991748491e-16,
+        "input_dimension": 2,
+        "kind": "unitary",
+        "metric": "frobenius",
+        "mode": "global-phase",
+        "overlap": [
+          1.489014320467683,
+          1.3352289516941145
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 1.010925990893811,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "generic_controlled_phase",
+      "category": "held-out-transfer",
+      "request": {
+        "kind": "unitary",
+        "mode": "controlled",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            [
+              0.914308110939416,
+              0.0
+            ],
+            [
+              -0.3881073168018976,
+              0.11581618589483945
+            ]
+          ],
+          [
+            [
+              0.3881073168018976,
+              0.11581618589483945
+            ],
+            [
+              0.914308110939416,
+              0.0
+            ]
+          ]
+        ],
+        "b": [
+          [
+            [
+              0.6807089352542728,
+              0.6104053302475313
+            ],
+            [
+              -0.3662692385389453,
+              -0.17288008320942502
+            ]
+          ],
+          [
+            [
+              0.2116281140573681,
+              0.34533204254878824
+            ],
+            [
+              0.6807089352542728,
+              0.6104053302475313
+            ]
+          ]
+        ]
+      },
+      "expected_status": "outside_tolerance",
+      "expected_residual": 0.7269378528627969,
+      "actual_exit_code": 1,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.7269378528627967,
+        "alignment_multiplier_on_b": [
+          0.9339451697594034,
+          -0.35741631171937194
+        ],
+        "comparison_dimension": 4,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.7269378528627967,
+        "input_dimension": 2,
+        "kind": "unitary",
+        "metric": "frobenius",
+        "mode": "controlled",
+        "overlap": [
+          3.489014320467683,
+          1.3352289516941145
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the full controlled operation",
+        "proof_of_exact_equality": false,
+        "raw_residual": 1.010925990893811,
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "complex_relative_phase",
+      "category": "held-out-transfer",
+      "request": {
+        "kind": "state",
+        "mode": "global-phase",
+        "basis_a": [
+          "0",
+          "1"
+        ],
+        "basis_b": [
+          "0",
+          "1"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.7071067811865475
+          ]
+        ]
+      },
+      "expected_status": "outside_tolerance",
+      "expected_residual": 0.7653668647301795,
+      "actual_exit_code": 1,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.7653668647301795,
+        "alignment_multiplier_on_b": [
+          0.7071067811865476,
+          -0.7071067811865476
+        ],
+        "comparison_dimension": 2,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.7653668647301795,
+        "input_dimension": 2,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "global-phase",
+        "overlap": [
+          0.4999999999999999,
+          0.4999999999999999
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "one phase on the whole object",
+        "proof_of_exact_equality": false,
+        "raw_residual": 0.9999999999999999,
+        "status": "outside_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "flagquantum_controlled_0",
+      "category": "normal",
+      "request": {
+        "kind": "state",
+        "mode": "coordinates",
+        "basis_a": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "basis_b": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 0.0,
+        "alignment_multiplier_on_b": [
+          1.0,
+          -0.0
+        ],
+        "comparison_dimension": 4,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.0,
+        "input_dimension": 4,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "coordinates",
+        "overlap": [
+          0.9999999999999998,
+          0.0
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "retained",
+        "proof_of_exact_equality": false,
+        "raw_residual": 0.0,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "flagquantum_controlled_1.5707963267948966",
+      "category": "normal",
+      "request": {
+        "kind": "state",
+        "mode": "coordinates",
+        "basis_a": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "basis_b": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            4.329780281177466e-17,
+            0.7071067811865475
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            4.329780281177466e-17,
+            0.7071067811865475
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 9.88386263514852e-34,
+        "alignment_multiplier_on_b": [
+          1.0,
+          1.3977892587259716e-33
+        ],
+        "comparison_dimension": 4,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.0,
+        "input_dimension": 4,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "coordinates",
+        "overlap": [
+          0.9999999999999998,
+          -1.3977892587259712e-33
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "retained",
+        "proof_of_exact_equality": false,
+        "raw_residual": 0.0,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    },
+    {
+      "name": "flagquantum_controlled_3.141592653589793",
+      "category": "normal",
+      "request": {
+        "kind": "state",
+        "mode": "coordinates",
+        "basis_a": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "basis_b": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "a": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -0.7071067811865475,
+            8.659560562354932e-17
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "b": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -0.7071067811865475,
+            8.659560562354932e-17
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "expected_status": "within_tolerance",
+      "expected_residual": 0,
+      "actual_exit_code": 0,
+      "actual_output": {
+        "absolute_tolerance": 1e-10,
+        "aligned_residual": 1.976772527029704e-33,
+        "alignment_multiplier_on_b": [
+          1.0,
+          -2.795578517451943e-33
+        ],
+        "comparison_dimension": 4,
+        "contract_version": "0.1.0",
+        "decision_residual": 0.0,
+        "input_dimension": 4,
+        "kind": "state",
+        "metric": "euclidean",
+        "mode": "coordinates",
+        "overlap": [
+          0.9999999999999998,
+          2.7955785174519424e-33
+        ],
+        "phase_identifiable": true,
+        "phase_scope": "retained",
+        "proof_of_exact_equality": false,
+        "raw_residual": 0.0,
+        "status": "within_tolerance",
+        "validation_atol": 1e-12
+      },
+      "passed": true
+    }
+  ]
+}

@@ -19,7 +19,7 @@ def render():
     progress=json.loads((ROOT/'book/writing-progress.json').read_text())['sections']
     assert plan['curriculum_baseline']==baseline['id']
     assert plan['curriculum_scope_sha256']==baseline['scope_sha256']
-    assert plan['status']=='planning-only' and plan['released_skills']==0
+    assert plan['status']=='prototype-pilot' and plan['released_skills']==0
     for path in plan['entry_points'].values():assert (ROOT/path).is_file(),path
     chapters={c['number']:(p,c) for p in curriculum['parts'] for c in p['chapters']}
     section_map={s['id']:(p,c,i,s) for p in curriculum['parts'] for c in p['chapters'] for i,s in enumerate(c['sections'],1)}
@@ -31,8 +31,18 @@ def render():
     owners={}
     for skill in skills.values():
         assert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',skill['id']) and len(skill['id'])<64
-        assert skill['level'] in levels and skill['status']=='planned'
-        assert skill['behavioral_evaluation']=='not run' and skill['independent_acceptance']=='pending'
+        assert skill['level'] in levels and skill['independent_acceptance']=='pending'
+        if skill['id']=='compare-quantum-states-and-operators':
+            assert skill['status']=='author-verified prototype'
+            assert skill['behavioral_evaluation']=='helper: 45/45 author cases; independent agent evaluation not run'
+            assert (ROOT/skill['prototype_package']).is_file()
+            report=json.loads((ROOT/skill['evaluation_report']).read_text())
+            assert report['passed']==45 and report['independent_agent_forward_test']=='not run'
+            assert report['independent_acceptance']=='pending'
+            assert report['counts']=={'normal':11,'boundary':7,'error':21,'held-out-transfer':6}
+            assert all(c['passed'] for c in report['cases']) and len(report['cases'])==45
+        else:
+            assert skill['status']=='planned' and skill['behavioral_evaluation']=='not run'
         assert len(skill['primary_section_ids'])==len(set(skill['primary_section_ids']))
         for sid in skill['primary_section_ids']:
             assert sid in section_map and sid not in owners,(sid,'invalid or duplicate owner')
@@ -63,7 +73,7 @@ def render():
         return f"[{ch['number']}.{i}](section-plans/{part['path']}.md#{sid})"
     states=Counter(progress.get(sid,{}).get('state','not_started') for sid in section_map)
     lines=['# Agent skills: capability levels and chapter map','',
-           f'**Plan 0.1 · October 21, 2026 · planning only.** Generated from `book/agent-skills-plan.json`. This catalog contains {len(skills)} proposed task skills; none is packaged, behaviorally evaluated, independently accepted or released. It does not assert existing FlagQuantum support for planned topics.','',
+           f'**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains {len(skills)} proposed task skills; one has an author-verified executable prototype (45 helper cases), while independent agent evaluation and acceptance remain pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.','',
            '[Dual-entry design](dual-entry.md) · [Skill contract](skill-contract.md) · [Paper verification and acceptance](paper-reproduction-standard.md)','',
            '## Capability levels','',
            'Levels describe increasing task composition and evaluation scope. They do not replace the textbook P/F/M/R/V proof-depth codes, its prerequisite graph, or evidence-based competence in a domain. An L5 router does not certify every L2 workflow.','',
@@ -84,7 +94,9 @@ def render():
             'Each proposed package must expose a bounded task/profile before implementation. Broad domain entries may be split into narrower packages after pilot evidence; this does not alter textbook chapters. Load the specific profile and mathematical references needed for a run rather than all domain material.','',
             'The declared skill graph is acyclic. A run must additionally name its selected domain profiles, direct and transitive textbook prerequisites, and concrete versions. L3–L5 orchestration may select relevant L2 skills; it must not treat an unlisted domain requirement as satisfied.','']
     for skill in skills.values():
-        lines +=[f"### {skill['id']}",'',f"**{skill['level']} · planned · behavioral evaluation not run · independent acceptance pending.**",'',skill['task'],'',f"**Deliverable:** {skill['deliverable']}"]
+        lines +=[f"### {skill['id']}",'',f"**{skill['level']} · {skill['status']} · {skill['behavioral_evaluation']} · independent acceptance pending.**",'',skill['task'],'',f"**Deliverable:** {skill['deliverable']}"]
+        if 'prototype_package' in skill:
+            lines += ['', '[Prototype contract, usage and evaluation](comparison-skill-prototype.md).']
         deps=', '.join(f"[{dep}](#{dep})" for dep in skill['requires_skills']) or 'None at catalog level; this does not waive source prerequisites.'
         lines +=['',f'**Required task skills:** {deps}']
         grouped={}
@@ -102,12 +114,12 @@ def render():
             lines+=['','**Existing candidate evidence:** '+refs+'. These artifacts are not a skill evaluation, an acceptance decision or a whole-paper reproduction claim.']
         lines+=['']
     lines+=['## Implementation order after this planning pass','',
-            '1. Prototype `compare-quantum-states-and-operators` using 3.1/3.7 and the existing strict phase-sensitive examples. Test an unseen coherent input and the controlled-context failure, not only copied fixtures.',
+            '1. Independently forward-test the [state/operator prototype](comparison-skill-prototype.md). Its author-verified helper has 45 cases including six post-freeze transfer cases; independent agent evaluation is not run.',
             '2. Prototype `reproduce-qubit-interference` using 3.2. Test changed analyzer/sign/order cases and a paper-style claim ledger; this demonstrates one bounded experiment, not L4 paper acceptance.',
             '3. Add `translate-unitary-evolution` from 3.4–3.6 with units, exact/near endpoints and omitted-phase failure. Reuse the mathematical contracts and independently checked source examples.',
             '4. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.',
             '5. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.', '',
-            'This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. No prototype or paper run is performed by this planning update.','']
+            'This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first bounded prototype is author-verified; no paper run or new textbook section is performed by this update.','']
     return '\n'.join(lines),len(skills)
 
 
@@ -117,6 +129,6 @@ def main():
     if args.check:
         assert out.exists() and out.read_text()==content,'Regenerate docs/agent-skills.md'
     else:out.write_text(content)
-    print(f'Validated {count} planned skills / 6 levels / 50 chapters / 435 section assignments; no released skills.')
+    print(f'Validated {count} catalog skills / 6 levels / 50 chapters / 435 section assignments; no released skills.')
 
 if __name__=='__main__':main()

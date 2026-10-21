@@ -14,7 +14,7 @@ An open English textbook that connects quantum computing equations to executable
 
 ## Two entry points: learners and agents
 
-The [dual-entry plan](docs/dual-entry.md) connects the textbook to a proposed [agent capability and chapter map](docs/agent-skills.md). Read the chapters for definitions and derivations; use the planned task contracts to select implementations and evidence for a bounded task. The six-level catalog maps all 50 chapters and 435 sections to 23 proposed task skills. **No skill package is released yet.**
+The [dual-entry plan](docs/dual-entry.md) connects the textbook to a proposed [agent capability and chapter map](docs/agent-skills.md). Read the chapters for definitions and derivations; use the planned task contracts to select implementations and evidence for a bounded task. The six-level catalog maps all 50 chapters and 435 sections to 23 proposed task skills. The first [state/operator comparison prototype](docs/comparison-skill-prototype.md) is author-verified (45 helper cases plus three actual FlagQuantum executions); independent agent evaluation and acceptance remain pending. **No skill package is released yet.**
 
 [Skill contract and evaluation](docs/skill-contract.md) · [Paper reproduction verification and acceptance](docs/paper-reproduction-standard.md). Source understanding, algorithm implementation, numerical reproduction and hardware repetition have distinct evidence requirements. This planning overlay does not change the textbook curriculum or its review states.
 

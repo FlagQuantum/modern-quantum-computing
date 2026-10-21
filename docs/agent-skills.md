@@ -1,6 +1,6 @@
 # Agent skills: capability levels and chapter map
 
-**Plan 0.1 · October 21, 2026 · planning only.** Generated from `book/agent-skills-plan.json`. This catalog contains 23 proposed task skills; none is packaged, behaviorally evaluated, independently accepted or released. It does not assert existing FlagQuantum support for planned topics.
+**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains 23 proposed task skills; one has an author-verified executable prototype (45 helper cases), while independent agent evaluation and acceptance remain pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.
 
 [Dual-entry design](dual-entry.md) · [Skill contract](skill-contract.md) · [Paper verification and acceptance](paper-reproduction-standard.md)
 
@@ -84,7 +84,7 @@ The declared skill graph is acyclic. A run must additionally name its selected d
 
 ### scope-paper-claims
 
-**L0 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L0 · planned · not run · independent acceptance pending.**
 
 Classify claims and record feasibility, source locations, access models and missing artifacts.
 
@@ -98,7 +98,7 @@ Classify claims and record feasibility, source locations, access models and miss
 
 ### translate-complex-linear-algebra
 
-**L1 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L1 · planned · not run · independent acceptance pending.**
 
 Translate complex scalar/vector/operator formulas with explicit coordinate and numerical contracts.
 
@@ -110,11 +110,13 @@ Translate complex scalar/vector/operator formulas with explicit coordinate and n
 
 ### compare-quantum-states-and-operators
 
-**L1 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L1 · author-verified prototype · helper: 45/45 author cases; independent agent evaluation not run · independent acceptance pending.**
 
 Choose state, operator or distribution comparison with the correct phase scope.
 
 **Deliverable:** Validated comparison domain, residuals and phase-sensitive counterexamples.
+
+[Prototype contract, usage and evaluation](comparison-skill-prototype.md).
 
 **Required task skills:** [translate-complex-linear-algebra](#translate-complex-linear-algebra)
 
@@ -126,7 +128,7 @@ Choose state, operator or distribution comparison with the correct phase scope.
 
 ### reproduce-qubit-interference
 
-**L1 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L1 · planned · not run · independent acceptance pending.**
 
 Translate preparation, phase and analyzer formulas into a checked ideal interference experiment.
 
@@ -142,7 +144,7 @@ Translate preparation, phase and analyzer formulas into a checked ideal interfer
 
 ### convert-bloch-state-coordinates
 
-**L1 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L1 · planned · not run · independent acceptance pending.**
 
 Translate pure-qubit coordinates and phase charts, including poles and sign conventions.
 
@@ -156,7 +158,7 @@ Translate pure-qubit coordinates and phase charts, including poles and sign conv
 
 ### translate-unitary-evolution
 
-**L1 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L1 · planned · not run · independent acceptance pending.**
 
 Translate fixed-generator evolution and single-qubit factorizations with units, order and common phase.
 
@@ -172,7 +174,7 @@ Translate fixed-generator evolution and single-qubit factorizations with units, 
 
 ### translate-qubit-ordering
 
-**L1 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L1 · planned · not run · independent acceptance pending.**
 
 Translate subsystem labels, supports, permutations and basis-index conventions.
 
@@ -184,7 +186,7 @@ Translate subsystem labels, supports, permutations and basis-index conventions.
 
 ### build-and-check-circuits
 
-**L1 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L1 · planned · not run · independent acceptance pending.**
 
 Build a specified circuit or reversible subroutine without changing its input/output semantics.
 
@@ -196,7 +198,7 @@ Build a specified circuit or reversible subroutine without changing its input/ou
 
 ### measure-and-estimate-observables
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Translate measurement, estimation and state-inference claims into statistical contracts.
 
@@ -210,7 +212,7 @@ Translate measurement, estimation and state-inference claims into statistical co
 
 ### model-composite-states-and-channels
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Model entangled/mixed states, protocols and conditional/channel maps.
 
@@ -222,7 +224,7 @@ Model entangled/mixed states, protocols and conditional/channel maps.
 
 ### audit-information-and-security-claims
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Audit information/security hypotheses and scoped finite examples without inferring a theorem from samples.
 
@@ -234,7 +236,7 @@ Audit information/security hypotheses and scoped finite examples without inferri
 
 ### audit-algorithmic-resource-claims
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Check query/access/precision models, classical baselines and complete logical/physical resource accounting.
 
@@ -248,7 +250,7 @@ Check query/access/precision models, classical baselines and complete logical/ph
 
 ### implement-oracle-and-spectral-algorithms
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Implement a selected oracle, arithmetic, Fourier, Hamiltonian or spectral algorithm with its access assumptions.
 
@@ -260,7 +262,7 @@ Implement a selected oracle, arithmetic, Fourier, Hamiltonian or spectral algori
 
 ### train-differentiable-hybrid-models
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Translate gradients, loss functions, optimizers, QAOA and hybrid/classical comparison protocols.
 
@@ -274,7 +276,7 @@ Translate gradients, loss functions, optimizers, QAOA and hybrid/classical compa
 
 ### simulate-noise-and-mitigation
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Specify channels/dynamics and mitigation assumptions with sampling and approximation costs.
 
@@ -286,7 +288,7 @@ Specify channels/dynamics and mitigation assumptions with sampling and approxima
 
 ### reproduce-error-correction-experiments
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Translate codes, syndrome rounds, decoders and logical operations under declared fault models.
 
@@ -298,7 +300,7 @@ Translate codes, syndrome rounds, decoders and logical operations under declared
 
 ### model-physical-qubit-platforms
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Map physical assumptions, levels/modes, controls, readout and effective models across platform routes.
 
@@ -310,7 +312,7 @@ Map physical assumptions, levels/modes, controls, readout and effective models a
 
 ### compile-and-lower-quantum-programs
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Transform programs through representations and target constraints while preserving declared semantics.
 
@@ -322,7 +324,7 @@ Transform programs through representations and target constraints while preservi
 
 ### select-and-validate-classical-simulators
 
-**L2 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L2 · planned · not run · independent acceptance pending.**
 
 Choose exact, stabilizer, MPS, contraction or cutting methods for a specified output and error target.
 
@@ -334,7 +336,7 @@ Choose exact, stabilizer, MPS, contraction or cutting methods for a specified ou
 
 ### reproduce-molecular-vqe
 
-**L3 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L3 · planned · not run · independent acceptance pending.**
 
 Trace integrals, operators, mappings, reductions, optimizers and reported energy targets for a scoped chemistry claim.
 
@@ -348,7 +350,7 @@ Trace integrals, operators, mappings, reductions, optimizers and reported energy
 
 ### reproduce-declared-paper-claim
 
-**L3 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L3 · planned · not run · independent acceptance pending.**
 
 Select relevant domain workflows and reproduce one registered claim with no silent substitutions.
 
@@ -362,7 +364,7 @@ Select relevant domain workflows and reproduce one registered claim with no sile
 
 ### assemble-paper-reproduction
 
-**L4 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L4 · planned · not run · independent acceptance pending.**
 
 Integrate mandatory paper claims, artifacts, dependencies and reviews into a reproducible report.
 
@@ -376,7 +378,7 @@ Integrate mandatory paper claims, artifacts, dependencies and reviews into a rep
 
 ### transfer-to-unseen-papers
 
-**L5 · planned · behavioral evaluation not run · independent acceptance pending.**
+**L5 · planned · not run · independent acceptance pending.**
 
 Evaluate routing and execution on held-out papers, identifying unsupported requirements rather than inventing success.
 
@@ -390,10 +392,10 @@ Evaluate routing and execution on held-out papers, identifying unsupported requi
 
 ## Implementation order after this planning pass
 
-1. Prototype `compare-quantum-states-and-operators` using 3.1/3.7 and the existing strict phase-sensitive examples. Test an unseen coherent input and the controlled-context failure, not only copied fixtures.
+1. Independently forward-test the [state/operator prototype](comparison-skill-prototype.md). Its author-verified helper has 45 cases including six post-freeze transfer cases; independent agent evaluation is not run.
 2. Prototype `reproduce-qubit-interference` using 3.2. Test changed analyzer/sign/order cases and a paper-style claim ledger; this demonstrates one bounded experiment, not L4 paper acceptance.
 3. Add `translate-unitary-evolution` from 3.4–3.6 with units, exact/near endpoints and omitted-phase failure. Reuse the mathematical contracts and independently checked source examples.
 4. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.
 5. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.
 
-This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. No prototype or paper run is performed by this planning update.
+This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first bounded prototype is author-verified; no paper run or new textbook section is performed by this update.

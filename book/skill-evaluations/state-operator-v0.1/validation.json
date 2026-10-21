@@ -1,0 +1,20 @@
+{
+  "scope": "State/operator skill prototype 0.1.0 only; no textbook section authored",
+  "baseline": "writing-baseline-v1.0",
+  "curriculum_scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "local_checks": {
+    "skill_creator_quick_validate": "passed",
+    "comparison_helper": "45/45 cases; 3 FlagQuantum runs passed",
+    "existing_formula_code_regression": "61 body fragments / 15 complete companion outputs passed",
+    "published_page_shell_example": "exact expected output passed",
+    "catalog_and_baseline_checks": "passed; 50 chapters / 435 sections / 7 volumes / 16 batches unchanged",
+    "strict_mkdocs_build": "passed",
+    "rendered_local_links": "63 pages; no broken local link/fragment or duplicate ID",
+    "browser_formula_display": "visually checked actual local rendered formula: cases, conjugate, sum and norm displayed",
+    "git_diff_check": "passed"
+  },
+  "independent_agent_evaluation": "not run",
+  "independent_acceptance": "pending",
+  "reader_trial": "not run",
+  "released_skills": 0
+}

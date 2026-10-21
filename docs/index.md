@@ -29,7 +29,7 @@ Correspondence: [liuwei01@baai.ac.cn](mailto:liuwei01@baai.ac.cn)
 | Learn the mathematics and translate formulas into code | [Textbook contents](contents.md) and [learning paths](learning-paths.md) |
 | Plan a bounded agent task or paper reproduction | [Dual-entry design](dual-entry.md), [skill capability map](agent-skills.md) and [verification/acceptance standard](paper-reproduction-standard.md) |
 
-The agent entry is **planning only**: 23 proposed task skills, zero released packages. It shares the textbook's scientific sources, conventions, implementations and evidence. A mapped chapter or an executable example does not establish an accepted skill. No new textbook section is written by this planning update.
+The agent entry has **one author-verified prototype** among 23 proposed task skills, zero released packages: [state/operator comparison](comparison-skill-prototype.md). Its 45 helper cases and three actual FlagQuantum executions do not replace independent agent evaluation. It shares the textbook's scientific sources, conventions, implementations and evidence. A mapped chapter or an executable example does not establish an accepted skill. No new textbook section is written by this planning update.
 
 ## Educational aim
 

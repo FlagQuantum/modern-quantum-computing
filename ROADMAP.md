@@ -4,7 +4,7 @@
 
 ## Next writing assignment
 
-**Current author-directed phase: dual-entry planning.** The [textbook/agent plan](docs/dual-entry.md), [complete skill map](docs/agent-skills.md) and [paper acceptance standard](docs/paper-reproduction-standard.md) are planning only. Do not treat the proposed pilot sequence as authorization to start a skill package, a paper run or a new textbook section. The canonical queue below is unchanged.
+**Current author-directed phase: first agent skill prototype, no new textbook prose.** The [state/operator comparison package](docs/comparison-skill-prototype.md), based on 3.1 and 3.7, is author-verified with 45 helper cases and three actual FlagQuantum executions. Independent agent evaluation and acceptance remain pending. Do not start another skill, paper run or textbook section without subsequent author direction. The canonical queue below is unchanged.
 
 **Editorial backfill completed (October 21, 2026):** sections 2.1–2.8 and all seven Chapter3 sections now contain 61 adjacent formula → code → checked output units. The latest pass completed3.1,3.2,3.4,3.6 with20units. `python scripts/check_formula_code.py` executes every marked body fragment and compares all15complete companion-program outputs. The [presentation audit](book/formula-to-code-audit.json) records completed and separately scoped work. No new section was drafted in either backfill pass; the frozen curriculum and independent acceptance states are unchanged.
 

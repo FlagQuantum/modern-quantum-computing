@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0",
+  "source_revision": "62f7055475ba3ad5b418ea8249e08fa7e8add588",
+  "frozen_at_utc": "2026-10-21T04:37:34.429714+00:00",
+  "sha256": {
+    "SKILL.md": "e7dcac94f21b61268fda83bb30d9f7634c3b6916db2ccd4bd4948389288b68be",
+    "agents/openai.yaml": "e0c97d1b156907457229fc1cb122fedfa43558a12fe2bf4cdb1796d0459760b3",
+    "references/contract.md": "d5a1cba79cf724b55b08d7ca80c7cf9d171ab853eaefde2c7ac11c85b9e1af98",
+    "scripts/compare.py": "4ec18a41ae4e022a5f46362a6ce2ed5a563a18bb1b425154493ed9e78f1495c5"
+  }
+}

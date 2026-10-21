@@ -1,7 +1,7 @@
 {
   "plan_id": "dual-entry-v0.1",
   "date": "2026-10-21",
-  "status": "planning-only",
+  "status": "prototype-pilot",
   "curriculum_baseline": "writing-baseline-v1.0",
   "curriculum_scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
   "goal": "Human learning and agent execution share mathematical contracts, original code and verification evidence. Paper reproduction is claim-scoped and auditable.",
@@ -96,7 +96,7 @@
     {
       "id": "compare-quantum-states-and-operators",
       "level": "L1",
-      "status": "planned",
+      "status": "author-verified prototype",
       "task": "Choose state, operator or distribution comparison with the correct phase scope.",
       "deliverable": "Validated comparison domain, residuals and phase-sensitive counterexamples.",
       "requires_skills": [
@@ -119,8 +119,10 @@
         "book/section-records/3.1.json",
         "book/section-records/3.7.json"
       ],
-      "behavioral_evaluation": "not run",
-      "independent_acceptance": "pending"
+      "behavioral_evaluation": "helper: 45/45 author cases; independent agent evaluation not run",
+      "independent_acceptance": "pending",
+      "prototype_package": "skills/compare-quantum-states-and-operators/SKILL.md",
+      "evaluation_report": "book/skill-evaluations/state-operator-v0.1/author-report.json"
     },
     {
       "id": "reproduce-qubit-interference",

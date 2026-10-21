@@ -1,0 +1,22 @@
+{
+  "skill": "compare-quantum-states-and-operators",
+  "version": "0.1.0",
+  "scope": "Executable-helper and caller-contract author evaluation, not independent language-model forward testing",
+  "evaluator_role": "authoring agent",
+  "independent_review": "pending",
+  "reader_trial": "not run",
+  "release_acceptance": "pending",
+  "categories": ["normal", "boundary", "error", "held-out-transfer"],
+  "gates": {
+    "all_status_and_exit_codes_correct": true,
+    "all_valid_metrics_match_declared_analytic_reference": true,
+    "false_successes_allowed": 0,
+    "incorrect_abstentions_allowed": 0,
+    "unexpected_exceptions_allowed": 0,
+    "residual_reference_absolute_tolerance": 2e-12,
+    "input_validation_absolute_tolerance": 1e-12,
+    "decision_absolute_tolerance_default": 1e-10
+  },
+  "freeze_policy": "Hash the complete package before writing transfer fixtures. Evaluate a copied package in a temporary workspace. Record hashes and actual requests/results. These post-freeze author-designed transfer cases are not blind independent agent tasks; disclose this limitation. If implementation changes after a failure, keep the failure evidence and use a new transfer set.",
+  "framework_adapter": "Run actual released FlagQuantum 0.3.1 CPU complex128 statevector circuits and submit validated single samples to the helper; do not infer backend execution from the helper alone."
+}
