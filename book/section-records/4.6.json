@@ -1,0 +1,128 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-6",
+  "ref": "4.6",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+  "depth": "F",
+  "result": "Reshape-transpose-contraction equals indexed gate action",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+    "sec-composite-systems-tensor-products-and-qubit-ordering-4"
+  ],
+  "question": "How does a sequence of reshape, axis permutation and local matrix contraction implement the indexed gate action?",
+  "assumptions": [
+    "Finite n>=1 qubits; q0 most significant and final logical tensor axis fastest",
+    "Single vector shape(2**n,); execution batch dimension selected explicitly",
+    "Nonempty distinct ordered support; ascending spectator complement; unit-length empty-complement index convention",
+    "Finite CPU complex128 dense tensor inputs; proofs apply to arbitrary joint coefficients and general local linear matrices"
+  ],
+  "proof_obligations": [
+    "Logical binary-axis tensor entries equal vector entries at J_n",
+    "Ordered support/complement packing is a bijection",
+    "Matrix contraction sums only local input labels at fixed spectator tuple",
+    "Inverse-axis restoration recovers the4.4 indexed amplitude formula",
+    "Identity, k1 and kn boundaries; unitarity/norm property separate from linear reference",
+    "Dense local arithmetic count and exponential amplitude storage explicitly qualified"
+  ],
+  "formula_code_units": [
+    "formula-code-4-6-vector-contract",
+    "formula-code-4-6-binary-axes",
+    "formula-code-4-6-pack-support",
+    "formula-code-4-6-contract",
+    "formula-code-4-6-unpack",
+    "formula-code-4-6-layout",
+    "formula-code-4-6-boundaries",
+    "formula-code-4-6-rejections"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.1.7",
+      "edition": "10th Anniversary Edition (2010)",
+      "use": "Assigned tensor product background; original index proof supplied",
+      "current_session_inspection": "No fresh user-local textbook PDF inspection claimed"
+    },
+    {
+      "source": "Installed released FlagQuantum0.3.1 Circuit.unitary alias",
+      "use": "Actual source signature inspected and recorded; direct body circuit and generic support executions"
+    },
+    {
+      "source": "Installed PyTorch2.13.0 reshape/permute/view docstrings",
+      "use": "Inspected at runtime; docstring SHA256 plus brief summaries retained, behavior executed on pinned runtime"
+    },
+    {
+      "source": "Public PyTorch API pages via stable redirect to2.14",
+      "urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.reshape.html",
+        "https://docs.pytorch.org/docs/2.14/generated/torch.permute.html",
+        "https://docs.pytorch.org/docs/2.14/generated/torch.Tensor.view.html"
+      ],
+      "use": "Read logical reshape, axis permutation and stride compatibility contracts; not represented as pinned2.13documentation. Versioned2.13webURLs unavailable; runtime docstrings and actual executions used for pinned claims."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/tensor_reshaping.py",
+    "command": "python examples/foundations/tensor_reshaping.py",
+    "prose_check_command": "python scripts/check_tensor_reshaping_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "system": "Darwin",
+      "architecture": "arm64",
+      "device": "cpu",
+      "precision": "complex128",
+      "probability_dtype": "float64"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 201,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 2,
+    "separate_transfer_circuits": 1,
+    "author_execution_ledger": {
+      "standalone_complete": 201,
+      "successful_body_assembly": 2,
+      "prose_plus_complete_checker": 203,
+      "separate_transfer": 1,
+      "total_section46_circuits": 407,
+      "note": "Prior4.1\u20134.5 regressions and laterCI executions separate. No independent agent evaluation requested or claimed."
+    },
+    "checks": [
+      "186basis/support circuits: all nonempty ordered supports through3qubits and3four-qubit supports",
+      "15complex joint-state cases compare actualFQ with scalar scatter, packed contraction and dense reference",
+      "23arbitrary-vector classical fixtures plus nonunitary reference case",
+      "Binary marker101 index5 packs to row3,column0 at support(2,0), whereas reshape alone yields marker6",
+      "Actual pinned-runtime incompatible-stride view rejected intentionally; reshape equals contiguous copy and noncontiguous vector input preserved",
+      "k1/kn, inverse axes, identity and norm boundaries;11invalid contracts rejected",
+      "Eight cumulative actual body fragments and exact full-program expected output checked",
+      "Separate four-qubit transfer1011 support(3,1):packed row2,column3; controlled output1111,index15; inverse-cycle exercise checked numerically"
+    ],
+    "tolerance": "atol1e-12,rtol0; no phase alignment or normalization repair; fallback/approximation disabled",
+    "script_sha256": "900e1ee380abdf2cf18e31d815ef4cd928369e0cb315b77624171c4ee91ae8d6",
+    "unplanned_execution_failures": "none; intentional view-stride RuntimeError and invalid-input ValueErrors are specified boundary cases",
+    "editorial_correction": "Before body assembly, corrected transfer-answer double-cycle marker to2; the separate transfer script verifies it. No failed circuit run implied.",
+    "limitations": "Small ideal CPU dense-state references, no compression/batch API/all-size error bound, GPU allocation or measured backend algorithm/performance/hardware claim"
+  },
+  "assessment": {
+    "tasks": [
+      "4.6-A four-qubit packing and actual gate transfer",
+      "4.6-B inverse-axis necessity",
+      "4.6-C explicit four-term sum",
+      "4.6-D storage, tensor rank and nonlinear normalization traps"
+    ],
+    "answers": "All supplied; reader trial not run"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "8body fragments and complete program exact expected stdout passed; separate transfer and scoped4.1\u20134.5 prose/full-program regressions passed; curriculum/proof/baseline/skills generators checked; strict MkDocs and69page local links/anchor uniqueness passed; actual browser key formulas checked. Independent review and reader trial pending."
+  },
+  "production": {
+    "next_draft": "4.7 The no-cloning theorem",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual IAB browser screenshots at1280x720: binary-axis/index sum, packed local/spectator indices and empty-complement convention, full restored local-gate contraction with inverse/substitution subscripts. No garbling or clipping in inspected regions."
+  }
+}

@@ -261,6 +261,16 @@
       "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
       "record": "book/section-records/4.5.json",
       "author_execution": "passed: Python3.12.14, released FlagQuantum0.3.1, PyTorch2.13.0, CPU complex128; full complex-coordinate permutation/observable contracts"
+    },
+    "sec-composite-systems-tensor-products-and-qubit-ordering-6": {
+      "state": "draft",
+      "brief": "book/briefs/ch04.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+      "record": "book/section-records/4.6.json",
+      "author_execution": "passed: Python3.12.14, released FlagQuantum0.3.1, PyTorch2.13.0, CPU complex128; scalar/packed/dense references and actual body outputs"
     }
   },
   "existing_pilots": [

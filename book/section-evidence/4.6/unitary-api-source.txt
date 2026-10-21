@@ -1,0 +1,2 @@
+    def any(self, *qubits: int, unitary: Any, name: str = "any") -> "Circuit":
+        return self.gate(name, qubits, matrix=unitary)

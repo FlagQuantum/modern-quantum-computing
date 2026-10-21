@@ -1,0 +1,3 @@
+Inspected installed PyTorch 2.13.0
+Docstring SHA256: 4030fb081ba201e3963970da2b01fb5c49d342014acc0a884a01075b7d61d546
+Original summary: Preserves logical entries and element count with a new shape; may return a view or a copy; no storage-sharing assumption.

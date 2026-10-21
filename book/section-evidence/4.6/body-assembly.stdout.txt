@@ -1,0 +1,23 @@
+Executed8cumulative fragments and2actualcircuits; exact outputs captured.
+batch result: (1, 8) single vector: (8,)
+
+tensor shape: (2, 2, 2)
+T[1,1,0] = x[6]: 0.447213595j
+
+axes: (2, 0, 1) packed shape: (4, 2)
+row3,column0: permute then reshape = 5 ; reshape alone = 6
+
+local contraction: (4, 4) @ (4, 2) -> (4, 2)
+one four-term sum agrees; conjugating U changes this result
+
+restoring axes: (1, 2, 0)
+FlagQuantum probabilities: [0.373653811, 0.001346189, 0.12455127, 0.00044873, 0.373653811, 0.001346189, 0.12455127, 0.00044873]
+
+permuted layout contiguous: False
+view rejected incompatible strides: True
+reshape agrees with contiguous copy; conjugation changes complex entries
+
+identity and full support preserve every coefficient
+general linear-map squared norm: 1.75
+
+batch, length, duplicate/range support, matrix shape and gate unitarity: 6 rejected

@@ -1,0 +1,3 @@
+Inspected installed PyTorch 2.13.0
+Docstring SHA256: 8c20150182589e40538a962ba03c6bcf85ffd6cd90e531c99b7ddcd59f39e301
+Original summary: Changes the ordering of dimensions as a view; the axis tuple defines the correspondence.

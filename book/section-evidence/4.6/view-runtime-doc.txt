@@ -1,0 +1,3 @@
+Inspected installed PyTorch 2.13.0
+Docstring SHA256: d0a2ae3faf5d44186dd4039f8e88d387852ccfde6bba00eb851aa29809891d03
+Original summary: New shape must be compatible with sizes and strides; otherwise use a suitable copy/reshape; shape-only and dtype reinterpretation overloads are distinct.

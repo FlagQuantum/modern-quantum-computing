@@ -1,0 +1,2 @@
+Separate4qubit transfer:1011,index11 -> packed row2,column3; controlled support(3,1) ->1111,index15.
+Inverse-axis answer checked; repeating order(2,0,1) yields marker2 instead of4.

@@ -12,7 +12,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7 and 4.1–4.5, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7 and 4.1–4.6, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Two entry points: learners and agents
 
@@ -141,3 +141,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), the [chapter template](templates/chapter
 Text and original illustrations: [CC BY 4.0](LICENSE-CONTENT.md). Code: [MIT](LICENSE). Third-party data and sources retain their own rights; see [source notes](docs/sources.md).
 
 Section [4.5 Permutations, SWAP, and relabeling](docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-5) is now an author-verified working draft, with eight adjacent formula/code/result units and450 actual simulator circuits in the complete example. Independent review remains pending.
+
+Section [4.6 Tensor reshaping as indexed mathematics](docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-6) now connects binary basis indices, tensor axes and ordered local contractions, with eight checked body units and201 actual circuits in its complete program. Independent acceptance remains pending.

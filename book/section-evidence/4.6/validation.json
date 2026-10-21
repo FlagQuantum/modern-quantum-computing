@@ -1,0 +1,20 @@
+{
+  "section": "4.6",
+  "state": "author-verified draft",
+  "complete_circuits": 201,
+  "body_fragments": 8,
+  "body_circuits": 2,
+  "transfer_circuits": 1,
+  "classical_arbitrary_vector_cases": 23,
+  "invalid_contracts_complete": 11,
+  "body_outputs": "exactly matched",
+  "regressions": "4.1\u20134.5 scoped body checkers plus complete companions passed",
+  "strict_build": "passed",
+  "links": "69pages, local links/fragments resolve, IDs unique",
+  "formula_display": "Actual IAB screenshots: binary sum, packing/spectator indices and full contraction/restoring formula; no garbling or clipping in inspected areas",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "unplanned_execution_failures": [],
+  "expected_rejections": "Incompatible-stride view intentionally rejected in body; nonunitary matrix rejected only by deterministic gate admission; invalid metadata/shape checks as specified",
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

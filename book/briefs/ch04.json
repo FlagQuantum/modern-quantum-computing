@@ -117,6 +117,29 @@
       ],
       "status": "draft",
       "next_transition": "4.6 Tensor reshaping as indexed mathematics."
+    },
+    {
+      "ref": "4.6",
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-6",
+      "title": "Tensor reshaping as indexed mathematics",
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-4"
+      ],
+      "question": "How does reshape/axis permutation/matrix contraction reproduce the indexed local gate action?",
+      "entry": "4.2 index bijection;4.4 ordered-support coefficient sum. No later tensor-network theorem assumed.",
+      "exit": "Prove binary-axis indexing, ordered support packing, matrix contraction and inverse-axis restoration for arbitrary joint coefficients.",
+      "worked_case": "Three-qubit complex entangled input; support(2,0), axes(2,0,1), asymmetric complex local gate; marker101 distinguishes reshape from permute.",
+      "boundary": "Finite positive qubit count; single dense logical vector, no implicit batch axis; no physical operation from reshape alone; distinguish transpose and adjoint; no storage/view or scalability promises.",
+      "code_plan": "Minimal reshape/permute/matmul reference without global matrix; independent scalar scatter and dense validation; actual released FlagQuantum arbitrary-support execution.",
+      "independent_check": "All nonempty ordered supports and all basis states through three qubits; four-qubit nonadjacent/full supports, complex joint states, arbitrary nonunitary mathematical maps, malformed input contracts.",
+      "transfer_task": "New four-qubit support, pack/unpack row/column, inverse permutation, noncontiguous layout and conjugation traps; full answers.",
+      "source_locators": [
+        "NC:2.1.7"
+      ],
+      "status": "draft",
+      "next_transition": "4.7 The no-cloning theorem."
     }
   ]
 }

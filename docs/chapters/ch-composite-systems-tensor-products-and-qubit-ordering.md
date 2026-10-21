@@ -1,6 +1,6 @@
 # 4. Composite Systems, Tensor Products, and Qubit Ordering
 
-**Working drafts: sections 4.1–4.5 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 4.1–4.6 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-composite-systems-tensor-products-and-qubit-ordering-1"></span>
 
@@ -1708,4 +1708,354 @@ Composition order, identity, inverse, metadata rename and10invalid declarations 
 
 Depth **F**: the basis prescription, unitarity, inverse, composition, amplitude rule, passive coordinate/observable transformation, ordered-support conjugation and SWAP decomposition are proved explicitly. Nielsen and Chuang, 10th Anniversary Edition, §4.3 is the assigned background locator; this section supplies its own convention-fixed derivations and does not claim a fresh inspection of the user-local PDF. The released FlagQuantum SWAP method is exercised directly; implementation evidence and source-access limits appear in the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.5.json).
 
-This is an author-verified working draft, with independent mathematical, implementation and reader review pending. Continue, when drafted, with [4.6 Tensor reshaping as indexed mathematics](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-6).
+This is an author-verified working draft, with independent mathematical, implementation and reader review pending. Continue with the working draft [4.6 Tensor reshaping as indexed mathematics](#sec-composite-systems-tensor-products-and-qubit-ordering-6).
+
+<span id="sec-composite-systems-tensor-products-and-qubit-ordering-6"></span>
+
+## 4.6 Tensor reshaping as indexed mathematics
+
+A statevector and a rank-n amplitude tensor can hold exactly the same coefficients. The tensor exposes which bit belongs to which qubit; it does not add information. This representation lets us implement a local operator without constructing its full-register matrix. To trust that implementation, we need to identify the index represented by every axis before using `reshape`, `permute` or matrix multiplication.
+
+The prerequisites are [4.2](#sec-composite-systems-tensor-products-and-qubit-ordering-2), for the binary index bijection, and [4.4](#sec-composite-systems-tensor-products-and-qubit-ordering-4), for ordered-support gate action. All claims here concern a finite register of n≥1 qubits with an explicit computational basis. The examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The tolerance is absolute $10^{-12}$ with relative tolerance zero. We compare full complex coordinates without phase alignment or normalization repair.
+
+The eight formula–derivation–code–result units below are cumulative. Run them in order from the repository root. The complete companion [tensor_reshaping.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/tensor_reshaping.py) includes strict input checks, an independent scalar reference, broader executions and the minimal contraction implementation.
+
+<span id="formula-code-4-6-vector-contract"></span>
+
+### 1. Separate the execution batch axis from the amplitude axes
+
+**Formula.** Our mathematical input is one vector $x\in\mathbb C^{2^n}$. The executed result here stores a batch of one vector:
+
+$$
+R\in\mathbb C^{1\times2^n},\qquad x_j=R_{0,j}.
+$$
+
+**Derivation.** The first coordinate of R selects an execution batch member; j selects a basis amplitude. It is not an additional qubit. First select that member and check the resulting one-dimensional shape. A library accepting a batch of states would need a separately specified batching contract; the minimal helper in this section rejects it.
+
+Prepare the complex joint state used in 4.5, but reproduce its preparation explicitly here. Local preparation on q0 is $(\sqrt3/2,i/2)$, q1 starts in zero, and q2 is $(\sqrt{4/5},i\sqrt{1/5})$. A controlled flip on ordered support `(0,1)` gives
+
+$$
+x=\sqrt{3/5}|000\rangle+i\sqrt{3/20}|001\rangle
++i\sqrt{1/5}|110\rangle-\sqrt{1/20}|111\rangle.
+$$
+
+This hand expansion follows by multiplying local coefficients and applying the controlled flip to the q1 bit. It supplies a phase-sensitive reference with nonzero complex joint amplitudes, rather than relying on a product-state shortcut in the contraction proof.
+
+```python
+import torch
+import flagquantum as fq
+from examples.foundations.tensor_spaces import prepare_matrix, OPTIONS
+from examples.foundations.ordered_supports import controlled_flip, complex_gate, scalar_scatter
+from examples.foundations.tensor_reshaping import (
+    DTYPE, ATOL, checked_vector, axis_order, undo_order, apply_local,
+    complex_factors, entangled_reference, checked_matrix)
+circuit = fq.Circuit(3, dtype=DTYPE)
+for q, factor in enumerate(complex_factors()):
+    circuit.unitary(q, unitary=prepare_matrix(torch.tensor(factor,dtype=DTYPE)))
+circuit.unitary(0,1,unitary=controlled_flip())
+result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
+assert result.statevector().shape == result.probabilities.shape == (1,8)
+x = checked_vector(result.statevector()[0], 3)
+assert torch.allclose(x,entangled_reference(),rtol=0,atol=ATOL)
+print('batch result:', tuple(result.statevector().shape), 'single vector:', tuple(x.shape))
+```
+
+```text
+batch result: (1, 8) single vector: (8,)
+```
+
+<span id="formula-code-4-6-binary-axes"></span>
+
+### 2. Derive the tensor axes from the basis-index formula
+
+**Formula.** Let axis q denote the bit of qubit q, and define
+
+$$
+T_{b_0,\ldots,b_{n-1}}=x_{J_n(b)},\qquad
+J_n(b)=\sum_{q=0}^{n-1}b_q2^{n-1-q}.
+$$
+
+**Derivation.** The last bit changes the index by one, the preceding bit by two, and so on. Therefore a logical row-major reshape to `(2,)*n`, whose last axis varies fastest, realizes this indexing rule. Conversely, flattening these axes in the same logical order returns x, because 4.2 proves that every bit tuple has exactly one index. No conjugation, summation, qubit movement or physical evolution occurs.
+
+For n=3, the logical offsets of axes `(q0,q1,q2)` are `(4,2,1)`. Thus `T[1,1,0]` is the amplitude at index 6, $i\sqrt{1/5}$. The vector dimension is eight, the tensor rank is three, and each axis length is two: those are different quantities.
+
+```python
+from itertools import product
+T = x.reshape(2,2,2)
+for bits in product((0,1),repeat=3):
+    j = int(''.join(map(str,bits)),2)
+    assert T[bits].item() == x[j].item()
+assert torch.equal(T.reshape(8),x)
+print('tensor shape:', tuple(T.shape))
+print(f'T[1,1,0] = x[6]: {T[1,1,0].imag.item():.9f}j')
+```
+
+```text
+tensor shape: (2, 2, 2)
+T[1,1,0] = x[6]: 0.447213595j
+```
+
+<span id="formula-code-4-6-pack-support"></span>
+
+### 3. Move an ordered support to the leading axes
+
+**Formula.** Take a nonempty ordered support $S=(s_0,\ldots,s_{k-1})$ of distinct qubits. List its complement in ascending order as $C=(c_0,\ldots,c_{n-k-1})$. Define the axis order $o=S\mathbin{\Vert}C$, where $\Vert$ means concatenation. For local bits a and spectator bits d, pack
+
+$$
+A_{J_k(a),J_{n-k}(d)}=T_b,
+\qquad b_{s_r}=a_r,\quad b_{c_t}=d_t.
+$$
+
+For k=n, the complement is empty: define its sole index as $J_0(())=0$, so A has one column. This convention introduces no zero-qubit physical register.
+
+**Derivation.** `T.permute(o)` makes new axis r refer to old axis `o[r]`; it does not sort S. Its first k axes are the local tuple and its remaining axes are the spectator tuple. Flattening each group in that logical order gives row $J_k(a)$ and column $J_{n-k}(d)$. Both binary maps are bijections, and S and C partition the register; hence every original coefficient appears exactly once in A.
+
+With S=`(2,0)`, C=`(1,)` and o=`(2,0,1)`, the packing rule is
+
+$$
+A_{2b_2+b_0,b_1}=T_{b_0,b_1,b_2}.
+$$
+
+Input tuple `101`, global index 5, goes to row 3, column 0. Directly reshaping the original vector to `(4,2)` instead groups `(q0,q1)` into rows and q2 into columns. Use distinct integer markers to expose the difference; they are an indexing fixture, not a normalized quantum state.
+
+```python
+S = (2,0); order = axis_order(3,S)
+A = T.permute(order).reshape(4,2)
+markers = torch.arange(8).reshape(2,2,2)
+packed_markers = markers.permute(order).reshape(4,2)
+assert packed_markers[3,0].item() == 5
+assert markers.reshape(4,2)[3,0].item() == 6
+for bits in product((0,1),repeat=3):
+    assert A[2*bits[2]+bits[0],bits[1]].item() == T[bits].item()
+print('axes:', order, 'packed shape:', tuple(A.shape))
+print('row3,column0: permute then reshape =', packed_markers[3,0].item(),
+      '; reshape alone =', markers.reshape(4,2)[3,0].item())
+```
+
+```text
+axes: (2, 0, 1) packed shape: (4, 2)
+row3,column0: permute then reshape = 5 ; reshape alone = 6
+```
+
+Changing tensor-axis order is a change of coordinate layout. If its flattened array is later interpreted using the old qubit order, it can represent a different vector. Keep the axis labels with the array. A layout conversion alone does not submit a SWAP gate; active operations and passive coordinate descriptions are distinguished in 4.5.
+
+<span id="formula-code-4-6-contract"></span>
+
+### 4. Identify the local gate sum with a matrix contraction
+
+**Formula.** Write the local matrix in the ordered S basis as $U\in\mathbb C^{2^k\times2^k}$. Then
+
+$$
+B=UA,\qquad
+B_{r,t}=\sum_{v=0}^{2^k-1}U_{r,v}A_{v,t}.
+$$
+
+**Derivation.** Fixing column t fixes all spectator bits d. Each column is the group of amplitudes that can mix under the local operator. Matrix multiplication sums over local input index v while holding t fixed. Row r labels the new local output. There is no conjugation: this is linear operator action, not an inner product between two statevectors.
+
+Use the explicitly derived complex asymmetric two-qubit matrix U from 4.4 (`complex_gate()`). To see one entry before trusting `@`, choose output local row 1 and spectator column 0. Its four terms have input tuples `000,100,001,101`, respectively, since the local input order is `(b2,b0)` and b1 is zero. Thus
+
+$$
+B_{1,0}=U_{1,0}x_0+U_{1,1}x_4+U_{1,2}x_1+U_{1,3}x_5.
+$$
+
+```python
+U = complex_gate()
+B = U @ A
+manual = sum(U[1,v]*x[j] for v,j in enumerate((0,4,1,5)))
+assert torch.allclose(B[1,0],manual,rtol=0,atol=ATOL)
+wrong = U.conj() @ A
+assert not torch.allclose(B,wrong,rtol=0,atol=ATOL)
+print('local contraction:', tuple(U.shape), '@', tuple(A.shape), '->', tuple(B.shape))
+print('one four-term sum agrees; conjugating U changes this result')
+```
+
+```text
+local contraction: (4, 4) @ (4, 2) -> (4, 2)
+one four-term sum agrees; conjugating U changes this result
+```
+
+<span id="formula-code-4-6-unpack"></span>
+
+### 5. Undo the axis permutation and prove the full indexed action
+
+**Formula.** Let $h(q)$ be the position of old axis q in o, so $o_{h(q)}=q$. Unpack B into n binary axes, then restore their old order with h. The resulting vector y satisfies
+
+$$
+y_{J_n(b)}
+=\sum_{v=0}^{2^k-1}U_{J_k(b_S),v}\,
+ x_{J_n(b[S\leftarrow\operatorname{bits}_k(v)])}.
+$$
+
+Here $b_S=(b_{s_0},\ldots,b_{s_{k-1}})$, and $b[S\leftarrow a]$ replaces just those selected bits, leaving all others fixed.
+
+**Derivation.** By unit 3, packing the input tuple with local bits $\operatorname{bits}_k(v)$ and spectator bits $b_C$ yields $A_{v,J_{n-k}(b_C)}$. Unit 4 multiplies that coefficient by $U_{J_k(b_S),v}$ and sums over v. Reshaping B exposes the axes in o order; permuting by h sends each one back to its declared q position. Flattening in q0,…,q(n−1) order assigns it index $J_n(b)$. Substitution yields the displayed sum, exactly the 4.4 coefficient formula. This proves the algorithm for arbitrary joint amplitudes and any linear U at finite n, without constructing a global matrix or assuming product states.
+
+For o=`(2,0,1)`, the restoring order is h=`(1,2,0)`. Reusing o would fail because this cycle is not self-inverse. Compare the unpacked result to the minimal helper, an independent scalar input-scatter implementation and the actual FlagQuantum local gate.
+
+```python
+restore = undo_order(order)
+y = B.reshape(2,2,2).permute(restore).reshape(8)
+assert restore == (1,2,0)
+assert torch.allclose(y,apply_local(x,U,3,S),rtol=0,atol=ATOL)
+scalar = torch.tensor(scalar_scatter(U,x.tolist(),3,S),dtype=DTYPE)
+assert torch.allclose(y,scalar,rtol=0,atol=ATOL)
+circuit.unitary(*S,unitary=U)
+after = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+assert after.statevector().shape == after.probabilities.shape == (1,8)
+assert torch.allclose(after.statevector()[0],y,rtol=0,atol=ATOL)
+assert torch.allclose(after.probabilities[0],y.abs().square(),rtol=0,atol=ATOL)
+print('restoring axes:', restore)
+print('FlagQuantum probabilities:', [round(v,9) for v in after.probabilities[0].tolist()])
+```
+
+```text
+restoring axes: (1, 2, 0)
+FlagQuantum probabilities: [0.373653811, 0.001346189, 0.12455127, 0.00044873, 0.373653811, 0.001346189, 0.12455127, 0.00044873]
+```
+
+The minimal helper implements precisely `reshape → permute → reshape → matrix multiply → reshape → inverse permute → flatten`. It stores the state and a $2^k$-square local matrix, rather than a $2^n$-square operator. Its packed amplitude array still has $2^n$ entries: this is a dense-state algorithm, not a tensor-network compression. For a dense local matrix, each of $2^{n-k}$ columns requires $2^{2k}$ scalar multiply/add terms, giving order $2^{n+k}$ arithmetic. Packing may allocate additional state-sized storage. These operation counts are not measured performance claims about the FlagQuantum backend's internal algorithm.
+
+<span id="formula-code-4-6-layout"></span>
+
+### 6. Distinguish logical axes, strides and complex adjoints
+
+**Formula.** Tensor-axis permutation obeys
+
+$$
+V_{a_0,\ldots,a_{n-1}}=T_b,\qquad b_{o_r}=a_r.
+$$
+
+It copies the logical value into the corresponding coordinate without complex conjugation. Storage strides describe memory access; they are not an additional part of the physical state.
+
+**Derivation.** The same logical tensor can use different layouts. A permutation may expose a noncontiguous view; a subsequent `reshape` may need a copy. We rely on the documented logical order, not on whether storage is shared. A `.view` with a new shape requires compatible strides and can fail where `reshape` succeeds. `.contiguous()` reorganizes storage while preserving entries. In contrast, a matrix adjoint conjugates entries as well as transposing indices; using it in place of an axis rearrangement generally changes amplitudes.
+
+The runtime's actual PyTorch 2.13 docstrings are preserved in the evidence. Public PyTorch API documentation describes [reshape](https://docs.pytorch.org/docs/stable/generated/torch.reshape.html), [permute](https://docs.pytorch.org/docs/stable/generated/torch.permute.html) and [view](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.view.html); those rolling links can describe newer releases. The pinned execution checks below establish the behavior used here.
+
+```python
+V = T.permute(order)
+assert not V.is_contiguous()
+assert torch.equal(V.reshape(4,2),V.contiguous().view(4,2))
+failed_view = False
+try:
+    V.view(4,2)
+except RuntimeError:
+    failed_view = True
+assert failed_view
+assert not torch.equal(V,V.conj())
+print('permuted layout contiguous:', V.is_contiguous())
+print('view rejected incompatible strides:', failed_view)
+print('reshape agrees with contiguous copy; conjugation changes complex entries')
+```
+
+```text
+permuted layout contiguous: False
+view rejected incompatible strides: True
+reshape agrees with contiguous copy; conjugation changes complex entries
+```
+
+The rejected view is an intentional boundary demonstration, not a failed quantum execution. This contract neither promises zero-copy reshaping nor permits dropping axis metadata after a copy.
+
+<span id="formula-code-4-6-boundaries"></span>
+
+### 7. Check single-axis, full-support and nonunitary boundaries
+
+For k=1, packing produces a two-row matrix: each spectator column undergoes the same single-qubit map. For k=n, there is one spectator column, and U acts in the declared full support order, which can differ from `(0,…,n−1)`. Identity U returns every amplitude unchanged because packing and unpacking are inverse bijections.
+
+The proof is linear algebra and does not require unitarity. If U is unitary, each column's squared norm is preserved by $A_t^\dagger U^\dagger UA_t=A_t^\dagger A_t$; summing columns preserves the global norm. A general linear map can change the norm. It must not be silently normalized and submitted as a deterministic gate.
+
+```python
+assert torch.equal(apply_local(x,torch.eye(4,dtype=DTYPE),3,S),x)
+assert torch.equal(apply_local(x,torch.eye(8,dtype=DTYPE),3,(2,0,1)),x)
+M = torch.tensor([[1,2j],[0,0]],dtype=DTYPE)
+linear = apply_local(x,M,3,(1,))
+linear_scalar = torch.tensor(scalar_scatter(M,x.tolist(),3,(1,)),dtype=DTYPE)
+assert torch.allclose(linear,linear_scalar,rtol=0,atol=ATOL)
+assert abs(torch.vdot(linear,linear).real.item()-1) > .1
+print('identity and full support preserve every coefficient')
+print('general linear-map squared norm:', round(torch.vdot(linear,linear).real.item(),6))
+```
+
+```text
+identity and full support preserve every coefficient
+general linear-map squared norm: 1.75
+```
+
+These are classical reference calculations on the already verified input, not extra circuit calls. The helper checks finite CPU complex128 vectors and matrices but deliberately allows unnormalized vectors and nonunitary linear maps. The separate circuit path requires a normalized physical preparation and a unitary gate.
+
+<span id="formula-code-4-6-rejections"></span>
+
+### 8. Reject dimension and convention mismatches
+
+The input vector must have shape `(2**n,)`, not `(1,2**n)` or `(2,)*n`. A support contains distinct, in-range integer qubit positions in the intended order. The local matrix must have shape `(2**k,2**k)`. No automatic squeezing, sorting, precision conversion or replacement of nonfinite values is permitted by the helper.
+
+```python
+invalid = [lambda: checked_vector(x[None,:],3),
+           lambda: checked_vector(x,2),
+           lambda: axis_order(3,(0,0)),
+           lambda: axis_order(3,(0,3)),
+           lambda: apply_local(x,torch.eye(2,dtype=DTYPE),3,S),
+           lambda: checked_matrix(M,1,unitary=True)]
+rejected = 0
+for action in invalid:
+    try:
+        action()
+    except ValueError:
+        rejected += 1
+assert rejected == 6
+print('batch, length, duplicate/range support, matrix shape and gate unitarity:', rejected, 'rejected')
+```
+
+```text
+batch, length, duplicate/range support, matrix shape and gate unitarity: 6 rejected
+```
+
+Run the companion and the actual-body output checker:
+
+```bash
+python examples/foundations/tensor_reshaping.py
+python scripts/check_tensor_reshaping_prose.py
+```
+
+The complete program executes **201 ideal circuits**: 186 basis/support cases and 15 complex joint-state cases. It covers every nonempty ordered support and every basis input through three qubits, plus four-qubit supports `(3,1)`, `(1,3)` and `(2,0,3,1)`. Local Fourier matrices with complex row phases exercise dimensions two, four, eight and sixteen; finite geometric sums establish their orthonormal columns, and row phases preserve the inner products. Twenty-three additional arbitrary-vector classical checks and the nonunitary boundary compare packed contraction, independent scalar scatter and dense embeddings. Dense embeddings are used only as a small-system validation reference, not in `apply_local`.
+
+The eight body fragments execute two circuits in a separate invocation and check exact printed outputs. A separate four-qubit transfer is recorded below. Evidence applies to the stated fixtures, version and precision; it does not certify arbitrary sizes, batched execution, backend internals, GPU memory behavior, noisy simulation or hardware.
+
+Expected output of the complete program:
+
+```text
+Logical axes(q0,...,q[n-1]); last bit varies fastest; batch axis excluded.
+186 basis circuits; all nonempty ordered supports through3qubits plus3four-qubit supports.
+15 complex joint-state circuits;23arbitrary-vector classical cases; scalar/dense/packed references agree.
+Support(2,0), axes(2, 0, 1): input101 -> row3,column0,value5.
+Identity, full support, noncontiguous layout, nonunitary linear map and11invalid contracts checked.
+201 actual CPU complex128 circuits; atol=1e-12,rtol=0; no phase alignment, shots or hardware.
+```
+
+### Understanding checks and transfer exercises
+
+**4.6-A — New packing.** For n=4, S=`(3,1)` and ascending complement C, locate input tuple `1011` in the packed matrix: give o, its global index, packed row and column, packed shape and restoring axis order. Apply the controlled flip whose first local bit is control. What output tuple results?
+
+**4.6-B — Restore correctly.** For o=`(2,0,1)`, explain why applying `permute(o)` twice does not generally restore T. Give a coefficient marker that detects the mistake.
+
+**4.6-C — Expand a contraction.** For S=`(2,0)`, write the four input tuples contributing to output tuple `101`, and identify its local row and spectator column. Where would an erroneous conjugation enter?
+
+**4.6-D — Diagnose storage and gate claims.** A collaborator says `reshape` must be free because it only changes shape, that a rank-four tensor is a four-dimensional vector space, and that normalizing the result of M makes M a valid gate. Explain the three errors separately.
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** C=`(0,2)`, o=`(3,1,0,2)`, and J=11. Selected bits `(b3,b1)=(1,0)` give row 2; spectator bits `(b0,b2)=(1,1)` give column 3. The matrix shape is `(4,4)`, and restoring order h=`(2,1,3,0)`. Controlled flip maps local `10` to `11`, so q1 changes to 1, giving global `1111`, index 15. The separate author transfer actually executes this four-qubit circuit and checks all 16 complex amplitudes/probabilities against packed and scalar references.
+
+**B.** The correct inverse is `(1,2,0)`. With `T=arange(8).reshape(2,2,2)`, the original marker at `(1,0,0)` is 4, whereas `T.permute(o).permute(o)[1,0,0]` is 2. The two cycles compose to the inverse cycle, not to the identity.
+
+**C.** Spectator b1=0, local output `(b2,b0)=(1,1)`, row 3, column 0. Local input `00,01,10,11` gives global `000,100,001,101`. Thus the result is $U_{3,0}x_0+U_{3,1}x_4+U_{3,2}x_1+U_{3,3}x_5$. No term conjugates U or x; replacing U by `U.conj()` or using an adjoint would implement a different linear map in general.
+
+**D.** A reshape can allocate to preserve logical order when strides are incompatible, so “shape only” is a mathematical description, not a zero-cost storage guarantee. Four binary axes have 16 entries; rank counts axes, while the coefficient vector space has dimension 16. Finally, output-dependent normalization is generally nonlinear and does not turn a nonunitary matrix into a deterministic unitary gate. A legitimate measurement/filter interpretation needs additional operations and probabilities, outside this section's circuit contract.
+
+</details>
+
+### Sources, depth and next step
+
+Depth **F**: binary-axis correspondence, packing bijection, contraction, inverse-axis restoration and the full indexed local-action identity are derived at finite n, with unitarity treated separately. Nielsen and Chuang, 10th Anniversary Edition, §2.1.7 is the assigned tensor-product background. No fresh inspection of the user-local PDF is claimed; the proofs above specify the convention independently. Actual released FlagQuantum and installed PyTorch contracts are checked in the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.6.json).
+
+This remains an author-verified working draft. Independent mathematical, implementation and reader review are pending. Continue, when drafted, with [4.7 The no-cloning theorem](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-8).
