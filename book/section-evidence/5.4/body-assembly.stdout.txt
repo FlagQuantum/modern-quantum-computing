@@ -1,0 +1,1 @@
+8cumulative body fragments,11actual circuits passed;stdout captured exactly.

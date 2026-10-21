@@ -1,0 +1,6 @@
+Compute/use/clean:51full-register basis/complex runs;20valid-workspace and angle-boundary runs passed.
+Reuse:33full-register tests plus1zero-workspace complex analytic check;retained first output and second computation coherent.
+Phase use:18circuits;C-dagger Z(F) C equals Z(data) on clean-input subspace,with workspace restored.
+4boundary circuits:wrong blank,changed data,whole-used inverse andnonorthogonal-copy failure checked.
+127actual CPUcomplex128 circuits;7invalid contracts rejected;atol1e-12,rtol0,no phase alignment.
+Clean subspace and numerical leakage distinguished;no reset,noise,hardware or resource-optimality claim.

@@ -71,6 +71,28 @@
       ],
       "status": "draft",
       "next_transition": "5.4 Uncomputation and reusable workspace."
+    },
+    {
+      "ref": "5.4",
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-4",
+      "title": "Uncomputation and reusable workspace",
+      "depth": "F",
+      "requires": [
+        "sec-gates-reversible-computation-and-circuit-synthesis-3"
+      ],
+      "question": "Which intermediate uses preserve the computed image needed for an inverse, and how does cleaned workspace become reusable?",
+      "entry": "5.3 coherent Boolean embedding and register contracts; pure-state unitary composition.",
+      "exit": "Track D,W,F,Y through compute-copy-uncompute,including complex garbage and joint inputs; distinguish orthogonal label copying from unknown-state cloning and demonstrate continuous reuse.",
+      "worked_case": "Six-gate complex-garbage compute block,retained XOR output,two-call reuse with between-call H,diagonal phase use,wrong blank/data and non-basis-copy witnesses.",
+      "boundary": "Exact fixed unitary compute with deterministic computational output code on clean-input subspace; no arbitrary F use,reset,noise or optimal workspace scheduling claim.",
+      "code_plan": "Actual released named gates,compose,placement and adjoint; independent scalar bit updates plus analytic phase/retained-operation references.",
+      "independent_check": "All4/5qubit basis inputs andcomplex products,clean-subspace contracts,zero/full-turn angles,joint leakage and fullphase output,continuous correlated reuse,new-angle RY transfer.",
+      "transfer_task": "New compute angles with RY between calls and arbitrary retained output bits; derive full amplitudes and verify10actual runs.",
+      "source_locators": [
+        "NC:3.2.5"
+      ],
+      "status": "draft",
+      "next_transition": "5.5 Universal gate sets."
     }
   ]
 }

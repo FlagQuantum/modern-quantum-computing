@@ -1,6 +1,6 @@
 # 5. Gates, Reversible Computation, and Circuit Synthesis
 
-**Working drafts: sections 5.1–5.3 · Writing Baseline 1.0 · October 21, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 5.1–5.4 · Writing Baseline 1.0 · October 21, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-1"></span>
 
@@ -1019,4 +1019,353 @@ Dense oracle helper limited to n+m<=6; no efficient-synthesis,reset,shots,noise 
 
 Depth **F**: the collision/inner-product obstruction, inverse-pair bijection, both-sided unitarity, self-inverse XOR embedding, finite Boolean-circuit construction and its zero-workspace cleanup proof are explicit. Assigned background: Nielsen and Chuang, 10th Anniversary Edition (2010), §3.1.2. No fresh inspection of the user-local PDF is claimed. The source/signatures of the installed released FlagQuantum named gates, custom unitary placement and native compose/adjoint were inspected or exercised; the book helpers are separately labeled. This section does not introduce a new native compiler API. The prior [nonunitary adjoint boundary](#formula-code-5-1-boundaries) is preserved; all inverse blocks here contain named unitary gates.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.3.json) records execution, exact expected outputs, a separate new-function transfer and the finite resource guard. Independent mathematical review, implementation review and reader trials remain pending. No reset, physical erasure, noise, hardware or efficient general synthesis was executed or claimed. Continue, when drafted, with [5.4 Uncomputation and reusable workspace](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-4).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.3.json) records execution, exact expected outputs, a separate new-function transfer and the finite resource guard. Independent mathematical review, implementation review and reader trials remain pending. No reset, physical erasure, noise, hardware or efficient general synthesis was executed or claimed. Continue with [5.4 Uncomputation and reusable workspace](#sec-gates-reversible-computation-and-circuit-synthesis-4).
+
+
+<span id="sec-gates-reversible-computation-and-circuit-synthesis-4"></span>
+
+## 5.4 Uncomputation and reusable workspace
+
+A temporary qubit is reusable when the circuit restores its specified state and removes its correlations with everything retained. Applying an inverse somewhere in a program does not establish that contract. We must identify exactly which registers the inverse sees, what the intervening use changed, and where the answer is kept.
+
+[5.3](#sec-gates-reversible-computation-and-circuit-synthesis-3) constructed finite Boolean computations from retained basis labels. Here the workspace may itself contain complex superpositions. We prove the cleanup statement under an explicit orthogonal output-encoding assumption, then reuse the same auxiliaries in a continuous computation whose retained registers are correlated. All register positions and phases are retained; q0 remains the most significant basis bit. The eight cumulative units use the pinned released FlagQuantum 0.3.1/PyTorch 2.13.0 CPU complex128 environment. Helpers and complete executable checks are in [reusable_workspace.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/reusable_workspace.py).
+
+<span id="formula-code-5-4-roles"></span>
+
+### 1. Declare which registers must be reusable
+
+**Contract.** Let D hold n input qubits, W hold r temporary qubits, F hold m computed output qubits and Y hold m retained output qubits. Only W and F must be restored to zero; Y records the answer. Suppose a fixed unitary C satisfies
+
+$$
+C|x,0^r,0^m\rangle=|x\rangle|g_x\rangle|f(x)\rangle.
+$$
+
+Here $f(x)\in\{0,1\}^m$, while $|g_x\rangle$ is any normalized workspace vector, including a coherent superposition and branch-dependent phase. The formula is an assumption about C on a specified subspace, not on arbitrary workspace inputs. F is in a definite computational basis code for each basis x. That encoding enables a copy operation which leaves C's full output unchanged apart from the separate Y register.
+
+**Concrete derivation.** Use D=q0, W=q1, F=q2, Y=q3. Our C retains D, computes $f(d)=d$ in F, but deliberately makes W a complex superposition. Its chronological gates are CX(D,F), H(W), Rz(W,φ), CX(D,W), Rz(F,η), Rz(D,δ). With radians φ=0.43, η=−0.71, δ=0.37,
+
+$$
+C|d,0,0\rangle=\gamma_d|d\rangle
+\frac{e^{-i\phi/2}|d\rangle+e^{i\phi/2}|1\oplus d\rangle}{\sqrt2}|d\rangle,
+\qquad \gamma_d=e^{-i(\eta+\delta)(-1)^d/2}.
+$$
+
+H creates the two W amplitudes, Rz supplies their opposite half-angle phases, and CX flips the W label when d=1. The last two rotations supply γ. Thus neither W's zero state nor its phase can be inferred by reading F alone.
+
+**Code and verification.** Imports and fragments are cumulative; run from the repository root. The explicit coefficient loop checks every complex output coordinate, including γ. The book runner prepares input factors outside the block, invokes actual `fq.run` with the pinned CPU/PyTorch/statevector complex128 options and probabilities enabled, and checks batch-one shapes and precision. Approximation and backend fallback are disabled. The four-qubit C leaves Y untouched throughout.
+
+```python
+import sys
+sys.path.insert(0,'.')
+import cmath,torch
+from math import sqrt
+import flagquantum as fq
+from examples.foundations import reusable_workspace as rw
+D=rw.D
+C=fq.Circuit(4,dtype=D).cx(0,2).h(1).rz(1,.43).cx(0,1).rz(2,-.71).rz(0,.37)
+factors=[(.6,.8j),(1,0),(1,0),(1,0)]
+v,p=rw.run(C,factors)
+expected=torch.zeros(16,dtype=D)
+for d,alpha in enumerate((.6,.8j)):
+    gamma=cmath.exp(-.5j*(-.71+.37)*(-1)**d)
+    for t in (0,1):
+        expected[8*d+4*(t^d)+2*d]=alpha*gamma*cmath.exp((.5j if t else -.5j)*.43)/sqrt(2)
+torch.testing.assert_close(v,expected,rtol=0,atol=rw.ATOL)
+print('C computes F=d with complex coherent W and branch phases; all16 coordinates match the analytic formula')
+```
+
+```text
+C computes F=d with complex coherent W and branch phases; all16 coordinates match the analytic formula
+```
+
+<span id="formula-code-5-4-theorem"></span>
+
+### 2. Prove compute-copy-uncompute on the full input subspace
+
+**Theorem.** Let $K=\prod_{j=0}^{m-1}\mathrm{CX}_{F_j,Y_j}$, with the declared bit correspondence. It maps $|z\rangle_F|y\rangle_Y$ to $|z\rangle_F|y\oplus z\rangle_Y$. Define $T=(C^\dagger\otimes I_Y)K(C\otimes I_Y)$. Then
+
+$$
+T|x,0^r,0^m,y\rangle
+=|x,0^r,0^m,y\oplus f(x)\rangle.
+$$
+
+**Proof, tracking every register.** By the assumption on C and by linearity in the workspace vector,
+
+$$
+\begin{aligned}
+|x,0^r,0^m,y\rangle
+&\longmapsto |x\rangle|g_x\rangle|f(x)\rangle|y\rangle\\
+&\longmapsto |x\rangle|g_x\rangle|f(x)\rangle|y\oplus f(x)\rangle\\
+&\longmapsto |x,0^r,0^m,y\oplus f(x)\rangle.
+\end{aligned}
+$$
+
+The middle step does not change D,W,F: every component of $|g_x\rangle$ has the same F code f(x), so K makes the same Y change on each component. The last step therefore receives exactly $C|x,0^r,0^m\rangle$ on its own registers, and C-dagger restores them. All phases contained in $|g_x\rangle$ are removed by this exact inverse; we do not delete or align those phases numerically. Applying linearity once more proves
+
+$$
+T\sum_{x,y}\alpha_{xy}|x,0^r,0^m,y\rangle
+=\sum_{x,y}\alpha_{xy}|x,0^r,0^m,y\oplus f(x)\rangle.
+$$
+
+This includes correlated D,Y inputs. It does not require D and Y to remain separate states after evaluation. W and F do factor out as their zero vector; this is the reusable-workspace guarantee.
+
+**Code and verification.** Copy F into the separate Y, then invert only C. The independent reference uses scalar bit updates and complex rotation phases, without reading circuit IR or simulator output. Its clean-subspace result is also checked against the much simpler ideal CX(D,Y).
+
+```python
+used=fq.Circuit(4,dtype=D).compose(C).cx(2,3)
+cleaned=fq.Circuit(4,dtype=D).compose(used).compose(C.adjoint())
+for stage,c in (('use',used),('clean',cleaned)):
+    v,p=rw.run(c,factors)
+    expected=rw.reference(rw.product_input(factors),rw.ops_for(stage))
+    torch.testing.assert_close(v,expected,rtol=0,atol=rw.ATOL)
+    if stage=='clean':
+        torch.testing.assert_close(v,rw.clean_reference(factors),rtol=0,atol=rw.ATOL)
+        assert rw.leakage(p)<rw.ATOL
+print('Copy retains Y; C-dagger restores both W and F; clean action equals CX(D,Y) without phase alignment')
+```
+
+```text
+Copy retains Y; C-dagger restores both W and F; clean action equals CX(D,Y) without phase alignment
+```
+
+<span id="formula-code-5-4-target"></span>
+
+### 3. The retained target need not start in zero
+
+**Formula.** The theorem defines an XOR operation on Y, not an overwrite:
+
+$$
+\sum_{x,y}\alpha_{xy}|x,y\rangle_{D,Y}
+\longmapsto\sum_{x,y}\alpha_{xy}|x,y\oplus f(x)\rangle_{D,Y},
+$$
+
+with the zero W,F factors understood in their original register positions. Zero Y exposes f(x) directly. For nonzero or superposed Y, the operation still has the same valid unitary contract.
+
+**Derivation.** In the proof, y was arbitrary. The separate output is never a target of C-dagger, so no condition on Y is needed for restoration of W,F. The special case of a prior Y correlated with D follows from the joint coefficients α, not from preparing D and Y independently. In code, a complex product target is a simple test of this broader contract; the reuse experiment below exercises an already correlated retained register.
+
+**Code and verification.** Compare the whole complex state with the ideal XOR action, including both Y amplitudes and the restored auxiliary zeros.
+
+```python
+factors=[(.6,.8j),(1,0),(1,0),rw.complex_factors(2)[1]]
+v,p=rw.run(cleaned,factors)
+torch.testing.assert_close(v,rw.clean_reference(factors),rtol=0,atol=rw.ATOL)
+assert rw.leakage(p)<rw.ATOL
+print('A complex initial Y is XORed correctly; zero W,F restored independently of its amplitudes')
+```
+
+```text
+A complex initial Y is XORed correctly; zero W,F restored independently of its amplitudes
+```
+
+<span id="formula-code-5-4-inverse"></span>
+
+### 4. Invert the computation, not the retained use
+
+**Formula.** If the chronological used block is C then K, its total matrix is KC. Reversing that entire block yields
+
+$$
+(KC)^\dagger(KC)=I,
+$$
+
+and therefore restores Y to its original value too. The desired result instead uses $C^\dagger K C$.
+
+**Derivation.** K is self-inverse, so the full inverse first undoes K's output write, then undoes C. In the clean construction, the inverse excludes K. Both are valid unitary inverses; they implement different tasks. In our tested API, `compose` appends to its destination and `adjoint` returns a new inverse program, so build separate destination circuits to keep reusable source C intact. The inverse uses named unitary gates and stays within the precondition established in 5.1.
+
+**Code and verification.** Execute both tasks on the same input. For zero Y and a control with a nonzero one amplitude, the final vectors differ even though both have clean workspace.
+
+```python
+factors=[(.6,.8j),(1,0),(1,0),(1,0)]
+undo_everything=fq.Circuit(4,dtype=D).compose(used).compose(used.adjoint())
+a,pa=rw.run(undo_everything,factors)
+b,pb=rw.run(cleaned,factors)
+torch.testing.assert_close(a,rw.product_input(factors),rtol=0,atol=rw.ATOL)
+torch.testing.assert_close(b,rw.clean_reference(factors),rtol=0,atol=rw.ATOL)
+assert not torch.allclose(a,b,rtol=0,atol=rw.ATOL)
+print('Full used-block inverse erases the answer; compute-only inverse preserves the XOR answer')
+```
+
+```text
+Full used-block inverse erases the answer; compute-only inverse preserves the XOR answer
+```
+
+<span id="formula-code-5-4-reuse"></span>
+
+### 5. Reuse the same auxiliary pair in a continuous circuit
+
+**Formula.** After copying input d into Y, apply H to D and compute again into a new retained qubit Z, reusing W,F. With initial D amplitudes $\alpha_d$ and both retained outputs zero,
+
+$$
+\sum_d\alpha_d|d,0,0,0,0\rangle
+\longmapsto\sum_{d,e}\alpha_d H_{ed}|e,0,0,d,e\rangle.
+$$
+
+**Derivation.** The first cleaned call maps $|d,0,0,0,0\rangle$ to $|d,0,0,d,0\rangle$. H then changes D but leaves its earlier record d in Y. Thus D and Y are generally correlated. The second cleaned call writes the new D label e into Z and restores W,F again. It acts linearly on this correlated input, exactly the scope proved in unit 2. No intermediate measurement, partial statevector extraction or repreparation is needed.
+
+**Code and verification.** The book helper builds one five-qubit circuit: the two six-gate compute blocks and their native adjoints surround the two output CX gates, with H(D) between calls. Each four-qubit source is placed explicitly on `(0,1,2,3)` and leaves its fourth qubit untouched. Z is q4. The four nonzero output coefficients below are derived directly from H, independently of the detailed C implementation.
+
+```python
+factors=[(.6,.8j),(1,0),(1,0),(1,0),(1,0)]
+v,p=rw.run(rw.reuse(),factors)
+expected=torch.zeros(32,dtype=D)
+for d,alpha in enumerate((.6,.8j)):
+    for e in (0,1):expected[17*e+2*d]=alpha*(-1 if d==e==1 else 1)/sqrt(2)
+torch.testing.assert_close(v,expected,rtol=0,atol=rw.ATOL)
+assert rw.leakage(p,5)<rw.ATOL
+print('Continuous two-call reuse: W,F zero; old Y record retained while new Z records the H-transformed data')
+```
+
+```text
+Continuous two-call reuse: W,F zero; old Y record retained while new Z records the H-transformed data
+```
+
+<span id="formula-code-5-4-phase"></span>
+
+### 6. A diagonal phase use can also preserve the computed encoding
+
+**Formula.** Instead of copying F, apply a known diagonal operation $V|z\rangle=e^{i\theta(z)}|z\rangle$. Then
+
+$$
+C^\dagger V_F C|x,0^r,0^m\rangle
+=e^{i\theta(f(x))}|x,0^r,0^m\rangle.
+$$
+
+**Derivation.** V multiplies the whole computed image by a scalar determined by f(x); C-dagger can therefore undo that same image while the scalar remains. This is a coherent phase use, not evidence that every possible operation on F permits cleanup. For our single-bit F and V=Z, the effective operation is Z on D because f(d)=d. The computed branch phases γ cancel, while the intended sign $(-1)^d$ survives.
+
+**Code and verification.** All complex coordinates are compared with the explicit data-Z reference. Computational probabilities alone would not detect dropping this intended phase.
+
+```python
+factors=[(.6,.8j),(1,0),(1,0),(1,0)]
+phase_use=fq.Circuit(4,dtype=D).compose(C).z(2).compose(C.adjoint())
+v,p=rw.run(phase_use,factors)
+expected=rw.reference(rw.product_input(factors),[('z',0)])
+torch.testing.assert_close(v,expected,rtol=0,atol=rw.ATOL)
+assert rw.leakage(p)<rw.ATOL
+print('C-dagger Z(F) C retains the intended data sign and restores W,F; phase-sensitive check passed')
+```
+
+```text
+C-dagger Z(F) C retains the intended data sign and restores W,F; phase-sensitive check passed
+```
+
+<span id="formula-code-5-4-boundaries"></span>
+
+### 7. Identify when copying disturbs what the inverse needs
+
+**Wrong-input boundary.** The theorem assumes zero W,F. On another subspace, the overall circuit is still unitary, but the stated cleaned-input function need not hold. Our wrong-W witness is returned to W=1, so it is not a reusable zero ancilla. Flipping D between use and inverse changes the F code expected by the inverse; F is then left dirty.
+
+**Why a basis copy is not cloning.** CX on $|\psi\rangle|0\rangle$, with $|\psi\rangle=a|0\rangle+b|1\rangle$, gives $a|00\rangle+b|11\rangle$, not generally $|\psi\rangle|\psi\rangle$. If a unitary copied two states ψ,φ exactly into independent copies, inner-product preservation would require $s=s^2$, where $s=\langle\psi|\phi\rangle$. Taking moduli gives $|s|=0$ or 1. Thus distinct nonorthogonal rays cannot both be copied; orthogonal computational labels can. This is the 4.7 obstruction applied to the copy step of this proof.
+
+**Concrete failed cleanup.** Prepare a computed output plus by H(q0), copy its computational label with CX(q0,q1), and try to undo its preparation by H(q0). The result is
+
+$$
+\tfrac12(|00\rangle+|01\rangle+|10\rangle-|11\rangle).
+$$
+
+The first qubit has probability one-half of being one, not zero. Copying its basis label changed the coherent output which H-dagger needed. This circuit violates the deterministic orthogonal F-code assumption; it is not a counterexample to the theorem.
+
+**Code and verification.** Execute the two wrong workspace contracts and the non-basis-copy witness, checking predicted failures rather than accepting them as successful cleanups.
+
+```python
+v,p=rw.run(rw.block(),rw.basis_factors((0,1,0,0)))
+assert abs(rw.leakage(p)-1)<rw.ATOL
+factors=rw.basis_factors((0,0,0,0))
+v,p=rw.run(rw.block('bad-data'),factors)
+torch.testing.assert_close(v,rw.reference(rw.product_input(factors),rw.ops_for('bad-data')),rtol=0,atol=rw.ATOL)
+assert rw.probability_one(p,2)>1-rw.ATOL
+v,p=rw.run(fq.Circuit(2,dtype=D).h(0).cx(0,1).h(0),rw.basis_factors((0,0)))
+torch.testing.assert_close(v,torch.tensor([.5,.5,.5,-.5],dtype=D),rtol=0,atol=rw.ATOL)
+assert abs(rw.probability_one(p,0)-.5)<rw.ATOL
+print('Wrong blank,changed data and non-basis copying: all predicted cleanup failures observed')
+```
+
+```text
+Wrong blank,changed data and non-basis copying: all predicted cleanup failures observed
+```
+
+<span id="formula-code-5-4-verification"></span>
+
+### 8. Verify the joint auxiliary state and state the cost
+
+**Formula.** If R denotes all retained registers, expand a pure final state as $\sum_{r,a}z_{ra}|r,a\rangle$, with a the combined W,F bit string. Joint leakage is
+
+$$
+\ell=\sum_r\sum_{a\ne0}|z_{ra}|^2.
+$$
+
+Exactly zero leakage makes every nonzero-a coefficient vanish, proving factorization of the auxiliary zero state as in 5.2. The code sums this joint event directly; multiplying separate marginal probabilities would require an independence assumption and is not the same test. Finite leakage below tolerance is evidence, not an exact factorization certificate. Full-vector comparison additionally checks the retained operation and phase; clean ancillas alone do not prove that the intended answer was preserved.
+
+**Cost and limits.** A compute block of L named logical gates followed by m output CX gates and its reverse uses 2L+m logical gates in this construction and restores r+m temporary qubits. Our L=6,m=1 example uses thirteen gates. This is not a minimum gate count, a depth estimate or a hardware compilation cost. Reuse saves the need to allocate a fresh temporary block for the second evaluation; the earlier retained output must still be kept. Scheduling, other uncomputation strategies and hardware reset have separate contracts.
+
+**Code and verification.** The book guards reject nonfinite or Boolean-valued radian parameters, an undeclared reset stage and malformed scalar-reference vectors. No native reset capability is invented.
+
+```python
+rejected=0
+for action in (lambda:rw.compute(float('nan')),lambda:rw.compute(True),
+               lambda:rw.block('reset'),lambda:rw.reference(torch.zeros(8,dtype=D),[])):
+    try:action()
+    except ValueError:rejected+=1
+assert rejected==4 and rw.RUNS==11
+print('4 malformed contracts rejected;11actual body circuits; clean-subspace proof and finite tolerance kept distinct')
+```
+
+```text
+4 malformed contracts rejected;11actual body circuits; clean-subspace proof and finite tolerance kept distinct
+```
+
+### Run the complete example
+
+```bash
+python examples/foundations/reusable_workspace.py
+python scripts/check_reusable_workspace_prose.py
+```
+
+The complete program runs **127 actual circuits**. Fifty-one runs check compute/use/clean on every four-qubit basis input and one complex product, including the action outside the clean subspace. Twenty more check the clean-input contract with arbitrary Y and additional zero/full-turn angle cases. Thirty-four check continuous reuse on every five-qubit basis state, a complex full-register product and a separately derived clean-input coherent result. Eighteen check the phase use, and four check wrong inputs, changed data, undoing the entire use and copying a non-basis output. Seven malformed helper contracts are rejected. These full-vector checks use independently specified scalar bit/rotation references and simple ideal-operation or analytic coefficient checks. No state is phase-aligned to force agreement.
+
+The eight cumulative body fragments run eleven circuits, with exact expected stdout comparison. The separate transfer described in the exercises uses three new compute angles and a different between-call rotation. The general theorem establishes the clean-subspace guarantee; finite examples test the released implementation rather than proving that guarantee for every possible program.
+
+Expected output of the complete program:
+
+```text
+Compute/use/clean:51full-register basis/complex runs;20valid-workspace and angle-boundary runs passed.
+Reuse:33full-register tests plus1zero-workspace complex analytic check;retained first output and second computation coherent.
+Phase use:18circuits;C-dagger Z(F) C equals Z(data) on clean-input subspace,with workspace restored.
+4boundary circuits:wrong blank,changed data,whole-used inverse andnonorthogonal-copy failure checked.
+127actual CPUcomplex128 circuits;7invalid contracts rejected;atol1e-12,rtol0,no phase alignment.
+Clean subspace and numerical leakage distinguished;no reset,noise,hardware or resource-optimality claim.
+```
+
+### Understanding checks and transfer exercises
+
+**5.4-A — New reuse experiment.** Change the compute angles to (−0.29,0.61,−1.03) radians and replace the between-call H by Ry(0.31). Allow arbitrary initial Y,Z. Derive the final state with W,F initially zero, and verify it independently of the detailed C sequence.
+
+**5.4-B — What must remain unchanged?** Why can CX from F into Y preserve the inverse's input even when W is a complex superposition? Why does a generic unitary on F not have the same guarantee? Explain the diagonal phase exception.
+
+**5.4-C — Exact versus numerical reuse.** Does small joint leakage prove that the retained operation is correct? Can the joint zero-state probability be obtained by multiplying separate zero-state marginal probabilities without further assumptions?
+
+**5.4-D — Source and destination.** Which source block should be inverted to keep the answer? What does restoring a wrong initial workspace value demonstrate, and what does it fail to demonstrate?
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** For initial coefficients $\alpha_{dyz}$ on D,Y,Z, the final state is
+
+$$
+\sum_{d,y,z,e}\alpha_{dyz}[R_y(0.31)]_{ed}
+|e,0,0,y\oplus d,z\oplus e\rangle.
+$$
+
+The first call XORs d into Y; the intervening rotation contributes its matrix entry; the second call XORs e into Z. Both calls restore W,F, irrespective of the changed compute angles, provided the orthogonal output contract still holds. The separate author transfer runs eight D,Y,Z basis inputs and one complex product in a continuous five-qubit circuit, then one additional phase-use circuit: ten actual executions. Its scalar reference uses explicit sine/cosine Ry entries and bitwise output indices, not the helper's compute gate list. It compares full complex coordinates without phase alignment.
+
+**B.** For fixed x, every W component accompanies the same basis code f(x), so the output write is the same on all those components and changes none of D,W,F. A generic F rotation can mix different code values or correlate Y with newly changed F components; C-dagger then need not see its original computed image. A diagonal F operation only multiplies that image by a scalar, which passes through the linear inverse and remains as the intended data phase.
+
+**C.** No. A full used-block inverse is a counterexample: it cleans auxiliaries but erases the answer. Check the retained statevector and phase against the intended operation as well. Joint probability requires a joint event; multiplying marginals assumes independence. An exactly zero leakage gives the pure-state factorization theorem; a computed inequality at finite tolerance is a numerical check rather than an exact proof.
+
+**D.** Invert C on D,W,F, leaving K's retained Y write intact. Inverting KC restores all registers to their input, including Y. Returning a wrong workspace input to its original value can demonstrate reversibility on that input; it does not establish the specified zero-workspace function or availability of a clean reusable ancilla.
+
+</details>
+
+### Sources, depth and next step
+
+Depth **F**: the compute-copy-uncompute statement tracks every register, extends to arbitrary joint D,Y coefficients, permits complex workspace and branch phases, and explains why orthogonal basis encoding permits a nondisturbing copy while generic unknown-state cloning fails. The clean-workspace and retained-output obligations are checked separately. Assigned background: Nielsen and Chuang, 10th Anniversary Edition (2010), §3.2.5. No fresh inspection of the user-local PDF is claimed. Released FlagQuantum source/signatures and actual executions support the named gates, placement, composition and native unitary adjoints; no new compiler, reset or state-preparation API is invented.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.4.json) records author execution, exact body/full outputs and the new-angle transfer. This remains a working draft: independent mathematical and implementation reviews and reader trials are pending. No physical reset, noise, shots, hardware execution, numerical error certificate or resource-optimal scheduling is claimed. Continue, when drafted, with [5.5 Universal gate sets](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-5).

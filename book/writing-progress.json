@@ -321,6 +321,16 @@
       "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
       "record": "book/section-records/5.3.json",
       "author_execution": "passed: FQ0.3.1/Torch2.13.0CPUcomplex128; exact Boolean basis permutations and coherent full-vector references"
+    },
+    "sec-gates-reversible-computation-and-circuit-synthesis-4": {
+      "state": "draft",
+      "brief": "book/briefs/ch05.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+      "record": "book/section-records/5.4.json",
+      "author_execution": "passed: FQ0.3.1/Torch2.13.0CPUcomplex128; fullcomplex reference,clean-input and continuous reuse checks"
     }
   },
   "existing_pilots": [

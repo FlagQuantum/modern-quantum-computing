@@ -1,0 +1,105 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-4",
+  "ref": "5.4",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+  "depth": "F",
+  "result": "Compute-copy-uncompute cleans workspace",
+  "requires": [
+    "sec-gates-reversible-computation-and-circuit-synthesis-3"
+  ],
+  "assumptions": [
+    "Fixed coherent unitary compute;zero input W,F subspace;orthogonal computational F output encoding",
+    "Retained D,basis-conditional normalized complex W vectors includingbranchphases;arbitraryjoint D,Y coefficients",
+    "Copy changes Y only;inverse targets C registers and excludes retained output writes"
+  ],
+  "proof_obligations": [
+    "Track D,W,F,Y through all three steps and linearly extend to correlated inputs",
+    "Show complex garbage/phases undone without dropping phases",
+    "Explain orthogonal copying versus nonorthogonal unknown-state cloning",
+    "Demonstrate reuse while retaining an old correlated output",
+    "Diagonal phase use exception and wrong blank/changed data/non-basis use boundaries",
+    "Joint leakage factorization scope and retained-operation verification;2L+m logical gate count"
+  ],
+  "formula_code_units": [
+    "formula-code-5-4-roles",
+    "formula-code-5-4-theorem",
+    "formula-code-5-4-target",
+    "formula-code-5-4-inverse",
+    "formula-code-5-4-reuse",
+    "formula-code-5-4-phase",
+    "formula-code-5-4-boundaries",
+    "formula-code-5-4-verification"
+  ],
+  "sources": [
+    {
+      "locator": "NC:3.2.5",
+      "edition": "10th Anniversary Edition (2010)",
+      "current_session_inspection": "Assigned background; no fresh PDF inspection claimed"
+    },
+    {
+      "source": "Installed released FlagQuantum0.3.1 named gates,compose,adjoint and placement",
+      "evidence": "book/section-evidence/5.4/api-inspection.json"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/reusable_workspace.py",
+    "command": "python examples/foundations/reusable_workspace.py",
+    "prose_check_command": "python scripts/check_reusable_workspace_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 127,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 11,
+    "separate_transfer_circuits": 10,
+    "execution_ledger": {
+      "complete": 127,
+      "body_assembly": 11,
+      "body_plus_complete_checker": 138,
+      "separate_transfer": 10,
+      "total_section54_circuits": 286,
+      "note": "Earlier-section regressions and futureCI separate;no independent agent review requested/claimed."
+    },
+    "checks": [
+      "51compute/use/clean fullbasis+complex;20clean-input/angle-boundary",
+      "34continuousreuse fullbasis+complex/analytic;18phase-use",
+      "4boundary witnesses;7malformed helper contracts",
+      "Fullphase scalar references and simpler ideal-operation/analytic amplitudes",
+      "8body exact stdout andcompleteprogram output;10new-angle RY/phase transfers"
+    ],
+    "tolerance": "atol1e-12,rtol0;no phasealignment,normalization repair,fallback or approximation",
+    "unplanned_execution_failures": "None",
+    "limitations": "Exact unitary/orthogonal output clean-subspace statement;no reset,noise,hardware,gradient,errorcertificate or optimal scheduling claim.",
+    "script_sha256": "02e0cedd374a578eb80d99e88593c1d02899ae2d8c3bd2df9d771325905cc162"
+  },
+  "assessment": {
+    "tasks": [
+      "5.4-A newRYreuse transfer",
+      "5.4-B preservation condition",
+      "5.4-C numerical/joint/retained verification",
+      "5.4-D inverse scope and wrong blanks"
+    ],
+    "answers": "Supplied; reader trial not run"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "127complete circuits,8actualbody units/11circuits,10new-angle RY/phase transfer circuits and exact expected stdout passed. Scoped5.2/5.3body/full regressions passed. Frozen curriculum/proof/baseline/skill checks agree;strictMkDocs and70page local links/uniqueIDs passed. Actual browser formulas inspected. Preceding5.3fullCI anddeployment success confirmed. Independent reviews pending."
+  },
+  "production": {
+    "next_draft": "5.5 Universal gate sets",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual IAB1280x720 screenshots:register-tracked theorem and correlated-input sum,complex workspace/half-angle branch phases. No garbling or clipping in inspected regions."
+  }
+}

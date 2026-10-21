@@ -1,0 +1,20 @@
+{
+  "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md": "120733f9631eabfe55354b4de2f98006efdac47b5341b5c37037bab723e9b712",
+  "examples/foundations/reusable_workspace.py": "02e0cedd374a578eb80d99e88593c1d02899ae2d8c3bd2df9d771325905cc162",
+  "scripts/check_reusable_workspace_prose.py": "53467ec0faea620842bdd7e086d6c10e29d747e631363de487e5721aa9d27c7d",
+  "book/section-evidence/5.4/api-inspection.json": "a1bb2829f85e3894e283dce237b895f1d7828885c0e000cedc55f0acc38f4065",
+  "book/section-evidence/5.4/body-assembly.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.4/body-assembly.stdout.txt": "03550153a3b265ee757c66bda0a5207b2e33ef422382b7b93392bb1392a42b48",
+  "book/section-evidence/5.4/complete.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.4/complete.stdout.txt": "9a44cb7fc3879e7208cf0a091d73d1e040565ae4607323a45d7669fe3e8752b1",
+  "book/section-evidence/5.4/prose.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.4/prose.stdout.txt": "e00d390fadcd8e82e76774c5e6ec133b13b54cc4ef0e422ee99748e646159a7c",
+  "book/section-evidence/5.4/regression52.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.4/regression52.stdout.txt": "9825ea3bc6dbb00d6b2a9882ae056b5f9123965c3236e6eef3d535d21520f76f",
+  "book/section-evidence/5.4/regression53.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.4/regression53.stdout.txt": "844fc1cd2b2487832fa3abc7f2d64918a9b28314adf57223fd878fded919af3b",
+  "book/section-evidence/5.4/transfer.py": "6229bf15e4a2d9f360d6bb02c0e5a5194dca97fe9b61ab23aaca5eebaa487d94",
+  "book/section-evidence/5.4/transfer.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.4/transfer.stdout.txt": "f2418a1e02ae9212bb73aef92b385c26d692e4d64e0ddae849d3ea109e031807",
+  "book/section-evidence/5.4/validation.json": "33bc5f0b329158eaeb4cc600bb951495e69319a23b9f2aab5fbe8958ca971b84"
+}
