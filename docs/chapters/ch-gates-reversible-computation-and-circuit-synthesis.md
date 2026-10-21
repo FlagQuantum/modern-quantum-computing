@@ -1,6 +1,6 @@
 # 5. Gates, Reversible Computation, and Circuit Synthesis
 
-**Working drafts: sections 5.1–5.5 · Writing Baseline 1.0 · October 21, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 5.1–5.6 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-1"></span>
 
@@ -1698,4 +1698,382 @@ Constructive existence only;1-3qubit memory guard,not an efficientcompiler or fi
 
 Depth **F**: the two-level row-elimination proof, upper-triangular unitary diagonalization, full diagonal phase assembly, one-control ABC construction, unitary-root control recursion, Gray-path reduction and ordered-target orientation together establish continuous one-qubit/CNOT universality. Numerical endpoint decisions, root and diagonal residuals are explicitly separated from that exact proof. Assigned background: Nielsen and Chuang, 10th Anniversary Edition (2010), §§4.5.1–4.5.2, with 3.6's phase-tracked factorization as the local prerequisite. No fresh inspection of the user-local PDF is claimed. Installed released FlagQuantum unitary/CX instruction semantics and actual execution were checked; the teaching compiler is original repository code, not a claimed native API.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.5.json) records author execution, actual body/full outputs and the new-target transfer. Independent mathematical review, implementation review and reader trials are pending; this remains a working draft. No ancilla, approximate simulator, hardware routing, efficient general compilation or finite-alphabet universality theorem was used or claimed. Continue, when drafted, with [5.6 Decomposing controlled and multi-qubit gates](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-6).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.5.json) records author execution, actual body/full outputs and the new-target transfer. Independent mathematical review, implementation review and reader trials are pending; this remains a working draft. No ancilla, approximate simulator, hardware routing, efficient general compilation or finite-alphabet universality theorem was used or claimed. Continue with [5.6 Decomposing controlled and multi-qubit gates](#sec-gates-reversible-computation-and-circuit-synthesis-6).
+
+<span id="sec-gates-reversible-computation-and-circuit-synthesis-6"></span>
+
+## 5.6 Decomposing controlled and multi-qubit gates
+
+A native multi-qubit instruction can hide both its elementary cost and its phase convention. Here we derive selected exact replacements and check the complete complex output, rather than accepting a matching truth table. The prerequisites are [5.2](#sec-gates-reversible-computation-and-circuit-synthesis-2), for coherent controls, and [5.4](#sec-gates-reversible-computation-and-circuit-synthesis-4), for workspace contracts. The constructive universality result of 5.5 provides context; this section proves its displayed identities directly rather than repeating general synthesis.
+
+Assume fixed ideal unitary circuits, computational basis ordered as $|q_0q_1\cdots q_{n-1}\rangle$, distinct declared support positions, and unrestricted logical CNOT pairs. Test preparations lie outside the decomposed block. All numerical examples use released FlagQuantum 0.3.1/PyTorch 2.13.0, CPU complex128, absolute tolerance $10^{-12}$ and relative tolerance zero, without phase alignment, normalization repair, approximate simulation or fallback. The algebraic proofs are exact; floating-point tests do not certify an interval error bound.
+
+<span id="formula-code-5-6-rotations"></span>
+
+### 1. Controlled rotations without a phase shortcut
+
+**Formula.** Angles are dimensionless radians. For $j=y,z$, define $R_j(\theta)=\exp(-i\theta\sigma_j/2)$ and let $C R_j$ apply this rotation only when control qubit $c$ is one. Chronological calls are
+
+$$
+R_j(\theta/2)_t,\quad CX_{c,t},\quad
+R_j(-\theta/2)_t,\quad CX_{c,t}.
+$$
+
+**Derivation.** Since $X\sigma_yX=-\sigma_y$ and $X\sigma_zX=-\sigma_z$, conjugating each power in the exponential series gives $XR_j(s)X=R_j(-s)$. On control zero the two rotations multiply to identity. On control one, rightmost-first matrix multiplication gives
+
+$$
+X R_j(-\theta/2)X R_j(\theta/2)
+=R_j(\theta/2)R_j(\theta/2)=R_j(\theta).
+$$
+
+These two control subspaces span the register, proving the full operator identity, including a superposed control and an input entangled with other qubits. This particular identity is not an $R_x$ identity: X commutes with $R_x$, and the same sequence would cancel. At $\theta=2\pi$, $R_z(2\pi)=-I$, so the controlled operation is Z on the control, not identity. Reducing this angle modulo $2\pi$ would discard a measurable branch phase.
+
+**FlagQuantum code → verification result.** The imported functions are original book helpers that emit released named gates, not native decomposition APIs. `run` uses the checked state preparation and execution contract of 5.1. The independent reference contracts scalar target indices; it does not reuse the emitted gate list. All snippets below are cumulative and run from the repository root.
+
+```python
+import math
+import torch
+import flagquantum as fq
+import examples.foundations.gate_decompositions as g
+f = g.complex_factors(2)
+theta = .73
+block = fq.Circuit(2, dtype=g.D).ry(1, theta/2).cx(0, 1).ry(1, -theta/2).cx(0, 1)
+v, _ = g.run(block, f)
+reference = g.controlled_reference(g.product_input(f), g.explicit('y', .73), 2, 0, 1)
+torch.testing.assert_close(v, reference, rtol=0, atol=g.ATOL)
+v, _ = g.run(g.controlled_rotation('z', 2*math.pi), f)
+reference = g.product_input(f).clone(); reference[2:] *= -1
+torch.testing.assert_close(v, reference, rtol=0, atol=g.ATOL)
+print('Controlled Ry(.73) and CRz(2*pi): full complex references passed.')
+```
+```text
+Controlled Ry(.73) and CRz(2*pi): full complex references passed.
+```
+
+<span id="formula-code-5-6-phase"></span>
+
+### 2. Compensate the phase of a controlled phase gate
+
+**Formula.** With $P(\phi)=\operatorname{diag}(1,e^{i\phi})$,
+
+$$
+P(\phi)=e^{i\phi/2}R_z(\phi),\qquad
+CP(\phi)=P_c(\phi/2)\,CR_z(\phi).
+$$
+
+**Derivation.** On control zero both factors act as identity. On control one the additional scalar $e^{i\phi/2}$ turns $\operatorname{diag}(e^{-i\phi/2},e^{i\phi/2})$ into $\operatorname{diag}(1,e^{i\phi})$. The compensation is on the **control**, even though the original phase gate targets t. Thus $CP(2\pi)=I$, while the uncompensated $CR_z(2\pi)$ is Z on the control. At a general angle these two circuits have equal computational-basis probabilities for every input, but unequal relative phases across the control branches.
+
+**FlagQuantum code → verification result.** The correct reference is $\operatorname{diag}(1,1,1,e^{i\phi})$ in order $|q_0q_1\rangle$. The test deliberately checks the wrong candidate too; agreement of probabilities does not accept that candidate.
+
+```python
+phi = -.63
+phase_block = g.controlled_rotation('z', phi).p(0, phi/2)
+correct, probabilities = g.run(phase_block, f)
+wrong, wrong_probabilities = g.run(g.controlled_rotation('z', phi), f)
+reference = g.product_input(f).clone()
+reference[3] *= torch.exp(torch.tensor(1j*phi, dtype=g.D))
+torch.testing.assert_close(correct, reference, rtol=0, atol=g.ATOL)
+torch.testing.assert_close(probabilities, wrong_probabilities, rtol=0, atol=g.ATOL)
+assert not torch.allclose(correct, wrong, rtol=0, atol=g.ATOL)
+print('Compensated CP matches all amplitudes; uncompensated CRz only matches probabilities.')
+```
+```text
+Compensated CP matches all amplitudes; uncompensated CRz only matches probabilities.
+```
+
+<span id="formula-code-5-6-cz-swap"></span>
+
+### 3. Reduce CZ and SWAP to single-qubit gates and CNOT
+
+**Formula.** With chronological lists in parentheses,
+
+$$
+CZ_{a,b}=(H_b,CX_{a,b},H_b),\qquad
+\operatorname{SWAP}_{a,b}=(CX_{a,b},CX_{b,a},CX_{a,b}).
+$$
+
+**Derivation.** For CZ, control zero gives $HH=I$ and control one gives $HXH=Z$. For SWAP, let initial basis bits be $(a,b)$. The three updates are
+
+$$
+(a,b)\longmapsto(a,b\oplus a)
+\longmapsto(b,b\oplus a)\longmapsto(b,a).
+$$
+
+There is no branch phase in either construction. Therefore equality on all basis vectors extends by linearity to all complex vectors. The SWAP is an active quantum operation; it is not a passive index permutation or a label rename (see [4.5](ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-5)).
+
+**FlagQuantum code → verification result.** These helpers emit only H/CX or CX. The complete program additionally compares each construction with the released native CZ/SWAP on every basis input.
+
+```python
+initial = g.product_input(f)
+v, _ = g.run(fq.Circuit(2, dtype=g.D).h(1).cx(0, 1).h(1), f)
+reference = initial.clone(); reference[3] *= -1
+torch.testing.assert_close(v, reference, rtol=0, atol=g.ATOL)
+v, _ = g.run(fq.Circuit(2, dtype=g.D).cx(0, 1).cx(1, 0).cx(0, 1), f)
+torch.testing.assert_close(v, initial[[0, 2, 1, 3]], rtol=0, atol=g.ATOL)
+print('CZ signs and active SWAP amplitudes passed independent coordinate checks.')
+```
+```text
+CZ signs and active SWAP amplitudes passed independent coordinate checks.
+```
+
+<span id="formula-code-5-6-toffoli"></span>
+
+### 4. Prove an exact six-CNOT Toffoli decomposition
+
+**Formula.** Define $T=\operatorname{diag}(1,e^{i\pi/4})$ and $T^\dagger=T^{-1}$. The diagonal CCZ has action $|abc\rangle\mapsto(-1)^{abc}|abc\rangle$. The integer identity behind its circuit is
+
+$$
+a+b+c-(a\oplus b)-(a\oplus c)-(b\oplus c)
++(a\oplus b\oplus c)=4abc.
+$$
+
+**Derivation.** For Boolean variables, $a\oplus b=a+b-2ab$. Applying this again gives
+
+$$
+a\oplus b\oplus c=a+b+c-2(ab+ac+bc)+4abc.
+$$
+
+Substitute these expressions into the first identity. Each linear coefficient is $1-2+1=0$; each pair-product coefficient is $2-2=0$. Only $4abc$ remains. Each positive parity term can therefore contribute a T phase, and each negative term a $T^\dagger$ phase, after reversibly computing the required parity.
+
+Here is the actual chronological `ccz` circuit. The letters a,b,c below designate its two control positions and target position; in the Python helper the last position is named `t`.
+
+| Chronological operations | Phase exponent in units of $\pi/4$ | Basis labels afterward |
+|---|---|---|
+| CX(b,c), T†(c) | $-(b\oplus c)$ | $(a,b,b\oplus c)$ |
+| CX(a,c), T(c) | $+(a\oplus b\oplus c)$ | $(a,b,a\oplus b\oplus c)$ |
+| CX(b,c), T†(c) | $-(a\oplus c)$ | $(a,b,a\oplus c)$ |
+| CX(a,c), T(b), T(c) | $+b+c$ | $(a,b,c)$ |
+| CX(a,b), T(a), T†(b), CX(a,b) | $+a-(a\oplus b)$ | $(a,b,c)$ |
+
+Every label is restored. Summing phases gives $e^{i\pi abc}=(-1)^{abc}$, exactly, not merely up to a global phase. Now
+
+$$
+CCX_{a,b;t}=H_t\,CCZ_{a,b,t}\,H_t.
+$$
+
+When $ab=0$, the target sees $HH=I$; when $ab=1$, it sees $HZH=X$. This proves Toffoli on all eight basis inputs and hence on arbitrary superpositions. The construction contains six CNOTs, two H gates, four T gates and three $T^\dagger$ gates, with no ancilla. Its proof is the label-and-phase derivation above; testing eight rows is an additional implementation check.
+
+**FlagQuantum code → verification result.** Both blocks emit their decompositions directly. The companion program also checks native `ccx` and all six permutations of ordered control/target positions.
+
+```python
+f3 = g.complex_factors(3)
+initial3 = g.product_input(f3)
+ccz = (fq.Circuit(3, dtype=g.D)
+       .cx(1, 2).tdg(2).cx(0, 2).t(2)
+       .cx(1, 2).tdg(2).cx(0, 2).t(1).t(2)
+       .cx(0, 1).t(0).tdg(1).cx(0, 1))
+v, _ = g.run(ccz, f3)
+reference = initial3.clone(); reference[7] *= -1
+torch.testing.assert_close(v, reference, rtol=0, atol=g.ATOL)
+exact_toffoli = fq.Circuit(3, dtype=g.D).h(2).compose(ccz).h(2)
+v, _ = g.run(exact_toffoli, f3)
+torch.testing.assert_close(v, g.flip_reference(initial3, 3, 0, 1, 2), rtol=0, atol=g.ATOL)
+assert g.resources(g.toffoli()) == {'h': 2, 't': 4, 'tdg': 3, 'cx': 6}
+print('CCZ phase and exact Toffoli amplitudes passed; emitted Toffoli contains six CX.')
+```
+```text
+CCZ phase and exact Toffoli amplitudes passed; emitted Toffoli contains six CX.
+```
+
+<span id="formula-code-5-6-relative"></span>
+
+### 5. A truth-table match can still be a different quantum gate
+
+**Formula.** Omit the last row of the CCZ construction. Its phase exponent becomes $4abc-a+(a\oplus b)$. After the same H conjugations the shortened circuit acts as
+
+$$
+|a,b,c\rangle\longmapsto
+\exp\!\left[\frac{i\pi}{4}\bigl(-a+(a\oplus b)\bigr)\right]
+|a,b,c\oplus ab\rangle.
+$$
+
+**Derivation.** The missing correction depends only on a,b and commutes with target H. It is not constant across control branches: for $(a,b)=(0,0)$ it is 1, while for $(0,1)$ it is $e^{i\pi/4}$. The truth table and computational-basis output probabilities therefore match exact Toffoli, but the quantum operators differ. Prepare $|0,+,0\rangle$ and apply H on b after the candidate gate. Exact Toffoli leaves $|000\rangle$. The shortened circuit instead gives amplitudes
+
+$$
+\alpha_{000}=\frac{1+e^{i\pi/4}}2,\qquad
+\alpha_{010}=\frac{1-e^{i\pi/4}}2,\qquad
+p_{000}=\frac{1+\cos(\pi/4)}2.
+$$
+
+This is a counterexample to substituting a truth-table-equivalent circuit without tracking phase. A particular relative-phase construction may be useful when its extra phases cancel in a separately proved surrounding network. No such cancellation is assumed here. This example is our explicitly defined shortened network, not a transcription of a similarly named circuit from a paper.
+
+**FlagQuantum code → verification result.** The analyzer turns the extra branch phase into a measurable probability difference.
+
+```python
+analyzer_input = [(1, 0), (1/math.sqrt(2), 1/math.sqrt(2)), (1, 0)]
+readout = []
+for relative in (False, True):
+    block = fq.Circuit(3, dtype=g.D).compose(g.toffoli(relative=relative)).h(1)
+    v, p = g.run(block, analyzer_input)
+    readout.append(p[0].item())
+assert abs(readout[0]-1) < g.ATOL
+assert abs(readout[1]-(1+math.cos(math.pi/4))/2) < g.ATOL
+print('Exact / shortened Toffoli analyzer p(000):', *(f'{p:.6f}' for p in readout))
+```
+```text
+Exact / shortened Toffoli analyzer p(000): 1.000000 0.853553
+```
+
+<span id="formula-code-5-6-clean"></span>
+
+### 6. A clean ancilla implements a three-control NOT
+
+**Formula.** Use ordered positions $(a,b,c,w,t)=(q_0,q_1,q_2,q_3,q_4)$. A clean workspace requires $w=0$. Let C be Toffoli $(a,b;w)$ and U be Toffoli $(w,c;t)$. The chronological sequence C,U,C implements
+
+$$
+|a,b,c,0,t\rangle\longmapsto|a,b,c,0,t\oplus abc\rangle.
+$$
+
+**Derivation.** The first C writes $ab$ into w; U toggles t by $(ab)c$; the second C restores $ab\oplus ab=0$. Each constituent is the phase-exact decomposition just proved. All other labels are preserved, so the basis proof extends to arbitrary joint amplitudes of the data and target with w initially zero, including correlated data/target inputs.
+
+If w instead starts at d, the actual action is
+
+$$
+|a,b,c,d,t\rangle\longmapsto
+|a,b,c,d,t\oplus abc\oplus dc\rangle.
+$$
+
+Restoring the workspace alone is insufficient: the retained operation contains an unwanted $dc$ term. For $a=b=c=d=1,t=0$, the network returns w=1 but leaves t=0 instead of flipping it to one.
+
+**FlagQuantum code → verification result.** Test both the valid complex input and this invalid-blank witness. A successful run on the witness does not make its clean-input contract valid.
+
+```python
+f5 = g.complex_factors(3) + [(1, 0), g.complex_factors(1)[0]]
+C = g.toffoli(0, 1, 3, n=5)  # compute a*b into workspace q3
+U = g.toffoli(3, 2, 4, n=5)  # use workspace and q2 to toggle q4
+clean_block = fq.Circuit(5, dtype=g.D).compose(C).compose(U).compose(C)
+v, p = g.run(clean_block, f5)
+torch.testing.assert_close(v, g.ancilla_reference(g.product_input(f5), 'dirty'), rtol=0, atol=g.ATOL)
+assert g.probability_one(p, 3) < g.ATOL
+bad = g.basis_factors((1, 1, 1, 1, 0))
+v, p = g.run(g.ancilla('clean'), bad)
+assert abs(p[30].item()-1) < g.ATOL
+print('Clean workspace returns zero and retained operation passes; wrong blank gives |11110>.')
+```
+```text
+Clean workspace returns zero and retained operation passes; wrong blank gives |11110>.
+```
+
+<span id="formula-code-5-6-dirty"></span>
+
+### 7. Borrow an arbitrary ancilla with an echo sequence
+
+**Formula.** With the same C,U, use chronological U,C,U,C. A dirty (borrowed) ancilla has an arbitrary initial quantum state that must be returned, rather than initialized to zero:
+
+$$
+|a,b,c,d,t\rangle\longmapsto|a,b,c,d,t\oplus abc\rangle.
+$$
+
+**Derivation.** The first U toggles t by dc. The first C changes w to $d\oplus ab$. The second U toggles t by $(d\oplus ab)c$. The second C returns w to d. Therefore the net target toggle is
+
+$$
+dc\oplus(d\oplus ab)c=dc\oplus dc\oplus abc=abc.
+$$
+
+No phase is introduced by the exact Toffolis. The action is identity on the borrowed factor and the desired three-control X on the other factors. Linearity proves the result even if d is superposed or correlated with the retained register or an external spectator. Returning the borrowed information does not mean setting it to zero; existing correlations need not disappear. The guarantee concerns the complete joint operator, not just the marginal probability of w.
+
+**FlagQuantum code → verification result.** The second circuit entangles a with the borrowed qubit before the decomposition. Its final vector must be $(|01100\rangle+|11111\rangle)/\sqrt2$, preserving the relative amplitude as well as both branches.
+
+```python
+f5 = g.complex_factors(5)
+dirty_block = fq.Circuit(5, dtype=g.D).compose(U).compose(C).compose(U).compose(C)
+v, _ = g.run(dirty_block, f5)
+torch.testing.assert_close(v, g.ancilla_reference(g.product_input(f5), 'dirty'), rtol=0, atol=g.ATOL)
+block = fq.Circuit(5, dtype=g.D).h(0).cx(0, 3).compose(g.ancilla('dirty'))
+v, _ = g.run(block, g.basis_factors((0, 1, 1, 0, 0)))
+reference = torch.zeros(32, dtype=g.D)
+reference[12] = reference[31] = 1/math.sqrt(2)
+torch.testing.assert_close(v, reference, rtol=0, atol=g.ATOL)
+print('Borrowed complex input and correlated ancilla passed full-vector checks at indices 12,31.')
+```
+```text
+Borrowed complex input and correlated ancilla passed full-vector checks at indices 12,31.
+```
+
+<span id="formula-code-5-6-cost"></span>
+
+### 8. State the elementary basis, costs and failure boundaries
+
+**Formula and derivation.** Expanding every exact Toffoli gives the following logical instruction counts; concatenating three or four copies multiplies each count by three or four.
+
+| Construction | H | T | T† | CNOT | Total |
+|---|---:|---:|---:|---:|---:|
+| Exact Toffoli, no ancilla | 2 | 4 | 3 | 6 | 15 |
+| Three-control X, one clean ancilla | 6 | 12 | 9 | 18 | 45 |
+| Three-control X, one borrowed ancilla | 8 | 16 | 12 | 24 | 60 |
+
+Combining T and $T^\dagger$ as a T-type cost gives 7,21,28. These are costs of these constructions, not lower bounds or optimality claims. They assume unrestricted logical CNOT pairs. Routing, native pulse synthesis, error correction, timing and hardware calibration are not included. Units 1–2 permit continuous rotations/P gates; units 4–7 use the exact finite alphabet H,T,T†,CNOT. Counting a continuous rotation as one logical instruction does not make it one T gate.
+
+**FlagQuantum code → verification result.** Inspect the actual emitted IR rather than estimating from a helper name. The teaching helpers reject malformed supports, nonfinite/nonliteral radian angles and undeclared ancilla modes. Choosing `clean` remains a caller's input-state obligation; the circuit constructor cannot inspect a future input. The negative witness in unit 6 checks this semantic boundary separately.
+
+```python
+for mode in ('clean', 'dirty'):
+    counts = g.resources(g.ancilla(mode))
+    print(mode, counts, 'total', sum(counts.values()))
+invalid = [lambda: g.controlled_rotation('x', .3),
+           lambda: g.controlled_rotation('z', float('nan')),
+           lambda: g.controlled_rotation('y', True),
+           lambda: g.controlled_rotation('y', .3, 0, 0),
+           lambda: g.toffoli(0, 0, 2), lambda: g.toffoli(0, 1, 3),
+           lambda: g.ancilla('reset')]
+for candidate in invalid:
+    try:
+        candidate()
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('Invalid contract accepted')
+assert g.RUNS == 14
+print('Seven malformed contracts rejected; fourteen actual body circuits verified.')
+```
+```text
+clean {'h': 6, 't': 12, 'tdg': 9, 'cx': 18} total 45
+dirty {'h': 8, 't': 16, 'tdg': 12, 'cx': 24} total 60
+Seven malformed contracts rejected; fourteen actual body circuits verified.
+```
+
+### Complete program and independent references
+
+Run `python examples/foundations/gate_decompositions.py` from the repository root. The [companion program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/gate_decompositions.py) checks 307 actual circuits: native/decomposed controlled rotations and boundary angles, compensated phase gates, native/decomposed CZ/SWAP and every Toffoli support permutation, phase-variant witnesses, both ancilla networks on all 32 basis inputs and complex products, and a correlated borrowed input. Independent scalar contractions, bit permutations and explicit phase factors supply the references. The exact integer parity checks supplement the symbolic proof. The body checker executes all eight cumulative snippets and compares their printed output exactly; the body itself uses 14 actual circuits.
+
+Expected output of the complete program:
+
+```text
+80 controlled-rotation native/decomposed circuits and 20 phase-compensated circuits: all basis, complex and angle-boundary checks passed.
+CZ and SWAP: 20 native/decomposed circuits agree on every basis input and complex product.
+Exact Toffoli: 6 support permutations, all 8 basis and complex inputs, native/decomposed paths; 108 circuits.
+Integer phase identity checked exactly on 8 Boolean triples; 9 phase-variant circuits match truth probabilities but retain extra branch phases.
+Clean/dirty ancilla networks: all 32 basis + complex each, plus clean-contract complex input; 67 circuits, full complex references.
+2 phase-sensitive analyzer circuits and 1 entangled borrowed-ancilla circuit passed; 7 malformed contracts rejected.
+307 actual CPU complex128 circuits; atol 1e-12, rtol 0; exact Toffoli uses 6 CX, 4 T, 3 T-dagger, 2 H.
+Clean three-control construction: 18 CX; borrowed-dirty echo: 24 CX; no optimality, routing, reset, noise or hardware claim.
+```
+
+### Understanding checks and transfer exercises
+
+**5.6-A — New support and angle.** Implement controlled Ry and Rz with angle 0.91, control q2 and target q0 in a three-qubit register. Compare all eight basis inputs and a complex product. Where must the phase correction go if you replace Rz by P?
+
+**5.6-B — Borrowed workspace on a new layout.** Map the five logical positions (a,b,c,w,t) to (q4,q2,q0,q3,q1). Write the destination index for each input coefficient. Must the borrowed qubit be initially separable?
+
+**5.6-C — A false optimization.** Can the shortened Toffoli in unit 5 replace every exact Toffoli in the clean network merely because both have the same truth table? What evidence would a valid replacement require?
+
+**5.6-D — Restored versus clean.** On input |11110>, what do the clean and dirty networks return? Why does a restored workspace not prove the retained operation correct?
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** Call `controlled_rotation(axis, .91, c=2, t=0, n=3)` for each axis. Use the scalar contraction with that same ordered support, not a two-qubit vector padded into the wrong axis order. A controlled P needs P(.91/2) on q2. The separate author transfer executes 18 new-parameter/support circuits, comparing full complex vectors.
+
+**B.** In five-qubit big-endian indexing, the target q1 has integer mask 8. Toggle that mask exactly when bits q4,q2,q0 are all one. The reference is `out[j ^ (8 if condition else 0)] += input[j]`. The mapped circuit is `Circuit(5, dtype=g.D).compose(g.ancilla('dirty'), qubits=(4,2,0,3,1))`. The borrowed qubit may be correlated; the operator proof holds on every basis vector with no branch phase, so extends to joint inputs by linearity. The separate mapped complex-input test adds one circuit, for 19 transfer circuits total. This is author transfer validation, not independent review.
+
+**C.** No. The omitted phase depends on control bits, which may change roles across Toffolis. One must derive the net branch phases and prove equality of the entire surrounding operator under its declared input contract. Computational-basis probabilities alone cannot do this; unit 5 supplies an explicit interference witness.
+
+**D.** The clean network returns |11110>, whereas the dirty network returns |11111>. Both return w=1. The clean-input assumption was violated in the first call, introducing the unwanted dc term. Workspace restoration and retained-operation correctness are distinct obligations.
+
+</details>
+
+### Sources, depth and next step
+
+Depth **F**: every selected identity is proved on all computational-basis inputs, with phase tracking and an explicit extension by linearity. Assigned background is Nielsen and Chuang, 10th Anniversary Edition (2010), §4.3; no fresh local-PDF inspection is claimed. The public primary paper [Barenco et al., Elementary gates for quantum computation (1995), arXiv quant-ph/9503016v1](https://arxiv.org/pdf/quant-ph/9503016v1), §§6.1–6.2 (PDF pages 14–16), provides controlled-gate reduction and the warning that phase-congruent networks need not be interchangeable in quantum computations. These locations were checked against the public PDF. Our six-CNOT T-phase network and its explicitly defined shortened variant are proved above; they are not claimed to be the paper's displayed network or its particular phase variant.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.6.json) separates author execution from independent mathematical/implementation review and reader trials, which remain pending. This is an author-verified working draft, not accepted content. No optimal synthesis, reset, hardware execution, noise model or approximate compiler is claimed. Continue, when drafted, with [5.7 Approximation, synthesis, and precision](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-7).

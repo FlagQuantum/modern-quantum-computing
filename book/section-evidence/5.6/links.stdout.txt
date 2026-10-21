@@ -1,0 +1,1 @@
+Checked 70 rendered pages: all local links/fragments resolve; IDs unique.

@@ -1,0 +1,8 @@
+80controlled-rotation native/decomposed circuits and20phase-compensated circuits:allbasis,complex andangle-boundaries passed.
+CZ andSWAP:20native/decomposed circuits agree on every basis input andcomplex product.
+Exact Toffoli:6support permutations,all8basis andcomplex inputs,native/decomposed paths;108circuits.
+Integer phase identity checked exactly on8Boolean triples;9phase-variant circuits match truth probabilities but retain extra branch phases.
+Clean/dirty ancilla networks:all32basis+complex each,plusclean-contract complex input;67circuits,full complex references.
+2phase-sensitive analyzer circuits and1entangled borrowed-ancilla circuit passed;7malformed contracts rejected.
+307actual CPUcomplex128 circuits;atol1e-12,rtol0;exactToffoli uses6CX,4T,3T-dagger,2H.
+Clean3control construction:18CX;borrowed-dirty echo:24CX;no optimality,routing,reset,noise orhardware claim.

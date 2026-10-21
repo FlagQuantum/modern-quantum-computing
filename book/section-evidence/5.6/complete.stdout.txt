@@ -1,0 +1,8 @@
+80 controlled-rotation native/decomposed circuits and 20 phase-compensated circuits: all basis, complex and angle-boundary checks passed.
+CZ and SWAP: 20 native/decomposed circuits agree on every basis input and complex product.
+Exact Toffoli: 6 support permutations, all 8 basis and complex inputs, native/decomposed paths; 108 circuits.
+Integer phase identity checked exactly on 8 Boolean triples; 9 phase-variant circuits match truth probabilities but retain extra branch phases.
+Clean/dirty ancilla networks: all 32 basis + complex each, plus clean-contract complex input; 67 circuits, full complex references.
+2 phase-sensitive analyzer circuits and 1 entangled borrowed-ancilla circuit passed; 7 malformed contracts rejected.
+307 actual CPU complex128 circuits; atol 1e-12, rtol 0; exact Toffoli uses 6 CX, 4 T, 3 T-dagger, 2 H.
+Clean three-control construction: 18 CX; borrowed-dirty echo: 24 CX; no optimality, routing, reset, noise or hardware claim.

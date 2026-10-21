@@ -1,7 +1,7 @@
 {
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "baseline": "writing-baseline-v1.0",
-  "scope": "Presentation audit of34drafted sections;prior backfills retained;5.5adds8adjacent formula/derivation/code/result units.Independent acceptance pending.",
+  "scope": "Presentation audit of 35 drafted sections; prior backfills retained; 5.6 adds 8 adjacent formula/derivation/FlagQuantum code/result units. Independent acceptance pending.",
   "finding": "Executable companion scripts and end-of-section correspondence tables do not by themselves provide adjacent formula-to-code teaching in the body.",
   "priority_backfill": [],
   "secondary_review": [],
@@ -118,6 +118,12 @@
     "units": 8,
     "command": "python scripts/check_universal_gates_prose.py",
     "record": "book/section-records/5.5.json",
+    "status": "author-verified draft"
+  },
+  "new_section_5_6": {
+    "units": 8,
+    "command": "python scripts/check_gate_decompositions_prose.py",
+    "record": "book/section-records/5.6.json",
     "status": "author-verified draft"
   }
 }

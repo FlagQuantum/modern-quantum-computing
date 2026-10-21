@@ -1,6 +1,6 @@
 {
   "baseline": "writing-baseline-v1.0",
-  "revision": "2026-10-21",
+  "revision": "2026-10-22",
   "sections": {
     "sec-what-quantum-computing-computes-1": {
       "state": "draft",
@@ -341,6 +341,16 @@
       "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
       "record": "book/section-records/5.5.json",
       "author_execution": "passed: FQ0.3.1/Torch2.13.0CPUcomplex128;allowedonequbit/CX synthesis,allbasis/complex reference andphase checks"
+    },
+    "sec-gates-reversible-computation-and-circuit-synthesis-6": {
+      "state": "draft",
+      "brief": "book/briefs/ch05.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+      "record": "book/section-records/5.6.json",
+      "author_execution": "passed: FQ0.3.1/Torch2.13.0 CPUcomplex128;phase-exact selected decompositions,clean/dirty ancilla contracts,full complex vectors"
     }
   },
   "existing_pilots": [

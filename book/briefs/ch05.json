@@ -117,6 +117,30 @@
       ],
       "status": "draft",
       "next_transition": "5.6 Decomposing controlled and multi-qubit gates."
+    },
+    {
+      "ref": "5.6",
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-6",
+      "title": "Decomposing controlled and multi-qubit gates",
+      "depth": "F",
+      "requires": [
+        "sec-gates-reversible-computation-and-circuit-synthesis-2",
+        "sec-gates-reversible-computation-and-circuit-synthesis-4"
+      ],
+      "question": "Which elementary decompositions preserve all phases and declared clean/dirty ancilla contracts?",
+      "entry": "5.2 coherent control;5.4 workspace contracts.",
+      "exit": "Prove selected controlled rotations,phase compensation,CZ/SWAP,exact Toffoli and clean/dirty three-control networks on all basis inputs and extend by linearity.",
+      "worked_case": "Six-CNOT seven-T-type exact Toffoli;truth-table phase variant witness;one clean versus borrowed ancilla.",
+      "boundary": "Exact logical identities and named ideal gates;no routing,reset,noise,hardware or optimal synthesis claim.",
+      "code_plan": "Released named gates and actualIR;scalar contraction,bit permutation and explicit phase references.",
+      "independent_check": "Every basis input andcomplex products;all Toffoli support permutations;phase analyzer andcorrelated borrowed input;7malformed contracts.",
+      "transfer_task": "18new-angle nonadjacent control/target cases and1mapped borrowed network.",
+      "source_locators": [
+        "NC:4.3",
+        "SYNTH:gates"
+      ],
+      "status": "draft",
+      "next_transition": "5.7 Approximation, synthesis, and precision."
     }
   ]
 }

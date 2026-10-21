@@ -1,0 +1,113 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-6",
+  "ref": "5.6",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+  "depth": "F",
+  "result": "Selected controlled-gate and Toffoli decomposition",
+  "requires": [
+    "sec-gates-reversible-computation-and-circuit-synthesis-2",
+    "sec-gates-reversible-computation-and-circuit-synthesis-4"
+  ],
+  "assumptions": [
+    "Fixed ideal unitary circuits;distinct ordered logical supports;arbitrary logical CX pairs",
+    "Radian continuous Ry/Rz/P for selected controlled identities;H/T/Tdag/CX for Toffoli andancilla networks",
+    "Clean workspace starts0;borrowed workspace arbitrary andreturned;no reset"
+  ],
+  "proof_obligations": [
+    "Control0/1 rotation blocks andcontrol phase correction",
+    "CZ andSWAP onallbasis inputs",
+    "Integer parity expansion andexact CCZ phases,thenH conjugation forToffoli",
+    "Explicit shortened-network branch phases andinterference witness",
+    "Clean three-control network input-subspace proof andwrong-blank counterexample",
+    "Dirty echo cancellation onallbasis inputs,phase-free linear extension tocorrelated inputs",
+    "Actual elementary counts anddeclared logical-cost limits"
+  ],
+  "formula_code_units": [
+    "formula-code-5-6-rotations",
+    "formula-code-5-6-phase",
+    "formula-code-5-6-cz-swap",
+    "formula-code-5-6-toffoli",
+    "formula-code-5-6-relative",
+    "formula-code-5-6-clean",
+    "formula-code-5-6-dirty",
+    "formula-code-5-6-cost"
+  ],
+  "sources": [
+    {
+      "locators": [
+        "NC:4.3"
+      ],
+      "edition": "10th Anniversary Edition (2010)",
+      "current_session_inspection": "Assigned background;no fresh localPDF inspection claimed"
+    },
+    {
+      "locator": "SYNTH:gates",
+      "url": "https://arxiv.org/pdf/quant-ph/9503016v1",
+      "inspected": "Public primaryPDF §§6.1–6.2,PDFpages14–16;controlled reduction andphase-congruent warning",
+      "attribution": "Displayed6CX/T-phase construction andshortened variant derived locally;not attributed to paper figures or its distinct phase variant"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/gate_decompositions.py",
+    "command": "python examples/foundations/gate_decompositions.py",
+    "prose_check_command": "python scripts/check_gate_decompositions_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 307,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 14,
+    "separate_transfer_circuits": 19,
+    "execution_ledger": {
+      "initial_complete": 307,
+      "initial_body_assembly": 14,
+      "initial_helper_body_plus_complete": 321,
+      "expanded_gate_body_plus_complete": 321,
+      "final_formatted_complete": 307,
+      "final_body_plus_complete": 321,
+      "separate_transfer": 19,
+      "total_section56_circuits": 1610,
+      "note": "Distinct invocations counted; original passing logs retained. Explicit body gate expansion and output wording improvements justified reruns; no failed example runs. Prior-section regressions/futureCI separate."
+    },
+    "checks": [
+      "Allbasis/complex controlled rotations,phase gates,CZ/SWAP;native comparisons",
+      "All6Toffoli support permutations;phase variant probabilities andfullphase reference",
+      "Clean/dirty all32basis andcomplex;correlated borrowed input;7malformed contracts",
+      "8actualbody exactoutputs,completeoutput and19new-support transfer circuits"
+    ],
+    "tolerance": "Fullvector atol1e-12,rtol0;no phase alignment orstate repair;no numerical interval certificate",
+    "unplanned_execution_failures": "None",
+    "limitations": "Selected logical identities,not optimal/general hardware synthesis;no reset,noise,shots orhardware claims",
+    "script_sha256": "ba6528ee019a82cbf17f49ca275e92bcf9dd5d31eaba657fdca5e6e38707bc49"
+  },
+  "assessment": {
+    "tasks": [
+      "5.6-A reversed nonadjacent rotation",
+      "5.6-B mapped borrowed workspace",
+      "5.6-C relativephase substitution",
+      "5.6-D wrongblank"
+    ],
+    "answers": "Supplied;reader trial notrun"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "307complete-program circuits,8actualbody fragments/14circuits and19newparameter/support transfer circuits passed.Full complex references andemitted logical counts checked.5.4/5.5scopedbody/full regressions passed;strictMkDocs and70page local links passed.Frozen435section scope unchanged.Independent reviews pending."
+  },
+  "production": {
+    "next_draft": "5.7 Approximation, synthesis, and precision",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual IAB 1280x720 screenshots: controlled-phase compensation, Toffoli parity identity and table, relative-phase interference witness, borrowed-qubit echo cancellation; no garbling or clipping in inspected formulas."
+  }
+}
