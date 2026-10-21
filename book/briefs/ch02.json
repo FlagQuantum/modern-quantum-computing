@@ -20,7 +20,13 @@
       "depth": "F",
       "requires": [],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2."
+      "next_transition": "Sections 2.1\u20132.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     },
     {
       "ref": "2.2",
@@ -28,7 +34,7 @@
       "title": "Inner products, adjoints, and orthogonality",
       "question": "How does a conjugated overlap determine an orthogonal projection and bound its size?",
       "entry": "2.1 complex coordinate arithmetic and conjugation; all inner-product, norm and local array notation defined here.",
-      "exit": "Derive Cauchy–Schwarz including equality/zero cases, construct a unique nearest projection, and distinguish conjugation, transpose and adjoint.",
+      "exit": "Derive Cauchy\u2013Schwarz including equality/zero cases, construct a unique nearest projection, and distinguish conjugation, transpose and adjoint.",
       "worked_case": "a=(1,i), v=(2,1+i), overlap3-i, projection/residual squared lengths5/1; explicit2-by-2 adjoint identity.",
       "boundary": "Positive-definite inner products; standard-coordinate matrix bridge defined locally, full linear-map/basis theory owned by2.3. Projection is not a measurement postulate.",
       "code_plan": "Complete examples/foundations/inner_products.py: PyTorch2.13.0 CPU complex128 versus independent real/imaginary integer arithmetic; no FlagQuantum required.",
@@ -42,7 +48,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-1"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2."
+      "next_transition": "Sections 2.1\u20132.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     },
     {
       "ref": "2.3",
@@ -64,7 +76,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2."
+      "next_transition": "Sections 2.1\u20132.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     },
     {
       "ref": "2.4",
@@ -86,7 +104,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2."
+      "next_transition": "Sections 2.1\u20132.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     },
     {
       "ref": "2.5",
@@ -109,7 +133,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-4"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2."
+      "next_transition": "Sections 2.1\u20132.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     },
     {
       "ref": "2.6",
@@ -131,7 +161,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-5"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2."
+      "next_transition": "Sections 2.1\u20132.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     },
     {
       "ref": "2.7",
@@ -154,7 +190,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-5"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2."
+      "next_transition": "Sections 2.1\u20132.8 now have author-checked drafts; independent reviews pending. Next production assignment is 4.2.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     },
     {
       "ref": "2.8",
@@ -177,7 +219,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-7"
       ],
       "status": "draft",
-      "next_transition": "Chapter2 has eight working drafts and synthesis problems; independent review and acceptance pending. Section3.1 now has a working draft; next draft4.2 Registers, labels, and basis indices."
+      "next_transition": "Chapter2 has eight working drafts and synthesis problems; independent review and acceptance pending. Section3.1 now has a working draft; next draft4.2 Registers, labels, and basis indices.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     }
   ]
 }

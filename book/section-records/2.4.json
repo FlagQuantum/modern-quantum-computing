@@ -31,7 +31,7 @@
   "local_start_checks": {
     "brief": "Filled before drafting; exact 2.3 prerequisite, depth F and NC:2.1.6 locator preserved.",
     "prerequisite": "Author-checked 2.3 draft and its adjoint/inner-product bridge usable with no known blocking error.",
-    "source": "Consulted assigned NC:2.1.6 printed pp.69–71 from cached local copy of user-supplied PDF; no source content uploaded.",
+    "source": "Consulted assigned NC:2.1.6 printed pp.69\u201371 from cached local copy of user-supplied PDF; no source content uploaded.",
     "independent_reference": "Explicit six-square real-coordinate form for H, diagonal U/P norm forms, hand-supplied eigenpairs and witnesses for false implications.",
     "scope": "No baseline scope, dependency, depth or volume changes; no paper audit."
   },
@@ -99,6 +99,27 @@
     "word_count_approx": 2208,
     "page_status": "Unmeasured planning envelope; calibrate print/reader workload without dropping full proof obligations.",
     "next_draft": "2.5 Spectral decomposition and singular values",
-    "pdf": "Existing PDF sample edition and release version unchanged."
-  }
+    "pdf": "Existing PDF sample edition and release version unchanged.",
+    "word_count_after_formula_code_backfill": 2594,
+    "backfill_layout_note": "Additional local code/output units increase reading and print workload; printed pagination remains unmeasured. Existing depth and proof text preserved; no PDF sample/version changed."
+  },
+  "editorial_revisions": [
+    {
+      "date": "2026-10-21",
+      "kind": "adjacent-formula-code-backfill",
+      "base_commit": "2103c869902b2e3eb80b462dd7751613fd1e1025",
+      "scope": "Editorial addition only; all prior source lines retained in order. No change to result, proofs, prerequisites, depth, sources, stable section IDs or acceptance state.",
+      "fragments": [
+        "2.4-positive",
+        "2.4-classes",
+        "2.4-probes"
+      ],
+      "execution": "Passed every cumulative body block from a fresh per-section namespace, its exact displayed stdout, all assertions and exact complete-program expected output.",
+      "command": "python scripts/check_formula_code.py --section 2.4",
+      "environment": "Python3.12.14; PyTorch2.13.0; CPU; complex128/float64 unless the explicit2.8 rounding counterexample declaresfloat32; actual FlagQuantum0.3.1 in3.3,3.5,3.7.",
+      "body_section_sha256": "97c32cb1c70b525e91c74f0d7e568d3fe0f7d8be91f19d3a545692dda9d63eae",
+      "web_checks": "Strict MkDocs build and58-page local links/anchors passed. Actual local browser screenshots inspected one correspondence unit per specified section; full Chapter2/3 accessibility text had no raw LaTeX or math-error text.",
+      "review_status": "Author checks only; independent mathematical/implementation review, reader trial and acceptance remain pending."
+    }
+  ]
 }

@@ -87,6 +87,7 @@ python examples/foundations/pauli_rotations.py
 python examples/foundations/composing_rotations.py
 python examples/foundations/phase_contracts.py
 python examples/foundations/tensor_spaces.py
+python scripts/check_formula_code.py
 python examples/measurement.py
 python examples/gradients.py
 python examples/omalley2016/verify_h2_vqe.py

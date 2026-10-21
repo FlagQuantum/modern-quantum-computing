@@ -10,9 +10,9 @@
     "sec-complex-vectors-operators-and-numerical-reasoning-1"
   ],
   "depth": "F",
-  "result": "Cauchy–Schwarz and orthogonal projection, full nonnegative-residual proof including equality and zero cases",
+  "result": "Cauchy\u2013Schwarz and orthogonal projection, full nonnegative-residual proof including equality and zero cases",
   "entry": "2.1 complex coordinate arithmetic and conjugation; all inner-product, norm and local array notation defined here.",
-  "exit": "Derive Cauchy–Schwarz including equality/zero cases, construct a unique nearest projection, and distinguish conjugation, transpose and adjoint.",
+  "exit": "Derive Cauchy\u2013Schwarz including equality/zero cases, construct a unique nearest projection, and distinguish conjugation, transpose and adjoint.",
   "assumptions": [
     "Finite complex inner product space, first argument conjugate linear, second argument linear, conjugate symmetry and positive definiteness",
     "Projection coefficient formula requires a nonzero direction; zero-direction span treated separately",
@@ -29,7 +29,7 @@
   },
   "local_start_checks": {
     "prerequisite": "Explained, author-checked2.1 draft supplies every scalar conjugation/modulus and finite-vector identity used.",
-    "source": "Consulted assigned NC:2.1.4 printed65–68, including Box2.1, from previously supplied cached local PDF. No new paper audit.",
+    "source": "Consulted assigned NC:2.1.4 printed65\u201368, including Box2.1, from previously supplied cached local PDF. No new paper audit.",
     "independent_reference": "Explicit real/imaginary integer inner product and hand-expanded projection/adjoint examples.",
     "scope": "No changes to frozen section scope/depth/dependencies or seven volumes."
   },
@@ -43,15 +43,15 @@
         67,
         68
       ],
-      "use": "Conventions, norm/orthogonality and Cauchy–Schwarz statement. Original residual-based derivation instead of importing Gram–Schmidt."
+      "use": "Conventions, norm/orthogonality and Cauchy\u2013Schwarz statement. Original residual-based derivation instead of importing Gram\u2013Schmidt."
     }
   ],
   "proof_obligations": [
     "Conjugate symmetry and linearity derived from scalar component rules; positivity linked to2.1",
     "Orthogonal projection coefficient solved from zero-overlap condition; denominator positivity explicit",
     "Pythagorean decomposition and unique nearest-point property derived by vanishing cross terms",
-    "Cauchy–Schwarz from nonnegative residual; nonzero equality iff scalar multiple, zero case included",
-    "Norm triangle inequality derived using scalar real-part bound and Cauchy–Schwarz",
+    "Cauchy\u2013Schwarz from nonnegative residual; nonzero equality iff scalar multiple, zero case included",
+    "Norm triangle inequality derived using scalar real-part bound and Cauchy\u2013Schwarz",
     "Adjoint row/column and finite rectangular matrix identity fully expanded; general basis theory deferred to2.3"
   ],
   "implementation": {
@@ -64,7 +64,7 @@
     "author_run": "passed",
     "checks": [
       "81 two-entry complex vectors with real/imaginary coordinates in{-1,0,1};6561 ordered overlaps match integer-pair arithmetic",
-      "Conjugate symmetry and Cauchy–Schwarz for all bounded pairs",
+      "Conjugate symmetry and Cauchy\u2013Schwarz for all bounded pairs",
       "Explicit projection/residual, orthogonality, norm decomposition and unit-direction equivalent",
       "Parallel equality, zero-vector overlap and rejected zero projection direction",
       "Explicit matrix conjugate transpose and adjoint identity; ordinary transpose counterexample",
@@ -84,7 +84,7 @@
     "answers": "All included; no reader trial claimed"
   },
   "review": {
-    "author_checks": "Passed actual Python3.12.14/PyTorch2.13.0 CPU complex128 execution, exact output match,6561 independent integer-coordinate inner products, worked projection and adjoint counterexamples, baseline checks for every chapter brief, frozen scope/depth/prerequisite and scholarly-plan checks, prose scan, strict MkDocs build, links/anchors across56 pages, and actual browser inspection of Cauchy–Schwarz/equality and adjoint matrix formulas. No raw LaTeX or math-error text observed; independent mathematical/implementation review and reader trials pending.",
+    "author_checks": "Passed actual Python3.12.14/PyTorch2.13.0 CPU complex128 execution, exact output match,6561 independent integer-coordinate inner products, worked projection and adjoint counterexamples, baseline checks for every chapter brief, frozen scope/depth/prerequisite and scholarly-plan checks, prose scan, strict MkDocs build, links/anchors across56 pages, and actual browser inspection of Cauchy\u2013Schwarz/equality and adjoint matrix formulas. No raw LaTeX or math-error text observed; independent mathematical/implementation review and reader trials pending.",
     "mathematical": "pending independent review",
     "implementation": "author execution passed; independent review pending",
     "reader": "pending; no reader trial claimed"
@@ -97,6 +97,28 @@
     "word_count_approx": 1977,
     "page_status": "Unmeasured planning envelope; includes full proofs, array bridge, examples and answers. Calibrate print/reader workload without dropping theorem scope.",
     "next_draft": "2.3 Linear maps, bases, and changes of coordinates",
-    "pdf": "Existing sample edition and release version unchanged."
-  }
+    "pdf": "Existing sample edition and release version unchanged.",
+    "word_count_after_formula_code_backfill": 2423,
+    "backfill_layout_note": "Additional local code/output units increase reading and print workload; printed pagination remains unmeasured. Existing depth and proof text preserved; no PDF sample/version changed."
+  },
+  "editorial_revisions": [
+    {
+      "date": "2026-10-21",
+      "kind": "adjacent-formula-code-backfill",
+      "base_commit": "2103c869902b2e3eb80b462dd7751613fd1e1025",
+      "scope": "Editorial addition only; all prior source lines retained in order. No change to result, proofs, prerequisites, depth, sources, stable section IDs or acceptance state.",
+      "fragments": [
+        "2.2-overlap",
+        "2.2-projection",
+        "2.2-inequality",
+        "2.2-adjoint"
+      ],
+      "execution": "Passed every cumulative body block from a fresh per-section namespace, its exact displayed stdout, all assertions and exact complete-program expected output.",
+      "command": "python scripts/check_formula_code.py --section 2.2",
+      "environment": "Python3.12.14; PyTorch2.13.0; CPU; complex128/float64 unless the explicit2.8 rounding counterexample declaresfloat32; actual FlagQuantum0.3.1 in3.3,3.5,3.7.",
+      "body_section_sha256": "4e913e75ce7a5afce96b9e940ee5f4e65bcd0619370c367bfd20da9b9e9c4abb",
+      "web_checks": "Strict MkDocs build and58-page local links/anchors passed. Actual local browser screenshots inspected one correspondence unit per specified section; full Chapter2/3 accessibility text had no raw LaTeX or math-error text.",
+      "review_status": "Author checks only; independent mathematical/implementation review, reader trial and acceptance remain pending."
+    }
+  ]
 }

@@ -26,7 +26,7 @@
   },
   "local_start_checks": {
     "prerequisite": "Canonical requires list is empty; all needed complex/set/coordinate notation introduced locally.",
-    "source": "NC:2.1.1 begins printedp62; companion introduction printedpp61–62 and Figure2.1 inspected from cached local copy of user-supplied PDF. Downloads original inaccessible to this execution environment; no content uploaded.",
+    "source": "NC:2.1.1 begins printedp62; companion introduction printedpp61\u201362 and Figure2.1 inspected from cached local copy of user-supplied PDF. Downloads original inaccessible to this execution environment; no content uploaded.",
     "independent_reference": "Integer-pair addition/multiplication/conjugation/modulus; hand-expanded vector values and non-real coefficient counterexample.",
     "scope": "No baseline scope/dependency/depth changes; no new paper audit."
   },
@@ -38,7 +38,7 @@
         62
       ],
       "edition": "10th Anniversary Edition(2010)",
-      "use": "Assigned locator begins p62; coordinate introduction on pp61–62 and conjugation notation in Figure2.1. Elementary scalar bridge and component derivations are original, not attributed wholesale to the assigned subsection."
+      "use": "Assigned locator begins p62; coordinate introduction on pp61\u201362 and conjugation notation in Figure2.1. Elementary scalar bridge and component derivations are original, not attributed wholesale to the assigned subsection."
     }
   ],
   "proof_obligations": [
@@ -92,6 +92,28 @@
     "word_count_approx": 1963,
     "page_status": "Unmeasured planning envelope; no typeset page claim.",
     "next_draft": "2.2 Inner products, adjoints, and orthogonality",
-    "pdf": "Existing PDF sample and version unchanged."
-  }
+    "pdf": "Existing PDF sample and version unchanged.",
+    "word_count_after_formula_code_backfill": 2380,
+    "backfill_layout_note": "Additional local code/output units increase reading and print workload; printed pagination remains unmeasured. Existing depth and proof text preserved; no PDF sample/version changed."
+  },
+  "editorial_revisions": [
+    {
+      "date": "2026-10-21",
+      "kind": "adjacent-formula-code-backfill",
+      "base_commit": "2103c869902b2e3eb80b462dd7751613fd1e1025",
+      "scope": "Editorial addition only; all prior source lines retained in order. No change to result, proofs, prerequisites, depth, sources, stable section IDs or acceptance state.",
+      "fragments": [
+        "2.1-arithmetic",
+        "2.1-conjugation",
+        "2.1-modulus",
+        "2.1-vectors"
+      ],
+      "execution": "Passed every cumulative body block from a fresh per-section namespace, its exact displayed stdout, all assertions and exact complete-program expected output.",
+      "command": "python scripts/check_formula_code.py --section 2.1",
+      "environment": "Python3.12.14; PyTorch2.13.0; CPU; complex128/float64 unless the explicit2.8 rounding counterexample declaresfloat32; actual FlagQuantum0.3.1 in3.3,3.5,3.7.",
+      "body_section_sha256": "24d723ae6ad4a44842a7e73f0f770504e5f66b626fbc81d8761c3f94e2afa493",
+      "web_checks": "Strict MkDocs build and58-page local links/anchors passed. Actual local browser screenshots inspected one correspondence unit per specified section; full Chapter2/3 accessibility text had no raw LaTeX or math-error text.",
+      "review_status": "Author checks only; independent mathematical/implementation review, reader trial and acceptance remain pending."
+    }
+  ]
 }

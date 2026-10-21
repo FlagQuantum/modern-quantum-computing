@@ -10,6 +10,8 @@ The interference preview in Chapter 1 used pairs of real numbers. To build the g
 
 This section needs real-number arithmetic, square roots and the distributive rule for multiplication over addition. It has no prior numbered-section prerequisite. Python lists will store finite coordinate vectors; their entries need not yet describe a quantum state. By the end, you should be able to derive the conjugation identities and detect a missing conjugate in a numerical calculation.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
+
 ### A complex number is a pair with a multiplication rule
 
 Write a complex number as $z=a+ib$, where $a$ and $b$ are real numbers and $i$ satisfies $i^2=-1$. Its real part is $a$ and its imaginary part is $b$: the imaginary part of $2-3i$ is $-3$, not $-3i$. Two complex numbers are equal exactly when their respective real and imaginary parts agree. Real numbers are included by setting $b=0$.
@@ -33,6 +35,26 @@ $$
 For example, take $z=2-3i$ and $w=-1+4i$. Their sum is $1+i$. Their product has real part $2(-1)-(-3)4=10$ and imaginary part $2(4)+(-3)(-1)=11$, so $zw=10+11i$. The imaginary coordinates contribute to both parts of a product. Multiplying real parts alone loses that information.
 
 Python writes the imaginary unit as `1j`, so these numbers are `2-3j` and `-1+4j`. Bare `j` is a variable name, not the imaginary unit. We will keep $i$ in mathematics and `j` inside Python literals.
+
+<span id="formula-code-2-1-arithmetic"></span>
+
+**Formula → code: scalar addition and multiplication.** The pairs $(a,b)$ and $(c,d)$ are `z.real, z.imag` and `w.real, w.imag`. Compute the distributed real/imaginary formula independently of Python's complex multiplication.
+
+<!-- formula-code: 2.1-arithmetic -->
+```python
+z, w = 2-3j, -1+4j
+ar, ai, br, bi = z.real, z.imag, w.real, w.imag
+expanded = complex(ar*br-ai*bi, ar*bi+ai*br)
+assert expanded == z*w == 10+11j
+assert z+w == 1+1j
+print(z+w, expanded)
+```
+
+```text
+(1+1j) (10+11j)
+```
+
+The real subtraction includes $-(-3)4=12$. The assertion checks the full complex result, so a sign error in either component is visible.
 
 ### Conjugation: change the imaginary sign, not every sign
 
@@ -71,6 +93,26 @@ z^*w^*&=(a-ib)(c-id)\\
 $$
 
 The real and imaginary parts agree, which proves the identity. A real scalar $r$ obeys $r^*=r$, but a general complex scalar does not. In particular, $i^*=-i$. This distinction will matter when coefficients multiply whole vectors.
+
+<span id="formula-code-2-1-conjugation"></span>
+
+**Formula → code: conjugate every complex coefficient.** `.conjugate()` implements the star. The two identities just proved give the first two assertions; the last distinguishes $(iz)^*$ from $iz^*$.
+
+<!-- formula-code: 2.1-conjugation -->
+```python
+assert (z+w).conjugate() == z.conjugate()+w.conjugate()
+assert (z*w).conjugate() == z.conjugate()*w.conjugate()
+assert z.conjugate().conjugate() == z
+left, wrong = (1j*z).conjugate(), 1j*z.conjugate()
+assert left != wrong
+print(z.conjugate(), left, wrong)
+```
+
+```text
+(2+3j) (3-2j) (-3+2j)
+```
+
+The disagreement is predicted by $i^*=-i$. Testing with a real coefficient would conceal it.
 
 **2.1-A — Predict before running.** What is $(i(1+i))^*$? Compare it with $i(1+i)^*$. Which operation causes their difference?
 
@@ -128,6 +170,26 @@ $$
 $$
 
 Here $z^*w=-14+5i$ and $w^*z=-14-5i$. Their sum is $-28$, leaving $13+17-28=2$. The two cross terms are conjugates, so their sum is real. This algebra explains why replacing a sum of complex coordinates by a sum of their squared sizes changes a calculation; assigning measurement probabilities to amplitudes will require the later physical postulates.
+
+<span id="formula-code-2-1-modulus"></span>
+
+**Formula → code: modulus, inverse, and cross terms.** Use the expanded integer reference $13$ for $|z|^2$ and keep the two cross terms when squaring the size of a sum.
+
+<!-- formula-code: 2.1-modulus -->
+```python
+mod2 = z.conjugate()*z
+cross = z.conjugate()*w + w.conjugate()*z
+assert mod2 == 13
+assert z*(z.conjugate()/mod2) == 1
+assert (z+w).conjugate()*(z+w) == mod2 + w.conjugate()*w + cross
+print(mod2, cross, (z+w).conjugate()*(z+w))
+```
+
+```text
+(13+0j) (-28+0j) (2+0j)
+```
+
+A complex scalar with zero imaginary part still prints `+0j`. These exact small integer cases check the algebra; they do not promise exact floating-point multiplication at arbitrary scales.
 
 ### Finite vectors: keep coordinates and operations separate
 
@@ -187,6 +249,31 @@ $$
 The last step moves the same real factor outside a finite sum. For the displayed $v$, $L(v)=2+5=7$. Its sum of ordinary squares is instead $(1+i)^2+(2-i)^2=3-2i$, which cannot serve as this real squared length.
 
 For a nonzero vector, let $u=v/\sqrt{L(v)}$, meaning divide each coordinate by the same positive real number. The scaling identity gives $L(u)=(1/L(v))L(v)=1$. A zero vector cannot be normalized this way. This is a coordinate calculation, not yet a derivation of what counts as a physical state. Inner products and their geometry belong to 2.2; Chapter 3 gives state interpretation.
+
+<span id="formula-code-2-1-vectors"></span>
+
+**Formula → code: vector operations act entry by entry.** Mathematical index $k=1$ is Python index `0`. Keep equal lengths and conjugate the scalar in the scaling rule.
+
+<!-- formula-code: 2.1-vectors -->
+```python
+from math import sqrt
+v = [1+1j, 2-1j]
+scaled = [1j*x for x in v]
+assert [x.conjugate() for x in scaled] == [-1j*x.conjugate() for x in v]
+length2 = sum((x.conjugate()*x).real for x in v)
+u = [x/sqrt(length2) for x in v]
+assert length2 == 7 and sum(x*x for x in v) == 3-2j
+assert abs(sum(abs(x)**2 for x in u)-1) < 1e-12
+print([x.conjugate() for x in scaled])
+print(length2, sum(x*x for x in v))
+```
+
+```text
+[(-1-1j), (1-2j)]
+7.0 (3-2j)
+```
+
+The real nonnegative squared length is 7; the ordinary sum of squares is complex. A zero vector must be rejected before the division by its norm.
 
 ### Match the identities to executable checks
 
@@ -257,6 +344,8 @@ A squared length compares a vector with itself. How can we compare two different
 
 The entry requirement is [2.1](#sec-complex-vectors-operators-and-numerical-reasoning-1): complex conjugation, scalar multiplication, finite coordinate sums and their squared lengths. This section derives orthogonal projection and the Cauchy–Schwarz inequality, including zero cases and equality conditions. The calculations are mathematical; they are not measurements of a quantum system.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
+
 ### Fix which argument is conjugated
 
 For equal-length coordinate columns $v,w\in\mathbb C^n$, define the **standard inner product** by
@@ -299,6 +388,29 @@ $$
 $$
 
 Reversing the arguments gives $\langle v,a\rangle=3+i$. Omitting conjugation instead gives $1\cdot2+i(1+i)=1+i$. Worse, that unconjugated rule assigns $a$ a “squared length” $1+i^2=0$, although $a\ne0$. Positive definiteness fails.
+
+<span id="formula-code-2-2-overlap"></span>
+
+**Formula → code: conjugate the first argument.** A shape `(2,)` tensor stores the two coordinates. `torch.vdot(a,v)` reduces them to one scalar. Independently expand the real and imaginary sums to check the library convention.
+
+<!-- formula-code: 2.2-overlap -->
+```python
+import torch
+D = torch.complex128
+a = torch.tensor([1, 1j], dtype=D)
+v = torch.tensor([2, 1+1j], dtype=D)
+scalar = sum(complex(x).conjugate()*y for x,y in zip(a.tolist(),v.tolist()))
+assert scalar == 3-1j
+assert torch.vdot(a,v).item() == scalar
+assert torch.vdot(v,a).item() == 3+1j
+print(torch.vdot(a,v).item(), torch.dot(a,a).item(), torch.vdot(a,a).item())
+```
+
+```text
+(3-1j) 0j (2+0j)
+```
+
+`dot` omits the conjugation and assigns a nonzero vector zero squared length. `vdot` agrees with the declared positive-definite inner product.
 
 **2.2-A — Predict the coefficient.** What is $\langle ia,v\rangle$? What is $\langle a,iv\rangle$? Work from $\langle a,v\rangle=3-i$ before calling a tensor routine.
 
@@ -356,6 +468,32 @@ $$
 
 The second term is nonnegative and vanishes exactly when $t=c$. Thus $p$ is the unique nearest point on that line. No differentiation or optimization algorithm was needed. A zero direction cannot be used in the quotient formula; its span contains only zero, whose projection is trivially zero. Our executable routine deliberately requires a nonzero direction and rejects that special input.
 
+<span id="formula-code-2-2-projection"></span>
+
+**Formula → code: solve the residual-orthogonality equation.** The scalar `c` is the quotient in the derivation; `p` and `r` remain shape `(2,)`. Compare their coordinates with the hand result before checking the residual overlap.
+
+<!-- formula-code: 2.2-projection -->
+```python
+c = torch.vdot(a,v)/torch.vdot(a,a)
+p, r = c*a, v-c*a
+torch.testing.assert_close(
+    p,
+    torch.tensor([1.5-.5j,.5+1.5j],dtype=D),
+    rtol=0,
+    atol=1e-12,
+)
+assert abs(torch.vdot(a,r).item()) < 1e-12
+assert (torch.vdot(v,v).real.item() ==
+        torch.vdot(p,p).real.item()+torch.vdot(r,r).real.item())
+print(c.item(), p.tolist(), r.tolist())
+```
+
+```text
+(1.5-0.5j) [(1.5-0.5j), (0.5+1.5j)] [(0.5+0.5j), (0.5-0.5j)]
+```
+
+Keeping the denominator matters: `a` has squared norm 2. Reversing the overlap in the numerator produces residual overlap $-2i$, as the diagnostic below checks.
+
 ### Cauchy–Schwarz and its equality cases
 
 From $p=ca$, the scaling identity gives
@@ -395,6 +533,28 @@ $$
 
 The middle step uses $\operatorname{Re}z\le\lvert z\rvert$ from the scalar modulus formula, followed by Cauchy–Schwarz and nonnegative square roots. Taking nonnegative square roots once more yields $\|v+w\|\le\|v\|+\|w\|$.
 
+<span id="formula-code-2-2-inequality"></span>
+
+**Formula → code: check strict and equality cases, then a failed projection.** Compute the squared modulus with `.abs().square()`; squaring a complex overlap itself would change the statement.
+
+<!-- formula-code: 2.2-inequality -->
+```python
+lhs = torch.vdot(a,v).abs().square().item()
+rhs = (torch.vdot(a,a).real*torch.vdot(v,v).real).item()
+multiple = (2-1j)*a
+assert abs(torch.vdot(a,multiple).abs().square().item()-
+           (torch.vdot(a,a).real*torch.vdot(multiple,multiple).real).item()) < 1e-12
+wrong_r = v-(torch.vdot(v,a)/torch.vdot(a,a))*a
+assert torch.vdot(a,wrong_r).item() == -2j
+print(round(lhs), round(rhs), torch.vdot(a,wrong_r).item())
+```
+
+```text
+10 12 -2j
+```
+
+The pair gives $10<12$; a scalar multiple attains equality. These are implementation witnesses for the proved inequality and boundary, not a proof from sampling.
+
 ### An adjoint conjugates and changes shape
 
 The entrywise conjugate column $v^*$ from 2.1 is different from the **adjoint** $v^\dagger$, which is the conjugated **row**:
@@ -427,6 +587,25 @@ A^\dagger=\begin{pmatrix}1&2+i\\-i&3\end{pmatrix}.
 $$
 
 Then $Av=(1+i,\,7+i)$ and $A^\dagger a=(2i,\,2i)$ as columns. Both $\langle a,Av\rangle$ and $\langle A^\dagger a,v\rangle$ evaluate to $2-6i$. Plain transpose exchanges indices but does not conjugate entries, so cannot generally replace the adjoint.
+
+<span id="formula-code-2-2-adjoint"></span>
+
+**Formula → code: adjoint and shape.** For matrix `A`, `.mH` is conjugate transpose. Make the vector's column explicit with `[:,None]` before taking its row adjoint.
+
+<!-- formula-code: 2.2-adjoint -->
+```python
+A = torch.tensor([[1,1j],[2-1j,3]],dtype=D)
+left, right = torch.vdot(a,A@v), torch.vdot(A.mH@a,v)
+assert left.item() == right.item() == 2-6j
+assert abs((torch.vdot(A.T@a,v)-left).item()) > 1
+print(tuple(a[:,None].shape), tuple(a[:,None].mH.shape), left.item())
+```
+
+```text
+(2, 1) (1, 2) (2-6j)
+```
+
+The transpose-only failure uses complex entries deliberately. A one-dimensional tensor has no row/column distinction until that extra axis is supplied.
 
 ### Formula to tensor operations and independent checks
 
@@ -501,6 +680,8 @@ Two programs can store different coordinate arrays for the same vector, and diff
 
 The prerequisite is [2.2](#sec-complex-vectors-operators-and-numerical-reasoning-2), including inner products, adjoints and its matrix-vector bridge. We now define bases and linear maps, derive their matrix representations, and prove the change-of-basis rule. No determinant or eigenvalue calculation is assumed.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
+
 ### A basis makes coordinates unique
 
 A finite complex vector space is a collection in which vector addition and multiplication by complex scalars obey the usual arithmetic rules. Our concrete model is $\mathbb C^n$ from 2.1; we also use a label $V$ for the underlying space to distinguish a vector from its chosen coordinates.
@@ -538,6 +719,27 @@ $$
 Uniqueness of coordinates therefore proves $[T(v)]_F=A[v]_E$. Conversely, any specified matrix gives a linear rule on coordinate columns, since distributing its finite sums over $\alpha x+\beta y$ gives $\alpha Ax+\beta Ay$. Thus choosing bases relates linear maps to matrices; a matrix representation needs both its input and output basis labels.
 
 If one matrix $A$ maps input coordinates to intermediate coordinates and a second matrix $D$ maps those intermediate coordinates to final coordinates, composition means first $A$, then $D$. The final coordinate $i$ is $\sum_j D_{ij}\sum_k A_{jk}x_k$. Regrouping the finite sums gives $\sum_k(\sum_j D_{ij}A_{jk})x_k$. This defines the matrix product $(DA)_{ik}=\sum_j D_{ij}A_{jk}$ and proves the composition rule. The rightmost matrix acts first. The intermediate coordinate basis and dimensions must match.
+
+<span id="formula-code-2-3-columns"></span>
+
+**Formula → code: assemble a map from its basis images.** Each column is $T(e_j)$. The direct coordinate swap supplies a reference independent of matrix multiplication.
+
+<!-- formula-code: 2.3-columns -->
+```python
+import torch
+D = torch.complex128
+e1, e2 = torch.eye(2,dtype=D).unbind(1)
+A = torch.stack((e2,e1),dim=1)
+x = torch.tensor([2,3],dtype=D)
+assert torch.equal(A@x, torch.tensor([x[1].item(),x[0].item()],dtype=D))
+print((A@x).real.tolist(), tuple(A.shape))
+```
+
+```text
+[3.0, 2.0] (2, 2)
+```
+
+`dim=1` stacks columns. A symmetric swap matrix alone cannot expose an accidental transpose, so the next basis example uses a nonsymmetric conversion.
 
 **2.3-A — Build the columns.** For the map that swaps standard-coordinate entries in $\mathbb C^2$, what are its two basis images and hence its matrix? Why are the images columns rather than rows?
 
@@ -591,6 +793,30 @@ For $x=(2,3)$, the new coordinates are $y=(-1,3)$. Applying $A_B$ gives $y'=(1,2
 
 Now treat $AS$ as though it were the new matrix. It returns $(3,2)$ from input $y$, but those numbers are old coordinates. Interpreting them as new coordinates reconstructs $S(3,2)=(5,2)$, the wrong vector. A matrix can return plausible-looking numbers while violating its coordinate contract.
 
+<span id="formula-code-2-3-similarity"></span>
+
+**Formula → code: convert input, apply the map, convert output.** `solve(S,x)` implements $S^{-1}x$ without explicitly forming an inverse. A matrix right-hand side converts each column of $AS$.
+
+<!-- formula-code: 2.3-similarity -->
+```python
+S = torch.tensor([[1,1],[0,1]],dtype=D)
+y = torch.linalg.solve(S,x)
+B = torch.linalg.solve(S,A@S)
+torch.testing.assert_close(B,torch.tensor([[-1,0],[1,1]],dtype=D),rtol=0,atol=1e-12)
+assert torch.equal(S@(B@y),A@x)
+wrong_output = S@((A@S)@y)
+assert not torch.equal(wrong_output,A@x)
+print(y.real.tolist(), (B@y).real.tolist(), (S@(B@y)).real.tolist())
+print(wrong_output.real.tolist())
+```
+
+```text
+[-1.0, 3.0] [1.0, 2.0] [3.0, 2.0]
+[5.0, 2.0]
+```
+
+The first line follows the three coordinate types. The wrong $(5,2)$ result treats old output coordinates as new ones and demonstrates why the final inverse is required.
+
 ### When an adjoint can replace an inverse
 
 Suppose both the old and new bases are orthonormal for the same inner product. In old orthonormal coordinates, entry $(j,k)$ of $S^\dagger S$ is the inner product of new basis vectors $b_j,b_k$. Orthonormality makes this entry 1 when $j=k$ and 0 otherwise, so $S^\dagger S=I$. Since $S$ is invertible, multiplying this equality on the right by $S^{-1}$ gives $S^\dagger=S^{-1}$, and hence also $SS^\dagger=I$.
@@ -631,6 +857,34 @@ G=\begin{pmatrix}1&1\\1&2\end{pmatrix}.
 $$
 
 For $y=(-1,3)$, the naive coordinate sum of squared moduli is 10, but $Gy=(2,5)$ gives $y^\dagger Gy=-2+15=13$, agreeing with $\|x\|^2=4+9=13$. The vector's length did not change. The Euclidean-coordinate formula cannot be transferred unchanged to a nonorthonormal basis.
+
+<span id="formula-code-2-3-metric"></span>
+
+**Formula → code: the basis carries its Gram matrix.** Compare $y^\dagger Gy$ with the old length, then verify the special orthonormal rule $Q^\dagger A Q$ using a complex basis.
+
+<!-- formula-code: 2.3-metric -->
+```python
+from math import sqrt
+G = S.mH@S
+old2, naive2, weighted2 = torch.vdot(x,x), torch.vdot(y,y), torch.vdot(y,G@y)
+assert old2.item() == weighted2.item() == 13 and naive2.item() == 10
+Q = torch.tensor([[1,1],[1j,-1j]],dtype=D)/sqrt(2)
+torch.testing.assert_close(Q.mH@Q,torch.eye(2,dtype=D),rtol=0,atol=1e-12)
+torch.testing.assert_close(
+    Q.mH@A@Q,
+    torch.tensor([[0,-1j],[1j,0]],dtype=D),
+    rtol=0,
+    atol=1e-12,
+)
+assert not torch.allclose(Q.T@A@Q,Q.mH@A@Q,rtol=0,atol=1e-12)
+print(old2.real.item(), naive2.real.item(), weighted2.real.item())
+```
+
+```text
+13.0 10.0 13.0
+```
+
+The weighted length stays 13. Adjoint replaces inverse only after orthonormality has been established; the complex `Q` also makes a missing conjugation detectable.
 
 ### Passive coordinates and active transformations
 
@@ -707,6 +961,8 @@ Depth **F**: derive similarity from coordinate conversion, justify invertibility
 A matrix can equal its adjoint, preserve lengths, or give nonnegative quadratic forms. These are different requirements. Confusing them can turn a valid matrix calculation into an invalid interpretation of an observable, a transformation or a probability model. We first establish the algebra, before assigning physical roles in later chapters.
 
 The prerequisite is [2.3](#sec-complex-vectors-operators-and-numerical-reasoning-3), including its distinction between a linear map and its coordinates. All matrix formulas below use a fixed **orthonormal basis** and the standard inner product, conjugate linear in its first argument. Operators act on the same finite-dimensional complex inner product space as their output space. No spectral decomposition is assumed.
+
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
 
 ### Definitions that do different work
 
@@ -837,6 +1093,32 @@ $$
 
 The program checks this real-arithmetic expression against the tensor quadratic form.
 
+<span id="formula-code-2-4-positive"></span>
+
+**Formula → code: real quadratic form and positive decomposition.** Translate the displayed all-vector identity using one complex test vector. The independent sum of squared moduli supplies the expected value, while the proof above covers every vector.
+
+<!-- formula-code: 2.4-positive -->
+```python
+import torch
+D = torch.complex128
+H = torch.tensor([[2,1j],[-1j,2]],dtype=D)
+v = torch.tensor([1+1j,2-1j],dtype=D)
+a,b = v.tolist()
+form = torch.vdot(v,H@v)
+expanded = abs(a+1j*b)**2+abs(a)**2+abs(b)**2
+assert abs(form.item()-expanded) < 1e-12
+assert torch.equal(H.mH,H)
+e1 = torch.tensor([1,0],dtype=D)
+assert torch.vdot(H@e1,H@e1).item() == 5
+print(form.item(), round(expanded), torch.vdot(H@e1,H@e1).real.item())
+```
+
+```text
+(20+0j) 20 5.0
+```
+
+The last number is the stretched squared norm of a unit input, refuting unitarity. Positivity and norm preservation impose different conditions.
+
 ### Counterexamples that separate the classes
 
 Here are three further operators in standard orthonormal coordinates:
@@ -858,6 +1140,34 @@ Both $Z^\dagger=Z$ and $Z^\dagger Z=ZZ^\dagger=I$ hold, so $Z$ is simultaneously
 | $Z=\operatorname{diag}(1,-1)$ | Yes | Yes | No | No |
 | $P=\operatorname{diag}(1,0)$ | Yes | No | Yes | No |
 
+<span id="formula-code-2-4-classes"></span>
+
+**Formula → code: separate the defining identities.** Test unitarity on the full matrix and use explicit quadratic-form witnesses to refute Hermiticity, positivity or strict positivity as appropriate.
+
+<!-- formula-code: 2.4-classes -->
+```python
+I = torch.eye(2,dtype=D)
+U = torch.diag(torch.tensor([1,1j],dtype=D))
+Z = torch.diag(torch.tensor([1,-1],dtype=D))
+P = torch.diag(torch.tensor([1,0],dtype=D))
+e2 = torch.tensor([0,1],dtype=D)
+assert torch.equal(U.mH@U,I) and not torch.equal(U.mH,U)
+assert torch.equal(Z.mH,Z) and torch.equal(Z.mH@Z,I)
+assert torch.vdot(e2,Z@e2).item() == -1
+assert torch.vdot(e2,P@e2).item() == 0
+print(
+    torch.vdot(e2,U@e2).item(),
+    torch.vdot(e2,Z@e2).item(),
+    torch.vdot(e2,P@e2).item(),
+)
+```
+
+```text
+1j (-1+0j) 0j
+```
+
+The outputs respectively show a non-real form, a negative form, and a zero form at a nonzero input. Positive semidefiniteness of `P` follows from its proved form $|a|^2$, not from this one zero sample.
+
 A final warning concerns eigenvalues without Hermiticity. Let
 
 $$
@@ -865,6 +1175,30 @@ N=\begin{pmatrix}0&1\\0&0\end{pmatrix}.
 $$
 
 For an eigenpair $N(x,y)=\lambda(x,y)$, the coordinate equations are $y=\lambda x$ and $0=\lambda y$. If $\lambda\ne0$, they force $y=x=0$, contradicting the nonzero eigenvector requirement. The value 0 does occur, with eigenvector $e_1$, so it is the only eigenvalue. Yet $q_N((1,-1))=-1$, and $q_N((1,i))=i$. Thus nonnegative eigenvalues alone do not establish positivity for an arbitrary non-Hermitian matrix.
+
+<span id="formula-code-2-4-probes"></span>
+
+**Formula → code: why real-only probes are insufficient.** The proof uses both $e_j+e_k$ and $e_j+i e_k$ to recover the off-diagonal information. For the specified non-Hermitian `N`, an imaginary probe also exposes a non-real form despite its only eigenvalue being zero.
+
+<!-- formula-code: 2.4-probes -->
+```python
+N = torch.tensor([[0,1],[0,0]],dtype=D)
+assert torch.equal(N@N,torch.zeros_like(N))
+negative = torch.tensor([1,-1],dtype=D)
+imaginary = torch.tensor([1,1j],dtype=D)
+assert torch.vdot(negative,N@negative).item() == -1
+assert torch.vdot(imaginary,N@imaginary).item() == 1j
+print(
+    torch.vdot(negative,N@negative).item(),
+    torch.vdot(imaginary,N@imaginary).item(),
+)
+```
+
+```text
+(-1+0j) 1j
+```
+
+The nilpotency check is consistent with the coordinate eigenvalue argument; neither an eigensolver output nor a finite probe set replaces that argument or the general Hermiticity proof.
 
 ### Formula to executable evidence
 
@@ -944,6 +1278,8 @@ Knowing that every Hermitian eigenvalue is real does not yet tell us that enough
 
 The prerequisite is [2.4](#sec-complex-vectors-operators-and-numerical-reasoning-4). We use its Hermitian real forms, positive Gram forms and inner-product conventions. Coordinate bases are orthonormal throughout. We supply the needed finite-dimensional compactness and basis-completion arguments locally, without assuming a spectral theorem in its own proof.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
+
 ### A finite orthonormal-completion bridge
 
 Start with an orthonormal list $q_1,\ldots,q_k$ in $\mathbb C^n$, possibly empty. For any vector $x$, remove its components along the list:
@@ -964,6 +1300,31 @@ $$
 $$
 
 The first equality follows by the orthogonal squared-length decomposition from 2.2; each $e_j$ has squared length 1. The inner sum is $\|q_\ell\|^2=1$. Nonnegativity gives $k\le n$. For a spanning list all residuals vanish, giving $k=n$. Thus a unit vector can be completed to an orthonormal basis of exactly $n$ members. The remaining $n-1$ members span its orthogonal complement: in the basis expansion, orthogonality forces the first coefficient to be zero.
+
+<span id="formula-code-2-5-completion"></span>
+
+**Formula → code: one orthonormal-completion step.** In shape `(2,)`, subtract $q\langle q,x\rangle$ and normalize only a nonzero residual. This exact independent-input fixture needs no numerical rank threshold.
+
+<!-- formula-code: 2.5-completion -->
+```python
+import torch
+from math import sqrt
+D = torch.complex128
+q = torch.tensor([1,1j],dtype=D)/sqrt(2)
+x = torch.tensor([1,0],dtype=D)
+r = x-q*torch.vdot(q,x)
+assert torch.linalg.vector_norm(r).item() > .5
+q2 = r/torch.linalg.vector_norm(r)
+Q = torch.stack((q,q2),dim=1)
+torch.testing.assert_close(Q.mH@Q,torch.eye(2,dtype=D),rtol=0,atol=1e-12)
+print([round(t,6) for t in r.real.tolist()], round(torch.vdot(r,r).real.item(),6))
+```
+
+```text
+[0.5, 0.0] 0.5
+```
+
+The residual is $(1,-i)^T/2$, whose squared norm is $1/2$. At zero residual the mathematical construction appends nothing; a floating-point rank decision near zero requires a separate conditioning policy.
 
 ### Why a Hermitian quadratic form attains a maximum
 
@@ -1120,6 +1481,31 @@ $$
 
 Section 2.4 checked the two eigenpairs; 2.3 checked these columns are orthonormal. Multiplying $Q\Lambda Q^\dagger$ reconstructs $H$. The numerical check compares each rank-one projector with the hand-derived one, rather than requiring an eigensolver to choose identical phases.
 
+<span id="formula-code-2-5-spectral"></span>
+
+**Formula → code: spectral reconstruction without fixing solver phases.** Supply the hand eigenvalues and eigenvectors first, then compare eigenspace projectors with those returned by `eigh`. An outer product keeps the column's common phase from affecting the check.
+
+<!-- formula-code: 2.5-spectral -->
+```python
+H = torch.tensor([[2,1j],[-1j,2]],dtype=D)
+Qhand = torch.tensor([[1,1],[1j,-1j]],dtype=D)/sqrt(2)
+lam = torch.tensor([1.,3.],dtype=torch.float64)
+torch.testing.assert_close(Qhand@torch.diag(lam.to(D))@Qhand.mH,H,rtol=0,atol=1e-12)
+values,vectors = torch.linalg.eigh(H)
+torch.testing.assert_close(values,lam,rtol=0,atol=1e-12)
+for j in range(2):
+    numerical = torch.outer(vectors[:,j],vectors[:,j].conj())
+    hand = torch.outer(Qhand[:,j],Qhand[:,j].conj())
+    torch.testing.assert_close(numerical,hand,rtol=0,atol=1e-12)
+print(values.tolist(), "projectors and reconstruction agree")
+```
+
+```text
+[1.0, 3.0] projectors and reconstruction agree
+```
+
+The proof establishes existence; this check validates a particular numerical decomposition against separately supplied factors. Directly comparing raw solver columns would impose an unnecessary phase convention.
+
 For a rectangular case, take
 
 $$
@@ -1145,6 +1531,41 @@ Ax=\begin{pmatrix}3a\\4ic\end{pmatrix},\qquad
 $$
 
 The coordinate $b$ never affects the output, independently confirming the kernel direction.
+
+<span id="formula-code-2-5-svd"></span>
+
+**Formula → code: rectangular SVD, full factors, and the missing input direction.** The displayed hand action sends $(a,b,c)$ to $(3a,4ic)$. Construct the rectangular `Sigma` explicitly; the singular-value vector alone is not that matrix.
+
+<!-- formula-code: 2.5-svd -->
+```python
+A = torch.tensor([[3,0,0],[0,0,4j]],dtype=D)
+U,s,Vh = torch.linalg.svd(A,full_matrices=True)
+Sigma = torch.zeros((2,3),dtype=D)
+Sigma[:2,:2] = torch.diag(s.to(D))
+torch.testing.assert_close(U@Sigma@Vh,A,rtol=0,atol=1e-12)
+torch.testing.assert_close(
+    s,
+    torch.tensor([4.,3.],dtype=torch.float64),
+    rtol=0,
+    atol=1e-12,
+)
+x = torch.tensor([1+1j,9,2-1j],dtype=D)
+torch.testing.assert_close(
+    U@Sigma@Vh@x,
+    torch.tensor([3+3j,4+8j],dtype=D),
+    rtol=0,
+    atol=1e-12,
+)
+kernel = Vh.mH[:,2]
+torch.testing.assert_close(A@kernel,torch.zeros(2,dtype=D),rtol=0,atol=1e-12)
+print(tuple(U.shape),tuple(Sigma.shape),tuple(Vh.shape),s.tolist())
+```
+
+```text
+(2, 2) (2, 3) (3, 3) [4.0, 3.0]
+```
+
+The third right-basis column is the kernel direction. For this particular `A`, its projector is onto $e_2$; retaining full `Vh` makes that extra input direction available.
 
 ### Formula to code, with explicit factor dimensions
 
@@ -1189,6 +1610,34 @@ The main example's $V$ is real, so replacing its adjoint by transpose would acci
 
 No FlagQuantum API or quantum hardware execution is needed for this mathematical reference. In floating point, a very small singular value is not automatically an exact zero. Choosing a numerical rank threshold needs scale and error information, addressed in later numerical reasoning; no universal threshold is inferred here.
 
+<span id="formula-code-2-5-degeneracy"></span>
+
+**Formula → code: compare invariant subspaces, and distinguish singular values.** A rotation of a degenerate eigenbasis changes columns but not the projector. The nilpotent example separately checks that singular values need not be eigenvalue magnitudes.
+
+<!-- formula-code: 2.5-degeneracy -->
+```python
+basis = torch.eye(3,dtype=D)[:,:2]
+rotation = torch.tensor([[1,1j],[1j,1]],dtype=D)/sqrt(2)
+rotated = basis@rotation
+torch.testing.assert_close(rotated@rotated.mH,basis@basis.mH,rtol=0,atol=1e-12)
+N = torch.tensor([[0,1],[0,0]],dtype=D)
+assert torch.equal(N@N,torch.zeros_like(N))
+sv = torch.linalg.svdvals(N)
+torch.testing.assert_close(
+    sv,
+    torch.tensor([1.,0.],dtype=torch.float64),
+    rtol=0,
+    atol=1e-12,
+)
+print(sv.tolist(), "degenerate projector unchanged")
+```
+
+```text
+[1.0, 0.0] degenerate projector unchanged
+```
+
+This fixture rotates the eigenvalue-2 subspace of $\operatorname{diag}(2,2,0)$. The mathematical argument explains why the entire subspace projector, rather than a chosen basis, is the comparison object.
+
 ### Transfer, proof diagnosis, and answers
 
 **2.5-B — Zero singular direction.** A proposed SVD proof defines $u_i=Av_i/\sigma_i$ for every right Gram eigenvector. Locate the invalid step when $\sigma_i=0$ and replace it with the correct kernel argument.
@@ -1223,6 +1672,8 @@ What should the square root or exponential of a matrix mean? Taking a scalar fun
 
 The prerequisite is [2.5](#sec-complex-vectors-operators-and-numerical-reasoning-5): Hermitian spectral projectors and reconstruction. We first define functions on that spectrum, then justify the exponential series and its convergence without assuming the operator-norm material of 2.7. Our evolution example uses a **constant**, finite Hermitian generator and dimensionless real time. It is a mathematical model, not a derivation of a quantum dynamical postulate or a hardware execution.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
+
 ### Apply a function to spectral values, not entries
 
 Write the Hermitian spectral decomposition using **distinct** eigenvalues $\lambda$ and their full eigenspace projectors:
@@ -1250,6 +1701,32 @@ H^{1/2}=\sum_\lambda\sqrt\lambda\,P_\lambda.
 $$
 
 The nonnegative scalar square roots are defined because $\lambda\ge0$. Multiplying the projector sums gives $(H^{1/2})^2=H$, and its real nonnegative coefficients make it positive semidefinite. An inverse uses $f(\lambda)=1/\lambda$ and therefore requires no zero eigenvalue; its product with $H$ is $I$. A real logarithm on a Hermitian spectrum requires strictly positive eigenvalues if we use the ordinary real scalar logarithm. A domain or branch choice is part of specifying $f$, not something a solver can silently supply.
+
+<span id="formula-code-2-6-spectral-functions"></span>
+
+**Formula → code: apply a function to eigenvalues.** Reuse the explicit two-dimensional spectrum from 2.5, not an entrywise square root. The reciprocal is defined because both eigenvalues are nonzero.
+
+<!-- formula-code: 2.6-spectral-functions -->
+```python
+import torch
+from math import sqrt
+D = torch.complex128
+H = torch.tensor([[2,1j],[-1j,2]],dtype=D)
+Q = torch.tensor([[1,1],[1j,-1j]],dtype=D)/sqrt(2)
+lam = torch.tensor([1.,3.],dtype=torch.float64)
+def spectral(f):
+    return Q@torch.diag(f(lam).to(D))@Q.mH
+root, inverse = spectral(torch.sqrt), spectral(torch.reciprocal)
+torch.testing.assert_close(root@root,H,rtol=0,atol=1e-12)
+torch.testing.assert_close(inverse@H,torch.eye(2,dtype=D),rtol=0,atol=1e-12)
+print("spectral square root and reciprocal: reconstruction passed")
+```
+
+```text
+spectral square root and reciprocal: reconstruction passed
+```
+
+`Q` has shape `(2,2)` and `f(lam)` has shape `(2,)`; `diag` inserts those values on the diagonal, leaving off-diagonal entries zero even if $f(0)\ne0$.
 
 ### Prove the algebra and composition rule
 
@@ -1279,6 +1756,26 @@ $$
 The notation $f\circ g$ means first apply $g$, then $f$. This proves composition even when $g$ merges eigenvalues. It does not assume $g$ is invertible. A calculus for non-Hermitian intermediate matrices needs additional definitions and is not asserted by this particular proof.
 
 **2.6-A — A merged spectrum.** The previous $H$ has eigenvalues 1 and 3. For $g(x)=(x-2)^2$, what is $g(H)$? If $f(x)=e^x$, what should $f(g(H))$ be? We define this scalar exponential next.
+
+<span id="formula-code-2-6-composition"></span>
+
+**Formula → code: merge eigenvalues before the outer function.** Here $g(x)=(x-2)^2$ sends both 1 and 3 to 1, so the intermediate operator is $I$. The expected outer exponential is $eI$.
+
+<!-- formula-code: 2.6-composition -->
+```python
+from math import e
+I = torch.eye(2,dtype=D)
+merged = spectral(lambda x:(x-2)**2)
+torch.testing.assert_close(merged,I,rtol=0,atol=1e-12)
+torch.testing.assert_close(torch.linalg.matrix_exp(merged),e*I,rtol=0,atol=1e-12)
+print("g(H)=I; exp(g(H))=e I")
+```
+
+```text
+g(H)=I; exp(g(H))=e I
+```
+
+The assertion checks the grouped-spectrum composition rule in a non-injective example. It does not assume distinct intermediate eigenvalues.
 
 ### Define the scalar exponential and justify its products
 
@@ -1384,6 +1881,38 @@ A derivative is the limit of a difference quotient; only the scalar limit above 
 
 Nor does the same-generator product rule apply automatically to unrelated matrices. Expanding $\exp(\epsilon A)\exp(\epsilon B)$ gives second-order mixed term $\epsilon^2 AB$, whereas $\exp(\epsilon(A+B))$ gives $\epsilon^2(AB+BA)/2$. Without $AB=BA$, these coefficients differ. The example checks a concrete failure instead of assuming a universal product identity.
 
+<span id="formula-code-2-6-evolution"></span>
+
+**Formula → code: unitary evolution, group law, and derivative.** Evaluate scalar phases in the known spectral basis, then compare with a matrix exponential. The finite-difference check is only a bounded diagnostic of the derivative proved above.
+
+<!-- formula-code: 2.6-evolution -->
+```python
+import cmath
+def evolution(t):
+    phases = torch.tensor([cmath.exp(-1j*t),cmath.exp(-3j*t)],dtype=D)
+    return Q@torch.diag(phases)@Q.mH
+t, step = .4, 1e-6
+U = evolution(t)
+torch.testing.assert_close(U,torch.linalg.matrix_exp(-1j*t*H),rtol=0,atol=1e-12)
+torch.testing.assert_close(U.mH@U,I,rtol=0,atol=1e-12)
+torch.testing.assert_close(
+    evolution(t)@evolution(.2),
+    evolution(t+.2),
+    rtol=0,
+    atol=1e-12,
+)
+derivative = (evolution(t+step)-evolution(t-step))/(2*step)
+torch.testing.assert_close(derivative,-1j*H@U,rtol=0,atol=1e-8)
+z = U[0,0].item()
+print(f"U[0,0]={z.real:.9f}{z.imag:+.9f}j")
+```
+
+```text
+U[0,0]=0.641709374-0.660728714j
+```
+
+The state-independent checks compare full matrices. The derivative budget $10^{-8}$ is specific to this step size and two-dimensional fixture, separate from the $10^{-12}$ reconstruction checks.
+
 ### A two-by-two calculation with independent scalar phases
 
 Use the earlier Hermitian matrix and its already verified spectral columns:
@@ -1406,6 +1935,30 @@ $$
 For example, entry $(1,2)$ is $a(-i)/2+bi/2=-i(a-b)/2$; entry $(2,1)$ follows from the corresponding row-column product. At $t=0$, both phases are 1, giving $I$. At $t=0.4$, the first diagonal entry is approximately $0.641709374-0.660728714i$. This is a matrix entry, not a sampled measurement outcome.
 
 The same spectral columns give $H^{1/2}=Q\operatorname{diag}(1,\sqrt3)Q^\dagger$ and $H^{-1}=Q\operatorname{diag}(1,1/3)Q^\dagger$. The merged-spectrum example gives $(H-2I)^2=I$, hence $\exp((H-2I)^2)=eI$, with $e=e^1$.
+
+<span id="formula-code-2-6-series"></span>
+
+**Formula → code: matrix powers, not entrywise powers.** `term @ M` advances $M^k/k!$ to $M^{k+1}/(k+1)!$. Compare the partial sum with the independently supplied scalar-phase matrix and expose the entrywise-exponential mistake.
+
+<!-- formula-code: 2.6-series -->
+```python
+M = -1j*t*H
+term, series = I.clone(), I.clone()
+for k in range(1,41):
+    term = (term@M)/k
+    series = series+term
+torch.testing.assert_close(series,U,rtol=0,atol=1e-12)
+assert not torch.allclose(torch.exp(M),U,rtol=0,atol=1e-12)
+first_order = I+M
+assert torch.linalg.matrix_norm(first_order.mH@first_order-I).item() > .1
+print("order-40 matrix series agrees; entrywise exp and first-order unitarity fail")
+```
+
+```text
+order-40 matrix series agrees; entrywise exp and first-order unitarity fail
+```
+
+The section's remainder estimate below bounds the exact-arithmetic truncation, while the numerical comparison also includes rounding. The finite sum does not itself establish convergence of the infinite series.
 
 ### Formula to code and a bounded series remainder
 
@@ -1496,6 +2049,8 @@ A program returns a candidate solution and reports a residual near zero. Is the 
 
 The prerequisites are [2.3](#sec-complex-vectors-operators-and-numerical-reasoning-3) and [2.5](#sec-complex-vectors-operators-and-numerical-reasoning-5): linear maps, inverses and singular-value decomposition. This section does not require 2.6. We use Euclidean vector norms and their induced matrix norms in fixed orthonormal coordinates. The relative-error results concern square invertible systems with nonzero right-hand sides; zero and singular cases are identified separately.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
+
 ### From vector size to the largest possible amplification
 
 For $x\in\mathbb C^n$, write its Euclidean norm as $\|x\|_2=\sqrt{\sum_j\lvert x_j\rvert^2}$. For $A\in\mathbb C^{m\times n}$, define the **induced operator norm** by
@@ -1544,6 +2099,33 @@ The **Frobenius norm** is $\|A\|_F=\sqrt{\sum_{i,j}\lvert A_{ij}\rvert^2}$, the 
 They do satisfy $\|A\|_{\mathrm{op}}\le\|A\|_F$. For each output row, Cauchy–Schwarz gives $\lvert\sum_j A_{ij}x_j\rvert^2\le(\sum_j\lvert A_{ij}\rvert^2)\|x\|_2^2$. Sum over rows and maximize over unit $x$ to obtain that bound. An upper bound is useful, but changing norms midway through an argument changes what its constants mean.
 
 Notation varies across books. The assigned Watrous source calls the spectral/Euclidean-induced norm a Schatten infinity norm, and its Schatten 2-norm is Frobenius. We use the explicit subscript “op” to avoid interpreting its $\|A\|_2$ as our induced norm. In the code, `torch.linalg.matrix_norm(A, ord=2)` computes the induced spectral norm; `ord="fro"` computes Frobenius. The order argument is part of the verification contract.
+
+<span id="formula-code-2-7-norms"></span>
+
+**Formula → code: declare which norm is intended.** The induced Euclidean norm is `ord=2`; the Frobenius norm is `ord="fro"`. For a diagonal matrix, the largest diagonal magnitude independently predicts the induced gain.
+
+<!-- formula-code: 2.7-norms -->
+```python
+import torch
+from math import sqrt
+D = torch.complex128
+I = torch.eye(2,dtype=D)
+def op(A):
+    return torch.linalg.matrix_norm(A,ord=2).item()
+assert op(I) == 1
+assert abs(torch.linalg.matrix_norm(I,ord="fro").item()-sqrt(2)) < 1e-12
+A = torch.diag(torch.tensor([1.,2**-20],dtype=D))
+assert op(A) == 1 and op(torch.linalg.inv(A)) == 2**20
+frobenius = torch.linalg.matrix_norm(I,ord="fro").item()
+kappa = op(A)*op(torch.linalg.inv(A))
+print(op(I), f"{frobenius:.9f}", int(kappa))
+```
+
+```text
+1.0 1.414213562 1048576
+```
+
+The identity's two norms differ. The large condition number comes from the ratio of two singular values, not from calling a matrix entry small.
 
 ### Absolute sensitivity and a relative condition number
 
@@ -1611,6 +2193,33 @@ The error bound is attained: $(1/\delta)\delta=1$. Making $\delta$ smaller impro
 
 The code uses $\delta=2^{-4},2^{-12},2^{-20}$, which are exactly representable binary values. For the last case, the relative residual is approximately $9.536743164\times10^{-7}$ and the relative forward error is 1, with $\kappa(A)=1048576$. It also solves both original and perturbed systems and compares them to the explicit solutions. It does **not** claim that a solver returned the constructed inaccurate candidate for the original input.
 
+<span id="formula-code-2-7-residual"></span>
+
+**Formula → code: residual versus forward error.** Construct the candidate from the displayed counterexample; do not attribute it to a solver. Verify both the exact original solution and the nearby input it actually solves.
+
+<!-- formula-code: 2.7-residual -->
+```python
+b = torch.tensor([1,0],dtype=D)
+x = b.clone()
+candidate = torch.tensor([1,1],dtype=D)
+r = b-A@candidate
+relative_residual = (torch.linalg.vector_norm(r).item() /
+                     torch.linalg.vector_norm(b).item())
+relative_error = (torch.linalg.vector_norm(candidate-x).item() /
+                  torch.linalg.vector_norm(x).item())
+kappa = op(A)*op(torch.linalg.inv(A))
+torch.testing.assert_close(torch.linalg.solve(A,b),x,rtol=0,atol=1e-12)
+torch.testing.assert_close(torch.linalg.solve(A,b-r),candidate,rtol=0,atol=1e-12)
+assert relative_error == kappa*relative_residual == 1
+print(f"residual={relative_residual:.9e}; forward error={relative_error:.1f}")
+```
+
+```text
+residual=9.536743164e-07; forward error=1.0
+```
+
+The residual is tiny while the forward error is order one. The exact binary diagonal data let this example attain the proved bound without an uncertain condition estimate.
+
 ### Perturb the matrix as well as the input
 
 First consider a general matrix-vector product. If $A$ changes by $E$ and $x$ by $d$, distributing gives the exact identity
@@ -1670,6 +2279,34 @@ $$
 This is a sufficient small-perturbation condition. If it fails, this bound is unavailable; it does not say every such perturbed matrix must be singular.
 
 In the diagonal example, choose $E=\operatorname{diag}(0,-\delta/2)$ and $f=(0,\delta)$. The new matrix is $\operatorname{diag}(1,\delta/2)$ and the new exact solution is $(1,2)$, giving relative change 2. Here $\eta=1/2$, $\epsilon_A=\delta/2$ and $\epsilon_b=\delta$; the bound gives $(1/\delta)(3\delta/2)/(1/2)=3$, consistent with 2. By contrast, $E=\operatorname{diag}(0,-\delta)$ gives $\eta=1$ and makes this specific matrix singular. The latter is an example of failure at the boundary, not a theorem about every perturbation with $\eta\ge1$.
+
+<span id="formula-code-2-7-perturbation"></span>
+
+**Formula → code: keep the denominator condition.** Form the specified `E` and `f`, calculate $\eta$, then compare the actual solution change with the bound. At the displayed boundary perturbation, check singularity explicitly.
+
+<!-- formula-code: 2.7-perturbation -->
+```python
+delta = 2**-20
+E = torch.diag(torch.tensor([0,-delta/2],dtype=D))
+f = torch.tensor([0,delta],dtype=D)
+eta = op(torch.linalg.inv(A))*op(E)
+assert eta < 1
+changed = torch.linalg.solve(A+E,b+f)
+eps_A = op(E)/op(A)
+eps_b = torch.linalg.vector_norm(f).item()/torch.linalg.vector_norm(b).item()
+bound = kappa*(eps_A+eps_b)/(1-eta)
+actual = torch.linalg.vector_norm(changed-x).item()/torch.linalg.vector_norm(x).item()
+assert actual == 2 and bound == 3
+boundary = A+torch.diag(torch.tensor([0,-delta],dtype=D))
+assert torch.linalg.svdvals(boundary)[-1].item() == 0
+print(eta, actual, bound)
+```
+
+```text
+0.5 2.0 3.0
+```
+
+The sufficient hypothesis holds for the first perturbation. The particular $\eta=1$ case is singular; this does not assert that every perturbation outside the bound is singular.
 
 ### Scale, conditioning and numerical stability
 
@@ -1752,6 +2389,8 @@ Suppose an assertion says that a computed result is close to a reference. Before
 
 The prerequisite is [2.7](#sec-complex-vectors-operators-and-numerical-reasoning-7): conditioning, residuals and error bounds. Here we introduce a bounded rounding model and turn those mathematical distinctions into executable verification contracts. The examples use dense CPU tensors with explicitly declared dtypes; they do not establish the behavior of every numerical kernel or platform.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
+
 ### What a floating-point dtype can retain
 
 A binary floating-point format stores a sign, a bounded exponent and a finite number of significant binary digits. In a normalized positive interval $[2^e,2^{e+1})$, a format with $p$ significant bits has spacing $2^{e-(p-1)}$. Negative values have the corresponding spacing by magnitude. Not every real number is representable.
@@ -1783,6 +2422,32 @@ $$
 
 The exact real expressions both equal 1. Near $2^{25}$ the `float32` spacing is 4, so the first addition loses the 1 before the subtraction occurs. The example does not require random input or a changing device to produce different answers: changing the arithmetic order is enough. It also shows why one operation's small relative rounding error need not give a small relative error in a later tiny difference.
 
+<span id="formula-code-2-8-rounding"></span>
+
+**Formula → code: dtype and operation order.** Declare the dtype before arithmetic. The increment and large integer are binary-exact inputs, so their exact real results are available independently.
+
+<!-- formula-code: 2.8-rounding -->
+```python
+import torch
+d = 2**-25
+for dtype in [torch.float32,torch.float64]:
+    one = torch.tensor(1,dtype=dtype)
+    lost = (one+d)-one
+    print(str(dtype), lost.item() == 0, lost.item() == d)
+a = torch.tensor(2**25,dtype=torch.float32)
+assert ((a+1)-a).item() == 0 and ((a-a)+1).item() == 1
+assert (((torch.tensor(1,dtype=torch.float32)+d)-1).to(torch.float64)).item() == 0
+print(((a+1)-a).item(),((a-a)+1).item())
+```
+
+```text
+torch.float32 True False
+torch.float64 False True
+0.0 1.0
+```
+
+The later cast retains the already lost zero. These outputs demonstrate the stated CPU operations, not an error bound for an arbitrary algorithm.
+
 ### Write the comparison as an inequality
 
 For a finite computed scalar $a$ and reference $b$, a common reference-scaled contract is
@@ -1803,6 +2468,27 @@ The predicate is also reference dependent. With `atol=0, rtol=0.75`, actual 1 co
 
 **2.8-A — Preserve a signal.** A nonzero reference is $10^{-9}$ and the task allows at most 1% relative error. With no absolute floor, what budget applies? Would zero be acceptable?
 
+<span id="formula-code-2-8-tolerances"></span>
+
+**Formula → code: reference-scaled modulus inequality.** For finite scalar inputs implement exactly the displayed budget. This small scalar predicate illustrates the inequality; the full comparator below also checks tensor metadata and finite arithmetic.
+
+<!-- formula-code: 2.8-tolerances -->
+```python
+def within(actual,expected,*,atol,rtol):
+    return abs(actual-expected) <= atol+rtol*abs(expected)
+assert within(0,1e-12,atol=1e-8,rtol=0)
+assert not within(0,1e-12,atol=0,rtol=1e-6)
+assert within(5e-13,0,atol=1e-12,rtol=0)
+assert not within(1+1j,0,atol=1.1,rtol=0)
+print(within(1,2,atol=0,rtol=.75),within(2,1,atol=0,rtol=.75))
+```
+
+```text
+True False
+```
+
+Swapping actual and expected changes the allowed budget. The complex failure uses modulus $\sqrt2$, which is larger than 1.1 even though each real component is only 1.
+
 ### Metadata and finite values belong in the contract
 
 Numerical proximity alone does not check whether the objects have the required interpretation. The complete program's `assert_finite_close` first requires identical shape, dtype and device, then finite entries, then the stated error inequality. It performs no implicit casting or shape broadcasting. It also rejects non-finite error or budget arithmetic, so overflow in the comparison itself cannot silently certify a result. This is a small comparator for the bounded examples, not a general library for arbitrary tensor types and scales.
@@ -1812,6 +2498,38 @@ A concrete shape trap uses `[1, 1]` with shape `(2,)` and `[[1], [1]]` with shap
 The example also rejects equal infinities: its task requires finite results, even though a generic comparison may legitimately consider matching infinities equal. `NaN`, meaning “not a number,” needs an explicit finite check. Merely testing whether any error is larger than a tolerance can miss it, because a comparison of `NaN` with that threshold is false. Requiring all entries finite before calculating a closeness predicate avoids that failure here.
 
 Dtype is likewise a semantic choice. A `float32` array does not satisfy a `float64` execution contract simply because its printed numbers match. The earlier lost-increment case explains the distinction. A deliberate precision conversion should be recorded and justified; it should not hide an unexpected precision change in the computation under test.
+
+<span id="formula-code-2-8-metadata"></span>
+
+**Formula → code: validate interpretation before subtraction.** Use the complete example's comparator, whose checks implement the metadata/finite-value contract just described. The two arrays deliberately contain identical numbers but have different shapes.
+
+<!-- formula-code: 2.8-metadata -->
+```python
+from examples.foundations.verification_contracts import assert_finite_close
+actual = torch.ones(2,dtype=torch.float64)
+expected = torch.ones((2,1),dtype=torch.float64)
+assert torch.allclose(actual,expected,rtol=0,atol=0)
+rejected = False
+try:
+    assert_finite_close(actual,expected,atol=0,rtol=0)
+except AssertionError:
+    rejected = True
+assert rejected
+for bad in [float('nan'),float('inf')]:
+    try:
+        assert_finite_close(torch.tensor([bad],dtype=torch.float64),
+                            torch.tensor([bad],dtype=torch.float64),atol=0,rtol=0)
+    except AssertionError:
+        continue
+    raise AssertionError("Nonfinite case accepted")
+print("broadcast comparison passes; strict shape, NaN and Inf checks reject")
+```
+
+```text
+broadcast comparison passes; strict shape, NaN and Inf checks reject
+```
+
+The rejected comparison certifies a shape mismatch before broadcasting can erase it. No dtype conversion or normalization is performed to make an unexpected result pass.
 
 ### A residual budget must respect conditioning
 
@@ -1833,6 +2551,27 @@ $$
 Here $\|b\|_2=1$, giving an absolute residual budget about $9.536743164\times10^{-15}$. The constructed candidate fails this test, while the exact solution has zero residual and passes. Failure of a sufficient bound does not prove that every candidate failing it has excessive forward error; it means that this bound no longer certifies the target. For this particular candidate the independently known forward error confirms the failure.
 
 These binary diagonal inputs make the displayed residual calculation exact in the tested arithmetic. On a general problem, the computed residual and condition estimate have their own errors. A comparison cannot turn uncertain diagnostics into exact bounds without accounting for those uncertainties. This example links a proved mathematical bound to a check under explicitly controlled conditions.
+
+<span id="formula-code-2-8-budget"></span>
+
+**Formula → code: derive the residual budget from the target.** For this controlled diagonal example, $\|b\|=1$ and $\kappa=2^{20}$. The sufficient absolute budget is therefore $\tau/\kappa$.
+
+<!-- formula-code: 2.8-budget -->
+```python
+tau, kappa = 1e-8, 2**20
+budget = tau/kappa
+residual = 2**-20
+assert within(residual,0,atol=1e-6,rtol=0)
+assert not within(residual,0,atol=budget,rtol=0)
+assert within(0,0,atol=budget,rtol=0)
+print(f"target={tau:.1e}; residual budget={budget:.9e}")
+```
+
+```text
+target=1.0e-08; residual budget=9.536743164e-15
+```
+
+The loose comparison and the condition-aware comparison answer different accuracy questions. The independently known forward error of this candidate is 1; failure of a sufficient bound alone would not establish every candidate's actual error.
 
 ### Match each claim to an independent check
 

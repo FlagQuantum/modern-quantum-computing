@@ -98,6 +98,28 @@
     "word_count_approx": 2266,
     "page_status": "Unmeasured planning envelope; all scalar convergence/local calculus bridges retained. Calibrate print/reader workload without lowering depth.",
     "next_draft": "2.7 Norms, conditioning, and perturbations",
-    "pdf": "Existing PDF sample edition and release version unchanged."
-  }
+    "pdf": "Existing PDF sample edition and release version unchanged.",
+    "word_count_after_formula_code_backfill": 2748,
+    "backfill_layout_note": "Additional local code/output units increase reading and print workload; printed pagination remains unmeasured. Existing depth and proof text preserved; no PDF sample/version changed."
+  },
+  "editorial_revisions": [
+    {
+      "date": "2026-10-21",
+      "kind": "adjacent-formula-code-backfill",
+      "base_commit": "2103c869902b2e3eb80b462dd7751613fd1e1025",
+      "scope": "Editorial addition only; all prior source lines retained in order. No change to result, proofs, prerequisites, depth, sources, stable section IDs or acceptance state.",
+      "fragments": [
+        "2.6-spectral-functions",
+        "2.6-composition",
+        "2.6-evolution",
+        "2.6-series"
+      ],
+      "execution": "Passed every cumulative body block from a fresh per-section namespace, its exact displayed stdout, all assertions and exact complete-program expected output.",
+      "command": "python scripts/check_formula_code.py --section 2.6",
+      "environment": "Python3.12.14; PyTorch2.13.0; CPU; complex128/float64 unless the explicit2.8 rounding counterexample declaresfloat32; actual FlagQuantum0.3.1 in3.3,3.5,3.7.",
+      "body_section_sha256": "d370b125264203d7e4881c307dd5e870f3d49a9c2cee823cb2df712ca9562401",
+      "web_checks": "Strict MkDocs build and58-page local links/anchors passed. Actual local browser screenshots inspected one correspondence unit per specified section; full Chapter2/3 accessibility text had no raw LaTeX or math-error text.",
+      "review_status": "Author checks only; independent mathematical/implementation review, reader trial and acceptance remain pending."
+    }
+  ]
 }

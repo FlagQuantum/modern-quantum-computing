@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "date": "2026-10-21",
+  "baseline": "writing-baseline-v1.0",
+  "scope": "Editorial backfill only; existing proofs, sources, prerequisites, stable anchors and review states retained.",
+  "sections": {
+    "2.1": {
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "script": "examples/foundations/complex_coordinates.py",
+      "fragments": [
+        "2.1-arithmetic",
+        "2.1-conjugation",
+        "2.1-modulus",
+        "2.1-vectors"
+      ]
+    },
+    "2.2": {
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "script": "examples/foundations/inner_products.py",
+      "fragments": [
+        "2.2-overlap",
+        "2.2-projection",
+        "2.2-inequality",
+        "2.2-adjoint"
+      ]
+    },
+    "2.3": {
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "script": "examples/foundations/basis_changes.py",
+      "fragments": [
+        "2.3-columns",
+        "2.3-similarity",
+        "2.3-metric"
+      ]
+    },
+    "2.4": {
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "script": "examples/foundations/operator_classes.py",
+      "fragments": [
+        "2.4-positive",
+        "2.4-classes",
+        "2.4-probes"
+      ]
+    },
+    "2.5": {
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "script": "examples/foundations/spectral_svd.py",
+      "fragments": [
+        "2.5-completion",
+        "2.5-spectral",
+        "2.5-svd",
+        "2.5-degeneracy"
+      ]
+    },
+    "2.6": {
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "script": "examples/foundations/matrix_functions.py",
+      "fragments": [
+        "2.6-spectral-functions",
+        "2.6-composition",
+        "2.6-evolution",
+        "2.6-series"
+      ]
+    },
+    "2.7": {
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "script": "examples/foundations/conditioning.py",
+      "fragments": [
+        "2.7-norms",
+        "2.7-residual",
+        "2.7-perturbation"
+      ]
+    },
+    "2.8": {
+      "body": "docs/chapters/ch-complex-vectors-operators-and-numerical-reasoning.md",
+      "script": "examples/foundations/verification_contracts.py",
+      "fragments": [
+        "2.8-rounding",
+        "2.8-tolerances",
+        "2.8-metadata",
+        "2.8-budget"
+      ]
+    },
+    "3.3": {
+      "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+      "script": "examples/foundations/bloch_sphere.py",
+      "fragments": [
+        "3.3-coordinates",
+        "3.3-angles",
+        "3.3-inverse",
+        "3.3-execution"
+      ]
+    },
+    "3.5": {
+      "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+      "script": "examples/foundations/pauli_rotations.py",
+      "fragments": [
+        "3.5-algebra",
+        "3.5-exponential",
+        "3.5-bloch",
+        "3.5-phase"
+      ]
+    },
+    "3.7": {
+      "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+      "script": "examples/foundations/phase_contracts.py",
+      "fragments": [
+        "3.7-states",
+        "3.7-operators",
+        "3.7-controlled",
+        "3.7-readout-repair"
+      ]
+    }
+  }
+}

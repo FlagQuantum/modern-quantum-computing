@@ -30,7 +30,7 @@
   "local_start_checks": {
     "brief": "Filled before prose, exact 2.4 prerequisite, depth F and both assigned locators preserved.",
     "prerequisite": "Author-checked 2.4 draft supplies real forms, PSD Gram construction, eigenpair rules and adjoint/norm identities.",
-    "source": "Consulted NC assigned sections 2.1.5 printed68–69 and2.1.10 printed78–79, plus companion Box2.2 printed72, from cached user-supplied local PDF; no third-party material uploaded.",
+    "source": "Consulted NC assigned sections 2.1.5 printed68\u201369 and2.1.10 printed78\u201379, plus companion Box2.2 printed72, from cached user-supplied local PDF; no third-party material uploaded.",
     "independent_reference": "Explicit Hermitian eigenprojectors and rectangular full factors, direct real/imaginary formulas for729 inputs, rotated degenerate basis and zero map.",
     "scope": "No frozen curriculum/depth/dependency/volume changes or paper audit."
   },
@@ -109,6 +109,28 @@
     "word_count_approx": 2920,
     "page_status": "Unmeasured planning envelope; full compactness/completion bridges and kernel proofs retained. Calibrate print and reader workload without lowering depth.",
     "next_draft": "2.6 Functions of matrices and time evolution",
-    "pdf": "Existing PDF sample edition and release version unchanged."
-  }
+    "pdf": "Existing PDF sample edition and release version unchanged.",
+    "word_count_after_formula_code_backfill": 3423,
+    "backfill_layout_note": "Additional local code/output units increase reading and print workload; printed pagination remains unmeasured. Existing depth and proof text preserved; no PDF sample/version changed."
+  },
+  "editorial_revisions": [
+    {
+      "date": "2026-10-21",
+      "kind": "adjacent-formula-code-backfill",
+      "base_commit": "2103c869902b2e3eb80b462dd7751613fd1e1025",
+      "scope": "Editorial addition only; all prior source lines retained in order. No change to result, proofs, prerequisites, depth, sources, stable section IDs or acceptance state.",
+      "fragments": [
+        "2.5-completion",
+        "2.5-spectral",
+        "2.5-svd",
+        "2.5-degeneracy"
+      ],
+      "execution": "Passed every cumulative body block from a fresh per-section namespace, its exact displayed stdout, all assertions and exact complete-program expected output.",
+      "command": "python scripts/check_formula_code.py --section 2.5",
+      "environment": "Python3.12.14; PyTorch2.13.0; CPU; complex128/float64 unless the explicit2.8 rounding counterexample declaresfloat32; actual FlagQuantum0.3.1 in3.3,3.5,3.7.",
+      "body_section_sha256": "ab36aa26b85c7948f438de4f5d762a6fbbdf8043582c783a581f053623ea217a",
+      "web_checks": "Strict MkDocs build and58-page local links/anchors passed. Actual local browser screenshots inspected one correspondence unit per specified section; full Chapter2/3 accessibility text had no raw LaTeX or math-error text.",
+      "review_status": "Author checks only; independent mathematical/implementation review, reader trial and acceptance remain pending."
+    }
+  ]
 }

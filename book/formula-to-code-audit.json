@@ -1,21 +1,9 @@
 {
   "date": "2026-10-21",
   "baseline": "writing-baseline-v1.0",
-  "scope": "Presentation audit of 22 drafted sections including unpublished 4.1; no independent review or acceptance implied.",
+  "scope": "Presentation audit of22 drafted sections; targeted11-section backfill completed on2026-10-21. Independent review and acceptance remain pending.",
   "finding": "Executable companion scripts and end-of-section correspondence tables do not by themselves provide adjacent formula-to-code teaching in the body.",
-  "priority_backfill": [
-    "2.1",
-    "2.2",
-    "2.3",
-    "2.4",
-    "2.5",
-    "2.6",
-    "2.7",
-    "2.8",
-    "3.3",
-    "3.5",
-    "3.7"
-  ],
+  "priority_backfill": [],
   "secondary_review": [
     "3.1",
     "3.2",
@@ -31,7 +19,7 @@
     "1.6"
   ],
   "completed_this_pass": [
-    "4.1: adjacent coefficient construction, basis Gram matrix, product overlap/norm, complex amplitudes, conjugation failure, library comparison and actual FlagQuantum preparation"
+    "2.1\u20132.8,3.3,3.5,3.7:41adjacent formula/code/output units, complete companion programs, execution checks, local browser/math and strict build/link checks."
   ],
   "standard": [
     "Place code beside the mathematical step it translates, with symbols mapped to variables and shapes/order stated.",
@@ -40,6 +28,24 @@
     "Retain general proofs; finite numerical tests do not prove a theorem.",
     "Do not require artificial code for every abstract argument; explain its role and connect the computationally meaningful steps."
   ],
-  "backfill_state": "pending; this audit does not claim earlier drafts have been repaired",
-  "structural_change": false
+  "backfill_state": "Requested11-section backfill complete with author checks; secondary and conceptual-section audits remain separately scoped, not claimed complete.",
+  "structural_change": false,
+  "completed_backfill": [
+    "2.1",
+    "2.2",
+    "2.3",
+    "2.4",
+    "2.5",
+    "2.6",
+    "2.7",
+    "2.8",
+    "3.3",
+    "3.5",
+    "3.7"
+  ],
+  "previous_completed": [
+    "4.1: adjacent formula/code/output units checked and published in2103c86."
+  ],
+  "verification_manifest": "book/formula-code-examples.json",
+  "verification_command": "python scripts/check_formula_code.py"
 }

@@ -409,6 +409,8 @@ A pure qubit has two complex amplitudes, but not four independently meaningful r
 
 The prerequisites are [3.1](#sec-single-qubit-states-and-rotations-1), for pure states, global phase and computational-basis probabilities, and [2.3](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-3), for matrices and basis coordinates. Section 3.2 is not required for this derivation. We keep the computational basis and matrix conventions fixed throughout.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
+
 ### Remove the common phase and introduce two angles
 
 Write a normalized state as $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$. If $\alpha\ne0$, write $\alpha=|\alpha|e^{i\gamma}$ and multiply the whole vector by $e^{-i\gamma}$. The new first amplitude is real and positive; the second retains only its phase relative to the first. Choose a polar angle $\theta\in[0,\pi]$ so that
@@ -466,6 +468,42 @@ All three are real, as the component formulas establish. The sign of $y$ matters
 
 For a common phase $u$ of modulus one, $(u\alpha)^*(u\beta)=\alpha^*\beta$ and both squared magnitudes are unchanged. Consequently $(x,y,z)$ depends only on the ray, not on its chosen global-phase representative.
 
+<span id="formula-code-3-3-coordinates"></span>
+
+**Formula → code: compute the three coordinates in two representations.** `psi` stores $(\alpha,\beta)$ in shape `(2,)`. Compare matrix quadratic forms with the derived scalar expressions, including a complex input that exposes the sign of $Y$.
+
+<!-- formula-code: 3.3-coordinates -->
+```python
+import torch
+from math import sqrt,pi,sin,cos
+D = torch.complex128
+X = torch.tensor([[0,1],[1,0]],dtype=D)
+Y = torch.tensor([[0,-1j],[1j,0]],dtype=D)
+Z = torch.tensor([[1,0],[0,-1]],dtype=D)
+psi = torch.tensor([sqrt(3)/2,.5j],dtype=D)
+alpha,beta = psi.tolist()
+c = alpha.conjugate()*beta
+scalar = torch.tensor(
+    [2*c.real,2*c.imag,abs(alpha)**2-abs(beta)**2],
+    dtype=torch.float64,
+)
+forms = torch.stack([torch.vdot(psi,M@psi) for M in [X,Y,Z]])
+torch.testing.assert_close(
+    forms.imag,
+    torch.zeros(3,dtype=torch.float64),
+    rtol=0,
+    atol=1e-12,
+)
+torch.testing.assert_close(forms.real,scalar,rtol=0,atol=1e-12)
+print([round(x,9) for x in scalar.tolist()])
+```
+
+```text
+[0.0, 0.866025404, 0.5]
+```
+
+The positive $y$ coordinate follows from $\alpha^*\beta=+i\sqrt3/4$. Replacing `Y` by `Y.T` would reverse it; all-real input states would conceal that mistake.
+
 ### Prove that the image is the unit sphere
 
 Using $(\operatorname{Re}c)^2+(\operatorname{Im}c)^2=|c|^2$, expand
@@ -489,6 +527,33 @@ $$
 $$
 
 These are spherical coordinates: $\theta$ is measured down from positive $z$, and $\phi$ is measured in the $xy$ plane from positive $x$ toward positive $y$. This derivation explains the half angles in the statevector. Substituting $\cos\theta,\sin\theta$ into the amplitudes would instead give $(\sin(2\theta)\cos\phi,\sin(2\theta)\sin\phi,\cos(2\theta))$. These doubled-angle coordinates differ from the intended ones; when $2\theta>\pi$, it is outside the chosen polar-angle range.
+
+<span id="formula-code-3-3-angles"></span>
+
+**Formula → code: half angles in amplitudes, full angles on the sphere.** Predict the coordinates from $(\theta,\phi)=(\pi/3,\pi/2)$, then compare with the independently expanded amplitudes above.
+
+<!-- formula-code: 3.3-angles -->
+```python
+theta,phi = pi/3,pi/2
+point = torch.tensor(
+    [sin(theta)*cos(phi),sin(theta)*sin(phi),cos(theta)],
+    dtype=torch.float64,
+)
+torch.testing.assert_close(point,scalar,rtol=0,atol=1e-12)
+assert abs(torch.dot(point,point).item()-1) < 1e-12
+angular = torch.tensor(
+    [cos(theta/2),complex(cos(phi),sin(phi))*sin(theta/2)],
+    dtype=D,
+)
+torch.testing.assert_close(angular,psi,rtol=0,atol=1e-12)
+print(round(torch.dot(point,point).item(),9))
+```
+
+```text
+1.0
+```
+
+The unit-length assertion checks this point. The algebraic normalization argument above proves the sphere identity for every normalized pure input.
 
 ![Original Bloch-sphere illustration showing the polar and azimuthal angles and the worked pure state.](../assets/figures/bloch-pure-state.svg)
 
@@ -524,6 +589,35 @@ $$
 
 This again gives $\alpha^*\beta=(x+iy)/2$ and the required squared magnitudes. In either selected region the denominator amplitude is at least $1/\sqrt2$. The reconstructed array may change by a global phase across the chart boundary; its ray remains the same. Compare the reconstructed ray or its Bloch coordinates, not raw amplitudes from different phase conventions.
 
+<span id="formula-code-3-3-inverse"></span>
+
+**Formula → code: inverse in two stable phase charts.** The branch chooses a denominator amplitude at least $1/\sqrt2$. Check the worked point and both poles; compare rays, since charts need not choose the same global phase.
+
+<!-- formula-code: 3.3-inverse -->
+```python
+def restore(point):
+    x,y,z = point.tolist()
+    if z >= 0:
+        alpha = sqrt((1+z)/2)
+        beta = complex(x,y)/(2*alpha)
+    else:
+        beta = sqrt((1-z)/2)
+        alpha = complex(x,-y)/(2*beta)
+    return torch.tensor([alpha,beta],dtype=D)
+restored = restore(point)
+assert abs(abs(torch.vdot(psi,restored).item())-1) < 1e-12
+for pole,hand in [([0.,0.,1.],[1,0]),([0.,0.,-1.],[0,1])]:
+    torch.testing.assert_close(restore(torch.tensor(pole,dtype=torch.float64)),
+                               torch.tensor(hand,dtype=D),rtol=0,atol=1e-12)
+print("worked ray and both poles recovered without a zero denominator")
+```
+
+```text
+worked ray and both poles recovered without a zero denominator
+```
+
+This local helper assumes a finite unit-sphere point, as in the proof. The complete program additionally validates the input shape, dtype, finiteness and sphere constraint rather than projecting invalid points onto the sphere.
+
 ### Landmark states, probabilities, and antipodes
 
 The six axis points are:
@@ -554,6 +648,45 @@ $$
 $$
 
 Its product of amplitudes is $(-\beta^*)^*\alpha^*=-\alpha^*\beta$, and its squared magnitudes are swapped. Its Bloch point is therefore $(-x,-y,-z)$, the **antipode** of the original point. Since the map is one-to-one on rays, the antipodal point corresponds to that orthogonal ray. In particular, orthogonal $|0\rangle,|1\rangle$ sit at opposite poles, not at perpendicular radius vectors. Do not identify the ordinary angle between sphere radii with the angle between complex statevectors.
+
+<span id="formula-code-3-3-execution"></span>
+
+**Formula → code: probabilities and antipodes, then an actual preparation.** First check the hand probability $p(0)=(1+z)/2=3/4$ and the orthogonal partner. Then prepare the independently specified positive-$i$ axis state in released FlagQuantum 0.3.1.
+
+<!-- formula-code: 3.3-execution -->
+```python
+assert abs((1+point[2].item())/2-.75) < 1e-12
+partner = torch.tensor([-beta.conjugate(),alpha.conjugate()],dtype=D)
+assert abs(torch.vdot(psi,partner).item()) < 1e-12
+antipode = torch.stack([torch.vdot(partner,M@partner).real for M in [X,Y,Z]])
+torch.testing.assert_close(antipode,-point,rtol=0,atol=1e-12)
+import flagquantum as fq
+OPTIONS = fq.ExecutionOptions(
+    mode="statevector", backend="pytorch", device="cpu",
+    precision="complex128", allow_backend_fallback=False,
+    allow_approximate=False,
+)
+circuit = fq.Circuit(1,dtype=D)
+circuit.h(0)
+circuit.phase(0,theta=pi/2)
+result = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+assert result.statevector().shape == result.probabilities.shape == (1,2)
+axis = result.statevector()[0]
+torch.testing.assert_close(
+    axis,
+    torch.tensor([1,1j],dtype=D)/sqrt(2),
+    rtol=0,
+    atol=1e-12,
+)
+assert abs(torch.vdot(axis,Y@axis).real.item()-1) < 1e-12
+print([round(x,9) for x in result.probabilities[0].tolist()],"y=+1")
+```
+
+```text
+[0.5, 0.5] y=+1
+```
+
+The worked off-axis state and this axis preparation are separate cases. The API returns ideal probabilities, not sampled counts, and the $y$ coordinate here is calculated from the returned amplitudes, without an expectation-value API.
 
 ### Runnable formula-to-code checks
 
@@ -815,6 +948,8 @@ A rotation gate is an exponential of a Hermitian generator. For a general matrix
 
 The prerequisites are [3.3](#sec-single-qubit-states-and-rotations-3), including the Pauli signs and Bloch coordinates, and [3.4](#sec-single-qubit-states-and-rotations-4), for generator conventions. Convergence of the matrix exponential series comes from the mathematical preparation in 2.6. Angles below are real numbers in radians. We use active operations on column statevectors in the fixed computational basis.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
+
 ### Derive the multiplication rules
 
 Recall the matrices with their order of coordinates fixed:
@@ -842,6 +977,34 @@ The other two forward cyclic products are $YZ=\begin{pmatrix}0&i\\i&0\end{pmatri
 | $Z$ | $iY$ | $-iX$ | $I$ |
 
 Read a row as the left matrix and a column as the right matrix. In particular, $XY$ and $YX$ have opposite signs. Define the **commutator** $[A,B]=AB-BA$ and **anticommutator** $\{A,B\}=AB+BA$. The table gives $[X,Y]=2iZ$ and $\{X,Y\}=0$, with analogous cyclic relations. Each same-matrix anticommutator is $2I$.
+
+<span id="formula-code-3-5-algebra"></span>
+
+**Formula → code: order-sensitive Pauli products.** Translate the displayed matrices, then check the complete signed table and commutator. `@` is matrix multiplication; `*` by `1j` is scalar multiplication.
+
+<!-- formula-code: 3.5-algebra -->
+```python
+import torch
+from math import pi,sin,cos
+D = torch.complex128
+I = torch.eye(2,dtype=D)
+X = torch.tensor([[0,1],[1,0]],dtype=D)
+Y = torch.tensor([[0,-1j],[1j,0]],dtype=D)
+Z = torch.tensor([[1,0],[0,-1]],dtype=D)
+matrices = [X,Y,Z]
+products = [[I,1j*Z,-1j*Y],[-1j*Z,I,1j*X],[1j*Y,-1j*X,I]]
+for j,A in enumerate(matrices):
+    for k,B in enumerate(matrices):
+        torch.testing.assert_close(A@B,products[j][k],rtol=0,atol=1e-12)
+assert torch.equal(X@Y-Y@X,2j*Z)
+print("9 signed products; [X,Y]=2iZ")
+```
+
+```text
+9 signed products; [X,Y]=2iZ
+```
+
+Swapping factors changes the off-diagonal table signs. The same-order entries establish the $A^2=I$ premise used by the exponential reduction.
 
 For later use in this section, take a real unit axis $n=(n_x,n_y,n_z)$ and set $N=n_xX+n_yY+n_zZ$. It is Hermitian because its coefficients are real. Expanding its square and grouping opposite orders gives
 
@@ -885,6 +1048,47 @@ $$
 
 The minus signs are fixed by the exponent $-i\theta A/2$ and the chosen $Y$ matrix; they are not interchangeable implementation details. For a constant Hamiltonian $\mathcal H=\hbar\omega A/2$, where $\omega$ has units of inverse time, 3.4 gives $U(t)=R_A(\omega t)$. The angle is $\theta=\omega t$.
 
+<span id="formula-code-3-5-exponential"></span>
+
+**Formula → code: even/odd series reduction and the unit-axis premise.** Compare the sine/cosine expression with an independently evaluated matrix exponential. Then intentionally break $A^2=I$.
+
+<!-- formula-code: 3.5-exponential -->
+```python
+def rotation(A,theta):
+    return cos(theta/2)*I-1j*sin(theta/2)*A
+theta = pi/3
+for A in matrices:
+    R = rotation(A,theta)
+    torch.testing.assert_close(
+        R,
+        torch.linalg.matrix_exp(-.5j*theta*A),
+        rtol=0,
+        atol=1e-12,
+    )
+    torch.testing.assert_close(R.mH@R,I,rtol=0,atol=1e-12)
+N = (X+2*Y+2*Z)/3
+torch.testing.assert_close(N@N,I,rtol=0,atol=1e-12)
+torch.testing.assert_close(
+    rotation(N,theta),
+    torch.linalg.matrix_exp(-.5j*theta*N),
+    rtol=0,
+    atol=1e-12,
+)
+assert not torch.allclose(
+    rotation(2*X,theta),
+    torch.linalg.matrix_exp(-1j*theta*X),
+    rtol=0,
+    atol=1e-12,
+)
+print("closed forms and unit axis agree; nonunit-axis shortcut fails")
+```
+
+```text
+closed forms and unit axis agree; nonunit-axis shortcut fails
+```
+
+The axis $(1,2,2)/3$ has unit Euclidean length. Inserting $2X$ in an identity derived for square equal to $I$ changes the generator scale and fails the comparison.
+
 ### Derive why the parameter is the Bloch rotation angle
 
 Write the input amplitudes as $\alpha,\beta$, and set $q=\alpha^*\beta$. By 3.3, $x=2\operatorname{Re}q$, $y=2\operatorname{Im}q$, $z=|\alpha|^2-|\beta|^2$. Use the explicit matrices to compute the transformed amplitudes and then these same three coordinates.
@@ -920,6 +1124,53 @@ These are the ordinary right-handed active rotation formulas about the indicated
 
 Check the direction on landmarks. At $\theta=\pi/2$, $R_x$ maps the north pole $(0,0,1)$ to $(0,-1,0)$, while $R_y$ maps it to $(1,0,0)$. Meanwhile $R_z$ maps the positive-x point $(1,0,0)$ to $(0,1,0)$. A positive angle does not mean every initial state moves toward positive coordinates; the signs follow the axis and active-operation convention.
 
+<span id="formula-code-3-5-bloch"></span>
+
+**Formula → code: verify the full-angle direction with the released gates.** Run `rx`, `ry`, `rz` on the stated landmark inputs, then compute coordinates from amplitudes. Hand references are the three Cartesian points derived above.
+
+<!-- formula-code: 3.5-bloch -->
+```python
+import flagquantum as fq
+OPTIONS = fq.ExecutionOptions(
+    mode="statevector", backend="pytorch", device="cpu",
+    precision="complex128", allow_backend_fallback=False,
+    allow_approximate=False,
+)
+landmarks = [
+    ("rx", X, False, [0,-1,0]),
+    ("ry", Y, False, [1,0,0]),
+    ("rz", Z, True, [0,1,0]),
+]
+for gate,A,plus,hand in landmarks:
+    circuit = fq.Circuit(1,dtype=D)
+    if plus:
+        circuit.h(0)
+    getattr(circuit,gate)(0,theta=pi/2)
+    result = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+    assert result.statevector().shape == result.probabilities.shape == (1,2)
+    state = result.statevector()[0]
+    initial = torch.tensor([1,1] if plus else [1,0],dtype=D)
+    if plus:
+        initial = initial/(2**.5)
+    torch.testing.assert_close(state,rotation(A,pi/2)@initial,rtol=0,atol=1e-12)
+    point = torch.stack([torch.vdot(state,M@state).real for M in matrices])
+    torch.testing.assert_close(
+        point,
+        torch.tensor(hand,dtype=torch.float64),
+        rtol=0,
+        atol=1e-12,
+    )
+    print(gate,[round(x) for x in point.tolist()])
+```
+
+```text
+rx [0, -1, 0]
+ry [1, 0, 0]
+rz [0, 1, 0]
+```
+
+The angle is $\pi/2$ radians and the generator uses a half angle. The north-pole `rx` case specifically checks the negative-$y$ sign; checking only probabilities would discard that information.
+
 ### Track matrix phase separately from the state ray
 
 The exponential formula gives
@@ -937,6 +1188,44 @@ D(\theta)=e^{i\theta/2}R_z(\theta).
 $$
 
 They give the same ray on an isolated one-qubit input, but their arrays differ by the displayed phase. Testing $R_z$ only on $|0\rangle$ and only through computational-basis probabilities would miss both diagonal phase signs. We check coherent inputs and statevector coordinates as well.
+
+<span id="formula-code-3-5-phase"></span>
+
+**Formula → code: retain the operator's phase convention.** Check $2\pi$ and $4\pi$ as matrices. For `phase`, compare the returned coherent state with the full factor $e^{i\theta/2}R_z(\theta)$, including its scalar phase.
+
+<!-- formula-code: 3.5-phase -->
+```python
+import cmath
+torch.testing.assert_close(rotation(X,2*pi),-I,rtol=0,atol=1e-12)
+torch.testing.assert_close(rotation(X,4*pi),I,rtol=0,atol=1e-12)
+theta = pi/3
+phase_matrix = torch.diag(torch.tensor([1,cmath.exp(1j*theta)],dtype=D))
+torch.testing.assert_close(
+    phase_matrix,
+    cmath.exp(.5j*theta)*rotation(Z,theta),
+    rtol=0,
+    atol=1e-12,
+)
+circuit = fq.Circuit(1,dtype=D)
+circuit.h(0)
+circuit.phase(0,theta=theta)
+result = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+plus = torch.tensor([1,1],dtype=D)/(2**.5)
+torch.testing.assert_close(
+    result.statevector()[0],
+    phase_matrix@plus,
+    rtol=0,
+    atol=1e-12,
+)
+assert not torch.allclose(phase_matrix,rotation(Z,theta),rtol=0,atol=1e-12)
+print("2pi: -I; 4pi: I; native phase retains exp(i theta/2)")
+```
+
+```text
+2pi: -I; 4pi: I; native phase retains exp(i theta/2)
+```
+
+Whole-state ray equivalence permits a common phase; this check deliberately validates the specified operator convention. Controlled use requires the further scope analysis in 3.7.
 
 ### Runnable checks against the released API
 
@@ -1204,6 +1493,8 @@ The same arrays can require different comparisons depending on the question. Are
 
 The prerequisites are [3.1](#sec-single-qubit-states-and-rotations-1), for state-ray equivalence, [3.6](#sec-single-qubit-states-and-rotations-6), for phase-tracked gates, and [2.8](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-8), for numerical comparison contracts. We will prove the controlled-context limitation using a small four-coordinate example whose assumptions are introduced locally, before the tensor-product development in Chapter 4.
 
+**Running the formula-to-code fragments.** Run the Python blocks in this section in order, from the repository root in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples). Each section starts a fresh namespace; later blocks reuse its earlier imports and variables. The displayed outputs are executed and checked by `python scripts/check_formula_code.py`. The complete companion program below supplies broader independent checks. Numerical fixtures validate translations and failure cases; the proofs establish the general results.
+
 ### Choose the object and scope of comparison
 
 | Question | Required comparison | What a weaker test could miss |
@@ -1225,6 +1516,35 @@ $$
 If $c\ne0$, use $z=c^*/|c|$; if $c=0$, every phase gives distance $\sqrt2$. The executable evaluates the aligned residual directly rather than subtracting two nearly equal numbers near equivalence. For $b=ia$ the raw distance is $\sqrt2$, but the aligned distance is zero. For the positive-x and negative-x states, computational-basis probabilities agree while the aligned distance remains $\sqrt2$.
 
 The scope is the whole vector. For any subsequent fixed linear operation $W$, $W(ua)=uWa$ for a common scalar $u$. Thus a common phase remains common under the same linear continuation, and squared-modulus probabilities are unchanged. This does not justify assigning separate phases to different pieces of the vector.
+
+<span id="formula-code-3-7-states"></span>
+
+**Formula → code: one phase for the whole state.** Translate $z=c^*/|c|$ directly and compute the aligned residual rather than subtracting nearly equal squared norms. This local helper assumes matching finite normalized inputs; the complete program validates those preconditions.
+
+<!-- formula-code: 3.7-states -->
+```python
+import torch
+from math import sqrt,pi,cos
+import cmath
+D = torch.complex128
+def aligned(a,b):
+    c = torch.vdot(a.reshape(-1),b.reshape(-1))
+    phase = c.conj()/c.abs() if c.abs().item() != 0 else 1
+    return torch.linalg.vector_norm((a-phase*b).reshape(-1)).item()
+a = torch.tensor([1,1],dtype=D)/sqrt(2)
+b = 1j*a
+opposite = torch.tensor([1,-1],dtype=D)/sqrt(2)
+assert aligned(a,b) < 1e-12
+assert abs(aligned(a,opposite)-sqrt(2)) < 1e-12
+assert torch.equal(a.abs().square(),opposite.abs().square())
+print(f"raw={torch.linalg.vector_norm(a-b).item():.9f}; aligned={aligned(a,b):.9f}")
+```
+
+```text
+raw=1.414213562; aligned=0.000000000
+```
+
+The positive- and negative-x rays have equal computational probabilities but nonzero aligned distance. The zero-overlap branch uses a phase of 1 because all phases have the same distance there.
 
 ### Operators require one phase, not a phase per column
 
@@ -1256,6 +1576,26 @@ $$
 
 The same aligning phase applies, with the zero-overlap convention above. By Cauchy–Schwarz on the flattened matrices, equality $|c|=d$ holds exactly when they are scalar multiples; their unitary norms force that scalar to have modulus one. This is an operator-wide criterion, not a set of independently aligned column tests. For $I$ and $Z$ the minimum residual is $2$, even though each basis-column ray residual is zero.
 
+<span id="formula-code-3-7-operators"></span>
+
+**Formula → code: one phase for the entire operator.** Flatten only for the Frobenius inner product; the same scalar multiplies every matrix entry. Contrast that with the incorrect per-column criterion.
+
+<!-- formula-code: 3.7-operators -->
+```python
+I = torch.eye(2,dtype=D)
+Z = torch.diag(torch.tensor([1,-1],dtype=D))
+column_residuals = [aligned(I[:,j],Z[:,j]) for j in range(2)]
+assert max(column_residuals) < 1e-12
+assert abs(aligned(I,Z)-2) < 1e-12
+print([round(x,9) for x in column_residuals],f"operator={aligned(I,Z):.9f}")
+```
+
+```text
+[0.0, 0.0] operator=2.000000000
+```
+
+The unitary matrices agree on each basis-input ray but disagree on superpositions. The minimum operator residual is 2, matching $2d-2|c|=4$ for its square.
+
 ### A local four-coordinate bridge for controlled operations
 
 For this bounded preview, assume a pure two-qubit description with four orthonormal computational labels, ordered as
@@ -1283,6 +1623,31 @@ C(V)=\begin{pmatrix}I&0\\0&e^{i\phi}U\end{pmatrix}.
 $$
 
 This is generally **not** a common-phase multiple of $C(U)$. If $C(V)=zC(U)$, their upper blocks require $I=zI$, so $z=1$. The lower blocks then require $e^{i\phi}U=U$; multiplying by $U^\dagger$ forces $e^{i\phi}=1$. Unless $e^{i\phi}=1$, the two full operations are different even up to a common phase.
+
+<span id="formula-code-3-7-controlled"></span>
+
+**Formula → code: a block phase is relative in the larger space.** Use the declared order $00,01,10,11$. Replacing the lower-right block implements $C(U)$ directly, without importing a tensor-product convention from a later chapter.
+
+<!-- formula-code: 3.7-controlled -->
+```python
+def controlled(U):
+    out = torch.eye(4,dtype=D)
+    out[2:,2:] = U
+    return out
+C_I, C_minusI = controlled(I),controlled(-I)
+assert aligned(I,-I) < 1e-12
+assert abs(aligned(C_I,C_minusI)-sqrt(8)) < 1e-12
+input_state = torch.tensor([1,0,1,0],dtype=D)/sqrt(2)
+expected = torch.tensor([1,0,-1,0],dtype=D)/sqrt(2)
+torch.testing.assert_close(C_minusI@input_state,expected,rtol=0,atol=1e-12)
+print(f"isolated={aligned(I,-I):.9f}; controlled={aligned(C_I,C_minusI):.9f}")
+```
+
+```text
+isolated=0.000000000; controlled=2.828427125
+```
+
+The upper identity block fixes the common phase to 1. The lower sign therefore cannot be absorbed as a phase multiplying the full operation.
 
 ### Turn the branch phase into a measured difference
 
@@ -1315,6 +1680,62 @@ C(U)=D_c(\alpha)C(V).
 $$
 
 Restoring the target's scalar phase as a phase on the control branch repairs the controlled operation. Multiplying the entire four-component output by a common scalar would not perform that repair.
+
+<span id="formula-code-3-7-readout-repair"></span>
+
+**Formula → code: reveal the branch phase and restore a dropped phase.** Execute the explicit controlled matrix in released FlagQuantum 0.3.1, apply the control analyzer, then sum labels by their control digit. A second case tests $C(H)=D_c(\pi/2)C(-iH)$ both as a matrix and as an actual circuit output.
+
+<!-- formula-code: 3.7-readout-repair -->
+```python
+import flagquantum as fq
+OPTIONS = fq.ExecutionOptions(
+    mode="statevector", backend="pytorch", device="cpu",
+    precision="complex128", allow_backend_fallback=False,
+    allow_approximate=False,
+)
+for phi in [0,pi/2,pi]:
+    circuit = fq.Circuit(2,dtype=D)
+    circuit.h(0)
+    circuit.unitary(0,1,unitary=controlled(cmath.exp(1j*phi)*I))
+    circuit.h(0)
+    result = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+    assert result.statevector().shape == result.probabilities.shape == (1,4)
+    p = result.probabilities[0]
+    observed = torch.stack((p[:2].sum(),p[2:].sum()))
+    reference = torch.tensor([(1+cos(phi))/2,(1-cos(phi))/2],dtype=torch.float64)
+    torch.testing.assert_close(observed,reference,rtol=0,atol=1e-12)
+    print([round(x,9) for x in observed.tolist()])
+H = torch.tensor([[1,1],[1,-1]],dtype=D)/sqrt(2)
+branch_phase = torch.diag(torch.tensor([1,1,1j,1j],dtype=D))
+torch.testing.assert_close(
+    branch_phase@controlled(-1j*H),
+    controlled(H),
+    rtol=0,
+    atol=1e-12,
+)
+circuit = fq.Circuit(2,dtype=D)
+circuit.h(0)
+circuit.unitary(0,1,unitary=controlled(-1j*H))
+circuit.phase(0,theta=pi/2)
+result = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+torch.testing.assert_close(
+    result.statevector()[0],
+    controlled(H)@input_state,
+    rtol=0,
+    atol=1e-12,
+)
+assert aligned(controlled(-1j*H)@input_state,controlled(H)@input_state) > .5
+print("native control-phase repair matches C(H); omitted repair fails")
+```
+
+```text
+[1.0, 0.0]
+[0.5, 0.5]
+[0.0, 1.0]
+native control-phase repair matches C(H); omitted repair fails
+```
+
+The displayed probabilities are ideal simulator results, not shots or hardware measurements. The repair acts on the control qubit; multiplying the complete final state by one scalar cannot supply this branch-dependent correction.
 
 ### Runnable comparison contracts and circuit verification
 

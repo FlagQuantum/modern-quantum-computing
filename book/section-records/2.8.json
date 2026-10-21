@@ -27,7 +27,7 @@
   "local_start_checks": {
     "brief": "Filled before prose; exact2.7 prerequisite, depth M and NC:2.1.2/ED:protocol locators retained.",
     "prerequisite": "Author-checked2.7 supplies residual/forward error and conditioning bounds; no new stability theorem imported.",
-    "source": "Consulted NC printed63–64 and local reader-continuity standard; installed PyTorch2.13.0 docstrings/signatures and actual allclose/assert_close cases inspected. Public stable testing reference redirects to newer docs; not used as pinned-version evidence.",
+    "source": "Consulted NC printed63\u201364 and local reader-continuity standard; installed PyTorch2.13.0 docstrings/signatures and actual allclose/assert_close cases inspected. Public stable testing reference redirects to newer docs; not used as pinned-version evidence.",
     "independent_reference": "Fraction dyadic increment, explicit operation orders and exact binary diagonal residual/error from2.7.",
     "scope": "No baseline scope/depth/dependency/volume changes or paper audit; unnumbered Chapter2 synthesis added under existing closing-material policy."
   },
@@ -118,6 +118,28 @@
     "word_count_approx": 2701,
     "page_status": "Unmeasured section envelope; chapter-closing synthesis/problems add workload to calibrate in print and reader review, without downgrading M scope.",
     "next_draft": "3.1 The pure-state postulate and physical equivalence",
-    "pdf": "Existing PDF sample edition and release version unchanged."
-  }
+    "pdf": "Existing PDF sample edition and release version unchanged.",
+    "word_count_after_formula_code_backfill": 3189,
+    "backfill_layout_note": "Additional local code/output units increase reading and print workload; printed pagination remains unmeasured. Existing depth and proof text preserved; no PDF sample/version changed."
+  },
+  "editorial_revisions": [
+    {
+      "date": "2026-10-21",
+      "kind": "adjacent-formula-code-backfill",
+      "base_commit": "2103c869902b2e3eb80b462dd7751613fd1e1025",
+      "scope": "Editorial addition only; all prior source lines retained in order. No change to result, proofs, prerequisites, depth, sources, stable section IDs or acceptance state.",
+      "fragments": [
+        "2.8-rounding",
+        "2.8-tolerances",
+        "2.8-metadata",
+        "2.8-budget"
+      ],
+      "execution": "Passed every cumulative body block from a fresh per-section namespace, its exact displayed stdout, all assertions and exact complete-program expected output.",
+      "command": "python scripts/check_formula_code.py --section 2.8",
+      "environment": "Python3.12.14; PyTorch2.13.0; CPU; complex128/float64 unless the explicit2.8 rounding counterexample declaresfloat32; actual FlagQuantum0.3.1 in3.3,3.5,3.7.",
+      "body_section_sha256": "a38d8bc1df268aa9aaf616ad2e3759ddd22c8b76df424fa767a15767120e0e1f",
+      "web_checks": "Strict MkDocs build and58-page local links/anchors passed. Actual local browser screenshots inspected one correspondence unit per specified section; full Chapter2/3 accessibility text had no raw LaTeX or math-error text.",
+      "review_status": "Author checks only; independent mathematical/implementation review, reader trial and acceptance remain pending."
+    }
+  ]
 }

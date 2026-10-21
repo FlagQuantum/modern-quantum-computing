@@ -70,7 +70,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     },
     {
       "ref": "3.4",
@@ -117,7 +123,13 @@
         "sec-single-qubit-states-and-rotations-4"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     },
     {
       "ref": "3.6",
@@ -164,7 +176,13 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-8"
       ],
       "status": "draft",
-      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices."
+      "next_transition": "Chapter3 has seven working drafts; independent acceptance pending. Section4.1 now drafted; next production assignment4.2 Registers, labels, and basis indices.",
+      "editorial_revision_2026_10_21": {
+        "task": "Backfill adjacent formula, derivation, runnable code and checked output units before any new section drafting.",
+        "scope": "Preserve existing proofs, source locators, prerequisites, depth and stable anchors.",
+        "verification_plan": "Execute every marked cumulative Python fragment from a fresh namespace per section; compare exact displayed outputs, full companion-program outputs and independent assertions; strict build, internal links/anchors and actual browser math checks.",
+        "acceptance": "Author validation only; independent mathematical/implementation review and reader trials remain pending."
+      }
     }
   ]
 }

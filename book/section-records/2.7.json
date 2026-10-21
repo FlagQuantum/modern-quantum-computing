@@ -31,7 +31,7 @@
   "local_start_checks": {
     "brief": "Filled before prose; exact2.3/2.5 dependencies, depthF and TQI:1.1.3 source locator retained.",
     "prerequisite": "Author-checked matrix/inverse and SVD drafts usable; no exponential/2.6 result required.",
-    "source": "Opened author public TQI.pdf and consulted existing cache printed pp.32–33 in assigned1.1.3; no redistribution. Condition-number derivations are original, not falsely attributed to source.",
+    "source": "Opened author public TQI.pdf and consulted existing cache printed pp.32\u201333 in assigned1.1.3; no redistribution. Condition-number derivations are original, not falsely attributed to source.",
     "independent_reference": "Explicit diagonal solves and Fraction-scaled residual/condition/combined bound; direct product reconstruction.",
     "scope": "No baseline scope/depth/dependency/volume changes or paper audit."
   },
@@ -50,7 +50,7 @@
   "proof_obligations": [
     "Induced operator norm equals largest singular value and bounds every matrix-vector product",
     "Norm properties and compatible submultiplicativity derived from vector norms",
-    "Frobenius contrast and op<=F via rowwise Cauchy–Schwarz",
+    "Frobenius contrast and op<=F via rowwise Cauchy\u2013Schwarz",
     "Inverse norm1/sigma_min and relative kappa ratio for square invertible matrices",
     "Absolute and relative right-hand input sensitivity and residual-to-forward-error bound",
     "Exact binary diagonal counterexample attains kappa times relative residual",
@@ -101,6 +101,27 @@
     "word_count_approx": 2189,
     "page_status": "Unmeasured planning envelope; all induced-norm and combined-perturbation proofs retained. Calibrate print/reader workload without lowering depth.",
     "next_draft": "2.8 Floating-point arithmetic and verification contracts",
-    "pdf": "Existing PDF sample edition and release version unchanged."
-  }
+    "pdf": "Existing PDF sample edition and release version unchanged.",
+    "word_count_after_formula_code_backfill": 2601,
+    "backfill_layout_note": "Additional local code/output units increase reading and print workload; printed pagination remains unmeasured. Existing depth and proof text preserved; no PDF sample/version changed."
+  },
+  "editorial_revisions": [
+    {
+      "date": "2026-10-21",
+      "kind": "adjacent-formula-code-backfill",
+      "base_commit": "2103c869902b2e3eb80b462dd7751613fd1e1025",
+      "scope": "Editorial addition only; all prior source lines retained in order. No change to result, proofs, prerequisites, depth, sources, stable section IDs or acceptance state.",
+      "fragments": [
+        "2.7-norms",
+        "2.7-residual",
+        "2.7-perturbation"
+      ],
+      "execution": "Passed every cumulative body block from a fresh per-section namespace, its exact displayed stdout, all assertions and exact complete-program expected output.",
+      "command": "python scripts/check_formula_code.py --section 2.7",
+      "environment": "Python3.12.14; PyTorch2.13.0; CPU; complex128/float64 unless the explicit2.8 rounding counterexample declaresfloat32; actual FlagQuantum0.3.1 in3.3,3.5,3.7.",
+      "body_section_sha256": "468c45e8fa3630c1dffd0a0d7a82fec428d8f0d3bf6539d9d854ec1aaa81bfb5",
+      "web_checks": "Strict MkDocs build and58-page local links/anchors passed. Actual local browser screenshots inspected one correspondence unit per specified section; full Chapter2/3 accessibility text had no raw LaTeX or math-error text.",
+      "review_status": "Author checks only; independent mathematical/implementation review, reader trial and acceptance remain pending."
+    }
+  ]
 }
