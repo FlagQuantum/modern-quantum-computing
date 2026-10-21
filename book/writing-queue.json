@@ -432,7 +432,7 @@
         "sec-composite-systems-tensor-products-and-qubit-ordering-3"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md"
     },
     {

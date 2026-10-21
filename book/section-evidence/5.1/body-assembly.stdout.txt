@@ -1,0 +1,19 @@
+8cumulative body fragments;11actualcircuits; exact stdout captured.
+H then S != S then H: complex amplitudes differ
+computational probabilities agree: [0.5, 0.5]
+
+chronological[H,S] -> matrix S@H; independent scalar steps agree
+empty chronological list -> identity
+
+compose(A),compose(B): U_B@U_A; destination returned, source lists unchanged
+
+manual/native inverse calls: S-dagger then H; both restore|0>
+H then S-dagger after the forward block: wrong inverse detected
+
+both chronological roundtrips restore the full complex input
+
+mapped localq0 -> registerq2: full8coordinates checked; inverse keepsq2
+
+Rx(2pi)|0> = -|0>; forward plus native adjoint = |0>
+
+book guard rejects2nonunitaries; native compose rejects2invalid placement contracts

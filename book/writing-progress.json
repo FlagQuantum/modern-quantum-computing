@@ -291,6 +291,16 @@
       "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
       "record": "book/section-records/4.8.json",
       "author_execution": "passed: Python3.12.14, released FQ0.3.1, Qiskit2.5.2, PyTorch2.13.0, CPU complex128; exact coordinates and finite-shot evidence separate"
+    },
+    "sec-gates-reversible-computation-and-circuit-synthesis-1": {
+      "state": "draft",
+      "brief": "book/briefs/ch05.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+      "record": "book/section-records/5.1.json",
+      "author_execution": "passed after explicit book-side custom-unitarity guard; original released-adjoint admission failure preserved; FQ0.3.1/Torch2.13.0CPUcomplex128"
     }
   },
   "existing_pilots": [

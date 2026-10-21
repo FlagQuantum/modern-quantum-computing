@@ -1,0 +1,6 @@
+Chronological G1,...,Gm gives matrix Gm...G1; inverse calls Gm^dagger,...,G1^dagger.
+HS: all2basis columns and1complex product,forward/adjoint/both roundtrips passed.
+rotations: all2basis columns and1complex product,forward/adjoint/both roundtrips passed.
+custom-phase: all2basis columns and1complex product,forward/adjoint/both roundtrips passed.
+two-qubit: all4basis columns and1complex product,forward/adjoint/both roundtrips passed.
+mapped: all8basis columns and1complex product,forward/adjoint/both roundtrips passed.

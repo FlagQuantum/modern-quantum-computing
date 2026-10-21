@@ -12,7 +12,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7 and 4.1–4.8, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7, 4.1–4.8 and 5.1, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Two entry points: learners and agents
 
@@ -147,3 +147,5 @@ Section [4.6 Tensor reshaping as indexed mathematics](docs/chapters/ch-composite
 Section [4.7 The no-cloning theorem](docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-single-qubit-states-and-rotations-8) now supplies a complete phase-aware proof with eight checked body units and24 actual circuits, separating fixed-copy attempts from known-state reference preparations. Independent acceptance remains pending.
 
 Section [4.8 Cross-framework convention translation](docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-7) now checks actual FQ/Qiskit basis, operator and readout translation in eight body units. Its additional pinned dependency is installed with `python -m pip install -r requirements-interop.txt`. Chapter4 has eight working drafts; independent acceptance remains pending.
+
+Section [5.1 Circuit composition, inversion, and call order](docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md#sec-gates-reversible-computation-and-circuit-synthesis-1) opens Chapter5 with eight checked body units and98 actual circuits. The released nonunitary-adjoint boundary is documented with a book-side guard and [FlagQuantum issue685](https://github.com/flagos-ai/FlagQuantum/issues/685). Independent acceptance remains pending.

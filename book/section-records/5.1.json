@@ -1,0 +1,118 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-1",
+  "ref": "5.1",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+  "depth": "F",
+  "result": "Circuit inversion reverses gate order",
+  "requires": [
+    "sec-single-qubit-states-and-rotations-4",
+    "sec-composite-systems-tensor-products-and-qubit-ordering-3"
+  ],
+  "assumptions": [
+    "Finite fixed unitary gates on a declared full register space; local embeddings as4.3",
+    "Chronological call order G1throughGm; column vectors and left actions",
+    "State preparation outside inverted block; no measurement/channel/conditional inversion claim",
+    "Native compose mutates destination and returns it; native adjoint returns new block; custom matrices explicitly checked for unitary precondition"
+  ],
+  "proof_obligations": [
+    "Induction from chronological state updates to reversed visual matrix product",
+    "Empty program corresponds to identity",
+    "Two-sided inverse product by innermost pair cancellation; chronological inverse order reversed",
+    "Block composition U_B U_A and preserved qubit addresses",
+    "Rotation negative-angle identities and Rx2pi coordinate phase",
+    "Adjoint distinct from inverse on nonunitary maps, including invertible2H"
+  ],
+  "formula_code_units": [
+    "formula-code-5-1-two-orders",
+    "formula-code-5-1-product",
+    "formula-code-5-1-compose",
+    "formula-code-5-1-inverse-proof",
+    "formula-code-5-1-two-sided",
+    "formula-code-5-1-placement",
+    "formula-code-5-1-phase",
+    "formula-code-5-1-boundaries"
+  ],
+  "sources": [
+    {
+      "locator": "NC:4.1",
+      "edition": "10th Anniversary Edition (2010)",
+      "use": "Assigned quantum circuit background; original finite proof supplied",
+      "current_session_inspection": "No fresh user-local textbook PDF inspection claimed"
+    },
+    {
+      "source": "Installed site-packages FlagQuantum0.3.1 compose/adjoint/unitary",
+      "use": "Actual source/signatures inspected; source hashes in api-inspection.json; no editable direct_url metadata"
+    },
+    {
+      "url": "https://github.com/flagos-ai/FlagQuantum/issues/685",
+      "use": "New construction-only reproduction of accepted custom nonunitary matrices under documented native inverse contract; explicitly guarded in book"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/circuit_composition.py",
+    "command": "python examples/foundations/circuit_composition.py",
+    "prose_check_command": "python scripts/check_circuit_composition_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "system": "Darwin",
+      "architecture": "arm64",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed after book-side custom-unitarity guard",
+    "complete_program_circuits_per_invocation": 98,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 11,
+    "separate_transfer_circuits": 1,
+    "execution_ledger": {
+      "initial_failed_full_run": 98,
+      "corrected_complete": 98,
+      "body_assembly": 11,
+      "body_plus_complete_checker": 109,
+      "separate_transfer": 1,
+      "total_section51_circuits": 317,
+      "construction_only_API_probes": "No simulator runs; native nonunitary admission observed and preserved",
+      "note": "Previous4.3/4.8 scoped regressions and laterCI invocations separate. No independent blind-agent evaluation requested or claimed."
+    },
+    "checks": [
+      "Five programs:HS,noncommuting rotations,custom phase,2qubit full matrix and mapped3qubit single-factor block",
+      "Each full basis and1complex product:forward,native adjoint and both roundtrips;92runs",
+      "Empty circuit,2pi phase and undo,mutating composition,two deliberately wrong inverse constructions;6additional runs",
+      "Independent scalar chronological full-matrix action versus dense product and actual statevector; inverse outputs against U.mH",
+      "Manual S-dagger/H inverse, native instructions and source order, compose return identity and external preparation contract",
+      "7invalid contracts:2book-guard custom-unitarity rejections,5native compose rejections",
+      "8actualbody exact stdout and full-program expected output",
+      "New Rz(.23),Rx(-.61),S complex roundtrip and independent manual inverse matrix"
+    ],
+    "tolerance": "atol1e-12,rtol0; no phase alignment/normalization repair, backend fallback or approximation",
+    "script_sha256": "b0d7748837ed85eeca727596285eb6417757039c1acf123cb21285cfb1ea1d69",
+    "unplanned_execution_failures": "Initial full run completed98circuits then expected native rejection failed: native adjoint accepted projector and scaled-H custom matrices. Raw failure retained; construction-only reproduction confirms returned dagger is not inverse. Issue685 filed; explicit book-side checked_adjoint validates custom unitary matrices before native delegation. Corrected full/body/transfer runs passed.",
+    "limitations": "Fixed ideal unitary programs only; checked_adjoint is an explicit book helper, not a native API fix or general capability certificate. No measurement/noise/conditional/gradient/hardware inversion claim."
+  },
+  "assessment": {
+    "tasks": [
+      "5.1-A new complex rotation transfer",
+      "5.1-B inverse placement",
+      "5.1-C compose mutation",
+      "5.1-D probability/phase and invertible nonunitary traps"
+    ],
+    "answers": "All supplied; reader trial not run"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed after documented guard; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Exact8body and complete-program outputs passed after explicit book guard; new complex rotation transfer and scoped4.3/4.8 regressions passed. All curriculum/proof/baseline generators agree; strict MkDocs and70page links/fragment uniqueness passed. Actual browser formulas checked. Preceding4.8 full remoteCI succeeded. Initial native admission failure retained, issue685 filed; independent reviews pending."
+  },
+  "production": {
+    "next_draft": "5.2 Controlled operations and ancillas",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual IAB1280x720 screenshots: H/S matrices and distinct complex outputs, chronological inverse list with dagger/subscripts and cancellation product, rotation half-angle matrices/complex exponentials and Rx2pi phase. No garbling or clipping in inspected regions."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "section": "5.1",
+  "state": "author-verified draft",
+  "complete_circuits": 98,
+  "body_fragments": 8,
+  "body_circuits": 11,
+  "transfer_circuits": 1,
+  "initial_failed_run_circuits": 98,
+  "initial_failure": "Native adjoint unexpectedly admitted nonunitary custom matrices; raw stderr retained",
+  "issue": "https://github.com/flagos-ai/FlagQuantum/issues/685",
+  "workaround": "Explicit book-side checked_adjoint validates custom unitary precondition before native delegation; not a library fix",
+  "corrected_checks": "Complete98circuits,actual8bodyoutputs,full-programstdout and new complex transfer passed",
+  "regressions": "4.3 and4.8 scoped actual body/full companions passed",
+  "strict_build": "passed",
+  "links": "70pages,local links/fragments resolve,IDs unique",
+  "formula_display": "Actual IABscreenshots:H/S examples,reverse-adjoint products,rotation matrices and phase",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

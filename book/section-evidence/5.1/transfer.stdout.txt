@@ -1,0 +1,2 @@
+New rotation transfer: Rz(.23),Rx(-.61),S; inverse calls S-dagger,Rx(.61),Rz(-.23).
+One actual roundtrip circuit: both complex amplitudes/probabilities and independent inverse matrix checked.

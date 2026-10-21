@@ -1,0 +1,29 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "scope": "Chapter5 briefs follow frozen queue; independent acceptance pending",
+  "sections": [
+    {
+      "ref": "5.1",
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-1",
+      "title": "Circuit composition, inversion, and call order",
+      "depth": "F",
+      "requires": [
+        "sec-single-qubit-states-and-rotations-4",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-3"
+      ],
+      "question": "How do chronological circuit calls, matrix products and chronological inverse calls correspond?",
+      "entry": "3.4 unitary dynamics;4.3 full-register local embeddings; finite fixed unitary blocks.",
+      "exit": "Prove chronological product by induction, two-sided inverse product with reversed chronological adjoints, and block composition order; distinguish native mutating compose/new adjoint contracts.",
+      "worked_case": "H then S versus S then H, equal computational probabilities but unequal complex vectors; named rotations, custom global phase, two-qubit full matrix and mapped single-qubit block.",
+      "boundary": "F depth; fixed unitary gate programs; external normalized test preparations, no measurements/channels/classical conditionals or gradient claims.",
+      "code_plan": "Actual released Circuit.compose and Circuit.adjoint with source inspected; basis-column and independent scalar references, wrong inverse witnesses, exact prose outputs.",
+      "independent_check": "Both-sided roundtrips for every basis state and one complex product per program, named/custom/mapped/empty/2pi cases, source-order preservation and invalid composition/nonunitary rejection.",
+      "transfer_task": "New complex rotated sequence, inverse call order, mapped-block placement and phase-versus-probability diagnoses; full answers.",
+      "source_locators": [
+        "NC:4.1"
+      ],
+      "status": "draft",
+      "next_transition": "5.2 Controlled operations and ancillas."
+    }
+  ]
+}
