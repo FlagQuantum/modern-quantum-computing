@@ -23,7 +23,30 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "3.2 Relative phase and interference; general measurements deferred to Chapter6."
+      "next_transition": "3.2 now has a working draft; next production assignment3.3. General measurements remain in Chapter6."
+    },
+    {
+      "ref": "3.2",
+      "section_id": "sec-single-qubit-states-and-rotations-2",
+      "title": "Relative phase and interference",
+      "question": "How does coherent recombination reveal relative phase, and why can one analyzer miss a phase difference?",
+      "entry": "Canonical3.1 pure-state/Born postulates and2.3 linear maps/basis coordinates; H and diagonal phase maps defined locally as ideal experiment assumptions, without importing3.4 evolution theory.",
+      "exit": "Fully derive the complex interference cross term, balanced and unbalanced fringes, and dependence on a chosen analyzer phase; distinguish passive coordinates from active operations.",
+      "worked_case": "D(phi)H|0>, implemented H then phase then optional phase(-delta) then H; phases0,pi/2,pi,3pi/2,2pi and +/-i pair with delta=pi/2.",
+      "boundary": "F depth full probability expansion. No general measurement/update rule, noise-channel model, Bloch geometry, generator theory or tomography claim.",
+      "code_plan": "Released FlagQuantum0.3.1 CPU complex128 circuits compared with independent scalar-complex matrices, analytic fringes and direct probabilities; no hardware or shots.",
+      "independent_check": "17-point phase sweep, five displayed cases, +/-i analyzer witness, common-phase invariance, unbalanced3/5,4/5 amplitudes, zero-amplitude and probability-only counterexamples.",
+      "transfer_task": "Compute unbalanced fringe and contrast; diagnose missing conjugate and operation order; choose analysis phase and explain fixed-setting ambiguity; full answers.",
+      "source_locators": [
+        "NC:2.2.7"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-single-qubit-states-and-rotations-1",
+        "sec-complex-vectors-operators-and-numerical-reasoning-3"
+      ],
+      "status": "draft",
+      "next_transition": "3.3 The Bloch-sphere representation."
     }
   ]
 }

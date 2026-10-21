@@ -1,0 +1,111 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-single-qubit-states-and-rotations-2",
+  "ref": "3.2",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+  "question": "How does coherent recombination reveal relative phase, and why can one analyzer miss a phase difference?",
+  "requires": [
+    "sec-single-qubit-states-and-rotations-1",
+    "sec-complex-vectors-operators-and-numerical-reasoning-3"
+  ],
+  "depth": "F",
+  "result": "Interference depends on relative phase",
+  "entry": "Canonical3.1 pure-state/Born postulates and2.3 linear maps/basis coordinates; H and diagonal phase maps defined locally as ideal experiment assumptions, without importing3.4 evolution theory.",
+  "exit": "Fully derive the complex interference cross term, balanced and unbalanced fringes, and dependence on a chosen analyzer phase; distinguish passive coordinates from active operations.",
+  "assumptions": [
+    "Two coherent normalized amplitudes in a specified orthonormal basis",
+    "Explicit ideal H and diagonal D transfer rules, with normalization proved locally",
+    "Known controlled preparation and analyzer phases in radians; no intermediate measurement",
+    "Computational-basis Born rule from3.1; no general measurement update or generator theory imported"
+  ],
+  "symbols": {
+    "r,s,a,b,phi": "Amplitude magnitudes, phases and their relative difference modulo2pi",
+    "alpha,beta,A,B": "Input complex amplitudes and one analyzer row",
+    "delta,V": "Known analysis phase and visibility of specified phase scan"
+  },
+  "local_start_checks": {
+    "brief": "Filled before prose; exact3.1 and2.3 prerequisites, F depth and NC:2.2.7 source retained.",
+    "prerequisite": "Earlier usable drafts supply pure-state probabilities and matrix/basis order; local H,D definitions avoid assuming3.4/3.5.",
+    "source": "Consulted cached user-supplied NC printed93. No third-party textbook text/images uploaded.",
+    "independent_reference": "Standard-library scalar complex sum/difference versus simulator; analytic cosine probability formulas and hand cardinal values.",
+    "scope": "No changes to frozen435 sections,50 chapters,7volumes,16batches or PDF edition."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.2.7",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        93
+      ],
+      "use": "Global/relative-phase distinction, basis dependence and Eq.(2.121). Full fringe/analyzer derivations and examples are original exposition."
+    },
+    {
+      "supplementary": "Installed released FlagQuantum0.3.1",
+      "use": "Inspected core/operator_schema.py phase(theta) and simulation/matrices.py phase_mat; executed actual Circuit.phase(0,theta=...) with strict CPU statevector options."
+    }
+  ],
+  "proof_obligations": [
+    "Define relative phase and zero-amplitude boundary in fixed basis",
+    "Prove H and D norm preservation directly",
+    "Expand both output Born probabilities with conjugated cross terms",
+    "Derive general analyzer-row identity and common-phase invariance",
+    "Derive balanced/unbalanced fringe, probability range and ideal scan visibility",
+    "Show cosine-setting ambiguity for +/-i pair and derive shifted analyzer resolution",
+    "Distinguish active circuit operations from equivalent passive basis probabilities"
+  ],
+  "implementation": {
+    "path": "examples/foundations/relative_phase.py",
+    "command": "python examples/foundations/relative_phase.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "architecture": "arm64",
+      "system": "Darwin",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_run": "passed",
+    "dependencies": "Pinned requirements-examples.txt; genuine released wheel in existing mqc-writing-venv, shared Torch support provenance in1.2; no editable FlagQuantum source",
+    "checks": [
+      "Five displayed direct/recombined phase cases checked against scalar coordinates and analytic probabilities",
+      "+/-i pair plain-H ambiguity and delta=pi/2 distinguishing setting",
+      "17 additional phases: direct and delta=pi/7 recombined released FlagQuantum state/probability checks",
+      "Unbalanced3/5,4/5 scalar cases with three analyzer phases and exact extrema.02/.98",
+      "Common-phase and one-absent-amplitude invariance",
+      "Missing conjugate gives wrong1 instead of0 for complex witness",
+      "Reversed preparation order gives constant1; probability-only model fails constructive-interference case",
+      "Finite output, shape(1,2), complex128/float64 CPU metadata and normalization checked"
+    ],
+    "tolerance": "atol1e-12, rtol0 for amplitudes/probabilities and unit-scale scalar checks; printed zeros may contain roundoff",
+    "limitations": "Ideal coherent simulation and specified scalar cases only; no physical preparation, shots, noise process or tomography evidence",
+    "expected_output_check": "Passed exact comparison with section expected-output block",
+    "script_sha256": "5e193d60d4162dff75b4a6f10ab6e1f9e0d57927dc73807e98951ab1e8215197"
+  },
+  "assessment": {
+    "derivation": "3.2-A",
+    "debugging": "3.2-B",
+    "analyzer_transfer": "3.2-C",
+    "order_transfer": "3.2-D",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed Python3.12.14/released FlagQuantum0.3.1/PyTorch2.13.0 CPU complex128 execution, exact expected-output comparison, scalar/analytic fringe references,17-point sweep and counterexamples; frozen scope/depth/prerequisite/source/brief checks, prose scan, strict MkDocs build and links/anchors across57 pages. Actual browser inspection checked complex cross-term derivations, shifted analyzer and formula/code table. Replaced a table-sensitive ket pipe with LaTeX lvert and reloaded; no raw LaTeX or math-error text remained. Independent reviews and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 1924,
+    "page_status": "Unmeasured section envelope; print density and reader workload require later calibration.",
+    "next_draft": "3.3 The Bloch-sphere representation",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}

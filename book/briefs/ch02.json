@@ -20,7 +20,7 @@
       "depth": "F",
       "requires": [],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.2."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.3."
     },
     {
       "ref": "2.2",
@@ -42,7 +42,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-1"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.2."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.3."
     },
     {
       "ref": "2.3",
@@ -64,7 +64,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.2."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.3."
     },
     {
       "ref": "2.4",
@@ -86,7 +86,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.2."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.3."
     },
     {
       "ref": "2.5",
@@ -109,7 +109,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-4"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.2."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.3."
     },
     {
       "ref": "2.6",
@@ -131,7 +131,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-5"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.2."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.3."
     },
     {
       "ref": "2.7",
@@ -154,7 +154,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-5"
       ],
       "status": "draft",
-      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.2."
+      "next_transition": "Sections 2.1–2.8 now have author-checked drafts; independent reviews pending. Next production assignment is 3.3."
     },
     {
       "ref": "2.8",
@@ -177,7 +177,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-7"
       ],
       "status": "draft",
-      "next_transition": "Chapter2 has eight working drafts and synthesis problems; independent review and acceptance pending. Section3.1 now has a working draft; next draft3.2 Relative phase and interference."
+      "next_transition": "Chapter2 has eight working drafts and synthesis problems; independent review and acceptance pending. Section3.1 now has a working draft; next draft3.3 The Bloch-sphere representation."
     }
   ]
 }

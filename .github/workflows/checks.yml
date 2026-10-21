@@ -49,6 +49,7 @@ jobs:
       - run: python examples/foundations/conditioning.py
       - run: python examples/foundations/verification_contracts.py
       - run: python examples/foundations/pure_states.py
+      - run: python examples/foundations/relative_phase.py
       - run: python examples/measurement.py
       - run: python examples/gradients.py
       - run: python examples/omalley2016/h2_vqe_model.py
