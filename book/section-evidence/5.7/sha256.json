@@ -1,0 +1,22 @@
+{
+  "examples/foundations/approximation_precision.py": "505a885f9f763690b5c078d3b89016e4a90e01466d7de9ea43ff4dadb93a1083",
+  "scripts/check_approximation_precision_prose.py": "2efd81b1b18c8b54c3000f979d8440de4ea7a4888762386fd5033645413fe894",
+  "book/section-records/5.7.json": "9a6cc451b96ce2ba298480f7910a0b75b7b41605c508867388eaf7e16372a307",
+  "book/section-evidence/5.7/api-inspection.json": "b2590a75c8fe777531e777f809493e67e692bc29192e8e4663482b6875622632",
+  "book/section-evidence/5.7/body-assembly.stdout.txt": "e75d4a6db32b35bf3cc0f204d0dd199500e14b1981be555b63f7118b4a60e41a",
+  "book/section-evidence/5.7/build.stderr.txt": "1f94e9df859acba1d499254d147ff4f89b8edf963e817fb746657a76989bcf52",
+  "book/section-evidence/5.7/build.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.7/complete.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.7/complete.stdout.txt": "b36377f715d0b6302490c8107913ca13df7afdb89e085254fe0d56eb09f99df4",
+  "book/section-evidence/5.7/links.stdout.txt": "8b952c3a7239e1e078aa26f4587b3a8840fcec9a0df3b5cf8409a3ad31bf3c99",
+  "book/section-evidence/5.7/prose.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.7/prose.stdout.txt": "2edaac1296d12dde9b36a9e13a690b626cad75923b9903f766fa969d9031a219",
+  "book/section-evidence/5.7/regression55.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.7/regression55.stdout.txt": "ca739f1d451f134fba46f8f20f0ce50f27f846c27d44896c59dc0305db7beb68",
+  "book/section-evidence/5.7/regression56.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.7/regression56.stdout.txt": "efd051fc1342f7807b2c0450a420d71e689df93637992d65b73f3fe51a212783",
+  "book/section-evidence/5.7/transfer.py": "c4f0510ea384036cd9916dcdc3fdc3cc406cd06e79f5891bc1d872cc26b0ffb6",
+  "book/section-evidence/5.7/transfer.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/5.7/transfer.stdout.txt": "0303cfbf84b1a34d571af00ae201902bb6f5ca7c52baa209dbed430c3d403eb0",
+  "book/section-evidence/5.7/validation.json": "7fd253eae069f5f6c607ee79ef32ec50caa5a9cf90b470d176290eae5745ccd8"
+}

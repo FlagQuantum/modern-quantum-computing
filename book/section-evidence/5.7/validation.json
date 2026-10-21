@@ -1,0 +1,19 @@
+{
+  "section": "5.7",
+  "state": "author-verified draft",
+  "complete_circuits": 93,
+  "body_fragments": 8,
+  "body_circuits": 10,
+  "separate_transfer_circuits": 12,
+  "execution_ledger_total": 218,
+  "invalid_contracts": 10,
+  "execution_failures": "None",
+  "regressions": "5.5/5.6scopedbodyandfullpassed",
+  "strict_build": "passed",
+  "links": "70renderedpages;alllocal links/fragmentsresolve;IDsunique",
+  "formula_display": "Passed actual IAB1280x720 screenshots: exactcommutator norm/Pauli trace derivation,scopedtheorem assumptions,epsilon^3/2 recursion andlength bound,telescoping product identity,errorledger underbraces;no garbling orclipping ininspected formulas.",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "independent_review": "pending",
+  "reader_trial": "notrun",
+  "proof_boundary": "Locallemmasproved;generalbalancedresidual/netconstantsdeferredatRdepth;boundedwordsearchnotSK/densityproof/intervalcertificate"
+}

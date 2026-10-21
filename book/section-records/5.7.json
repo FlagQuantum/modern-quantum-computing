@@ -1,0 +1,121 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-7",
+  "ref": "5.7",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-gates-reversible-computation-and-circuit-synthesis.md",
+  "depth": "R",
+  "result": "Solovay-Kitaev approximation theorem (scoped)",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-7",
+    "sec-gates-reversible-computation-and-circuit-synthesis-5"
+  ],
+  "assumptions": [
+    "Fixed dimension;finite inverse-closed dense alphabet inSU(d);phase-exact operator norm",
+    "Ideal unitary execution;separate synthesis/representation/execution residuals",
+    "Teaching exampleCPUcomplex128 SU(2),finite-depth enumeration notSK/density/net certification"
+  ],
+  "proof_obligations": [
+    "Determinant-phase extraction andexplicit reconstruction",
+    "State andevent probability error fromoperator norm",
+    "Full telescoping gate error allocation andinverse-word preservation",
+    "Closed-form Rz difference andunwrapped4pi grid bound",
+    "Finite-word count/nested minima versusglobal density",
+    "ExactSU2orthogonal-axis commutator norm andunitary perturbation lemma",
+    "Conditional balanced commutator roadmap;deriveepsilon^3/2 andlog5/log1.5 length exponent",
+    "State fixed-dimension,finiteprecision anddeferred generalgeometry/net limits"
+  ],
+  "deferred_proof_ingredients": [
+    "General balanced residual construction includingfixed-dimension approximate version",
+    "Certified coarse-net coverage andvalid geometric constants",
+    "SourceNCAppendix3;public companionDawson/Nielsen§§4–5;unwrittenbookappendixnotclaimedavailable"
+  ],
+  "formula_code_units": [
+    "formula-code-5-7-phase",
+    "formula-code-5-7-metric",
+    "formula-code-5-7-composition",
+    "formula-code-5-7-rounding",
+    "formula-code-5-7-words",
+    "formula-code-5-7-commutator",
+    "formula-code-5-7-theorem",
+    "formula-code-5-7-budgets"
+  ],
+  "sources": [
+    {
+      "locator": "NC:A3",
+      "edition": "10th Anniversary Edition (2010)",
+      "printed_page_start": 617,
+      "inspection": "Assigned locator retained;no fresh localPDFinspection claimed"
+    },
+    {
+      "url": "https://arxiv.org/pdf/quant-ph/0505030v2",
+      "authors": "Christopher M.Dawson andMichael A.Nielsen",
+      "year": 2005,
+      "locators": [
+        "§2/Theorem1:PDFpages2–4",
+        "§3recurrence:PDFpages4–7",
+        "§4.1balancedcommutators:PDFpages8–9",
+        "§5fixed-dimension extension:PDFpages10–12"
+      ],
+      "inspection": "Primary publicv2 PDFread thissession;scope,wordorder,recursion andhigherdimension approximatecommutator checked"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/approximation_precision.py",
+    "command": "python examples/foundations/approximation_precision.py",
+    "prose_check_command": "python scripts/check_approximation_precision_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 93,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 10,
+    "separate_transfer_circuits": 12,
+    "execution_ledger": {
+      "complete": 93,
+      "body_assembly": 10,
+      "body_plus_complete_checker": 103,
+      "separate_transfer": 12,
+      "total_section57_circuits": 218,
+      "note": "Separate invocations;regressions/futureCI separate.No agent review claimed."
+    },
+    "checks": [
+      "45angle-grid,9phase-retaining,36finiteword and3composition circuits",
+      "Allbasis andcomplex inputs,fullwordmatrix reference andtargetapproximation bound separately",
+      "3exactcommutator norms and3perturbation bounds;10invalidcontracts",
+      "8actualbodyexactstdout andcompleteoutput;12newtarget/grid transfercircuits"
+    ],
+    "tolerance": "Implementation atol1e-12,rtol0;target synthesis delta fromnumericalSVD reportedseparately;no phasealignment,stateprojection,intervalorfullroundoffcertificate",
+    "unplanned_execution_failures": "None",
+    "limitations": "Finite exhaustive depth<=6 isnotSKcompiler orcertifiedcoarsenet;alphabet inverseclosure notdensityproof;anglegrid1–20bits/absangle100 areteachingguards;nohardware/shots/noiseclaim",
+    "script_sha256": "505a885f9f763690b5c078d3b89016e4a90e01466d7de9ea43ff4dadb93a1083"
+  },
+  "assessment": {
+    "tasks": [
+      "5.7-A newtargetresiduals",
+      "5.7-B newanglegrid",
+      "5.7-C totalbudget",
+      "5.7-D globalassumptions"
+    ],
+    "answers": "Supplied;readertrialnotrun"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "93complete-program circuits,8cumulativeactualbody/10circuits,12newtarget/grid transfercircuits,exactstdout andseparate implementation/target errors passed.5.5/5.6 scopedbody/fullregressions passed.StrictMkDocs,70page links andactualbrowserformula display passed.Frozen435sections/scope unchanged.Independentreviews pending."
+  },
+  "production": {
+    "next_draft": "5.8 Circuit identities and safe transformations",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual IAB1280x720 screenshots: exactcommutator norm/Pauli trace derivation,scopedtheorem assumptions,epsilon^3/2 recursion andlength bound,telescoping product identity,errorledger underbraces;no garbling orclipping ininspected formulas."
+  }
+}

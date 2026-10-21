@@ -1,0 +1,6 @@
+45 quantized-Rz circuits: exact angle-error formula and grid bound passed; angles were not reduced modulo 2*pi.
+9 U(2) circuits: determinant phase retained and reconstructed; SU(2) target validated separately.
+36 finite-word circuits: depth 0/2/4/6, nested best errors, full vectors and inverse words passed; no SK or density claim.
+3 composed-rotation circuits, 3 exact commutator formulas and 3 local perturbation bounds passed.
+10 malformed contracts rejected; 93 actual CPU complex128 circuits; implementation atol 1e-12, rtol 0.
+Synthesis error, angle rounding and floating-point residuals are separate; no hardware or certified-interval error claim.

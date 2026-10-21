@@ -1,6 +1,6 @@
 # 5. Gates, Reversible Computation, and Circuit Synthesis
 
-**Working drafts: sections 5.1–5.6 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 5.1–5.7 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use installed released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-gates-reversible-computation-and-circuit-synthesis-1"></span>
 
@@ -2076,4 +2076,386 @@ Clean three-control construction: 18 CX; borrowed-dirty echo: 24 CX; no optimali
 
 Depth **F**: every selected identity is proved on all computational-basis inputs, with phase tracking and an explicit extension by linearity. Assigned background is Nielsen and Chuang, 10th Anniversary Edition (2010), §4.3; no fresh local-PDF inspection is claimed. The public primary paper [Barenco et al., Elementary gates for quantum computation (1995), arXiv quant-ph/9503016v1](https://arxiv.org/pdf/quant-ph/9503016v1), §§6.1–6.2 (PDF pages 14–16), provides controlled-gate reduction and the warning that phase-congruent networks need not be interchangeable in quantum computations. These locations were checked against the public PDF. Our six-CNOT T-phase network and its explicitly defined shortened variant are proved above; they are not claimed to be the paper's displayed network or its particular phase variant.
 
-The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.6.json) separates author execution from independent mathematical/implementation review and reader trials, which remain pending. This is an author-verified working draft, not accepted content. No optimal synthesis, reset, hardware execution, noise model or approximate compiler is claimed. Continue, when drafted, with [5.7 Approximation, synthesis, and precision](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-7).
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.6.json) separates author execution from independent mathematical/implementation review and reader trials, which remain pending. This is an author-verified working draft, not accepted content. No optimal synthesis, reset, hardware execution, noise model or approximate compiler is claimed. Continue with [5.7 Approximation, synthesis, and precision](#sec-gates-reversible-computation-and-circuit-synthesis-7).
+
+<span id="sec-gates-reversible-computation-and-circuit-synthesis-7"></span>
+
+## 5.7 Approximation, synthesis, and precision
+
+Exact continuous universality does not say how to approximate a desired gate using a fixed finite instruction alphabet. Nor does a simulator reproducing a gate word accurately say how close that word is to the desired operation. This section connects the approximation theorem to separate, checkable error budgets. Prerequisites are [2.7](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-7), for induced norms, and [5.5](#sec-gates-reversible-computation-and-circuit-synthesis-5), for the continuous-versus-finite distinction.
+
+The theorem has depth **R**: we state its assumptions, identify its deferred ingredients, prove the local norm and commutator lemmas and derive the recursion exponent. The runnable compiler illustration is a bounded exhaustive search, explicitly separate from the theorem's constructive algorithm. Numerical examples use FlagQuantum 0.3.1/PyTorch 2.13.0, CPU complex128, implementation tolerance $10^{-12}$ with relative tolerance zero, full operator phase and no state repair. Mathematical approximation tolerances are separately stated; a computed floating-point norm is not an interval certificate.
+
+<span id="formula-code-5-7-phase"></span>
+
+### 1. Choose an operator and phase contract before approximating
+
+**Formula.** The special unitary group is
+
+$$
+SU(d)=\{V\in\mathbb C^{d\times d}:V^\dagger V=I,\ \det V=1\}.
+$$
+
+For a unitary U, choose $\chi=\operatorname{Arg}(\det U)/d$ and set $V=e^{-i\chi}U$. Then $U=e^{i\chi}V$ and $\det V=e^{-id\chi}\det U=1$. Here Arg denotes the principal argument in $(-\pi,\pi]$. Other determinant roots give other valid pairs; the chosen phase must accompany V. This is a coordinate convention, not permission to discard a phase in a controlled context.
+
+**Derivation.** Multiplying a d-dimensional matrix by a scalar multiplies its determinant by the scalar's dth power. Thus the displayed conversion preserves the exact U when reconstructed. The operator metric below distinguishes I and −I: $\|I-(-I)\|_2=2$, even though they give the same isolated pure-state ray. If an application permits quotienting by a global phase, that must be a different, explicit acceptance contract. This section keeps full operator phase. See [3.7](ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-7) for why controlling a block can expose its phase.
+
+**FlagQuantum code → verification result.** These are original book helpers, not a native SK API. The scalar/determinant convention is checked separately from executing the complete U(2) matrix. Preparations remain outside the tested block. The snippets are cumulative.
+
+```python
+import math
+import torch
+import flagquantum as fq
+import examples.foundations.approximation_precision as a
+f = [(.6, .8j)]
+U = torch.exp(torch.tensor(.31j, dtype=a.D))*a.explicit('z', .73)
+chi, V = a.strip_phase(U)
+torch.testing.assert_close(torch.exp(torch.tensor(1j*chi, dtype=a.D))*V, U, rtol=0, atol=a.ATOL)
+v, _ = a.run(fq.Circuit(1, dtype=a.D).unitary(0, unitary=U), f)
+torch.testing.assert_close(v, U @ a.product_input(f), rtol=0, atol=a.ATOL)
+v, _ = a.run(fq.Circuit(1, dtype=a.D).rz(0, 2*math.pi), f)
+torch.testing.assert_close(v, -a.product_input(f), rtol=0, atol=a.ATOL)
+print(f'Retained determinant phase: {chi:.6f}; distance(I,-I): {a.distance(a.I, -a.I):.6f}')
+```
+```text
+Retained determinant phase: 0.310000; distance(I,-I): 2.000000
+```
+
+<span id="formula-code-5-7-metric"></span>
+
+### 2. Translate an operator error into state and probability errors
+
+**Formula.** Use the induced Euclidean operator norm from [2.7](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-7):
+
+$$
+\delta=\|U-V\|_2=\sup_{\|\psi\|_2=1}\|(U-V)\psi\|_2.
+$$
+
+For normalized $|u\rangle=U|\psi\rangle$ and $|v\rangle=V|\psi\rangle$, their vector distance is at most δ. For an orthogonal projector $\Pi=\Pi^\dagger=\Pi^2$,
+
+$$
+\bigl|\langle u|\Pi|u\rangle-\langle v|\Pi|v\rangle\bigr|
+\le 2\delta.
+$$
+
+**Derivation.** Insert and subtract $\langle v|\Pi|u\rangle$ to write the difference as
+$\langle u-v|\Pi|u\rangle+\langle v|\Pi|u-v\rangle$. Cauchy–Schwarz, $\|\Pi\|_2\le1$ and unit norms bound each term by $\|u-v\|_2$. A probability difference is also at most one, so $\min(1,2\delta)$ is a valid bound. This bounds each event projector, not the sum of absolute errors over many outcomes. Here a basis event uses $\Pi_j=|j\rangle\langle j|$; broader measurement theory follows in Chapter 6.
+
+**FlagQuantum code → verification result.** The simulator must reproduce the chosen approximate matrix to implementation tolerance; it need not reproduce the ideal target to that same tolerance. Compare these two residuals separately. Numerical singular values give an estimated operator norm, not a rigorous interval certificate.
+
+```python
+target = a.explicit('z', .73)
+candidate = a.explicit('z', .70)
+delta = a.distance(target, candidate)
+v, p = a.run(fq.Circuit(1, dtype=a.D).rz(0, .70), f)
+ideal = target @ a.product_input(f)
+implementation = torch.linalg.vector_norm(v-candidate @ a.product_input(f)).item()
+state_error = torch.linalg.vector_norm(v-ideal).item()
+assert implementation < a.ATOL and state_error <= delta+a.ATOL
+assert torch.max(torch.abs(p-ideal.abs().square())).item() <= 2*delta+a.ATOL
+print(f'Operator / state errors: {delta:.6f} / {state_error:.6f}; implementation residual < 1e-12.')
+```
+```text
+Operator / state errors: 0.015000 / 0.015000; implementation residual < 1e-12.
+```
+
+<span id="formula-code-5-7-composition"></span>
+
+### 3. Allocate a circuit budget with a telescoping proof
+
+**Formula.** Let chronological target gates be $U_1,\ldots,U_m$, and their unitary replacements $V_1,\ldots,V_m$. Then
+
+$$
+\left\|V_m\cdots V_1-U_m\cdots U_1\right\|_2
+\le\sum_{j=1}^m\|V_j-U_j\|_2.
+$$
+
+**Derivation.** Insert hybrid products, replacing one factor at a time. Their signed differences telescope exactly:
+
+$$
+V_m\cdots V_1-U_m\cdots U_1
+=\sum_{j=1}^m V_m\cdots V_{j+1}(V_j-U_j)U_{j-1}\cdots U_1.
+$$
+
+An absent prefix/suffix is identity. Each surrounding product is unitary and has norm one. Submultiplicativity and the triangle inequality give the claimed sum. No independence or cancellation assumption is used. Thus for $m>0$, a uniform per-gate budget $\varepsilon/m$ suffices for a total budget ε. Unequal allocations may be more useful when gates have different synthesis costs.
+
+Inverse words cost no extra alphabet assumption when the alphabet is inverse-closed: reverse chronological order and invert every instruction. Moreover $\|U^\dagger-V^\dagger\|_2=\|U-V\|_2$, because a matrix and its adjoint have the same singular values. This preserves approximation accuracy, not merely the truth table of an inverse.
+
+**FlagQuantum code → verification result.** Test a three-gate replacement and an exact inverse-word roundtrip. The product order matches [5.1](#sec-gates-reversible-computation-and-circuit-synthesis-1).
+
+```python
+exact = [('x', .31), ('z', -.63), ('y', .87)]
+Ut = a.I.clone(); Va = a.I.clone(); budget = 0.
+block = fq.Circuit(1, dtype=a.D)
+for axis, theta in exact:
+    u, v = a.explicit(axis, theta), a.explicit(axis, theta+.01)
+    Ut = u @ Ut; Va = v @ Va; budget += a.distance(u, v)
+    getattr(block, 'r'+axis)(0, theta+.01)
+v, _ = a.run(block, f)
+torch.testing.assert_close(v, Va @ a.product_input(f), rtol=0, atol=a.ATOL)
+assert a.distance(Ut, Va) <= budget+a.ATOL
+word = (('x', 1), ('z', -1), ('x', 1))
+roundtrip = a.word_circuit(word).compose(a.word_circuit(a.inverse_word(word)))
+v, _ = a.run(roundtrip, f)
+torch.testing.assert_close(v, a.product_input(f), rtol=0, atol=a.ATOL)
+print(f'Circuit operator error <= allocated sum {budget:.6f}; inverse-word roundtrip passed.')
+```
+```text
+Circuit operator error <= allocated sum 0.015000; inverse-word roundtrip passed.
+```
+
+<span id="formula-code-5-7-rounding"></span>
+
+### 4. Derive a radian-grid error without losing a full-turn phase
+
+**Formula.** For $R_z(\theta)=\operatorname{diag}(e^{-i\theta/2},e^{i\theta/2})$,
+
+$$
+\|R_z(\theta)-R_z(\widetilde\theta)\|_2
+=2\left|\sin\frac{\theta-\widetilde\theta}{4}\right|
+\le\frac{|\theta-\widetilde\theta|}{2}.
+$$
+
+**Derivation.** The difference is diagonal, so its norm is the larger absolute diagonal entry. Both entries have magnitude $|e^{ix}-e^{iy}|=2|\sin((x-y)/2)|$. Substitute the half angles and use $|\sin s|\le|s|$. On a grid of step $h=4\pi/2^b$, nearest-integer rounding gives $|\theta-\widetilde\theta|\le h/2$, hence operator error at most $h/4=\pi/2^b$. A sufficient positive integer b for a desired positive error η is $b\ge\log_2(\pi/\eta)$; use at least one bit in this helper.
+
+The period is $4\pi$ for a phase-exact rotation matrix. The code rounds the **unwrapped** radian angle and never replaces $2\pi$ by zero. This grid-resolution b is not the binary mantissa precision of Python floats. The inequality is an exact real-arithmetic statement; floating angle arithmetic and computed residuals have a separate numerical tolerance. The helper's limits of 1–20 grid bits and absolute angle ≤100 are teaching guards, not FlagQuantum restrictions.
+
+**FlagQuantum code → verification result.** A Z rotation preserves computational-basis probabilities while changing relative phases. Therefore the full complex vector, rather than that probability distribution alone, is the reference.
+
+```python
+for bits in (3, 6, 10):
+    rounded, h = a.quantized_angle(.73, bits)
+    Uq = a.explicit('z', rounded)
+    err = a.distance(a.explicit('z', .73), Uq)
+    assert abs(err-2*abs(math.sin((.73-rounded)/4))) < a.ATOL
+    assert err <= h/4+a.ATOL
+    v, _ = a.run(fq.Circuit(1, dtype=a.D).rz(0, rounded), f)
+    torch.testing.assert_close(v, Uq @ a.product_input(f), rtol=0, atol=a.ATOL)
+    print(f'grid bits {bits}: angle {rounded:.6f}, operator error {err:.6f}, bound {h/4:.6f}')
+```
+```text
+grid bits 3: angle 0.000000, operator error 0.362977, bound 0.392699
+grid bits 6: angle 0.785398, operator error 0.027698, bound 0.049087
+grid bits 10: angle 0.724039, operator error 0.002981, bound 0.003068
+```
+
+<span id="formula-code-5-7-words"></span>
+
+### 5. Use a finite-word search without mistaking it for a theorem
+
+**Formula.** A chronological word $w=(g_1,\ldots,g_\ell)$ represents $M(w)=g_\ell\cdots g_1$. For an alphabet of size four, the number of words of length at most k is
+
+$$
+N_k=\sum_{j=0}^k4^j=\frac{4^{k+1}-1}{3}.
+$$
+
+**Derivation.** There are four independent choices at each position, hence $4^j$ words of length j, including the empty identity word at j=0. Enumerating all such words supplies a finite set of candidate matrices. Since the catalog at k contains the catalog at k−1, its best estimated error cannot increase. This proves neither that the errors approach zero nor that the set covers all targets at a desired accuracy.
+
+The teaching alphabet is $\{R_x(\pi/4),R_x(-\pi/4),R_z(\pi/4),R_z(-\pi/4)\}$. Its matrices are in SU(2) and each inverse is explicitly present. Those statements follow directly from the rotation eigenvalues and sign reversal. **Density is a separate theorem hypothesis; neither this search nor its passing examples certify it.** A finite alphabet has countably many finite words, so it cannot exactly represent an uncountable group. Countable sets can be dense: approximate coverage and exact representability are different questions.
+
+**FlagQuantum code → verification result.** `search` exhausts every word up to the requested depth without deduplicating or phase-aligning matrices. It returns the chronological word, its matrix, estimated target error and number searched. Depth ≤6 is a teaching memory/time guard. It is not an SK implementation, optimal compiler or guaranteed net construction. The emitted circuit uses only the declared ±π/4 named Rx/Rz calls, never a native custom gate holding the ideal target.
+
+```python
+target = a.explicit('y', .71) @ a.explicit('z', -.43)
+previous = float('inf')
+for depth in (2, 4, 6):
+    word, candidate, delta, count = a.search(target, depth)
+    assert count == (4**(depth+1)-1)//3 and delta <= previous+a.ATOL
+    previous = delta
+    print(f'depth {depth}: {count} words, best operator error {delta:.6f}')
+v, _ = a.run(a.word_circuit(word), f)
+torch.testing.assert_close(v, candidate @ a.product_input(f), rtol=0, atol=a.ATOL)
+assert torch.linalg.vector_norm(v-target @ a.product_input(f)).item() <= delta+a.ATOL
+print('Selected finite word executed; implementation and target residuals checked separately.')
+```
+```text
+depth 2: 21 words, best operator error 0.377938
+depth 4: 341 words, best operator error 0.123685
+depth 6: 5461 words, best operator error 0.121237
+Selected finite word executed; implementation and target residuals checked separately.
+```
+
+<span id="formula-code-5-7-commutator"></span>
+
+### 6. Explain the cancellation that makes recursive improvement possible
+
+**Formula.** A group commutator is $K(V,W)=VWV^\dagger W^\dagger$. It is not the matrix difference $VW-WV$. If V,W are near identity, their group commutator can be closer still. For $V=R_x(\alpha)$ and $W=R_y(\beta)$,
+
+$$
+\|K(V,W)-I\|_2=2|\sin(\alpha/2)\sin(\beta/2)|.
+$$
+
+**Local derivation.** Write $R_x(\alpha)=c_\alpha I-is_\alpha X$ and $R_y(\beta)=c_\beta I-is_\beta Y$, where $c_\alpha=\cos(\alpha/2)$ and $s_\alpha=\sin(\alpha/2)$. Conjugation gives $R_x(\alpha)Y R_x(-\alpha)=\cos\alpha\,Y+\sin\alpha\,Z$. Multiplying this conjugated W by $W^\dagger=c_\beta I+is_\beta Y$, the coefficient of identity is
+
+$$
+c_\beta^2+s_\beta^2\cos\alpha
+=1-2s_\alpha^2s_\beta^2.
+$$
+
+All Pauli terms have zero trace, so the trace of K is twice this coefficient. Since a two-dimensional special unitary has conjugate eigenvalues $e^{i\omega},e^{-i\omega}$, both eigenvalues of $(I-K)^\dagger(I-K)=2I-K-K^\dagger$ equal $2-\operatorname{tr}K$. Taking square roots yields the displayed norm. Small α and β therefore produce a quadratic rather than linear distance.
+
+We also need a **perturbation lemma**, not just a small commutator. Let V',W' be unitary approximations, with $d_V=\|V'-V\|_2$ and $d_W=\|W'-W\|_2$. Then
+
+$$
+\|K(V',W')-K(V,W)\|_2
+\le2d_V\|W-I\|_2+2d_W\|V'-I\|_2.
+$$
+
+To prove the first term, put $E=V'V^\dagger$, $A=VWV^\dagger$ and write
+
+$$
+EAE^\dagger-A=(E-I)(A-I)E^\dagger+(A-I)(E^\dagger-I).
+$$
+
+Both sides expand to the same matrix. Norms of unitary factors are one, $\|E-I\|_2=d_V$ and $\|A-I\|_2=\|W-I\|_2$. Right multiplication by $W^\dagger$ does not change the norm. For the second term interchange V,W and use $K(W,V)=K(V,W)^\dagger$, then the triangle inequality to combine the two replacements. If $d_V,d_W\le\varepsilon$ and $\|V-I\|_2,\|W-I\|_2\le B\sqrt\varepsilon$, this implies
+
+$$
+\|K(V',W')-K(V,W)\|_2
+\le4B\varepsilon^{3/2}+2\varepsilon^2.
+$$
+
+Here $\|V'-I\|_2\le B\sqrt\varepsilon+\varepsilon$. For $0<\varepsilon\le1$, the last bound is at most $(4B+2)\varepsilon^{3/2}$. This elementary lemma explains the gain **conditional on** finding balanced V,W. It does not construct them for an arbitrary desired residual; that geometric step is deferred below.
+
+**FlagQuantum code → verification result.** To implement $VWV^\dagger W^\dagger$, chronological calls start with $W^\dagger$, not V. The numerical reference is independent matrix multiplication; the norm additionally has the closed-form check above.
+
+```python
+alpha, beta = .2, .3
+V, W = a.explicit('x', alpha), a.explicit('y', beta)
+K = a.commutator(V, W)
+block = (fq.Circuit(1, dtype=a.D).ry(0, -beta).rx(0, -alpha)
+         .ry(0, beta).rx(0, alpha))
+v, _ = a.run(block, f)
+torch.testing.assert_close(v, K @ a.product_input(f), rtol=0, atol=a.ATOL)
+closed_form = 2*abs(math.sin(alpha/2)*math.sin(beta/2))
+assert abs(a.distance(K, a.I)-closed_form) < a.ATOL
+eps = .001
+Vp = a.explicit('z', eps) @ V; Wp = a.explicit('x', -eps) @ W
+bound = 2*a.distance(Vp, V)*a.distance(W, a.I)+2*a.distance(Wp, W)*a.distance(Vp, a.I)
+assert a.distance(a.commutator(Vp, Wp), K) <= bound+a.ATOL
+print(f'Group commutator norm {closed_form:.6f}; exact formula and perturbation bound passed.')
+```
+```text
+Group commutator norm 0.029838; exact formula and perturbation bound passed.
+```
+
+<span id="formula-code-5-7-theorem"></span>
+
+### 7. State the scoped theorem and derive its recursion exponent
+
+**Theorem (Solovay–Kitaev, scoped).** Fix dimension $d\ge2$ and a finite alphabet $G\subset SU(d)$ that contains every generator's inverse and generates a dense subgroup. For sufficiently small $\varepsilon>0$, every $U\in SU(d)$ has a word S satisfying $\|U-M(S)\|_2\le\varepsilon$ and length $O(\log^c(1/\varepsilon))$. Constants may depend on G and d. A classical commutator construction gives $c=\log5/\log(3/2)\approx3.97$. This is not an optimal exponent, a bound uniform in growing d, or a finite-precision bit-complexity claim. In particular setting $d=2^n$ does not establish efficient general synthesis in n.
+
+The theorem and general construction are imported at depth **R** from the assigned NC Appendix 3, with a publicly inspected companion source: [Dawson and Nielsen, The Solovay-Kitaev algorithm, v2 (2005), Theorem 1 and §§3–5](https://arxiv.org/pdf/quant-ph/0505030v2). The proof here supplies local error lemmas and the following conditional recursion analysis. General balanced-commutator geometry, a certified coarse net and explicit valid constants are deferred to those sources; an unwritten appendix of this book is not treated as an available proof.
+
+**Roadmap → local derivation.** Start with a coarse word $S_{k-1}$ at error $\varepsilon_{k-1}$. The residual $\Delta=U M(S_{k-1})^\dagger$ is that close to I. In the qubit construction, a geometric lemma supplies $\Delta=K(V,W)$ with $\|V-I\|_2,\|W-I\|_2\le B\sqrt{\varepsilon_{k-1}}$. Recursively approximate V,W to error $\varepsilon_{k-1}$, then prepend the resulting commutator to the old **matrix** product. Chronological execution first runs $S_{k-1}$, then $W'^{-1},V'^{-1},W',V'$. Unit 6 bounds the new error by $C\varepsilon_{k-1}^{3/2}$ for a fixed sufficient C. Higher fixed dimensions may use an approximate balanced decomposition with an additional $O(\varepsilon_{k-1}^{3/2})$ residual; this changes C and is also deferred.
+
+Why does this give a polylogarithmic length? Choose the coarse accuracy so $q=C^2\varepsilon_0<1$. Define an upper-bound sequence by $\varepsilon_k=C\varepsilon_{k-1}^{3/2}$. Then
+
+$$
+C^2\varepsilon_k=(C^2\varepsilon_{k-1})^{3/2}
+=q^{(3/2)^k},\qquad L_k\le5^kL_0.
+$$
+
+The five word occurrences are the old word and the two new words with their two inverses. Taking logarithms in $q^{(3/2)^k}/C^2\le\varepsilon$ gives $(3/2)^k=O(\log(1/\varepsilon))$. Raising this to $\log5/\log(3/2)$ gives the theorem's displayed length exponent. A coarse net must cover **all** targets at its claimed accuracy; one target's successful finite search is insufficient. Density and compactness motivate such a fixed finite net, but the catalog here supplies no certified coverage radius.
+
+**Code → verification result.** This scalar recurrence illustrates the derived bounds only. It does not measure the teaching search, determine an SK constant for its alphabet, or certify a gate approximation. We choose illustrative C=6 and ε₀=0.001 and keep the short sequence above the floating-point underflow range.
+
+```python
+C, epsilon, length = 6., .001, 1
+assert C*C*epsilon < 1
+for level in range(4):
+    assert epsilon > 0
+    print(f'illustrative level {level}: error bound {epsilon:.3e}, word-length bound {length}')
+    epsilon = C*epsilon**1.5; length *= 5
+print(f'Length exponent log(5)/log(3/2): {math.log(5)/math.log(1.5):.6f}')
+```
+```text
+illustrative level 0: error bound 1.000e-03, word-length bound 1
+illustrative level 1: error bound 1.897e-04, word-length bound 5
+illustrative level 2: error bound 1.568e-05, word-length bound 25
+illustrative level 3: error bound 3.726e-07, word-length bound 125
+Length exponent log(5)/log(3/2): 3.969362
+```
+
+<span id="formula-code-5-7-budgets"></span>
+
+### 8. Keep the scientific error ledger separate from implementation checks
+
+**Formula and derivation.** If ideal target U, selected exact word S, represented word matrix $\widehat S$ and computed output $|\widehat v\rangle$ refer to the same normalized input, then
+
+$$
+\|\widehat v-U\psi\|_2
+\le\underbrace{\|\widehat v-\widehat S\psi\|_2}_{\text{execution residual}}
++\underbrace{\|\widehat S-S\|_2}_{\text{representation error}}
++\underbrace{\|S-U\|_2}_{\text{synthesis error}}.
+$$
+
+This is the triangle inequality after inserting $\widehat S\psi$ and $S\psi$. An angle-grid error may be a representation error or a deliberate synthesis replacement; assign it to one category once, rather than double-counting it. The exact word S is a mathematical product. Its floating-point product is only a representation. Our singular-value residuals estimate some terms numerically; no bound on every rounding operation or interval enclosure of the exact total is claimed.
+
+A simulator option forbidding approximate simulation does not remove synthesis error: the simulator may accurately execute a deliberately approximate gate word. Conversely, a small target-state residual for one input does not establish a small operator norm for every input. The example checks all basis columns and a complex input for each chosen word and separately computes the small-matrix norm. No hardware, pulse, shot-noise or calibration budget is included.
+
+**Code → verification result.** Reject unsupported dimensions, nonunitary matrices, an unrecorded U(2) phase presented as SU(2), excessive search depth, invalid grid units/types and instructions outside the declared alphabet. These teaching helpers do not repair a bad matrix by normalization or projection. The depth/alphabet/CPU guards are repository contracts, not limitations claimed for FlagQuantum itself.
+
+```python
+invalid = [lambda: a.search(torch.eye(3, dtype=a.D), 2), lambda: a.search(2*a.I, 2),
+           lambda: a.search(torch.exp(torch.tensor(.2j, dtype=a.D))*a.I, 2),
+           lambda: a.catalog(7), lambda: a.catalog(True),
+           lambda: a.quantized_angle(float('nan'), 4),
+           lambda: a.quantized_angle(.3, True), lambda: a.quantized_angle(.3, 0),
+           lambda: a.word_circuit((('y', 1),)), lambda: a.inverse_word((('x', True),))]
+for call in invalid:
+    try:
+        call()
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('Invalid approximation contract accepted')
+assert a.RUNS == 10
+print('Ten invalid contracts rejected; ten actual body circuits; no SK implementation or certified numerical error claim.')
+```
+```text
+Ten invalid contracts rejected; ten actual body circuits; no SK implementation or certified numerical error claim.
+```
+
+### Complete program and expected output
+
+Run `python examples/foundations/approximation_precision.py` from the repository root. The [complete example](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/approximation_precision.py) executes 93 actual circuits: 45 angle-grid cases, 9 phase-retaining U(2) cases, 36 finite-word cases and 3 circuit-composition cases. Each selected matrix is checked on both basis inputs and a complex input. Additional classical checks cover exact word inverses, catalog sizes, closed-form angle/commutator norms and perturbation inequalities. The [body checker](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/scripts/check_approximation_precision_prose.py) executes eight cumulative snippets containing ten circuits and compares every printed result exactly.
+
+Expected output of the complete program:
+
+```text
+45 quantized-Rz circuits: exact angle-error formula and grid bound passed; angles were not reduced modulo 2*pi.
+9 U(2) circuits: determinant phase retained and reconstructed; SU(2) target validated separately.
+36 finite-word circuits: depth 0/2/4/6, nested best errors, full vectors and inverse words passed; no SK or density claim.
+3 composed-rotation circuits, 3 exact commutator formulas and 3 local perturbation bounds passed.
+10 malformed contracts rejected; 93 actual CPU complex128 circuits; implementation atol 1e-12, rtol 0.
+Synthesis error, angle rounding and floating-point residuals are separate; no hardware or certified-interval error claim.
+```
+
+### Understanding checks and transfer exercises
+
+**5.7-A — New targets, two residuals.** Search to depth five for $R_y(-0.52)R_x(0.19)$, $R_z(0.91)$ and $R_x(1.03)R_z(-0.27)$. Execute the selected words on both basis states and (.6,.8i). Which residual should be compared to 10⁻¹², and which to the returned target error?
+
+**5.7-B — A new grid.** Quantize the unwrapped angle −1.17 with seven grid bits. Predict a valid upper bound on operator error and check the same three inputs. What fails if you first reduce all angles modulo 2π?
+
+**5.7-C — Budget allocation.** A circuit has 200 unitary targets and total operator-error budget 0.01. Give a sufficient uniform synthesis budget, assuming no other error category consumes it. Does passing one input imply the operator bound?
+
+**5.7-D — Missing theorem assumptions.** You tested ten targets at depth six. Which of inverse closure, density, a certified coarse-net radius and the general balanced-residual construction have those runs established? Why is a growing multi-qubit dimension outside a fixed-dimension efficiency claim?
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** Compare simulator output to the selected word matrix at implementation tolerance 10⁻¹²; compare it to the ideal target using the returned estimated operator error plus the separately stated implementation allowance. Chronological order for the first target is Rx(.19), then Ry(−.52). A return value from a bounded search can be too inaccurate for a desired scientific budget; the caller must reject it in that case, rather than weakening the requirement. The separate author transfer performs nine circuits for these new targets.
+
+**B.** Here h=4π/128, so h/4=π/128 is a valid exact grid bound. The separate author transfer executes three more circuits, for twelve transfer circuits total. Modulo 2π identifies Rz(2π)=−I with Rz(0)=I, changing the full operator phase and potentially a controlled block's relative phase. The 4π grid avoids silently making that identification.
+
+**C.** Each replacement may use at most 0.01/200=0.00005. The telescoping proof does not require independent errors. Other representation/execution errors need their own budget, so this allocation cannot also cover those costs without further bounds. One input probes only one direction; the operator norm is a supremum over every normalized input.
+
+**D.** None of these global conditions follows merely from ten target runs. Inverse closure can instead be proved by inspecting the declared alphabet and its exact inverses. Density and a certified uniform net need mathematical arguments, not a finite success list. The general balanced-residual lemma is an explicit import. Constants and preprocessing may depend on d, which is exponential in qubit count; fixing d therefore does not prove efficient arbitrary n-qubit compilation.
+
+</details>
+
+### Sources, deferred depth and next step
+
+Assigned source: Nielsen and Chuang, 10th Anniversary Edition (2010), Appendix 3, beginning at printed page 617. Its assigned locator is retained; no fresh inspection of the user-local textbook PDF is claimed. Public companion verification used [Dawson and Nielsen (2005), quant-ph/0505030v2](https://arxiv.org/pdf/quant-ph/0505030v2): §2 and Theorem 1 (PDF pages 2–4), the recurrence in §3 (pages 4–7), the balanced-commutator ingredient in §4.1 (pages 8–9) and the fixed-dimension extension in §5 (pages 10–12). The local bounds above are proved explicitly, not outsourced to numerical tests. General residual decomposition, quantitative coarse-net coverage and valid geometric constants remain deferred at the frozen R depth. No numerical search result here is substituted for those obligations.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/5.7.json) records actual author execution and separates it from independent mathematical review, implementation review and reader trials, which remain pending. This remains a working draft. Continue, when drafted, with [5.8 Circuit identities and safe transformations](../section-plans/01-foundations.md#sec-gates-reversible-computation-and-circuit-synthesis-8).

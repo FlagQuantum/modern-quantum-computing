@@ -1,0 +1,1 @@
+Eight cumulative fragments executed;10actualcircuits;assertions anddisplayed outputs captured.

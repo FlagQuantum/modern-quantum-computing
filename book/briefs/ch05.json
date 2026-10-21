@@ -141,6 +141,29 @@
       ],
       "status": "draft",
       "next_transition": "5.7 Approximation, synthesis, and precision."
+    },
+    {
+      "ref": "5.7",
+      "section_id": "sec-gates-reversible-computation-and-circuit-synthesis-7",
+      "title": "Approximation, synthesis, and precision",
+      "depth": "R",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-7",
+        "sec-gates-reversible-computation-and-circuit-synthesis-5"
+      ],
+      "question": "What does finite-alphabet approximate universality guarantee, and how does a gate approximation budget reach a circuit output?",
+      "entry": "2.7 induced operator norm and perturbations;5.5 exact continuous universality;phase-aware matrix order.",
+      "exit": "State fixed-dimension inverse-closed dense SU(d) theorem;prove norm/probability and telescoping/inverse bounds,rotation error andlocal commutator lemmas;derive recursion exponent while identifying deferred geometric/net constants.",
+      "worked_case": "Unwrapped Rz angle grid;bounded exhaustive SU(2) word search with exact inverse words;local commutator cancellation andseparate error ledgers.",
+      "boundary": "R depth;general balanced-commutator/net construction andcertified constants deferred toNC Appendix3;teaching exhaustive search isnotSK,no density orcertifiedinterval claim.",
+      "code_plan": "Actual released Rx/Ry/Rz andcustomphase unitary;SVDoperator norms,independent closed-form rotations/scalar references,andseparate candidate versus target residuals.",
+      "independent_check": "Allbasis andcomplex inputs for quantized rotations,phase cases,finitewords andcomposition;integer catalogsize,commutator andperturbation bounds;invalidshape/phase/budget contracts.",
+      "transfer_task": "Newtargets,word depths andprecision grid;verify approximation versus implementation residuals separately with fullanswers.",
+      "source_locators": [
+        "NC:A3"
+      ],
+      "status": "draft",
+      "next_transition": "5.8 Circuit identities and safe transformations."
     }
   ]
 }
