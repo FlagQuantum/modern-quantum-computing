@@ -11,6 +11,11 @@ theme:
     - content.code.copy
 nav:
   - Introduction: index.md
+  - Textbook and agent entries:
+      - Shared design and navigation: dual-entry.md
+      - Skills levels and chapter map: agent-skills.md
+      - Task contract and evaluation: skill-contract.md
+      - Paper verification and acceptance: paper-reproduction-standard.md
   - Writing baseline 1.0: writing-baseline.md
   - Full writing queue: writing-order.md
   - First writing assignment: writing-first-batch.md

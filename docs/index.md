@@ -22,6 +22,15 @@ Correspondence: [liuwei01@baai.ac.cn](mailto:liuwei01@baai.ac.cn)
 **Version 0.1.0-draft.4 · 2026-10-20 · Draft**
 <!-- book-metadata:end -->
 
+## Two entries into the same knowledge base
+
+| Goal | Start here |
+|---|---|
+| Learn the mathematics and translate formulas into code | [Textbook contents](contents.md) and [learning paths](learning-paths.md) |
+| Plan a bounded agent task or paper reproduction | [Dual-entry design](dual-entry.md), [skill capability map](agent-skills.md) and [verification/acceptance standard](paper-reproduction-standard.md) |
+
+The agent entry is **planning only**: 23 proposed task skills, zero released packages. It shares the textbook's scientific sources, conventions, implementations and evidence. A mapped chapter or an executable example does not establish an accepted skill. No new textbook section is written by this planning update.
+
 ## Educational aim
 
 Our aim is a rigorous modern classic that helps present and future learners enter quantum computing. The [editorial charter](editorial-charter.md) sets standards for depth, accessibility, review and long-term maintenance. The curriculum includes foundations, quantum information, modern algorithms, differentiable computing, fault tolerance, physical implementations, quantum compilation, simulation and reproducible research.
@@ -36,7 +45,7 @@ The [quantum-classical hybrid map](hybrid-computing.md) connects eight composabl
 
 ## Who this book is for
 
-Readers who know basic Python and linear algebra and want to understand quantum computing through calculations they can reproduce. Familiarity with complex numbers, matrix multiplication, eigenvalues and elementary derivatives is helpful. A planned foundations part will review these topics; it is not yet written.
+Readers who know basic Python and linear algebra and want to understand quantum computing through calculations they can reproduce. Familiarity with complex numbers, matrix multiplication, eigenvalues and elementary derivatives is helpful. The foundational course is being drafted; consult [contents and status](contents.md) for the actual section progress.
 
 ## How to use a chapter
 

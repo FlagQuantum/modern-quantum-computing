@@ -1,0 +1,1899 @@
+{
+  "plan_id": "dual-entry-v0.1",
+  "date": "2026-10-21",
+  "status": "planning-only",
+  "curriculum_baseline": "writing-baseline-v1.0",
+  "curriculum_scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "goal": "Human learning and agent execution share mathematical contracts, original code and verification evidence. Paper reproduction is claim-scoped and auditable.",
+  "released_skills": 0,
+  "level_note": "L0\u2013L5 describe task composition and evaluation scope, not the P/F/M/R/V mathematical depth codes or permission to skip textbook prerequisites.",
+  "levels": [
+    {
+      "id": "L0",
+      "title": "Scope and claim decomposition",
+      "capability": "Turn a paper or request into a bounded claim ledger, artifact inventory and feasibility decision.",
+      "exit_evidence": "Correctly separate theorem, algorithm, numerical, performance and hardware claims; identify missing premises without claiming execution."
+    },
+    {
+      "id": "L1",
+      "title": "Formula-to-code building blocks",
+      "capability": "Translate a specified finite mathematical object under explicit conventions.",
+      "exit_evidence": "Independent references, shape/unit/phase/order checks, boundary cases and intentional failure witnesses."
+    },
+    {
+      "id": "L2",
+      "title": "Verified domain workflows",
+      "capability": "Compose blocks into an algorithm, model, compiler, inference or simulation workflow.",
+      "exit_evidence": "Task-level correctness/error/resource contracts, supported-release execution and negative/transfer cases."
+    },
+    {
+      "id": "L3",
+      "title": "Scoped paper-claim reproduction",
+      "capability": "Reproduce an explicitly selected equation, table, figure or experiment claim.",
+      "exit_evidence": "Predeclared target and scope; traceable inputs; claim-appropriate reference and discrepancy analysis."
+    },
+    {
+      "id": "L4",
+      "title": "Integrated paper reproduction",
+      "capability": "Coordinate the registered claim set, dependencies, artifacts and aggregate evidence.",
+      "exit_evidence": "Every mandatory claim has a justified disposition; clean rerun, independent evaluation and signed review decisions."
+    },
+    {
+      "id": "L5",
+      "title": "Transfer to previously unseen papers",
+      "capability": "Route held-out papers across domains and handle unsupported requirements explicitly.",
+      "exit_evidence": "Held-out transfer evaluation with per-domain outcomes, bounded resource use, honest blocking and no unsupported success claims."
+    }
+  ],
+  "skills": [
+    {
+      "id": "scope-paper-claims",
+      "level": "L0",
+      "status": "planned",
+      "task": "Classify claims and record feasibility, source locations, access models and missing artifacts.",
+      "deliverable": "Claim ledger and scoped execution proposal.",
+      "requires_skills": [],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-what-quantum-computing-computes-1",
+        "sec-what-quantum-computing-computes-2",
+        "sec-what-quantum-computing-computes-3",
+        "sec-what-quantum-computing-computes-4",
+        "sec-what-quantum-computing-computes-5",
+        "sec-what-quantum-computing-computes-6"
+      ],
+      "support_section_ids": [
+        "sec-reading-papers-building-evidence-and-reproducing-results-1",
+        "sec-reading-papers-building-evidence-and-reproducing-results-2"
+      ],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "translate-complex-linear-algebra",
+      "level": "L1",
+      "status": "planned",
+      "task": "Translate complex scalar/vector/operator formulas with explicit coordinate and numerical contracts.",
+      "deliverable": "Indexed formulas, small independent references and checked implementation.",
+      "requires_skills": [],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-1",
+        "sec-complex-vectors-operators-and-numerical-reasoning-2",
+        "sec-complex-vectors-operators-and-numerical-reasoning-3",
+        "sec-complex-vectors-operators-and-numerical-reasoning-4",
+        "sec-complex-vectors-operators-and-numerical-reasoning-5",
+        "sec-complex-vectors-operators-and-numerical-reasoning-6",
+        "sec-complex-vectors-operators-and-numerical-reasoning-7",
+        "sec-complex-vectors-operators-and-numerical-reasoning-8"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "compare-quantum-states-and-operators",
+      "level": "L1",
+      "status": "planned",
+      "task": "Choose state, operator or distribution comparison with the correct phase scope.",
+      "deliverable": "Validated comparison domain, residuals and phase-sensitive counterexamples.",
+      "requires_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-single-qubit-states-and-rotations-1",
+        "sec-single-qubit-states-and-rotations-7"
+      ],
+      "support_section_ids": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-1",
+        "sec-complex-vectors-operators-and-numerical-reasoning-2",
+        "sec-complex-vectors-operators-and-numerical-reasoning-8",
+        "sec-single-qubit-states-and-rotations-6"
+      ],
+      "candidate_evidence": [
+        "examples/foundations/pure_states.py",
+        "examples/foundations/phase_contracts.py",
+        "book/section-records/3.1.json",
+        "book/section-records/3.7.json"
+      ],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "reproduce-qubit-interference",
+      "level": "L1",
+      "status": "planned",
+      "task": "Translate preparation, phase and analyzer formulas into a checked ideal interference experiment.",
+      "deliverable": "Independent amplitude/fringe references and released FlagQuantum execution.",
+      "requires_skills": [
+        "translate-complex-linear-algebra",
+        "compare-quantum-states-and-operators"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-single-qubit-states-and-rotations-2"
+      ],
+      "support_section_ids": [
+        "sec-what-quantum-computing-computes-2",
+        "sec-single-qubit-states-and-rotations-1"
+      ],
+      "candidate_evidence": [
+        "examples/foundations/relative_phase.py",
+        "book/section-records/3.2.json"
+      ],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "convert-bloch-state-coordinates",
+      "level": "L1",
+      "status": "planned",
+      "task": "Translate pure-qubit coordinates and phase charts, including poles and sign conventions.",
+      "deliverable": "Forward/inverse coordinate checks and explicit pure-state limits.",
+      "requires_skills": [
+        "translate-complex-linear-algebra",
+        "compare-quantum-states-and-operators"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-single-qubit-states-and-rotations-3"
+      ],
+      "support_section_ids": [
+        "sec-single-qubit-states-and-rotations-1",
+        "sec-complex-vectors-operators-and-numerical-reasoning-2",
+        "sec-complex-vectors-operators-and-numerical-reasoning-3"
+      ],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "translate-unitary-evolution",
+      "level": "L1",
+      "status": "planned",
+      "task": "Translate fixed-generator evolution and single-qubit factorizations with units, order and common phase.",
+      "deliverable": "Matrix/generator/decomposition references and reconstructed circuit action.",
+      "requires_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-single-qubit-states-and-rotations-4",
+        "sec-single-qubit-states-and-rotations-5",
+        "sec-single-qubit-states-and-rotations-6"
+      ],
+      "support_section_ids": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-4",
+        "sec-complex-vectors-operators-and-numerical-reasoning-5",
+        "sec-complex-vectors-operators-and-numerical-reasoning-6",
+        "sec-single-qubit-states-and-rotations-1"
+      ],
+      "candidate_evidence": [
+        "examples/foundations/closed_evolution.py",
+        "examples/foundations/composing_rotations.py",
+        "book/section-records/3.4.json",
+        "book/section-records/3.6.json"
+      ],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "translate-qubit-ordering",
+      "level": "L1",
+      "status": "planned",
+      "task": "Translate subsystem labels, supports, permutations and basis-index conventions.",
+      "deliverable": "Convention record and cross-representation amplitude/operator checks.",
+      "requires_skills": [
+        "translate-complex-linear-algebra"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-3",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-4",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-5",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-6",
+        "sec-single-qubit-states-and-rotations-8",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-7"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "build-and-check-circuits",
+      "level": "L1",
+      "status": "planned",
+      "task": "Build a specified circuit or reversible subroutine without changing its input/output semantics.",
+      "deliverable": "Checked circuit with basis/coherent tests and declared approximation.",
+      "requires_skills": [
+        "translate-unitary-evolution",
+        "translate-qubit-ordering"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-gates-reversible-computation-and-circuit-synthesis-1",
+        "sec-gates-reversible-computation-and-circuit-synthesis-2",
+        "sec-gates-reversible-computation-and-circuit-synthesis-3",
+        "sec-gates-reversible-computation-and-circuit-synthesis-4",
+        "sec-gates-reversible-computation-and-circuit-synthesis-5",
+        "sec-gates-reversible-computation-and-circuit-synthesis-6",
+        "sec-gates-reversible-computation-and-circuit-synthesis-7",
+        "sec-gates-reversible-computation-and-circuit-synthesis-8"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "measure-and-estimate-observables",
+      "level": "L2",
+      "status": "planned",
+      "task": "Translate measurement, estimation and state-inference claims into statistical contracts.",
+      "deliverable": "Estimator, uncertainty protocol, independent references and finite-sample limits.",
+      "requires_skills": [
+        "build-and-check-circuits",
+        "compare-quantum-states-and-operators"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-measurement-expectation-values-and-statistical-estimation-1",
+        "sec-measurement-expectation-values-and-statistical-estimation-2",
+        "sec-measurement-expectation-values-and-statistical-estimation-3",
+        "sec-measurement-expectation-values-and-statistical-estimation-4",
+        "sec-measurement-expectation-values-and-statistical-estimation-5",
+        "sec-measurement-expectation-values-and-statistical-estimation-6",
+        "sec-measurement-expectation-values-and-statistical-estimation-7",
+        "sec-measurement-expectation-values-and-statistical-estimation-8",
+        "sec-measurement-expectation-values-and-statistical-estimation-9",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-1",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-2",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-3",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-4",
+        "sec-channel-error-metrics",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-5",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-6",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-7",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-8"
+      ],
+      "support_section_ids": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-7",
+        "sec-complex-vectors-operators-and-numerical-reasoning-8"
+      ],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "model-composite-states-and-channels",
+      "level": "L2",
+      "status": "planned",
+      "task": "Model entangled/mixed states, protocols and conditional/channel maps.",
+      "deliverable": "Normalized physical-model checks, independent map action and correlation tests.",
+      "requires_skills": [
+        "translate-qubit-ordering",
+        "build-and-check-circuits"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-entanglement-and-quantum-information-protocols-1",
+        "sec-entanglement-and-quantum-information-protocols-2",
+        "sec-entanglement-and-quantum-information-protocols-3",
+        "sec-entanglement-and-quantum-information-protocols-4",
+        "sec-entanglement-and-quantum-information-protocols-5",
+        "sec-entanglement-and-quantum-information-protocols-6",
+        "sec-entanglement-and-quantum-information-protocols-7",
+        "sec-network-entanglement-primitives",
+        "sec-entanglement-and-quantum-information-protocols-8",
+        "sec-density-matrices-reduced-states-and-purification-1",
+        "sec-density-matrices-reduced-states-and-purification-2",
+        "sec-density-matrices-reduced-states-and-purification-3",
+        "sec-density-matrices-reduced-states-and-purification-4",
+        "sec-density-matrices-reduced-states-and-purification-5",
+        "sec-density-matrices-reduced-states-and-purification-6",
+        "sec-density-matrices-reduced-states-and-purification-7",
+        "sec-density-matrices-reduced-states-and-purification-8",
+        "sec-quantum-channels-and-their-representations-1",
+        "sec-quantum-channels-and-their-representations-2",
+        "sec-quantum-channels-and-their-representations-3",
+        "sec-quantum-channels-and-their-representations-4",
+        "sec-quantum-channels-and-their-representations-5",
+        "sec-quantum-channels-and-their-representations-6",
+        "sec-quantum-channels-and-their-representations-7",
+        "sec-quantum-channels-and-their-representations-8"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "audit-information-and-security-claims",
+      "level": "L2",
+      "status": "planned",
+      "task": "Audit information/security hypotheses and scoped finite examples without inferring a theorem from samples.",
+      "deliverable": "Assumption/theorem ledger, proof obligations and bounded checks.",
+      "requires_skills": [
+        "model-composite-states-and-channels",
+        "measure-and-estimate-observables"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-entropy-relative-entropy-and-information-processing-1",
+        "sec-entropy-relative-entropy-and-information-processing-2",
+        "sec-entropy-relative-entropy-and-information-processing-3",
+        "sec-entropy-relative-entropy-and-information-processing-4",
+        "sec-entropy-relative-entropy-and-information-processing-5",
+        "sec-entropy-relative-entropy-and-information-processing-6",
+        "sec-entropy-relative-entropy-and-information-processing-7",
+        "sec-entropy-relative-entropy-and-information-processing-8",
+        "sec-compression-entanglement-and-communication-limits-1",
+        "sec-compression-entanglement-and-communication-limits-2",
+        "sec-compression-entanglement-and-communication-limits-3",
+        "sec-compression-entanglement-and-communication-limits-4",
+        "sec-mixed-entanglement-resources",
+        "sec-compression-entanglement-and-communication-limits-5",
+        "sec-compression-entanglement-and-communication-limits-6",
+        "sec-compression-entanglement-and-communication-limits-7",
+        "sec-compression-entanglement-and-communication-limits-8",
+        "sec-quantum-cryptography-and-security-reasoning-1",
+        "sec-quantum-cryptography-and-security-reasoning-2",
+        "sec-quantum-cryptography-and-security-reasoning-3",
+        "sec-quantum-cryptography-and-security-reasoning-4",
+        "sec-quantum-cryptography-and-security-reasoning-5",
+        "sec-quantum-cryptography-and-security-reasoning-6",
+        "sec-quantum-cryptography-and-security-reasoning-7",
+        "sec-crypto-impossibility-boundaries",
+        "sec-quantum-cryptography-and-security-reasoning-8"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "audit-algorithmic-resource-claims",
+      "level": "L2",
+      "status": "planned",
+      "task": "Check query/access/precision models, classical baselines and complete logical/physical resource accounting.",
+      "deliverable": "Matched-task cost ledger and explicitly conditional advantage statement.",
+      "requires_skills": [
+        "build-and-check-circuits"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-computational-models-complexity-and-quantum-advantage-1",
+        "sec-computational-models-complexity-and-quantum-advantage-2",
+        "sec-computational-models-complexity-and-quantum-advantage-3",
+        "sec-computational-models-complexity-and-quantum-advantage-4",
+        "sec-computational-models-complexity-and-quantum-advantage-5",
+        "sec-computational-models-complexity-and-quantum-advantage-6",
+        "sec-hybrid-interaction-map",
+        "sec-computational-models-complexity-and-quantum-advantage-7",
+        "sec-computational-models-complexity-and-quantum-advantage-8",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-1",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-2",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-3",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-4",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-5",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-6",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-7",
+        "sec-hamiltonian-complexity-boundary",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-8",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-1",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-2",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-3",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-4",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-5",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-6",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-7",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-8"
+      ],
+      "support_section_ids": [
+        "sec-measurement-expectation-values-and-statistical-estimation-7",
+        "sec-reading-papers-building-evidence-and-reproducing-results-1",
+        "sec-reading-papers-building-evidence-and-reproducing-results-2",
+        "sec-reading-papers-building-evidence-and-reproducing-results-3",
+        "sec-reading-papers-building-evidence-and-reproducing-results-4",
+        "sec-reading-papers-building-evidence-and-reproducing-results-5",
+        "sec-reading-papers-building-evidence-and-reproducing-results-6",
+        "sec-reading-papers-building-evidence-and-reproducing-results-7",
+        "sec-reading-papers-building-evidence-and-reproducing-results-8",
+        "sec-reading-papers-building-evidence-and-reproducing-results-9"
+      ],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "implement-oracle-and-spectral-algorithms",
+      "level": "L2",
+      "status": "planned",
+      "task": "Implement a selected oracle, arithmetic, Fourier, Hamiltonian or spectral algorithm with its access assumptions.",
+      "deliverable": "Tiny exact cases, algorithmic error bounds and scoped execution/resource evidence.",
+      "requires_skills": [
+        "build-and-check-circuits",
+        "measure-and-estimate-observables"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-interference-oracles-and-phase-kickback-1",
+        "sec-interference-oracles-and-phase-kickback-2",
+        "sec-interference-oracles-and-phase-kickback-3",
+        "sec-interference-oracles-and-phase-kickback-4",
+        "sec-interference-oracles-and-phase-kickback-5",
+        "sec-simon-hidden-structure",
+        "sec-interference-oracles-and-phase-kickback-6",
+        "sec-interference-oracles-and-phase-kickback-7",
+        "sec-grover-search-amplitude-amplification-and-estimation-1",
+        "sec-grover-search-amplitude-amplification-and-estimation-2",
+        "sec-grover-search-amplitude-amplification-and-estimation-3",
+        "sec-grover-search-amplitude-amplification-and-estimation-4",
+        "sec-grover-search-amplitude-amplification-and-estimation-5",
+        "sec-amplitude-estimation-phase-free",
+        "sec-grover-search-amplitude-amplification-and-estimation-7",
+        "sec-grover-search-amplitude-amplification-and-estimation-8",
+        "sec-fourier-transforms-and-quantum-phase-estimation-1",
+        "sec-fourier-transforms-and-quantum-phase-estimation-2",
+        "sec-fourier-transforms-and-quantum-phase-estimation-3",
+        "sec-fourier-transforms-and-quantum-phase-estimation-4",
+        "sec-fourier-transforms-and-quantum-phase-estimation-5",
+        "sec-fourier-transforms-and-quantum-phase-estimation-6",
+        "sec-fourier-transforms-and-quantum-phase-estimation-7",
+        "sec-grover-search-amplitude-amplification-and-estimation-6",
+        "sec-fourier-transforms-and-quantum-phase-estimation-8",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-1",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-2",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-3",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-4",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-5",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-6",
+        "sec-abelian-hidden-subgroups",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-7",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-8",
+        "sec-hamiltonian-simulation-and-error-bounds-1",
+        "sec-hamiltonian-simulation-and-error-bounds-2",
+        "sec-hamiltonian-simulation-and-error-bounds-3",
+        "sec-hamiltonian-simulation-and-error-bounds-4",
+        "sec-hamiltonian-simulation-and-error-bounds-5",
+        "sec-hamiltonian-simulation-and-error-bounds-6",
+        "sec-hamiltonian-simulation-and-error-bounds-7",
+        "sec-hamiltonian-adiabatic-model",
+        "sec-hamiltonian-simulation-and-error-bounds-8",
+        "sec-block-encodings-and-quantum-linear-algebra-1",
+        "sec-block-encodings-and-quantum-linear-algebra-2",
+        "sec-block-encodings-and-quantum-linear-algebra-3",
+        "sec-block-encodings-and-quantum-linear-algebra-4",
+        "sec-block-encodings-and-quantum-linear-algebra-5",
+        "sec-block-encodings-and-quantum-linear-algebra-6",
+        "sec-qubitization-invariant-subspaces",
+        "sec-block-encodings-and-quantum-linear-algebra-7",
+        "sec-block-encodings-and-quantum-linear-algebra-8",
+        "sec-quantum-signal-processing-and-singular-value-transformation-1",
+        "sec-quantum-signal-processing-and-singular-value-transformation-2",
+        "sec-quantum-signal-processing-and-singular-value-transformation-3",
+        "sec-quantum-signal-processing-and-singular-value-transformation-4",
+        "sec-quantum-signal-processing-and-singular-value-transformation-5",
+        "sec-quantum-signal-processing-and-singular-value-transformation-6",
+        "sec-quantum-signal-processing-and-singular-value-transformation-7",
+        "sec-quantum-signal-processing-and-singular-value-transformation-8",
+        "sec-quantum-signal-processing-and-singular-value-transformation-9"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "train-differentiable-hybrid-models",
+      "level": "L2",
+      "status": "planned",
+      "task": "Translate gradients, loss functions, optimizers, QAOA and hybrid/classical comparison protocols.",
+      "deliverable": "Independent derivatives, multiple-run training evidence and matched objectives/budgets.",
+      "requires_skills": [
+        "build-and-check-circuits",
+        "measure-and-estimate-observables"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-1",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-2",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-3",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-4",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-5",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-6",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-7",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-8",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-9",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-10",
+        "sec-optimization-geometry-and-trainability-1",
+        "sec-optimization-geometry-and-trainability-2",
+        "sec-optimization-geometry-and-trainability-3",
+        "sec-optimization-geometry-and-trainability-4",
+        "sec-optimization-geometry-and-trainability-5",
+        "sec-optimization-geometry-and-trainability-6",
+        "sec-optimization-geometry-and-trainability-7",
+        "sec-optimization-geometry-and-trainability-8",
+        "sec-optimization-geometry-and-trainability-9",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-1",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-2",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-3",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-4",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-5",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-6",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-7",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-8",
+        "sec-quantum-embedding-model",
+        "sec-quantum-embedding-self-consistency",
+        "sec-sample-assisted-subspace-solve",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-9",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-1",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-2",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-3",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-4",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-5",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-6",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-7",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-8",
+        "sec-quantum-learning-kernels-and-hybrid-models-1",
+        "sec-quantum-learning-kernels-and-hybrid-models-2",
+        "sec-quantum-learning-kernels-and-hybrid-models-3",
+        "sec-quantum-learning-kernels-and-hybrid-models-4",
+        "sec-quantum-learning-kernels-and-hybrid-models-5",
+        "sec-quantum-learning-kernels-and-hybrid-models-6",
+        "sec-quantum-learning-kernels-and-hybrid-models-7",
+        "sec-quantum-learning-kernels-and-hybrid-models-8"
+      ],
+      "support_section_ids": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-7",
+        "sec-complex-vectors-operators-and-numerical-reasoning-8",
+        "sec-reading-papers-building-evidence-and-reproducing-results-1",
+        "sec-reading-papers-building-evidence-and-reproducing-results-2",
+        "sec-reading-papers-building-evidence-and-reproducing-results-3",
+        "sec-reading-papers-building-evidence-and-reproducing-results-4",
+        "sec-reading-papers-building-evidence-and-reproducing-results-5",
+        "sec-reading-papers-building-evidence-and-reproducing-results-6",
+        "sec-reading-papers-building-evidence-and-reproducing-results-7",
+        "sec-reading-papers-building-evidence-and-reproducing-results-8",
+        "sec-reading-papers-building-evidence-and-reproducing-results-9"
+      ],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "simulate-noise-and-mitigation",
+      "level": "L2",
+      "status": "planned",
+      "task": "Specify channels/dynamics and mitigation assumptions with sampling and approximation costs.",
+      "deliverable": "Model validation, uncertainty/error budget and ideal/noisy comparisons.",
+      "requires_skills": [
+        "model-composite-states-and-channels",
+        "measure-and-estimate-observables"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-noise-open-systems-and-error-mitigation-1",
+        "sec-noise-open-systems-and-error-mitigation-2",
+        "sec-noise-open-systems-and-error-mitigation-3",
+        "sec-noise-open-systems-and-error-mitigation-4",
+        "sec-noise-open-systems-and-error-mitigation-5",
+        "sec-noise-open-systems-and-error-mitigation-6",
+        "sec-noise-open-systems-and-error-mitigation-7",
+        "sec-noise-open-systems-and-error-mitigation-8",
+        "sec-device-characterization-benchmarking",
+        "sec-noise-open-systems-and-error-mitigation-9"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "reproduce-error-correction-experiments",
+      "level": "L2",
+      "status": "planned",
+      "task": "Translate codes, syndrome rounds, decoders and logical operations under declared fault models.",
+      "deliverable": "Enumerated small faults, decoder interfaces, logical metrics and finite-size limits.",
+      "requires_skills": [
+        "model-composite-states-and-channels",
+        "simulate-noise-and-mitigation"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-quantum-error-correction-conditions-and-recovery-1",
+        "sec-quantum-error-correction-conditions-and-recovery-2",
+        "sec-quantum-error-correction-conditions-and-recovery-3",
+        "sec-quantum-error-correction-conditions-and-recovery-4",
+        "sec-quantum-error-correction-conditions-and-recovery-5",
+        "sec-quantum-error-correction-conditions-and-recovery-6",
+        "sec-quantum-error-correction-conditions-and-recovery-7",
+        "sec-quantum-error-correction-conditions-and-recovery-8",
+        "sec-quantum-error-correction-conditions-and-recovery-9",
+        "sec-stabilizer-codes-logical-operators-and-decoding-1",
+        "sec-stabilizer-codes-logical-operators-and-decoding-2",
+        "sec-stabilizer-codes-logical-operators-and-decoding-3",
+        "sec-stabilizer-codes-logical-operators-and-decoding-4",
+        "sec-stabilizer-codes-logical-operators-and-decoding-5",
+        "sec-stabilizer-codes-logical-operators-and-decoding-6",
+        "sec-stabilizer-codes-logical-operators-and-decoding-7",
+        "sec-stabilizer-codes-logical-operators-and-decoding-8",
+        "sec-quantum-ldpc-architecture",
+        "sec-stabilizer-graph-state-mbqc",
+        "sec-stabilizer-codes-logical-operators-and-decoding-9",
+        "sec-surface-codes-and-repeated-syndrome-measurements-1",
+        "sec-surface-codes-and-repeated-syndrome-measurements-2",
+        "sec-surface-codes-and-repeated-syndrome-measurements-3",
+        "sec-surface-codes-and-repeated-syndrome-measurements-4",
+        "sec-surface-codes-and-repeated-syndrome-measurements-5",
+        "sec-surface-codes-and-repeated-syndrome-measurements-6",
+        "sec-surface-codes-and-repeated-syndrome-measurements-7",
+        "sec-surface-codes-and-repeated-syndrome-measurements-8",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-1",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-2",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-3",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-4",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-5",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-6",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-7",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-8",
+        "sec-case-study-logical-memory-and-error-correction-experiments-1",
+        "sec-case-study-logical-memory-and-error-correction-experiments-2",
+        "sec-case-study-logical-memory-and-error-correction-experiments-3",
+        "sec-case-study-logical-memory-and-error-correction-experiments-4",
+        "sec-case-study-logical-memory-and-error-correction-experiments-5",
+        "sec-case-study-logical-memory-and-error-correction-experiments-6",
+        "sec-case-study-logical-memory-and-error-correction-experiments-7",
+        "sec-case-study-logical-memory-and-error-correction-experiments-8",
+        "sec-case-study-logical-memory-and-error-correction-experiments-9"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "model-physical-qubit-platforms",
+      "level": "L2",
+      "status": "planned",
+      "task": "Map physical assumptions, levels/modes, controls, readout and effective models across platform routes.",
+      "deliverable": "Unit/frame/truncation checks and simulation-versus-device evidence distinction.",
+      "requires_skills": [
+        "translate-unitary-evolution",
+        "model-composite-states-and-channels",
+        "simulate-noise-and-mitigation"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-from-abstract-qubits-to-physical-quantum-systems-1",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-2",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-3",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-4",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-5",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-6",
+        "sec-bosonic-error-correction-bridge",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-7",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-8",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-9",
+        "sec-superconducting-qubits-and-circuit-qed-control-1",
+        "sec-superconducting-qubits-and-circuit-qed-control-2",
+        "sec-superconducting-qubits-and-circuit-qed-control-3",
+        "sec-superconducting-qubits-and-circuit-qed-control-4",
+        "sec-superconducting-qubits-and-circuit-qed-control-5",
+        "sec-superconducting-qubits-and-circuit-qed-control-6",
+        "sec-superconducting-qubits-and-circuit-qed-control-7",
+        "sec-superconducting-qubits-and-circuit-qed-control-8",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-1",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-2",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-3",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-4",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-5",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-6",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-7",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-8",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-1",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-2",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-3",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-4",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-5",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-6",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-7",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-8",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-1",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-2",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-3",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-4",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-5",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-6",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-7",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-8",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-9",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-1",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-2",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-3",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-4",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-5",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-6",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-7",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-8",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-1",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-2",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-3",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-4",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-5",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-6",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-7",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-8"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "compile-and-lower-quantum-programs",
+      "level": "L2",
+      "status": "planned",
+      "task": "Transform programs through representations and target constraints while preserving declared semantics.",
+      "deliverable": "Equivalence/error, legality, layout, dynamic-branch and scheduling evidence.",
+      "requires_skills": [
+        "build-and-check-circuits",
+        "translate-qubit-ordering"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-1",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-2",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-3",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-4",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-5",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-6",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-7",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-8",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-9",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-1",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-2",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-3",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-4",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-5",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-6",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-7",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-8",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-9",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-10",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-1",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-2",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-3",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-4",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-5",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-6",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-7",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-8",
+        "sec-hybrid-heterogeneous-runtime",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-9"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "select-and-validate-classical-simulators",
+      "level": "L2",
+      "status": "planned",
+      "task": "Choose exact, stabilizer, MPS, contraction or cutting methods for a specified output and error target.",
+      "deliverable": "Independent small exact cases, convergence/error records and memory/runtime accounting.",
+      "requires_skills": [
+        "translate-complex-linear-algebra",
+        "translate-qubit-ordering",
+        "model-composite-states-and-channels"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-1",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-2",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-3",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-4",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-5",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-6",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-7",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-8",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-1",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-2",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-3",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-4",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-5",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-6",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-7",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-8",
+        "sec-matrix-product-states-entanglement-and-truncation-1",
+        "sec-matrix-product-states-entanglement-and-truncation-2",
+        "sec-matrix-product-states-entanglement-and-truncation-3",
+        "sec-matrix-product-states-entanglement-and-truncation-4",
+        "sec-matrix-product-states-entanglement-and-truncation-5",
+        "sec-matrix-product-states-entanglement-and-truncation-6",
+        "sec-matrix-product-states-entanglement-and-truncation-7",
+        "sec-matrix-product-states-entanglement-and-truncation-8",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-1",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-2",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-3",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-4",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-5",
+        "sec-circuit-cutting-reconstruction",
+        "sec-circuit-cutting-statistics",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-6",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-7",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-8"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "reproduce-molecular-vqe",
+      "level": "L3",
+      "status": "planned",
+      "task": "Trace integrals, operators, mappings, reductions, optimizers and reported energy targets for a scoped chemistry claim.",
+      "deliverable": "Provenance-complete Hamiltonian and energy/gradient/optimization evidence.",
+      "requires_skills": [
+        "scope-paper-claims",
+        "train-differentiable-hybrid-models",
+        "select-and-validate-classical-simulators"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-1",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-2",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-3",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-4",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-5",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-6",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-7",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-8",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-9"
+      ],
+      "support_section_ids": [],
+      "candidate_evidence": [
+        "examples/omalley2016/verify_h2_vqe.py",
+        "docs/references/h2-provenance.md"
+      ],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "reproduce-declared-paper-claim",
+      "level": "L3",
+      "status": "planned",
+      "task": "Select relevant domain workflows and reproduce one registered claim with no silent substitutions.",
+      "deliverable": "Per-claim implementation, metrics, uncertainty and discrepancy report.",
+      "requires_skills": [
+        "scope-paper-claims"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [],
+      "support_section_ids": [
+        "sec-reading-papers-building-evidence-and-reproducing-results-1",
+        "sec-reading-papers-building-evidence-and-reproducing-results-2",
+        "sec-reading-papers-building-evidence-and-reproducing-results-3",
+        "sec-reading-papers-building-evidence-and-reproducing-results-4",
+        "sec-reading-papers-building-evidence-and-reproducing-results-5",
+        "sec-reading-papers-building-evidence-and-reproducing-results-6",
+        "sec-reading-papers-building-evidence-and-reproducing-results-7",
+        "sec-reading-papers-building-evidence-and-reproducing-results-8",
+        "sec-reading-papers-building-evidence-and-reproducing-results-9"
+      ],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "assemble-paper-reproduction",
+      "level": "L4",
+      "status": "planned",
+      "task": "Integrate mandatory paper claims, artifacts, dependencies and reviews into a reproducible report.",
+      "deliverable": "Complete claim ledger, evidence bundle and explicit aggregate disposition.",
+      "requires_skills": [
+        "scope-paper-claims",
+        "reproduce-declared-paper-claim"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [
+        "sec-reading-papers-building-evidence-and-reproducing-results-1",
+        "sec-reading-papers-building-evidence-and-reproducing-results-2",
+        "sec-reading-papers-building-evidence-and-reproducing-results-3",
+        "sec-reading-papers-building-evidence-and-reproducing-results-4",
+        "sec-reading-papers-building-evidence-and-reproducing-results-5",
+        "sec-reading-papers-building-evidence-and-reproducing-results-6",
+        "sec-reading-papers-building-evidence-and-reproducing-results-7",
+        "sec-reading-papers-building-evidence-and-reproducing-results-8",
+        "sec-reading-papers-building-evidence-and-reproducing-results-9"
+      ],
+      "support_section_ids": [
+        "sec-computational-models-complexity-and-quantum-advantage-1",
+        "sec-computational-models-complexity-and-quantum-advantage-2",
+        "sec-computational-models-complexity-and-quantum-advantage-3",
+        "sec-computational-models-complexity-and-quantum-advantage-4",
+        "sec-computational-models-complexity-and-quantum-advantage-5",
+        "sec-computational-models-complexity-and-quantum-advantage-6",
+        "sec-hybrid-interaction-map",
+        "sec-computational-models-complexity-and-quantum-advantage-7",
+        "sec-computational-models-complexity-and-quantum-advantage-8",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-1",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-2",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-3",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-4",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-5",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-6",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-7",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-8",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-9",
+        "sec-case-study-logical-memory-and-error-correction-experiments-1",
+        "sec-case-study-logical-memory-and-error-correction-experiments-2",
+        "sec-case-study-logical-memory-and-error-correction-experiments-3",
+        "sec-case-study-logical-memory-and-error-correction-experiments-4",
+        "sec-case-study-logical-memory-and-error-correction-experiments-5",
+        "sec-case-study-logical-memory-and-error-correction-experiments-6",
+        "sec-case-study-logical-memory-and-error-correction-experiments-7",
+        "sec-case-study-logical-memory-and-error-correction-experiments-8",
+        "sec-case-study-logical-memory-and-error-correction-experiments-9"
+      ],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    },
+    {
+      "id": "transfer-to-unseen-papers",
+      "level": "L5",
+      "status": "planned",
+      "task": "Evaluate routing and execution on held-out papers, identifying unsupported requirements rather than inventing success.",
+      "deliverable": "Per-domain held-out evaluation and a versioned capability/limitation report.",
+      "requires_skills": [
+        "assemble-paper-reproduction"
+      ],
+      "routing_note": "A claim-specific run must also name its selected domain skills and satisfy their contracts; catalog dependencies are not a universal all-domain execution recipe.",
+      "primary_section_ids": [],
+      "support_section_ids": [
+        "sec-reading-papers-building-evidence-and-reproducing-results-1",
+        "sec-reading-papers-building-evidence-and-reproducing-results-2",
+        "sec-reading-papers-building-evidence-and-reproducing-results-3",
+        "sec-reading-papers-building-evidence-and-reproducing-results-4",
+        "sec-reading-papers-building-evidence-and-reproducing-results-5",
+        "sec-reading-papers-building-evidence-and-reproducing-results-6",
+        "sec-reading-papers-building-evidence-and-reproducing-results-7",
+        "sec-reading-papers-building-evidence-and-reproducing-results-8",
+        "sec-reading-papers-building-evidence-and-reproducing-results-9"
+      ],
+      "candidate_evidence": [],
+      "behavioral_evaluation": "not run",
+      "independent_acceptance": "pending"
+    }
+  ],
+  "chapter_map": [
+    {
+      "chapter": 1,
+      "chapter_id": "ch-what-quantum-computing-computes",
+      "primary_skill_ids": [
+        "scope-paper-claims"
+      ],
+      "section_ids": [
+        "sec-what-quantum-computing-computes-1",
+        "sec-what-quantum-computing-computes-2",
+        "sec-what-quantum-computing-computes-3",
+        "sec-what-quantum-computing-computes-4",
+        "sec-what-quantum-computing-computes-5",
+        "sec-what-quantum-computing-computes-6"
+      ]
+    },
+    {
+      "chapter": 2,
+      "chapter_id": "ch-complex-vectors-operators-and-numerical-reasoning",
+      "primary_skill_ids": [
+        "translate-complex-linear-algebra"
+      ],
+      "section_ids": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-1",
+        "sec-complex-vectors-operators-and-numerical-reasoning-2",
+        "sec-complex-vectors-operators-and-numerical-reasoning-3",
+        "sec-complex-vectors-operators-and-numerical-reasoning-4",
+        "sec-complex-vectors-operators-and-numerical-reasoning-5",
+        "sec-complex-vectors-operators-and-numerical-reasoning-6",
+        "sec-complex-vectors-operators-and-numerical-reasoning-7",
+        "sec-complex-vectors-operators-and-numerical-reasoning-8"
+      ]
+    },
+    {
+      "chapter": 3,
+      "chapter_id": "ch-single-qubit-states-and-rotations",
+      "primary_skill_ids": [
+        "compare-quantum-states-and-operators",
+        "convert-bloch-state-coordinates",
+        "reproduce-qubit-interference",
+        "translate-unitary-evolution"
+      ],
+      "section_ids": [
+        "sec-single-qubit-states-and-rotations-1",
+        "sec-single-qubit-states-and-rotations-2",
+        "sec-single-qubit-states-and-rotations-3",
+        "sec-single-qubit-states-and-rotations-4",
+        "sec-single-qubit-states-and-rotations-5",
+        "sec-single-qubit-states-and-rotations-6",
+        "sec-single-qubit-states-and-rotations-7"
+      ]
+    },
+    {
+      "chapter": 4,
+      "chapter_id": "ch-composite-systems-tensor-products-and-qubit-ordering",
+      "primary_skill_ids": [
+        "translate-qubit-ordering"
+      ],
+      "section_ids": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-3",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-4",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-5",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-6",
+        "sec-single-qubit-states-and-rotations-8",
+        "sec-composite-systems-tensor-products-and-qubit-ordering-7"
+      ]
+    },
+    {
+      "chapter": 5,
+      "chapter_id": "ch-gates-reversible-computation-and-circuit-synthesis",
+      "primary_skill_ids": [
+        "build-and-check-circuits"
+      ],
+      "section_ids": [
+        "sec-gates-reversible-computation-and-circuit-synthesis-1",
+        "sec-gates-reversible-computation-and-circuit-synthesis-2",
+        "sec-gates-reversible-computation-and-circuit-synthesis-3",
+        "sec-gates-reversible-computation-and-circuit-synthesis-4",
+        "sec-gates-reversible-computation-and-circuit-synthesis-5",
+        "sec-gates-reversible-computation-and-circuit-synthesis-6",
+        "sec-gates-reversible-computation-and-circuit-synthesis-7",
+        "sec-gates-reversible-computation-and-circuit-synthesis-8"
+      ]
+    },
+    {
+      "chapter": 6,
+      "chapter_id": "ch-measurement-expectation-values-and-statistical-estimation",
+      "primary_skill_ids": [
+        "measure-and-estimate-observables"
+      ],
+      "section_ids": [
+        "sec-measurement-expectation-values-and-statistical-estimation-1",
+        "sec-measurement-expectation-values-and-statistical-estimation-2",
+        "sec-measurement-expectation-values-and-statistical-estimation-3",
+        "sec-measurement-expectation-values-and-statistical-estimation-4",
+        "sec-measurement-expectation-values-and-statistical-estimation-5",
+        "sec-measurement-expectation-values-and-statistical-estimation-6",
+        "sec-measurement-expectation-values-and-statistical-estimation-7",
+        "sec-measurement-expectation-values-and-statistical-estimation-8",
+        "sec-measurement-expectation-values-and-statistical-estimation-9"
+      ]
+    },
+    {
+      "chapter": 7,
+      "chapter_id": "ch-entanglement-and-quantum-information-protocols",
+      "primary_skill_ids": [
+        "model-composite-states-and-channels"
+      ],
+      "section_ids": [
+        "sec-entanglement-and-quantum-information-protocols-1",
+        "sec-entanglement-and-quantum-information-protocols-2",
+        "sec-entanglement-and-quantum-information-protocols-3",
+        "sec-entanglement-and-quantum-information-protocols-4",
+        "sec-entanglement-and-quantum-information-protocols-5",
+        "sec-entanglement-and-quantum-information-protocols-6",
+        "sec-entanglement-and-quantum-information-protocols-7",
+        "sec-network-entanglement-primitives",
+        "sec-entanglement-and-quantum-information-protocols-8"
+      ]
+    },
+    {
+      "chapter": 8,
+      "chapter_id": "ch-density-matrices-reduced-states-and-purification",
+      "primary_skill_ids": [
+        "model-composite-states-and-channels"
+      ],
+      "section_ids": [
+        "sec-density-matrices-reduced-states-and-purification-1",
+        "sec-density-matrices-reduced-states-and-purification-2",
+        "sec-density-matrices-reduced-states-and-purification-3",
+        "sec-density-matrices-reduced-states-and-purification-4",
+        "sec-density-matrices-reduced-states-and-purification-5",
+        "sec-density-matrices-reduced-states-and-purification-6",
+        "sec-density-matrices-reduced-states-and-purification-7",
+        "sec-density-matrices-reduced-states-and-purification-8"
+      ]
+    },
+    {
+      "chapter": 9,
+      "chapter_id": "ch-quantum-channels-and-their-representations",
+      "primary_skill_ids": [
+        "model-composite-states-and-channels"
+      ],
+      "section_ids": [
+        "sec-quantum-channels-and-their-representations-1",
+        "sec-quantum-channels-and-their-representations-2",
+        "sec-quantum-channels-and-their-representations-3",
+        "sec-quantum-channels-and-their-representations-4",
+        "sec-quantum-channels-and-their-representations-5",
+        "sec-quantum-channels-and-their-representations-6",
+        "sec-quantum-channels-and-their-representations-7",
+        "sec-quantum-channels-and-their-representations-8"
+      ]
+    },
+    {
+      "chapter": 10,
+      "chapter_id": "ch-distinguishability-fidelity-and-quantum-state-inference",
+      "primary_skill_ids": [
+        "measure-and-estimate-observables"
+      ],
+      "section_ids": [
+        "sec-distinguishability-fidelity-and-quantum-state-inference-1",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-2",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-3",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-4",
+        "sec-channel-error-metrics",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-5",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-6",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-7",
+        "sec-distinguishability-fidelity-and-quantum-state-inference-8"
+      ]
+    },
+    {
+      "chapter": 11,
+      "chapter_id": "ch-entropy-relative-entropy-and-information-processing",
+      "primary_skill_ids": [
+        "audit-information-and-security-claims"
+      ],
+      "section_ids": [
+        "sec-entropy-relative-entropy-and-information-processing-1",
+        "sec-entropy-relative-entropy-and-information-processing-2",
+        "sec-entropy-relative-entropy-and-information-processing-3",
+        "sec-entropy-relative-entropy-and-information-processing-4",
+        "sec-entropy-relative-entropy-and-information-processing-5",
+        "sec-entropy-relative-entropy-and-information-processing-6",
+        "sec-entropy-relative-entropy-and-information-processing-7",
+        "sec-entropy-relative-entropy-and-information-processing-8"
+      ]
+    },
+    {
+      "chapter": 12,
+      "chapter_id": "ch-compression-entanglement-and-communication-limits",
+      "primary_skill_ids": [
+        "audit-information-and-security-claims"
+      ],
+      "section_ids": [
+        "sec-compression-entanglement-and-communication-limits-1",
+        "sec-compression-entanglement-and-communication-limits-2",
+        "sec-compression-entanglement-and-communication-limits-3",
+        "sec-compression-entanglement-and-communication-limits-4",
+        "sec-mixed-entanglement-resources",
+        "sec-compression-entanglement-and-communication-limits-5",
+        "sec-compression-entanglement-and-communication-limits-6",
+        "sec-compression-entanglement-and-communication-limits-7",
+        "sec-compression-entanglement-and-communication-limits-8"
+      ]
+    },
+    {
+      "chapter": 13,
+      "chapter_id": "ch-quantum-cryptography-and-security-reasoning",
+      "primary_skill_ids": [
+        "audit-information-and-security-claims"
+      ],
+      "section_ids": [
+        "sec-quantum-cryptography-and-security-reasoning-1",
+        "sec-quantum-cryptography-and-security-reasoning-2",
+        "sec-quantum-cryptography-and-security-reasoning-3",
+        "sec-quantum-cryptography-and-security-reasoning-4",
+        "sec-quantum-cryptography-and-security-reasoning-5",
+        "sec-quantum-cryptography-and-security-reasoning-6",
+        "sec-quantum-cryptography-and-security-reasoning-7",
+        "sec-crypto-impossibility-boundaries",
+        "sec-quantum-cryptography-and-security-reasoning-8"
+      ]
+    },
+    {
+      "chapter": 14,
+      "chapter_id": "ch-computational-models-complexity-and-quantum-advantage",
+      "primary_skill_ids": [
+        "audit-algorithmic-resource-claims"
+      ],
+      "section_ids": [
+        "sec-computational-models-complexity-and-quantum-advantage-1",
+        "sec-computational-models-complexity-and-quantum-advantage-2",
+        "sec-computational-models-complexity-and-quantum-advantage-3",
+        "sec-computational-models-complexity-and-quantum-advantage-4",
+        "sec-computational-models-complexity-and-quantum-advantage-5",
+        "sec-computational-models-complexity-and-quantum-advantage-6",
+        "sec-hybrid-interaction-map",
+        "sec-computational-models-complexity-and-quantum-advantage-7",
+        "sec-computational-models-complexity-and-quantum-advantage-8"
+      ]
+    },
+    {
+      "chapter": 15,
+      "chapter_id": "ch-interference-oracles-and-phase-kickback",
+      "primary_skill_ids": [
+        "implement-oracle-and-spectral-algorithms"
+      ],
+      "section_ids": [
+        "sec-interference-oracles-and-phase-kickback-1",
+        "sec-interference-oracles-and-phase-kickback-2",
+        "sec-interference-oracles-and-phase-kickback-3",
+        "sec-interference-oracles-and-phase-kickback-4",
+        "sec-interference-oracles-and-phase-kickback-5",
+        "sec-simon-hidden-structure",
+        "sec-interference-oracles-and-phase-kickback-6",
+        "sec-interference-oracles-and-phase-kickback-7"
+      ]
+    },
+    {
+      "chapter": 16,
+      "chapter_id": "ch-grover-search-amplitude-amplification-and-estimation",
+      "primary_skill_ids": [
+        "implement-oracle-and-spectral-algorithms"
+      ],
+      "section_ids": [
+        "sec-grover-search-amplitude-amplification-and-estimation-1",
+        "sec-grover-search-amplitude-amplification-and-estimation-2",
+        "sec-grover-search-amplitude-amplification-and-estimation-3",
+        "sec-grover-search-amplitude-amplification-and-estimation-4",
+        "sec-grover-search-amplitude-amplification-and-estimation-5",
+        "sec-amplitude-estimation-phase-free",
+        "sec-grover-search-amplitude-amplification-and-estimation-7",
+        "sec-grover-search-amplitude-amplification-and-estimation-8"
+      ]
+    },
+    {
+      "chapter": 17,
+      "chapter_id": "ch-fourier-transforms-and-quantum-phase-estimation",
+      "primary_skill_ids": [
+        "implement-oracle-and-spectral-algorithms"
+      ],
+      "section_ids": [
+        "sec-fourier-transforms-and-quantum-phase-estimation-1",
+        "sec-fourier-transforms-and-quantum-phase-estimation-2",
+        "sec-fourier-transforms-and-quantum-phase-estimation-3",
+        "sec-fourier-transforms-and-quantum-phase-estimation-4",
+        "sec-fourier-transforms-and-quantum-phase-estimation-5",
+        "sec-fourier-transforms-and-quantum-phase-estimation-6",
+        "sec-fourier-transforms-and-quantum-phase-estimation-7",
+        "sec-grover-search-amplitude-amplification-and-estimation-6",
+        "sec-fourier-transforms-and-quantum-phase-estimation-8"
+      ]
+    },
+    {
+      "chapter": 18,
+      "chapter_id": "ch-period-finding-factoring-and-algorithmic-arithmetic",
+      "primary_skill_ids": [
+        "implement-oracle-and-spectral-algorithms"
+      ],
+      "section_ids": [
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-1",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-2",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-3",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-4",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-5",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-6",
+        "sec-abelian-hidden-subgroups",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-7",
+        "sec-period-finding-factoring-and-algorithmic-arithmetic-8"
+      ]
+    },
+    {
+      "chapter": 19,
+      "chapter_id": "ch-hamiltonian-simulation-and-error-bounds",
+      "primary_skill_ids": [
+        "implement-oracle-and-spectral-algorithms"
+      ],
+      "section_ids": [
+        "sec-hamiltonian-simulation-and-error-bounds-1",
+        "sec-hamiltonian-simulation-and-error-bounds-2",
+        "sec-hamiltonian-simulation-and-error-bounds-3",
+        "sec-hamiltonian-simulation-and-error-bounds-4",
+        "sec-hamiltonian-simulation-and-error-bounds-5",
+        "sec-hamiltonian-simulation-and-error-bounds-6",
+        "sec-hamiltonian-simulation-and-error-bounds-7",
+        "sec-hamiltonian-adiabatic-model",
+        "sec-hamiltonian-simulation-and-error-bounds-8"
+      ]
+    },
+    {
+      "chapter": 20,
+      "chapter_id": "ch-block-encodings-and-quantum-linear-algebra",
+      "primary_skill_ids": [
+        "implement-oracle-and-spectral-algorithms"
+      ],
+      "section_ids": [
+        "sec-block-encodings-and-quantum-linear-algebra-1",
+        "sec-block-encodings-and-quantum-linear-algebra-2",
+        "sec-block-encodings-and-quantum-linear-algebra-3",
+        "sec-block-encodings-and-quantum-linear-algebra-4",
+        "sec-block-encodings-and-quantum-linear-algebra-5",
+        "sec-block-encodings-and-quantum-linear-algebra-6",
+        "sec-qubitization-invariant-subspaces",
+        "sec-block-encodings-and-quantum-linear-algebra-7",
+        "sec-block-encodings-and-quantum-linear-algebra-8"
+      ]
+    },
+    {
+      "chapter": 21,
+      "chapter_id": "ch-quantum-signal-processing-and-singular-value-transformation",
+      "primary_skill_ids": [
+        "implement-oracle-and-spectral-algorithms"
+      ],
+      "section_ids": [
+        "sec-quantum-signal-processing-and-singular-value-transformation-1",
+        "sec-quantum-signal-processing-and-singular-value-transformation-2",
+        "sec-quantum-signal-processing-and-singular-value-transformation-3",
+        "sec-quantum-signal-processing-and-singular-value-transformation-4",
+        "sec-quantum-signal-processing-and-singular-value-transformation-5",
+        "sec-quantum-signal-processing-and-singular-value-transformation-6",
+        "sec-quantum-signal-processing-and-singular-value-transformation-7",
+        "sec-quantum-signal-processing-and-singular-value-transformation-8",
+        "sec-quantum-signal-processing-and-singular-value-transformation-9"
+      ]
+    },
+    {
+      "chapter": 22,
+      "chapter_id": "ch-quantum-walks-lower-bounds-and-algorithm-design",
+      "primary_skill_ids": [
+        "audit-algorithmic-resource-claims"
+      ],
+      "section_ids": [
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-1",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-2",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-3",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-4",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-5",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-6",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-7",
+        "sec-hamiltonian-complexity-boundary",
+        "sec-quantum-walks-lower-bounds-and-algorithm-design-8"
+      ]
+    },
+    {
+      "chapter": 23,
+      "chapter_id": "ch-parameterized-circuits-quantum-gradients-and-differentiation",
+      "primary_skill_ids": [
+        "train-differentiable-hybrid-models"
+      ],
+      "section_ids": [
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-1",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-2",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-3",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-4",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-5",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-6",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-7",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-8",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-9",
+        "sec-parameterized-circuits-quantum-gradients-and-differentiation-10"
+      ]
+    },
+    {
+      "chapter": 24,
+      "chapter_id": "ch-optimization-geometry-and-trainability",
+      "primary_skill_ids": [
+        "train-differentiable-hybrid-models"
+      ],
+      "section_ids": [
+        "sec-optimization-geometry-and-trainability-1",
+        "sec-optimization-geometry-and-trainability-2",
+        "sec-optimization-geometry-and-trainability-3",
+        "sec-optimization-geometry-and-trainability-4",
+        "sec-optimization-geometry-and-trainability-5",
+        "sec-optimization-geometry-and-trainability-6",
+        "sec-optimization-geometry-and-trainability-7",
+        "sec-optimization-geometry-and-trainability-8",
+        "sec-optimization-geometry-and-trainability-9"
+      ]
+    },
+    {
+      "chapter": 25,
+      "chapter_id": "ch-variational-simulation-chemistry-and-ground-state-problems",
+      "primary_skill_ids": [
+        "train-differentiable-hybrid-models"
+      ],
+      "section_ids": [
+        "sec-variational-simulation-chemistry-and-ground-state-problems-1",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-2",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-3",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-4",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-5",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-6",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-7",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-8",
+        "sec-quantum-embedding-model",
+        "sec-quantum-embedding-self-consistency",
+        "sec-sample-assisted-subspace-solve",
+        "sec-variational-simulation-chemistry-and-ground-state-problems-9"
+      ]
+    },
+    {
+      "chapter": 26,
+      "chapter_id": "ch-qaoa-quantum-optimization-and-classical-comparisons",
+      "primary_skill_ids": [
+        "train-differentiable-hybrid-models"
+      ],
+      "section_ids": [
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-1",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-2",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-3",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-4",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-5",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-6",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-7",
+        "sec-qaoa-quantum-optimization-and-classical-comparisons-8"
+      ]
+    },
+    {
+      "chapter": 27,
+      "chapter_id": "ch-quantum-learning-kernels-and-hybrid-models",
+      "primary_skill_ids": [
+        "train-differentiable-hybrid-models"
+      ],
+      "section_ids": [
+        "sec-quantum-learning-kernels-and-hybrid-models-1",
+        "sec-quantum-learning-kernels-and-hybrid-models-2",
+        "sec-quantum-learning-kernels-and-hybrid-models-3",
+        "sec-quantum-learning-kernels-and-hybrid-models-4",
+        "sec-quantum-learning-kernels-and-hybrid-models-5",
+        "sec-quantum-learning-kernels-and-hybrid-models-6",
+        "sec-quantum-learning-kernels-and-hybrid-models-7",
+        "sec-quantum-learning-kernels-and-hybrid-models-8"
+      ]
+    },
+    {
+      "chapter": 28,
+      "chapter_id": "ch-noise-open-systems-and-error-mitigation",
+      "primary_skill_ids": [
+        "simulate-noise-and-mitigation"
+      ],
+      "section_ids": [
+        "sec-noise-open-systems-and-error-mitigation-1",
+        "sec-noise-open-systems-and-error-mitigation-2",
+        "sec-noise-open-systems-and-error-mitigation-3",
+        "sec-noise-open-systems-and-error-mitigation-4",
+        "sec-noise-open-systems-and-error-mitigation-5",
+        "sec-noise-open-systems-and-error-mitigation-6",
+        "sec-noise-open-systems-and-error-mitigation-7",
+        "sec-noise-open-systems-and-error-mitigation-8",
+        "sec-device-characterization-benchmarking",
+        "sec-noise-open-systems-and-error-mitigation-9"
+      ]
+    },
+    {
+      "chapter": 29,
+      "chapter_id": "ch-quantum-error-correction-conditions-and-recovery",
+      "primary_skill_ids": [
+        "reproduce-error-correction-experiments"
+      ],
+      "section_ids": [
+        "sec-quantum-error-correction-conditions-and-recovery-1",
+        "sec-quantum-error-correction-conditions-and-recovery-2",
+        "sec-quantum-error-correction-conditions-and-recovery-3",
+        "sec-quantum-error-correction-conditions-and-recovery-4",
+        "sec-quantum-error-correction-conditions-and-recovery-5",
+        "sec-quantum-error-correction-conditions-and-recovery-6",
+        "sec-quantum-error-correction-conditions-and-recovery-7",
+        "sec-quantum-error-correction-conditions-and-recovery-8",
+        "sec-quantum-error-correction-conditions-and-recovery-9"
+      ]
+    },
+    {
+      "chapter": 30,
+      "chapter_id": "ch-stabilizer-codes-logical-operators-and-decoding",
+      "primary_skill_ids": [
+        "reproduce-error-correction-experiments"
+      ],
+      "section_ids": [
+        "sec-stabilizer-codes-logical-operators-and-decoding-1",
+        "sec-stabilizer-codes-logical-operators-and-decoding-2",
+        "sec-stabilizer-codes-logical-operators-and-decoding-3",
+        "sec-stabilizer-codes-logical-operators-and-decoding-4",
+        "sec-stabilizer-codes-logical-operators-and-decoding-5",
+        "sec-stabilizer-codes-logical-operators-and-decoding-6",
+        "sec-stabilizer-codes-logical-operators-and-decoding-7",
+        "sec-stabilizer-codes-logical-operators-and-decoding-8",
+        "sec-quantum-ldpc-architecture",
+        "sec-stabilizer-graph-state-mbqc",
+        "sec-stabilizer-codes-logical-operators-and-decoding-9"
+      ]
+    },
+    {
+      "chapter": 31,
+      "chapter_id": "ch-surface-codes-and-repeated-syndrome-measurements",
+      "primary_skill_ids": [
+        "reproduce-error-correction-experiments"
+      ],
+      "section_ids": [
+        "sec-surface-codes-and-repeated-syndrome-measurements-1",
+        "sec-surface-codes-and-repeated-syndrome-measurements-2",
+        "sec-surface-codes-and-repeated-syndrome-measurements-3",
+        "sec-surface-codes-and-repeated-syndrome-measurements-4",
+        "sec-surface-codes-and-repeated-syndrome-measurements-5",
+        "sec-surface-codes-and-repeated-syndrome-measurements-6",
+        "sec-surface-codes-and-repeated-syndrome-measurements-7",
+        "sec-surface-codes-and-repeated-syndrome-measurements-8"
+      ]
+    },
+    {
+      "chapter": 32,
+      "chapter_id": "ch-fault-tolerant-gates-and-universal-logical-computation",
+      "primary_skill_ids": [
+        "reproduce-error-correction-experiments"
+      ],
+      "section_ids": [
+        "sec-fault-tolerant-gates-and-universal-logical-computation-1",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-2",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-3",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-4",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-5",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-6",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-7",
+        "sec-fault-tolerant-gates-and-universal-logical-computation-8"
+      ]
+    },
+    {
+      "chapter": 33,
+      "chapter_id": "ch-from-logical-algorithms-to-physical-resource-estimates",
+      "primary_skill_ids": [
+        "audit-algorithmic-resource-claims"
+      ],
+      "section_ids": [
+        "sec-from-logical-algorithms-to-physical-resource-estimates-1",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-2",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-3",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-4",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-5",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-6",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-7",
+        "sec-from-logical-algorithms-to-physical-resource-estimates-8"
+      ]
+    },
+    {
+      "chapter": 34,
+      "chapter_id": "ch-from-abstract-qubits-to-physical-quantum-systems",
+      "primary_skill_ids": [
+        "model-physical-qubit-platforms"
+      ],
+      "section_ids": [
+        "sec-from-abstract-qubits-to-physical-quantum-systems-1",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-2",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-3",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-4",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-5",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-6",
+        "sec-bosonic-error-correction-bridge",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-7",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-8",
+        "sec-from-abstract-qubits-to-physical-quantum-systems-9"
+      ]
+    },
+    {
+      "chapter": 35,
+      "chapter_id": "ch-superconducting-qubits-and-circuit-qed-control",
+      "primary_skill_ids": [
+        "model-physical-qubit-platforms"
+      ],
+      "section_ids": [
+        "sec-superconducting-qubits-and-circuit-qed-control-1",
+        "sec-superconducting-qubits-and-circuit-qed-control-2",
+        "sec-superconducting-qubits-and-circuit-qed-control-3",
+        "sec-superconducting-qubits-and-circuit-qed-control-4",
+        "sec-superconducting-qubits-and-circuit-qed-control-5",
+        "sec-superconducting-qubits-and-circuit-qed-control-6",
+        "sec-superconducting-qubits-and-circuit-qed-control-7",
+        "sec-superconducting-qubits-and-circuit-qed-control-8"
+      ]
+    },
+    {
+      "chapter": 36,
+      "chapter_id": "ch-trapped-ion-qubits-motional-gates-and-transport",
+      "primary_skill_ids": [
+        "model-physical-qubit-platforms"
+      ],
+      "section_ids": [
+        "sec-trapped-ion-qubits-motional-gates-and-transport-1",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-2",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-3",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-4",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-5",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-6",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-7",
+        "sec-trapped-ion-qubits-motional-gates-and-transport-8"
+      ]
+    },
+    {
+      "chapter": 37,
+      "chapter_id": "ch-neutral-atom-arrays-and-rydberg-quantum-computing",
+      "primary_skill_ids": [
+        "model-physical-qubit-platforms"
+      ],
+      "section_ids": [
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-1",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-2",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-3",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-4",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-5",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-6",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-7",
+        "sec-neutral-atom-arrays-and-rydberg-quantum-computing-8"
+      ]
+    },
+    {
+      "chapter": 38,
+      "chapter_id": "ch-photonic-encodings-optical-circuits-and-measurement-based-computation",
+      "primary_skill_ids": [
+        "model-physical-qubit-platforms"
+      ],
+      "section_ids": [
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-1",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-2",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-3",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-4",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-5",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-6",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-7",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-8",
+        "sec-photonic-encodings-optical-circuits-and-measurement-based-computation-9"
+      ]
+    },
+    {
+      "chapter": 39,
+      "chapter_id": "ch-semiconductor-spin-qubits-and-exchange-based-architectures",
+      "primary_skill_ids": [
+        "model-physical-qubit-platforms"
+      ],
+      "section_ids": [
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-1",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-2",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-3",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-4",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-5",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-6",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-7",
+        "sec-semiconductor-spin-qubits-and-exchange-based-architectures-8"
+      ]
+    },
+    {
+      "chapter": 40,
+      "chapter_id": "ch-topological-quantum-computation-and-candidate-physical-realizations",
+      "primary_skill_ids": [
+        "model-physical-qubit-platforms"
+      ],
+      "section_ids": [
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-1",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-2",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-3",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-4",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-5",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-6",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-7",
+        "sec-topological-quantum-computation-and-candidate-physical-realizations-8"
+      ]
+    },
+    {
+      "chapter": 41,
+      "chapter_id": "ch-quantum-programs-intermediate-representations-and-verified-optimization",
+      "primary_skill_ids": [
+        "compile-and-lower-quantum-programs"
+      ],
+      "section_ids": [
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-1",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-2",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-3",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-4",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-5",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-6",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-7",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-8",
+        "sec-quantum-programs-intermediate-representations-and-verified-optimization-9"
+      ]
+    },
+    {
+      "chapter": 42,
+      "chapter_id": "ch-gate-synthesis-qubit-mapping-routing-and-scheduling",
+      "primary_skill_ids": [
+        "compile-and-lower-quantum-programs"
+      ],
+      "section_ids": [
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-1",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-2",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-3",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-4",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-5",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-6",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-7",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-8",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-9",
+        "sec-gate-synthesis-qubit-mapping-routing-and-scheduling-10"
+      ]
+    },
+    {
+      "chapter": 43,
+      "chapter_id": "ch-control-level-lowering-dynamic-execution-and-logical-compilation",
+      "primary_skill_ids": [
+        "compile-and-lower-quantum-programs"
+      ],
+      "section_ids": [
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-1",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-2",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-3",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-4",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-5",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-6",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-7",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-8",
+        "sec-hybrid-heterogeneous-runtime",
+        "sec-control-level-lowering-dynamic-execution-and-logical-compilation-9"
+      ]
+    },
+    {
+      "chapter": 44,
+      "chapter_id": "ch-exact-simulation-tensor-execution-and-numerical-reliability",
+      "primary_skill_ids": [
+        "select-and-validate-classical-simulators"
+      ],
+      "section_ids": [
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-1",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-2",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-3",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-4",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-5",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-6",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-7",
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-8"
+      ]
+    },
+    {
+      "chapter": 45,
+      "chapter_id": "ch-stabilizer-simulation-magic-and-classical-simulability",
+      "primary_skill_ids": [
+        "select-and-validate-classical-simulators"
+      ],
+      "section_ids": [
+        "sec-stabilizer-simulation-magic-and-classical-simulability-1",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-2",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-3",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-4",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-5",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-6",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-7",
+        "sec-stabilizer-simulation-magic-and-classical-simulability-8"
+      ]
+    },
+    {
+      "chapter": 46,
+      "chapter_id": "ch-matrix-product-states-entanglement-and-truncation",
+      "primary_skill_ids": [
+        "select-and-validate-classical-simulators"
+      ],
+      "section_ids": [
+        "sec-matrix-product-states-entanglement-and-truncation-1",
+        "sec-matrix-product-states-entanglement-and-truncation-2",
+        "sec-matrix-product-states-entanglement-and-truncation-3",
+        "sec-matrix-product-states-entanglement-and-truncation-4",
+        "sec-matrix-product-states-entanglement-and-truncation-5",
+        "sec-matrix-product-states-entanglement-and-truncation-6",
+        "sec-matrix-product-states-entanglement-and-truncation-7",
+        "sec-matrix-product-states-entanglement-and-truncation-8"
+      ]
+    },
+    {
+      "chapter": 47,
+      "chapter_id": "ch-tensor-networks-contraction-and-hybrid-simulation-strategies",
+      "primary_skill_ids": [
+        "select-and-validate-classical-simulators"
+      ],
+      "section_ids": [
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-1",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-2",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-3",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-4",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-5",
+        "sec-circuit-cutting-reconstruction",
+        "sec-circuit-cutting-statistics",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-6",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-7",
+        "sec-tensor-networks-contraction-and-hybrid-simulation-strategies-8"
+      ]
+    },
+    {
+      "chapter": 48,
+      "chapter_id": "ch-reading-papers-building-evidence-and-reproducing-results",
+      "primary_skill_ids": [
+        "assemble-paper-reproduction"
+      ],
+      "section_ids": [
+        "sec-reading-papers-building-evidence-and-reproducing-results-1",
+        "sec-reading-papers-building-evidence-and-reproducing-results-2",
+        "sec-reading-papers-building-evidence-and-reproducing-results-3",
+        "sec-reading-papers-building-evidence-and-reproducing-results-4",
+        "sec-reading-papers-building-evidence-and-reproducing-results-5",
+        "sec-reading-papers-building-evidence-and-reproducing-results-6",
+        "sec-reading-papers-building-evidence-and-reproducing-results-7",
+        "sec-reading-papers-building-evidence-and-reproducing-results-8",
+        "sec-reading-papers-building-evidence-and-reproducing-results-9"
+      ]
+    },
+    {
+      "chapter": 49,
+      "chapter_id": "ch-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe",
+      "primary_skill_ids": [
+        "reproduce-molecular-vqe"
+      ],
+      "section_ids": [
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-1",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-2",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-3",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-4",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-5",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-6",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-7",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-8",
+        "sec-case-study-molecular-hydrogen-from-hamiltonian-to-verified-vqe-9"
+      ]
+    },
+    {
+      "chapter": 50,
+      "chapter_id": "ch-case-study-logical-memory-and-error-correction-experiments",
+      "primary_skill_ids": [
+        "reproduce-error-correction-experiments"
+      ],
+      "section_ids": [
+        "sec-case-study-logical-memory-and-error-correction-experiments-1",
+        "sec-case-study-logical-memory-and-error-correction-experiments-2",
+        "sec-case-study-logical-memory-and-error-correction-experiments-3",
+        "sec-case-study-logical-memory-and-error-correction-experiments-4",
+        "sec-case-study-logical-memory-and-error-correction-experiments-5",
+        "sec-case-study-logical-memory-and-error-correction-experiments-6",
+        "sec-case-study-logical-memory-and-error-correction-experiments-7",
+        "sec-case-study-logical-memory-and-error-correction-experiments-8",
+        "sec-case-study-logical-memory-and-error-correction-experiments-9"
+      ]
+    }
+  ],
+  "entry_points": {
+    "human": "docs/contents.md",
+    "agent": "docs/agent-skills.md",
+    "shared_design": "docs/dual-entry.md",
+    "task_contract": "docs/skill-contract.md",
+    "paper_acceptance": "docs/paper-reproduction-standard.md"
+  },
+  "future_paths": {
+    "skill_package": "skills/<task-id>/SKILL.md",
+    "run_bundle": "reproductions/<paper-id>/<run-id>/"
+  }
+}

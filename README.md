@@ -12,6 +12,12 @@ An open English textbook that connects quantum computing equations to executable
 
 **Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7 and 4.1, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
+## Two entry points: learners and agents
+
+The [dual-entry plan](docs/dual-entry.md) connects the textbook to a proposed [agent capability and chapter map](docs/agent-skills.md). Read the chapters for definitions and derivations; use the planned task contracts to select implementations and evidence for a bounded task. The six-level catalog maps all 50 chapters and 435 sections to 23 proposed task skills. **No skill package is released yet.**
+
+[Skill contract and evaluation](docs/skill-contract.md) · [Paper reproduction verification and acceptance](docs/paper-reproduction-standard.md). Source understanding, algorithm implementation, numerical reproduction and hardware repetition have distinct evidence requirements. This planning overlay does not change the textbook curriculum or its review states.
+
 ## Start reading
 
 - [Executable writing baseline 1.0](docs/writing-baseline.md) · [Full 435-section writing queue](docs/writing-order.md) · [First-chapter briefs](docs/writing-first-batch.md)

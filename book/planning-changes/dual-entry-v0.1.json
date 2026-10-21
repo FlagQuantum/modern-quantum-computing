@@ -1,0 +1,21 @@
+{
+  "id": "dual-entry-v0.1",
+  "date": "2026-10-21",
+  "request": "Plan human textbook and agent skills entries, capability levels, chapter mapping and paper-reproduction verification/acceptance.",
+  "base_commit": "0653b39c928bb4c9180d1e00f4c4817fec6d8b80",
+  "classification": "Presentation/execution planning overlay; no curriculum, proof-depth, prerequisite, volume or batch change.",
+  "curriculum_baseline": "writing-baseline-v1.0",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "new_chapters": 0,
+  "new_sections": 0,
+  "new_released_skills": 0,
+  "pdf_release": "unchanged",
+  "author_decisions": "No change to authorship, institution, global section numbering, seven volumes or textbook reading routes. Skill packaging and behavioral evaluation are future work, not claimed completed.",
+  "author_checks": {
+    "catalog": "23planned skills, six levels, all50chapters/all435stable sections mapped; dependencies acyclic and source/evidence paths valid.",
+    "negative_checks": "Isolated missing-owner, dependency-cycle and unsupported released-skill claims rejected.",
+    "site": "Strict MkDocs build,62-page local link/fragment/unique-ID checks and actual browser inspection of all four planning pages passed.",
+    "scope": "Curriculum, baseline, writing progress and full queue byte-identical to base commit; no new section, skill package or paper execution.",
+    "independent_review": "Not performed or claimed; this is a planning deliverable."
+  }
+}
