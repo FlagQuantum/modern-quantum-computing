@@ -1,0 +1,125 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-3",
+  "ref": "4.3",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+  "depth": "F",
+  "result": "Local operator embedding",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+    "sec-single-qubit-states-and-rotations-4"
+  ],
+  "assumptions": [
+    "Finite ordered orthonormal product bases",
+    "Single selected tensor factor and matching operator dimension",
+    "Qubit0first/most-significant factor; last factor varies fastest",
+    "General linear reference maps distinguished from unitary circuit gates"
+  ],
+  "proof_obligations": [
+    "Unique linear extension from images of each product-basis vector",
+    "Product-vector action and general joint-vector coefficient update",
+    "A tensor I and I tensor B block entries",
+    "General n-factor delta-condition embedding",
+    "Adjoint and A-dagger-A identities; if-and-only-if local unitarity",
+    "Untouched computational-basis distribution under a local unitary, derived without a reduced-state prerequisite"
+  ],
+  "formula_code_units": [
+    "formula-code-4-3-kronecker",
+    "formula-code-4-3-scalar-action",
+    "formula-code-4-3-execution",
+    "formula-code-4-3-basis-checks",
+    "formula-code-4-3-nonunitary",
+    "formula-code-4-3-spectator",
+    "formula-code-4-3-boundaries"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.1.7",
+      "edition": "10th Anniversary Edition (2010)",
+      "use": "Assigned tensor-operator background, following consulted source chain in4.1",
+      "current_session_access": "No fresh PDF inspection claimed; preceding local access denied. Proof is supplied explicitly and original."
+    },
+    {
+      "source": "Released installed FlagQuantum0.3.1 and PyTorch2.13.0",
+      "use": "Actual local Circuit.unitary and requested probabilities/statevector checked on specified integer supports"
+    }
+  ],
+  "local_start_checks": {
+    "prerequisites": "4.1 and3.4 have usable drafts; coordinate order supplied locally,4.2optional",
+    "brief": "Final authoring brief persisted with draft; theorem, support scope and independent references established from frozen plan before implementation",
+    "scope": "No changes to435section definitions/dependencies or theorem depth; no new skill or paper task"
+  },
+  "implementation": {
+    "path": "examples/foundations/local_operators.py",
+    "command": "python examples/foundations/local_operators.py",
+    "prose_check_command": "python scripts/check_local_operators_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "cpu",
+      "precision": "complex128",
+      "probability_dtype": "float64",
+      "architecture": "arm64",
+      "system": "Darwin"
+    },
+    "author_execution": "passed after reference-layout repair",
+    "complete_program_circuits_per_invocation": 34,
+    "body_fragments": 7,
+    "body_circuits_per_invocation": 10,
+    "author_run_ledger": {
+      "initial_reference_failure_run_circuits": 34,
+      "repaired_standalone_circuits": 34,
+      "prose_checker_body_and_companion_circuits": 44,
+      "separate_transfer_circuits": 1,
+      "total_including_failed_initial_run": 113
+    },
+    "independent_checks": [
+      "Scalar tuple/delta summation independently compares all tested Kronecker actions",
+      "All32basis/support cases on2and3qubits compare every complex coordinate",
+      "Two complex-product cases compare full states and probabilities, distinguish wrong supports",
+      "General joint-vector mathematical reference does not imply that vector was prepared",
+      "Nonunitary projector image remains unnormalized atnorm2=.36; not sent to unitary API",
+      "Adjoint/unitarity and6invalid support/shape/dtype cases",
+      "7cumulative exact stdout fragments and complete-program stdout",
+      "Separate phase-only transfer circuit plus n1embedding boundary"
+    ],
+    "tolerance": "atol1e-12,rtol0; no phase alignment/normalization, no backend fallback/approximation",
+    "initial_failure": {
+      "stage": "Classical adjoint reference after34actual circuits",
+      "reason": "torch.kron on conjugate-transposed noncontiguous view raised stride/view RuntimeError",
+      "repair": "entry-preserving matrix.contiguous() before Kronecker construction; no mathematical operand/order/tolerance change",
+      "retained_logs": "book/section-evidence/4.3/initial-failure.*.txt",
+      "upstream_gap": "No FlagQuantum capability gap; local reference layout repair, no issue filed"
+    },
+    "script_sha256": "84e055f30d0541c000971844b39a358d287882fd9002ec33a28f345526b79fc6",
+    "limitations": "Single-qubit local unitaries on ideal small dense simulator registers; no general ordered multi-qubit support, permutation/SWAP, physical measurement instrument, noise, shots or hardware certification"
+  },
+  "assessment": {
+    "tasks": [
+      "4.3-A middle support",
+      "4.3-B phase-only local gate; actual separate transfer check",
+      "4.3-C normalization misuse",
+      "4.3-D spanning versus numerical evidence"
+    ],
+    "answers": "All supplied; no reader trial"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted"
+  },
+  "production": {
+    "next_draft": "4.4 Multiple-qubit operators and ordered supports",
+    "planning_pages": [
+      3,
+      6
+    ],
+    "page_status": "Unmeasured draft; F proofs retained",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual browser screenshots: A tensor I/I tensor A block matrices, general delta-product embedding, adjoint/conjugation and local-unitarity equation; no garbling or clipping in inspected formula regions."
+  }
+}

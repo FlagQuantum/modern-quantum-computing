@@ -12,7 +12,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7 and 4.1–4.2, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7 and 4.1–4.3, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Two entry points: learners and agents
 
@@ -48,6 +48,7 @@ The [four-skill composition experiment](docs/four-skill-integration.md) now conn
 - [Read 3.7: Physical phase versus numerical equality](docs/chapters/ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-7) · comparison scope, controlled-phase counterexample and Chapter 3 synthesis
 - [Read 4.1: Tensor-product spaces and basis states](docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-1) · finite construction, product-basis proofs and verified complex amplitudes
 - [Read 4.2: Registers, labels, and basis indices](docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-2) · index/inverse proofs, exhaustive basis preparations and indexed complex amplitudes
+- [Read 4.3: Local operators on a composite register](docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-3) · derived Kronecker embeddings, local unitary execution and nonunitary boundaries
 - [Book introduction](docs/index.md)
 - [Quantum-classical hybrid patterns and implementations](docs/hybrid-computing.md)
 - [Core results, proof depth and exact sources](docs/proof-plan.md) · [Adopted seven-volume plan](docs/volume-plan.md)

@@ -47,6 +47,29 @@
       ],
       "status": "draft",
       "next_transition": "4.3 Local operators on a composite register, following the frozen queue."
+    },
+    {
+      "ref": "4.3",
+      "section_id": "sec-composite-systems-tensor-products-and-qubit-ordering-3",
+      "title": "Local operators on a composite register",
+      "question": "Which full-register linear map does a qubit-addressed two-by-two operator define?",
+      "entry": "4.1 ordered product bases and finite-basis Born rule;3.4 unitary dynamics. Supply local tuple order without requiring4.2.",
+      "exit": "Construct a unique local embedding, derive Kronecker entries/coefficient action and prove the adjoint/unitarity criterion; distinguish linear maps from gates.",
+      "worked_case": "Complex U=exp(-i*pi*X/6) on either factor of a complex product, every basis/support for two/three qubits, and a nonunitary projector.",
+      "boundary": "F depth. General single-factor embedding only; no multi-qubit ordered-support, permutation, measurement-update, noise or hardware theory imported.",
+      "code_plan": "Independent scalar tuple enumeration versus ordered Torch Kronecker embeddings and actual released FQ0.3.1 local unitary calls;7cumulative prose blocks.",
+      "independent_check": "32basis/support circuits,2complex products, classical arbitrary-vector and adjoint/projector checks; separate phase-only transfer; input metadata errors.",
+      "transfer_task": "Middle-qubit support, phase-only local gate, normalization misuse, spanning versus finite software evidence; complete answers.",
+      "source_locators": [
+        "NC:2.1.7"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+        "sec-single-qubit-states-and-rotations-4"
+      ],
+      "status": "draft",
+      "next_transition": "4.4 Multiple-qubit operators and ordered supports."
     }
   ]
 }

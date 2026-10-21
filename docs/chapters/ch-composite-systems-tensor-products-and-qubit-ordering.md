@@ -1,6 +1,6 @@
 # 4. Composite Systems, Tensor Products, and Qubit Ordering
 
-**Working drafts: sections 4.1–4.2 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 4.1–4.3 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-composite-systems-tensor-products-and-qubit-ordering-1"></span>
 
@@ -707,4 +707,317 @@ The verification is deliberately bounded. A successful three-qubit check does no
 
 Depth **F**: the recurrence, closed form, inverse identities and bijection are proved, with an alternative leading-difference argument in the answers. The retained background locator is Nielsen and Chuang, 10th Anniversary Edition, §2.1.7, for ordered tensor products, as used in 4.1. The explicit index proof and examples here are original. [Preskill, Chapter 2, §2.3.1, Eq. (2.46)](https://www.preskill.caltech.edu/ph229/notes/chap2.pdf#page=14) is supplementary context for labeled product factors; it does not prescribe FlagQuantum's array order. The latter is checked against the released implementation by the exhaustive preparations above.
 
-The [4.2 section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.2.json) records source-access limits, actual execution and separate pending mathematical, implementation and reader reviews. This is an author-verified working draft, not an accepted section. Continue, when drafted, with [4.3 Local operators on a composite register](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-3).
+The [4.2 section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.2.json) records source-access limits, actual execution and separate pending mathematical, implementation and reader reviews. This is an author-verified working draft, not an accepted section. Continue with [4.3 Local operators on a composite register](#sec-composite-systems-tensor-products-and-qubit-ordering-3).
+
+<span id="sec-composite-systems-tensor-products-and-qubit-ordering-3"></span>
+
+## 4.3 Local operators on a composite register
+
+A command such as `circuit.unitary(0, unitary=U)` supplies a two-by-two matrix even when the statevector has eight coordinates. What linear map does that command mean on the whole register? The answer must identify the factor being changed, preserve the other factors and specify the coordinate order. A two-by-two matrix alone does not contain that information.
+
+The prerequisites are [4.1](#sec-composite-systems-tensor-products-and-qubit-ordering-1), for ordered product bases and independent preparations, and [3.4](ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-4), for unitary dynamics and Hermitian generators. We state the coordinate convention locally below, so the proof does not require a theorem about permutations, multiple-qubit supports or matrix reshaping. [4.2](#sec-composite-systems-tensor-products-and-qubit-ordering-2) supplies the optional integer-index interpretation of these same labels.
+
+### Define the map by its action on a product basis
+
+Let V and W have ordered orthonormal bases $\{f_i\}_{i=0}^{m-1}$ and $\{g_j\}_{j=0}^{d-1}$. A linear operator $A:V\to V$ has entries defined by $Af_k=\sum_i A_{ik}f_i$. On each joint basis vector, define
+
+$$
+\mathcal E_V(A)(f_k\otimes g_\ell)=(Af_k)\otimes g_\ell
+=\sum_i A_{ik}f_i\otimes g_\ell.
+$$
+
+The joint product vectors form a basis by 4.1, so prescribing their images determines one and only one linear operator on the composite space. Existence follows by extending the rule to every finite linear combination; uniqueness follows because two linear operators that agree on every basis vector agree on their span.
+
+For arbitrary $v=\sum_k v_k f_k$ and $w=\sum_\ell w_\ell g_\ell$, bilinearity and linearity give
+
+$$
+\mathcal E_V(A)(v\otimes w)
+=\sum_{i,k,\ell}A_{ik}v_k w_\ell f_i\otimes g_\ell
+=(Av)\otimes w.
+$$
+
+This is the meaning of a **local operator on V**: it acts on the specified tensor factor and as the identity on the other factor. A general joint vector need not factor as $v\otimes w$. Nevertheless the basis definition acts on it, by the same linear extension. Locality describes the operator, not a restriction that its input must be a product state.
+
+### Derive the Kronecker matrices and the coefficient update
+
+List joint coordinates as $(0,0),(0,1),\ldots,(m-1,d-1)$, with the W label changing fastest. Reading coefficients in the definition gives
+
+$$
+[\mathcal E_V(A)]_{(i,j),(k,\ell)}=A_{ik}\delta_{j\ell}.
+$$
+
+Here $\delta_{j\ell}$ is one when the spectator labels agree and zero otherwise. The matrix is conventionally written $A\otimes I_d$: its block in row i, column k is $A_{ik}I_d$. Similarly an operator $B:W\to W$ acting only on W has
+
+$$
+[\mathcal E_W(B)]_{(i,j),(k,\ell)}=\delta_{ik}B_{j\ell},\qquad
+\mathcal E_W(B)=I_m\otimes B.
+$$
+
+These formulas derive the matrix placements; they are not interchangeable notations for the same operation. For two qubits and $A=\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)$, they become
+
+$$
+A\otimes I_2=\begin{pmatrix}a&0&b&0\\0&a&0&b\\c&0&d&0\\0&c&0&d\end{pmatrix},\qquad
+I_2\otimes A=\begin{pmatrix}a&b&0&0\\c&d&0&0\\0&0&a&b\\0&0&c&d\end{pmatrix}.
+$$
+
+Use the computational order `00,01,10,11`; qubit 0 is the first factor. An n-qubit version follows by the same basis prescription:
+
+$$
+\mathcal E_q(A)=I_2^{\otimes q}\otimes A\otimes I_2^{\otimes(n-1-q)},\qquad
+[\mathcal E_q(A)]_{b,c}=A_{b_qc_q}\prod_{r\ne q}\delta_{b_rc_r}.
+$$
+
+At the ends there are no identity factors on one side; their omission leaves A in the first or last position. More generally, choose $A|c_q\rangle$ on the selected position of each product-basis vector and leave all other entries in place. Expanding that one factor gives the displayed matrix entries and proves the formula for every finite n. The identity factors each have dimension two, so the resulting matrix is $2^n$ by $2^n$.
+
+<span id="formula-code-4-3-kronecker"></span>
+
+**Formula → block construction → checked reference.** The cumulative code blocks below run from the repository root. `embedding()` implements the ordered identity-factor construction with `torch.kron`; its strict qubit/shape/dtype checks are in the linked complete program. This is a dense mathematical reference, not an instruction to allocate a full dense operator for a large simulator.
+
+```python
+from examples.foundations.local_operators import (
+    rotation, embedding, scalar_action, execute, initial_product,
+)
+import torch
+U = rotation()
+left, right = embedding(U, 2, 0), embedding(U, 2, 1)
+assert left.shape == right.shape == (4, 4)
+print(tuple(left.shape), torch.allclose(left, right, rtol=0, atol=1e-12))
+```
+
+```text
+(4, 4) False
+```
+
+For arbitrary joint coefficients $z_{k\ell}$, multiplying the first-factor matrix gives
+
+$$
+y_{ij}=\sum_{k,\ell}A_{ik}\delta_{j\ell}z_{k\ell}=\sum_k A_{ik}z_{kj}.
+$$
+
+Thus an operation on the first factor mixes amplitudes with the same spectator label j. Acting on the second gives $y_{ij}=\sum_\ell B_{j\ell}z_{i\ell}$ instead. There is no conjugation of z in either formula: this is a linear action, not an inner product.
+
+<span id="formula-code-4-3-scalar-action"></span>
+
+**Formula → scalar sums → independent validation.** The reference `scalar_action()` enumerates input and output bit tuples, uses the delta conditions and sums complex scalars. It calls neither `torch.kron` nor a reshaping routine. Test a joint vector that is not assumed to be a product:
+
+```python
+from math import sqrt
+z = torch.tensor([1, 2j, -3, 4j], dtype=torch.complex128)/sqrt(30)
+reference = torch.tensor(scalar_action(U.tolist(), z.tolist(), 2, 0),
+                         dtype=torch.complex128)
+torch.testing.assert_close(left @ z, reference, rtol=0, atol=1e-12)
+print('scalar coefficient rule matches dense action:', True)
+```
+
+```text
+scalar coefficient rule matches dense action: True
+```
+
+This block checks the mathematics on an arbitrary joint vector. It does not claim that a simulator prepared that vector. The actual execution tests below separately use basis inputs and independent product preparations.
+
+### Translate a unitary local operator into FlagQuantum
+
+The embedding construction accepts any linear A, but a deterministic gate in our ideal circuit model must be unitary. For the worked example, choose
+
+$$
+U=\begin{pmatrix}\sqrt3/2&-i/2\\-i/2&\sqrt3/2\end{pmatrix}
+=\cos(\pi/6)I-i\sin(\pi/6)X,\qquad
+X=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+$$
+
+Since $X^\dagger=X$ and $X^2=I$, the even and odd powers of its exponential, as in 3.4, give $U=\exp(-i\pi X/6)$. Multiplying $(\cos t I+i\sin t X)(\cos t I-i\sin t X)$ gives I, proving unitarity. No physical pulse duration or energy unit is inferred from this dimensionless example.
+
+Independently prepare $a=(3/5,4i/5)^T$ and $b=(\sqrt3/2,i/2)^T$. The initial joint vector is $a\otimes b$. The predicted outputs are $(Ua)\otimes b$ when targeting qubit 0 and $a\otimes(Ub)$ when targeting qubit 1. The coefficient formula also computes either result without presuming product structure.
+
+<span id="formula-code-4-3-execution"></span>
+
+**Formula → released API → actual full-state checks.** The first-column preparation matrix from 4.1 prepares each factor. The local operation uses the same two-by-two U regardless of total register size; FlagQuantum receives the selected integer qubit separately.
+
+```python
+from examples.foundations.tensor_spaces import prepare_matrix, OPTIONS
+import flagquantum as fq
+factors = [(.6, .8j), (sqrt(3)/2, .5j)]
+initial = torch.tensor(initial_product(factors), dtype=torch.complex128)
+outputs = {}
+for q in (0, 1):
+    circuit = fq.Circuit(2, dtype=torch.complex128)
+    for position, factor in enumerate(factors):
+        circuit.unitary(position, unitary=prepare_matrix(
+            torch.tensor(factor, dtype=torch.complex128)))
+    circuit.unitary(q, unitary=U)
+    result = fq.run(circuit, outputs=[fq.probabilities()], options=OPTIONS)
+    assert result.statevector().shape == result.probabilities.shape == (1, 4)
+    state, probability = result.statevector()[0], result.probabilities[0]
+    expected = torch.tensor(scalar_action(U.tolist(), initial.tolist(), 2, q),
+                            dtype=torch.complex128)
+    torch.testing.assert_close(state, expected, rtol=0, atol=1e-12)
+    torch.testing.assert_close(probability, expected.abs().square(),
+                               rtol=0, atol=1e-12)
+    outputs[q] = (state, probability)
+    print(q, [round(p, 9) for p in probability.tolist()])
+```
+
+```text
+0 [0.634269145, 0.211423048, 0.115730855, 0.038576952]
+1 [0.36, 0.0, 0.64, 0.0]
+```
+
+The target matters: these two output distributions differ, and full complex-state checks also differ. Neither a correctly normalized output nor a correct two-by-two U would rescue a mistaken target position. The shape `(1,4)` has a singleton batch axis, which is checked before selecting its only row.
+
+<span id="formula-code-4-3-basis-checks"></span>
+
+**Basis formula → exhaustive preparation → checked results.** Every computational-basis input is checked on both supports of a two-qubit register. The complete program extends this to every support of three qubits: $2\cdot4+3\cdot8=32$ basis circuits. Since the ideal operations are linear, these basis cases test every column of each tested embedded matrix; floating-point agreement still remains evidence at the stated tolerance, not an exact symbolic proof about a software implementation.
+
+```python
+from itertools import product
+count = 0
+for q in (0, 1):
+    for bits in product((0, 1), repeat=2):
+        preparations = [(1, 0) if b == 0 else (0, 1) for b in bits]
+        state, probability = execute(2, q, preparations)
+        reference = torch.tensor(scalar_action(U.tolist(),
+            initial_product(preparations), 2, q), dtype=torch.complex128)
+        torch.testing.assert_close(state, reference, rtol=0, atol=1e-12)
+        count += 1
+print('actual two-qubit basis circuits:', count)
+```
+
+```text
+actual two-qubit basis circuits: 8
+```
+
+### Distinguish arbitrary local maps from unitary gates
+
+Taking the conjugate transpose of the entry formula gives $\mathcal E_V(A)^\dagger=\mathcal E_V(A^\dagger)$. To verify the product needed for a norm check, sum over intermediate joint labels:
+
+$$
+[\mathcal E_V(A)^\dagger\mathcal E_V(A)]_{(k,\ell),(r,s)}
+=\sum_{i,j}\overline{A_{ik}}\delta_{j\ell}A_{ir}\delta_{js}
+=(A^\dagger A)_{kr}\delta_{\ell s}.
+$$
+
+Thus $\mathcal E_V(A)^\dagger\mathcal E_V(A)=I$ if A is unitary. Conversely, equality with I forces $(A^\dagger A)_{kr}=\delta_{kr}$ by setting $\ell=s$; there is at least one spectator basis label. The same proof applies at any selected factor. This establishes exactly which embedded maps preserve all vector norms.
+
+For example, the local projector $P=\operatorname{diag}(1,0)$ is a valid linear map but not a unitary gate. On our product input, $(P\otimes I)(a\otimes b)=(3/5)|0\rangle\otimes b$, with squared norm $9/25$. Silently normalizing that output would change the task. Describing a physical selective measurement requires probabilities and an instrument, developed later; this section only computes the unnormalized linear image.
+
+<span id="formula-code-4-3-nonunitary"></span>
+
+**Formula → dense mathematical action → explicit failure of unitarity.** This block intentionally makes no `circuit.unitary()` call with P. The reference helper accepts linear maps, while the circuit example uses unitary U only.
+
+```python
+P = torch.tensor([[1, 0], [0, 0]], dtype=torch.complex128)
+M = embedding(P, 2, 0)
+image = M @ initial
+print(f'linear-image norm squared: {image.abs().square().sum().item():.9f}')
+print('unitary:', torch.allclose(M.mH @ M, torch.eye(4, dtype=torch.complex128),
+                               rtol=0, atol=1e-12))
+```
+
+```text
+linear-image norm squared: 0.360000000
+unitary: False
+```
+
+### What stays unchanged at an untouched factor?
+
+A local unitary changes joint amplitudes but does not change the other factor's computational-basis probability distribution. For a two-factor vector with coefficients $z_{kj}$, hold the spectator label j fixed. Its probability after acting on V is
+
+$$
+\sum_i\left|\sum_k A_{ik}z_{kj}\right|^2
+=\sum_{k,r}\left(\sum_i A_{ik}\overline{A_{ir}}\right)z_{kj}\overline{z_{rj}}
+=\sum_k|z_{kj}|^2.
+$$
+
+The final equality uses the orthonormal columns of A. This argument applies to arbitrary joint coefficients; it does not assume independent initial factors. It says that this particular distribution is unchanged, not that all joint amplitudes or correlations are unchanged. General reduced states and channel versions are developed in their own chapters.
+
+<span id="formula-code-4-3-spectator"></span>
+
+**Formula → explicit spectator sum → checked simulator result.** For qubit 1 in the `00,01,10,11` order, its basis-0 probability sums coordinates 0 and 2. Check the qubit-0 operation already executed above:
+
+```python
+before = sum(abs(initial[i].item())**2 for i in (0, 2))
+after = sum(outputs[0][1][i].item() for i in (0, 2))
+assert abs(before-after) < 1e-12
+print(f'untouched qubit 1, probability 0: {before:.9f} -> {after:.9f}')
+```
+
+```text
+untouched qubit 1, probability 0: 0.750000000 -> 0.750000000
+```
+
+### Run the complete verification and respect its limits
+
+[local_operators.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/local_operators.py) targets the existing CPython 3.12, FlagQuantum 0.3.1 and PyTorch 2.13.0 CPU environment. Statevectors use complex128 and probabilities float64. The actual execution options disable backend fallback and approximation. Complex-coordinate comparisons use absolute tolerance $10^{-12}$, relative tolerance zero, without normalization or phase alignment.
+
+The dense reference requires finite CPU complex128 two-by-two matrices and a valid integer support. Its implementation makes an entry-preserving contiguous copy before `torch.kron`, since a conjugate-transposed Torch view can have incompatible strides. This changes array storage, not the tensor-factor order or the mathematical map. A malformed support or precision is rejected before construction.
+
+<span id="formula-code-4-3-boundaries"></span>
+
+**Input contract → rejected metadata → checked result.** Boolean qubit indices are not silently treated as integers.
+
+```python
+invalid = [lambda: embedding(U, 2, 2), lambda: embedding(U, 2, True),
+           lambda: embedding(U.to(torch.complex64), 2, 0)]
+rejected = 0
+for action in invalid:
+    try:
+        action()
+    except ValueError:
+        rejected += 1
+print('invalid support, Boolean support, wrong precision:', rejected, 'rejected')
+```
+
+```text
+invalid support, Boolean support, wrong precision: 3 rejected
+```
+
+Run from the repository root:
+
+```bash
+python examples/foundations/local_operators.py
+python scripts/check_local_operators_prose.py
+```
+
+The complete program executes 34 circuits: 32 basis/support cases and two complex-product cases. Its classical nonunitary and adjoint checks execute no quantum circuit. The cumulative body fragments execute ten circuits, independently of the complete program. The dense references are small-system verification tools; explicitly storing a $2^n$-square matrix is not a scalable simulation requirement. Multiple-qubit ordered supports, SWAP/permutations, general measurement updates, noise, shots and hardware execution are outside this section's checked scope.
+
+Expected output of the complete program:
+
+```text
+Local matrix: U=[[sqrt(3)/2,-i/2],[-i/2,sqrt(3)/2]].
+32 basis circuits: all supports on two/three qubits match scalar and Kronecker references.
+Product input, local qubit 0: 0.634269145, 0.211423048, 0.115730855, 0.038576952.
+Product input, local qubit 1: 0.360000000, 0.000000000, 0.640000000, 0.000000000.
+Target confusion rejected: U tensor I and I tensor U give different full states.
+Nonunitary local map: output norm squared=0.360000000; no unitary-gate execution claimed.
+Adjoint/unitarity identities and 6 invalid-input cases checked.
+34 actual CPU complex128 circuits; atol=1e-12, rtol=0; no shots or hardware.
+```
+
+### Understanding checks, transfer and answers
+
+**4.3-A — Read the support.** In a three-qubit register ordered `q0,q1,q2`, write the dense reference for U acting only on q1. Which entries can connect an input label `101` to an output label? Explain using the delta factors, rather than guessing from matrix dimensions.
+
+**4.3-B — Transfer to a different generator.** Replace U by $D=\operatorname{diag}(1,i)$ and act on the second factor of $a\otimes b$. Derive the new amplitudes and probabilities. Should the computational probabilities distinguish this output from the input? Give a full-coordinate test that would.
+
+**4.3-C — Reject the wrong inference.** A local linear map decreases the squared norm to 0.36, and a programmer divides the output by 0.6 before returning it as a deterministic gate result. What task was changed? Which additional physical description would be needed for a measurement interpretation?
+
+**4.3-D — Finish the argument.** Why is checking an operator only on independent product inputs insufficient unless those inputs include a spanning set? Explain why the computational basis is enough for the linear operator identity, yet finite floating-point software tests do not replace the symbolic proof.
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** The matrix is $I_2\otimes U\otimes I_2$. Both spectator bits must remain equal to their input values, so only `101` and `111` can have nonzero coefficients from input `101`. Their coefficients are $U_{0,0}$ and $U_{1,0}$, respectively. No input normalization or relabeling is involved.
+
+**B.** The second factor becomes $(\sqrt3/2,-1/2)^T$, because $i(i/2)=-1/2$. The joint vector is $(3\sqrt3/10,-3/10,2i\sqrt3/5,-2i/5)^T$. Squared moduli remain $(0.27,0.09,0.48,0.16)$, the input distribution. Full complex comparison with that vector detects a phase mistake even when all probabilities agree. The separately recorded author transfer check executes the released local gate and compares both coordinates and probabilities; it is not included in the 34-circuit main-program count.
+
+**C.** The normalization replaces a specified linear map by a state-dependent normalized output rule; it is not the declared deterministic unitary gate. A measurement interpretation needs the full measurement/instrument specification, the probability and conditioning event, and the associated state update, not just division by a norm. Those are not inferred by this linear-algebra calculation.
+
+**D.** Agreement on a few product vectors can miss an operator's action on other directions. The full product basis spans the joint space by 4.1; linearity then fixes every vector's image. In the proof, exact basis identities establish exact operators. A simulator run instead checks particular finite arrays with a numerical tolerance, a declared environment and an execution scope. It is evidence about those computations, not an all-environment correctness theorem.
+
+</details>
+
+### Sources, depth and review status
+
+Depth **F**: construction and uniqueness on a product basis, matrix entries, coefficient action, general single-factor embedding and the adjoint/unitarity criterion are derived explicitly. The assigned background remains Nielsen and Chuang, 10th Anniversary Edition, §2.1.7, following the source chain in 4.1. No new inspection of the user-local textbook PDF is claimed here: access was unavailable in the preceding source check. The proofs, examples and translations above are original and self-contained relative to the stated drafts.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.3.json) separates author execution, its initial reference-layout failure and repair, and pending independent mathematical, implementation and reader review. This is a working draft, not an accepted section. Next: [4.4 Multiple-qubit operators and ordered supports](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-4).

@@ -1,7 +1,7 @@
 {
   "date": "2026-10-21",
   "baseline": "writing-baseline-v1.0",
-  "scope": "Presentation audit of23drafted sections. Chapter2 and completeChapter3 backfills retained; new4.2 has8adjacent formula/derivation/code/output units. Independent review and acceptance remain pending.",
+  "scope": "Presentation audit of24drafted sections; previous backfills retained;4.3 adds7checked adjacent formula/derivation/code/output units. Independent acceptance remains pending.",
   "finding": "Executable companion scripts and end-of-section correspondence tables do not by themselves provide adjacent formula-to-code teaching in the body.",
   "priority_backfill": [],
   "secondary_review": [],
@@ -52,6 +52,12 @@
     "units": 8,
     "command": "python scripts/check_register_indices_prose.py",
     "record": "book/section-records/4.2.json",
+    "status": "author-verified draft"
+  },
+  "new_section_4_3": {
+    "units": 7,
+    "command": "python scripts/check_local_operators_prose.py",
+    "record": "book/section-records/4.3.json",
     "status": "author-verified draft"
   }
 }

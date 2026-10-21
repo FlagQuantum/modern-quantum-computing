@@ -1,0 +1,14 @@
+{
+  "section": "4.3",
+  "body_fragments": 7,
+  "body_stdout": "exact comparison passed",
+  "complete_example_stdout": "exact comparison passed",
+  "previous_4_1_4_2_prose_regression": "passed",
+  "strict_mkdocs": "passed",
+  "links": "69rendered pages; all local links/fragments resolve; IDs unique",
+  "formula_display": "Passed actual browser screenshots: A tensor I/I tensor A block matrices, general delta-product embedding, adjoint/conjugation and local-unitarity equation; no garbling or clipping in inspected formula regions.",
+  "source_scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "drafts": 24,
+  "independent_review": "pending",
+  "prior_4_2_full_remote_CI": "39568947580 completed/success"
+}

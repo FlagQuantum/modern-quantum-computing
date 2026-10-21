@@ -1,0 +1,2 @@
+4.3-B: phase-only local gate matches all4amplitudes and probabilities;1actual circuit.
+Single-factor embedding boundary: E0(U)=U.

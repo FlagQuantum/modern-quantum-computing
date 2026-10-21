@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/private/tmp/mqc-section43/local_operators.py", line 116, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/private/tmp/mqc-section43/local_operators.py", line 105, in main
+    torch.testing.assert_close(m.mH,embedding(u.mH,n,q),rtol=0,atol=ATOL)
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-section43/local_operators.py", line 24, in embedding
+    out=torch.kron(out,matrix if position==q else torch.eye(2,dtype=DTYPE))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: view size is not compatible with input tensor's size and stride (at least one dimension spans across two contiguous subspaces). Use .reshape(...) instead.

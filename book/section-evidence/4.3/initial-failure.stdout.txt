@@ -1,0 +1,6 @@
+Local matrix: U=[[sqrt(3)/2,-i/2],[-i/2,sqrt(3)/2]].
+32 basis circuits: all supports on two/three qubits match scalar and Kronecker references.
+Product input, local qubit 0: 0.634269145, 0.211423048, 0.115730855, 0.038576952.
+Product input, local qubit 1: 0.360000000, 0.000000000, 0.640000000, 0.000000000.
+Target confusion rejected: U tensor I and I tensor U give different full states.
+Nonunitary local map: output norm squared=0.360000000; no unitary-gate execution claimed.

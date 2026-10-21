@@ -231,6 +231,16 @@
       "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
       "record": "book/section-records/4.2.json",
       "author_execution": "passed: CPython3.12.14, FlagQuantum0.3.1, PyTorch2.13.0 CPU complex128;510 exact integer fixtures, all12two/three-qubit basis states, complex-product and reversal witnesses,8cumulative body fragments with exact outputs; no sampling or hardware"
+    },
+    "sec-composite-systems-tensor-products-and-qubit-ordering-3": {
+      "state": "draft",
+      "brief": "book/briefs/ch04.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+      "record": "book/section-records/4.3.json",
+      "author_execution": "passed:CPython3.12.14,FlagQuantum0.3.1,Torch2.13.0 CPUcomplex128;32basis/support cases,2complex products,7body units and separate transfer; initial stride-reference failure preserved"
     }
   },
   "existing_pilots": [
