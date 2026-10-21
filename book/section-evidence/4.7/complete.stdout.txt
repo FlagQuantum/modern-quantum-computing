@@ -1,0 +1,10 @@
+One fixed unitary, blank|0>; known-reference preparation is state-specific, not a cloner.
+zero: fixed-copy fidelity=1.000000; analyzer P00=1.000000; known-reference P00=1.000000.
+one: fixed-copy fidelity=1.000000; analyzer P00=1.000000; known-reference P00=1.000000.
+plus: fixed-copy fidelity=0.500000; analyzer P00=0.500000; known-reference P00=1.000000.
+minus: fixed-copy fidelity=0.000000; analyzer P00=0.000000; known-reference P00=1.000000.
+plus-i: fixed-copy fidelity=0.250000; analyzer P00=0.250000; known-reference P00=1.000000.
+complex: fixed-copy fidelity=0.308800; analyzer P00=0.308800; known-reference P00=1.000000.
+Nonorthogonal pair: input overlap=0.707106781; perfect-copy overlap=0.500000000; incompatible.
+35 classical amplitude fixtures and6invalid contracts checked; identical rays allowed, universal cloning excluded.
+24 actual CPU complex128 circuits; atol=1e-12,rtol=0; no phase alignment, shots or hardware.

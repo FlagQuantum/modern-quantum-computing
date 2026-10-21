@@ -271,6 +271,16 @@
       "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
       "record": "book/section-records/4.6.json",
       "author_execution": "passed: Python3.12.14, released FlagQuantum0.3.1, PyTorch2.13.0, CPU complex128; scalar/packed/dense references and actual body outputs"
+    },
+    "sec-single-qubit-states-and-rotations-8": {
+      "state": "draft",
+      "brief": "book/briefs/ch04.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+      "record": "book/section-records/4.7.json",
+      "author_execution": "passed: Python3.12.14, released FlagQuantum0.3.1, PyTorch2.13.0, CPU complex128; fixed-copy and known-reference branches recorded separately"
     }
   },
   "existing_pilots": [

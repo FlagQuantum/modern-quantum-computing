@@ -1,0 +1,123 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-single-qubit-states-and-rotations-8",
+  "ref": "4.7",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-composite-systems-tensor-products-and-qubit-ordering.md",
+  "depth": "F",
+  "result": "No-cloning theorem",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+    "sec-single-qubit-states-and-rotations-4"
+  ],
+  "assumptions": [
+    "One fixed linear unitary on two equal finite-dimensional systems of dimension>=2",
+    "Same normalized blank for all unknown pure inputs",
+    "Desired output is two-copy product ray; input-dependent global output phase allowed",
+    "Examples use2qubit fixed controlled flip on inputq0 and blankq1zero; preparation/analyzer are outside that candidate"
+  ],
+  "proof_obligations": [
+    "Expand fixed copying gate action linearly and compare bilinear product target",
+    "Preserve initial overlap including normalized blank",
+    "Factor cloned-output inner product with explicit phase difference",
+    "Take modulus:abs(s)=abs(s)**2, identify orthogonal and identical-ray boundaries",
+    "Exhibit nonorthogonal distinct pair zero/plus for universal contradiction",
+    "Derive known-basis analyzer P00 as squared product overlap, without assuming unknown-state analysis access"
+  ],
+  "formula_code_units": [
+    "formula-code-4-7-contract",
+    "formula-code-4-7-orthogonal",
+    "formula-code-4-7-linearity",
+    "formula-code-4-7-complex",
+    "formula-code-4-7-proof",
+    "formula-code-4-7-analyzer",
+    "formula-code-4-7-known-state",
+    "formula-code-4-7-validation"
+  ],
+  "sources": [
+    {
+      "locator": "NC:1.3.5",
+      "edition": "10th Anniversary Edition (2010)",
+      "use": "Assigned qubit-copying background; original proof supplied",
+      "current_session_inspection": "No fresh user-local textbook PDF inspection claimed"
+    },
+    {
+      "title": "A single quantum cannot be cloned",
+      "authors": [
+        "W. K. Wootters",
+        "W. H. Zurek"
+      ],
+      "journal": "Nature299,802\u2013803(1982)",
+      "doi": "10.1038/299802a0",
+      "url": "https://doi.org/10.1038/299802a0",
+      "inspection": "Publisher bibliographic record checked; no new full-paper audit claimed"
+    },
+    {
+      "source": "Installed released FlagQuantum0.3.1 Circuit.unitary",
+      "use": "Actual source alias inspected; direct body generic two-qubit matrix and actual execution"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/no_cloning.py",
+    "command": "python examples/foundations/no_cloning.py",
+    "prose_check_command": "python scripts/check_no_cloning_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "system": "Darwin",
+      "architecture": "arm64",
+      "device": "cpu",
+      "precision": "complex128",
+      "probability_dtype": "float64"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 24,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 7,
+    "separate_transfer_circuits": 1,
+    "author_execution_ledger": {
+      "standalone_complete": 24,
+      "successful_body_assembly": 7,
+      "prose_plus_complete_checker": 31,
+      "separate_transfer": 1,
+      "total_section47_circuits": 63,
+      "note": "Prior4.1and4.6 scoped regressions and laterCI invocations separate; no blind-agent evaluation requested or claimed."
+    },
+    "checks": [
+      "Six inputs, each fixed candidate, known-state reference, analyzed candidate and analyzed known-state reference;24circuits",
+      "Hand candidate(a,0,0,b) and desired(a*a,a*b,b*a,b*b) check full coordinates",
+      "Independent scalar analyzer contraction; P00 equals squared overlap; known-state reference P00one",
+      "Zero/plus overlap mismatch .707106781 versus .5 illustrates general impossibility",
+      "35classical amplitude fixtures;6invalid contracts before dependent circuit execution",
+      "Eight exact actual-body outputs and complete-program expected stdout",
+      "Separate new complex input:allfouramplitudes/probabilities and squared-overlap failure"
+    ],
+    "tolerance": "atol1e-12,rtol0; full-state comparison without normalization repair or phase alignment; squared overlap explicitly phase invariant",
+    "script_sha256": "eee0c47547dd2ad068d8b95d482913385096e69c0240acc3cf75ca817c05c5e8",
+    "unplanned_execution_failures": "none",
+    "limitations": "Finite ideal simulator illustrations; universal impossibility comes from proof, not finite tests. Known-reference preparation and analyzer receive classical amplitudes; not unknown-input cloning. No approximate/probabilistic/channel/no-broadcasting theorem or hardware/shot result claimed."
+  },
+  "assessment": {
+    "tasks": [
+      "4.7-A new complex input transfer",
+      "4.7-B fixed blank independence",
+      "4.7-C identical rays and representative phases",
+      "4.7-D finite basis tests versus universal copying contract"
+    ],
+    "answers": "All supplied; no reader trial"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "8actual prose fragments and complete-program exact expected stdout passed; new complex-state transfer and scoped4.1/4.6 body/full-program regressions passed. Frozen curriculum/proof/baseline generators agree; strict MkDocs and69page local links/fragment uniqueness passed; actual browser formula display checked. Preceding4.6 full remoteCI passed. Independent review and reader trial remain pending."
+  },
+  "production": {
+    "next_draft": "4.8 Cross-framework convention translation",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Passed actual IAB screenshots at1280x720: phase-aware overlap preservation and modulus proof, complex tensor-square roots/signs, and two-factor adjoint analyzer probability. No garbling or clipping in inspected regions."
+  }
+}

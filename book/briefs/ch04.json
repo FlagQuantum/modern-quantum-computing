@@ -140,6 +140,29 @@
       ],
       "status": "draft",
       "next_transition": "4.7 The no-cloning theorem."
+    },
+    {
+      "ref": "4.7",
+      "section_id": "sec-single-qubit-states-and-rotations-8",
+      "title": "The no-cloning theorem",
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+        "sec-single-qubit-states-and-rotations-4"
+      ],
+      "question": "Why can no one fixed unitary copy every unknown pure state into a fixed blank register?",
+      "entry": "4.1 tensor products and inner-product factorization;3.4 unitary inner-product preservation.",
+      "exit": "Prove no-cloning for nonorthogonal distinct rays, including output phase freedom; distinguish copying basis values from cloning amplitudes and known-state preparation.",
+      "worked_case": "Fixed controlled flip copies zero/one, fails plus/minus/complex states; known-state reference and common chosen analyzers expose difference.",
+      "boundary": "Finite pure-state fixed-unitary/fixed-blank scope; no approximate/probabilistic cloning or general mixed-state broadcasting theorem imported.",
+      "code_plan": "Actual released2qubit unitary gate, explicit four-amplitude classical reference, known-state reference clearly separate from cloner; exact cumulative prose outputs.",
+      "independent_check": "Six inputs, four actual paths each;35classical amplitude fixtures, input-overlap versus copy-overlap contradiction, full phase-sensitive state and analyzer probability checks; invalid contracts.",
+      "transfer_task": "New complex state, alternate blank, identical-ray phase convention and finite-test versus theorem interpretation; answers.",
+      "source_locators": [
+        "NC:1.3.5"
+      ],
+      "status": "draft",
+      "next_transition": "4.8 Cross-framework convention translation."
     }
   ]
 }

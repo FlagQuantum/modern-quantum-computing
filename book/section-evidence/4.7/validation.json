@@ -1,0 +1,18 @@
+{
+  "section": "4.7",
+  "state": "author-verified draft",
+  "complete_circuits": 24,
+  "body_fragments": 8,
+  "body_circuits": 7,
+  "separate_transfer_circuits": 1,
+  "classical_fixtures": 35,
+  "invalid_contracts": 6,
+  "strict_build": "passed",
+  "links": "69renderedpages; local links/fragments resolve; IDs unique",
+  "actual_formula_display": "IAB screenshots: complex-state counterexample, phase-aware inner-product theorem, squared-overlap analyzer",
+  "regressions": "4.1 and4.6 scoped prose plus complete companions passed",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "unplanned_failures": [],
+  "independent_review": "pending",
+  "reader_trial": "not run"
+}

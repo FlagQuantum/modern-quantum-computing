@@ -1,6 +1,6 @@
 # 4. Composite Systems, Tensor Products, and Qubit Ordering
 
-**Working drafts: sections 4.1–4.6 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working drafts: sections 4.1–4.7 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, which remain pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-composite-systems-tensor-products-and-qubit-ordering-1"></span>
 
@@ -2058,4 +2058,335 @@ Identity, full support, noncontiguous layout, nonunitary linear map and11invalid
 
 Depth **F**: binary-axis correspondence, packing bijection, contraction, inverse-axis restoration and the full indexed local-action identity are derived at finite n, with unitarity treated separately. Nielsen and Chuang, 10th Anniversary Edition, §2.1.7 is the assigned tensor-product background. No fresh inspection of the user-local PDF is claimed; the proofs above specify the convention independently. Actual released FlagQuantum and installed PyTorch contracts are checked in the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.6.json).
 
-This remains an author-verified working draft. Independent mathematical, implementation and reader review are pending. Continue, when drafted, with [4.7 The no-cloning theorem](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-8).
+This remains an author-verified working draft. Independent mathematical, implementation and reader review are pending. Continue with the working draft [4.7 The no-cloning theorem](#sec-single-qubit-states-and-rotations-8).
+
+<span id="sec-single-qubit-states-and-rotations-8"></span>
+
+## 4.7 The no-cloning theorem
+
+Copying a classical bit means reproducing one of two distinguishable values. Cloning an unknown qubit would require something stronger: one fixed operation would have to reproduce its entire pure state, including arbitrary relative amplitudes, on a second system. A gate that copies the values zero and one need not clone their superpositions.
+
+The prerequisites are [4.1](#sec-composite-systems-tensor-products-and-qubit-ordering-1), for product states and inner-product factorization, and [3.4](ch-single-qubit-states-and-rotations.md#sec-single-qubit-states-and-rotations-4), for unitary evolution. We will prove the finite pure-state no-cloning theorem for one fixed unitary with one fixed blank. Numerical examples illustrate a particular failed cloning attempt; they do not prove a universal impossibility by testing finitely many states.
+
+The eight formula–derivation–code–result units are cumulative. Run from the repository root using released FlagQuantum 0.3.1 and PyTorch 2.13.0, CPU complex128, absolute tolerance $10^{-12}$ and relative tolerance zero. The complete companion is [no_cloning.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/no_cloning.py). Full complex amplitudes are checked without phase alignment. The theorem itself explicitly allows physically irrelevant whole-output phases.
+
+<span id="formula-code-4-7-contract"></span>
+
+### 1. State the universal copying contract
+
+**Formula.** Let A and B be two copies of a finite state space of dimension at least two. Fix a normalized blank $|b\rangle_B$, independent of the input. A perfect pure-state cloner would be a **single unitary W**, also independent of the input, satisfying
+
+$$
+W(|\psi\rangle_A\otimes|b\rangle_B)
+=e^{i\alpha_\psi}|\psi\rangle_A\otimes|\psi\rangle_B
+$$
+
+for every normalized $|\psi\rangle$. The output phase $\alpha_\psi$ is allowed to depend on the input. We require two separate copies with joint product state $|\psi\rangle\otimes|\psi\rangle$, not merely matching computational-basis frequencies.
+
+**Derivation and assumptions.** “Unknown” means the operation cannot receive a classical amplitude description and be redesigned for that description. The blank is the same in every run. The input system remains as one output copy; the blank becomes the other. We will use only linearity, unitary inner-product preservation and the tensor-product inner product. This proof does not presume a measurement protocol or a state-tomography algorithm.
+
+For a concrete attempt take the blank $|0\rangle$ and the following fixed two-qubit matrix C in basis `00,01,10,11`:
+
+$$
+C=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{pmatrix}.
+$$
+
+It leaves the first bit unchanged and flips the second when the first is one. Its columns are orthonormal, so C is unitary. Its entries stay fixed across all input cases. Test-state preparation and later analysis gates may depend on a chosen known test vector; they are explicitly outside C.
+
+```python
+import torch
+import flagquantum as fq
+from math import sqrt
+from examples.foundations.tensor_spaces import OPTIONS
+from examples.foundations.no_cloning import (
+    DTYPE, ATOL, COPY, ket, desired, candidate, fidelity, execute)
+assert torch.equal(COPY.mH @ COPY,torch.eye(4,dtype=DTYPE))
+print('fixed candidate: unitary4x4; blank|0>; qubit0 is the input')
+```
+
+```text
+fixed candidate: unitary4x4; blank|0>; qubit0 is the input
+```
+
+<span id="formula-code-4-7-orthogonal"></span>
+
+### 2. Copying an orthogonal basis is possible
+
+**Formula.** The relevant two columns give
+
+$$
+C|00\rangle=|00\rangle,\qquad C|10\rangle=|11\rangle.
+$$
+
+**Derivation.** These are exactly the requested outputs for inputs $|0\rangle$ and $|1\rangle$ with blank zero. The other two columns complete a unitary on the entire four-dimensional space. Thus this is a genuine unitary copying operation on the specified orthogonal basis. It is not yet evidence for copying every state in the two-dimensional span as a product of two identical states.
+
+The direct FlagQuantum code prepares each known basis input, keeps q1 in zero, and applies the same matrix on ordered positions `(0,1)`.
+
+```python
+basis_outputs = []
+for bit in (0,1):
+    circuit = fq.Circuit(2,dtype=DTYPE)
+    if bit:
+        circuit.x(0)
+    circuit.unitary(0,1,unitary=COPY)
+    result = fq.run(circuit,outputs=[fq.probabilities()],options=OPTIONS)
+    assert result.statevector().shape == result.probabilities.shape == (1,4)
+    state = result.statevector()[0]
+    expected = torch.zeros(4,dtype=DTYPE); expected[3*bit] = 1
+    assert torch.allclose(state,expected,rtol=0,atol=ATOL)
+    basis_outputs.append(state)
+print('basis inputs:', '0 ->00; 1 ->11')
+```
+
+```text
+basis inputs: 0 ->00; 1 ->11
+```
+
+<span id="formula-code-4-7-linearity"></span>
+
+### 3. Derive what the same gate does to a superposition
+
+**Formula.** Let $|\psi\rangle=a|0\rangle+b|1\rangle$, with $|a|^2+|b|^2=1$. By linearity,
+
+$$
+C(|\psi\rangle|0\rangle)=a|00\rangle+b|11\rangle.
+$$
+
+But the desired product is
+
+$$
+|\psi\rangle|\psi\rangle
+=a^2|00\rangle+ab|01\rangle+ab|10\rangle+b^2|11\rangle.
+$$
+
+**Derivation.** Expand the input as $a|00\rangle+b|10\rangle$ and apply the two known basis images. Expand the desired output by the bilinear tensor-product rule of 4.1. Its coefficients multiply; they do not undergo complex conjugation. Whenever ab is nonzero, the desired product has nonzero `01` and `10` amplitudes, while C's output has zero in both positions. No overall phase can repair that mismatch.
+
+For the plus state, a=b=1/sqrt(2). C produces $(|00\rangle+|11\rangle)/\sqrt2$, whereas two independent plus states have all four amplitudes equal to 1/2. The result is a joint correlated state, not a pair of plus states.
+
+```python
+plus = torch.tensor([1,1],dtype=DTYPE)/sqrt(2)
+actual_plus, p_plus = execute(plus)
+target_plus = desired(plus)
+assert torch.allclose(actual_plus,candidate(plus),rtol=0,atol=ATOL)
+assert not torch.allclose(actual_plus,target_plus,rtol=0,atol=ATOL)
+print('fixed-copy probabilities:', [round(v,6) for v in p_plus.tolist()])
+print('desired probabilities:', [round(v,6) for v in target_plus.abs().square().tolist()])
+```
+
+```text
+fixed-copy probabilities: [0.5, 0.0, 0.0, 0.5]
+desired probabilities: [0.25, 0.25, 0.25, 0.25]
+```
+
+<span id="formula-code-4-7-complex"></span>
+
+### 4. Keep complex amplitudes in the test
+
+For $a=1/\sqrt2$ and $b=i/\sqrt2$, the two outputs are
+
+$$
+C(|\psi\rangle|0\rangle)=\frac{|00\rangle+i|11\rangle}{\sqrt2},\qquad
+|\psi\rangle|\psi\rangle=\frac{|00\rangle+i|01\rangle+i|10\rangle-|11\rangle}{2}.
+$$
+
+The minus sign in the target is $i^2=-1$. Replacing amplitudes by magnitudes, or conjugating one factor in the tensor product, would lose this information. For normalized joint vectors u and v, use the squared overlap $F=|\langle v|u\rangle|^2$ as a diagnostic: identical rays have F=1, while F<1 certifies that this output is not the desired ray. The inner product uses conjugation in its first argument, even though the tensor-product expansion above does not.
+
+```python
+plus_i = torch.tensor([1,1j],dtype=DTYPE)/sqrt(2)
+actual_i, _ = execute(plus_i)
+target_i = torch.tensor([1,1j,1j,-1],dtype=DTYPE)/2
+assert torch.allclose(actual_i,candidate(plus_i),rtol=0,atol=ATOL)
+assert torch.allclose(desired(plus_i),target_i,rtol=0,atol=ATOL)
+print('plus-i squared overlap:', round(fidelity(actual_i,target_i),6))
+```
+
+```text
+plus-i squared overlap: 0.25
+```
+
+<span id="formula-code-4-7-proof"></span>
+
+### 5. Prove the impossibility for every fixed unitary
+
+**Theorem.** No one unitary W with a fixed normalized blank can perfectly clone all normalized pure states in a space of dimension at least two, even allowing an input-dependent whole-output phase.
+
+**Proof.** Suppose W clones two normalized inputs $|\psi\rangle$ and $|\phi\rangle$. Set $s=\langle\psi|\phi\rangle$. The inner product of their two initial joint states is
+
+$$
+\langle\psi|\phi\rangle\langle b|b\rangle=s.
+$$
+
+Unitary evolution preserves this inner product. Substituting the two assumed cloned outputs and factorizing the tensor-product inner product yields
+
+$$
+s=e^{i(\alpha_\phi-\alpha_\psi)}
+\langle\psi|\phi\rangle\langle\psi|\phi\rangle
+=e^{i(\alpha_\phi-\alpha_\psi)}s^2.
+$$
+
+Taking absolute values removes both arbitrary output phases:
+
+$$
+|s|=|s|^2,\qquad |s|(1-|s|)=0.
+$$
+
+Therefore $|s|=0$ or $|s|=1$. The first case means the inputs are orthogonal. The second means they are the same physical ray: to verify this directly, when |s|=1 compute
+
+$$
+\big\|\,|\phi\rangle-s|\psi\rangle\,\big\|^2=1-|s|^2=0.
+$$
+
+Thus $|\phi\rangle=s|\psi\rangle$, with a unit-modulus phase. Distinct nonorthogonal rays have $0<|s|<1$ and cannot both be cloned by W. A space of dimension at least two contains such a pair, for example $|0\rangle$ and $(|0\rangle+|1\rangle)/\sqrt2$. This contradicts the universal contract and proves the theorem.
+
+The argument uses no property of the particular matrix C. Changing its entries cannot avoid inner-product preservation. If output phases had been disallowed, the stronger representative equation would be $s=s^2$; the modulus argument is the appropriate statement about physical pure states.
+
+**Code correspondence.** For zero and plus, the input overlap magnitude is $1/\sqrt2$ while that of their desired copies is 1/2. Their actual outputs under C retain the original overlap. These finite numbers illustrate the contradiction for one pair; the preceding proof quantifies over every candidate W.
+
+```python
+zero = torch.tensor([1,0],dtype=DTYPE)
+s = abs(torch.vdot(zero,plus).item())
+actual_overlap = abs(torch.vdot(basis_outputs[0],actual_plus).item())
+perfect_overlap = abs(torch.vdot(desired(zero),desired(plus)).item())
+assert abs(actual_overlap-s) < ATOL
+assert abs(perfect_overlap-s*s) < ATOL
+assert abs(s-perfect_overlap) > .2
+print(f'input/actual overlap: {s:.9f}; desired-copy overlap: {perfect_overlap:.9f}')
+```
+
+```text
+input/actual overlap: 0.707106781; desired-copy overlap: 0.500000000
+```
+
+<span id="formula-code-4-7-analyzer"></span>
+
+### 6. Translate the mismatch into a measurement prediction
+
+**Formula.** For a chosen known test vector v, let $R_v$ be the preparation unitary with first column v. Apply $R_v^\dagger$ to each output qubit before computational readout. For a normalized joint state y,
+
+$$
+\Pr(00\mid y)=\left|\langle00|
+(R_v^\dagger\otimes R_v^\dagger)y\right|^2
+=\left|\langle v|\langle v|y\right|^2.
+$$
+
+**Derivation.** Since $R_v|0\rangle=|v\rangle$, taking adjoints gives $\langle0|R_v^\dagger=\langle v|$. Apply this identity to both factors. Thus the zero-zero probability equals the squared overlap with the desired product. On two true plus states, the plus-basis analyzer returns `00` with probability one. On C's plus-input output it returns `00` with probability one-half. This is a basis-specific operational distinction, not just a numerical amplitude comparison.
+
+The helper's `known-reference` branch prepares each qubit from the supplied classical vector v. It deliberately uses state-dependent preparation on q1, rather than the fixed C. The two paths then use the same known analyzer. That reference is allowed precisely because the test designer knows v; it is not an implementation of a universal cloner for unknown input.
+
+```python
+_, observed = execute(plus,analyze=True)
+_, ideal_observed = execute(plus,'known-reference',analyze=True)
+assert abs(observed[0].item()-fidelity(actual_plus,target_plus)) < ATOL
+assert abs(ideal_observed[0].item()-1) < ATOL
+print('chosen plus analyzer P00:', round(observed[0].item(),6))
+print('known-reference P00:', round(ideal_observed[0].item(),6))
+```
+
+```text
+chosen plus analyzer P00: 0.5
+known-reference P00: 1.0
+```
+
+These are exact ideal simulator probabilities. No finite-shot counts or physical device measurements are reported, and no analyzer for an arbitrary unknown state is assumed to be available.
+
+<span id="formula-code-4-7-known-state"></span>
+
+### 7. Explain what the theorem allows
+
+An input from the declared orthogonal zero/one basis can be copied by C, as actually checked. A known amplitude description can be used to prepare two independent states. Both statements coexist with no-cloning: neither satisfies the universal contract on one arbitrary unknown input.
+
+For example, for known v=(0.6,0.8i), two separately constructed preparation gates produce the product with amplitudes `(0.36,0.48i,0.48i,-0.64)`. That ability does not turn a fixed copying gate into a cloner. Merely matching one measurement distribution also does not establish equality of pure states: different relative phases can agree in the computational basis, as Chapter 3 demonstrated.
+
+```python
+known = torch.tensor([.6,.8j],dtype=DTYPE)
+reference, _ = execute(known,'known-reference')
+explicit = torch.tensor([.36,.48j,.48j,-.64],dtype=DTYPE)
+assert torch.allclose(reference,explicit,rtol=0,atol=ATOL)
+print('known complex product: all four amplitudes verified')
+```
+
+```text
+known complex product: all four amplitudes verified
+```
+
+The present proof has the fixed-unitary, fixed-blank, pure-state scope stated in unit 1. It does not derive optimal approximate cloning, heralded probabilistic protocols, general quantum-channel impossibility results or mixed-state no-broadcasting. Those require additional definitions and results. No-cloning also does not say that all state information is inaccessible or that all classical data cannot be copied.
+
+<span id="formula-code-4-7-validation"></span>
+
+### 8. Keep numerical contracts and theorem claims separate
+
+The example accepts a finite normalized CPU complex128 two-coordinate state. A batch axis, lower precision, nonfinite values and automatic normalization are outside its contract. The mode must explicitly select the fixed gate attempt or the known-state reference. Unknown modes must not silently trigger a state-dependent “repair.”
+
+```python
+invalid = [lambda: ket(torch.ones(2,dtype=DTYPE)),
+           lambda: ket(zero[None,:]),
+           lambda: ket(zero.to(torch.complex64)),
+           lambda: execute(zero,'repair')]
+rejected = 0
+for action in invalid:
+    try:
+        action()
+    except ValueError:
+        rejected += 1
+assert rejected == 4
+print('unnormalized, batched, wrong precision and ambiguous mode:', rejected, 'rejected')
+```
+
+```text
+unnormalized, batched, wrong precision and ambiguous mode: 4 rejected
+```
+
+Run the full example and actual-body checker:
+
+```bash
+python examples/foundations/no_cloning.py
+python scripts/check_no_cloning_prose.py
+```
+
+The full program executes **24 circuits**: six inputs (`zero,one,plus,minus,plus-i,complex`), each on four paths—fixed C, known-state product reference, analyzed C output, and analyzed known-state reference. Hand four-amplitude expansions check both unanalysed states. Independent scalar sums check the analyzer's complex output. Thirty-five additional classical amplitude fixtures check the bilinear expansion and fixed-C formula, and six invalid contracts are rejected before dependent quantum execution. The eight body fragments execute seven circuits in a separate invocation. A new complex-state transfer is recorded separately.
+
+Expected output of the complete program:
+
+```text
+One fixed unitary, blank|0>; known-reference preparation is state-specific, not a cloner.
+zero: fixed-copy fidelity=1.000000; analyzer P00=1.000000; known-reference P00=1.000000.
+one: fixed-copy fidelity=1.000000; analyzer P00=1.000000; known-reference P00=1.000000.
+plus: fixed-copy fidelity=0.500000; analyzer P00=0.500000; known-reference P00=1.000000.
+minus: fixed-copy fidelity=0.000000; analyzer P00=0.000000; known-reference P00=1.000000.
+plus-i: fixed-copy fidelity=0.250000; analyzer P00=0.250000; known-reference P00=1.000000.
+complex: fixed-copy fidelity=0.308800; analyzer P00=0.308800; known-reference P00=1.000000.
+Nonorthogonal pair: input overlap=0.707106781; perfect-copy overlap=0.500000000; incompatible.
+35 classical amplitude fixtures and6invalid contracts checked; identical rays allowed, universal cloning excluded.
+24 actual CPU complex128 circuits; atol=1e-12,rtol=0; no phase alignment, shots or hardware.
+```
+
+The zero fidelity for the minus-state attempt is useful: the fixed gate does not even approximate every superposition equally. It is not a bound on the best approximate cloner. Passing these fixtures would never establish universal cloning, and their failure alone would not rule out all possible gates; the inner-product theorem supplies that conclusion.
+
+### Understanding checks and transfer exercises
+
+**4.7-A — New complex input.** Let $a=\sqrt{4/5}$ and $b=e^{i\pi/3}\sqrt{1/5}$. Write the four amplitudes of C's output and of the desired product. Which missing amplitudes already certify failure up to global phase?
+
+**4.7-B — Change the blank.** Could choosing a fixed normalized blank other than zero evade the proof? Identify exactly where the blank enters the inner-product calculation. What changes if a state-dependent blank already contains a copy of the input?
+
+**4.7-C — Identical rays.** Take $|\phi\rangle=i|\psi\rangle$. Explain why the modulus argument permits the pair even though a phase-free representative equation $s=s^2$ would fail. State the difference between vector equality and physical-state cloning.
+
+**4.7-D — Interpret a claim.** A program achieves fidelity one for zero and one, and prepares two plus states using the known plus amplitudes. Does this refute no-cloning? What would the actual universal contract require, and why can finite test success not establish it?
+
+<details markdown="1">
+<summary>Answers and reasoning</summary>
+
+**A.** C gives `(a,0,0,b)`. The desired product is $(4/5,(2/5)e^{i\pi/3},(2/5)e^{i\pi/3},(1/5)e^{2i\pi/3})$. The two middle amplitudes are nonzero in the target and zero in the actual output, so a phase cannot reconcile them. The separate author transfer executes this new complex input, checks all four amplitudes/probabilities against the explicit reference, and verifies squared overlap less than one.
+
+**B.** No. For any fixed normalized blank, its contribution is $\langle b|b\rangle=1$ for both inputs. The contradiction therefore remains. If the blank depends on the unknown input, the universal fixed-blank assumption is broken; supplying it as a copy has already supplied the resource the task sought to create.
+
+**C.** Here s=i and |s|=1; the two inputs describe one ray. A linear operation acts on a phased representative once, while the formal tensor square carries the phase twice. The allowed input-dependent output phase reconciles those representative choices. Physical cloning asks for the desired product ray, so the proof must use the modulus condition rather than excluding two representatives of the same state.
+
+**D.** No. The first result concerns a permitted orthogonal basis. The second redesigns the preparation using a classical state description. Universal cloning would require the same operation and same blank for every unknown input, preserving the desired product ray. Finite tests can find counterexamples to a proposed gate; only a general argument establishes impossibility for every gate or proves a property on the whole stated domain.
+
+</details>
+
+### Sources, depth and next step
+
+Depth **F**: the two-input inner-product proof includes output phase freedom, the identical-ray and orthogonal boundaries, and a contradiction from an explicit nonorthogonal pair. The assigned background locator is Nielsen and Chuang, 10th Anniversary Edition, §1.3.5. No fresh inspection of the user-local PDF is claimed. A historical primary reference is W. K. Wootters and W. H. Zurek, [“A single quantum cannot be cloned,” Nature 299, 802–803 (1982)](https://doi.org/10.1038/299802a0); its bibliographic record was checked, without claiming a new full-paper review. The derivation and teaching examples above are original.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/4.7.json) keeps author execution separate from pending independent mathematical, implementation and reader review. This remains a working draft. Continue, when drafted, with [4.8 Cross-framework convention translation](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-7).

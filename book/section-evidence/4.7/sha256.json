@@ -1,0 +1,18 @@
+{
+  "book/section-evidence/4.7/assembly.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/4.7/assembly.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/4.7/body-assembly.stdout.txt": "5d4e495a8eb5ed6507cf4b2b0c9e2dda17177ee07596ffa7cf9d54a4e48dc15f",
+  "book/section-evidence/4.7/complete.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/4.7/complete.stdout.txt": "0f7012d329a27b7b6b0fc17243043c2d6bbe3c82ebb3446687bd10282b06ff55",
+  "book/section-evidence/4.7/prose.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/4.7/prose.stdout.txt": "9ff4630ce504b5e002942a9c924486019f0395d4530df4bb2755ae2b2d581366",
+  "book/section-evidence/4.7/regression41.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/4.7/regression41.stdout.txt": "ebe32f5fedfc64e850bd43d4cafd3ffd9c47aa61be3bb6fa915864c6ebcbe746",
+  "book/section-evidence/4.7/regression46.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/4.7/regression46.stdout.txt": "5975b698526a2b573b8aedf5f7fb3b99be4dabcee6d8cad275a2009608ac3d8d",
+  "book/section-evidence/4.7/transfer.py": "1d7e5d05db45432359f7247d55bee330672ec2f16181115732c6018e1b23581d",
+  "book/section-evidence/4.7/transfer.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "book/section-evidence/4.7/transfer.stdout.txt": "196a462ac863921b1213a0c2c6b6a0c4ecc7a15850512eb4ddf61cf21eee7635",
+  "book/section-evidence/4.7/unitary-api-source.txt": "96337b06d545c524e778dd66a635d7a78266cb3092e73138fd7692ce6dd7dfc8",
+  "book/section-evidence/4.7/validation.json": "8bf07f6887cc11b166c84cc85c8beb279f19f1b22897495a075afe9d932609d1"
+}

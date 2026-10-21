@@ -1,0 +1,18 @@
+8cumulative fragments,7actualcircuits; exact outputs captured.
+fixed candidate: unitary4x4; blank|0>; qubit0 is the input
+
+basis inputs: 0 ->00; 1 ->11
+
+fixed-copy probabilities: [0.5, 0.0, 0.0, 0.5]
+desired probabilities: [0.25, 0.25, 0.25, 0.25]
+
+plus-i squared overlap: 0.25
+
+input/actual overlap: 0.707106781; desired-copy overlap: 0.500000000
+
+chosen plus analyzer P00: 0.5
+known-reference P00: 1.0
+
+known complex product: all four amplitudes verified
+
+unnormalized, batched, wrong precision and ambiguous mode: 4 rejected
