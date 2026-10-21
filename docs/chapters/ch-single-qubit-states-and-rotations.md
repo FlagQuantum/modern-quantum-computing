@@ -1,6 +1,6 @@
 # 3. Single-Qubit States and Rotations
 
-**Working draft: sections 3.1–3.6 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, all pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
+**Working draft: sections 3.1–3.7 · Writing Baseline 1.0 · October 21, 2026.** Author execution is recorded separately from independent mathematical, implementation and reader review, all pending. This is not an accepted chapter. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors.
 
 <span id="sec-single-qubit-states-and-rotations-1"></span>
 
@@ -1194,4 +1194,203 @@ The unitary-input test has absolute tolerance $10^{-12}$; reconstruction uses $5
 
 The assigned source is [NC:4.2](../references/proof-sources.md#source-nc-4-2), Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), **printed pp.175–176**, especially Theorem 4.1 and Eqs.(4.11)–(4.12). Those pages were consulted. The expanded column argument, explicit endpoint choices, numerical extraction convention, original exercises and verification program here supply the intermediate reasoning and executable checks for this selected factorization.
 
-Depth **F**: derive same-axis composition, a concrete noncommuting order, phase-removed unitary form, the Z–Y–Z matrix and all parameter cases. This is not a unique-angle theorem, a hardware-optimal synthesis or an arbitrary controlled-gate implementation. See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.6.json) for author execution and pending independent reviews. Next: [3.7 Physical phase versus numerical equality](../section-plans/01-foundations.md#sec-single-qubit-states-and-rotations-7).
+Depth **F**: derive same-axis composition, a concrete noncommuting order, phase-removed unitary form, the Z–Y–Z matrix and all parameter cases. This is not a unique-angle theorem, a hardware-optimal synthesis or an arbitrary controlled-gate implementation. See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.6.json) for author execution and pending independent reviews. Continue with the working draft [3.7 Physical phase versus numerical equality](#sec-single-qubit-states-and-rotations-7).
+
+<span id="sec-single-qubit-states-and-rotations-7"></span>
+
+## 3.7 Physical phase versus numerical equality
+
+The same arrays can require different comparisons depending on the question. Are we checking an exact gate convention, the ray of one output state, or the behavior of a gate inside a larger computation? The phrase “equal up to global phase” needs a stated scope. A phase multiplying an entire state is global; a phase multiplying only one coherent branch is relative to the other branches.
+
+The prerequisites are [3.1](#sec-single-qubit-states-and-rotations-1), for state-ray equivalence, [3.6](#sec-single-qubit-states-and-rotations-6), for phase-tracked gates, and [2.8](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-8), for numerical comparison contracts. We will prove the controlled-context limitation using a small four-coordinate example whose assumptions are introduced locally, before the tensor-product development in Chapter 4.
+
+### Choose the object and scope of comparison
+
+| Question | Required comparison | What a weaker test could miss |
+|---|---|---|
+| Does the implementation return the stated matrix or vector convention? | Direct coordinates with declared metadata and tolerances | A phase factor omitted from the specification |
+| Do two normalized whole-state vectors represent the same pure-state ray? | One common phase aligns all amplitudes | A harmless common phase would fail raw array equality |
+| Do two unitary matrices have the same isolated action on every input ray? | One common phase aligns the entire operator | Separately aligning each column can hide a relative phase between columns |
+| Do two experiments have the same distribution in one fixed setting? | Compare those probabilities | Different states or operators may share that distribution |
+| Can a gate be replaced inside a controlled operation? | Compare the resulting full operation and its branch phases | A target-gate phase can become relative in the larger state |
+
+These are different contracts. The fixed-setting comparison is useful for its stated task, but cannot certify any of the stronger claims above.
+
+For normalized whole-state vectors $a,b$, let $c=\langle a|b\rangle$. Section 3.1 established that the minimum distance after common-phase alignment is
+
+$$
+\min_{|z|=1}\|a-zb\|^2=2-2|c|.
+$$
+
+If $c\ne0$, use $z=c^*/|c|$; if $c=0$, every phase gives distance $\sqrt2$. The executable evaluates the aligned residual directly rather than subtracting two nearly equal numbers near equivalence. For $b=ia$ the raw distance is $\sqrt2$, but the aligned distance is zero. For the positive-x and negative-x states, computational-basis probabilities agree while the aligned distance remains $\sqrt2$.
+
+The scope is the whole vector. For any subsequent fixed linear operation $W$, $W(ua)=uWa$ for a common scalar $u$. Thus a common phase remains common under the same linear continuation, and squared-modulus probabilities are unchanged. This does not justify assigning separate phases to different pieces of the vector.
+
+### Operators require one phase, not a phase per column
+
+Define isolated operator equivalence by $V=uU$ for a single scalar $|u|=1$. Then $V|\psi\rangle=uU|\psi\rangle$ for every input, so all output rays agree.
+
+The converse also holds for unitary operators if the agreement is required for **every** input ray. To see why, compare each basis input: write $Ve_j=u_jUe_j$. Applying the assumption to $(e_j+e_k)/\sqrt2$ then requires
+
+$$
+u_jUe_j+u_kUe_k=u_{jk}(Ue_j+Ue_k).
+$$
+
+The two output columns are linearly independent, so their coefficients must agree: $u_j=u_k=u_{jk}$. Repeating over all pairs forces one common phase. Testing only basis-input rays omits exactly this superposition constraint.
+
+For example, $I$ and $Z=\operatorname{diag}(1,-1)$ give the same ray on each basis input. But they send an equal superposition to positive-x and negative-x states. Allowing a different phase alignment for each column would incorrectly certify the two operators as equivalent.
+
+A complete numerical comparison can flatten each matrix into one complex vector, using a single phase. For $d$-dimensional unitary matrices, define
+
+$$
+c=\sum_{j,k}U_{jk}^*V_{jk},\qquad
+\|M\|_F^2=\sum_{j,k}|M_{jk}|^2.
+$$
+
+The second expression defines the Frobenius norm. Each unitary has squared Frobenius norm $d$, since each of its $d$ columns has unit norm. Expanding the difference gives
+
+$$
+\|U-zV\|_F^2=2d-2\operatorname{Re}(zc),\qquad
+\min_{|z|=1}\|U-zV\|_F^2=2d-2|c|.
+$$
+
+The same aligning phase applies, with the zero-overlap convention above. By Cauchy–Schwarz on the flattened matrices, equality $|c|=d$ holds exactly when they are scalar multiples; their unitary norms force that scalar to have modulus one. This is an operator-wide criterion, not a set of independently aligned column tests. For $I$ and $Z$ the minimum residual is $2$, even though each basis-column ray residual is zero.
+
+### A local four-coordinate bridge for controlled operations
+
+For this bounded preview, assume a pure two-qubit description with four orthonormal computational labels, ordered as
+
+$$
+|00\rangle,\ |01\rangle,\ |10\rangle,\ |11\rangle.
+$$
+
+The first digit labels a **control qubit** $c$ and the second a **target qubit** $t$; the array index is $2c+t$. A normalized four-component vector assigns each label the squared modulus of its amplitude as its measurement probability. This finite-basis probability assumption is stated here explicitly. Chapter 4 will develop why composite systems use such spaces and how their operators are assembled; no tensor-product identity is required for the following block-matrix argument.
+
+Group a vector into two two-component blocks $(p,q)^T$, for control 0 and control 1. For a target unitary $U$, define its controlled extension by
+
+$$
+C(U)=\begin{pmatrix}I&0\\0&U\end{pmatrix},\qquad
+C(U)\begin{pmatrix}p\\q\end{pmatrix}
+=\begin{pmatrix}p\\Uq\end{pmatrix}.
+$$
+
+Here each block is two-by-two. The control-0 branch is left alone; the target operation acts only in the control-1 branch. The norm is preserved because $\|p\|^2+\|Uq\|^2=\|p\|^2+\|q\|^2$.
+
+Now suppose $V=e^{i\phi}U$. Its controlled extension is
+
+$$
+C(V)=\begin{pmatrix}I&0\\0&e^{i\phi}U\end{pmatrix}.
+$$
+
+This is generally **not** a common-phase multiple of $C(U)$. If $C(V)=zC(U)$, their upper blocks require $I=zI$, so $z=1$. The lower blocks then require $e^{i\phi}U=U$; multiplying by $U^\dagger$ forces $e^{i\phi}=1$. Unless $e^{i\phi}=1$, the two full operations are different even up to a common phase.
+
+### Turn the branch phase into a measured difference
+
+Take $U=I$ and prepare the four-coordinate state $(1,0,1,0)^T/\sqrt2$, with control in an equal superposition and target label 0. After $C(e^{i\phi}I)$ the state is
+
+$$
+\frac1{\sqrt2}\begin{pmatrix}1\\0\\e^{i\phi}\\0\end{pmatrix}.
+$$
+
+Reading the computational basis immediately gives the same probabilities for all $\phi$. To reveal the branch phase, apply a Hadamard to the control. In this declared ordering its action is
+
+$$
+H_c\begin{pmatrix}p\\q\end{pmatrix}
+=\frac1{\sqrt2}\begin{pmatrix}p+q\\p-q\end{pmatrix}.
+$$
+
+To verify normalization locally, expand both squared norms: the cross terms $+2\operatorname{Re}\langle p|q\rangle$ and $-2\operatorname{Re}\langle p|q\rangle$ cancel, giving $(\|p+q\|^2+\|p-q\|^2)/2=\|p\|^2+\|q\|^2$. The final vector is $((1+e^{i\phi})/2,0,(1-e^{i\phi})/2,0)^T$. Therefore, summing the probabilities of the two labels with the indicated control digit,
+
+$$
+P(c=0)=\frac{1+\cos\phi}{2},\qquad
+P(c=1)=\frac{1-\cos\phi}{2}.
+$$
+
+At $\phi=0$ the control outcome is 0 with probability one; at $\phi=\pi$ it is 1 with probability one. Thus $I$ and $-I$, equivalent on an isolated target ray, have controlled extensions with observably different behavior. Their phase is common within the target's control-1 branch, but relative to the unchanged control-0 branch.
+
+This also explains how to preserve the phase from a decomposition. If 3.6 supplies $U=e^{i\alpha}V$, define the control phase matrix $D_c(\alpha)=\operatorname{diag}(I,e^{i\alpha}I)$. Block multiplication gives
+
+$$
+C(U)=D_c(\alpha)C(V).
+$$
+
+Restoring the target's scalar phase as a phase on the control branch repairs the controlled operation. Multiplying the entire four-component output by a common scalar would not perform that repair.
+
+### Runnable comparison contracts and circuit verification
+
+Run [phase_contracts.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/phase_contracts.py) in the [pinned example environment](https://github.com/FlagQuantum/modern-quantum-computing#run-the-examples):
+
+```bash
+python -m pip install -r requirements-examples.txt
+python examples/foundations/phase_contracts.py
+```
+
+| Mathematical obligation | Implementation and evidence |
+|---|---|
+| Whole-state ray residual | Validate normalized shape `(2,)` or `(4,)`; align once using the conjugated overlap |
+| One operator-wide phase | Validate unitary shape `(2,2)` or `(4,4)`; align flattened matrices once |
+| Comparison domain | Require matching shape, CPU complex128, finite dense entries and the declared norm/unitarity contract |
+| Controlled extension | Build a four-by-four identity and replace its lower-right block with the target matrix |
+| Declared coordinate order | Actual basis-input runs check all four columns against the explicit controlled matrix |
+| Interference readout | `h(0)`, then `unitary(0, 1, unitary=matrix)`, then `h(0)`; sum the first versus last two probabilities |
+| Branch-phase repair | After the controlled matrix, execute native `phase(0, theta=alpha)` on the control |
+
+The actual release is FlagQuantum 0.3.1 with strict CPU PyTorch complex128 statevector options; fallback and approximation are disabled. The generic-unitary API is used with an explicit four-by-four matrix, rather than assuming an unverified controlled-gate constructor. Output statevectors and probabilities must have batch shape `(1,4)`. The ordering was also checked directly: `x(0)` places a basis amplitude at index 2, while `x(1)` places it at index 1. These conventions are specific evidence for this example; Chapter 4 will develop ordering systematically.
+
+Expected output:
+
+```text
+State comparison: raw global-i distance=1.414213562, aligned=0; relative-sign distance=1.414213562.
+I versus Z: each basis-column ray matches, but common-phase operator residual=2.000000000.
+controlled phase phi/pi=0.0: P(control=0)=1.000000000, P(control=1)=0.000000000
+controlled phase phi/pi=0.5: P(control=0)=0.500000000, P(control=1)=0.500000000
+controlled phase phi/pi=1.0: P(control=0)=0.000000000, P(control=1)=1.000000000
+Basis order verified on 4 columns; native control-phase correction recovers the generic controlled target.
+Zero-overlap boundary and 8 invalid-input cases checked; atol=1e-12, no automatic normalization.
+Controlled matrices use declared4-coordinate ordering; no shots or hardware.
+```
+
+The nontrivial repaired target uses the Hadamard matrix $U=H$ and $V=-iH$, so $\alpha=\pi/2$. The program compares the repaired and direct operations on all four basis columns and on the superposed-control input. Without the repair, that superposed output fails a whole-state ray comparison. This tests both the matrix identity and actual released circuit execution.
+
+Absolute tolerance is $10^{-12}$ with zero relative tolerance for the bounded state/operator tests. Norm and unitarity validation use the same declared absolute budget; admitting floating-point roundoff is not a claim of exact normalization. Invalid shapes, complex64, zero/nonunit states, nonunitary matrices, NaN and infinity are rejected rather than silently normalized or projected. The ideal probabilities are not sampled counts or hardware measurements, and these checks do not replace the exact proofs or independent review.
+
+### Understanding checks and transfer problems
+
+**3.7-A — Choose the contract.** A statevector differs from a reference by a common factor $i$. Which comparison should pass if the task is a whole-state ray check? Which should fail if the task requires the stated coordinate representative? Why is the norm check still needed first?
+
+**3.7-B — Repair columnwise testing.** A test aligns the two columns of $I$ and $Z$ separately and declares the operators equivalent. Identify the missing constraint and give an input that exposes it.
+
+**3.7-C — Restore a decomposition phase.** If $U=e^{i\alpha}V$, derive the full block operation that turns $C(V)$ into $C(U)$. Explain why multiplying the entire output state by $e^{i\alpha}$ cannot substitute for it.
+
+**3.7-D — Identify what the counterexample establishes.** The two controlled experiments have identical probabilities before the final control Hadamard and different probabilities afterward. Does this contradict whole-state global-phase equivalence? State which amplitudes acquired the phase.
+
+### Answers
+
+**A.** The single common-phase ray residual should vanish; direct representative equality should fail. A wrong norm is a different error: phase multiplication has modulus one and cannot repair it. Renormalizing automatically would hide a failed input or execution contract.
+
+**B.** An operator replacement requires one common phase for all columns and superpositions. $I$ and $Z$ use phases $1$ and $-1$ on their two basis columns. The input $(1,1)^T/\sqrt2$ becomes positive-x versus negative-x, two different rays.
+
+**C.** Multiply on the control branch by $D_c(\alpha)=\operatorname{diag}(I,e^{i\alpha}I)$: $D_c(\alpha)C(V)=\operatorname{diag}(I,e^{i\alpha}V)=C(U)$. A common multiplier on the whole output would also multiply the control-0 amplitudes, which this correction leaves unchanged.
+
+**D.** There is no contradiction: the full state acquired phase only on the control-1 block. It is relative between two nonzero branches, not a common phase on the entire vector. The final Hadamard coherently recombines those branches, making the difference visible.
+
+### Chapter 3 synthesis: from a factorization to a safe replacement
+
+A proposed implementation of the Hadamard matrix calls `rz(pi)` and then `ry(pi/2)`, giving $V=R_y(\pi/2)R_z(\pi)$. Derive its relation to $H$, decide whether it is a valid isolated-ray replacement, and specify the correction if its controlled extension is used. State what numerical evidence would test all three claims.
+
+**Answer.** Matrix multiplication gives
+
+$$
+V=\frac1{\sqrt2}\begin{pmatrix}-i&-i\\-i&i\end{pmatrix}=-iH,
+\qquad H=e^{i\pi/2}V.
+$$
+
+It is a valid isolated-ray replacement, but not the same stated matrix. The controlled version requires $D_c(\pi/2)C(V)=C(H)$. Test direct representative matrices with the phase included; test isolated ray equivalence with one common phase; then test the full controlled matrices and a superposed-control readout. A probability-only basis-input test would not cover the replacement's phase scope. The executable above verifies the controlled correction and all four columns.
+
+All seven Chapter 3 sections now have working drafts and author checks. Independent mathematical, implementation and reader review, and formal chapter acceptance, remain pending.
+
+### Sources, scope, and next step
+
+Assigned sources: Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), [NC:2.2.7](../references/proof-sources.md#source-nc-2-2-7), **printed p.93**, for global and relative phase, and [NC:4.3](../references/proof-sources.md#source-nc-4-3), especially **printed p.178**, for controlled-$U$ acting conditionally on the control label. The surrounding section opening on p.177 was also consulted. The block proof, comparison contracts, explicit counterexample and chapter synthesis here are original exposition.
+
+Depth **F**: prove isolated-ray/operator equivalence criteria and show explicitly how a target's global phase becomes a relative phase in a controlled context. The four-coordinate model is a stated local bridge, not an assumed mastery of tensor products. General measurements, tensor-product conventions and controlled-gate synthesis remain at their scheduled homes. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/3.7.json) separates author checks from pending independent reviews. Next: [4.1 Tensor-product spaces and basis states](../section-plans/01-foundations.md#sec-composite-systems-tensor-products-and-qubit-ordering-1).

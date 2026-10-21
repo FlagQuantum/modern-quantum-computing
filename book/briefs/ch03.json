@@ -23,7 +23,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-2"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.6 have working drafts; next production assignment3.7. Independent acceptance pending."
+      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
     },
     {
       "ref": "3.2",
@@ -46,7 +46,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.6 have working drafts; next production assignment3.7. Independent acceptance pending."
+      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
     },
     {
       "ref": "3.3",
@@ -70,7 +70,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-3"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.6 have working drafts; next production assignment3.7. Independent acceptance pending."
+      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
     },
     {
       "ref": "3.4",
@@ -93,7 +93,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-6"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.6 have working drafts; next production assignment3.7. Independent acceptance pending."
+      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
     },
     {
       "ref": "3.5",
@@ -117,7 +117,7 @@
         "sec-single-qubit-states-and-rotations-4"
       ],
       "status": "draft",
-      "next_transition": "Sections3.1\u20133.6 have working drafts; next production assignment3.7. Independent acceptance pending."
+      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
     },
     {
       "ref": "3.6",
@@ -139,7 +139,32 @@
         "sec-single-qubit-states-and-rotations-5"
       ],
       "status": "draft",
-      "next_transition": "3.7 Physical phase versus numerical equality."
+      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
+    },
+    {
+      "ref": "3.7",
+      "section_id": "sec-single-qubit-states-and-rotations-7",
+      "title": "Physical phase versus numerical equality",
+      "question": "When is phase alignment the correct comparison, and why can a harmless isolated global phase change a controlled operation?",
+      "entry": "Exact3.1 ray equivalence,3.6 phase-tracked operators and2.8 finite comparison contracts. Supply a local four-coordinate controlled-operation bridge before Chapter4.",
+      "exit": "Distinguish raw state, ray, common-phase operator and fixed-setting probability equality; prove controlled-phase counterexample and derive explicit branch-phase correction.",
+      "worked_case": "I and -I agree up to global phase on an isolated qubit, but controlled versions change final control readout from0to1; independent per-column alignment falsely equates I and Z.",
+      "boundary": "F depth; four-dimensional pure-state/Born assumption stated locally, coordinates explicitly ordered. No undeclared tensor-product algebra, measurement updates, hardware or independent-review claim.",
+      "code_plan": "Strict CPU complex128 state/operator validators, scalar-overlap reference, released FlagQuantum0.3.1 generic4x4 controlled matrices plus native control Hadamards/phase; basis-order witnesses.",
+      "independent_check": "Raw/global/relative state witnesses, I/Z per-column false positive, phase-conditioned control fringe,4basis columns, generic controlled U versus V and native phase correction, invalid shape/dtype/finite/norm/unitary cases.",
+      "transfer_task": "Choose the comparison contract, diagnose columnwise phases, derive branch-phase compensation, chapter-closing H decomposition integration; full answers.",
+      "source_locators": [
+        "NC:2.2.7",
+        "NC:4.3"
+      ],
+      "depth": "F",
+      "requires": [
+        "sec-single-qubit-states-and-rotations-1",
+        "sec-single-qubit-states-and-rotations-6",
+        "sec-complex-vectors-operators-and-numerical-reasoning-8"
+      ],
+      "status": "draft",
+      "next_transition": "Chapter3 has seven working drafts and synthesis; independent acceptance pending. Next draft4.1 Tensor-product spaces and basis states."
     }
   ]
 }

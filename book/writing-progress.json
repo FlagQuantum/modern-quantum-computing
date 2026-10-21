@@ -201,6 +201,16 @@
       "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
       "record": "book/section-records/3.6.json",
       "author_execution": "passed: Python3.12.14, released FlagQuantum0.3.1, PyTorch2.13.0 CPU complex128;40targets on4inputs via direct/decomposed paths, endpoints and phase/order witnesses; no hardware"
+    },
+    "sec-single-qubit-states-and-rotations-7": {
+      "state": "draft",
+      "brief": "book/briefs/ch03.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+      "record": "book/section-records/3.7.json",
+      "author_execution": "passed: Python3.12.14, released FlagQuantum0.3.1, PyTorch2.13.0 CPU complex128; state/operator contracts, declared4-coordinate controlled counterexample and branch-phase repair; no hardware"
     }
   },
   "existing_pilots": [

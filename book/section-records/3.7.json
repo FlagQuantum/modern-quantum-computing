@@ -1,0 +1,128 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-single-qubit-states-and-rotations-7",
+  "ref": "3.7",
+  "date": "2026-10-21",
+  "state": "draft",
+  "body": "docs/chapters/ch-single-qubit-states-and-rotations.md",
+  "question": "When is phase alignment the correct comparison, and why can a harmless isolated global phase change a controlled operation?",
+  "requires": [
+    "sec-single-qubit-states-and-rotations-1",
+    "sec-single-qubit-states-and-rotations-6",
+    "sec-complex-vectors-operators-and-numerical-reasoning-8"
+  ],
+  "depth": "F",
+  "result": "Global phase becomes relative in controlled contexts",
+  "entry": "Exact3.1 ray equivalence,3.6 phase-tracked operators and2.8 finite comparison contracts. Supply a local four-coordinate controlled-operation bridge before Chapter4.",
+  "exit": "Distinguish raw state, ray, common-phase operator and fixed-setting probability equality; prove controlled-phase counterexample and derive explicit branch-phase correction.",
+  "assumptions": [
+    "Normalized whole-state vectors and unitary operators with fixed representation conventions",
+    "Single common scalar for ray/operator phase comparison; basis columns not independently rephased",
+    "Local explicit4-dimensional pure-state space, ordered00,01,10,11 with index2c+t and squared-modulus computational probabilities",
+    "Controlled map defined by blocks diag(I,U), control-H sum/difference and control-phase diag(I,exp(i alpha)I)",
+    "No unstated tensor-product rule, measurement update, noise or hardware model"
+  ],
+  "symbols": {
+    "a,b,c,z": "Whole vectors, conjugated overlap and aligning phase; local dimension declared",
+    "U,V,Dc,CU": "Target/replacement and explicit controlled/branch-phase block matrices",
+    "p,q": "Two-amplitude blocks for control0and1",
+    "phi,alpha": "Target scalar phase and decomposition correction angle"
+  },
+  "local_start_checks": {
+    "brief": "Prepared before prose; exact3.1,3.6,2.8 prerequisites, F depth and canonical locators retained.",
+    "prerequisite": "Supply local four-coordinate probability/model bridge for scheduled controlled-context theorem; do not assume Chapter4 tensor algebra.",
+    "source": "Consulted cached user-supplied NC printed93 and177\u2013178, with controlled-U definition on178. No third-party textbook text/images uploaded.",
+    "independent_reference": "Scalar overlap/fringe, explicit block matrices, I/Z column witness, all4basis columns and known H decomposition/correction.",
+    "scope": "Frozen435 sections/50chapters/7volumes/16batches unchanged. Unnumbered chapter synthesis under closing-material policy; PDF edition unchanged."
+  },
+  "sources": [
+    {
+      "locator": "NC:2.2.7",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        93
+      ],
+      "use": "Whole-state global phase versus basis-relative phase."
+    },
+    {
+      "locator": "NC:4.3",
+      "edition": "10th Anniversary Edition (2010)",
+      "consulted_pages": [
+        177,
+        178
+      ],
+      "use": "Controlled-U definition, especially178; block proof and numerical contracts are original exposition."
+    },
+    {
+      "supplementary": "Released FlagQuantum0.3.1 actual execution",
+      "use": "Generic unitary(0,1,unitary=4x4), native h(0)/phase(0) and probabilities/statevector; q0/q1 X index witnesses checked."
+    }
+  ],
+  "proof_obligations": [
+    "State raw/ray/operator/distribution/context comparison contracts separately",
+    "Whole-state common phase remains common under fixed linear continuation",
+    "All-input ray-equivalent unitary operators require one common phase; columnwise phases fail on superposition",
+    "Derive Frobenius phase-alignment formula and flattened Cauchy\u2013Schwarz exact criterion",
+    "Define local4-coordinate model and prove controlled map norm preservation",
+    "Block comparison proves controlled phase-equivalence fails unless target phase is1",
+    "Explicit control-H interference gives0versus1 readout for Iversus-I",
+    "Derive branch-phase correction Dc(alpha)C(V)=C(U)",
+    "Chapter synthesis combines H decomposition with isolated and controlled comparison scopes"
+  ],
+  "implementation": {
+    "path": "examples/foundations/phase_contracts.py",
+    "command": "python examples/foundations/phase_contracts.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "numpy": "2.5.4",
+      "architecture": "arm64",
+      "system": "Darwin",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_run": "passed",
+    "dependencies": "Pinned requirements-examples.txt; genuine released FlagQuantum wheel in existing mqc-writing-venv; shared Torch provenance recorded in1.2",
+    "checks": [
+      "Raw/global-i and relative-sign whole-state residual witnesses with matching fixed-setting probabilities",
+      "I/Z independent-column false positive versus common operator residual2",
+      "I/-I isolated operator equivalence and controlled operator non-equivalence",
+      "Controlled scalar phases0,pi/2,pi: four-state coordinates and analytic final-control fringe",
+      "Actual q0/q1 X index witnesses from preliminary run;4basis columns for generic controlled target/correction",
+      "H versus-iH isolated equivalence; Ry(pi/2)Rz(pi) equals-iH synthesis identity",
+      "Native control-phase repair matches generic controlled H on4basis inputs and superposed control; uncorrected state ray differs",
+      "Zero-overlap case and8invalid shape/dtype/finite/norm/unitary inputs",
+      "Finite CPU complex128 state/float64 probability batch(1,4), normalization and squared moduli"
+    ],
+    "tolerance": "atol1e-12, rtol0; explicit state norm and operator unitarity validation; no normalization/projection or independent column rephasing",
+    "limitations": "Four-coordinate model is a declared local preview; ideal generic-unitary simulation is not controlled-gate hardware synthesis, sampled readout or a general tensor-product tutorial.",
+    "expected_output_check": "Passed exact comparison with section expected-output block",
+    "script_sha256": "391a3ddaf9bd7534da3236e2618a7a7ce99560c5b90b979c5cf936ca2d50cc88"
+  },
+  "assessment": {
+    "comparison_scope": "3.7-A",
+    "column_debugging": "3.7-B",
+    "phase_correction": "3.7-C",
+    "relative_scope": "3.7-D",
+    "chapter_synthesis": "H decomposition safe replacement",
+    "answers": "All included; no reader trial claimed"
+  },
+  "review": {
+    "author_checks": "Passed actual Python3.12.14/released FlagQuantum0.3.1/PyTorch2.13.0 CPU complex128 execution and exact expected output; strict state/operator domains, phase residual/column witnesses, actual4-coordinate controlled fringe, all4basis columns and native branch-phase repair, zero overlap and8invalid inputs. Frozen baseline/depth/prerequisite/source/brief, prose scan, strict MkDocs build and links/anchors across57 pages passed. Actual browser inspection confirmed four-label ordering, controlled blocks and interference formulas; no raw LaTeX or math-error text observed. Local control-H norm expansion supplies its own bridge without requiring3.2. Independent reviews and reader trials pending.",
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed; independent review pending",
+    "reader": "pending; no reader trial claimed"
+  },
+  "production": {
+    "planning_pages": [
+      3,
+      6
+    ],
+    "word_count_approx": 2123,
+    "page_status": "Unmeasured envelope; chapter synthesis and four-coordinate bridge need print/workload calibration without changing F scope.",
+    "next_draft": "4.1 Tensor-product spaces and basis states",
+    "chapter_status": "All7Chapter3 sections drafted; independent reviews/reader trials/acceptance pending.",
+    "pdf": "Existing PDF sample edition and release version unchanged."
+  }
+}

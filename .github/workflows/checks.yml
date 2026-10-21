@@ -54,6 +54,7 @@ jobs:
       - run: python examples/foundations/closed_evolution.py
       - run: python examples/foundations/pauli_rotations.py
       - run: python examples/foundations/composing_rotations.py
+      - run: python examples/foundations/phase_contracts.py
       - run: python examples/measurement.py
       - run: python examples/gradients.py
       - run: python examples/omalley2016/h2_vqe_model.py
