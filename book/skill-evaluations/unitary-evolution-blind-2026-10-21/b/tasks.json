@@ -1,0 +1,174 @@
+[
+  {
+    "id": "B1",
+    "request": "Reproduce this dimensionless constant-generator evolution, retain its scalar identity phase, and verify full complex coordinates, not just probabilities. Signed time is intentional.",
+    "data": {
+      "task": "evolve",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "context": "isolated",
+      "atol": 1e-10,
+      "generator": {
+        "matrix": [
+          [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              -0.0,
+              -1.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              2.0,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "1"
+      },
+      "time": {
+        "value": -0.413,
+        "unit": "1"
+      }
+    }
+  },
+  {
+    "id": "B2",
+    "request": "Execute this active 2pi rotation with phase tracking. Audit the claim R_x(2pi)=I. Compare its isolated operator ray and its full coherently controlled operation to identity, explicitly distinguishing those two comparison contexts.",
+    "data": {
+      "task": "rotation",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "context": "coherent-control",
+      "atol": 1e-10,
+      "axis": [
+        1,
+        0,
+        0
+      ],
+      "angle": {
+        "value": 6.283185307179586,
+        "unit": "radian"
+      }
+    },
+    "claim": "R_x(2pi) equals I as a full operation."
+  },
+  {
+    "id": "B3",
+    "request": "Can this proposed constant Hamiltonian be admitted at t=0? Preserve the tiny physical scale, do not symmetrize, and do not infer validity solely from the identity endpoint.",
+    "data": {
+      "task": "evolve",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "context": "isolated",
+      "atol": 1e-10,
+      "generator": {
+        "matrix": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1e-24
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "J"
+      },
+      "time": {
+        "value": 0,
+        "unit": "ns"
+      },
+      "hbar": {
+        "value": 1.054571817e-34,
+        "unit": "J*s"
+      }
+    }
+  },
+  {
+    "id": "B4",
+    "request": "Reproduce this prepared-state phase scan with the specified analyzer. There is no Hamiltonian or Euler-factorization question. Choose the applicable skill and verify the actual probabilities.",
+    "data": {
+      "profile": "ideal-pure-single-qubit",
+      "state": [
+        [
+          0.6324555320336759,
+          0.0
+        ],
+        [
+          0.710398734645751,
+          0.30876145778532
+        ]
+      ],
+      "basis": [
+        "0",
+        "1"
+      ],
+      "angle_unit": "radian",
+      "phase_radians": [
+        0.26,
+        1.37
+      ],
+      "readout": {
+        "type": "phase-h",
+        "delta_radians": 0.19
+      },
+      "atol": 1e-10
+    }
+  }
+]

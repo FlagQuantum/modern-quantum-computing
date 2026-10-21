@@ -1,0 +1,169 @@
+[
+  {
+    "id": "A1",
+    "request": "Translate this constant energy Hamiltonian into a phase-retaining ideal evolution and native decomposition. Resolve missing physical conversion input before execution; do not look up or guess a constant.",
+    "data": {
+      "task": "evolve",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "context": "isolated",
+      "atol": 1e-10,
+      "generator": {
+        "matrix": [
+          [
+            [
+              7e-07,
+              0.0
+            ],
+            [
+              -0.0,
+              -4e-07
+            ]
+          ],
+          [
+            [
+              0.0,
+              4e-07
+            ],
+            [
+              7e-07,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "eV"
+      },
+      "time": {
+        "value": 0.6,
+        "unit": "ns"
+      }
+    }
+  },
+  {
+    "id": "A2",
+    "request": "Execute this active Pauli-axis rotation exactly as supplied. Do not repair the input axis.",
+    "data": {
+      "task": "rotation",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "context": "isolated",
+      "atol": 1e-10,
+      "axis": [
+        0,
+        0,
+        2
+      ],
+      "angle": {
+        "value": 0.73,
+        "unit": "radian"
+      }
+    }
+  },
+  {
+    "id": "A3",
+    "request": "Factor this full unitary and verify it in coherent control. Audit the claim that dropping its returned determinant phase cannot affect the full controlled operation. Preserve operator phases and gate order; save actual execution and independent checks.",
+    "data": {
+      "task": "factor",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "context": "coherent-control",
+      "atol": 1e-10,
+      "unitary": [
+        [
+          [
+            0.7908635013210651,
+            0.26120636050209983
+          ],
+          [
+            -0.553090732331791,
+            -0.019919872492458263
+          ]
+        ],
+        [
+          [
+            0.3219321154182651,
+            0.45018426513346
+          ],
+          [
+            0.6543803080091983,
+            0.5152477588290453
+          ]
+        ]
+      ]
+    },
+    "claim": "Dropping the returned scalar phase cannot change the full controlled operation."
+  },
+  {
+    "id": "A4",
+    "request": "No evolution or factorization is requested. Compare these isolated pure states up to one overall phase, basis 0,1 and absolute Euclidean tolerance 1e-10. Use an applicable available skill.",
+    "data": {
+      "kind": "state",
+      "mode": "global-phase",
+      "basis_a": [
+        "0",
+        "1"
+      ],
+      "basis_b": [
+        "0",
+        "1"
+      ],
+      "a": [
+        [
+          0.6324555320336759,
+          0.31622776601683794
+        ],
+        [
+          0.31622776601683794,
+          -0.6324555320336759
+        ]
+      ],
+      "b": [
+        [
+          0.6713547093676471,
+          -0.2219974193766272
+        ],
+        [
+          -0.2219974193766272,
+          -0.6713547093676471
+        ]
+      ],
+      "atol": 1e-10
+    }
+  }
+]

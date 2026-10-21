@@ -1,0 +1,252 @@
+{
+  "skill": "translate-unitary-evolution",
+  "version": "0.1.0",
+  "status": "independent-agent-tested prototype",
+  "agents": 3,
+  "new_tasks": 12,
+  "passed_tasks": 12,
+  "supported_unitary_tasks": 7,
+  "invalid_input_tasks": 2,
+  "unsupported_tasks": 1,
+  "other_skill_only_tasks": 2,
+  "actual_flagquantum_circuits": 56,
+  "recorded_helper_calls": 16,
+  "clarification_exchanges": 4,
+  "required_semantic_clarifications": 3,
+  "false_successes": 0,
+  "incorrect_abstentions": 0,
+  "task_grades": [
+    {
+      "id": "A1",
+      "selected_skills": [
+        "translate-unitary-evolution"
+      ],
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "A2",
+      "selected_skills": [
+        "translate-unitary-evolution"
+      ],
+      "status": "invalid_input",
+      "passed": true
+    },
+    {
+      "id": "A3",
+      "selected_skills": [
+        "translate-unitary-evolution",
+        "compare-quantum-states-and-operators"
+      ],
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "A4",
+      "selected_skills": [
+        "compare-quantum-states-and-operators"
+      ],
+      "status": "within_tolerance",
+      "passed": true
+    },
+    {
+      "id": "B1",
+      "selected_skills": [
+        "translate-unitary-evolution"
+      ],
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "B2",
+      "selected_skills": [
+        "translate-unitary-evolution",
+        "compare-quantum-states-and-operators"
+      ],
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "B3",
+      "selected_skills": [
+        "translate-unitary-evolution"
+      ],
+      "status": "invalid_input",
+      "passed": true
+    },
+    {
+      "id": "B4",
+      "selected_skills": [
+        "reproduce-qubit-interference"
+      ],
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "C1",
+      "selected_skills": [
+        "translate-unitary-evolution"
+      ],
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "C2",
+      "selected_skills": [
+        "translate-unitary-evolution"
+      ],
+      "status": "verified",
+      "passed": true
+    },
+    {
+      "id": "C3",
+      "selected_skills": [
+        "translate-unitary-evolution"
+      ],
+      "status": "unsupported",
+      "passed": true
+    },
+    {
+      "id": "C4",
+      "selected_skills": [
+        "translate-unitary-evolution"
+      ],
+      "status": "verified",
+      "passed": true
+    }
+  ],
+  "calls": [
+    {
+      "task": "A1",
+      "skill": "translate-unitary-evolution",
+      "exit_code": 0,
+      "status": "verified",
+      "artifact": "a/outputs/A1/execution.json"
+    },
+    {
+      "task": "A2",
+      "skill": "translate-unitary-evolution",
+      "exit_code": 2,
+      "status": "invalid_input",
+      "artifact": "a/outputs/A2/execution.json"
+    },
+    {
+      "task": "A3",
+      "skill": "compare-quantum-states-and-operators",
+      "exit_code": 1,
+      "status": "outside_tolerance",
+      "artifact": "a/outputs/A3/controlled_comparison_execution.json"
+    },
+    {
+      "task": "A3",
+      "skill": "translate-unitary-evolution",
+      "exit_code": 0,
+      "status": "verified",
+      "artifact": "a/outputs/A3/execution.json"
+    },
+    {
+      "task": "A4",
+      "skill": "compare-quantum-states-and-operators",
+      "exit_code": 0,
+      "status": "within_tolerance",
+      "artifact": "a/outputs/A4/execution.json"
+    },
+    {
+      "task": "B1",
+      "skill": "translate-unitary-evolution",
+      "exit_code": 0,
+      "status": "verified",
+      "artifact": "b/outputs/B1/execution.json"
+    },
+    {
+      "task": "B2",
+      "skill": "compare-quantum-states-and-operators",
+      "exit_code": 1,
+      "status": "outside_tolerance",
+      "artifact": "b/outputs/B2/compare-controlled/execution.json"
+    },
+    {
+      "task": "B2",
+      "skill": "compare-quantum-states-and-operators",
+      "exit_code": 1,
+      "status": "outside_tolerance",
+      "artifact": "b/outputs/B2/compare-coordinates/execution.json"
+    },
+    {
+      "task": "B2",
+      "skill": "compare-quantum-states-and-operators",
+      "exit_code": 0,
+      "status": "within_tolerance",
+      "artifact": "b/outputs/B2/compare-global-phase/execution.json"
+    },
+    {
+      "task": "B2",
+      "skill": "translate-unitary-evolution",
+      "exit_code": 0,
+      "status": "verified",
+      "artifact": "b/outputs/B2/execution.json"
+    },
+    {
+      "task": "B3",
+      "skill": "translate-unitary-evolution",
+      "exit_code": 2,
+      "status": "invalid_input",
+      "artifact": "b/outputs/B3/execution.json"
+    },
+    {
+      "task": "B4",
+      "skill": "reproduce-qubit-interference",
+      "exit_code": 0,
+      "status": "verified",
+      "artifact": "b/outputs/B4/execution.json"
+    },
+    {
+      "task": "C1",
+      "skill": "translate-unitary-evolution",
+      "exit_code": 0,
+      "status": "verified",
+      "artifact": "c/outputs/C1/execution.json"
+    },
+    {
+      "task": "C2",
+      "skill": "translate-unitary-evolution",
+      "exit_code": 0,
+      "status": "verified",
+      "artifact": "c/outputs/C2/execution.json"
+    },
+    {
+      "task": "C3",
+      "skill": "translate-unitary-evolution",
+      "exit_code": 3,
+      "status": "unsupported",
+      "artifact": "c/outputs/C3/execution.json"
+    },
+    {
+      "task": "C4",
+      "skill": "translate-unitary-evolution",
+      "exit_code": 0,
+      "status": "verified",
+      "artifact": "c/outputs/C4/execution.json"
+    }
+  ],
+  "observations": [
+    "Three-skill selection passed, including comparison-only and interference-only tasks",
+    "No hbar guessed; coherent-control and cyclic-versus-angular frequency clarified before dependent execution",
+    "Full complex matrices and states verified independently; omitted control phase and 2pi identity claims rejected",
+    "Tiny non-Hermitian energy generator rejected even at zero time; no silent repair",
+    "Near-pole matrix passed without unique Euler-angle claim; time-dependent task remained unsupported with separate theoretical counterexample",
+    "No package defect found in this set; no package changes or post-blind tuning"
+  ],
+  "grading_role": "author/conductor against preregistered dispositions and NumPy eigensystem/matrix references",
+  "executor_context": "Three fresh fork_turns=none agents; tasks/catalog/three frozen skills/runtime candidates; no expected answers",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "released_skills": 0,
+  "limitations": [
+    "Small conductor-designed nonrandom sample",
+    "Logical read boundaries, not OS-enforced sandbox",
+    "Same inherited model configuration; backend revision/token/cost telemetry unavailable",
+    "Conductor grades artifacts; independent scientific acceptance and reader trial remain separate",
+    "Published cases are regression fixtures; CI replay does not rerun autonomous agents or certify arbitrary papers"
+  ]
+}

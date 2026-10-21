@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "-c",
+    "import sys,platform,torch,flagquantum,json; print(json.dumps(dict(python=sys.version,implementation=platform.python_implementation(),torch=torch.__version__,flagquantum=flagquantum.__version__)))"
+  ],
+  "stdout": "{\"python\": \"3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]\", \"implementation\": \"CPython\", \"torch\": \"2.13.0\", \"flagquantum\": \"0.3.1\"}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "elapsed_seconds": 0.914774750000106
+}

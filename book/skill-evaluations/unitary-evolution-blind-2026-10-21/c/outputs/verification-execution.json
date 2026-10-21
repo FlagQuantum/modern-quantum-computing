@@ -1,0 +1,8 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-unitary-blind-r1/c/outputs/verify.py"
+  ],
+  "exit_code": 0,
+  "runtime_seconds": 0.032807874999889464
+}

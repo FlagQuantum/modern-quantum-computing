@@ -1,0 +1,66 @@
+{
+  "method": "Independent standard-library complex arithmetic; no helper imports",
+  "checks": {
+    "phase_retaining_reconstruction": true,
+    "all_actual_circuit_outputs_agree_with_independent_matrices": true,
+    "omission_changes_full_controlled_operation": true,
+    "whole_operation_phase_alignment_cannot_fix_omission": true,
+    "branch_phase_repair_restores_full_operator": true
+  },
+  "passed": true,
+  "details": {
+    "reconstruction_max_absolute": 1.1102230246251565e-16,
+    "actual_circuit_checks": [
+      {
+        "input": "supplied",
+        "path": "direct",
+        "max_absolute_error": 0.0
+      },
+      {
+        "input": "supplied",
+        "path": "native-zyz",
+        "max_absolute_error": 1.2412670766236366e-16
+      },
+      {
+        "input": "zero",
+        "path": "direct",
+        "max_absolute_error": 0.0
+      },
+      {
+        "input": "zero",
+        "path": "native-zyz",
+        "max_absolute_error": 5.551115123125783e-17
+      },
+      {
+        "input": "one",
+        "path": "direct",
+        "max_absolute_error": 0.0
+      },
+      {
+        "input": "one",
+        "path": "native-zyz",
+        "max_absolute_error": 1.1102230246251565e-16
+      },
+      {
+        "input": "coherent-control",
+        "path": "controlled-direct",
+        "max_absolute_error": 0.0
+      },
+      {
+        "input": "coherent-control",
+        "path": "controlled-repaired",
+        "max_absolute_error": 1.2412670766236366e-16
+      },
+      {
+        "input": "coherent-control",
+        "path": "controlled-unrepaired",
+        "max_absolute_error": 8.326672684688674e-17
+      }
+    ],
+    "controlled_raw_frobenius": 0.6901680590449323,
+    "controlled_global_phase_aligned_frobenius": 0.49175278978279735,
+    "branch_phase_repair_max_absolute": 1.1102230246251565e-16,
+    "claim_disposition": "refuted for supplied unitary",
+    "claim": "Dropping the returned scalar phase cannot change the full controlled operation."
+  }
+}

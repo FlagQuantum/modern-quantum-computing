@@ -1,0 +1,28 @@
+{
+  "task": "rotation",
+  "basis": [
+    "0",
+    "1"
+  ],
+  "state": [
+    [
+      0.0,
+      0.6
+    ],
+    [
+      0.8,
+      0.0
+    ]
+  ],
+  "context": "isolated",
+  "atol": 1e-10,
+  "axis": [
+    0,
+    0,
+    2
+  ],
+  "angle": {
+    "value": 0.73,
+    "unit": "radian"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "agents": [
+    {
+      "name": "/root/unitary_blind_a",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-unitary-blind-r1/a",
+      "prompt_scope": "Independently handle raw tasks in assigned tasks.json. Discover skills from catalog.json and interpreters from environment.json. No expected answers supplied. Read/write only assigned workspace plus listed interpreter/library resources; no repository, siblings, grading keys or external sources. Preserve inputs/packages/catalog/environment. Save requests, actual stdout/stderr/exit codes, runtime, explanations, claim dispositions and independent verification code/results under outputs/. Return results.json. Missing semantics: send task ID/question to /root; keep dependent decisions pending until reply and continue other tasks. No real-user UI questions, installs, public repo edits, publication or fabricated runs.",
+      "expected_answers_supplied": false
+    },
+    {
+      "name": "/root/unitary_blind_b",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-unitary-blind-r1/b",
+      "prompt_scope": "Independently handle raw tasks in assigned tasks.json. Discover skills from catalog.json and interpreters from environment.json. No expected answers supplied. Read/write only assigned workspace plus listed interpreter/library resources; no repository, siblings, grading keys or external sources. Preserve inputs/packages/catalog/environment. Save requests, actual stdout/stderr/exit codes, runtime, explanations, claim dispositions and independent verification code/results under outputs/. Return results.json. Missing semantics: send task ID/question to /root; keep dependent decisions pending until reply and continue other tasks. No real-user UI questions, installs, public repo edits, publication or fabricated runs.",
+      "expected_answers_supplied": false
+    },
+    {
+      "name": "/root/unitary_blind_c",
+      "fork_turns": "none",
+      "workspace": "/private/tmp/mqc-unitary-blind-r1/c",
+      "prompt_scope": "Independently handle raw tasks in assigned tasks.json. Discover skills from catalog.json and interpreters from environment.json. No expected answers supplied. Read/write only assigned workspace plus listed interpreter/library resources; no repository, siblings, grading keys or external sources. Preserve inputs/packages/catalog/environment. Save requests, actual stdout/stderr/exit codes, runtime, explanations, claim dispositions and independent verification code/results under outputs/. Return results.json. Missing semantics: send task ID/question to /root; keep dependent decisions pending until reply and continue other tasks. No real-user UI questions, installs, public repo edits, publication or fabricated runs.",
+      "expected_answers_supplied": false
+    }
+  ],
+  "record_note": "Dispatch scope summary; original input files and returned executor evidence preserved byte-for-byte. Same inherited model configuration, revision telemetry unavailable."
+}

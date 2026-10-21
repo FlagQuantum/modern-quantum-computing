@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-unitary-blind-r1/b/skills/reproduce-qubit-interference/scripts/interference.py"
+  ],
+  "cwd": "/private/tmp/mqc-unitary-blind-r1/b",
+  "exit_code": 0,
+  "elapsed_seconds": 0.662318416000744,
+  "request_path": "/private/tmp/mqc-unitary-blind-r1/b/outputs/B4/request.json"
+}

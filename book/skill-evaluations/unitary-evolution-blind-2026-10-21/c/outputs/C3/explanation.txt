@@ -1,0 +1,1 @@
+Current skill explicitly excludes time-dependent solvers. Original request was passed unchanged and produced unsupported exit 3. No schedule is supplied, so no target evolution can be identified. Universal exp(-i integral H) claim rejected using a separate, explicitly hypothetical piecewise X-then-Z counterexample; this is not execution or substitution for supplied task.

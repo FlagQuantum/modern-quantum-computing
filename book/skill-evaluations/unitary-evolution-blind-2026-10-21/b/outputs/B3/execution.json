@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-unitary-blind-r1/b/skills/translate-unitary-evolution/scripts/unitary.py"
+  ],
+  "cwd": "/private/tmp/mqc-unitary-blind-r1/b",
+  "exit_code": 2,
+  "elapsed_seconds": 0.035498500000358035,
+  "request_path": "/private/tmp/mqc-unitary-blind-r1/b/outputs/B3/request.json"
+}

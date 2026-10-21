@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "atol": 1e-10,
+  "checks": {
+    "target_vs_helper_matrix": 0.0,
+    "independent_zyz_full_reconstruction": 5e-14,
+    "independent_native_matrix": 0.0,
+    "record_0_direct_coordinate_residual": 0.0,
+    "record_0_born_residual": 0.0,
+    "record_1_native-zyz_coordinate_residual": 0.0,
+    "record_1_born_residual": 0.0,
+    "record_2_direct_coordinate_residual": 0.0,
+    "record_2_born_residual": 0.0,
+    "record_3_native-zyz_coordinate_residual": 0.0,
+    "record_3_born_residual": 0.0,
+    "record_4_direct_coordinate_residual": 9.95265590367428e-14,
+    "record_4_born_residual": 0.0,
+    "record_5_native-zyz_coordinate_residual": 6.123233995736766e-17,
+    "record_5_born_residual": 0.0,
+    "distinct_endpoint_tuple_same_matrix": 8.326672684688674e-17
+  },
+  "details": {
+    "claim_disposition": "rejected",
+    "returned_tuple": {
+      "alpha": 0.2710000000000001,
+      "beta": 0.30600000000000016,
+      "branch": "north",
+      "delta": 0.0,
+      "gamma": 0.0
+    },
+    "distinct_equivalent_endpoint_tuple": {
+      "alpha": 0.2710000000000001,
+      "beta": 1.036,
+      "branch": "north",
+      "delta": -0.73,
+      "gamma": 0.0
+    },
+    "endpoint_snapping_target_residual": 5e-14,
+    "explanation": "At gamma=0 only beta+delta is determined; beta+s,delta-s gives the same matrix for every real s. Away from the pole angle branches still have periodic ambiguity. Near gamma=0 arbitrarily small transverse matrix changes can change their azimuth and hence beta and delta by finite amounts. Matrix reconstruction is the verification target, not a preferred angle tuple.",
+    "families": [
+      {
+        "tuple": {
+          "alpha": 0.2710000000000001,
+          "beta": 0.30600000000000016,
+          "branch": "north",
+          "delta": 0.0,
+          "gamma": 1e-13
+        },
+        "matrix_distance_to_endpoint": 5.000000000000001e-14
+      },
+      {
+        "tuple": {
+          "alpha": 0.2710000000000001,
+          "beta": 1.306,
+          "branch": "north",
+          "delta": -1.0,
+          "gamma": 1e-13
+        },
+        "matrix_distance_to_endpoint": 4.9999999999999995e-14
+      },
+      {
+        "tuple": {
+          "alpha": 0.2710000000000001,
+          "beta": 2.306,
+          "branch": "north",
+          "delta": -2.0,
+          "gamma": 1e-13
+        },
+        "matrix_distance_to_endpoint": 5e-14
+      }
+    ]
+  }
+}

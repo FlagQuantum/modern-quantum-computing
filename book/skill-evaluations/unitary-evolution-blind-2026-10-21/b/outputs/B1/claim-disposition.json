@@ -1,0 +1,4 @@
+{
+  "disposition": "reproduced_with_full_complex_coordinates",
+  "explanation": "E=-0.413 K; trace contribution e0=-0.826 gives scalar phase exp(+0.826i). Native ZYZ alone implements V; retaining the returned phase recovers U as diagnostic arithmetic."
+}

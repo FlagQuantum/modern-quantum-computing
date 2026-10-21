@@ -1,0 +1,198 @@
+{
+  "method": "independent standard-library matrix exponential and full controlled-block witness",
+  "taylor_terms": 32,
+  "independent_unitary": [
+    [
+      [
+        -1.0000000000000002,
+        0.0
+      ],
+      [
+        0.0,
+        -3.3443552948977333e-16
+      ]
+    ],
+    [
+      [
+        0.0,
+        -3.3443552948977333e-16
+      ],
+      [
+        -1.0000000000000002,
+        0.0
+      ]
+    ]
+  ],
+  "matrix_max_absolute": 9.978321000604152e-16,
+  "circuit_checks": [
+    {
+      "path": "direct",
+      "input_label": "supplied",
+      "coordinate_max_absolute": 1.3322676295501878e-15,
+      "probability_max_absolute": 1.609823385706477e-15,
+      "passed": true
+    },
+    {
+      "path": "native-zyz",
+      "input_label": "supplied",
+      "coordinate_max_absolute": 0.0,
+      "probability_max_absolute": 0.0,
+      "passed": true,
+      "diagnostic_full_coordinate_max_absolute": 3.41075798048304e-16
+    },
+    {
+      "path": "native-axis",
+      "input_label": "supplied",
+      "coordinate_max_absolute": 2.220446049250313e-16,
+      "probability_max_absolute": 2.7755575615628914e-16,
+      "passed": true
+    },
+    {
+      "path": "direct",
+      "input_label": "zero",
+      "coordinate_max_absolute": 3.3443552948977333e-16,
+      "probability_max_absolute": 4.440892098500626e-16,
+      "passed": true
+    },
+    {
+      "path": "native-zyz",
+      "input_label": "zero",
+      "coordinate_max_absolute": 0.0,
+      "probability_max_absolute": 0.0,
+      "passed": true,
+      "diagnostic_full_coordinate_max_absolute": 3.3443552948977333e-16
+    },
+    {
+      "path": "native-axis",
+      "input_label": "zero",
+      "coordinate_max_absolute": 3.3443552948977333e-16,
+      "probability_max_absolute": 4.440892098500626e-16,
+      "passed": true
+    },
+    {
+      "path": "direct",
+      "input_label": "one",
+      "coordinate_max_absolute": 1.4330698825956337e-15,
+      "probability_max_absolute": 4.440892098500626e-16,
+      "passed": true
+    },
+    {
+      "path": "native-zyz",
+      "input_label": "one",
+      "coordinate_max_absolute": 6.123233995736766e-17,
+      "probability_max_absolute": 3.749399456654644e-33,
+      "passed": true,
+      "diagnostic_full_coordinate_max_absolute": 3.399948864935467e-16
+    },
+    {
+      "path": "native-axis",
+      "input_label": "one",
+      "coordinate_max_absolute": 3.399948864935467e-16,
+      "probability_max_absolute": 4.440892098500626e-16,
+      "passed": true
+    },
+    {
+      "path": "controlled-direct",
+      "input_label": "coherent-control",
+      "coordinate_max_absolute": 8.881784197001252e-16,
+      "probability_max_absolute": 7.494005416219807e-16,
+      "passed": true
+    },
+    {
+      "path": "controlled-repaired",
+      "input_label": "coherent-control",
+      "coordinate_max_absolute": 2.823769915986088e-16,
+      "probability_max_absolute": 2.498001805406602e-16,
+      "passed": true
+    },
+    {
+      "path": "controlled-unrepaired",
+      "input_label": "coherent-control",
+      "coordinate_max_absolute": 0.0,
+      "probability_max_absolute": 0.0,
+      "passed": true
+    }
+  ],
+  "comparisons": {
+    "coordinates": {
+      "status": "outside_tolerance",
+      "exit_code": 1,
+      "result_path": "/private/tmp/mqc-unitary-blind-r1/b/outputs/B2/compare-coordinates/stdout.json"
+    },
+    "global-phase": {
+      "status": "within_tolerance",
+      "exit_code": 0,
+      "result_path": "/private/tmp/mqc-unitary-blind-r1/b/outputs/B2/compare-global-phase/stdout.json"
+    },
+    "controlled": {
+      "status": "outside_tolerance",
+      "exit_code": 1,
+      "result_path": "/private/tmp/mqc-unitary-blind-r1/b/outputs/B2/compare-controlled/stdout.json"
+    }
+  },
+  "distance_to_minus_identity_max_absolute": 3.3443552948977333e-16,
+  "coherent_input_witness": {
+    "input": [
+      [
+        0.0,
+        0.42426406871192845
+      ],
+      [
+        0.565685424949238,
+        0.0
+      ],
+      [
+        0.0,
+        0.42426406871192845
+      ],
+      [
+        0.565685424949238,
+        0.0
+      ]
+    ],
+    "controlled_rotation_output": [
+      [
+        0.0,
+        0.42426406871192845
+      ],
+      [
+        0.565685424949238,
+        0.0
+      ],
+      [
+        0.0,
+        -0.42426406871192873
+      ],
+      [
+        -0.565685424949238,
+        0.0
+      ]
+    ],
+    "identity_output": [
+      [
+        0.0,
+        0.42426406871192845
+      ],
+      [
+        0.565685424949238,
+        0.0
+      ],
+      [
+        0.0,
+        0.42426406871192845
+      ],
+      [
+        0.565685424949238,
+        0.0
+      ]
+    ],
+    "overlap": [
+      -1.6653345369377348e-16,
+      0.0
+    ],
+    "ray_distance": 1.414213562373095,
+    "explanation": "For exact 2pi, control |+> changes to |-> while target remains the same ray; identity retains |+>. The two outputs are orthogonal."
+  },
+  "independent_controlled_aligned_frobenius": 2.82842712474619,
+  "passed": true
+}

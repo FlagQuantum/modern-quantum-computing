@@ -1,0 +1,7 @@
+{
+  "claim": "R_x(2pi) equals I as a full operation.",
+  "disposition": "refuted_as_full_operation",
+  "isolated_operator_ray": "equivalent to identity up to one global phase -1",
+  "coherent_control": "C(Rx(2pi)) approximately diag(1,1,-1,-1), inequivalent to I4 even up to a whole-operation phase",
+  "explanation": "Active spin-1/2 Rx(2pi)=-I. The canonical factorization alpha=0 does not imply V=I: here V itself is -I."
+}

@@ -1,0 +1,5 @@
+{
+  "question": "Supply explicit hbar conversion input for energy eV and time ns.",
+  "response": "Use hbar = 6.582119569e-16 eV*s as the explicitly declared numerical conversion input for this task. Preserve it in the record; no additional physical-constant provenance is supplied.",
+  "source": "parent /root clarification"
+}

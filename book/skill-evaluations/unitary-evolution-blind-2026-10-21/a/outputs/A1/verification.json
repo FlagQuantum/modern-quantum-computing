@@ -1,0 +1,71 @@
+{
+  "method": "Independent standard-library complex arithmetic; no helper imports",
+  "checks": {
+    "phase_retaining_reconstruction": true,
+    "independent_taylor_exponential": true,
+    "all_actual_circuit_outputs_agree_with_independent_matrices": true
+  },
+  "passed": true,
+  "details": {
+    "reconstruction_max_absolute": 3.3422138886441676e-16,
+    "exponent_multiplier": 911560.4687976764,
+    "taylor_terms": 80,
+    "final_term_max_absolute": 8.679520649319468e-120,
+    "taylor_unitary": [
+      [
+        [
+          0.7504272429811768,
+          -0.5565039683845728
+        ],
+        [
+          -0.28643164950484273,
+          0.21241279699167634
+        ]
+      ],
+      [
+        [
+          0.28643164950484273,
+          -0.21241279699167634
+        ],
+        [
+          0.7504272429811768,
+          -0.5565039683845728
+        ]
+      ]
+    ],
+    "taylor_max_absolute_error": 2.482534153247273e-16,
+    "hbar_provenance": "Parent-declared input; no additional physical-constant provenance supplied",
+    "actual_circuit_checks": [
+      {
+        "input": "supplied",
+        "path": "direct",
+        "max_absolute_error": 1.5700924586837752e-16
+      },
+      {
+        "input": "supplied",
+        "path": "native-zyz",
+        "max_absolute_error": 1.1443916996305594e-16
+      },
+      {
+        "input": "zero",
+        "path": "direct",
+        "max_absolute_error": 2.482534153247273e-16
+      },
+      {
+        "input": "zero",
+        "path": "native-zyz",
+        "max_absolute_error": 1.8296217118893607e-16
+      },
+      {
+        "input": "one",
+        "path": "direct",
+        "max_absolute_error": 2.482534153247273e-16
+      },
+      {
+        "input": "one",
+        "path": "native-zyz",
+        "max_absolute_error": 1.7433779904297854e-16
+      }
+    ]
+  }
+}

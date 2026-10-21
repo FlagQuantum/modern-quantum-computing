@@ -1,0 +1,28 @@
+{
+  "task": "rotation",
+  "basis": [
+    "0",
+    "1"
+  ],
+  "state": [
+    [
+      0.0,
+      0.6
+    ],
+    [
+      0.8,
+      0.0
+    ]
+  ],
+  "context": "coherent-control",
+  "atol": 1e-10,
+  "axis": [
+    1,
+    0,
+    0
+  ],
+  "angle": {
+    "value": 6.283185307179586,
+    "unit": "radian"
+  }
+}

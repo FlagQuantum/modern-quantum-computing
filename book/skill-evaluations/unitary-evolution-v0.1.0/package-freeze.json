@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "evaluation_checkout_base": "9f65888ea23c76466cbfacd2ab5147bdabcc0ec0",
+  "frozen_at_utc": "2026-10-21T05:42:06.389701+00:00",
+  "sha256": {
+    "SKILL.md": "285f31e779215c540ece3c24101c429cd184abafe23db7cbeb4b01d95a2df84c",
+    "agents/openai.yaml": "a369b6988d07e068ad3258cab3f088e971e72709c3a29db71008e71b06e141f1",
+    "references/contract.md": "da9a94ec492273b7e80f9441250cde509f657d550aa5ce10454bcfe0899149aa",
+    "scripts/unitary.py": "a104869ad1feb3aae4b5bb1a0201247a82837cbaf677f1e42715bdcff85bb0f5"
+  },
+  "note": "Evaluated working-tree bytes identified by SHA-256; checkout base does not already contain the new skill"
+}

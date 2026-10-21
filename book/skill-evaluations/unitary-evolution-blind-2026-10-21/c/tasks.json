@@ -1,0 +1,218 @@
+[
+  {
+    "id": "C1",
+    "request": "Compile this phase gate while retaining the full matrix phase. Before producing an execution result, resolve any missing usage context rather than assuming isolated use.",
+    "data": {
+      "task": "factor",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "atol": 1e-10,
+      "unitary": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.6844115714935092,
+            0.7290958790212609
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "id": "C2",
+    "request": "Factor this near-endpoint unitary and audit the assertion that the returned Euler angles are unique and continuously identifiable. Verify reconstructed matrices without forcing a preferred angle tuple.",
+    "data": {
+      "task": "factor",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "context": "isolated",
+      "atol": 1e-10,
+      "unitary": [
+        [
+          [
+            0.993046074492218,
+            0.11772635191662147
+          ],
+          [
+            -4.9013237855283853e-14,
+            9.884458252295361e-15
+          ]
+        ],
+        [
+          [
+            3.688969508480462e-14,
+            3.375130214599345e-14
+          ],
+          [
+            0.9114505981477284,
+            0.4114095370019369
+          ]
+        ]
+      ]
+    },
+    "claim": "The Euler angle tuple is unique and continuously identifiable near the pole."
+  },
+  {
+    "id": "C3",
+    "request": "Can the current skill execute this time-dependent noncommuting-generator evolution and certify exp(-i integral H(t)dt)? Do not silently replace it by a constant or averaged generator.",
+    "data": {
+      "task": "time-dependent",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "context": "isolated",
+      "atol": 1e-10,
+      "generators": [
+        [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ]
+        ]
+      ],
+      "time": {
+        "value": 1,
+        "unit": "1"
+      }
+    },
+    "claim": "A single ordinary exponential of the integral solves arbitrary time-dependent noncommuting evolution."
+  },
+  {
+    "id": "C4",
+    "request": "The paper labels this generator Hz but calls it angular frequency. Resolve that inconsistent frequency convention before translating the constant evolution, and preserve original values and the declared conversion.",
+    "data": {
+      "task": "evolve",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "state": [
+        [
+          0.0,
+          0.6
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ],
+      "context": "isolated",
+      "atol": 1e-10,
+      "generator": {
+        "matrix": [
+          [
+            [
+              120000000.0,
+              0.0
+            ],
+            [
+              -0.0,
+              -60000000.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              60000000.0
+            ],
+            [
+              40000000.0,
+              0.0
+            ]
+          ]
+        ],
+        "unit": "Hz"
+      },
+      "time": {
+        "value": 0.7,
+        "unit": "ns"
+      }
+    }
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "A1": {
+    "status": "verified",
+    "skill": "translate-unitary-evolution",
+    "reply": "Use hbar = 6.582119569e-16 eV*s as the explicitly declared numerical conversion input for this task. Preserve it in the record; no additional physical-constant provenance is supplied."
+  },
+  "A2": {
+    "status": "invalid_input",
+    "skill": "translate-unitary-evolution"
+  },
+  "A3": {
+    "status": "verified",
+    "skill": "translate-unitary-evolution",
+    "claim": "rejected; actual control-branch repair required"
+  },
+  "A4": {
+    "status": "within_tolerance",
+    "skill": "compare-quantum-states-and-operators"
+  },
+  "B1": {
+    "status": "verified",
+    "skill": "translate-unitary-evolution"
+  },
+  "B2": {
+    "status": "verified",
+    "skill": "translate-unitary-evolution",
+    "target": "-I",
+    "isolated_equivalence_to_I": "within_tolerance",
+    "controlled_equivalence_to_I": "outside_tolerance"
+  },
+  "B3": {
+    "status": "invalid_input",
+    "skill": "translate-unitary-evolution"
+  },
+  "B4": {
+    "status": "verified",
+    "skill": "reproduce-qubit-interference"
+  },
+  "C1": {
+    "status": "verified",
+    "skill": "translate-unitary-evolution",
+    "reply": "The gate is used under coherent control with a superposed control qubit, not just in isolation. Use the declared control-first basis 00,01,10,11 and retain the full controlled operation."
+  },
+  "C2": {
+    "status": "verified",
+    "skill": "translate-unitary-evolution",
+    "claim": "no uniqueness or continuity certification; near-endpoint reconstruction within budget"
+  },
+  "C3": {
+    "status": "unsupported",
+    "claim": "no time-dependent solver or average-generator substitution"
+  },
+  "C4": {
+    "status": "verified",
+    "skill": "translate-unitary-evolution",
+    "reply": "The entries are cyclic frequencies in Hz. Convert the entire matrix to an angular-frequency generator in rad/s by multiplying every entry by 2pi; time is 0.7 ns. Preserve both the original values and this explicit conversion."
+  }
+}

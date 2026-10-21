@@ -1,0 +1,22 @@
+{
+  "method": "Independent standard-library complex arithmetic; no helper imports",
+  "checks": {
+    "input_a_normalized": true,
+    "input_b_normalized": true,
+    "phase_aligned_within_tolerance": true,
+    "helper_residual_agrees": true
+  },
+  "passed": true,
+  "details": {
+    "overlap": [
+      0.7088005038109103,
+      -0.7054089918603247
+    ],
+    "multiplier_on_b": [
+      0.7088005038109104,
+      0.7054089918603248
+    ],
+    "raw_euclidean": 0.7631507009615988,
+    "aligned_euclidean": 0.0
+  }
+}

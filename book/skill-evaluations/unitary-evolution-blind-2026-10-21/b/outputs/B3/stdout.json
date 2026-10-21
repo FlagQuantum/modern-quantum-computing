@@ -1,0 +1,1 @@
+{"contract_version": "0.1.0", "reason": "Generator must be Hermitian with scale-relative entrywise tolerance 1e-12, even at t=0", "runtime": {"implementation": "cpython", "python": "3.12.14"}, "status": "invalid_input"}

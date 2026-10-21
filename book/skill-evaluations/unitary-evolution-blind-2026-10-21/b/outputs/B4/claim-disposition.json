@@ -1,0 +1,4 @@
+{
+  "disposition": "specified_ideal_scan_reproduced",
+  "explanation": "Actual simulator probabilities match chronological complex-amplitude calculation and scalar interference formula at both supplied phases. Sparse sampled extrema differ from analytic continuous extrema."
+}

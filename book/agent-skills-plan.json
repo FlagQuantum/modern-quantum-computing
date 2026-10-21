@@ -181,7 +181,7 @@
     {
       "id": "translate-unitary-evolution",
       "level": "L1",
-      "status": "planned",
+      "status": "independent-agent-tested prototype",
       "task": "Translate fixed-generator evolution and single-qubit factorizations with units, order and common phase.",
       "deliverable": "Matrix/generator/decomposition references and reconstructed circuit action.",
       "requires_skills": [
@@ -205,8 +205,12 @@
         "book/section-records/3.4.json",
         "book/section-records/3.6.json"
       ],
-      "behavioral_evaluation": "not run",
-      "independent_acceptance": "pending"
+      "behavioral_evaluation": "blind agent tasks: 12/12; author cases: 53/53",
+      "independent_acceptance": "pending",
+      "prototype_package": "skills/translate-unitary-evolution/SKILL.md",
+      "package_version": "0.1.0",
+      "evaluation_report": "book/skill-evaluations/unitary-evolution-v0.1.0/author-report.json",
+      "blind_evaluation_report": "book/skill-evaluations/unitary-evolution-blind-2026-10-21/report.json"
     },
     {
       "id": "translate-qubit-ordering",

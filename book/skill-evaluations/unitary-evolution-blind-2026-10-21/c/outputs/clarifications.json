@@ -1,0 +1,17 @@
+{
+  "C1": {
+    "question": "Will the gate be used in isolation or under coherent control?",
+    "answer": "The gate is used under coherent control with a superposed control qubit, not just in isolation. Use the declared control-first basis 00,01,10,11 and retain the full controlled operation.",
+    "source": "Parent agent clarification received via collaboration.send_message"
+  },
+  "C4": {
+    "question": "Are entries cyclic frequencies in Hz or angular frequencies in rad/s?",
+    "answer": "The entries are cyclic frequencies in Hz. Convert the entire matrix to an angular-frequency generator in rad/s by multiplying every entry by 2pi; time is 0.7 ns. Preserve both the original values and this explicit conversion.",
+    "source": "Parent agent clarification received via collaboration.send_message"
+  },
+  "C3": {
+    "question": "How do the supplied X and Z generators depend on time?",
+    "answer": "No schedule is supplied. Keep the requested execution unsupported and do not invent one. A clearly labeled theoretical counterexample, distinct from execution of the supplied task, is acceptable.",
+    "source": "Parent agent clarification via collaboration.send_message"
+  }
+}

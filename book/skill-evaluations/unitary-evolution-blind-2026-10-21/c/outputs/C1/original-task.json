@@ -1,0 +1,44 @@
+{
+  "id": "C1",
+  "request": "Compile this phase gate while retaining the full matrix phase. Before producing an execution result, resolve any missing usage context rather than assuming isolated use.",
+  "data": {
+    "task": "factor",
+    "basis": [
+      "0",
+      "1"
+    ],
+    "state": [
+      [
+        0.0,
+        0.6
+      ],
+      [
+        0.8,
+        0.0
+      ]
+    ],
+    "atol": 1e-10,
+    "unitary": [
+      [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.6844115714935092,
+          0.7290958790212609
+        ]
+      ]
+    ]
+  }
+}

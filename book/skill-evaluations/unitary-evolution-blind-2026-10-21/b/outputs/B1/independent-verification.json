@@ -1,0 +1,105 @@
+{
+  "method": "independent standard-library power-series matrix exponential",
+  "taylor_terms": 22,
+  "dimensionless_exponent": [
+    [
+      [
+        -0.826,
+        0.0
+      ],
+      [
+        0.0,
+        0.413
+      ]
+    ],
+    [
+      [
+        -0.0,
+        -0.413
+      ],
+      [
+        -0.826,
+        0.0
+      ]
+    ]
+  ],
+  "independent_unitary": [
+    [
+      [
+        0.6208313877341262,
+        0.6734088114562365
+      ],
+      [
+        0.2720499188710362,
+        0.2950894818516596
+      ]
+    ],
+    [
+      [
+        -0.2720499188710362,
+        -0.2950894818516596
+      ],
+      [
+        0.6208313877341262,
+        0.6734088114562365
+      ]
+    ]
+  ],
+  "matrix_max_absolute": 4.002966042486721e-16,
+  "trace_shift_exponent": [
+    -0.826,
+    0.0
+  ],
+  "trace_shift_phase": [
+    0.6778220786855634,
+    0.7352259718252491
+  ],
+  "circuit_checks": [
+    {
+      "path": "direct",
+      "input_label": "supplied",
+      "coordinate_max_absolute": 2.482534153247273e-16,
+      "probability_max_absolute": 3.3306690738754696e-16,
+      "passed": true
+    },
+    {
+      "path": "native-zyz",
+      "input_label": "supplied",
+      "coordinate_max_absolute": 1.2412670766236366e-16,
+      "probability_max_absolute": 3.3306690738754696e-16,
+      "passed": true,
+      "diagnostic_full_coordinate_max_absolute": 2.2887833992611187e-16
+    },
+    {
+      "path": "direct",
+      "input_label": "zero",
+      "coordinate_max_absolute": 4.002966042486721e-16,
+      "probability_max_absolute": 7.771561172376096e-16,
+      "passed": true
+    },
+    {
+      "path": "native-zyz",
+      "input_label": "zero",
+      "coordinate_max_absolute": 0.0,
+      "probability_max_absolute": 0.0,
+      "passed": true,
+      "diagnostic_full_coordinate_max_absolute": 1.5700924586837752e-16
+    },
+    {
+      "path": "direct",
+      "input_label": "one",
+      "coordinate_max_absolute": 4.002966042486721e-16,
+      "probability_max_absolute": 7.771561172376096e-16,
+      "passed": true
+    },
+    {
+      "path": "native-zyz",
+      "input_label": "one",
+      "coordinate_max_absolute": 1.2141622251710539e-16,
+      "probability_max_absolute": 8.326672684688674e-17,
+      "passed": true,
+      "diagnostic_full_coordinate_max_absolute": 2.220446049250313e-16
+    }
+  ],
+  "passed": true
+}

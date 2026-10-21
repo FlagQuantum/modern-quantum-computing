@@ -1,0 +1,30 @@
+[
+  {
+    "task": "A1",
+    "question": "Please supply hbar in eV\u00b7ns (or equivalent complete energy/time conversion).",
+    "reply": "Use hbar = 6.582119569e-16 eV*s as the explicitly declared numerical conversion input for this task. Preserve it in the record; no additional physical-constant provenance is supplied.",
+    "expected_output_supplied": false,
+    "note": "hbar is a missing conversion input, not a computed expected result"
+  },
+  {
+    "task": "C1",
+    "question": "Will this phase gate be used in isolation, as a controlled gate, or compared as a full operator?",
+    "reply": "The gate is used under coherent control with a superposed control qubit, not just in isolation. Use the declared control-first basis 00,01,10,11 and retain the full controlled operation.",
+    "expected_output_supplied": false,
+    "note": "hbar is a missing conversion input, not a computed expected result"
+  },
+  {
+    "task": "C4",
+    "question": "Does the declared Hz mean cyclic frequency (multiply generator by 2\u03c0 to rad/s), or are values actually angular frequency in rad/s despite Hz label?",
+    "reply": "The entries are cyclic frequencies in Hz. Convert the entire matrix to an angular-frequency generator in rad/s by multiplying every entry by 2pi; time is 0.7 ns. Preserve both the original values and this explicit conversion.",
+    "expected_output_supplied": false,
+    "note": "hbar is a missing conversion input, not a computed expected result"
+  },
+  {
+    "task": "C3",
+    "question": "How do the supplied X and Z generators depend on time?",
+    "reply": "No schedule is supplied. Keep the requested execution unsupported and do not invent one. A clearly labeled theoretical counterexample, distinct from execution of the supplied task, is acceptable.",
+    "expected_output_supplied": false,
+    "note": "hbar is a missing conversion input, not a computed expected result"
+  }
+]

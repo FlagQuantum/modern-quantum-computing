@@ -1,0 +1,74 @@
+{
+  "id": "C3",
+  "request": "Can the current skill execute this time-dependent noncommuting-generator evolution and certify exp(-i integral H(t)dt)? Do not silently replace it by a constant or averaged generator.",
+  "data": {
+    "task": "time-dependent",
+    "basis": [
+      "0",
+      "1"
+    ],
+    "state": [
+      [
+        0.0,
+        0.6
+      ],
+      [
+        0.8,
+        0.0
+      ]
+    ],
+    "context": "isolated",
+    "atol": 1e-10,
+    "generators": [
+      [
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -1.0,
+            0.0
+          ]
+        ]
+      ]
+    ],
+    "time": {
+      "value": 1,
+      "unit": "1"
+    }
+  },
+  "claim": "A single ordinary exponential of the integral solves arbitrary time-dependent noncommuting evolution."
+}

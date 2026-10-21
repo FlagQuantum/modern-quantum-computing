@@ -1,0 +1,49 @@
+{
+  "evaluation_id": "unitary-evolution-blind-r1",
+  "version": "0.1.0",
+  "agents": [
+    "/root/unitary_blind_a",
+    "/root/unitary_blind_b",
+    "/root/unitary_blind_c"
+  ],
+  "context": "fork_turns=none; raw tasks and three implemented candidate skills; no expected answers, suspected defects or prior conclusions supplied",
+  "reference_key_sha256": "85c422ac062c7a4792bfc98969d0e11eae07a0a288404bb57f3e5a9d53c8b517",
+  "gates": {
+    "correct_dispositions": "all twelve tasks; report invalid/unsupported separately",
+    "required_clarifications": [
+      "A1 missing hbar",
+      "C1 isolated versus coherent-control context",
+      "C4 Hz versus rad/s convention"
+    ],
+    "supported_unitary_tasks": [
+      "A1",
+      "A3",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "C4"
+    ],
+    "invalid_inputs": [
+      "A2 nonunit axis",
+      "B3 tiny non-Hermitian generator at zero time"
+    ],
+    "other_skill_selection": [
+      "A4 comparison only",
+      "B4 interference only"
+    ],
+    "unsupported": "C3 must not fabricate time-dependent solver evidence",
+    "numerical_reference_absolute_tolerance": 5e-12,
+    "runtime": "CPython 3.12, FlagQuantum 0.3.1, Torch base 2.13.0",
+    "claims": "preserve phase, diagnose omitted control-branch phase, 2pi minus sign, Euler nonuniqueness and constant-generator boundary",
+    "false_successes_allowed": 0,
+    "incorrect_abstentions_allowed": 0
+  },
+  "frozen_before_dispatch": true,
+  "limitations": [
+    "Small conductor-designed nonrandom sample",
+    "Logical read boundaries, not OS-enforced sandbox",
+    "Same inherited model configuration; backend revision/token/cost telemetry unavailable",
+    "Conductor grades artifacts; independent scientific acceptance and reader trial remain separate"
+  ]
+}

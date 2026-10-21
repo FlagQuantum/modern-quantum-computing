@@ -1,0 +1,60 @@
+{
+  "original_generator": {
+    "matrix": [
+      [
+        [
+          120000000.0,
+          0.0
+        ],
+        [
+          -0.0,
+          -60000000.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          60000000.0
+        ],
+        [
+          40000000.0,
+          0.0
+        ]
+      ]
+    ],
+    "unit": "Hz"
+  },
+  "declared_conversion": "G_rad_per_s = 2*pi*G_Hz; applies to every complex matrix entry",
+  "factor": 6.283185307179586,
+  "converted_generator": {
+    "matrix": [
+      [
+        [
+          753982236.8615503,
+          0.0
+        ],
+        [
+          -0.0,
+          -376991118.43077517
+        ]
+      ],
+      [
+        [
+          0.0,
+          376991118.43077517
+        ],
+        [
+          251327412.28718346,
+          0.0
+        ]
+      ]
+    ],
+    "unit": "rad/s"
+  },
+  "original_time": {
+    "value": 0.7,
+    "unit": "ns"
+  },
+  "seconds": 7e-10,
+  "exponent": "E = (0.7e-9 s) * (2*pi*G_Hz)"
+}

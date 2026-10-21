@@ -1,0 +1,353 @@
+[
+  {
+    "id": "A1",
+    "selected_skills": [
+      "translate-unitary-evolution"
+    ],
+    "chosen_context": {
+      "object": "evolve",
+      "context": "isolated",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10,
+      "gate_order": "rz(delta), ry(gamma), rz(beta)"
+    },
+    "clarification_question": {
+      "question": "Supply hbar conversion value and unit for energy/time evolution.",
+      "status": "answered",
+      "answer": {
+        "value": 6.582119569e-16,
+        "unit": "eV*s"
+      },
+      "provenance": "Explicit parent response; no additional physical-constant provenance"
+    },
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A1/claim_disposition.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A1/clarification.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A1/execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A1/explanation.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A1/request.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A1/stderr.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A1/stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A1/verification.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/runtime.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verify_independent.py",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_stdout.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_stderr.txt"
+    ],
+    "verification": {
+      "method": "Independent standard-library complex arithmetic; no helper imports",
+      "checks": {
+        "phase_retaining_reconstruction": true,
+        "independent_taylor_exponential": true,
+        "all_actual_circuit_outputs_agree_with_independent_matrices": true
+      },
+      "passed": true,
+      "details": {
+        "reconstruction_max_absolute": 3.3422138886441676e-16,
+        "exponent_multiplier": 911560.4687976764,
+        "taylor_terms": 80,
+        "final_term_max_absolute": 8.679520649319468e-120,
+        "taylor_unitary": [
+          [
+            [
+              0.7504272429811768,
+              -0.5565039683845728
+            ],
+            [
+              -0.28643164950484273,
+              0.21241279699167634
+            ]
+          ],
+          [
+            [
+              0.28643164950484273,
+              -0.21241279699167634
+            ],
+            [
+              0.7504272429811768,
+              -0.5565039683845728
+            ]
+          ]
+        ],
+        "taylor_max_absolute_error": 2.482534153247273e-16,
+        "hbar_provenance": "Parent-declared input; no additional physical-constant provenance supplied",
+        "actual_circuit_checks": [
+          {
+            "input": "supplied",
+            "path": "direct",
+            "max_absolute_error": 1.5700924586837752e-16
+          },
+          {
+            "input": "supplied",
+            "path": "native-zyz",
+            "max_absolute_error": 1.1443916996305594e-16
+          },
+          {
+            "input": "zero",
+            "path": "direct",
+            "max_absolute_error": 2.482534153247273e-16
+          },
+          {
+            "input": "zero",
+            "path": "native-zyz",
+            "max_absolute_error": 1.8296217118893607e-16
+          },
+          {
+            "input": "one",
+            "path": "direct",
+            "max_absolute_error": 2.482534153247273e-16
+          },
+          {
+            "input": "one",
+            "path": "native-zyz",
+            "max_absolute_error": 1.7433779904297854e-16
+          }
+        ]
+      }
+    },
+    "claim_disposition": {
+      "disposition": "no_separate_claim_supplied",
+      "reason": "Requested task outcome is recorded separately from numerical validation."
+    },
+    "explanation": "The missing conversion was requested from /root before evolution. The explicit response supplies hbar=6.582119569e-16 eV*s, with no further physical-constant provenance. Using 0.6 ns = 0.6e-9 s gives multiplier t/hbar=911560.4687976764 eV^-1. The exponent retains its identity coefficient 0.6380923281583735 and trace phase exp(-i*0.6380923281583735). The phase-retaining full U and native V are recorded in stdout.json. U=exp(i alpha)Rz(beta)Ry(gamma)Rz(delta), alpha=-0.6380923281583735; chronological calls are rz(delta),ry(gamma),rz(beta), with gamma=0.7292483750381413. Native V alone omits the scalar; correcting its isolated output array is diagnostic arithmetic. Six actual FlagQuantum circuits and independent 80-term Taylor matrix exponential agree within 1e-10.",
+    "limitations": [
+      "Ideal deterministic binary64 computation; no hardware, noise, shots or exact theorem implied.",
+      "hbar accepted as explicitly declared numerical input; external provenance/accuracy not supplied.",
+      "No unique generator inferred from endpoint; Euler angles are branch-dependent."
+    ]
+  },
+  {
+    "id": "A2",
+    "selected_skills": [
+      "translate-unitary-evolution"
+    ],
+    "chosen_context": {
+      "object": "rotation",
+      "context": "isolated",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10,
+      "gate_order": null
+    },
+    "clarification_question": null,
+    "status": "invalid_input",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A2/claim_disposition.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A2/execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A2/explanation.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A2/request.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A2/stderr.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A2/stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A2/verification.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/runtime.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verify_independent.py",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_stdout.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_stderr.txt"
+    ],
+    "verification": {
+      "method": "Independent standard-library complex arithmetic; no helper imports",
+      "checks": {
+        "axis_norm_squared_is_four": true,
+        "rejected_without_repair": true
+      },
+      "passed": true,
+      "details": {
+        "axis_norm_squared": 4,
+        "no_rotation_executed": true
+      }
+    },
+    "claim_disposition": {
+      "disposition": "no_separate_claim_supplied",
+      "reason": "Requested task outcome is recorded separately from numerical validation."
+    },
+    "explanation": "The supplied axis has squared norm 4, not 1. The task explicitly forbids repair. The helper was actually invoked with the unchanged input, returned invalid_input and exit 2, and did not execute a rotation. This is an input-contract rejection, not evidence for a physical rotation or state inequality.",
+    "limitations": [
+      "Invalid nonunit axis; no rotation output is asserted and no repair performed."
+    ]
+  },
+  {
+    "id": "A3",
+    "selected_skills": [
+      "translate-unitary-evolution",
+      "compare-quantum-states-and-operators"
+    ],
+    "chosen_context": {
+      "object": "factor",
+      "context": "coherent-control",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10,
+      "gate_order": "rz(delta), ry(gamma), rz(beta)"
+    },
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/claim_disposition.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/controlled_comparison_execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/controlled_comparison_request.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/controlled_comparison_stderr.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/controlled_comparison_stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/explanation.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/request.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/stderr.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A3/verification.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/runtime.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verify_independent.py",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_stdout.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_stderr.txt"
+    ],
+    "verification": {
+      "method": "Independent standard-library complex arithmetic; no helper imports",
+      "checks": {
+        "phase_retaining_reconstruction": true,
+        "all_actual_circuit_outputs_agree_with_independent_matrices": true,
+        "omission_changes_full_controlled_operation": true,
+        "whole_operation_phase_alignment_cannot_fix_omission": true,
+        "branch_phase_repair_restores_full_operator": true
+      },
+      "passed": true,
+      "details": {
+        "reconstruction_max_absolute": 1.1102230246251565e-16,
+        "actual_circuit_checks": [
+          {
+            "input": "supplied",
+            "path": "direct",
+            "max_absolute_error": 0.0
+          },
+          {
+            "input": "supplied",
+            "path": "native-zyz",
+            "max_absolute_error": 1.2412670766236366e-16
+          },
+          {
+            "input": "zero",
+            "path": "direct",
+            "max_absolute_error": 0.0
+          },
+          {
+            "input": "zero",
+            "path": "native-zyz",
+            "max_absolute_error": 5.551115123125783e-17
+          },
+          {
+            "input": "one",
+            "path": "direct",
+            "max_absolute_error": 0.0
+          },
+          {
+            "input": "one",
+            "path": "native-zyz",
+            "max_absolute_error": 1.1102230246251565e-16
+          },
+          {
+            "input": "coherent-control",
+            "path": "controlled-direct",
+            "max_absolute_error": 0.0
+          },
+          {
+            "input": "coherent-control",
+            "path": "controlled-repaired",
+            "max_absolute_error": 1.2412670766236366e-16
+          },
+          {
+            "input": "coherent-control",
+            "path": "controlled-unrepaired",
+            "max_absolute_error": 8.326672684688674e-17
+          }
+        ],
+        "controlled_raw_frobenius": 0.6901680590449323,
+        "controlled_global_phase_aligned_frobenius": 0.49175278978279735,
+        "branch_phase_repair_max_absolute": 1.1102230246251565e-16,
+        "claim_disposition": "refuted for supplied unitary",
+        "claim": "Dropping the returned scalar phase cannot change the full controlled operation."
+      }
+    },
+    "claim_disposition": {
+      "disposition": "refuted_for_supplied_unitary",
+      "claim": "Dropping the returned scalar phase cannot change the full controlled operation.",
+      "reason": "The full unitary is verified with alpha=0.493, beta=0.6310000000000001, gamma=1.1730000000000003, delta=-0.28300000000000003. Chronological native calls are rz(delta),ry(gamma),rz(beta). Nine actual circuits verify direct, native and coherent-control cases. In basis 00,01,10,11 with qubit 0 control and qubit 1 target, C(U)=diag(I,U). Controlled native V requires actual phase(0,theta=alpha) after C(V). Dropping alpha changes the full operation: raw Frobenius difference is about 0.6901680590, and the difference remains nonzero even after aligning one phase for the whole controlled operator. Computational-basis probabilities happen to agree here but full complex outputs differ. A control-branch phase repair restores the operator; a scalar on the entire output does not. The supplied omission claim is refuted for this concrete unitary."
+    },
+    "explanation": "The full unitary is verified with alpha=0.493, beta=0.6310000000000001, gamma=1.1730000000000003, delta=-0.28300000000000003. Chronological native calls are rz(delta),ry(gamma),rz(beta). Nine actual circuits verify direct, native and coherent-control cases. In basis 00,01,10,11 with qubit 0 control and qubit 1 target, C(U)=diag(I,U). Controlled native V requires actual phase(0,theta=alpha) after C(V). Dropping alpha changes the full operation: raw Frobenius difference is about 0.6901680590, and the difference remains nonzero even after aligning one phase for the whole controlled operator. Computational-basis probabilities happen to agree here but full complex outputs differ. A control-branch phase repair restores the operator; a scalar on the entire output does not. The supplied omission claim is refuted for this concrete unitary.",
+    "limitations": [
+      "Ideal deterministic binary64 computation; no hardware, noise, shots or exact theorem implied.",
+      "Claim refuted for the supplied example; this is not a general proof for all parameter values.",
+      "Controlled(V) uses explicit generic unitary, not native controlled-Euler synthesis."
+    ]
+  },
+  {
+    "id": "A4",
+    "selected_skills": [
+      "compare-quantum-states-and-operators"
+    ],
+    "chosen_context": {
+      "object": "pure-state comparison",
+      "context": "isolated/global-phase",
+      "basis": [
+        "0",
+        "1"
+      ],
+      "atol": 1e-10,
+      "gate_order": null
+    },
+    "clarification_question": null,
+    "status": "within_tolerance",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A4/claim_disposition.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A4/execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A4/explanation.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A4/request.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A4/stderr.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A4/stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/A4/verification.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/runtime.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verify_independent.py",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_stdout.txt",
+      "/private/tmp/mqc-unitary-blind-r1/a/outputs/verification_stderr.txt"
+    ],
+    "verification": {
+      "method": "Independent standard-library complex arithmetic; no helper imports",
+      "checks": {
+        "input_a_normalized": true,
+        "input_b_normalized": true,
+        "phase_aligned_within_tolerance": true,
+        "helper_residual_agrees": true
+      },
+      "passed": true,
+      "details": {
+        "overlap": [
+          0.7088005038109103,
+          -0.7054089918603247
+        ],
+        "multiplier_on_b": [
+          0.7088005038109104,
+          0.7054089918603248
+        ],
+        "raw_euclidean": 0.7631507009615988,
+        "aligned_euclidean": 0.0
+      }
+    },
+    "claim_disposition": {
+      "disposition": "no_separate_claim_supplied",
+      "reason": "Requested task outcome is recorded separately from numerical validation."
+    },
+    "explanation": "This is an isolated pure-state comparison with one global phase, basis 0,1 and absolute Euclidean tolerance 1e-10. The comparison skill returned within_tolerance, exit 0. The multiplier on b is approximately 0.7088005038109104+0.7054089918603248i; the direct aligned Euclidean residual is zero in binary64. Independent overlap/alignment calculations agree. No evolution or factorization was substituted.",
+    "limitations": [
+      "Ideal deterministic binary64 computation; no hardware, noise, shots or exact theorem implied.",
+      "Zero residual is a floating-point equivalence decision at the declared tolerance."
+    ]
+  }
+]

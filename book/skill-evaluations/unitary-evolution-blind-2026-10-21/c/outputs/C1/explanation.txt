@@ -1,0 +1,1 @@
+Resolved coherent-control context before execution. Full U is retained as exp(i alpha)V. The control-first operation diag(I,U) is verified using actual controlled V plus phase(alpha) on the control. Dropping alpha changes relative phase between control branches; a scalar on the whole output cannot repair it. Nine ideal FlagQuantum circuits executed.

@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/private/tmp/mqc-writing-venv/bin/python",
+    "/private/tmp/mqc-unitary-blind-r1/b/skills/compare-quantum-states-and-operators/scripts/compare.py"
+  ],
+  "cwd": "/private/tmp/mqc-unitary-blind-r1/b",
+  "exit_code": 0,
+  "elapsed_seconds": 0.013998417000038899,
+  "request_path": "/private/tmp/mqc-unitary-blind-r1/b/outputs/B2/compare-global-phase/request.json"
+}

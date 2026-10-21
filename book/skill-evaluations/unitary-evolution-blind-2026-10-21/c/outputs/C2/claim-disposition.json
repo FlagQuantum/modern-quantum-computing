@@ -1,0 +1,5 @@
+{
+  "claim": "The Euler angle tuple is unique and continuously identifiable near the pole.",
+  "disposition": "rejected",
+  "reason": "Parameter periodicity, endpoint degeneracy, and pole ill conditioning; matrix reconstruction succeeds."
+}

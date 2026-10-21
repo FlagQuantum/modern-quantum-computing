@@ -1,0 +1,163 @@
+[
+  {
+    "id": "C1",
+    "selected_skills": [
+      "translate-unitary-evolution"
+    ],
+    "chosen_context": "coherent-control; control-first basis 00,01,10,11",
+    "clarification_question": "Will the gate be used in isolation or under coherent control?",
+    "clarification_resolution": "The gate is used under coherent control with a superposed control qubit, not just in isolation. Use the declared control-first basis 00,01,10,11 and retain the full controlled operation.",
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C1/claim-disposition.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C1/execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C1/explanation.txt",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C1/independent-verification.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C1/original-task.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C1/request.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C1/stderr.txt",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C1/stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/runtime-probes.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/clarifications.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verify.py",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-stderr.txt"
+    ],
+    "verification": {
+      "independent_passed": true,
+      "helper_exit_code": 0,
+      "helper_runtime_seconds": 0.8903840829998444,
+      "independent_result_path": "/private/tmp/mqc-unitary-blind-r1/c/outputs/C1/independent-verification.json",
+      "claim_disposition": {
+        "disposition": "no explicit external claim; declared ideal operation verified"
+      }
+    },
+    "limitations": [
+      "Ideal CPU complex128 statevector checks; no hardware/noise claims.",
+      "No unique generator or globally unique/continuous Euler angles inferred."
+    ]
+  },
+  {
+    "id": "C2",
+    "selected_skills": [
+      "translate-unitary-evolution"
+    ],
+    "chosen_context": "isolated",
+    "clarification_question": null,
+    "clarification_resolution": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C2/claim-disposition.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C2/execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C2/explanation.txt",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C2/independent-verification.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C2/original-task.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C2/request.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C2/stderr.txt",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C2/stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/runtime-probes.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/clarifications.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verify.py",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-stderr.txt"
+    ],
+    "verification": {
+      "independent_passed": true,
+      "helper_exit_code": 0,
+      "helper_runtime_seconds": 0.5526992920003977,
+      "independent_result_path": "/private/tmp/mqc-unitary-blind-r1/c/outputs/C2/independent-verification.json",
+      "claim_disposition": {
+        "claim": "The Euler angle tuple is unique and continuously identifiable near the pole.",
+        "disposition": "rejected",
+        "reason": "Parameter periodicity, endpoint degeneracy, and pole ill conditioning; matrix reconstruction succeeds."
+      }
+    },
+    "limitations": [
+      "Ideal CPU complex128 statevector checks; no hardware/noise claims.",
+      "No unique generator or globally unique/continuous Euler angles inferred."
+    ]
+  },
+  {
+    "id": "C3",
+    "selected_skills": [
+      "translate-unitary-evolution"
+    ],
+    "chosen_context": "isolated",
+    "clarification_question": "How do the supplied X and Z generators depend on time?",
+    "clarification_resolution": "No schedule is supplied. Keep the requested execution unsupported and do not invent one. A clearly labeled theoretical counterexample, distinct from execution of the supplied task, is acceptable.",
+    "status": "unsupported",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C3/claim-disposition.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C3/execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C3/explanation.txt",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C3/independent-verification.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C3/original-task.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C3/request.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C3/stderr.txt",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C3/stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/runtime-probes.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/clarifications.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verify.py",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-stderr.txt"
+    ],
+    "verification": {
+      "independent_passed": true,
+      "helper_exit_code": 3,
+      "helper_runtime_seconds": 0.030082792000030167,
+      "independent_result_path": "/private/tmp/mqc-unitary-blind-r1/c/outputs/C3/independent-verification.json",
+      "claim_disposition": {
+        "claim": "A single ordinary exponential of the integral solves arbitrary time-dependent noncommuting evolution.",
+        "disposition": "rejected",
+        "reason": "Noncommuting time ordering matters; independent hypothetical counterexample saved separately from supplied-task execution."
+      }
+    },
+    "limitations": [
+      "No H(t) schedule supplied; requested evolution remains unsupported.",
+      "Counterexample is theoretical and explicitly distinct from the supplied evolution; no replacement circuit executed."
+    ]
+  },
+  {
+    "id": "C4",
+    "selected_skills": [
+      "translate-unitary-evolution"
+    ],
+    "chosen_context": "isolated",
+    "clarification_question": "Are entries cyclic frequencies in Hz or angular frequencies in rad/s?",
+    "clarification_resolution": "The entries are cyclic frequencies in Hz. Convert the entire matrix to an angular-frequency generator in rad/s by multiplying every entry by 2pi; time is 0.7 ns. Preserve both the original values and this explicit conversion.",
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C4/claim-disposition.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C4/conversion.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C4/execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C4/explanation.txt",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C4/independent-verification.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C4/original-task.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C4/request.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C4/stderr.txt",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/C4/stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/runtime-probes.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/clarifications.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verify.py",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-execution.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-stdout.json",
+      "/private/tmp/mqc-unitary-blind-r1/c/outputs/verification-stderr.txt"
+    ],
+    "verification": {
+      "independent_passed": true,
+      "helper_exit_code": 0,
+      "helper_runtime_seconds": 0.5427432500000577,
+      "independent_result_path": "/private/tmp/mqc-unitary-blind-r1/c/outputs/C4/independent-verification.json",
+      "claim_disposition": {
+        "disposition": "no explicit external claim; declared ideal operation verified"
+      }
+    },
+    "limitations": [
+      "Ideal CPU complex128 statevector checks; no hardware/noise claims.",
+      "No unique generator or globally unique/continuous Euler angles inferred."
+    ]
+  }
+]

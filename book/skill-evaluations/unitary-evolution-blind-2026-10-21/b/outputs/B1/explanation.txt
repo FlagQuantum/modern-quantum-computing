@@ -1,0 +1,1 @@
+Signed time was preserved. The original generator is 2I+sigma_y; no energy-zero shift was applied. Full complex direct and phase-corrected coordinates passed independent checks.

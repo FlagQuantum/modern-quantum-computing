@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "atol": 1e-10,
+  "checks": {
+    "target_vs_helper_matrix": 1.2412670766236366e-16,
+    "independent_zyz_full_reconstruction": 2.482534153247273e-16,
+    "independent_native_matrix": 2.237726045655905e-16,
+    "record_0_direct_coordinate_residual": 2.237726045655905e-16,
+    "record_0_born_residual": 0.0,
+    "record_1_native-zyz_coordinate_residual": 2.482534153247273e-16,
+    "record_1_born_residual": 0.0,
+    "record_2_direct_coordinate_residual": 1.2412670766236366e-16,
+    "record_2_born_residual": 0.0,
+    "record_3_native-zyz_coordinate_residual": 1.6653655913038308e-16,
+    "record_3_born_residual": 0.0,
+    "record_4_direct_coordinate_residual": 1.1443916996305594e-16,
+    "record_4_born_residual": 0.0,
+    "record_5_native-zyz_coordinate_residual": 1.5700924586837752e-16,
+    "record_5_born_residual": 0.0,
+    "declared_exponent_preserved": 1.1102230246251565e-16
+  },
+  "details": {
+    "trace_shift_exponent": 0.3518583772020568,
+    "trace_shift_phase": [
+      0.9387338576538741,
+      -0.34464292317451706
+    ],
+    "declared_conversion": "every matrix entry multiplied by 2*pi, Hz to rad/s; time 0.7 ns = 7e-10 s",
+    "matrix_exponential_method": "independent 100-term Taylor matrix series, no skill imports or Torch",
+    "series_last_term_bound": "matrix infinity norm <=0.792; remainder after 100 terms < exp(0.792)*0.792^101/101!"
+  }
+}

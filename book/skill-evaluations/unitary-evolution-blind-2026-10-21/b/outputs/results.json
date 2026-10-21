@@ -1,0 +1,470 @@
+[
+  {
+    "id": "B1",
+    "selected_skills": [
+      "translate-unitary-evolution"
+    ],
+    "chosen_context": "isolated",
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/B1",
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/runtime-probe.json",
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/run_all.py"
+    ],
+    "verification": {
+      "method": "independent standard-library power-series matrix exponential",
+      "taylor_terms": 22,
+      "dimensionless_exponent": [
+        [
+          [
+            -0.826,
+            0.0
+          ],
+          [
+            0.0,
+            0.413
+          ]
+        ],
+        [
+          [
+            -0.0,
+            -0.413
+          ],
+          [
+            -0.826,
+            0.0
+          ]
+        ]
+      ],
+      "independent_unitary": [
+        [
+          [
+            0.6208313877341262,
+            0.6734088114562365
+          ],
+          [
+            0.2720499188710362,
+            0.2950894818516596
+          ]
+        ],
+        [
+          [
+            -0.2720499188710362,
+            -0.2950894818516596
+          ],
+          [
+            0.6208313877341262,
+            0.6734088114562365
+          ]
+        ]
+      ],
+      "matrix_max_absolute": 4.002966042486721e-16,
+      "trace_shift_exponent": [
+        -0.826,
+        0.0
+      ],
+      "trace_shift_phase": [
+        0.6778220786855634,
+        0.7352259718252491
+      ],
+      "circuit_checks": [
+        {
+          "path": "direct",
+          "input_label": "supplied",
+          "coordinate_max_absolute": 2.482534153247273e-16,
+          "probability_max_absolute": 3.3306690738754696e-16,
+          "passed": true
+        },
+        {
+          "path": "native-zyz",
+          "input_label": "supplied",
+          "coordinate_max_absolute": 1.2412670766236366e-16,
+          "probability_max_absolute": 3.3306690738754696e-16,
+          "passed": true,
+          "diagnostic_full_coordinate_max_absolute": 2.2887833992611187e-16
+        },
+        {
+          "path": "direct",
+          "input_label": "zero",
+          "coordinate_max_absolute": 4.002966042486721e-16,
+          "probability_max_absolute": 7.771561172376096e-16,
+          "passed": true
+        },
+        {
+          "path": "native-zyz",
+          "input_label": "zero",
+          "coordinate_max_absolute": 0.0,
+          "probability_max_absolute": 0.0,
+          "passed": true,
+          "diagnostic_full_coordinate_max_absolute": 1.5700924586837752e-16
+        },
+        {
+          "path": "direct",
+          "input_label": "one",
+          "coordinate_max_absolute": 4.002966042486721e-16,
+          "probability_max_absolute": 7.771561172376096e-16,
+          "passed": true
+        },
+        {
+          "path": "native-zyz",
+          "input_label": "one",
+          "coordinate_max_absolute": 1.2141622251710539e-16,
+          "probability_max_absolute": 8.326672684688674e-17,
+          "passed": true,
+          "diagnostic_full_coordinate_max_absolute": 2.220446049250313e-16
+        }
+      ],
+      "passed": true
+    },
+    "claim_disposition": {
+      "disposition": "reproduced_with_full_complex_coordinates",
+      "explanation": "E=-0.413 K; trace contribution e0=-0.826 gives scalar phase exp(+0.826i). Native ZYZ alone implements V; retaining the returned phase recovers U as diagnostic arithmetic."
+    },
+    "limitations": [
+      "Ideal deterministic numerical profile; no noisy/hardware or statistical inference.",
+      "Floating-point checks at declared tolerance do not establish an exact general theorem."
+    ]
+  },
+  {
+    "id": "B2",
+    "selected_skills": [
+      "translate-unitary-evolution",
+      "compare-quantum-states-and-operators"
+    ],
+    "chosen_context": "isolated operator ray; full coherently controlled operation; coordinates retain phase",
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/B2",
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/runtime-probe.json",
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/run_all.py"
+    ],
+    "verification": {
+      "method": "independent standard-library matrix exponential and full controlled-block witness",
+      "taylor_terms": 32,
+      "independent_unitary": [
+        [
+          [
+            -1.0000000000000002,
+            0.0
+          ],
+          [
+            0.0,
+            -3.3443552948977333e-16
+          ]
+        ],
+        [
+          [
+            0.0,
+            -3.3443552948977333e-16
+          ],
+          [
+            -1.0000000000000002,
+            0.0
+          ]
+        ]
+      ],
+      "matrix_max_absolute": 9.978321000604152e-16,
+      "circuit_checks": [
+        {
+          "path": "direct",
+          "input_label": "supplied",
+          "coordinate_max_absolute": 1.3322676295501878e-15,
+          "probability_max_absolute": 1.609823385706477e-15,
+          "passed": true
+        },
+        {
+          "path": "native-zyz",
+          "input_label": "supplied",
+          "coordinate_max_absolute": 0.0,
+          "probability_max_absolute": 0.0,
+          "passed": true,
+          "diagnostic_full_coordinate_max_absolute": 3.41075798048304e-16
+        },
+        {
+          "path": "native-axis",
+          "input_label": "supplied",
+          "coordinate_max_absolute": 2.220446049250313e-16,
+          "probability_max_absolute": 2.7755575615628914e-16,
+          "passed": true
+        },
+        {
+          "path": "direct",
+          "input_label": "zero",
+          "coordinate_max_absolute": 3.3443552948977333e-16,
+          "probability_max_absolute": 4.440892098500626e-16,
+          "passed": true
+        },
+        {
+          "path": "native-zyz",
+          "input_label": "zero",
+          "coordinate_max_absolute": 0.0,
+          "probability_max_absolute": 0.0,
+          "passed": true,
+          "diagnostic_full_coordinate_max_absolute": 3.3443552948977333e-16
+        },
+        {
+          "path": "native-axis",
+          "input_label": "zero",
+          "coordinate_max_absolute": 3.3443552948977333e-16,
+          "probability_max_absolute": 4.440892098500626e-16,
+          "passed": true
+        },
+        {
+          "path": "direct",
+          "input_label": "one",
+          "coordinate_max_absolute": 1.4330698825956337e-15,
+          "probability_max_absolute": 4.440892098500626e-16,
+          "passed": true
+        },
+        {
+          "path": "native-zyz",
+          "input_label": "one",
+          "coordinate_max_absolute": 6.123233995736766e-17,
+          "probability_max_absolute": 3.749399456654644e-33,
+          "passed": true,
+          "diagnostic_full_coordinate_max_absolute": 3.399948864935467e-16
+        },
+        {
+          "path": "native-axis",
+          "input_label": "one",
+          "coordinate_max_absolute": 3.399948864935467e-16,
+          "probability_max_absolute": 4.440892098500626e-16,
+          "passed": true
+        },
+        {
+          "path": "controlled-direct",
+          "input_label": "coherent-control",
+          "coordinate_max_absolute": 8.881784197001252e-16,
+          "probability_max_absolute": 7.494005416219807e-16,
+          "passed": true
+        },
+        {
+          "path": "controlled-repaired",
+          "input_label": "coherent-control",
+          "coordinate_max_absolute": 2.823769915986088e-16,
+          "probability_max_absolute": 2.498001805406602e-16,
+          "passed": true
+        },
+        {
+          "path": "controlled-unrepaired",
+          "input_label": "coherent-control",
+          "coordinate_max_absolute": 0.0,
+          "probability_max_absolute": 0.0,
+          "passed": true
+        }
+      ],
+      "comparisons": {
+        "coordinates": {
+          "status": "outside_tolerance",
+          "exit_code": 1,
+          "result_path": "/private/tmp/mqc-unitary-blind-r1/b/outputs/B2/compare-coordinates/stdout.json"
+        },
+        "global-phase": {
+          "status": "within_tolerance",
+          "exit_code": 0,
+          "result_path": "/private/tmp/mqc-unitary-blind-r1/b/outputs/B2/compare-global-phase/stdout.json"
+        },
+        "controlled": {
+          "status": "outside_tolerance",
+          "exit_code": 1,
+          "result_path": "/private/tmp/mqc-unitary-blind-r1/b/outputs/B2/compare-controlled/stdout.json"
+        }
+      },
+      "distance_to_minus_identity_max_absolute": 3.3443552948977333e-16,
+      "coherent_input_witness": {
+        "input": [
+          [
+            0.0,
+            0.42426406871192845
+          ],
+          [
+            0.565685424949238,
+            0.0
+          ],
+          [
+            0.0,
+            0.42426406871192845
+          ],
+          [
+            0.565685424949238,
+            0.0
+          ]
+        ],
+        "controlled_rotation_output": [
+          [
+            0.0,
+            0.42426406871192845
+          ],
+          [
+            0.565685424949238,
+            0.0
+          ],
+          [
+            0.0,
+            -0.42426406871192873
+          ],
+          [
+            -0.565685424949238,
+            0.0
+          ]
+        ],
+        "identity_output": [
+          [
+            0.0,
+            0.42426406871192845
+          ],
+          [
+            0.565685424949238,
+            0.0
+          ],
+          [
+            0.0,
+            0.42426406871192845
+          ],
+          [
+            0.565685424949238,
+            0.0
+          ]
+        ],
+        "overlap": [
+          -1.6653345369377348e-16,
+          0.0
+        ],
+        "ray_distance": 1.414213562373095,
+        "explanation": "For exact 2pi, control |+> changes to |-> while target remains the same ray; identity retains |+>. The two outputs are orthogonal."
+      },
+      "independent_controlled_aligned_frobenius": 2.82842712474619,
+      "passed": true
+    },
+    "claim_disposition": {
+      "claim": "R_x(2pi) equals I as a full operation.",
+      "disposition": "refuted_as_full_operation",
+      "isolated_operator_ray": "equivalent to identity up to one global phase -1",
+      "coherent_control": "C(Rx(2pi)) approximately diag(1,1,-1,-1), inequivalent to I4 even up to a whole-operation phase",
+      "explanation": "Active spin-1/2 Rx(2pi)=-I. The canonical factorization alpha=0 does not imply V=I: here V itself is -I."
+    },
+    "limitations": [
+      "Ideal deterministic numerical profile; no noisy/hardware or statistical inference.",
+      "Floating-point checks at declared tolerance do not establish an exact general theorem."
+    ]
+  },
+  {
+    "id": "B3",
+    "selected_skills": [
+      "translate-unitary-evolution"
+    ],
+    "chosen_context": "isolated",
+    "clarification_question": null,
+    "status": "invalid_input",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/B3",
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/runtime-probe.json",
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/run_all.py"
+    ],
+    "verification": {
+      "method": "independent raw-scale Hermiticity admission before time conversion",
+      "generator_max_absolute_J": 1e-24,
+      "hermiticity_max_absolute_J": 1e-24,
+      "hermiticity_allowance_J": 1e-36,
+      "relative_discrepancy": 1.0,
+      "admitted": false,
+      "time_seconds": 0.0,
+      "zero_time_endpoint_is_identity": true,
+      "passed": true
+    },
+    "claim_disposition": {
+      "disposition": "generator_rejected",
+      "explanation": "The 1e-24 J off-diagonal has no conjugate partner. Relative discrepancy is 1, far above 1e-12. A zero-time identity endpoint does not validate a Hamiltonian."
+    },
+    "limitations": [
+      "Ideal deterministic numerical profile; no noisy/hardware or statistical inference.",
+      "Floating-point checks at declared tolerance do not establish an exact general theorem.",
+      "Invalid raw generator; no admissible Hamiltonian evolution was simulated."
+    ]
+  },
+  {
+    "id": "B4",
+    "selected_skills": [
+      "reproduce-qubit-interference"
+    ],
+    "chosen_context": "prepared pure qubit phase scan with specified phase-h analyzer",
+    "clarification_question": null,
+    "status": "verified",
+    "evidence_paths": [
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/B4",
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/runtime-probe.json",
+      "/private/tmp/mqc-unitary-blind-r1/b/outputs/run_all.py"
+    ],
+    "verification": {
+      "method": "standard-library chronological D(phi),D(-delta),H matrix action plus scalar Born expansion",
+      "input_squared_norm": 1.0,
+      "point_checks": [
+        {
+          "phase_radians": 0.26,
+          "independent_state": [
+            [
+              0.9330407230987248,
+              0.25292687103020806
+            ],
+            [
+              -0.03861353209880891,
+              -0.25292687103020806
+            ]
+          ],
+          "independent_probabilities": [
+            0.9345369930497226,
+            0.06546300695027725
+          ],
+          "independent_scalar_formula": [
+            0.9345369930497228,
+            0.06546300695027718
+          ],
+          "coordinate_max_absolute": 1.2412670766236366e-16,
+          "probability_max_absolute": 2.220446049250313e-16,
+          "formula_max_absolute": 6.938893903907228e-17,
+          "passed": true
+        },
+        {
+          "phase_radians": 1.37,
+          "independent_state": [
+            [
+              0.436695956977368,
+              0.5476215657549547
+            ],
+            [
+              0.45773123402254784,
+              -0.5476215657549547
+            ]
+          ],
+          "independent_probabilities": [
+            0.4905927381202874,
+            0.5094072618797126
+          ],
+          "independent_scalar_formula": [
+            0.49059273812028736,
+            0.5094072618797126
+          ],
+          "coordinate_max_absolute": 0.0,
+          "probability_max_absolute": 0.0,
+          "formula_max_absolute": 5.551115123125783e-17,
+          "passed": true
+        }
+      ],
+      "continuous_p0_min": 0.010102051443364346,
+      "continuous_p0_max": 0.9898979485566357,
+      "sampled_p0_min": 0.4905927381202874,
+      "sampled_p0_max": 0.9345369930497226,
+      "passed": true
+    },
+    "claim_disposition": {
+      "disposition": "specified_ideal_scan_reproduced",
+      "explanation": "Actual simulator probabilities match chronological complex-amplitude calculation and scalar interference formula at both supplied phases. Sparse sampled extrema differ from analytic continuous extrema."
+    },
+    "limitations": [
+      "Ideal deterministic numerical profile; no noisy/hardware or statistical inference.",
+      "Floating-point checks at declared tolerance do not establish an exact general theorem."
+    ]
+  }
+]

@@ -1,0 +1,1 @@
+Isolated operator-ray equivalence passes; coordinate equality and coherent controlled-operation equivalence fail. Full controlled Frobenius residual is approximately sqrt(8).

@@ -1,0 +1,11 @@
+{
+  "method": "independent raw-scale Hermiticity admission before time conversion",
+  "generator_max_absolute_J": 1e-24,
+  "hermiticity_max_absolute_J": 1e-24,
+  "hermiticity_allowance_J": 1e-36,
+  "relative_discrepancy": 1.0,
+  "admitted": false,
+  "time_seconds": 0.0,
+  "zero_time_endpoint_is_identity": true,
+  "passed": true
+}

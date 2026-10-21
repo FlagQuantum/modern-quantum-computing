@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "claim_disposition": "rejected",
+  "task_execution": "unsupported; input generators provide no schedule, and skill has no time-dependent solver",
+  "counterexample_scope": "Independent mathematical counterexample only: H(t)=X for 0<=t<0.5 and H(t)=Z for 0.5<=t<=1, dimensionless. Not attributed to supplied task data.",
+  "commutator_XZ": [
+    [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        -2.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        2.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ]
+  ],
+  "ordered_solution": [
+    [
+      [
+        0.7701511529340699,
+        -0.42073549240394825
+      ],
+      [
+        -0.22984884706593015,
+        -0.42073549240394825
+      ]
+    ],
+    [
+      [
+        0.22984884706593015,
+        -0.42073549240394825
+      ],
+      [
+        0.7701511529340699,
+        0.42073549240394825
+      ]
+    ]
+  ],
+  "ordinary_exponential_integral": [
+    [
+      [
+        0.7602445970756301,
+        -0.45936268493278415
+      ],
+      [
+        0.0,
+        -0.45936268493278415
+      ]
+    ],
+    [
+      [
+        0.0,
+        -0.45936268493278415
+      ],
+      [
+        0.7602445970756301,
+        0.45936268493278415
+      ]
+    ]
+  ],
+  "max_entry_discrepancy": 0.23307198995202555,
+  "conclusion": "Nonzero discrepancy disproves the universal assertion; correct evolution requires time ordering in general. Ordinary exponential can hold for commuting H(t) or special cases."
+}

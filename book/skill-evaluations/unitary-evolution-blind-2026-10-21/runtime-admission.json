@@ -1,0 +1,137 @@
+{
+  "checks": [
+    {
+      "name": "wrong_python",
+      "command": [
+        "/usr/bin/python3",
+        "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/translate-unitary-evolution/scripts/unitary.py"
+      ],
+      "request": {
+        "task": "evolve",
+        "basis": [
+          "0",
+          "1"
+        ],
+        "state": [
+          [
+            0.0,
+            0.6
+          ],
+          [
+            0.8,
+            0.0
+          ]
+        ],
+        "context": "isolated",
+        "atol": 1e-10,
+        "generator": {
+          "matrix": [
+            [
+              [
+                2.0,
+                0.0
+              ],
+              [
+                -0.0,
+                -1.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                1.0
+              ],
+              [
+                2.0,
+                0.0
+              ]
+            ]
+          ],
+          "unit": "1"
+        },
+        "time": {
+          "value": -0.413,
+          "unit": "1"
+        }
+      },
+      "exit_code": 3,
+      "stdout": {
+        "contract_version": "0.1.0",
+        "status": "unsupported",
+        "reason": "unsupported_runtime: CPython 3.12 required",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.9.6"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "name": "missing_packages",
+      "command": [
+        "/private/tmp/mqc-writing-venv/bin/python",
+        "-S",
+        "/Users/baai/Documents/liuwei/modern-quantum-computing/skills/translate-unitary-evolution/scripts/unitary.py"
+      ],
+      "request": {
+        "task": "evolve",
+        "basis": [
+          "0",
+          "1"
+        ],
+        "state": [
+          [
+            0.0,
+            0.6
+          ],
+          [
+            0.8,
+            0.0
+          ]
+        ],
+        "context": "isolated",
+        "atol": 1e-10,
+        "generator": {
+          "matrix": [
+            [
+              [
+                2.0,
+                0.0
+              ],
+              [
+                -0.0,
+                -1.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                1.0
+              ],
+              [
+                2.0,
+                0.0
+              ]
+            ]
+          ],
+          "unit": "1"
+        },
+        "time": {
+          "value": -0.413,
+          "unit": "1"
+        }
+      },
+      "exit_code": 3,
+      "stdout": {
+        "contract_version": "0.1.0",
+        "reason": "Missing pinned runtime: No package metadata was found for flagquantum",
+        "runtime": {
+          "implementation": "cpython",
+          "python": "3.12.14"
+        },
+        "status": "unsupported"
+      },
+      "stderr": ""
+    }
+  ]
+}

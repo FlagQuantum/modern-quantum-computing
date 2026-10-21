@@ -1,6 +1,6 @@
 # One knowledge base, two entry points
 
-**Plan 0.1 · October 21, 2026 · first prototype pilot.** This document proposes a human textbook entry and an agent task entry for *Modern Quantum Computing: A Formula-to-Code Approach*. It changes neither Writing Baseline 1.0 nor its 50 chapters, 435 sections, seven volumes, 16 batches or proof-depth requirements. The [first comparison prototype](comparison-skill-prototype.md) has [independent blind-test evidence](comparison-skill-blind-evaluation.md); scientific acceptance remains pending. The second [interference prototype](interference-skill-prototype.md) is also independently agent-tested. No skill package is released.
+**Plan 0.1 · October 21, 2026 · first prototype pilot.** This document proposes a human textbook entry and an agent task entry for *Modern Quantum Computing: A Formula-to-Code Approach*. It changes neither Writing Baseline 1.0 nor its 50 chapters, 435 sections, seven volumes, 16 batches or proof-depth requirements. The [first comparison prototype](comparison-skill-prototype.md) has [independent blind-test evidence](comparison-skill-blind-evaluation.md); scientific acceptance remains pending. The second [interference prototype](interference-skill-prototype.md) is also independently agent-tested. The third [phase-tracked unitary evolution prototype](unitary-evolution-skill-prototype.md), based on 3.4–3.6, passed 53 author cases and 12 independent blind tasks, including unit clarification and actual coherent-control phase repair. No skill package is released.
 
 ## Choose an entry
 
@@ -50,6 +50,7 @@ The [six capability levels and complete chapter map](agent-skills.md) assign pri
 | `templates/skill-design.md` and `templates/paper-reproduction-report.md` | Reviewable design and evidence-report worksheets | Unfilled templates; no claimed run |
 | `skills/compare-quantum-states-and-operators/SKILL.md` and its contract/helper | First discoverable execution entry | Independent-agent-tested prototype 0.1.1; not installed globally or scientifically accepted |
 | `skills/reproduce-qubit-interference/SKILL.md` and its reference/helper | Ideal one-qubit scan with explicit preparation, units and analyzer | Independent-agent-tested prototype 0.1.0; no accepted release |
+| `skills/translate-unitary-evolution/SKILL.md` and its reference/helper | Constant generator, Pauli rotation and phase-tracked ZYZ factorization with declared units/context | Independent-agent-tested prototype 0.1.0; no accepted release |
 | Future `reproductions/<paper-id>/<run-id>/` bundles | Inputs, implementation, environment, actual evidence and review decisions | Not created or fabricated in this pass |
 
 A future `SKILL.md` contains concise discovery metadata, scope, essential invariants, routing and links. Detailed math stays in the source sections; conditional procedures and schemas are loaded as needed. Runtime adapters may differ, but the scientific task/output contract is shared. Instructions do not grant permission to submit hardware jobs, spend resources, upload sources or post external messages.

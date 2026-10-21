@@ -1,0 +1,61 @@
+{
+  "method": "standard-library chronological D(phi),D(-delta),H matrix action plus scalar Born expansion",
+  "input_squared_norm": 1.0,
+  "point_checks": [
+    {
+      "phase_radians": 0.26,
+      "independent_state": [
+        [
+          0.9330407230987248,
+          0.25292687103020806
+        ],
+        [
+          -0.03861353209880891,
+          -0.25292687103020806
+        ]
+      ],
+      "independent_probabilities": [
+        0.9345369930497226,
+        0.06546300695027725
+      ],
+      "independent_scalar_formula": [
+        0.9345369930497228,
+        0.06546300695027718
+      ],
+      "coordinate_max_absolute": 1.2412670766236366e-16,
+      "probability_max_absolute": 2.220446049250313e-16,
+      "formula_max_absolute": 6.938893903907228e-17,
+      "passed": true
+    },
+    {
+      "phase_radians": 1.37,
+      "independent_state": [
+        [
+          0.436695956977368,
+          0.5476215657549547
+        ],
+        [
+          0.45773123402254784,
+          -0.5476215657549547
+        ]
+      ],
+      "independent_probabilities": [
+        0.4905927381202874,
+        0.5094072618797126
+      ],
+      "independent_scalar_formula": [
+        0.49059273812028736,
+        0.5094072618797126
+      ],
+      "coordinate_max_absolute": 0.0,
+      "probability_max_absolute": 0.0,
+      "formula_max_absolute": 5.551115123125783e-17,
+      "passed": true
+    }
+  ],
+  "continuous_p0_min": 0.010102051443364346,
+  "continuous_p0_max": 0.9898979485566357,
+  "sampled_p0_min": 0.4905927381202874,
+  "sampled_p0_max": 0.9345369930497226,
+  "passed": true
+}

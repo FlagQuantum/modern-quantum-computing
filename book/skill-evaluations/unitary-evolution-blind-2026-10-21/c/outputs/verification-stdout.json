@@ -1,0 +1,18 @@
+{
+  "C1": {
+    "passed": true,
+    "maximum_check": 1.5700924586837752e-16
+  },
+  "C2": {
+    "passed": true,
+    "maximum_check": 9.95265590367428e-14
+  },
+  "C4": {
+    "passed": true,
+    "maximum_check": 2.482534153247273e-16
+  },
+  "C3": {
+    "passed": true,
+    "maximum_check": 0.23307198995202555
+  }
+}

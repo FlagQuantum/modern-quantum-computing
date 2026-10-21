@@ -1,0 +1,4 @@
+{
+  "disposition": "generator_rejected",
+  "explanation": "The 1e-24 J off-diagonal has no conjugate partner. Relative discrepancy is 1, far above 1e-12. A zero-time identity endpoint does not validate a Hamiltonian."
+}

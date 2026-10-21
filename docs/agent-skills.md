@@ -1,6 +1,6 @@
 # Agent skills: capability levels and chapter map
 
-**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains 23 proposed task skills; two have independent-agent-tested prototypes: state/operator comparison 0.1.1 and single-qubit interference 0.1.0. Their separate evidence records retain failures, author execution and blind-task outcomes. Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.
+**Plan 0.1 · October 21, 2026 · first prototype pilot.** Generated from `book/agent-skills-plan.json`. This catalog contains 23 proposed task skills; three have independent-agent-tested prototypes: state/operator comparison 0.1.1, single-qubit interference 0.1.0 and phase-tracked unitary evolution 0.1.0. Their separate evidence records retain failures, author execution and blind-task outcomes. Scientific acceptance remains pending. Zero skills are released. It does not assert existing FlagQuantum support for planned topics.
 
 [Dual-entry design](dual-entry.md) · [Skill contract](skill-contract.md) · [Paper verification and acceptance](paper-reproduction-standard.md)
 
@@ -160,11 +160,13 @@ Translate pure-qubit coordinates and phase charts, including poles and sign conv
 
 ### translate-unitary-evolution
 
-**L1 · planned · not run · independent acceptance pending.**
+**L1 · independent-agent-tested prototype · blind agent tasks: 12/12; author cases: 53/53 · independent acceptance pending.**
 
 Translate fixed-generator evolution and single-qubit factorizations with units, order and common phase.
 
 **Deliverable:** Matrix/generator/decomposition references and reconstructed circuit action.
+
+[Unitary evolution prototype, units, phase contract and independent blind evaluation](unitary-evolution-skill-prototype.md).
 
 **Required task skills:** [translate-complex-linear-algebra](#translate-complex-linear-algebra)
 
@@ -396,8 +398,8 @@ Evaluate routing and execution on held-out papers, identifying unsupported requi
 
 1. Preserve the [state/operator blind evaluation](comparison-skill-blind-evaluation.md): 0.1.1 passed 11 fresh tasks after a runtime-contract repair. Gather separate scientific acceptance and reader evidence; published cases are now regression fixtures.
 2. Preserve the [interference prototype evidence](interference-skill-prototype.md): 35 author cases and 12 new blind-agent tasks passed, including units, analyzer signs, chronology, claim rejection and selection between two runnable skills. Scientific acceptance remains separate.
-3. Add `translate-unitary-evolution` from 3.4–3.6 with units, exact/near endpoints and omitted-phase failure. Reuse the mathematical contracts and independently checked source examples.
+3. Preserve the [phase-tracked unitary evolution evidence](unitary-evolution-skill-prototype.md): 53 author cases and 12 blind tasks passed, covering units, generator validation, Euler endpoints, controlled phase repair and selection among three skills. Scientific acceptance remains pending.
 4. Establish per-claim evidence bundling and a fresh-workspace rerun. Extend the existing molecular case only after the integral-to-model provenance and the chosen paper targets are explicitly contracted.
 5. Add L2 workflows as their source obligations and genuine APIs are authored and verified. Evaluate L4 on a registered multi-claim case, then L5 on held-out papers with separately reported domain coverage.
 
-This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first two bounded prototypes are independent-agent-tested; no paper run or new textbook section is performed by this update.
+This order concerns future skill prototypes. It does not reorder the frozen 16 textbook writing batches, start a new chapter, or label a prototype accepted. The first three bounded prototypes are independent-agent-tested; no paper run or new textbook section is performed by this update.

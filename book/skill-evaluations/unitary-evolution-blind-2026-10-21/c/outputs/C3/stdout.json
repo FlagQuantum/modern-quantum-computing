@@ -1,0 +1,1 @@
+{"contract_version": "0.1.0", "reason": "Supported tasks: evolve, rotation, factor; no time-dependent solver or inverse-generator profile", "runtime": {"implementation": "cpython", "python": "3.12.14"}, "status": "unsupported"}

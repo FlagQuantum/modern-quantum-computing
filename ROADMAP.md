@@ -4,7 +4,7 @@
 
 ## Next writing assignment
 
-**Current author-directed phase: the second agent skill, no new textbook prose.** The [single-qubit interference prototype](docs/interference-skill-prototype.md), based on 3.2, has 35 author cases and 12 new independent-agent blind tasks with explicit units, analyzer, chronology and claim verification. Author execution, agent behavior, scientific acceptance and reader trials remain separate. Do not start another skill, paper run or textbook section without subsequent author direction. The canonical writing queue is unchanged.
+**Current author-directed phase: the third agent skill, no new textbook prose.** The [phase-tracked unitary evolution prototype](docs/unitary-evolution-skill-prototype.md), based on 3.4–3.6, has 53 passing author cases and 12 new independent-agent blind tasks. It records unit/context clarifications, constant-generator boundaries, endpoint branches and actual controlled phase repair. Author execution, agent behavior, scientific acceptance and reader trials remain separate. Do not start another skill, paper run or textbook section without subsequent author direction. The canonical writing queue is unchanged.
 
 **Editorial backfill completed (October 21, 2026):** sections 2.1–2.8 and all seven Chapter3 sections now contain 61 adjacent formula → code → checked output units. The latest pass completed3.1,3.2,3.4,3.6 with20units. `python scripts/check_formula_code.py` executes every marked body fragment and compares all15complete companion-program outputs. The [presentation audit](book/formula-to-code-audit.json) records completed and separately scoped work. No new section was drafted in either backfill pass; the frozen curriculum and independent acceptance states are unchanged.
 

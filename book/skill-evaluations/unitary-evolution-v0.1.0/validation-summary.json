@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-10-21T05:51:27.060241+00:00",
+  "scope": "Third skill and navigation only; no new textbook section",
+  "author_cases": 53,
+  "author_actual_flagquantum_circuits": 258,
+  "blind_tasks": 12,
+  "blind_actual_flagquantum_circuits": 56,
+  "blind_helper_calls": 16,
+  "doc_example": "Actual bash block executed with CPython 3.12 pinned environment; exact displayed output matched, 12 actual circuits",
+  "regressions": [
+    "comparison: 45 author cases; 27 archived blind tasks / 22 helper replays",
+    "interference: 35 author cases; 12 archived blind tasks / 13 helper replays",
+    "existing prose: 61 fragments / 15 complete outputs; tensor-spaces 7 fragments and full example"
+  ],
+  "build": "MkDocs strict; 66 local rendered pages, links/fragments resolve, IDs unique",
+  "visual_check": "Actual in-app browser local preview: matrix exponential, Pauli rotation, ZYZ determinant phase and controlled phase equations rendered; no raw TeX/garbled symbols in inspected equations",
+  "curriculum": "Baseline, writing-progress and full 435-section queue byte-identical to initial snapshot; 22 drafts, 413 not started, zero accepted",
+  "scientific_acceptance": "pending",
+  "reader_trial": "not run",
+  "note": "Agent executors independent of package author; final grading performed by author/conductor; not human scientific acceptance"
+}

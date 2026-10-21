@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "atol": 1e-10,
+  "checks": {
+    "target_vs_helper_matrix": 0.0,
+    "independent_zyz_full_reconstruction": 1.5700924586837752e-16,
+    "independent_native_matrix": 5.551115123125783e-17,
+    "record_0_direct_coordinate_residual": 0.0,
+    "record_0_born_residual": 0.0,
+    "record_1_native-zyz_coordinate_residual": 5.551115123125783e-17,
+    "record_1_born_residual": 0.0,
+    "record_2_direct_coordinate_residual": 0.0,
+    "record_2_born_residual": 0.0,
+    "record_3_native-zyz_coordinate_residual": 5.551115123125783e-17,
+    "record_3_born_residual": 0.0,
+    "record_4_direct_coordinate_residual": 6.123233995736766e-17,
+    "record_4_born_residual": 0.0,
+    "record_5_native-zyz_coordinate_residual": 6.123233995736766e-17,
+    "record_5_born_residual": 0.0,
+    "record_6_controlled-direct_coordinate_residual": 0.0,
+    "record_6_born_residual": 0.0,
+    "record_7_controlled-repaired_coordinate_residual": 7.850462293418876e-17,
+    "record_7_born_residual": 0.0,
+    "record_8_controlled-unrepaired_coordinate_residual": 2.7755575615628914e-17,
+    "record_8_born_residual": 0.0,
+    "controlled_branch_repair_matrix_residual": 1.5700924586837752e-16
+  },
+  "details": {
+    "omitted_phase_max_entry_discrepancy": 0.4056656139639352,
+    "alpha_radians": 0.40850000000000003,
+    "basis": [
+      "00",
+      "01",
+      "10",
+      "11"
+    ],
+    "repair": "phase(alpha) on control, after controlled V",
+    "whole_output_scalar_is_not_branch_repair": true
+  }
+}

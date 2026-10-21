@@ -1,0 +1,12 @@
+{
+  "method": "Independent standard-library complex arithmetic; no helper imports",
+  "checks": {
+    "axis_norm_squared_is_four": true,
+    "rejected_without_repair": true
+  },
+  "passed": true,
+  "details": {
+    "axis_norm_squared": 4,
+    "no_rotation_executed": true
+  }
+}
