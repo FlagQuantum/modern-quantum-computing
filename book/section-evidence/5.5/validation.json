@@ -18,8 +18,9 @@
   "regressions": "5.2/5.4scopedbody/fullpassed",
   "strict_build": "passed after runtime restoration",
   "links": "New70pages;alllocal links/fragments resolve;IDsunique",
-  "formula_display": "Passed actual IAB1280x720 screenshots:Givens matrix/vector elimination andfactor order,ABC half-angle/control phase formulas,recursive-control exponent identity.No garbling or clipping in inspected regions.",
+  "formula_display": "Passed actual IAB1280x720 screenshots:Givens matrix/vector elimination andfactor order,ABC half-angle/control phase formulas,recursive-control exponent identity.No garbling or clipping in inspected regions. Final explicit2x2root eigenvector/orthogonal-complement/half-phase lemma also passed actualbrowser screenshot;no garbling or clipping.",
   "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
   "independent_review": "pending",
-  "reader_trial": "not run"
+  "reader_trial": "not run",
+  "final_proof_expansion": "Explicit2x2root lemma added;all8Python/stdout fragments verified byte-identical to executedversions.Finalstrictbuild and70page links repeated;no unnecessarycircuit reruns."
 }

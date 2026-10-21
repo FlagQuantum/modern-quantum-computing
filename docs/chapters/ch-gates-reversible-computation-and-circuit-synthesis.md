@@ -1500,7 +1500,21 @@ Controlled U: two CNOTs and one-qubit gates reproduce both complex branches incl
 
 ### 4. Remove extra controls by a terminating recursion
 
-**Construction.** Suppose U acts on one target and has k≥2 positive controls. Separate the last control b from the other k−1 controls A. Let a denote the Boolean AND of A's basis values; a is notation for a condition, not an allocated qubit. Choose a unitary square root V with $V^2=U$. Such a root exists: unitary U has an orthonormal eigenbasis, and taking half of each eigenvalue phase gives a unitary V.
+**Construction.** Suppose U acts on one target and has k≥2 positive controls. Separate the last control b from the other k−1 controls A. Let a denote the Boolean AND of A's basis values; a is notation for a condition, not an allocated qubit. Choose a unitary square root V with $V^2=U$. Only the 2×2 case is needed. Its quadratic characteristic polynomial has a complex root λ, hence a normalized eigenvector v. Since U preserves norms, $|\lambda|=1$ and $U^\dagger v=\overline\lambda v$. For any w orthogonal to v,
+
+$$
+\langle v,Uw\rangle=\langle U^\dagger v,w\rangle
+=\lambda\langle v,w\rangle=0.
+$$
+
+Thus the one-dimensional orthogonal complement is invariant. Choosing a unit w there gives $Uw=\mu w$ with $|\mu|=1$, again by norm preservation. The columns v,w form a unitary Q, so for real eigenvalue phases θ1,θ2,
+
+$$
+U=Q\operatorname{diag}(e^{i\theta_1},e^{i\theta_2})Q^\dagger,\qquad
+V=Q\operatorname{diag}(e^{i\theta_1/2},e^{i\theta_2/2})Q^\dagger.
+$$
+
+Direct multiplication gives $V^\dagger V=I$ and $V^2=U$. This proof includes repeated eigenvalues and retains the target's full phase; no particular root branch or root uniqueness is required.
 
 Apply, chronologically: controlled-V from b to target; X on b controlled by all of A; controlled-V-dagger from b to target; the same controlled X on b; then V on target controlled by all of A.
 

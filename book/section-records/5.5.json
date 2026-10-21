@@ -23,7 +23,8 @@
     "Unitary square-root existence;decreasing-control recursion with exponent2ab",
     "SimpleGraypath pair permutation;negative controls andorderedlocal XUX",
     "Diagonal phase factors andchronological assembly;finite universal circuit terminates",
-    "Continuous exact versus countable finite-alphabet words;no discrete-density theorem inferred"
+    "Continuous exact versus countable finite-alphabet words;no discrete-density theorem inferred",
+    "Explicit2x2root lemma:complex quadratic eigenpair,norm-preserving eigenvalues,invariant orthogonal complement,andhalf-phase diagonal root includingdegeneracy"
   ],
   "formula_code_units": [
     "formula-code-5-5-statement",
@@ -100,12 +101,12 @@
     "implementation": "author execution passed;independent review pending",
     "reader": "pending",
     "scientific_acceptance": "not accepted",
-    "author_checks": "106complete circuits,8actualbody fragments/12circuits and6new-target transfer circuits passed with exact stdout,fullmatrix/vector phases andallowedIRarity.Scoped5.2/5.4body/full regressions passed.Frozen curriculum/proof/baseline/skills agree.StrictMkDocs/new70page links andactualbrowser formulas passed after restoring docs runtime.Preceding5.4completeCI/deploy success confirmed.Independent reviews pending."
+    "author_checks": "106complete circuits,8actualbody fragments/12circuits and6new-target transfer circuits passed with exact stdout,fullmatrix/vector phases andallowedIRarity.Scoped5.2/5.4body/full regressions passed.Frozen curriculum/proof/baseline/skills agree.StrictMkDocs/new70page links andactualbrowser formulas passed after restoring docs runtime.Preceding5.4completeCI/deploy success confirmed.Independent reviews pending. Final editorial expansion supplies the local2x2root-existence proof;Python fragments andcompleteexample code remain byte-identical toexecutedversions."
   },
   "production": {
     "next_draft": "5.6 Decomposing controlled and multi-qubit gates",
     "pdf": "Existing sample edition unchanged",
-    "formula_display": "Passed actual IAB1280x720 screenshots:Givens matrix/vector elimination andfactor order,ABC half-angle/control phase formulas,recursive-control exponent identity.No garbling or clipping in inspected regions.",
+    "formula_display": "Passed actual IAB1280x720 screenshots:Givens matrix/vector elimination andfactor order,ABC half-angle/control phase formulas,recursive-control exponent identity.No garbling or clipping in inspected regions. Final explicit2x2root eigenvector/orthogonal-complement/half-phase lemma also passed actualbrowser screenshot;no garbling or clipping.",
     "documentation_runtime": "Prior temporary docs venv absent;first build could not start.Restored pinnedrequirements in/private/tmp/mqc-docs55-venv,then strictbuild andall70page links passed.Newbuild logs andpipfreeze retained;earlier stale-site link check not used as new-section validation."
   }
 }
