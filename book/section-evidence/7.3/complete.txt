@@ -1,0 +1,7 @@
+20 native Bell preparations/readouts: four vectors,Pauli eigenlabels,32-shot labels and Pauli-order phases passed.
+30 native complex-basis queries: scalar amplitudes,encoder/inverse,phase-preserving branches and raw-count accounting passed.
+8 phase-sensitive Bell readouts: analytic interference probabilities passed.
+4 reversed ordered analyzers:raw columns(a,b),full basis(b,a) and singlet minus sign passed.
+32 nonadjacent ordered-register queries:scalar spectator amplitudes and all four decoded labels passed.
+12 malformed contracts rejected before simulation.
+94 CPUcomplex128 native circuits passed;terminal readout distinct from assumed conditional projection.

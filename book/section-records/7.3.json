@@ -1,0 +1,100 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-entanglement-and-quantum-information-protocols-3",
+  "ref": "7.3",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+  "depth": "F",
+  "result": "Bell-basis orthonormality and preparation",
+  "requires": [
+    "sec-gates-reversible-computation-and-circuit-synthesis-2",
+    "sec-measurement-expectation-values-and-statistical-estimation-2",
+    "sec-entanglement-and-quantum-information-protocols-1"
+  ],
+  "assumptions": [
+    "Two qubits,orthonormal computationalbasis,q0mostsignificant;Belllabela=phase,b=parity.",
+    "Beta_ab=(|0,b>+(-1)^a|1,bXOR1>)/sqrt2;no implicit phasealignment.",
+    "Idealprojective branchupdate explicitly assumed for classicalpostprocessing;nativeexecutionuses terminalqueries."
+  ],
+  "verification_obligations": [
+    "Deriveallfourvectors,fullorthonormalbasis andnonzerodeterminants.",
+    "DeriveencoderHthenCX,explicitcolumnmatrix,inverseCXthenH andallcomplexcoordinateformulas.",
+    "TrackalternativePauliorders andsingletfullvectorsign.",
+    "ShowBellprojectors/effectivecomputationalreadout,rawlabelcolumns andcountaccounting.",
+    "DeriveXX/ZZcommuting eigenlabels andjointprojectorfactorization.",
+    "Distinguishcoherentroundtrip fromselected/ignoredidealprojectiveoutcomes.",
+    "Verifyreverseorderedpair,asymmetriccalibration andnonadjacent spectator amplitudes."
+  ],
+  "formula_code_units": [
+    "formula-code-7-3-vectors",
+    "formula-code-7-3-preparation",
+    "formula-code-7-3-transform",
+    "formula-code-7-3-coordinates",
+    "formula-code-7-3-samples",
+    "formula-code-7-3-pauli",
+    "formula-code-7-3-branches",
+    "formula-code-7-3-boundaries"
+  ],
+  "sources": [
+    {
+      "locator": "NC:1.3.6",
+      "scope": "Frozen source locator printed25;complete local originalderivations andphaseconvention. No new external source audit or completedindependent proofreview claim."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/bell_basis.py",
+    "prose_checker": "scripts/check_bell_basis_prose.py",
+    "evidence": "book/section-evidence/7.3",
+    "environment": "Python3.12.14 /FlagQuantum0.3.1 /Torch2.13.0;CPUcomplex128",
+    "complete_program_circuits_per_invocation": 94,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 24,
+    "separate_transfer_circuits": 13,
+    "execution_ledger": {
+      "complete": 94,
+      "body_assembly": 24,
+      "body_plus_complete_checker": 118,
+      "transfer": 13,
+      "final_explicit_native_body": 24,
+      "total": 273,
+      "note": "Finalnativeprobability/sample pathbackfill actuallyranall8bodyfragments24queries;completeprogramunchanged,prior94run/outputcheckremainsapplicable. Finalfuturechecker118. Scoped7.2regression52 andlaterCIseparate. No unintendedscientificexecutionfailures."
+    },
+    "contracts": 12,
+    "checks": [
+      "20allfourBellcanonical/alternativepreparations and32shots/eigenlabels",
+      "30complexbasis/branchreference/rawcountqueries",
+      "8analyticphaseinterference",
+      "4reverseorderedanalyzers andsingletphase",
+      "32nonadjacent3/4qubit/spectatorqueries",
+      "12freshfourqubitqueries includingprinted7.3C",
+      "1deliberatewrongchronologicalanalyzerrejected"
+    ],
+    "tolerance": "Deterministicfullvector/probability/projector/expectation atol1e-12,rtol0;rawhistogram exactintegerchecks,no randomfrequency-equality requirement. No phasealignment,clipping,inputnormalizationrepair or intervalcertificate.",
+    "native_boundary": "ActualH/CX/X/Z gates,explicitcompose,fq.run,probabilities,terminal samples andPaulisumexpectations. ClassicalBellcoordinates/projectorbranches/ignoredoutcomeprobabilities;no nativecollapse/reset/hardwareBellmeasurementclaim.",
+    "unplanned_example_execution_failures": "None. Deliberatewrong-orderanalyzer givesuniformprobabilities andisexpectedrejection.",
+    "script_sha256": "c817222781506bd0bdbbccb02904f6740e5cf0985b765d846f350a605ad7ec05"
+  },
+  "assessment": {
+    "tasks": [
+      "7.3-A fourpreparations/Pauliorder",
+      "7.3-B complexphaseinput",
+      "7.3-C exactfourqubitnonadjacentexperiment",
+      "7.3-D conditional/ignoredmeasurement"
+    ],
+    "answers": "Supplied;exactprinted7.3Cexecutedwithintransfer12queries. Readertrialpending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "94complete/24body/13transfer passed;7.2regression52passed;finalexplicitnativebody24passed. Freshstrict72pagebuild,alllocallinks/fragments/detailsparse andactualIABkeymath/expandedanswerspassed. FirstBelltableketpipeMarkdownfailure repairedwithlvert;source/HTMLtableguardsandactualfixedtableverified."
+  },
+  "production": {
+    "next_draft": "7.4 Correlations and the CHSH experiment",
+    "pdf": "Existing sampleeditionunchanged",
+    "formula_display": "ActualIAB1280x720 inspectedfixedfourstatevectorstable,orthonormality/preparationarrows,encoder4x4/inverse,Bellcoordinatecolumn,XX/ZZ/projectorfactorization,conditional/ignoredformulas andexpandedA-Danswers.No garbling/clipping in inspectedfinalmath;no online screenshot claimed.",
+    "retained_rendering_failure": "InitialBelltableliteralketpipeswereparsedascolumnseparators;initial-table.md andtable-rendering-failure.txtpreserved. Fixedall8ketuseswithlvert;rendered5rowsx4cells and8mathwrapperspassed. AllPython/textblocks unchanged;sourceguardexecuted separately. InitialsourceguardfalselyincludedstandaloneTeXketlines;scopedtotheactualtableandpassedbeforeanyadditionalquantumexecution."
+  }
+}

@@ -1,0 +1,2 @@
+Final8bodyfragments exactoutputs passed:24actualcircuits(18helperqueries+6directfq.run calls).
+Actualsample/probability request and64raw-bit accounting explicitly executed;completeprogramunchanged.

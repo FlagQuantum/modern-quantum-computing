@@ -1,0 +1,3 @@
+12 fresh four-qubit queries:complex scalar amplitudes,ordered Bell probabilities and53-shot accounting passed.
+Printed exercise7.3-C parameters included;reversing only output columns permutes01/10 as predicted.
+1 deliberate wrong-order analyzer:uniform probabilities rejected against deterministicPsi+ label01.

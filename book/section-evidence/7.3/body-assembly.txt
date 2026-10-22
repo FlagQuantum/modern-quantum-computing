@@ -1,0 +1,11 @@
+Unit1: Bell columns 00:Phi+, 01:Psi+, 10:Phi-, 11:Psi-; Gram matrix I4
+Unit2: four phase-fixed preparations passed; swapping right-side X/Z gives minus Psi-
+Unit3: H then CX encodes; CX then H decodes; full complex roundtrip passed
+Unit4: Bell probabilities [00,01,10,11] = [0.693717, 0.134663, 0.143721, 0.027899]
+Unit5: 32-shot counts for four Bell inputs = [[32, 0, 0, 0], [0, 32, 0, 0], [0, 0, 32, 0], [0, 0, 0, 32]]
+complex-input 64-shot raw-count accounting passed; no exact frequency-equality assertion
+Unit6: Bell (XX,ZZ) eigenvalues = [(1, 1), (1, -1), (-1, 1), (-1, -1)]
+Unit7: p(00): coherent decode/encode = 1.000000, ignored Bell outcome = 0.500000
+Unit8: reversed output columns (q1,q0) still report (a,b); full-vector singlet sign retained
+3 malformed contracts rejected before simulation
+24 actual circuits:19queryhelpercalls+5directfq.run calls.

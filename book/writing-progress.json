@@ -481,6 +481,16 @@
       "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
       "record": "book/section-records/7.2.json",
       "author_execution": "passed:46complete/6body/12freshtransfer plus1exactprintedexercise CPUcomplex128circuits;explicit classicalSVD/analytic spectra;independent acceptance pending"
+    },
+    "sec-entanglement-and-quantum-information-protocols-3": {
+      "state": "draft",
+      "brief": "book/briefs/ch07.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+      "record": "book/section-records/7.3.json",
+      "author_execution": "passed:94complete/24body/13transfer CPUcomplex128circuits;phasefixedBellvectors/inverse/actualterminalsamples;independent acceptance pending"
     }
   },
   "existing_pilots": [

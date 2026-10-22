@@ -1,0 +1,1 @@
+RenderedBelltable:5rowsincludingheader,4cellsperrow,8mathwrapperspassed. Actualbrowserdisplaycheckedseparately.

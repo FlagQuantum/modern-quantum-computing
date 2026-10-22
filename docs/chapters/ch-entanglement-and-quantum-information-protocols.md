@@ -1,6 +1,6 @@
 # 7. Entanglement and Quantum Information Protocols
 
-**Working drafts: sections 7.1–7.2 · Writing Baseline 1.0 · October 22, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
+**Working drafts: sections 7.1–7.3 · Writing Baseline 1.0 · October 22, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
 
 <span id="sec-entanglement-and-quantum-information-protocols-1"></span>
 
@@ -816,3 +816,467 @@ The negative sine in the preparation and the .92 phase belong to local Schmidt v
 **Source and transition.** The frozen reference is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §2.5, beginning on printed page 109 ([NC:2.5 source locator](../references/proof-sources.md#source-nc-2-5)). This section supplies its own complete finite proof from the previously proved spectral theorem; no third-party text or unsolved exercise is used as a missing proof step. Section 7.3 will use Bell states and basis changes for explicit information protocols.
 
 <!-- end-section-7.2 -->
+
+
+<span id="sec-entanglement-and-quantum-information-protocols-3"></span>
+
+## 7.3 Bell states and basis changes
+
+Two entangled qubits can form an orthonormal basis for their entire four-dimensional state space. The **Bell basis** is useful only if its names, phases, circuit ordering and classical output labels agree. We derive those agreements here, including the difference between transforming a vector, expressing it in another basis and measuring in that basis.
+
+Prerequisites are [5.2, controlled operations](ch-gates-reversible-computation-and-circuit-synthesis.md#sec-gates-reversible-computation-and-circuit-synthesis-2), [6.2, conditional states and ignored outcomes](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-2), and [7.1, pure-state products](#sec-entanglement-and-quantum-information-protocols-1). The proofs have depth **F**: all four vectors, their orthonormality and the preparation/analysis inverse are derived. Section 7.2 is compatible with these examples but its Schmidt theorem is not needed for the proofs below.
+
+Our full computational order is $|q_0q_1\rangle=(|00\rangle,|01\rangle,|10\rangle,|11\rangle)$, with q0 most significant. Angles are radians; amplitudes and probabilities are dimensionless. Deterministic checks use CPU complex128, absolute tolerance $10^{-12}$ and relative tolerance zero, on FlagQuantum 0.3.1 and PyTorch 2.13.0. The eight Python blocks run cumulatively from the repository root. The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/bell_basis.py) uses native gates, exact queries and terminal samples; all projector-based conditional-state calculations are explicitly classical ideal-update models.
+
+<span id="formula-code-7-3-vectors"></span>
+
+### 1. Define the four vectors and prove that they form a basis
+
+**Formula.** Let $a,b\in\{0,1\}$, and define addition modulo two by $\oplus$. Our phase-fixed convention is
+
+$$
+|\beta_{ab}\rangle=\frac{|0,b\rangle+(-1)^a|1,b\oplus1\rangle}{\sqrt2}.
+$$
+
+The first label a is the **phase bit**, specifying the relative sign. The second label b is the **parity bit**, specifying even or odd computational parity. The label ab is a Bell-basis coordinate label, not a claim that the two physical qubits are in the product state $|ab\rangle$.
+
+| Bell label ab | Name | Phase-fixed vector | Nonzero computational outcomes |
+| --- | --- | --- | --- |
+| 00 | $\Phi^+$ | $(\lvert00\rangle+\lvert11\rangle)/\sqrt2$ | 00, 11, each with probability 1/2 |
+| 01 | $\Psi^+$ | $(\lvert01\rangle+\lvert10\rangle)/\sqrt2$ | 01, 10, each with probability 1/2 |
+| 10 | $\Phi^-$ | $(\lvert00\rangle-\lvert11\rangle)/\sqrt2$ | 00, 11, each with probability 1/2 |
+| 11 | $\Psi^-$ | $(\lvert01\rangle-\lvert10\rangle)/\sqrt2$ | 01, 10, each with probability 1/2 |
+
+**Full orthonormality proof.** Terms with different first computational bits have zero inner product. The remaining terms give
+
+$$
+\langle\beta_{ab}|\beta_{a'b'}\rangle
+=\frac{\delta_{bb'}}{2}\left(1+(-1)^{a+a'}\right)
+=\delta_{aa'}\delta_{bb'}.
+$$
+
+The middle factor is one when $a=a'$ and zero otherwise. Thus all four vectors have norm one and are mutually orthogonal. Four orthonormal vectors in dimension four span the whole space: their independent columns form an invertible square matrix. They therefore constitute a basis.
+
+They are also all entangled across q0|q1. For b=0 the coefficient matrix is diagonal with entries $1/\sqrt2$ and $(-1)^a/\sqrt2$, giving determinant $(-1)^a/2$. For b=1 it is off-diagonal with those entries, giving determinant $-(-1)^a/2$. Thus all four determinants are $(-1)^{a+b}/2$, which are nonzero; 7.1's exact product criterion applies. Computational probabilities distinguish the even and odd pairs, but cannot distinguish the plus and minus states within a pair.
+
+**FlagQuantum code → verification result.** The four reference columns are written explicitly, independently of a circuit implementation. The first actual preparation checks the full vector and its computational probabilities, retaining the chosen sign convention.
+
+```python
+import math
+import torch
+import flagquantum as fq
+import examples.foundations.bell_basis as t
+vectors = [torch.tensor(v, dtype=t.D)/math.sqrt(2) for v in
+           ([1,0,0,1], [0,1,1,0], [1,0,0,-1], [0,1,-1,0])]
+B = torch.stack(vectors, dim=1)
+assert torch.allclose(B.mH@B, torch.eye(4, dtype=t.D), atol=t.ATOL, rtol=0)
+phi_plus = fq.Circuit(2, dtype=t.D).h(0).cx(0, 1)
+result = fq.run(phi_plus, outputs=[fq.probabilities()], options=t.OPTIONS)
+assert torch.allclose(result.statevector()[0], vectors[0], atol=t.ATOL, rtol=0)
+assert torch.allclose(result.probabilities[0], torch.tensor([.5,0,0,.5], dtype=torch.float64), atol=t.ATOL, rtol=0)
+print('Bell columns 00:Phi+, 01:Psi+, 10:Phi-, 11:Psi-; Gram matrix I4')
+```
+```text
+Bell columns 00:Phi+, 01:Psi+, 10:Phi-, 11:Psi-; Gram matrix I4
+```
+
+<span id="formula-code-7-3-preparation"></span>
+
+### 2. Derive every preparation and track Pauli ordering
+
+**Formula and derivation.** The Hadamard action on either computational bit is
+
+$$
+H|a\rangle=\frac{|0\rangle+(-1)^a|1\rangle}{\sqrt2}.
+$$
+
+Controlled-X maps $|x,y\rangle$ to $|x,y\oplus x\rangle$, so applying H on q0 and then CX(q0,q1) gives
+
+$$
+|ab\rangle\ \longmapsto
+\frac{|0,b\rangle+(-1)^a|1,b\rangle}{\sqrt2}
+\ \longmapsto\ |\beta_{ab}\rangle.
+$$
+
+Starting from $|00\rangle$, set the input bits with $X_0^aX_1^b$, then execute H and CX in that order. This one construction derives all four phase-fixed states, rather than memorizing four unrelated circuits.
+
+An alternative starts with $|\Phi^+\rangle$ and uses
+
+$$
+|\beta_{ab}\rangle=(Z_0^a X_1^b)|\Phi^+\rangle
+=(I\otimes X^bZ^a)|\Phi^+\rangle.
+$$
+
+The first equality follows because $Z_0$ changes the $|1,\cdot\rangle$ branch sign and $X_1$ flips its second bit. For the second equality, execute $Z_1^a$ **before** $X_1^b$; this first changes the $|11\rangle$ sign and then flips the second qubit. Reversing these two right-side calls gives
+
+$$
+(I\otimes Z^aX^b)|\Phi^+\rangle=(-1)^{ab}|\beta_{ab}\rangle,
+$$
+
+because $ZX=-XZ$. In the a=b=1 case this changes the full vector by minus one. That global sign does not change probabilities of this isolated prepared state, but it differs from the phase-fixed vector above and must be tracked in coherent operator compositions. We do not silently align it away.
+
+**FlagQuantum code → verification result.** The loop shows actual X/H/CX calls for every label. The two extra preparations expose the right-side ordering sign while verifying the identical computational probabilities.
+
+```python
+for a in (0, 1):
+    for b in (0, 1):
+        circuit = fq.Circuit(2, dtype=t.D)
+        if a: circuit.x(0)
+        if b: circuit.x(1)
+        circuit.h(0).cx(0, 1)
+        prepared = t.query(circuit)
+        assert torch.allclose(prepared['state'], vectors[2*a+b], atol=t.ATOL, rtol=0)
+right_zx = t.query(fq.Circuit(2, dtype=t.D).h(0).cx(0, 1).z(1).x(1))
+right_xz = t.query(fq.Circuit(2, dtype=t.D).h(0).cx(0, 1).x(1).z(1))
+assert torch.allclose(right_zx['state'], vectors[3], atol=t.ATOL, rtol=0)
+assert torch.allclose(right_xz['state'], -vectors[3], atol=t.ATOL, rtol=0)
+assert torch.allclose(right_zx['probabilities'], right_xz['probabilities'], atol=t.ATOL, rtol=0)
+print('four phase-fixed preparations passed; swapping right-side X/Z gives minus Psi-')
+```
+```text
+four phase-fixed preparations passed; swapping right-side X/Z gives minus Psi-
+```
+
+<span id="formula-code-7-3-transform"></span>
+
+### 3. Derive the encoder matrix and its inverse
+
+**Formula.** Let $U_B$ have the Bell vectors as columns in the declared label order $(00,01,10,11)$:
+
+$$
+U_B=\frac1{\sqrt2}
+\begin{pmatrix}
+1&0&1&0\\
+0&1&0&1\\
+0&1&0&-1\\
+1&0&-1&0
+\end{pmatrix}
+=\mathrm{CX}_{0\to1}(H\otimes I).
+$$
+
+**Derivation.** Unit 2 computed the image of each computational basis column. Placing those images side by side gives this matrix, so it implements the map on every superposition by linearity. Orthonormal columns imply $U_B^\dagger U_B=I$. Because this is square, its inverse is $U_B^\dagger$. Taking the adjoint of the product reverses its factors. Both H and CX are self-inverse Hermitian gates, hence
+
+$$
+U_B^\dagger=(H\otimes I)\mathrm{CX}_{0\to1}.
+$$
+
+The encoder's **chronological calls** are H then CX. The decoder's calls are CX then H. Matrix products act on column vectors from the right, so the written matrix order is the reverse of those chronological lists. In particular $U_B|ab\rangle=|\beta_{ab}\rangle$ and $U_B^\dagger|\beta_{ab}\rangle=|ab\rangle$ with the exact phase conventions already fixed.
+
+There are two distinct uses of this matrix. Physically applying $U_B$ changes an input state vector z to $U_Bz$. Expressing an unchanged physical state $|\psi\rangle$ in Bell coordinates instead gives $c=U_B^\dagger\psi$. Executing the decoder physically maps that state to a computational-coordinate vector whose entries equal c. This connection is how a basis-coordinate calculation becomes a readout circuit.
+
+**FlagQuantum code → verification result.** A complex input, independently derived from scalar amplitudes, checks both the forward map and its coherent roundtrip. This is not a measurement between the two transformations.
+
+```python
+encoder = fq.Circuit(2, dtype=t.D).h(0).cx(0, 1)
+decoder = fq.Circuit(2, dtype=t.D).cx(0, 1).h(0)
+def make_input(theta=.9, phi=.71, eta=.37, lam=-.42):
+    return fq.Circuit(2, dtype=t.D).ry(0, theta).p(0, phi).ry(1, eta).p(1, lam).cx(0, 1)
+reference = t.scalar_preparation(.9, .71, .37, -.42)
+encoded = t.query(make_input().compose(encoder))
+restored = t.query(make_input().compose(encoder).compose(decoder))
+assert torch.allclose(encoded['state'], B@reference, atol=t.ATOL, rtol=0)
+assert torch.allclose(restored['state'], reference, atol=t.ATOL, rtol=0)
+assert torch.allclose(B.mH@B, torch.eye(4, dtype=t.D), atol=t.ATOL, rtol=0)
+print('H then CX encodes; CX then H decodes; full complex roundtrip passed')
+```
+```text
+H then CX encodes; CX then H decodes; full complex roundtrip passed
+```
+
+<span id="formula-code-7-3-coordinates"></span>
+
+### 4. Translate arbitrary complex amplitudes into Bell probabilities
+
+**Formula and derivation.** For a normalized input
+
+$$
+|\psi\rangle=x|00\rangle+y|01\rangle+z|10\rangle+w|11\rangle,
+$$
+
+multiply by the four Bell bras to obtain
+
+$$
+\begin{pmatrix}c_{00}\\c_{01}\\c_{10}\\c_{11}\end{pmatrix}
+=U_B^\dagger\psi
+=\frac1{\sqrt2}\begin{pmatrix}x+w\\y+z\\x-w\\y-z\end{pmatrix}.
+$$
+
+For example $\langle\Phi^-|\psi\rangle=(x-w)/\sqrt2$. The Bell basis vectors happen to have real entries in this convention; the bra still means a conjugate transpose. The input amplitudes remain complex. The inverse expansion $|\psi\rangle=\sum_{a,b}c_{ab}|\beta_{ab}\rangle$ follows from $U_BU_B^\dagger=I$.
+
+If the decoder is followed by computational readout, the Born probabilities are
+
+$$
+p(a,b)=|c_{ab}|^2=\langle\psi|P_{ab}|\psi\rangle,
+\qquad P_{ab}=|\beta_{ab}\rangle\langle\beta_{ab}|.
+$$
+
+Indeed the effective projector is $U_B|ab\rangle\langle ab|U_B^\dagger=P_{ab}$. The four projectors sum to identity by completeness, so the probabilities sum to one. These equations apply to any normalized pure input, not only to a prepared Bell vector.
+
+A useful phase-sensitive special case is $\cos(\theta/2)|00\rangle+e^{i\phi}\sin(\theta/2)|11\rangle$. Only labels 00 and 10 occur, with
+
+$$
+p(00)=\frac{1+\sin\theta\cos\phi}{2},\qquad
+p(10)=\frac{1-\sin\theta\cos\phi}{2}.
+$$
+
+This follows by expanding the squared moduli of $(\cos(\theta/2)\pm e^{i\phi}\sin(\theta/2))/\sqrt2$. The original computational probabilities do not contain φ; the Bell analyzer makes that relative phase observable.
+
+**FlagQuantum code → verification result.** The scalar preparation reference and four direct sum/difference expressions are independent of the native decoder. Compare the entire complex analyzed vector before comparing its squared moduli.
+
+```python
+args = (math.pi/3, .71, .83, -.42)
+source = t.query(make_input(*args))
+psi = t.scalar_preparation(*args)
+assert torch.allclose(source['state'], psi, atol=t.ATOL, rtol=0)
+x, y, z, w = psi
+bell_coefficients = torch.stack([x+w, y+z, x-w, y-z])/math.sqrt(2)
+analyzed = t.query(make_input(*args).cx(0, 1).h(0))
+assert torch.allclose(bell_coefficients, B.mH@psi, atol=t.ATOL, rtol=0)
+assert torch.allclose(analyzed['state'], bell_coefficients, atol=t.ATOL, rtol=0)
+assert torch.allclose(analyzed['probabilities'], bell_coefficients.abs()**2, atol=t.ATOL, rtol=0)
+print('Bell probabilities [00,01,10,11] =', [round(p, 6) for p in analyzed['probabilities'].tolist()])
+```
+```text
+Bell probabilities [00,01,10,11] = [0.693717, 0.134663, 0.143721, 0.027899]
+```
+
+<span id="formula-code-7-3-samples"></span>
+
+### 5. Read the Bell label and distinguish a probability from a record
+
+**Formula and derivation.** On a Bell input, the decoder gives $|ab\rangle$, so
+
+$$
+p(a',b'\mid\beta_{ab})=\delta_{aa'}\delta_{bb'}.
+$$
+
+Reading columns `(q0,q1)` therefore reports the phase bit followed by the parity bit. Integer histogram index $j=2a+b$ uses that same order. Without the decoder, the computational measurement distinguishes only b and loses the sign information a; its two possible full bit strings occur with probability one half.
+
+For a general input, an N-shot terminal record consists of pairs $(a_t,b_t)$, and its histogram is
+
+$$
+n_{ab}=\sum_{t=1}^N\mathbf1[(a_t,b_t)=(a,b)],\qquad
+\widehat p_{ab}=n_{ab}/N.
+$$
+
+The observed frequencies need not equal the exact probabilities for a finite random record. Native samples here are terminal computational samples after the actual decoder gates. They are not a returned state after a selected mid-circuit Bell measurement. In the helper's actual request, the calls are `fq.probabilities(qubits=(0,1))` and `fq.samples(qubits=(0,1))`, with an explicit shot count and seed; the API and integer-column checks follow 6.6.
+
+**FlagQuantum code → verification result.** Four decoded Bell inputs produce one deterministic label each in these runs. The general complex input checks raw count reconstruction without asserting that random frequencies equal their theoretical values.
+
+```python
+bell_counts = []
+for a in (0, 1):
+    for b in (0, 1):
+        readout = t.query(t.preparation(a, b).cx(0, 1).h(0), shots=32, seed=23)
+        assert readout['bits'].tolist() == [[a, b]]*32
+        bell_counts.append(readout['counts'].tolist())
+from dataclasses import replace
+sampled_result = fq.run(make_input(*args).cx(0, 1).h(0), outputs=[
+    fq.probabilities(qubits=(0,1)), fq.samples(qubits=(0,1))],
+    shots=64, options=replace(t.OPTIONS, seed=31))
+sampled_bits = sampled_result.samples[0]
+assert sampled_bits.shape == (64,2) and sampled_bits.dtype == torch.int64
+manual = [sampled_bits.tolist().count([j//2,j%2]) for j in range(4)]
+assert t.histogram(sampled_bits).tolist() == manual and sum(manual) == 64
+assert torch.allclose(sampled_result.probabilities[0], bell_coefficients.abs()**2, atol=t.ATOL, rtol=0)
+print('32-shot counts for four Bell inputs =', bell_counts)
+print('complex-input 64-shot raw-count accounting passed; no exact frequency-equality assertion')
+```
+```text
+32-shot counts for four Bell inputs = [[32, 0, 0, 0], [0, 32, 0, 0], [0, 0, 32, 0], [0, 0, 0, 32]]
+complex-input 64-shot raw-count accounting passed; no exact frequency-equality assertion
+```
+
+<span id="formula-code-7-3-pauli"></span>
+
+### 6. Identify the same basis through two commuting Pauli products
+
+**Formula.** Here $XX=X\otimes X$ flips both bits, and $ZZ=Z\otimes Z$ assigns their parity sign:
+
+$$
+XX=\begin{pmatrix}0&0&0&1\\0&0&1&0\\0&1&0&0\\1&0&0&0\end{pmatrix},
+\qquad ZZ=\operatorname{diag}(1,-1,-1,1).
+$$
+
+**Derivation.** The two computational terms of $\beta_{ab}$ both have parity b, so $ZZ|\beta_{ab}\rangle=(-1)^b|\beta_{ab}\rangle$. Flipping both bits swaps those two terms:
+
+$$
+XX|\beta_{ab}\rangle
+=\frac{|1,b\oplus1\rangle+(-1)^a|0,b\rangle}{\sqrt2}
+=(-1)^a|\beta_{ab}\rangle.
+$$
+
+Also $XX\,ZZ=ZZ\,XX$, because $XZ=-ZX$ on each factor introduces two minus signs. Each product squares to identity. The four pairs of eigenvalues $( (-1)^a,(-1)^b )$ are distinct. They label the same orthonormal basis, so
+
+$$
+P_{ab}=\frac14\left(I+(-1)^aXX\right)\left(I+(-1)^bZZ\right).
+$$
+
+To prove this identity, apply the right side to each Bell vector $\beta_{a'b'}$: its eigenvalue is $\frac14(1+(-1)^{a+a'})(1+(-1)^{b+b'})$, one for the matching label and zero otherwise. Since the four Bell vectors are a basis, the two operators agree on every vector. This derives the joint projectors without assuming a joint-measurement theorem for noncommuting operators.
+
+**FlagQuantum code → verification result.** Exact native Pauli expectation requests verify the eigenvalue signs. These are expectation values on a declared prepared input, not four sampled Bell labels inferred from an arbitrary state's two means. For a general input, two means alone do not specify the full four-outcome distribution.
+
+```python
+I4 = torch.eye(4, dtype=t.D)
+assert torch.allclose(t.XX@t.ZZ, t.ZZ@t.XX, atol=t.ATOL, rtol=0)
+eigenlabels = []
+for a in (0, 1):
+    for b in (0, 1):
+        project = (I4+(-1)**a*t.XX)@(I4+(-1)**b*t.ZZ)/4
+        assert torch.allclose(project, torch.outer(vectors[2*a+b], vectors[2*a+b].conj()), atol=t.ATOL, rtol=0)
+        result = fq.run(t.preparation(a, b), outputs=[
+            fq.expectation(fq.X(0)@fq.X(1), name='xx'),
+            fq.expectation(fq.Z(0)@fq.Z(1), name='zz')], options=t.OPTIONS)
+        xx = float(result.expectation('xx')[0])
+        zz = float(result.expectation('zz')[0])
+        assert abs(xx-(-1)**a) < t.ATOL and abs(zz-(-1)**b) < t.ATOL
+        eigenlabels.append((round(xx), round(zz)))
+print('Bell (XX,ZZ) eigenvalues =', eigenlabels)
+```
+```text
+Bell (XX,ZZ) eigenvalues = [(1, 1), (1, -1), (-1, 1), (-1, -1)]
+```
+
+<span id="formula-code-7-3-branches"></span>
+
+### 7. Separate decoding, selecting an outcome and ignoring its record
+
+**Formula and derivation.** For an ideal projective **Bell measurement**, assume 6.2's Lüders update. A selected label with $p_{ab}=|c_{ab}|^2>0$ has conditional state
+
+$$
+|\psi_{ab}\rangle
+=\frac{P_{ab}|\psi\rangle}{\sqrt{p_{ab}}}
+=\frac{c_{ab}}{|c_{ab}|}|\beta_{ab}\rangle.
+$$
+
+Its amplitude phase is retained. There is no normalized conditional vector for a zero-probability label. Applying the decoder alone instead gives the coherent vector $\sum_{ab}c_{ab}|ab\rangle$; applying the encoder immediately after it restores $|\psi\rangle$. If an ideal computational projection selects ab between those unitaries, the selected decoded vector is $(c_{ab}/|c_{ab}|)|ab\rangle$, and re-encoding gives the conditional Bell vector above. In this last case the computational readout qubits must remain available to re-encode; the terminal query used in our examples does not model such an endpoint.
+
+If the Bell outcome is ignored, later event probabilities are sums over the conditional alternatives, not probabilities of an averaged statevector:
+
+$$
+p(E\mid\text{ignored Bell outcome})
+=\sum_{ab:p_{ab}>0}p_{ab}\langle\psi_{ab}|E|\psi_{ab}\rangle.
+$$
+
+For an explicit difference, $|00\rangle=(|\Phi^+\rangle+|\Phi^-\rangle)/\sqrt2$. Coherent decode/encode returns $|00\rangle$, giving computational outcome 00 with probability one. An ideal Bell measurement with its outcome ignored instead gives the two Bell alternatives with probabilities one half each. Each alternative gives computational 00 with probability one half, so the later probability is one half. The lost relative coherence is what changes the result.
+
+**Code → verification result.** Conditional branches and the ignored-record sum are classical postprocessing under the stated ideal-update assumption. The actual native circuit below checks only the coherent unitary roundtrip. We do not submit nonunitary Bell projectors as unitary gates or claim native sampled collapse/reset.
+
+```python
+for j, (p, branch) in enumerate(t.branches(psi)):
+    if p:
+        expected_branch = (bell_coefficients[j]/abs(bell_coefficients[j]))*vectors[j]
+        assert torch.allclose(branch, expected_branch, atol=t.ATOL, rtol=0)
+        assert abs(torch.vdot(branch, branch).item()-1) < t.ATOL
+zero = torch.tensor([1,0,0,0], dtype=t.D)
+coherent = t.query(fq.Circuit(2, dtype=t.D).cx(0, 1).h(0).h(0).cx(0, 1))
+assert torch.allclose(coherent['state'], zero, atol=t.ATOL, rtol=0)
+ignored_probability_00 = sum(p*abs(branch[0].item())**2 for p, branch in t.branches(zero) if p)
+assert abs(ignored_probability_00-.5) < t.ATOL
+print(f'p(00): coherent decode/encode = {coherent["probabilities"][0].item():.6f}, ignored Bell outcome = {ignored_probability_00:.6f}')
+```
+```text
+p(00): coherent decode/encode = 1.000000, ignored Bell outcome = 0.500000
+```
+
+<span id="formula-code-7-3-boundaries"></span>
+
+### 8. Preserve output order, full-vector phase and implementation limits
+
+**Formula and derivation.** Changing the ordered pair changes which output column represents each role. Swapping the two physical qubits in a Bell vector gives
+
+$$
+\mathrm{SWAP}|\beta_{ab}\rangle=(-1)^{ab}|\beta_{ab}\rangle.
+$$
+
+For b=0 both terms are 00 or 11 and are unchanged. For b=1 the two terms exchange places, producing the sign $(-1)^a$. These two cases prove the formula, including the antisymmetry of $\Psi^-$. Consequently, analyzing an original q0/q1 Bell input with the **reversed** decoder, CX(q1,q0) then H(q1), gives
+
+$$
+(-1)^{ab}|b\rangle_{q_0}|a\rangle_{q_1}.
+$$
+
+To derive it, regard the input in ordered coordinates `(q1,q0)`: it is $(-1)^{ab}\beta_{ab}$, and the matching decoder maps it to $(-1)^{ab}|ab\rangle$ in that order. A native query with columns `(q1,q0)` therefore still reports `(a,b)`. Querying `(q0,q1)` would report `(b,a)`. Test asymmetric labels 01 and 10; 00 and 11 cannot expose this ordering mistake. The singlet's minus sign affects the full vector but does not alter its decoded bit probabilities.
+
+**Contract and limits.** The book helpers require literal bits, two distinct ordered qubit positions, normalized finite CPU complex128 pure vectors and nonempty int64 two-column sample records. They do not guess a Bell naming convention, infer which bit is phase, renormalize input or discard a full-vector phase. Dense reference helpers use two to four qubits as a teaching guard, not a FlagQuantum capacity limit. Native support demonstrated is ideal H/CX/X/Z and unitary gates, exact expectations/probabilities and terminal samples; a hardware platform's ability to implement a complete Bell measurement requires its own gate/readout support. Classical ideal branches are a separate model.
+
+**FlagQuantum code → verification result.** Reverse the actual control/target and the native sample-column order together. Then verify the full signed vector independently of the output record. Malformed input is rejected before another circuit runs.
+
+```python
+for a, b in ((0,1), (1,0), (1,1)):
+    reversed_readout = t.query(t.preparation(a, b).cx(1, 0).h(1), pair=(1,0), shots=13)
+    expected = torch.zeros(4, dtype=t.D)
+    expected[2*b+a] = (-1)**(a*b)
+    assert torch.allclose(reversed_readout['state'], expected, atol=t.ATOL, rtol=0)
+    assert reversed_readout['bits'].tolist() == [[a,b]]*13
+for bad in [lambda: t.bell_vector(True,0), lambda: t.support(2,(0,0)),
+            lambda: t.histogram(torch.tensor([[0,2]],dtype=torch.int64))]:
+    try:
+        bad()
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('invalid Bell contract admitted')
+print('reversed output columns (q1,q0) still report (a,b); full-vector singlet sign retained')
+print('3 malformed contracts rejected before simulation')
+```
+```text
+reversed output columns (q1,q0) still report (a,b); full-vector singlet sign retained
+3 malformed contracts rejected before simulation
+```
+
+### Complete program and independent verification
+
+```bash
+python examples/foundations/bell_basis.py
+python scripts/check_bell_basis_prose.py
+```
+
+The complete program executes 94 native circuits: 20 phase-fixed/alternative preparations and decoded Bell readouts; 30 complex-basis, branch-reference and raw-sample checks; 8 analytic phase-sensitive readouts; 4 reversed analyzers; and 32 nonadjacent-register preparations/readouts with complex spectator amplitudes. References use explicit Bell columns, scalar amplitude formulas, sum/difference coordinates and Pauli projector matrices. Twelve malformed contracts are rejected before simulation. The body checker executes the actual cumulative fragments and compares exact printed outputs, then checks the complete program output. A separate transfer run uses fresh four-qubit ordered supports and complex Bell coefficients.
+
+Expected output of the complete program:
+
+```text
+20 native Bell preparations/readouts: four vectors,Pauli eigenlabels,32-shot labels and Pauli-order phases passed.
+30 native complex-basis queries: scalar amplitudes,encoder/inverse,phase-preserving branches and raw-count accounting passed.
+8 phase-sensitive Bell readouts: analytic interference probabilities passed.
+4 reversed ordered analyzers:raw columns(a,b),full basis(b,a) and singlet minus sign passed.
+32 nonadjacent ordered-register queries:scalar spectator amplitudes and all four decoded labels passed.
+12 malformed contracts rejected before simulation.
+94 CPUcomplex128 native circuits passed;terminal readout distinct from assumed conditional projection.
+```
+
+These are bounded author checks, not a substitute for the proofs or for independent scholarly review. No accidental phase alignment, probability clipping, state normalization repair, hardware execution or native mid-circuit conditional-state claim is used.
+
+### Understanding checks and transfer exercises
+
+**7.3-A — Prepare and name the state.** Starting from 00, derive the result of X(q0), X(q1), H(q0), CX(q0,q1) in chronological order. Give its Bell label, its full phase-fixed vector and its raw computational probabilities. Repeat using Z(q1) then X(q1) after preparing $\Phi^+$, and explain the sign change if those two calls are reversed.
+
+**7.3-B — Translate an arbitrary vector.** Derive the Bell coordinates and probabilities of $(|00\rangle+i|11\rangle)/\sqrt2$. Compare its computational and Bell distributions with those of $\Phi^+$ and $\Phi^-$. Is a single deterministic Bell label guaranteed for every entangled state?
+
+**7.3-C — Fresh nonadjacent experiment.** In a four-qubit register, use ordered pair `(q3,q0)`. Prepare $\cos(.83/2)|00\rangle+e^{-.92i}\sin(.83/2)|11\rangle$ on that pair with Ry(q3,.83), CX(q3,q0), P(q3,-.92). Put q1 and q2 into independent complex states using Ry(.37), P(.21) and Ry(-.69), P(.43), respectively. Derive the Bell probabilities in output order `(q3,q0)`, run CX(q3,q0) then H(q3), and verify full amplitudes as well as terminal record accounting. State what happens if the output columns are reversed without changing the decoder.
+
+**7.3-D — Update and information.** Derive both conditional Bell branches for the input 00, then compute the probability of later computational 00 if the Bell outcome is forgotten. Compare with an uninterrupted decode/encode circuit. Why is the vector returned by a terminal statevector query not evidence that native outcome-conditioned collapse occurred?
+
+<details markdown="1">
+<summary>Answers and verification guidance for 7.3-A–D</summary>
+
+**A.** The input bits are a=b=1, so the result is $\beta_{11}=\Psi^-=(|01\rangle-|10\rangle)/\sqrt2$, with computational probabilities $(0,1/2,1/2,0)$. Preparing $\Phi^+$ then executing Z(q1), X(q1) gives that exact vector. X(q1), Z(q1) gives its negative because $ZX=-XZ$. Raw probabilities alone cannot expose that sign difference.
+
+**B.** The Bell coefficients, in label order 00,01,10,11, are $((1+i)/2,0,(1-i)/2,0)$. Thus the Bell probabilities are $(1/2,0,1/2,0)$. All three even Bell-family inputs mentioned have computational probabilities $(1/2,0,0,1/2)$; $\Phi^+$ decodes deterministically to 00 and $\Phi^-$ to 10, whereas the phase-i input does not. Entanglement does not imply membership in this particular Bell basis.
+
+**C.** With $\theta=.83,\phi=-.92$, the ordered decoder probabilities are
+
+$$
+\left(\frac{1+\sin\theta\cos\phi}{2},\ 0,\
+\frac{1-\sin\theta\cos\phi}{2},\ 0\right).
+$$
+
+The spectator factors multiply the full amplitudes but do not change this two-qubit marginal. Reversing only the output columns moves the nonzero 10 probability to 01. Full-vector checks use the global q0q1q2q3 order, even when the requested sample columns are q3,q0. The exact printed parameters and fresh variants are run in the separate transfer evidence; finite random frequencies are checked for correct reconstruction, not exact equality to these probabilities.
+
+**D.** For input 00, both 00 and 10 Bell labels have probability one half. Their positive-real coefficients give the conditional vectors $\Phi^+$ and $\Phi^-$ without extra phase. The ignored result gives later computational 00 with probability $\frac12\frac12+\frac12\frac12=\frac12$. The coherent inverse/forward circuit gives probability one. Native terminal samples plus an accompanying simulation statevector do not define or demonstrate a selected mid-circuit state-update interface; the conditional branches here were computed classically under an explicit ideal projective assumption.
+
+</details>
+
+**Source and transition.** The frozen source is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §1.3.6, “Example: Bell states,” beginning on printed page 25 ([NC:1.3.6 locator](../references/proof-sources.md#source-nc-1-3-6)). The phase/label convention and all derivations are stated locally; examples and answer explanations are original. Section 7.4 will use these states to distinguish quantum correlations from classical assumptions in the CHSH experiment.
+
+<!-- end-section-7.3 -->

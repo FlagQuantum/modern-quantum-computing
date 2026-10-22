@@ -49,6 +49,29 @@
         "NC:2.5"
       ],
       "status": "draft"
+    },
+    {
+      "ref": "7.3",
+      "section_id": "sec-entanglement-and-quantum-information-protocols-3",
+      "title": "Bell states and basis changes",
+      "depth": "F",
+      "requires": [
+        "sec-gates-reversible-computation-and-circuit-synthesis-2",
+        "sec-measurement-expectation-values-and-statistical-estimation-2",
+        "sec-entanglement-and-quantum-information-protocols-1"
+      ],
+      "question": "How do exact Bell vectors,preparation gates,inverse analysis and ordered readout labels agree?",
+      "entry": "5.2 controlled gates;6.2 ideal conditional branches;7.1 coefficient product criterion.",
+      "exit": "Derive four phase-fixed vectors,orthonormal basis,encoder/inverse and Bell probabilities/conditional interpretation.",
+      "worked_case": "Phase-bit/parity-bit labels,four preparations,complex basis coordinates,XX/ZZ eigenlabels,coherent roundtrip versus ignored measurement,reversed ordered supports.",
+      "boundary": "Ideal pure-state gates and native terminal readout;conditional projection is classical assumed ideal update,no native mid-circuit collapse/hardware Bell-detector claim.",
+      "code_plan": "Visible actual H/CX/X/Z/fq.run;scalar amplitudes and independent Bell projectors as classical references.",
+      "independent_check": "All four exact vectors,explicit matrix/coordinate formulas,Pauli effects,ordered raw-bit histograms and fresh nonadjacent supports.",
+      "transfer_task": "Fresh four-qubit complex coefficients and exact printed exercise.",
+      "source_locators": [
+        "NC:1.3.6"
+      ],
+      "status": "draft"
     }
   ]
 }

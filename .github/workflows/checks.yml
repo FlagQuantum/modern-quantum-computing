@@ -111,6 +111,8 @@ jobs:
       - run: python scripts/check_product_entanglement_prose.py
       - run: python examples/foundations/schmidt_decomposition.py
       - run: python scripts/check_schmidt_decomposition_prose.py
+      - run: python examples/foundations/bell_basis.py
+      - run: python scripts/check_bell_basis_prose.py
       - run: python scripts/check_formula_code.py
       - run: python scripts/check_comparison_skill.py
       - run: python scripts/check_blind_comparison_evidence.py

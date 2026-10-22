@@ -1,0 +1,2 @@
+8 cumulative 7.3 prose fragments: exact outputs and assertions passed.
+Complete 7.3 example: exact expected-output comparison passed.
