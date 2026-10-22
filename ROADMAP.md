@@ -4,7 +4,7 @@
 
 ## Current author assignment: upstream correctness fixes
 
-**October 22, 2026: pause new sections.** The current assignment is to fix FlagQuantum issues #704 and #685, add regressions, submit the fixes for review, and update [the textbook repair status](docs/upstream-fixes.md). PRs [#711](https://github.com/flagos-ai/FlagQuantum/pull/711) and [#712](https://github.com/flagos-ai/FlagQuantum/pull/712) are draft submissions, not merged or released fixes. Preserve the released-0.3.1 guards, limitations and original failure evidence. Do not resume 7.4 or another skill/paper task without a new author instruction.
+**October 22, 2026: pause new sections.** The current assignment is to fix FlagQuantum issues #704 and #685, add regressions, submit the fixes for review, and update [the textbook repair status](docs/upstream-fixes.md). PRs [#711](https://github.com/flagos-ai/FlagQuantum/pull/711) and [#712](https://github.com/flagos-ai/FlagQuantum/pull/712) are now merged; #712 was merged by the maintainer after its complete latest-head CI passed. A package release containing the fixes has not been verified. Preserve the released-0.3.1 guards, limitations and original failure evidence. Do not resume 7.4 or another skill/paper task without a new author instruction.
 
 ## Previous writing progress (historical)
 

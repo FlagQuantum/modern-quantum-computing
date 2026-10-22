@@ -1,6 +1,6 @@
 {
   "date": "2026-10-22",
-  "scope": "Upstream correctness fixes only. PR #711 merged by maintainer; PR #712 remains a draft. No new sections/skills/papers; no merge or release performed by this task.",
+  "scope": "Upstream correctness fixes only. Both PRs merged; PR #712 observed merged by maintainer FlagQuantum after complete successful latest-head CI; no merge performed by this task. No software release, new sections, skills or paper reproduction.",
   "base_commit": "f187adbbfa906828fc1f124ce5e63fdb698341a7",
   "fixes": [
     {
@@ -18,12 +18,15 @@
       "issue": 704,
       "pr": 712,
       "commit": "99f8c90befef7ca3480ef5f88909462b9e137115",
-      "status": "draft PR; not merged/released",
+      "status": "merged; no fixed package release verified",
       "focused_passed": 439,
       "end_to_end_tests": 34,
       "implementation_commit": "046c465c64005ebe8f464a958bdbaf10a453d6fe",
       "benchmark_contract_passed": 241,
-      "production_python_diff_from_validated_implementation": []
+      "production_python_diff_from_validated_implementation": [],
+      "merge_commit": "8a18f55638affab78f3f6efffbaa6b196291da7a",
+      "merged_at": "2026-10-22T07:07:19Z",
+      "remote_ci_record": "pr712-merged-ci.json"
     }
   ],
   "combined": {
@@ -291,7 +294,7 @@
     }
   ],
   "remote_status_update": {
-    "checked_at": "2026-10-22T05:37Z",
+    "checked_at": "2026-10-22T17:57Z",
     "pr711": {
       "state": "MERGED",
       "head": "1f001da4c1f13260b1bba34dda14d958399a5a3f",
@@ -301,11 +304,21 @@
       }
     },
     "pr712": {
-      "state": "OPEN",
-      "draft": true,
+      "state": "MERGED",
       "head": "99f8c90befef7ca3480ef5f88909462b9e137115",
-      "checks": "pending; no failure reported in current rollup"
+      "merge_commit": "8a18f55638affab78f3f6efffbaa6b196291da7a",
+      "merged_at": "2026-10-22T07:07:19Z",
+      "checks": {
+        "SKIPPED": 2,
+        "SUCCESS": 41
+      },
+      "merged_by": "FlagQuantum"
     },
     "release": "not verified; released-0.3.1 safeguards remain"
+  },
+  "merge_status_validation": {
+    "chapter_scientific_fragments": "unchanged; status prose only",
+    "strict_build": "recorded in merge-status-build.log",
+    "local_links": "recorded in merge-status-links.log"
   }
 }

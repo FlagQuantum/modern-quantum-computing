@@ -1,0 +1,32 @@
+{
+  "workflow_run": 39728133809,
+  "head": "99f8c90befef7ca3480ef5f88909462b9e137115",
+  "attempt": 1,
+  "coverage1_log_sha256": "27db9e04e025e0ef11fe51a84ee25bdf9f976727c887b80cfb4f9a1ebb93007a",
+  "coverage1_log_excerpt": [
+    "2026-10-22T06:20:28.0700602Z [gw1] [ 99%] PASSED tests/qec/test_zxxz_code.py::test_the_check_set_is_the_conjugated_rotated_check_set[5] ",
+    "2026-10-22T06:20:28.0818755Z [gw1] [ 99%] PASSED tests/qec/test_zxxz_code.py::test_the_check_group_leaves_one_logical_qubit[7] ",
+    "2026-10-22T06:20:28.0876527Z [gw1] [ 99%] PASSED tests/unit/test_product_state_space_contract.py::test_product_dimension[contract-fake-dimensions3-3] ",
+    "2026-10-22T06:20:28.0975093Z [gw1] [ 99%] PASSED tests/unit/test_product_state_space_contract.py::test_product_dimension[core-dimensions2-6] ",
+    "2026-10-22T06:20:35.4827764Z [gw2] [ 99%] PASSED tests/unit/test_circuit_control.py::test_a_controlled_gate_runs_only_when_every_control_is_set[cry] ",
+    "2026-10-22T06:20:36.3904265Z [gw1] [ 99%] PASSED tests/unit/test_circuit_control.py::test_a_controlled_gate_runs_only_when_every_control_is_set[cy] ",
+    "2026-10-22T06:20:37.3048817Z [gw1] [ 99%] PASSED tests/unit/test_algorithms_molecular.py::test_the_solve_refuses_a_budget_it_cannot_finish_in ",
+    "2026-10-22T06:20:37.8490285Z [gw1] [ 99%] PASSED tests/qec/test_zxxz_code.py::test_every_check_is_mixed_and_the_rotated_patch_has_none[3] ",
+    "2026-10-22T06:20:37.8518468Z [gw6] [ 99%] PASSED tests/qec/test_toric_code.py::test_a_heavier_logical_representative_does_not_raise_the_distance ",
+    "2026-10-22T06:20:37.8527149Z [gw3] [ 99%] PASSED tests/unit/test_algorithms_molecular.py::test_an_active_space_energy_lies_above_the_full_space_one ",
+    "2026-10-22T06:20:38.5151305Z [gw3] [ 99%] PASSED tests/unit/test_algorithms_molecular.py::test_the_solve_refuses_an_electron_count_outside_the_basis[0] ",
+    "2026-10-22T06:20:38.5175894Z [gw7] [ 99%] PASSED tests/unit/test_primitives_admission_contract.py::test_a_retired_export_that_came_back_fails ",
+    "2026-10-22T06:20:43.2825782Z [gw7] [ 99%] PASSED tests/unit/test_primitives_admission_contract.py::test_appending_a_state_reads_its_tensor_as_classical_data_too ",
+    "2026-10-22T06:20:43.2852744Z [gw2] [ 99%] PASSED tests/unit/test_circuit_control.py::test_a_controlled_gate_runs_only_when_every_control_is_set[cx] ",
+    "2026-10-22T06:20:56.4513244Z ##[error]The operation was canceled."
+  ],
+  "diagnosis": "Coverage shards 1 and 7 ended CANCELLED; no assertion failure reported by coverage1 log. Two remaining jobs stayed in source-artifact download for roughly 20\u201330 minutes. Ordinary cancel did not end the queued workflow; force-cancel then rerun-failed started attempt 2. Not a source regression certificate and not treated as successful CI.",
+  "code_changes_for_recovery": false,
+  "threshold_changes": false,
+  "successful_checks_preserved": true,
+  "rerun_attempt": 2,
+  "rerun_state": "four jobs queued; 35 previous successful checks retained",
+  "queue_diagnosis": "Read-only runner inventory: all 24 CPU runners online and busy. No other workflow or runner configuration changed.",
+  "resolved": "Latest PR head finished with 41 successful checks and two configured skips before maintainer merge at 2026-10-22T07:07:19Z.",
+  "final_record": "pr712-merged-ci.json"
+}

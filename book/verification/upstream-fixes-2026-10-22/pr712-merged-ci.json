@@ -1,0 +1,448 @@
+{
+  "headRefOid": "99f8c90befef7ca3480ef5f88909462b9e137115",
+  "isDraft": false,
+  "mergeCommit": {
+    "oid": "8a18f55638affab78f3f6efffbaa6b196291da7a"
+  },
+  "mergedAt": "2026-10-22T07:07:19Z",
+  "mergedBy": {
+    "id": "U_kgDODus2zw",
+    "is_bot": false,
+    "login": "FlagQuantum",
+    "name": "Wei LIU"
+  },
+  "state": "MERGED",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:40:31Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675769591",
+      "name": "pre-commit",
+      "startedAt": "2026-10-22T05:39:58Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:27:44Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133865/job/119656721507",
+      "name": "prepare-source",
+      "startedAt": "2026-10-22T05:27:35Z",
+      "status": "COMPLETED",
+      "workflowName": "Local GPU Gate"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:27:33Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133865/job/119656723272",
+      "name": "validate-cpu-pool",
+      "startedAt": "2026-10-22T05:27:33Z",
+      "status": "COMPLETED",
+      "workflowName": "Local GPU Gate"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:40:07Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675809134",
+      "name": "prepare-source",
+      "startedAt": "2026-10-22T05:39:57Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:27:33Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133865/job/119656722890",
+      "name": "validate-eight-gpus",
+      "startedAt": "2026-10-22T05:27:33Z",
+      "status": "COMPLETED",
+      "workflowName": "Local GPU Gate"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:01:00Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675821763",
+      "name": "quality",
+      "startedAt": "2026-10-22T05:52:24Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:57:35Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770392",
+      "name": "cpu-core (3.10)",
+      "startedAt": "2026-10-22T05:53:14Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:46:18Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133865/job/119656781793",
+      "name": "one-gpu-local",
+      "startedAt": "2026-10-22T05:43:49Z",
+      "status": "COMPLETED",
+      "workflowName": "Local GPU Gate"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:05:38Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675816210",
+      "name": "cpu-core (3.11)",
+      "startedAt": "2026-10-22T05:59:09Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:50:23Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770200",
+      "name": "cpu-core-3-12-tests",
+      "startedAt": "2026-10-22T05:41:28Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:43:44Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133865/job/119656781320",
+      "name": "two-gpu-distributed-required",
+      "startedAt": "2026-10-22T05:38:58Z",
+      "status": "COMPLETED",
+      "workflowName": "Local GPU Gate"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:54:13Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675801032",
+      "name": "cpu-runtime",
+      "startedAt": "2026-10-22T05:44:26Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:57:00Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675823688",
+      "name": "jax-optional",
+      "startedAt": "2026-10-22T05:43:13Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:59:02Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675802754",
+      "name": "azure-optional",
+      "startedAt": "2026-10-22T05:44:44Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:06:16Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770280",
+      "name": "triton-optional",
+      "startedAt": "2026-10-22T05:51:27Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:08:26Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675825138",
+      "name": "qiskit-optional",
+      "startedAt": "2026-10-22T05:52:54Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:08:17Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770428",
+      "name": "cirq-optional",
+      "startedAt": "2026-10-22T05:53:04Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:17:44Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770409",
+      "name": "braket-optional",
+      "startedAt": "2026-10-22T05:52:29Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:48:58Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770183",
+      "name": "cudaq-optional",
+      "startedAt": "2026-10-22T05:46:01Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:02:04Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770911",
+      "name": "pennylane-optional",
+      "startedAt": "2026-10-22T05:46:32Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:22:41Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770341",
+      "name": "dependency-bounds (3.10, torch>=2.10,<2.11)",
+      "startedAt": "2026-10-22T05:53:14Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:54:27Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770368",
+      "name": "dependency-bounds (3.12, torch>=2.10,<2.11)",
+      "startedAt": "2026-10-22T06:41:09Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:04:29Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675821496",
+      "name": "dependency-bounds (3.12, torch>=2.11,<2.12)",
+      "startedAt": "2026-10-22T05:53:37Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:18:25Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675771083",
+      "name": "dependency-bounds (3.12, torch>=2.12,<2.13)",
+      "startedAt": "2026-10-22T06:01:09Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:21:33Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770476",
+      "name": "dependency-bounds (3.10, torch>=2.13,<2.14)",
+      "startedAt": "2026-10-22T06:05:10Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:04:58Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675771255",
+      "name": "dependency-bounds (3.12, torch>=2.13,<2.14)",
+      "startedAt": "2026-10-22T05:53:09Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:17:25Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770293",
+      "name": "dependency-bounds (3.12, torch>=2.14,<2.15)",
+      "startedAt": "2026-10-22T06:02:08Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:44:14Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770433",
+      "name": "package",
+      "startedAt": "2026-10-22T05:40:09Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:45:59Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675815817",
+      "name": "release-wheel-platform (macos-14, macos-arm64, cp310-macosx_arm64)",
+      "startedAt": "2026-10-22T05:44:09Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T05:44:07Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770361",
+      "name": "release-wheel-platform (windows-2022, windows-amd64, cp310-win_amd64)",
+      "startedAt": "2026-10-22T05:40:34Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:20:12Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770562",
+      "name": "distributed-cpu",
+      "startedAt": "2026-10-22T05:52:56Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:16:28Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675804318",
+      "name": "coverage-shard (0)",
+      "startedAt": "2026-10-22T05:52:58Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T07:00:43Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770316",
+      "name": "coverage-shard (1)",
+      "startedAt": "2026-10-22T06:39:51Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:18:00Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770623",
+      "name": "coverage-shard (2)",
+      "startedAt": "2026-10-22T05:53:05Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:19:29Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770512",
+      "name": "coverage-shard (3)",
+      "startedAt": "2026-10-22T05:57:07Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:13:27Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770897",
+      "name": "coverage-shard (4)",
+      "startedAt": "2026-10-22T05:52:26Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:22:51Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675771087",
+      "name": "coverage-shard (5)",
+      "startedAt": "2026-10-22T06:01:48Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:12:58Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675771115",
+      "name": "coverage-shard (6)",
+      "startedAt": "2026-10-22T05:52:25Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T07:01:01Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675770352",
+      "name": "coverage-shard (7)",
+      "startedAt": "2026-10-22T06:40:54Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T07:02:02Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675769338",
+      "name": "supply-chain",
+      "startedAt": "2026-10-22T06:38:26Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T06:06:43Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119675771530",
+      "name": "cpu-core (3.12)",
+      "startedAt": "2026-10-22T06:06:25Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T07:02:16Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119686909319",
+      "name": "coverage",
+      "startedAt": "2026-10-22T07:01:05Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-22T07:02:36Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39728133809/job/119687363727",
+      "name": "CI complete",
+      "startedAt": "2026-10-22T07:02:20Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    }
+  ],
+  "url": "https://github.com/flagos-ai/FlagQuantum/pull/712"
+}
