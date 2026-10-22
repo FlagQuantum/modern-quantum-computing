@@ -1,0 +1,1 @@
+After first publication,explicitly separated i=r or j=s tautological pivot identities from distinct-row/column minors. This clarifies singleton proof applicability. All eight Python/output fragments and complete program unchanged;no extra quantum executions.

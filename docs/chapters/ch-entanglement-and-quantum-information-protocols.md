@@ -130,7 +130,7 @@ C_{ij}C_{kl}-C_{il}C_{kj}=0
 \quad(i<k,\ j<l).
 $$
 
-A product makes each difference zero by substitution. Conversely, if all minors vanish, choose $C_{rs}\ne0$. The minor with rows i,r and columns j,s, with a possible sign from their ordering, gives $C_{ij}C_{rs}=C_{is}C_{rj}$. The same factor construction therefore applies, proving rank one. This proves the equivalence in every finite rectangular dimension, not just for two qubits.
+A product makes each difference zero by substitution. Conversely, if all minors vanish, choose $C_{rs}\ne0$. If i=r or j=s, the following identity holds directly by substitution. Otherwise the minor with distinct rows i,r and distinct columns j,s, with a possible sign from their ordering, gives $C_{ij}C_{rs}=C_{is}C_{rj}$. The same factor construction therefore applies, proving rank one. This proves the equivalence in every finite rectangular dimension, not just for two qubits.
 
 **Code → verification result.** This classical translation constructs candidates from a largest-magnitude pivot to avoid choosing an unnecessarily small divisor. For non-product inputs it reports a reconstruction residual; it does not force the right factor to unit norm or declare an exact rank. The normalized product from unit 1 reconstructs correctly, while the mistaken adjoint product fails.
 

@@ -54,7 +54,7 @@
       "corrected_body_plus_complete": 51,
       "transfer": 12,
       "total": 119,
-      "note": "Scoped6.9regression83 and futureCI separate. No duplicate rerun of complete program for comment/docstring edits."
+      "note": "Scoped6.9regression83 and futureCI separate. No duplicate rerun of complete program for comment/docstring edits. Final proof clarification explicitly handles pivot-row/column identities before invoking distinct-index minors;all Python/output blocks byte-identical,no scientific rerun."
     },
     "contracts": 10,
     "checks": [
