@@ -164,6 +164,28 @@
       ],
       "status": "draft",
       "next_transition": "6.8 Confidence intervals and shot budgets."
+    },
+    {
+      "ref": "6.8",
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-8",
+      "title": "Confidence intervals and shot budgets",
+      "depth": "F",
+      "requires": [
+        "sec-measurement-expectation-values-and-statistical-estimation-7"
+      ],
+      "question": "How does a proved variance bound become a fixed-shot confidence guarantee, and how does that guarantee differ from exact binomial coverage?",
+      "entry": "6.7 covariance, IID mean variance and random estimated standard error.",
+      "exit": "Prove Markov, Chebyshev, bounded-range variance and conservative integer shot bound; distinguish fixed-parameter coverage, random intervals, exact binomial endpoints and invalid plug-in/adaptive rules.",
+      "worked_case": "Bernoulli fixed interval; exact Markov/Chebyshev finite sums; Pauli score units; binomial N5/N6 lattice effect; sample-variance plug-in undercoverage; union-bound histogram and independent X/Z estimator.",
+      "boundary": "Fixed design and positive epsilon/delta; certified population variance bound; IID or explicit estimator variance model. No posterior, hardware calibration, optional-stopping, interval inversion or optimal allocation guarantee.",
+      "code_plan": "Actual FQ native computational probabilities/terminal samples; exact Fraction budget, binomial coverage, and deliberately invalid-method diagnostic.",
+      "independent_check": "Exact combinatorial probability sums, minimal-integer bound checks, analytic Ry/X probabilities, explicit record accounting and small multinomial enumeration.",
+      "transfer_task": "Fresh complex four-qubit bounded score groups and fresh exact rational binomial/budget cases.",
+      "source_locators": [
+        "CVX:7.4"
+      ],
+      "status": "draft",
+      "next_transition": "6.9 Measurement laboratory and failure diagnosis."
     }
   ]
 }

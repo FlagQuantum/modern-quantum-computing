@@ -1,0 +1,113 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-measurement-expectation-values-and-statistical-estimation-8",
+  "ref": "6.8",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+  "depth": "F",
+  "result": "Chebyshev coverage and a conservative shot bound",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-7"
+  ],
+  "assumptions": [
+    "Fixed unbiased estimator and positive fixed epsilon;failure probability0<delta<1.",
+    "Certified population variance upper bound;independent trials/groups wherever mean variance bound uses them.",
+    "Closed interval endpoint convention;exact binomial statements at a declared fixed ideal p.",
+    "Units:epsilon shares target unit,variance has squared unit,delta dimensionless;native circuit angles radians."
+  ],
+  "proof_obligations": [
+    "Prove Markov pointwise indicator bound and finite expectation monotonicity.",
+    "Apply Markov to centered square;derive Chebyshev without an independence assumption in the inequality itself.",
+    "Insert IID/group variance;solve exact positive-integer ceiling budget.",
+    "Prove bounded-score variance bound via nonnegative(X-L)(U-X).",
+    "Derive closed-rule exact binomial coverage by disjoint count events;retain rational lattice endpoints.",
+    "Refute unsupported sample-variance substitution with exact40.95% coverage at nominal95%.",
+    "Prove union bound for simultaneous histogram coverage without label independence.",
+    "Derive independent X/Z cost and finite stopping-rule counterexample."
+  ],
+  "formula_code_units": [
+    "formula-code-6-8-coverage",
+    "formula-code-6-8-markov",
+    "formula-code-6-8-chebyshev",
+    "formula-code-6-8-budget",
+    "formula-code-6-8-binomial",
+    "formula-code-6-8-plugin",
+    "formula-code-6-8-simultaneous",
+    "formula-code-6-8-weighted"
+  ],
+  "sources": [
+    {
+      "locator": "CVX:7.4",
+      "work": "Boyd and Vandenberghe,Convex Optimization(2004)",
+      "precise_locator": "Section7.4.1 printed374-375/PDF388-389",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf#page=388",
+      "inspection": "Author-hosted PDF downloaded and relevant extracted text inspected;source hash retained,no PDF/text uploaded."
+    },
+    {
+      "author": "Marco Taboga",
+      "urls": [
+        "https://www.statlect.com/fundamentals-of-probability/Markov-inequality",
+        "https://www.statlect.com/fundamentals-of-probability/Chebyshev-inequality"
+      ],
+      "inspection": "Author-written public statement/proof pages inspected."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/confidence_shots.py",
+    "command": "python examples/foundations/confidence_shots.py",
+    "prose_check_command": "python scripts/check_confidence_shots_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "cpu",
+      "precision": "complex128 state/float64 probabilities;exact Fraction design"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 46,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 4,
+    "separate_transfer_circuits": 16,
+    "execution_ledger": {
+      "initial_complete": 46,
+      "body_assembly": 4,
+      "body_plus_complete_checker": 50,
+      "separate_transfer": 16,
+      "total_section68_circuits": 116,
+      "note": "Scoped6.7 regression62 and future CI separate. Body assembly4 preceded an equivalent normal-import cleanup;final prose checker executed actual final code. Exact probability sums are classical,not circuits."
+    },
+    "checks": [
+      "24native Bernoulli queries:4preparations x3fixed budgets x2seeds.",
+      "8native X-readouts and12ordered categorical queries plus2separate X/Zqueries.",
+      "Exact rational integer-budget inequalities,binomial endpoints,coverage dropN5/N6 and invalid plug-in rule.",
+      "16new native transfer cases:8four-qubit bounded-score records and8X-readouts;fresh p2/7 exact reference.",
+      "14malformed contracts;small simultaneous categorical fixture;early-stop expectation5/8."
+    ],
+    "tolerance": "Deterministic probabilities/reference atol1e-12,rtol0;no single random interval must-cover assertion. Exact rational coverage is for ideal fixed p,not hardware or floating-point certification.",
+    "unplanned_example_execution_failures": "None.",
+    "limitations": "No native confidence endpoint,posterior,hardware IID/collapse/calibration guarantee,optional-stopping coverage,exact interval inversion,Chernoff/Hoeffding or optimal allocation claim. Numeric variance input is not automatically certified. BinomialN<=1000 and nativeN<=10000 are teaching guards.",
+    "script_sha256": "fb41378da3170f8c4a28b3210c02be9f88f8c8a45dad752e5fc4182281466786"
+  },
+  "assessment": {
+    "tasks": [
+      "6.8-A units/range budget",
+      "6.8-B strict/closed lattice endpoints",
+      "6.8-C simultaneous shared records",
+      "6.8-D new bounded score and exact binomial model"
+    ],
+    "answers": "Supplied;reader trial not performed."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "46complete/4body/16transfer native cases and exact rational references passed;scoped6.7 regression passed;website/formula checks separately recorded. Strict fresh71-page website build,local links/fragments,details parsing and actual-browser key formulas/expanded answers passed."
+  },
+  "production": {
+    "next_draft": "6.9 Measurement laboratory and failure diagnosis",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Actual local IAB1280x720 screenshots checked Chebyshev event equivalence and threshold, ceiling budget, complete aligned range-bound derivation, discrete binomial substack/endpoints, and expanded answers. No garbling or clipping in inspected formulas."
+  }
+}

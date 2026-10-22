@@ -12,7 +12,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7, 4.1–4.8, 5.1–5.8 and 6.1–6.7, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7, 4.1–4.8, 5.1–5.8 and 6.1–6.8, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Two entry points: learners and agents
 
@@ -177,3 +177,5 @@ Section [6.5 Generalized measurements and instruments](docs/chapters/ch-measurem
 Section [6.6 From exact probabilities to samples](docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-6) now proves IID record/count laws and unbiased event, categorical and score estimators. Eight checked units and 66 complete-program native sampling executions separate exact probabilities, observed records, seed replay and statistical assumptions. Independent acceptance remains pending.
 
 Section [6.7 Variance, covariance, and uncertainty](docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-7) now proves weighted covariance expansion, IID mean/categorical uncertainty, independent-group variance addition and unbiased sample covariance. Eight checked units and 56 complete-program circuits distinguish single spectral spread from uncertainty of a separately sampled estimator. Independent acceptance remains pending.
+
+Section [6.8 Confidence intervals and shot budgets](docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-8) now proves Markov and Chebyshev bounds, range-based integer shot budgets and simultaneous coverage. Eight checked units and 46 complete-program native circuits distinguish conservative guarantees from exact binomial coverage and invalid sample-variance/stopping shortcuts. Independent acceptance remains pending.

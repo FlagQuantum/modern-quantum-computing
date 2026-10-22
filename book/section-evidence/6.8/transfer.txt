@@ -1,0 +1,2 @@
+16 fresh native circuits:8 complex four-qubit ordered bounded-score records;8 new X-readout preparations with fixed36-shot budgets passed.
+Fresh exact p2/7 binomial coverage, rational ceiling cases and zero-variance design passed; no single-interval coverage assertion.

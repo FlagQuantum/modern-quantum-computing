@@ -1,0 +1,10 @@
+{
+  "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+  "locator": "Section7.4.1, printed374-375, PDF388-389",
+  "inspection": "Downloaded author-hosted public PDF and extracted/inspected the Markov and Chebyshev setup using bundled pypdf. Web-tool fetch timed out; direct public download succeeded. No third-party PDF or extracted book text uploaded.",
+  "sha256": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e",
+  "supplementary": [
+    "https://www.statlect.com/fundamentals-of-probability/Markov-inequality",
+    "https://www.statlect.com/fundamentals-of-probability/Chebyshev-inequality"
+  ]
+}

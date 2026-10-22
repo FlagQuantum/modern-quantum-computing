@@ -1,0 +1,12 @@
+{
+  "surface": "Actual local IAB browser1280x720",
+  "checked": [
+    "Chebyshev squared event and closed/strict distinction",
+    "Integer ceiling and full aligned bounded-range derivation",
+    "Exact binomial substack and endpoint convention",
+    "Expanded all four answers"
+  ],
+  "result": "Passed:inspected math renders without garbling or clipping.",
+  "online": "Publication HTML comparison is separate;no online screenshot claimed.",
+  "environment": "Sandbox initially denied local listen;approved escalated preview startup succeeded.No example-code failure."
+}

@@ -1,0 +1,7 @@
+{
+  "rendered_pages": 71,
+  "details_blocks": 23,
+  "math_wrappers_in_details": 126,
+  "raw_answer_markup_findings": [],
+  "note": "StaticHTML parse check;6.8actual-browser expanded-answer QA recorded separately."
+}

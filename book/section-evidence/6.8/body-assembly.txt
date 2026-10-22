@@ -1,0 +1,1 @@
+Eight cumulative body fragments executed:4 native circuits(one direct Bernoulli query,one categorical query,two X/Z group queries). Exact stdout embedded.

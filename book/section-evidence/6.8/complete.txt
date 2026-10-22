@@ -1,0 +1,8 @@
+24 native Bernoulli circuits: three conservative fixed designs, four preparations and two seeds; exact accounting, not single-record coverage assertions.
+8 native X-readout circuits: score-range bound1 and250-shot design checked against analytic means.
+12 ordered categorical circuits: shared records and union-bound failure allocation checked without assuming independent label counts.
+2 separate X/Z circuits: fixed163shots per independent group; coefficient-square variance bound13/20 is a declared model bound.
+Exact binomial coverage at p=.1,half-width=.1: N5=.91854,N6=.885735; conservative N500 meets>=.95 at six exact test probabilities.
+Unsupported sample-variance plug-in at p=.1,N5,nominal95% has exact coverage .4095; early-stop mean target5/8 differs from1/2.
+Exact simultaneous three-category fixture: 235/256 ; 14 malformed contracts rejected.
+46 actual CPU complex128 circuit executions; atol1e-12,rtol0 for deterministic probability references; no hardware, posterior or optional-stopping guarantee.

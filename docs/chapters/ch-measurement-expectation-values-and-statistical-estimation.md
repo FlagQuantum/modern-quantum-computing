@@ -1,6 +1,6 @@
 # 6. Measurement, Expectation Values, and Statistical Estimation
 
-**Working drafts: sections 6.1–6.7 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
+**Working drafts: sections 6.1–6.8 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
 
 <span id="sec-measurement-expectation-values-and-statistical-estimation-1"></span>
 
@@ -2693,3 +2693,398 @@ Native operations used here are unitary preparation/analyzers, exact Pauli expec
 The assigned reference is Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), Appendix 1, “Notes on basic probability theory,” beginning on printed page 608 (`NC:A1`). The local proofs above supply the full finite covariance and weighted-estimator argument. An openly accessible author-written companion is Marco Taboga, [Covariance: definition, bilinearity, and variance of a sum](https://www.statlect.com/fundamentals-of-probability/covariance). Section 6.3 supplies the finite Hermitian spectral expectation identity used for quantum outcome variance. No fresh inspection of the user-local textbook PDF is claimed.
 
 See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.7.json) for separate author, independent-review and reader statuses. Continue, when drafted, with [6.8 Confidence intervals and shot budgets](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).
+
+
+<span id="sec-measurement-expectation-values-and-statistical-estimation-8"></span>
+
+## 6.8 Confidence intervals and shot budgets
+
+**Working draft — author execution completed; independent mathematical/implementation review and reader trial pending.**
+
+A small estimated standard error does not, by itself, promise that an interval contains the target. This section turns a *proved population variance bound* into a finite-shot coverage guarantee. We prove Markov's inequality, derive Chebyshev's inequality, solve the resulting integer shot-budget inequality, and compare that conservative guarantee with exact binomial coverage. Each guarantee names its probability model and fixed design.
+
+**Entry:** 6.7, including unbiased means, covariance and independent-group variance. Let \(\mu\) be the fixed unknown mean, \(\widehat\mu\) its random unbiased estimate, \(\epsilon>0\) the requested absolute error, and \(0<\delta<1\) the allowed failure probability. The mean and \(\epsilon\) have the same unit; variance has that unit squared; \(\delta\) and shot counts are dimensionless. Choose the measurement, coefficients, trial count and error/failure targets before seeing outcomes. IID means identically prepared independent trials under the declared ideal model; a simulator seed does not establish those conditions on hardware.
+
+The examples compute ideal computational probabilities and native pseudorandom terminal samples. Mathematical coverage refers to the ideal repeated-trial model. Floating-point agreement of a simulator with that model is separately checked, and does not bound physical preparation or readout bias.
+<span id="formula-code-6-8-coverage"></span>
+
+### 1. Define a random interval and its coverage
+
+
+For a fixed half-width \(\epsilon\), define the random closed interval
+
+\[
+I(\text{record})=[\widehat\mu-\epsilon,\widehat\mu+\epsilon].
+\]
+
+Its coverage at a fixed true parameter is
+
+\[
+P_\mu\{\mu\in I(\text{record})\}
+=P_\mu\{|\widehat\mu-\mu|\leq\epsilon\}.
+\]
+
+The probability averages over possible records generated at that same fixed \(\mu\). After observing one record, its interval endpoints are fixed: the coverage statement does not assign a posterior probability to the fixed unknown parameter. A guaranteed level \(1-\delta\) means the coverage is at least that level for every model/parameter included in the guarantee. One realized interval can miss without contradicting the guarantee.
+
+Here native \(R_y(\pi/3)\) prepares an event with ideal probability \(p=1/4\). We record 20 trials and form an interval of half-width \(1/4\). Unit 4 will justify at least 80% coverage uniformly in an unknown Bernoulli probability for this fixed design. The exact rational count ratio below describes this observed record; its correctness is distinct from a confidence guarantee. Angles are in radians.
+
+```python
+from fractions import Fraction as F
+from math import pi
+import torch
+import flagquantum as fq
+from examples.foundations import confidence_shots as c
+from dataclasses import replace
+result = fq.run(fq.Circuit(1,dtype=torch.complex128).ry(0,pi/3),
+    outputs=[fq.probabilities(qubits=(0,)),fq.samples(qubits=(0,))],
+    shots=20,options=replace(c.s.OPTIONS,seed=41))
+record = result.samples[0]
+assert record.shape == (20,1)
+assert abs(result.probabilities[0,1].item()-.25)<1e-12
+estimate = F(int(record[:,0].sum().item()),20)
+interval = (estimate-F(1,4),estimate+F(1,4))
+print('Observed probability estimate:',estimate)
+print('Observed closed interval:',*[str(x) for x in interval])
+```
+
+```text
+Observed probability estimate: 3/20
+Observed closed interval: -1/10 2/5
+```
+
+<span id="formula-code-6-8-markov"></span>
+
+### 2. Prove Markov by comparing each outcome with an indicator
+
+
+Let \(Z\geq0\) have finite mean and let \(t>0\). For every elementary outcome,
+
+\[
+Z\geq t\,1_{\{Z\geq t\}}.
+\]
+
+**Proof.** On the event \(Z\geq t\), the right side is \(t\), which is no larger than \(Z\). Off that event the right side is zero, which is no larger than nonnegative \(Z\). Taking expectations preserves this pointwise inequality: in a finite model it is just a sum with nonnegative probability weights. Since the indicator's mean is its event probability,
+
+\[
+\mathbb E[Z]\geq tP(Z\geq t),\qquad
+P(Z\geq t)\leq\frac{\mathbb E[Z]}t.
+\]
+
+This is Markov's inequality. Independence is not needed. A bound exceeding 1 is valid but uninformative; probability is also at most 1. Nonnegativity and a positive threshold are essential to this proof.
+
+The code independently sums a finite law with probabilities \((1/2,1/4,1/4)\), values \((0,1,3)\), and threshold 2. It is a classical reference, with no extra circuit execution.
+
+```python
+probabilities = (F(1,2),F(1,4),F(1,4))
+values = (F(0),F(1),F(3))
+threshold = F(2)
+expectation = sum(p*z for p,z in zip(probabilities,values))
+tail = sum(p for p,z in zip(probabilities,values) if z>=threshold)
+assert tail <= expectation/threshold
+print('Exact P(Z >= 2):',tail,'; Markov upper bound:',expectation/threshold)
+```
+
+```text
+Exact P(Z >= 2): 1/4 ; Markov upper bound: 1/2
+```
+
+<span id="formula-code-6-8-chebyshev"></span>
+
+### 3. Apply Markov to the squared estimation error
+
+
+For a real random variable \(T\) of mean \(m\) and finite variance, set \(Z=(T-m)^2\) and \(t=\epsilon^2\). Squaring a real deviation is nonnegative, and \(\epsilon>0\) gives
+
+\[
+\{|T-m|\geq\epsilon\}
+=\{(T-m)^2\geq\epsilon^2\}.
+\]
+
+Markov therefore yields **Chebyshev's inequality**:
+
+\[
+P(|T-m|\geq\epsilon)
+\leq\frac{\operatorname{Var}(T)}{\epsilon^2}.
+\]
+
+This inequality itself does not require independent trials. Independence enters when we use 6.7 to calculate an estimator's variance. For an unbiased IID score mean with single-trial variance at most a known \(v\geq0\),
+
+\[
+P(|\widehat\mu-\mu|\geq\epsilon)
+\leq\frac{v}{N\epsilon^2}.
+\]
+
+It follows that \(P(|\widehat\mu-\mu|<\epsilon)\geq1-v/(N\epsilon^2)\). Our closed interval also includes equality, so it has at least this coverage. For an exact discrete comparison we must retain the chosen endpoint convention: the complement of the closed interval is the **strict** event \(|\widehat\mu-\mu|>\epsilon\), whereas the displayed Chebyshev tail includes equality. The bound is still conservative for the closed interval.
+
+The finite check below enumerates four Bernoulli trials with \(p=1/4\). Their sample mean has variance \(3/64\); at \(\epsilon=1/2\) the non-strict tail is \(13/256\), below the bound \(3/16\).
+
+```python
+rows = c.s.ensemble((F(3,4),F(1,4)),4)
+variance_mean = sum(w*(f[1]-F(1,4))**2 for _,w,f in rows)
+tail = sum(w for _,w,f in rows if abs(f[1]-F(1,4))>=F(1,2))
+assert variance_mean == F(3,64) and tail == F(13,256)
+assert tail <= variance_mean/F(1,2)**2
+print('Exact non-strict tail:',tail,'; Chebyshev upper bound:',variance_mean/F(1,2)**2)
+```
+
+```text
+Exact non-strict tail: 13/256 ; Chebyshev upper bound: 3/16
+```
+
+<span id="formula-code-6-8-budget"></span>
+
+### 4. Derive a usable variance bound and round the shot count upward
+
+
+To make the preceding failure bound no larger than \(\delta\), solve
+
+\[
+\frac{v}{N\epsilon^2}\leq\delta
+\quad\Longleftrightarrow\quad
+N\geq\frac{v}{\delta\epsilon^2}.
+\]
+
+For a positive integer trial count the sufficient design is
+
+\[
+N_{\mathrm{safe}}=
+\max\!\left\{1,\left\lceil\frac{v}{\delta\epsilon^2}\right\rceil\right\}.
+\]
+
+The ceiling is necessary: for \(v=1/4,\epsilon=1/5,\delta=1/10\), the ratio is 62.5, so use 63 trials. A zero certified population variance still requires one observation in this implementation. “Safe” means sufficient under the stated model, not minimal among all possible methods. A smaller N may also have adequate actual coverage.
+
+How can \(v\) be known without knowing \(\mu\)? Suppose the score always lies in a **declared** interval \([L,U]\). Then \((X-L)(U-X)\geq0\). Expand and take expectations to obtain
+
+\[
+\begin{aligned}
+\mathbb E[X^2]&\leq(L+U)\mu-LU,\\
+\operatorname{Var}(X)&\leq(U-\mu)(\mu-L)\\
+&=\frac{(U-L)^2}{4}
+-\left(\mu-\frac{L+U}{2}\right)^2\\
+&\leq\frac{(U-L)^2}{4}.
+\end{aligned}
+\]
+
+Here \(\mu\in[L,U]\) because it is a weighted average of scores in that range. This proves a distribution-free variance bound within the bounded-score model. An event indicator in \([0,1]\) has \(v=1/4\); a Pauli score in \([-1,1]\) has \(v=1\). With \(\epsilon=.1,\delta=.05\), their conservative budgets are 500 and 2000. Their different units/scales matter. The range must include every possible outcome, not merely the minimum and maximum observed so far.
+
+`budget` uses exact Fraction design inputs and integer ceiling arithmetic. It cannot determine from a number alone whether the caller has proved it is a population variance bound.
+
+```python
+epsilon,delta = F(1,10),F(1,20)
+bernoulli_v = c.range_variance(F(0),F(1))
+pauli_v = c.range_variance(F(-1),F(1))
+assert c.budget(bernoulli_v,epsilon,delta)==500
+assert c.budget(pauli_v,epsilon,delta)==2000
+assert c.budget(F(1,4),F(1,5),F(1,10))==63
+print('95% fixed-design budgets at absolute error .1: event',c.budget(bernoulli_v,epsilon,delta),'; Pauli',c.budget(pauli_v,epsilon,delta))
+print('Noninteger ratio62.5 rounds upward to:',c.budget(F(1,4),F(1,5),F(1,10)))
+```
+
+```text
+95% fixed-design budgets at absolute error .1: event 500 ; Pauli 2000
+Noninteger ratio62.5 rounds upward to: 63
+```
+
+<span id="formula-code-6-8-binomial"></span>
+
+### 5. Compare the bound with exact binomial coverage at a fixed parameter
+
+
+For IID Bernoulli trials, 6.6 gives the binomial count law. The exact coverage of the closed fixed-half-width interval at a specified true \(p\) is
+
+\[
+C_N(p;\epsilon)=
+\sum_{\substack{0\leq k\leq N\\|k/N-p|\leq\epsilon}}
+\binom Nk p^k(1-p)^{N-k}.
+\]
+
+**Derivation.** The sample mean is \(k/N\) precisely when the count is \(k\). Distinct counts are disjoint events. Add their binomial probabilities exactly when their intervals contain the fixed \(p\). Factors with exponent zero are 1, including at \(p=0\) or 1. This finite sum is an actual coverage calculation for that model and parameter, not an upper bound from moments and not a posterior over \(p\).
+
+The included integer endpoints change as N changes. Coverage for this fixed-width rule need not increase at every increment of N. At \(p=.1,\epsilon=.1\), the closed rule includes counts 0 and 1 for both N=5 and N=6, but their binomial masses differ: coverage drops from .91854 to .885735. The exact Fraction comparison avoids silently changing equality through floating-point rounding.
+
+The conservative N=500 guarantee applies to **every** Bernoulli probability under the IID model, by the proof in unit 4. Checking its exact coverage at six rational parameters is a useful implementation test, not a substitute for that uniform proof. Evaluating coverage at an observed frequency used as if it were the unknown true p does not certify the procedure's coverage. Exact inversion methods for a count-dependent interval are a different construction and are not derived here.
+
+```python
+p_fixed = F(1,10)
+c5 = c.coverage(p_fixed,5,F(1,10))
+c6 = c.coverage(p_fixed,6,F(1,10))
+c500 = c.coverage(p_fixed,500,F(1,10))
+assert c5==F(45927,50000) and c6==F(177147,200000) and c6<c5
+assert c500>=F(19,20)
+print('Exact closed-rule coverage, N5 and N6:',float(c5),float(c6))
+print('Exact N500 coverage is at least95%:',c500>=F(19,20))
+```
+
+```text
+Exact closed-rule coverage, N5 and N6: 0.91854 0.885735
+Exact N500 coverage is at least95%: True
+```
+
+<span id="formula-code-6-8-plugin"></span>
+
+### 6. Reject the unsupported sample-variance substitution
+
+
+The proof in unit 3 needs a nonrandom upper bound on the population variance (or a separately justified valid bound). It does not permit replacing that bound by the observed unbiased sample variance just because its expectation is correct. The resulting random threshold changes the event being bounded.
+
+For Bernoulli observations with count k and N≥2, the observed unbiased sample variance is \(S^2=N\widehat p(1-\widehat p)/(N-1)\). A tempting but unsupported interval uses half-width
+
+\[
+h_{\mathrm{plug}}=
+\sqrt{\frac{S^2}{N\delta}}
+=\sqrt{\frac{\widehat p(1-\widehat p)}{(N-1)\delta}}.
+\]
+
+At \(p=.1,N=5,\delta=.05\), an all-zero record produces \(S^2=0\), interval \([0,0]\), and a miss. That event alone has probability \(.9^5=.59049\), already much larger than .05. The all-one record also misses; the intermediate counts cover. Exact enumeration therefore gives coverage \(1-.9^5-.1^5=.4095\), not 95%.
+
+The diagnostic `plugin_coverage` deliberately evaluates this **invalid proposed method**; it is not an exported valid confidence-interval constructor. It compares squared distances with the squared random radius using rational arithmetic, so the counterexample is not a square-root rounding artifact. Other data-dependent intervals can be valid when supplied with their own coverage proof; this counterexample rejects this substitution, not all uses of data-dependent widths.
+
+```python
+bad_coverage = c.plugin_coverage(F(1,10),5,F(1,20))
+miss_all_zero = F(9,10)**5
+assert miss_all_zero>F(1,20)
+assert bad_coverage==F(819,2000)
+print('All-zero miss probability:',float(miss_all_zero))
+print('Unsupported nominal95% plug-in rule actual coverage:',float(bad_coverage))
+```
+
+```text
+All-zero miss probability: 0.59049
+Unsupported nominal95% plug-in rule actual coverage: 0.4095
+```
+
+<span id="formula-code-6-8-simultaneous"></span>
+
+### 7. Budget a simultaneous histogram statement without assuming independent labels
+
+
+If K frequency intervals are each individually valid with failure probabilities \(\delta_j\), let \(F_j\) denote their miss events. Pointwise,
+
+\[
+1_{\bigcup_jF_j}\leq\sum_j1_{F_j}.
+\]
+
+Taking expectations proves the union bound \(P(\bigcup_jF_j)\leq\sum_jP(F_j)\leq\sum_j\delta_j\). No independence between these events is needed. Choose \(\delta_j=\delta/K\); applying the Bernoulli-indicator variance bound to every label gives the sufficient common record length
+
+\[
+N\geq\frac{K}{4\delta\epsilon^2}.
+\]
+
+Then all K closed frequency intervals simultaneously cover with probability at least \(1-\delta\). This is more demanding than a per-label guarantee, and is often conservative. The negative covariance of categorical frequencies from 6.7 does not invalidate the union bound. Trials still obey the required repeated-preparation model. The declared K and predicates are fixed before seeing the record, including labels with zero observed counts.
+
+The native three-qubit preparation below requests the ordered selection `(2,0)`, making K=4 labels. With \(\epsilon=1/4,\delta=1/5\), the simultaneous budget is 80 shared trials, not four independent 80-trial experiments. The code verifies counting and the deterministic design inequality; it does not demand that this one observed histogram prove a coverage statement.
+
+```python
+K = 4
+N = c.budget(F(1,4),F(1,4),F(1,5)/K)
+assert N==80 and K*F(1,4)/(N*F(1,4)**2)<=F(1,5)
+pg,bg,cg,fg = c.native(c.s.register(),(2,0),N,29)
+assert cg.sum()==80 and len(pg)==K
+print('Simultaneous four-label budget:',N,'shared trials')
+print('Observed counts in q2,q0 order:',cg.tolist())
+```
+
+```text
+Simultaneous four-label budget: 80 shared trials
+Observed counts in q2,q0 order: [0, 18, 62, 0]
+```
+
+<span id="formula-code-6-8-weighted"></span>
+
+### 8. Preserve the declared estimator and fixed stopping rule
+
+
+Chebyshev applies to any unbiased estimator once its variance is bounded; it does not require that the estimator itself be a single raw measurement outcome. For independent X and Z readout groups estimating \(E=.7\langle X\rangle-.4\langle Z\rangle\), use 6.7. If each group has N independent trials and the groups are independent, both ±1 score variances are at most 1, so
+
+\[
+\operatorname{Var}(\widehat E)
+\leq\frac{.7^2+.4^2}{N}=\frac{13}{20N}.
+\]
+
+Choose \(\epsilon=1/5,\delta=1/10\). The sufficient N is 163 **per group**, hence 326 total circuit shots. Native sampling executes the two distinct basis-readout circuits below. It does not perform a single spectral measurement of \(.7X-.4Z\), nor do different seeds prove physical group independence. Shared random calibration or reuse of samples requires the covariance terms retained in 6.7; systematic bias requires a separate error analysis.
+
+The trial count in this proof is fixed. For a concrete stopping counterexample, toss a fair Bernoulli coin, stop immediately on a first 1, otherwise take a second trial and stop. The records `1`, `01`, `00` have probabilities \(1/2,1/4,1/4\), sample means \(1,1/2,0\), and average mean \(5/8\), rather than the target \(1/2\). Repeating a fixed-N argument at a data-chosen stopping time is therefore unsupported. Sequential confidence methods need their own proof.
+
+The helper rejects invalid design inputs, zero budgets for execution, nonpositive error, failure probabilities outside (0,1), and exact binomial evaluations beyond a teaching guard of N=1000. Native teaching executions are capped at 10000 shots. These limits are not FlagQuantum limits. Exact arithmetic in the classical design and binomial reference does not make a floating-point simulator or physical device exact.
+
+```python
+Ngroup = c.budget(F(13,20),F(1,5),F(1,10))
+observed = []
+for setting,seed in [('X',17),('Z',53)]:
+    circuit = fq.Circuit(1,dtype=torch.complex128).ry(0,.83).p(0,-.61)
+    if setting=='X': circuit.h(0)
+    _,sample,_,_ = c.native(circuit,(0,),Ngroup,seed)
+    observed.append(1-2*F(int(sample[:,0].sum().item()),Ngroup))
+Ehat = F(7,10)*observed[0]-F(2,5)*observed[1]
+stopped_mean = F(1,2)*1+F(1,4)*F(1,2)+F(1,4)*0
+assert Ngroup==163 and stopped_mean==F(5,8)
+assert c.invalid_checks()==14
+print('Two-setting design:',Ngroup,'shots per group;',2*Ngroup,'total shots')
+print('Observed weighted estimate:',Ehat)
+print('Early-stopped fair-coin mean expectation:',stopped_mean,'; target1/2.')
+print('14 malformed contracts rejected; no optional-stopping or hardware guarantee.')
+```
+
+```text
+Two-setting design: 163 shots per group; 326 total shots
+Observed weighted estimate: 299/1630
+Early-stopped fair-coin mean expectation: 5/8 ; target1/2.
+14 malformed contracts rejected; no optional-stopping or hardware guarantee.
+```
+
+### Complete program and implementation boundary
+
+Run from the repository root in the pinned example environment:
+
+```sh
+python examples/foundations/confidence_shots.py
+python scripts/check_confidence_shots_prose.py
+```
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/confidence_shots.py) executes 46 native CPU complex128 circuits: 24 Bernoulli, eight X-readout, twelve ordered categorical and two independent-setting-model queries. Exact rational checks verify integer-budget rounding, fixed-p binomial probabilities including endpoint parameters, the invalid plug-in rule, a small simultaneous categorical fixture and the stopping counterexample. Native observed intervals are not required to contain their target in every test; that would confuse one record with repeated-experiment coverage. Deterministic analytic probabilities and counts are checked independently.
+
+Expected output of the complete program:
+
+```text
+24 native Bernoulli circuits: three conservative fixed designs, four preparations and two seeds; exact accounting, not single-record coverage assertions.
+8 native X-readout circuits: score-range bound1 and250-shot design checked against analytic means.
+12 ordered categorical circuits: shared records and union-bound failure allocation checked without assuming independent label counts.
+2 separate X/Z circuits: fixed163shots per independent group; coefficient-square variance bound13/20 is a declared model bound.
+Exact binomial coverage at p=.1,half-width=.1: N5=.91854,N6=.885735; conservative N500 meets>=.95 at six exact test probabilities.
+Unsupported sample-variance plug-in at p=.1,N5,nominal95% has exact coverage .4095; early-stop mean target5/8 differs from1/2.
+Exact simultaneous three-category fixture: 235/256 ; 14 malformed contracts rejected.
+46 actual CPU complex128 circuit executions; atol1e-12,rtol0 for deterministic probability references; no hardware, posterior or optional-stopping guarantee.
+```
+
+The eight Python snippets are cumulative. `c` is an original book helper module; native operations are the actual `fq.run`, computational probabilities, selected terminal samples and explicit X-basis analyzer H. Coverage, budgets and diagnostic counterexamples are classical calculations. There is no invented native confidence endpoint, sampled collapse, hardware calibration or Bayesian inference API.
+
+Tested versions: FlagQuantum 0.3.1, PyTorch 2.13.0 and Python 3.12.14. Evolution uses CPU complex128; deterministic probability checks use absolute tolerance \(10^{-12}\), relative tolerance zero. Exact Fraction design inputs deliberately avoid ceiling and lattice-endpoint errors from binary floating-point design values. Printed decimal coverages are presentations of exact finite sums. A correct implementation and seeded regression do not establish physical IID assumptions or interval coverage under model mismatch.
+
+### Understanding checks and transfer tasks
+
+**A. Unit conversion and budget.** A score lies in \([-2,3]\) energy units. Derive a known variance bound, then a sufficient integer budget for absolute energy error \(1/5\) and failure probability \(1/10\). Would scaling both score and requested error by 1000 change that budget?
+
+**B. Closed versus strict events.** At \(p=1/10,N=5,\epsilon=1/10\), which counts make the closed interval cover? What changes if coverage requires \(|\widehat p-p|<\epsilon\)? Compute both probabilities exactly.
+
+**C. Simultaneous statements.** You want eight frequency intervals to cover simultaneously with failure probability at most \(1/20\), each with half-width \(1/5\). Find the conservative shared shot budget. Explain why no independence between the eight frequency components was assumed.
+
+**D. Fresh implementation transfer.** Use a new complex four-qubit preparation and an ordered nonadjacent selection. Assign every outcome an explicit bounded real score, derive the range variance bound, fix \(\epsilon,\delta,N\), and run native sampling. What can one record verify, and what still needs a coverage proof? Repeat with a new exact rational Bernoulli parameter and exact binomial reference.
+
+<details markdown="1">
+<summary>Answers and confidence checks for 6.8</summary>
+
+**A.** The range width is 5, hence \(v=25/4\). The ratio is \((25/4)/[(1/10)(1/5)^2]=3125/2\); round upward to 1563. Scaling the score by 1000 scales v by \(1000^2\), and scaling the error by 1000 scales its square by the same factor, leaving the ratio unchanged. Failure probability is dimensionless.
+
+**B.** Closed coverage includes counts 0 and 1: their errors are exactly \(1/10\). Its probability is \((9/10)^5+5(1/10)(9/10)^4=45927/50000\). Strict error smaller than \(1/10\) includes no count at all for this design, giving zero coverage. This sharp lattice effect is why the endpoint convention must be explicit. The Chebyshev bound is uninformative at this small N and does not contradict either result.
+
+**C.** Allocate \(\delta_j=1/160\), so \(N\geq8/[4(1/20)(1/5)^2]=1000\). All labels use the same 1000 trial records. The union-bound proof used an indicator inequality and linearity of expectation, not independence between label events. The individual mean-variance bounds still use the stated independent-trial model.
+
+**D.** Validate selected-column order, label indexing, record length, every score's declared range and the arithmetic of the interval. Compare exact computational probabilities with an independent indexed-amplitude reference within the floating-point tolerance. None of these checks proves that one observed interval must cover or that a physical device is IID. For a fixed rational p, use `c.coverage(p,N,epsilon)` as the exact model reference; retain closed endpoints. If N exceeds its teaching guard, use another explicitly validated reference rather than calling a floating approximation an exact certificate.
+
+</details>
+
+### Sources and next step
+
+The frozen source is Boyd and Vandenberghe, *Convex Optimization* (2004), [§7.4.1 Chebyshev bounds, printed pages 374–375](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf#page=388), PDF pages 388–389 (`CVX:7.4`). The author-hosted PDF was downloaded and these pages inspected for the Markov/Chebyshev setup; only a locator and source hash are retained, not the PDF or extracted source text. This section supplies its own complete finite-model proofs, range-bound derivation, shot conversion and exact discrete examples. Public author-written companions are Marco Taboga's [Markov inequality](https://www.statlect.com/fundamentals-of-probability/Markov-inequality) and [Chebyshev inequality](https://www.statlect.com/fundamentals-of-probability/Chebyshev-inequality). Chernoff/Hoeffding bounds, exact interval inversion, sequential confidence procedures and optimal allocation are not proved or claimed here.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.8.json) keeps author execution, independent review and reader trials separate. Continue, when drafted, with [6.9 Measurement laboratory and failure diagnosis](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-9).
