@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 137 items
+
+tests/team/compiler/test_state_preparation_synthesis.py ................ [ 11%]
+............                                                             [ 20%]
+tests/team/compiler/test_two_qubit_decomposition_conformance.py ........ [ 26%]
+..................                                                       [ 39%]
+tests/unit/test_compilation_split_two_qubit_blocks.py .........          [ 45%]
+tests/unit/test_compilation_two_qubit_synthesis.py ..................... [ 61%]
+...................                                                      [ 75%]
+tests/integration/test_small_exact_rotations.py ........................ [ 92%]
+..........                                                               [100%]
+
+============================= 137 passed in 15.20s =============================

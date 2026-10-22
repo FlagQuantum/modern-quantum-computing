@@ -1,6 +1,6 @@
 {
   "date": "2026-10-22",
-  "scope": "Upstream correctness fixes only; new sections on hold",
+  "scope": "Upstream correctness fixes only. Both draft PRs submitted and validated against baseline; no new sections/skills/papers. Remaining remote CI/review does not authorize merge or book writing.",
   "base_commit": "f187adbbfa906828fc1f124ce5e63fdb698341a7",
   "fixes": [
     {
@@ -14,16 +14,17 @@
     {
       "issue": 704,
       "pr": 712,
-      "commit": "6aba5b7742c30bef09e84f43f9255949bb81ffc9",
+      "commit": "046c465c64005ebe8f464a958bdbaf10a453d6fe",
       "status": "draft PR; not merged/released",
-      "focused_passed": 336,
+      "focused_passed": 439,
       "end_to_end_tests": 34
     }
   ],
   "combined": {
-    "passed": 472,
+    "passed": 575,
     "distinct_selected_tests": true,
-    "note": "Overlaps with individual runs; do not sum them"
+    "note": "Overlaps with individual runs; do not sum them",
+    "revision": "Core 1f001da4c plus Compiler 046c465c6 (temporary combined commit 1c5bd1941)"
   },
   "environment": {
     "python": "3.12.14",
@@ -34,25 +35,87 @@
     "note": "Source checkouts identified by commit, not the released 0.3.1 wheel"
   },
   "broad_tiers": {
-    "pr-default": "running with observed failures; not green",
-    "pr-runtime": {
+    "pr-default": {
       "685": {
+        "commit": "1f001da4c1f13260b1bba34dda14d958399a5a3f",
+        "passed": 14395,
+        "skipped": 304,
+        "failed": 15,
+        "errors": 0,
+        "workers": 4,
+        "source_verified_clean": true
+      },
+      "baseline_controls": {
+        "commit": "f187adbbfa906828fc1f124ce5e63fdb698341a7",
+        "selected_cases": 15,
+        "failed": 15,
+        "meaning": "All 15 failed node IDs match both final PRs and reproduce on unmodified base"
+      },
+      "704": {
+        "commit": "046c465c64005ebe8f464a958bdbaf10a453d6fe",
+        "passed": 14382,
+        "skipped": 304,
+        "failed": 15,
+        "errors": 0,
+        "workers": 4,
+        "source_verified_clean": true
+      },
+      "claim": "No all-green full-suite claim.",
+      "matching_baseline_failures": [
+        "tests/team/simulation/test_controlled_phase_graph.py::test_product_state_qft_uses_hadamard_phase_fusion",
+        "tests/team/simulation/test_controlled_phase_graph.py::test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes[dtype0]",
+        "tests/team/simulation/test_controlled_phase_graph.py::test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes[dtype1]",
+        "tests/team/simulation/test_statevector_ops_numerics.py::test_native_fused_rotation_layer_only_promotes_terminal_regions",
+        "tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/flagos_cuda_reference_a800_20260824.json-evidence_errors]",
+        "tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_device_double_single_a800_20260825.json-evidence_errors]",
+        "tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_double_single_a800_20260824.json-evidence_errors]",
+        "tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_optimizer_a800_20260825.json-evidence_errors]",
+        "tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_precision_a800_20260824.json-evidence_errors]",
+        "tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_training_a800_20260824.json-evidence_errors]",
+        "tests/unit/test_native_cpu_adjoint.py::test_compact_cx_runtime_threshold_and_rollback",
+        "tests/unit/test_statevector_batch_chunking.py::test_chunked_native_layer_initializes_final_slices_directly[dtype0]",
+        "tests/unit/test_statevector_batch_chunking.py::test_chunked_native_layer_initializes_final_slices_directly[dtype1]",
+        "tests/unit/test_statevector_batch_chunking.py::test_chunked_static_clifford_layer_initializes_final_slices_directly[dtype0]",
+        "tests/unit/test_statevector_batch_chunking.py::test_chunked_static_clifford_layer_initializes_final_slices_directly[dtype1]"
+      ]
+    },
+    "pr-runtime": {
+      "claim": "Both final immutable integration invocations pass uninterrupted with localhost fixtures permitted; initial restricted invocations and targeted recovery retained as history.",
+      "704-initial": {
+        "initial_passed": 1818,
+        "skipped": 122,
+        "failed": 3,
+        "errors": 13,
+        "cause": "All 16 failures/errors are sandbox-denied local TCP binds",
+        "permitted_tcp_rerun_passed": 16,
+        "source_revision": "6aba5b774, superseded"
+      },
+      "704-final": {
+        "commit": "046c465c64005ebe8f464a958bdbaf10a453d6fe",
+        "passed": 1838,
+        "skipped": 122,
+        "failed": 0,
+        "errors": 0,
+        "workers": 4,
+        "source_verified_clean": true
+      },
+      "685-final": {
+        "commit": "1f001da4c1f13260b1bba34dda14d958399a5a3f",
+        "passed": 1804,
+        "skipped": 122,
+        "failed": 0,
+        "errors": 0,
+        "workers": 4,
+        "source_verified_clean": true
+      },
+      "685-initial": {
         "initial_passed": 1788,
         "skipped": 122,
         "failed": 3,
         "errors": 13,
         "cause": "All 16 failures/errors are sandbox-denied local TCP binds",
         "permitted_tcp_rerun_passed": 16
-      },
-      "704": {
-        "initial_passed": 1818,
-        "skipped": 122,
-        "failed": 3,
-        "errors": 13,
-        "cause": "All 16 failures/errors are sandbox-denied local TCP binds",
-        "permitted_tcp_rerun_passed": 16
-      },
-      "claim": "Every case that failed/errored in these integration invocations passed the permitted TCP rerun; not a fresh uninterrupted all-green tier invocation"
+      }
     }
   },
   "baseline_control": "Unmodified base reproduces 4 local TCP fixture PermissionErrors. Other broad failures not yet assigned a cause.",
@@ -118,6 +181,50 @@
     "local-links": {
       "file": "local-links.log",
       "sha256": "70e6b10dd9a1fe8b38f459d1cce0d192948b877ccd8aee656d7d6c3e9d21377b"
+    },
+    "704-final-focused": {
+      "file": "704-final-focused.log",
+      "sha256": "4c066e0c1842e7ffaeefd65db3464bbb0104d7cc40fc2dfa0ff2543bf206e21a"
+    },
+    "704-final-ci-regressions": {
+      "file": "704-final-ci-regressions.log",
+      "sha256": "c163d938a40500419204efd74017e3a13cd5602c96063b52f8c9f2e524200e82"
+    },
+    "combined-final-focused": {
+      "file": "combined-final-focused.log",
+      "sha256": "5827d80defeb57e17d8024f01518cd955f7845ad6847962fdf4b6f6f9590eebf"
+    },
+    "685-final-unit-tier": {
+      "file": "685-final-unit-tier.log",
+      "sha256": "11a020155906e36c7bc1f524c7723e05e735e3ccf8ba71b648cd94825e9d26ac"
+    },
+    "base-15-unit-controls": {
+      "file": "base-15-unit-controls.log",
+      "sha256": "d76f80c2138815b58d975262104a9921b8206c8e06e81413ee9aa85f56556728"
+    },
+    "704-initial-ci-failures": {
+      "file": "704-initial-ci-failures.txt",
+      "sha256": "24c4d479adfd0af9bbad2e91dd8d0741ea56d430dd0f09775ce9b07005809227"
+    },
+    "704-final-unit-tier": {
+      "file": "704-final-unit-tier.log",
+      "sha256": "9345daad880d8952dcbaac3e2aeeb872324ee90a44a22c21dd44a98da08cf3cc"
+    },
+    "704-final-runtime-tier": {
+      "file": "704-final-runtime-tier.log",
+      "sha256": "1c910e013da07d74f9f0c3532271c287caaf3e9bbbed4febf24cfd4a66c21e07"
+    },
+    "685-final-runtime-tier": {
+      "file": "685-final-runtime-tier.log",
+      "sha256": "eb5a3600b16e09a46d3c8440eb8843efc561e8cf4619b9f1f01028e620dbdb37"
+    },
+    "final-status-build": {
+      "file": "final-status-build.log",
+      "sha256": "e38869e0663253357fe63d14edde606bc8d12aca2b8c33ca77ebc07c96b2757c"
+    },
+    "final-status-links": {
+      "file": "final-status-links.log",
+      "sha256": "70e6b10dd9a1fe8b38f459d1cce0d192948b877ccd8aee656d7d6c3e9d21377b"
     }
   },
   "book_checks": {
@@ -133,6 +240,22 @@
       "7.1": 51,
       "7.2": 52,
       "note": "New compatibility rechecks, separate from original section execution ledgers"
+    },
+    "final_status_page": "Static rendered HTML checked for final PR revisions, test totals and unmerged/unreleased status; no new actual-browser screenshot claimed.",
+    "final_generators": "All six existing Pages workflow checks pass; 50 chapters,435 sections,49 drafts unchanged."
+  },
+  "history": [
+    {
+      "compiler_revision": "6aba5b7742c30bef09e84f43f9255949bb81ffc9",
+      "focused_passed": 336,
+      "combined_passed": 472,
+      "status": "superseded after remote CI found 25 synthesis/factorization regressions",
+      "ci_job": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39723220321/job/119641304695"
+    },
+    {
+      "local_core_whole_suite": "invalidated mixed-source verification",
+      "reason": "A compiler working-copy file was temporarily edited/restored while collection was running; missing-helper import failures are not product evidence. Replaced by clean frozen 1f001da4c rerun.",
+      "original_log_sha256": "caf559ed7f6a6884f74fccc43c2a30687197151a4a7e667a9c15324373910373"
     }
-  }
+  ]
 }

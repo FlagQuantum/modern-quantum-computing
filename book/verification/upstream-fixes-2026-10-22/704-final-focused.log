@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 439 items
+
+tests/unit/test_compilation_inverse_cancellation.py .................... [  4%]
+...........................                                              [ 10%]
+tests/unit/test_compilation_commutation_cancellation.py ................ [ 14%]
+..........................                                               [ 20%]
+tests/unit/test_circuit_adjoint.py ..................................... [ 28%]
+.............................                                            [ 35%]
+tests/unit/test_compilation_one_qubit_synthesis.py ..................... [ 40%]
+..........                                                               [ 42%]
+tests/unit/test_compilation_one_qubit_optimization.py .................. [ 46%]
+.............                                                            [ 49%]
+tests/unit/test_compilation_two_qubit_optimization.py .................. [ 53%]
+....                                                                     [ 54%]
+tests/unit/test_compilation_identity_elimination.py .................... [ 58%]
+...........................................                              [ 68%]
+tests/integration/test_small_exact_rotations.py ........................ [ 74%]
+..........                                                               [ 76%]
+tests/team/compiler/test_state_preparation_synthesis.py ................ [ 80%]
+............                                                             [ 82%]
+tests/team/compiler/test_two_qubit_decomposition_conformance.py ........ [ 84%]
+..................                                                       [ 88%]
+tests/unit/test_compilation_split_two_qubit_blocks.py .........          [ 90%]
+tests/unit/test_compilation_two_qubit_synthesis.py ..................... [ 95%]
+...................                                                      [100%]
+
+============================= 439 passed in 8.69s ==============================

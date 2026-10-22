@@ -1,15 +1,15 @@
 # Upstream correctness fixes
 
-This is a revision-specific repair ledger, checked on **October 22, 2026**. It supplements the original implementation evidence in Sections 5.1, 7.1 and 7.2. It does not replace those records or change their draft/review status.
+This is a revision-specific repair ledger, checked on **October 22, 2026**. It supplements the original implementation evidence in Sections 5.1, 7.1 and 7.2. It does not replace those records or change their draft/review status. The [machine-readable evidence ledger](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/verification/upstream-fixes-2026-10-22/manifest.json) links the original failures, final runs and baseline controls.
 
 ## Source repair, merge and release are separate
 
 | Defect | Proposed source repair | Validation | Merge/release status |
 |---|---|---|---|
 | [#685: nonunitary custom matrices accepted by `Circuit.adjoint`](https://github.com/flagos-ai/FlagQuantum/issues/685) | Draft [PR #711](https://github.com/flagos-ai/FlagQuantum/pull/711), commit `1f001da4c1f13260b1bba34dda14d958399a5a3f` | 202 focused adjoint/composition tests pass, including 80 adjoint tests | Submitted for review; not merged; no fixed release verified |
-| [#704: tiny nonzero amplitudes lost in exact execution](https://github.com/flagos-ai/FlagQuantum/issues/704) | Draft [PR #712](https://github.com/flagos-ai/FlagQuantum/pull/712), commit `6aba5b774` | 336 focused compiler/inversion tests pass, including 34 end-to-end cases | Submitted for review; not merged; no fixed release verified |
+| [#704: tiny nonzero amplitudes lost in exact execution](https://github.com/flagos-ai/FlagQuantum/issues/704) | Draft [PR #712](https://github.com/flagos-ai/FlagQuantum/pull/712), final commit `046c465c64005ebe8f464a958bdbaf10a453d6fe` | 439 focused compiler/inversion/synthesis tests pass, including 34 end-to-end cases | Submitted for review; not merged; no fixed release verified |
 
-Both branches start from upstream `main` commit `f187adbbf`. Their changes concern separate Core and Compiler ownership domains. A temporary local combination also passes **472 distinct selected tests**. These overlapping selections are separate checks, not additive test counts.
+Both branches start from upstream `main` commit `f187adbbf`. Their changes concern separate Core and Compiler ownership domains. A temporary local combination also passes **575 distinct selected tests**. These overlapping selections are separate checks, not additive test counts.
 
 The source checkouts still report package version `0.3.1`; that string does **not** identify the published wheel or establish that a released package contains these changes. The commit IDs above identify the actual repaired implementations. Tests used Python 3.12.14, PyTorch 2.13.0, CPU, and complex128 unless an explicit complex64/other-dtype case was selected.
 
@@ -27,15 +27,19 @@ This is a numerical admission check, not an exact unitarity certificate or an in
 
 Before the repair, 18 of the original 24 named/custom Ry-and-CNOT cases failed; six larger-amplitude controls passed. The new tests inspect tiny complex components with **zero absolute tolerance**, so a returned zero cannot pass merely because a general-purpose tolerance exceeds the expected amplitude.
 
-The proposed compiler changes require an actual scalar zero for zero-angle deletion, retain nonzero residues near an identity period, and conservatively decline tolerance-based matrix folds for explicitly supplied components below their resolution. A guard on a small angle/component preserves the original gate; it is not permission to truncate that value. Matrix Euler extraction selects its degenerate cases only for zero entries.
+The proposed compiler changes require an actual scalar zero for zero-angle deletion, retain nonzero residues near an identity period, and conservatively decline tolerance-based matrix folds for explicitly supplied components below their resolution. A guard on a small angle/component preserves the original gate; it is not permission to truncate that value. The existing numerical target-basis synthesis thresholds are retained explicitly. This repair concerns submitted-gate optimization; it does not certify tiny-angle accuracy through arbitrary target-basis decomposition.
 
 The 34 end-to-end cases cover optimization levels 0/1/2; named and custom-matrix Ry; amplitudes from `1e-10` to `1e-14`; signed complex amplitudes; tiny relative and overall phases; nearly cancelling rotations; a trainable parameter initialized at zero; and nearly antidiagonal matrices. The implementation may retain extra gates where a tolerance-based rewrite cannot establish the required distinction. It is not a general interval error certificate or a claim about every backend, device or compiler transformation.
 
 ## Validation limits and review status
 
-Ruff, Black and the domain ownership checks pass. The repository-wide tiers were also run. The Core `pr-runtime` invocation had 1,788 passes and the Compiler invocation had 1,818 passes; each had 122 skips and the same 16 failures/errors from sandbox-denied localhost TCP fixtures. The TCP restriction was reproduced on the unmodified base. All 16 blocked cases passed on each branch when localhost process groups were permitted. This is a targeted recovery, not a claim that the original tier invocation was green.
+Ruff, Black and the domain ownership checks pass. The repository-wide tiers were also run. Initial integration invocations encountered 16 sandbox-denied localhost TCP failures/errors on each branch; the restriction was reproduced on the unmodified base, and all 16 passed when localhost process groups were permitted. The final frozen Compiler `pr-runtime` invocation passes uninterrupted: **1,838 passes and 122 skips**, with no failures or errors. The original restricted runs and recovery records are retained separately. The final frozen Core integration rerun also passes uninterrupted: **1,804 passes and 122 skips**, with no failures or errors. Both final invocations permit the localhost fixtures that the restricted runs could not initialize.
 
-The broader `pr-default` selections still have observed failures under investigation. **Full-suite green is not claimed.** Passing an individually re-run file does not establish that a larger, order-sensitive selection passes.
+The frozen Core `pr-default` rerun completed with **14,395 passes, 304 skips and 15 failures**. All 15 failed cases were re-run on the unmodified base commit and also failed there. They concern CPU-kernel/gate-count expectations and evidence-policy checks. This establishes a baseline comparison, not a green full suite. The final Compiler rerun has **14,382 passes, 304 skips and the identical 15 failed node IDs**. All 15 failed node IDs match the base controls and both PR branches. Full-suite green is not claimed.
+
+The initial Compiler patch's remote CPU job found 25 synthesis/factorization regressions. That revision is superseded by `046c465c6`: numerical basis synthesis is restored, the two-qubit guard is limited to the replacement step, and the affected files now pass. The split-block reach test uses exact S factors without relaxing its count/operator assertions; its original floating Rz-factor input is retained as a separate conservative-retention test. Original failures and revised validation are kept separately.
+
+One earlier local Core whole-suite run loaded a transient compiler file while the working copy was being restored. It raised missing-helper import errors and is invalidated as mixed-source verification, not attributed to the product. The frozen-commit rerun above replaces it.
 
 The PRs remain drafts while broader validation is unresolved. Their GitHub check panels are the authoritative live CI status. No GPU, hardware, distributed scalability or package-release validation is claimed here. Independent code review, mathematical review and reader acceptance have not been invented or marked complete.
 

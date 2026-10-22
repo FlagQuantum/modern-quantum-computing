@@ -1,0 +1,35 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /private/tmp/FlagQuantum-fixes-combined
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 575 items
+
+tests/unit/test_circuit_adjoint.py ..................................... [  6%]
+...........................................                              [ 13%]
+tests/unit/test_circuit_composition_contract.py ........................ [ 18%]
+........................................................................ [ 30%]
+..........................                                               [ 35%]
+tests/unit/test_compilation_inverse_cancellation.py .................... [ 38%]
+...........................                                              [ 43%]
+tests/unit/test_compilation_commutation_cancellation.py ................ [ 46%]
+..........................                                               [ 50%]
+tests/unit/test_compilation_one_qubit_synthesis.py ..................... [ 54%]
+..........                                                               [ 56%]
+tests/unit/test_compilation_one_qubit_optimization.py .................. [ 59%]
+.............                                                            [ 61%]
+tests/unit/test_compilation_two_qubit_optimization.py .................. [ 64%]
+....                                                                     [ 65%]
+tests/unit/test_compilation_identity_elimination.py .................... [ 68%]
+...........................................                              [ 76%]
+tests/integration/test_small_exact_rotations.py ........................ [ 80%]
+..........                                                               [ 82%]
+tests/team/compiler/test_state_preparation_synthesis.py ................ [ 84%]
+............                                                             [ 86%]
+tests/team/compiler/test_two_qubit_decomposition_conformance.py ........ [ 88%]
+..................                                                       [ 91%]
+tests/unit/test_compilation_split_two_qubit_blocks.py .........          [ 93%]
+tests/unit/test_compilation_two_qubit_synthesis.py ..................... [ 96%]
+...................                                                      [100%]
+
+======================= 575 passed in 103.92s (0:01:43) ========================

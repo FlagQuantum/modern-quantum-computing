@@ -1,0 +1,118 @@
++ /private/tmp/fq-704685-venv/bin/python -m pytest -m integration -q
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-685
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+created: 4/4 workers
+4 workers [1880 items]
+
+........................................................................ [  3%]
+........................................................................ [  7%]
+........................................................................ [ 11%]
+........................................................................ [ 15%]
+........................................................................ [ 19%]
+........................................................................ [ 22%]
+................................ssss.....ssssssss.........s............. [ 26%]
+..............................s......................................... [ 30%]
+........................................................................ [ 34%]
+........................................................................ [ 38%]
+........................................................................ [ 42%]
+........................................................................ [ 45%]
+..........sssss..............s.s.....................s...sss............ [ 49%]
+........................................................................ [ 53%]
+........................................................................ [ 57%]
+........................................................................ [ 61%]
+...................................s............................s....... [ 65%]
+.......ssssss...............s..........sssssss.........................s [ 68%]
+s....................................................................... [ 72%]
+..........s.........s...................s.....sss..........sssssssss.... [ 76%]
+........................................................................ [ 80%]
+........................................................................ [ 84%]
+..................................................................ssss.. [ 88%]
+........................................................................ [ 91%]
+........................................................................ [ 95%]
+.............................................................s.s.ssss..s [ 99%]
+s.ssssss                                                                 [100%]
+=============================== warnings summary ===============================
+tests/integration/test_local_target_emulation.py: 18 warnings
+tests/test_third_party_target.py: 13 warnings
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/flagquantum/remote/emulation.py:674: DeprecationWarning: wires is deprecated; use qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    wires = tuple(measurement.wires)
+
+tests/integration/test_mps_reverse_single_rank.py::test_reverse_gradient_matches_dense_statevector_autograd
+tests/integration/test_mps_reverse_single_rank.py::test_reverse_gradient_matches_dense_statevector_autograd
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/integration/test_mps_reverse_single_rank.py:73: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    bit = (indices >> (circuit.n_wires - wire - 1)) & 1
+
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[02_measurement.ipynb]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/examples/tutorials/02_measurement.ipynb:cell-2:8: DeprecationWarning: observable_wires is deprecated; use observable_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[03_parameterized_gates.ipynb]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/examples/tutorials/03_parameterized_gates.ipynb:cell-1:14: DeprecationWarning: observable_wires is deprecated; use observable_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[05_quantum_machine_learning.ipynb]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/examples/tutorials/05_quantum_machine_learning.ipynb:cell-1:13: DeprecationWarning: observable_wires is deprecated; use observable_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[09_gradient_precision_speed_benchmark.ipynb]
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[09_gradient_precision_speed_benchmark.ipynb]
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[09_gradient_precision_speed_benchmark.ipynb]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/examples/tutorials/09_gradient_precision_speed_benchmark.ipynb:cell-2:6: DeprecationWarning: observable_wires is deprecated; use observable_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+
+tests/test_native_circuit.py::test_circuit_prefers_qubit_count_and_preserves_wire_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:90: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert circuit.n_wires == 3
+
+tests/test_native_circuit.py::test_circuit_prefers_qubit_count_and_preserves_wire_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:92: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_wires=3).n_qubits == 3
+
+tests/test_native_circuit.py::test_circuit_prefers_qubit_count_and_preserves_wire_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:93: DeprecationWarning: nqubits is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(nqubits=3).n_qubits == 3
+
+tests/test_native_circuit.py::test_circuit_prefers_qubit_count_and_preserves_wire_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:94: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_qubits=3, n_wires=3, nqubits=3).n_qubits == 3
+
+tests/test_native_circuit.py::test_circuit_prefers_qubit_count_and_preserves_wire_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:94: DeprecationWarning: nqubits is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_qubits=3, n_wires=3, nqubits=3).n_qubits == 3
+
+tests/test_native_circuit.py::test_circuit_rejects_conflicting_qubit_count_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:99: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    fq.Circuit(n_qubits=2, n_wires=3)
+
+tests/test_native_circuit.py::test_circuit_accepts_integral_scalars_from_other_libraries
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:167: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_qubits=IntegralLike(7)).n_wires == 7
+
+tests/test_native_circuit.py::test_circuit_accepts_integral_scalars_from_other_libraries
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:168: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_qubits=torch.tensor(6)).n_wires == 6
+
+tests/test_native_circuit.py::test_circuit_accepts_integral_scalars_from_other_libraries
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:169: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_qubits=torch.tensor([8])).n_wires == 8
+
+tests/test_noise.py::test_bit_flip_channel_on_density_matrix
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_noise.py:932: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    circuit.n_wires,
+
+tests/test_noise.py::test_noise_selector_uses_only_exact_device_calibration_matches
+tests/test_noise.py::test_run_native_consumes_selector_calibration_option
+tests/test_noise.py::test_target_error_cost_can_select_faster_exact_density_backend
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_noise.py:1198: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    "n_wires": circuit.n_wires,
+
+tests/test_documentation_entry_examples.py::test_algorithms_guide_examples_execute_and_match_their_quotes
+tests/test_documentation_entry_examples.py::test_algorithms_guide_examples_execute_and_match_their_quotes
+  docs/guides/ALGORITHMS.md:block-27:5: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+
+tests/test_tensor_network.py::test_tensor_network_proxy_is_not_an_upper_bound_on_the_measured_peak
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_tensor_network.py:979: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    circuit.n_wires,
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========== 1804 passed, 122 skipped, 55 warnings in 172.74s (0:02:52) ==========

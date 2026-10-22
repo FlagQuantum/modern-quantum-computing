@@ -1,0 +1,112 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /private/tmp/FlagQuantum-baseline-704-685
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 15 items
+
+tests/team/simulation/test_controlled_phase_graph.py FFF                 [ 20%]
+tests/team/simulation/test_statevector_ops_numerics.py F                 [ 26%]
+tests/unit/test_evidence_provenance.py FFFFFF                            [ 66%]
+tests/unit/test_native_cpu_adjoint.py F                                  [ 73%]
+tests/unit/test_statevector_batch_chunking.py FFFF                       [100%]
+
+=================================== FAILURES ===================================
+_ test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes[dtype0] _
+tests/team/simulation/test_controlled_phase_graph.py:234: in test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes
+    assert fused_applies == 28
+E   assert 44 == 28
+_ test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes[dtype1] _
+tests/team/simulation/test_controlled_phase_graph.py:234: in test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes
+    assert fused_applies == 28
+E   assert 44 == 28
+______________ test_product_state_qft_uses_hadamard_phase_fusion _______________
+tests/team/simulation/test_controlled_phase_graph.py:253: in test_product_state_qft_uses_hadamard_phase_fusion
+    assert fused_applies == 28
+E   assert 44 == 28
+_______ test_native_fused_rotation_layer_only_promotes_terminal_regions ________
+tests/team/simulation/test_statevector_ops_numerics.py:301: in test_native_fused_rotation_layer_only_promotes_terminal_regions
+    assert tuple(len(step.regions) for step in native_regions) == (6,)
+E   assert () == (6,)
+E     
+E     Right contains one more item: 6
+E     Use -v to get more diff
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/flagos_cuda_reference_a800_20260824.json-evidence_errors] _
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/flagos_cuda_reference_a800_20260824.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x1100f8a40>({'artifact_class': 'development_reference', 'atol': 2e-05, 'claim_blockers': ['domestic_accelerator_hardware_not_exercised', 'route_fallback_absence_not_certified', 'production_performance_not_measured'], 'device': 'flagos:0', ...})
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_training_a800_20260824.json-evidence_errors] _
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/split_real_imag_training_a800_20260824.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x1102080e0>({'schema': 'flagquantum_split_real_imag_training_a800_evidence_v1', 'recorded_on': '2026-08-24', 'status': 'passed', '...3e94', 'archive_sha256': '7ce20d7e1d1d46703c9e53fc99ca8cba07c1086bf76724842ab5a1e4f806f6f0', 'tree_dirty': False}, ...})
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_precision_a800_20260824.json-evidence_errors] _
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/split_real_imag_precision_a800_20260824.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x1100fbe20>({'schema': 'flagquantum_split_real_imag_precision_a800_evidence_v1', 'recorded_on': '2026-08-24', 'status': 'passed', ...68d6', 'archive_sha256': '6c8eafd7d4b25736a77815d795237960448e0f4bd791afbcec6463d539af8fd9', 'tree_dirty': False}, ...})
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_double_single_a800_20260824.json-evidence_errors] _
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/split_real_imag_double_single_a800_20260824.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x1100f93a0>({'schema': 'flagquantum_split_real_imag_double_single_a800_evidence_v1', 'recorded_on': '2026-08-24', 'status': 'passe...fa1b', 'archive_sha256': 'aba47e301f703d7f79d636a5d4a0120dea12dca50501a462293b636ecafa3300', 'tree_dirty': False}, ...})
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_device_double_single_a800_20260825.json-evidence_errors] _
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/split_real_imag_device_double_single_a800_20260825.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x1100f8ea0>({'schema': 'flagquantum_split_real_imag_device_double_single_a800_evidence_v1', 'recorded_on': '2026-08-25', 'status':...b1bc', 'archive_sha256': '348a8d7060fb4381a6d577abc17952ecd8b00a90a586ef0660fc77e0e3ad9d77', 'tree_dirty': False}, ...})
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_optimizer_a800_20260825.json-evidence_errors] _
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/split_real_imag_optimizer_a800_20260825.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x1100fbba0>({'schema': 'flagquantum_split_real_imag_p5_optimizer_a800_evidence_v1', 'recorded_on': '2026-08-25', 'status': 'passed...afdc', 'archive_sha256': 'fc1cf4fd9169c0e976076195069bc870ff8d42c11f0080f62d1d85badef26524', 'tree_dirty': False}, ...})
+________________ test_compact_cx_runtime_threshold_and_rollback ________________
+tests/unit/test_native_cpu_adjoint.py:294: in test_compact_cx_runtime_threshold_and_rollback
+    assert reverse_adjoint_cx.use_compact_cpu_cx_mapping(22)
+E   assert False
+E    +  where False = <function use_compact_cpu_cx_mapping at 0x10ff3bc40>(22)
+E    +    where <function use_compact_cpu_cx_mapping at 0x10ff3bc40> = reverse_adjoint_cx.use_compact_cpu_cx_mapping
+_____ test_chunked_native_layer_initializes_final_slices_directly[dtype0] ______
+tests/unit/test_statevector_batch_chunking.py:292: in test_chunked_native_layer_initializes_final_slices_directly
+    assert selected._initial_state_batch_window_workspace is None
+E   assert tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]]) is None
+E    +  where tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]]) = Circuit(n_qubits=4, instructions=20)._initial_state_batch_window_workspace
+_____ test_chunked_native_layer_initializes_final_slices_directly[dtype1] ______
+tests/unit/test_statevector_batch_chunking.py:292: in test_chunked_native_layer_initializes_final_slices_directly
+    assert selected._initial_state_batch_window_workspace is None
+E   assert tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]], dtype=torch.complex128) is None
+E    +  where tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]], dtype=torch.complex128) = Circuit(n_qubits=4, instructions=20)._initial_state_batch_window_workspace
+_ test_chunked_static_clifford_layer_initializes_final_slices_directly[dtype0] _
+tests/unit/test_statevector_batch_chunking.py:345: in test_chunked_static_clifford_layer_initializes_final_slices_directly
+    assert selected._initial_state_batch_window_workspace is None
+E   assert tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]]) is None
+E    +  where tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]]) = Circuit(n_qubits=6, instructions=24)._initial_state_batch_window_workspace
+_ test_chunked_static_clifford_layer_initializes_final_slices_directly[dtype1] _
+tests/unit/test_statevector_batch_chunking.py:345: in test_chunked_static_clifford_layer_initializes_final_slices_directly
+    assert selected._initial_state_batch_window_workspace is None
+E   assert tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]], dtype=torch.complex128) is None
+E    +  where tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]], dtype=torch.complex128) = Circuit(n_qubits=6, instructions=24)._initial_state_batch_window_workspace
+=========================== short test summary info ============================
+FAILED tests/team/simulation/test_controlled_phase_graph.py::test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes[dtype0]
+FAILED tests/team/simulation/test_controlled_phase_graph.py::test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes[dtype1]
+FAILED tests/team/simulation/test_controlled_phase_graph.py::test_product_state_qft_uses_hadamard_phase_fusion
+FAILED tests/team/simulation/test_statevector_ops_numerics.py::test_native_fused_rotation_layer_only_promotes_terminal_regions
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/flagos_cuda_reference_a800_20260824.json-evidence_errors]
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_training_a800_20260824.json-evidence_errors]
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_precision_a800_20260824.json-evidence_errors]
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_double_single_a800_20260824.json-evidence_errors]
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_device_double_single_a800_20260825.json-evidence_errors]
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_optimizer_a800_20260825.json-evidence_errors]
+FAILED tests/unit/test_native_cpu_adjoint.py::test_compact_cx_runtime_threshold_and_rollback
+FAILED tests/unit/test_statevector_batch_chunking.py::test_chunked_native_layer_initializes_final_slices_directly[dtype0]
+FAILED tests/unit/test_statevector_batch_chunking.py::test_chunked_native_layer_initializes_final_slices_directly[dtype1]
+FAILED tests/unit/test_statevector_batch_chunking.py::test_chunked_static_clifford_layer_initializes_final_slices_directly[dtype0]
+FAILED tests/unit/test_statevector_batch_chunking.py::test_chunked_static_clifford_layer_initializes_final_slices_directly[dtype1]
+============================== 15 failed in 1.62s ==============================

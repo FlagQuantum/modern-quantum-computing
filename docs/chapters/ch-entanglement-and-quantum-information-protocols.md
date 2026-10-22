@@ -266,7 +266,7 @@ which tends to zero. Finite precision can therefore make entangled and product v
 
 An initial native example at epsilon $10^{-14}$ failed: the returned entangling amplitude was exactly zero. A four-value probe found this also at $10^{-12}$ and $10^{-13}$; an explicit unitary-matrix probe did not restore it. This behavior is retained as an implementation boundary, reported in [FlagQuantum issue #704](https://github.com/flagos-ai/FlagQuantum/issues/704), and is not a proof of an exact product input or a library fix. The runnable example uses the validated larger amplitude; the exact theorem above includes arbitrarily small nonzero epsilon.
 
-**Upstream repair status (October 22, 2026).** [PR #712](https://github.com/flagos-ai/FlagQuantum/pull/712), source commit `6aba5b774`, preserves tiny nonzero angles and supplied matrix components through the affected compiler paths. The source-checkout regressions include the smaller amplitudes and use zero absolute tolerance on those components. This is a draft PR, not a merged or released repair. The released-0.3.1 example and its original tiny-angle failure remain unchanged; see the [validation ledger](../upstream-fixes.md).
+**Upstream repair status (October 22, 2026).** [PR #712](https://github.com/flagos-ai/FlagQuantum/pull/712), source commit `046c465c6`, preserves tiny nonzero angles and supplied matrix components through the affected compiler paths. The source-checkout regressions include the smaller amplitudes and use zero absolute tolerance on those components. This is a draft PR, not a merged or released repair. The released-0.3.1 example and its original tiny-angle failure remain unchanged; see the [validation ledger](../upstream-fixes.md).
 
 ```python
 zero, _ = e.query(fq.Circuit(2, dtype=e.D))

@@ -1,0 +1,545 @@
++ /private/tmp/fq-704685-venv/bin/python -m pytest -m smoke or unit -q
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+created: 4/4 workers
+4 workers [14655 items]
+
+........................................................................ [  0%]
+........................................................................ [  0%]
+........................................................................ [  1%]
+........................................................................ [  1%]
+........................................................................ [  2%]
+........................................................................ [  2%]
+........................................................................ [  3%]
+........................................................................ [  3%]
+........................................................................ [  4%]
+........................................................................ [  4%]
+........................................................................ [  5%]
+........................................................................ [  5%]
+........................................................................ [  6%]
+........................................................................ [  6%]
+........................................................................ [  7%]
+........................................................................ [  7%]
+........................................................................ [  8%]
+........................................................................ [  8%]
+........................................................................ [  9%]
+........................................................................ [  9%]
+........................................................................ [ 10%]
+........................................................................ [ 10%]
+........................................................................ [ 11%]
+........................................................................ [ 11%]
+............s........................................................... [ 12%]
+........................................................................ [ 12%]
+........................................................................ [ 13%]
+........................................................................ [ 13%]
+........................................................................ [ 14%]
+.........F...................F........................F................. [ 14%]
+........................................................................ [ 15%]
+........................................................................ [ 15%]
+..............................................................ss.s....ss [ 16%]
+.............F.......................................................... [ 16%]
+........................................................................ [ 17%]
+........................................................................ [ 17%]
+........................................................................ [ 18%]
+........................................................................ [ 18%]
+........................................................................ [ 19%]
+........................................................................ [ 19%]
+........................................................................ [ 20%]
+........................................................................ [ 20%]
+........................................................................ [ 21%]
+........................................................................ [ 21%]
+........................................................................ [ 22%]
+........................................................................ [ 22%]
+........................................................................ [ 23%]
+.........................................................s.......s...... [ 23%]
+.....................s.................................................. [ 24%]
+........................................................................ [ 24%]
+........................................................................ [ 25%]
+........................................................................ [ 25%]
+........................................................................ [ 26%]
+........................................................................ [ 26%]
+.....................................s.................................. [ 27%]
+........................................................................ [ 27%]
+........................................................................ [ 28%]
+........................................................................ [ 28%]
+........................................................................ [ 28%]
+........................................................................ [ 29%]
+........................................................................ [ 29%]
+........................................................................ [ 30%]
+........................................................................ [ 30%]
+........................................................................ [ 31%]
+........................................................................ [ 31%]
+........................................................................ [ 32%]
+........................................................................ [ 32%]
+........................................................................ [ 33%]
+........................................................................ [ 33%]
+........................................................................ [ 34%]
+........................................................................ [ 34%]
+........................................................................ [ 35%]
+........................................................................ [ 35%]
+........................................................................ [ 36%]
+........................................................................ [ 36%]
+........................................................................ [ 37%]
+........................................................................ [ 37%]
+........................................................................ [ 38%]
+........................................................................ [ 38%]
+........................................................................ [ 39%]
+......................ss.........s...s...................ss.........s... [ 39%]
+s....................................................................... [ 40%]
+........................................................................ [ 40%]
+........................................................................ [ 41%]
+........................................................................ [ 41%]
+..ss.................................................................... [ 42%]
+........................................................................ [ 42%]
+........................................................................ [ 43%]
+........................................................................ [ 43%]
+........................................................................ [ 44%]
+........................................................................ [ 44%]
+........................................................................ [ 45%]
+........................................................................ [ 45%]
+........................................................................ [ 46%]
+........................................................................ [ 46%]
+........................................................................ [ 47%]
+........................................................................ [ 47%]
+........................................................................ [ 48%]
+........................................................................ [ 48%]
+........................................................................ [ 49%]
+..........................................s......s...................... [ 49%]
+..........................................s............................. [ 50%]
+........................................................................ [ 50%]
+........................................................................ [ 51%]
+....................................s................................... [ 51%]
+........................................................................ [ 52%]
+........................................................................ [ 52%]
+........................................................................ [ 53%]
+................................................................sssssss. [ 53%]
+.................ssssssssssssssssssssssssss............................. [ 54%]
+........................................................................ [ 54%]
+........................................................................ [ 55%]
+........................................................................ [ 55%]
+........................................................................ [ 56%]
+........................................................................ [ 56%]
+........................................................................ [ 56%]
+........................................................................ [ 57%]
+......s................................................................. [ 57%]
+........................................................................ [ 58%]
+.................................ssssssss........................ssssss. [ 58%]
+........................................................s............... [ 59%]
+.............ssss....................................................... [ 59%]
+...........sss.......................................................... [ 60%]
+........................................................................ [ 60%]
+..ss...................s................................................ [ 61%]
+........................................................................ [ 61%]
+...ss......................ssss......................................... [ 62%]
+........................................................................ [ 62%]
+..................................................................sssss. [ 63%]
+ssss.ssss.ssss.sss..Fssssssss.ssss..ssssssssssssssssssssssss..ssssssssss [ 63%]
+s.ssss.sssssssssssssssssssss.ssssssssssssss.sssssssssssssssssssss....... [ 64%]
+........................................................................ [ 64%]
+........................................................................ [ 65%]
+........................................................................ [ 65%]
+........................................................................ [ 66%]
+...........FFFFFF....................................................... [ 66%]
+....................................................................s... [ 67%]
+........................................................................ [ 67%]
+........................................................................ [ 68%]
+........................................................................ [ 68%]
+........................................................................ [ 69%]
+........................................................................ [ 69%]
+........................................................................ [ 70%]
+........................................................................ [ 70%]
+........................................................................ [ 71%]
+........................................................................ [ 71%]
+........................................................................ [ 72%]
+........................................................................ [ 72%]
+........................................................................ [ 73%]
+........................................................................ [ 73%]
+........................................................................ [ 74%]
+........................................................................ [ 74%]
+........................................................................ [ 75%]
+........................................................................ [ 75%]
+...................................sssssss.............................. [ 76%]
+........................................................................ [ 76%]
+........................................................................ [ 77%]
+........................................................................ [ 77%]
+........................................................................ [ 78%]
+........................................................................ [ 78%]
+........................................................................ [ 79%]
+........................................................................ [ 79%]
+........................................................................ [ 80%]
+........................................................................ [ 80%]
+........................................................................ [ 81%]
+........................................................................ [ 81%]
+........................................................................ [ 82%]
+........................................................................ [ 82%]
+........................................................................ [ 83%]
+...............................................................s.sss.ss. [ 83%]
+........FFFF............................................................ [ 84%]
+........................ss.............................................. [ 84%]
+sss..................................................................... [ 84%]
+........................................................................ [ 85%]
+........................................................................ [ 85%]
+.........................................................sss............ [ 86%]
+........................................sss............................. [ 86%]
+.............ssss......................................sss.............. [ 87%]
+........................................................ss.......ssss... [ 87%]
+....................................sss................................. [ 88%]
+........................................................................ [ 88%]
+........................................................................ [ 89%]
+...............................................................s........ [ 89%]
+........................................................................ [ 90%]
+........................................................................ [ 90%]
+........................................................................ [ 91%]
+........................................................................ [ 91%]
+........................................................................ [ 92%]
+........................................................................ [ 92%]
+........................................................................ [ 93%]
+........................................................................ [ 93%]
+........................................................................ [ 94%]
+........................................................................ [ 94%]
+........................................................................ [ 95%]
+........................................................................ [ 95%]
+........................................................................ [ 96%]
+........................................................................ [ 96%]
+........................................................................ [ 97%]
+........................................................................ [ 97%]
+........................................................................ [ 98%]
+........................................................................ [ 98%]
+........................................................................ [ 99%]
+........................................................................ [ 99%]
+.......................................                                  [100%]
+=================================== FAILURES ===================================
+_ test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes[dtype0] _
+[gw3] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/team/simulation/test_controlled_phase_graph.py:234: in test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes
+    assert fused_applies == 28
+E   assert 44 == 28
+_ test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes[dtype1] _
+[gw3] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/team/simulation/test_controlled_phase_graph.py:234: in test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes
+    assert fused_applies == 28
+E   assert 44 == 28
+______________ test_product_state_qft_uses_hadamard_phase_fusion _______________
+[gw3] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/team/simulation/test_controlled_phase_graph.py:253: in test_product_state_qft_uses_hadamard_phase_fusion
+    assert fused_applies == 28
+E   assert 44 == 28
+_______ test_native_fused_rotation_layer_only_promotes_terminal_regions ________
+[gw3] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/team/simulation/test_statevector_ops_numerics.py:301: in test_native_fused_rotation_layer_only_promotes_terminal_regions
+    assert tuple(len(step.regions) for step in native_regions) == (6,)
+E   assert () == (6,)
+E     
+E     Right contains one more item: 6
+E     Use -v to get more diff
+________________ test_compact_cx_runtime_threshold_and_rollback ________________
+[gw1] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_native_cpu_adjoint.py:294: in test_compact_cx_runtime_threshold_and_rollback
+    assert reverse_adjoint_cx.use_compact_cpu_cx_mapping(22)
+E   assert False
+E    +  where False = <function use_compact_cpu_cx_mapping at 0x10fc379c0>(22)
+E    +    where <function use_compact_cpu_cx_mapping at 0x10fc379c0> = reverse_adjoint_cx.use_compact_cpu_cx_mapping
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/flagos_cuda_reference_a800_20260824.json-evidence_errors] _
+[gw0] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/flagos_cuda_reference_a800_20260824.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x119795440>({'artifact_class': 'development_reference', 'atol': 2e-05, 'claim_blockers': ['domestic_accelerator_hardware_not_exercised', 'route_fallback_absence_not_certified', 'production_performance_not_measured'], 'device': 'flagos:0', ...})
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_training_a800_20260824.json-evidence_errors] _
+[gw0] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/split_real_imag_training_a800_20260824.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x1197951c0>({'schema': 'flagquantum_split_real_imag_training_a800_evidence_v1', 'recorded_on': '2026-08-24', 'status': 'passed', '...3e94', 'archive_sha256': '7ce20d7e1d1d46703c9e53fc99ca8cba07c1086bf76724842ab5a1e4f806f6f0', 'tree_dirty': False}, ...})
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_precision_a800_20260824.json-evidence_errors] _
+[gw0] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/split_real_imag_precision_a800_20260824.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x1197947c0>({'schema': 'flagquantum_split_real_imag_precision_a800_evidence_v1', 'recorded_on': '2026-08-24', 'status': 'passed', ...68d6', 'archive_sha256': '6c8eafd7d4b25736a77815d795237960448e0f4bd791afbcec6463d539af8fd9', 'tree_dirty': False}, ...})
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_double_single_a800_20260824.json-evidence_errors] _
+[gw0] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/split_real_imag_double_single_a800_20260824.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x119797a60>({'schema': 'flagquantum_split_real_imag_double_single_a800_evidence_v1', 'recorded_on': '2026-08-24', 'status': 'passe...fa1b', 'archive_sha256': 'aba47e301f703d7f79d636a5d4a0120dea12dca50501a462293b636ecafa3300', 'tree_dirty': False}, ...})
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_device_double_single_a800_20260825.json-evidence_errors] _
+[gw0] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/split_real_imag_device_double_single_a800_20260825.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x119795760>({'schema': 'flagquantum_split_real_imag_device_double_single_a800_evidence_v1', 'recorded_on': '2026-08-25', 'status':...b1bc', 'archive_sha256': '348a8d7060fb4381a6d577abc17952ecd8b00a90a586ef0660fc77e0e3ad9d77', 'tree_dirty': False}, ...})
+_ test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_optimizer_a800_20260825.json-evidence_errors] _
+[gw0] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_evidence_provenance.py:231: in test_each_gated_validator_rejects_an_undisclosed_pin
+    assert errors_for(payload), artifact
+E   AssertionError: artifacts/split_real_imag_optimizer_a800_20260825.json
+E   assert ()
+E    +  where () = <function evidence_errors at 0x119794720>({'schema': 'flagquantum_split_real_imag_p5_optimizer_a800_evidence_v1', 'recorded_on': '2026-08-25', 'status': 'passed...afdc', 'archive_sha256': 'fc1cf4fd9169c0e976076195069bc870ff8d42c11f0080f62d1d85badef26524', 'tree_dirty': False}, ...})
+_____ test_chunked_native_layer_initializes_final_slices_directly[dtype0] ______
+[gw0] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_statevector_batch_chunking.py:292: in test_chunked_native_layer_initializes_final_slices_directly
+    assert selected._initial_state_batch_window_workspace is None
+E   assert tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]]) is None
+E    +  where tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]]) = Circuit(n_qubits=4, instructions=20)._initial_state_batch_window_workspace
+_____ test_chunked_native_layer_initializes_final_slices_directly[dtype1] ______
+[gw0] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_statevector_batch_chunking.py:292: in test_chunked_native_layer_initializes_final_slices_directly
+    assert selected._initial_state_batch_window_workspace is None
+E   assert tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]], dtype=torch.complex128) is None
+E    +  where tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]], dtype=torch.complex128) = Circuit(n_qubits=4, instructions=20)._initial_state_batch_window_workspace
+_ test_chunked_static_clifford_layer_initializes_final_slices_directly[dtype0] _
+[gw0] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_statevector_batch_chunking.py:345: in test_chunked_static_clifford_layer_initializes_final_slices_directly
+    assert selected._initial_state_batch_window_workspace is None
+E   assert tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]]) is None
+E    +  where tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]]) = Circuit(n_qubits=6, instructions=24)._initial_state_batch_window_workspace
+_ test_chunked_static_clifford_layer_initializes_final_slices_directly[dtype1] _
+[gw0] darwin -- Python 3.12.14 /private/tmp/fq-704685-venv/bin/python
+tests/unit/test_statevector_batch_chunking.py:345: in test_chunked_static_clifford_layer_initializes_final_slices_directly
+    assert selected._initial_state_batch_window_workspace is None
+E   assert tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]], dtype=torch.complex128) is None
+E    +  where tensor([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0...0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j,\n         0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]], dtype=torch.complex128) = Circuit(n_qubits=6, instructions=24)._initial_state_batch_window_workspace
+=============================== warnings summary ===============================
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[None-expected0]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[0-expected1]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[7-expected2]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[selection3-expected3]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[selection4-expected4]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/api_contract/test_observable_outputs.py:251: DeprecationWarning: wires is deprecated; use qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.counts(selection).wires == expected
+
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[None-expected0]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[0-expected1]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[7-expected2]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[selection3-expected3]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[selection4-expected4]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/api_contract/test_observable_outputs.py:252: DeprecationWarning: wires is deprecated; use qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.samples(selection).wires == expected
+
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[None-expected0]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[0-expected1]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[7-expected2]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[selection3-expected3]
+tests/api_contract/test_observable_outputs.py::test_a_legal_output_selection_records_the_wires_the_caller_named[selection4-expected4]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/api_contract/test_observable_outputs.py:253: DeprecationWarning: wires is deprecated; use qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.probabilities(selection).wires == expected
+
+tests/api_contract/test_observable_outputs.py::test_an_integral_wire_that_is_not_exactly_an_int_is_still_a_label
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/api_contract/test_observable_outputs.py:263: DeprecationWarning: wires is deprecated; use qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.counts(torch.tensor(1)).wires == (1,)
+
+tests/api_contract/test_observable_outputs.py::test_an_integral_wire_that_is_not_exactly_an_int_is_still_a_label
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/api_contract/test_observable_outputs.py:264: DeprecationWarning: wires is deprecated; use qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.counts([torch.tensor(1), 0]).wires == (1, 0)
+
+tests/team/remote/test_jiuding_user_path.py::test_fq_run_executes_bell_measurements_through_jiuding
+tests/team/remote/test_jiuding_user_path.py::test_fq_run_executes_bell_measurements_through_jiuding
+tests/team/remote/test_workspace_executor.py::test_cpu_executor_returns_measurements_without_statevector
+tests/team/remote/test_workspace_executor.py::test_cpu_executor_returns_measurements_without_statevector
+tests/team/remote/test_workspace_executor.py::test_cpu_executor_returns_samples_and_counts_without_statevector
+tests/team/remote/test_workspace_executor.py::test_cpu_executor_returns_samples_and_counts_without_statevector
+tests/team/remote/test_workspace_executor.py::test_cpu_executor_runs_measurement_batch_in_one_request
+tests/team/remote/test_workspace_executor.py::test_cpu_executor_runs_measurement_batch_in_one_request
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/flagquantum/remote/compute/_workspace_executor.py:283: DeprecationWarning: wires is deprecated; use qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    "wires": list(item.wires),
+
+tests/team/simulation/test_carried_operand_dispatch.py::test_the_other_run_modes_apply_a_carried_matrix[ccx-mps]
+tests/unit/test_construction_acceptance.py::test_the_controlled_program_is_one_program_in_every_serving_mode
+tests/unit/test_correctness_properties.py::test_every_certification_case_executes_its_backend_surface
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/flagquantum/simulation/mps/entrypoints.py:80: RuntimeWarning: MPS execution applies 3-qubit instruction 'ccx' by expanding the state to the full 2**3 dense vector and re-factorising; bond dimension does not bound this step.
+    return run_local_mps(
+
+tests/team/simulation/test_carried_operand_dispatch.py::test_the_other_run_modes_apply_a_carried_matrix[cswap-mps]
+tests/unit/test_correctness_properties.py::test_every_certification_case_executes_its_backend_surface
+tests/unit/test_correctness_properties.py::test_dense_mps_and_tensor_network_are_differentially_equal
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/flagquantum/simulation/mps/entrypoints.py:80: RuntimeWarning: MPS execution applies 3-qubit instruction 'cswap' by expanding the state to the full 2**3 dense vector and re-factorising; bond dimension does not bound this step.
+    return run_local_mps(
+
+tests/team/simulation/test_stabilizer_readout.py::test_the_identity_string_is_the_identity_whatever_the_circuit_is
+tests/team/simulation/test_stabilizer_readout.py::test_the_identity_string_is_the_identity_whatever_the_circuit_is
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/team/simulation/test_stabilizer_readout.py:330: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert readout.letters == "I" * circuit.n_wires
+
+tests/unit/test_algorithms_cdr.py::test_the_training_set_does_not_modify_the_target
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_algorithms_cdr.py:288: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    width = circuit.n_wires
+
+tests/unit/test_algorithms_cdr.py::test_the_training_set_does_not_modify_the_target
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_algorithms_cdr.py:291: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert circuit.n_wires == width
+
+tests/team/simulation/test_statevector_ops_numerics.py::test_batch_one_execution_plan_keeps_the_single_state_grouping
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/team/simulation/test_statevector_ops_numerics.py:2168: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    circuit.n_wires,
+
+tests/team/simulation/test_statevector_ops_numerics.py::test_cpu_product_state_execution_declines_entanglement_dense_plan
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/team/simulation/test_statevector_ops_numerics.py:2501: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    for wire in range(circuit.n_wires):
+
+tests/team/simulation/test_statevector_ops_numerics.py::test_cpu_product_state_execution_declines_entanglement_dense_plan
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/team/simulation/test_statevector_ops_numerics.py:2503: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    for control in range(circuit.n_wires):
+
+tests/team/simulation/test_statevector_ops_numerics.py: 18 warnings
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/team/simulation/test_statevector_ops_numerics.py:2504: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    for target in range(control + 1, circuit.n_wires):
+
+tests/unit/test_algorithms_arithmetic.py::test_the_construction_costs_eight_operations_per_bit[1]
+tests/unit/test_algorithms_arithmetic.py::test_the_construction_costs_eight_operations_per_bit[2]
+tests/unit/test_algorithms_arithmetic.py::test_the_construction_costs_eight_operations_per_bit[3]
+tests/unit/test_algorithms_arithmetic.py::test_the_construction_costs_eight_operations_per_bit[4]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_algorithms_arithmetic.py:227: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert circuit.n_wires == 2 * n_bits + 2
+
+tests/unit/test_algorithms_arithmetic.py::test_the_register_map_covers_every_wire_exactly_once[1]
+tests/unit/test_algorithms_arithmetic.py::test_the_register_map_covers_every_wire_exactly_once[2]
+tests/unit/test_algorithms_arithmetic.py::test_the_register_map_covers_every_wire_exactly_once[3]
+tests/unit/test_algorithms_arithmetic.py::test_the_register_map_covers_every_wire_exactly_once[4]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_algorithms_arithmetic.py:238: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    circuit_wires = set(range(adder_circuit(n_bits).n_wires))
+
+tests/unit/test_construction_acceptance.py::test_the_controlled_program_is_one_program_in_every_serving_mode
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/flagquantum/simulation/mps/entrypoints.py:80: RuntimeWarning: MPS execution applies 3-qubit instruction 'ccx' by expanding the state to the full 2**4 dense vector and re-factorising; bond dimension does not bound this step.
+    return run_local_mps(
+
+tests/unit/test_construction_acceptance.py::test_the_controlled_program_is_one_program_in_every_serving_mode
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/flagquantum/simulation/mps/entrypoints.py:80: RuntimeWarning: MPS execution applies 3-qubit instruction 'ccx' by expanding the state to the full 2**6 dense vector and re-factorising; bond dimension does not bound this step.
+    return run_local_mps(
+
+tests/unit/test_matrix_output_frontdoors.py::test_ragged_nested_storage_is_refused_without_inspecting_sizes
+  /Users/baai/Documents/liuwei/FlagQuantum/molecular_vqe_lab/.venv/lib/python3.12/site-packages/torch/nested/__init__.py:254: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. We recommend specifying layout=torch.jagged when constructing a nested tensor, as this layout receives active development, has better operator coverage, and works with torch.compile. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/NestedTensorImpl.cpp:181.)
+    return _nested.nested_tensor(
+
+tests/unit/test_measurements_marginal_reduction.py::test_the_reduction_agrees_with_the_parity_reconstruction[wires0]
+tests/unit/test_measurements_marginal_reduction.py::test_the_reduction_agrees_with_the_parity_reconstruction[wires1]
+tests/unit/test_measurements_marginal_reduction.py::test_the_reduction_agrees_with_the_parity_reconstruction[wires2]
+tests/unit/test_measurements_marginal_reduction.py::test_the_reduction_agrees_with_the_parity_reconstruction[wires3]
+tests/unit/test_measurements_marginal_reduction.py::test_the_reduction_agrees_with_the_parity_reconstruction[wires4]
+tests/unit/test_measurements_marginal_reduction.py::test_the_reduction_agrees_with_the_parity_reconstruction[wires5]
+tests/unit/test_measurements_marginal_reduction.py::test_the_marginal_is_taken_from_the_dense_result_and_not_from_contractions
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_measurements_marginal_reduction.py:59: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    target = measurements._statevector_target(circuit.state(), circuit.n_wires)
+
+tests/unit/test_measurements_marginal_reduction.py::test_the_marginal_is_taken_from_the_dense_result_and_not_from_contractions
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_measurements_marginal_reduction.py:192: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    target = _CountingTarget(circuit.n_wires)
+
+tests/unit/test_measurements_marginal_reduction.py::test_the_marginal_is_taken_from_the_dense_result_and_not_from_contractions
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_measurements_marginal_reduction.py:197: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    n_wires=circuit.n_wires,
+
+tests/unit/test_measurements_marginal_reduction.py::test_the_marginal_is_taken_from_the_dense_result_and_not_from_contractions
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_measurements_marginal_reduction.py:209: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    object(), (1,), n_wires=circuit.n_wires, noise_model=None
+
+tests/unit/test_module_runtime_contracts.py::test_module_to_rejects_invalid_dtype_before_mutating_parameters
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_module_runtime_contracts.py:564: UserWarning: Complex modules are a new feature under active development whose design may change, and some modules might not work as expected when using complex tensors as parameters or buffers. Please file an issue at https://github.com/pytorch/pytorch/issues/new?template=bug-report.yml if a complex module does not work as expected.
+    module.to(dtype=torch.complex64)
+
+tests/unit/test_local_target_emulation.py::test_emulation_accepts_an_emission_profile_written_in_any_case
+tests/unit/test_local_target_emulation.py::test_emulation_accepts_an_emission_profile_written_in_any_case
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/flagquantum/remote/emulation.py:674: DeprecationWarning: wires is deprecated; use qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    wires = tuple(measurement.wires)
+
+tests/unit/test_matrix_expectation_contract.py::test_quantized_matrix_and_nonmatrix_values_are_refused
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_matrix_expectation_contract.py:406: UserWarning: torch.quantize_per_tensor, torch.quantize_per_channel and other quantized tensor creation functions that produce tensors with dtype torch.quint8, torch.qint8, and torch.qint32 are deprecated and will be removed in a future PyTorch release. Please see https://github.com/pytorch/pytorch/issues/184982 for more information. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/quantized/Quantizer.cpp:116.)
+    operator = torch.quantize_per_tensor(torch.eye(3), 0.1, 0, torch.quint8)
+
+tests/unit/test_statevector_batch_chunking.py::test_chunked_batch_matches_monolithic_execution
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_statevector_batch_chunking.py:139: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    2 * (2**circuit.n_wires) * torch.empty((), dtype=circuit.dtype).element_size(),
+
+tests/unit/test_statevector_batch_chunking.py::test_chunk_length_does_not_legalize_invalid_full_batch_parameter
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_statevector_batch_chunking.py:161: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    2 * (2**circuit.n_wires) * torch.empty((), dtype=circuit.dtype).element_size(),
+
+tests/unit/test_statevector_batch_chunking.py::test_chunked_inference_bounds_the_zero_state_workspace
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_statevector_batch_chunking.py:204: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    2 * (2**circuit.n_wires) * torch.empty((), dtype=circuit.dtype).element_size(),
+
+tests/unit/test_tensor_network_memory_estimate.py::test_working_set_estimate_reproduces_the_selector_proxy
+tests/unit/test_tensor_network_memory_estimate.py::test_working_set_estimate_reproduces_the_selector_proxy
+tests/unit/test_tensor_network_memory_estimate.py::test_working_set_estimate_reproduces_the_selector_proxy
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_memory_estimate.py:75: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    circuit.n_wires,
+
+tests/unit/test_tensor_network_memory_estimate.py::test_sparse_target_keeps_the_materialized_state_as_a_floor
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_memory_estimate.py:92: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    estimate_tensor_network_bytes(circuit.n_wires),
+
+tests/unit/test_tensor_network_memory_estimate.py::test_sparse_target_keeps_the_materialized_state_as_a_floor
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_memory_estimate.py:94: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    circuit.n_wires,
+
+tests/unit/test_tensor_network_memory_estimate.py::test_sparse_target_keeps_the_materialized_state_as_a_floor
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_memory_estimate.py:98: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert plan.state_bytes >= estimate_tensor_network_bytes(circuit.n_wires)
+
+tests/unit/test_tensor_network_memory_estimate.py::test_full_state_target_keeps_the_materialized_state_as_a_floor
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_memory_estimate.py:108: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert plan.state_bytes == estimate_tensor_network_bytes(circuit.n_wires)
+
+tests/unit/test_tensor_network_memory_estimate.py::test_a_wide_contraction_is_not_reported_as_only_its_output
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_memory_estimate.py:125: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    circuit.n_wires,
+
+tests/unit/test_tensor_network_memory_estimate.py::test_a_wide_contraction_is_not_reported_as_only_its_output
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_memory_estimate.py:128: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert plan.state_bytes > estimate_tensor_network_bytes(circuit.n_wires)
+
+tests/unit/test_tensor_network_memory_estimate.py::test_fail_closed_capacity_check_uses_the_working_set
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_memory_estimate.py:195: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    circuit.n_wires,
+
+tests/unit/test_tensor_network_memory_estimate.py::test_fail_closed_capacity_check_uses_the_working_set
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_memory_estimate.py:198: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    dense_state = estimate_tensor_network_bytes(circuit.n_wires)
+
+tests/unit/test_tensor_network_peak_admission.py::test_the_declared_limit_binds_the_order_that_runs
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_peak_admission.py:161: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert result.probabilities.shape == (1, 1 << circuit.n_wires)
+
+tests/unit/test_operators_superoperator.py::test_a_non_tensor_factor_is_materialized_before_it_is_widened
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_operators_superoperator.py:545: UserWarning: Casting complex values to real discards the imaginary part (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/native/Copy.cpp:307.)
+    self._matrix = matrix.to(torch.float64)
+
+tests/unit/test_tensor_network_peak_admission.py::test_an_undeclared_limit_enforces_nothing
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_tensor_network_peak_admission.py:200: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert result.probabilities.shape == (1, 1 << circuit.n_wires)
+
+tests/unit/test_trotter.py::test_a_wider_register_embeds_the_same_evolution
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_trotter.py:405: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert narrow.n_wires == 2
+
+tests/unit/test_trotter.py::test_a_wider_register_embeds_the_same_evolution
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2/tests/unit/test_trotter.py:406: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert wide.n_wires == 4
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/team/simulation/test_controlled_phase_graph.py::test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes[dtype0]
+FAILED tests/team/simulation/test_controlled_phase_graph.py::test_qft_hadamard_phase_fusion_matches_graph_path_and_reduces_passes[dtype1]
+FAILED tests/team/simulation/test_controlled_phase_graph.py::test_product_state_qft_uses_hadamard_phase_fusion
+FAILED tests/team/simulation/test_statevector_ops_numerics.py::test_native_fused_rotation_layer_only_promotes_terminal_regions
+FAILED tests/unit/test_native_cpu_adjoint.py::test_compact_cx_runtime_threshold_and_rollback
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/flagos_cuda_reference_a800_20260824.json-evidence_errors]
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_training_a800_20260824.json-evidence_errors]
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_precision_a800_20260824.json-evidence_errors]
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_double_single_a800_20260824.json-evidence_errors]
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_device_double_single_a800_20260825.json-evidence_errors]
+FAILED tests/unit/test_evidence_provenance.py::test_each_gated_validator_rejects_an_undisclosed_pin[artifacts/split_real_imag_optimizer_a800_20260825.json-evidence_errors]
+FAILED tests/unit/test_statevector_batch_chunking.py::test_chunked_native_layer_initializes_final_slices_directly[dtype0]
+FAILED tests/unit/test_statevector_batch_chunking.py::test_chunked_native_layer_initializes_final_slices_directly[dtype1]
+FAILED tests/unit/test_statevector_batch_chunking.py::test_chunked_static_clifford_layer_initializes_final_slices_directly[dtype0]
+FAILED tests/unit/test_statevector_batch_chunking.py::test_chunked_static_clifford_layer_initializes_final_slices_directly[dtype1]
+=== 15 failed, 14382 passed, 304 skipped, 100 warnings in 368.65s (0:06:08) ====

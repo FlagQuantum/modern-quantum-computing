@@ -1,0 +1,27 @@
+Initial, superseded compiler revision 6aba5b774. Remote CPU job failures:
+2026-10-22T04:43:27.6574010Z FAILED tests/team/compiler/test_state_preparation_synthesis.py::test_the_uniform_family_count_is_the_ladder_arithmetic - AssertionError: assert 18 in (10,)
+2026-10-22T04:43:27.6576478Z FAILED tests/team/compiler/test_state_preparation_synthesis.py::test_the_control_flip_cost_is_the_rosters_own_measurement - AssertionError: assert 5 in (1,)
+2026-10-22T04:43:27.6578982Z FAILED tests/team/compiler/test_state_preparation_synthesis.py::test_the_shortest_spelling_is_the_callers_basis - AssertionError: assert (18 - 18) == ((5 - 1) * ((2 ** 2) - 2))
+2026-10-22T04:43:27.6580324Z FAILED tests/team/compiler/test_state_preparation_synthesis.py::test_the_basis_vector_counts_are_the_exact_zero_drops - assert [0, 18, 3, 21] == [0, 10, 3, 13]
+2026-10-22T04:43:27.6584612Z FAILED tests/team/compiler/test_state_preparation_synthesis.py::test_a_whole_zero_ladder_is_dropped_and_a_lone_zero_branch_is_not - AssertionError: assert 2.0 == 0.0
+2026-10-22T04:43:27.6598954Z FAILED tests/team/compiler/test_state_preparation_synthesis.py::test_the_register_validation_errors_are_typed - AssertionError: assert 18 == 10
+2026-10-22T04:43:27.6603113Z FAILED tests/team/compiler/test_two_qubit_decomposition_conformance.py::test_every_route_leaves_the_source_unitary_alone_up_to_one_phase - AssertionError: synthesize_two_qubit entangler=cz gap=0.06727815684527039
+2026-10-22T04:43:27.6604603Z FAILED tests/unit/test_compilation_split_two_qubit_blocks.py::test_the_split_reproduces_the_source_statevector_exactly - assert [(0,), (0, 1)] == [(0,), (0,), (1,)]
+2026-10-22T04:43:27.6609022Z FAILED tests/unit/test_compilation_split_two_qubit_blocks.py::test_the_emitted_factors_multiply_back_to_the_source_matrix - IndexError: tuple index out of range
+2026-10-22T04:43:27.6610044Z FAILED tests/unit/test_compilation_split_two_qubit_blocks.py::test_the_pipeline_can_read_the_wire_after_the_split_and_not_before - AssertionError: assert 4 == 3
+2026-10-22T04:43:27.6615800Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[rz-cx] - AssertionError: the synthesized product is not close to the source
+2026-10-22T04:43:27.6618052Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[rz-cz] - AssertionError: assert 0.3699240762154817 < 1e-09
+2026-10-22T04:43:27.6621968Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[rz-cy] - AssertionError: assert 0.9999999999999999 < 1e-09
+2026-10-22T04:43:27.6625908Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[rz-rzz] - AssertionError: the synthesized product is not close to the source
+2026-10-22T04:43:27.6628158Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[rz-rxx] - AssertionError: assert 0.4142135623730951 < 1e-09
+2026-10-22T04:43:27.6631728Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[phase-cx] - AssertionError: the synthesized product is not close to the source
+2026-10-22T04:43:27.6633980Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[phase-cz] - AssertionError: assert 0.36992407621548135 < 1e-09
+2026-10-22T04:43:27.6638020Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[phase-cy] - AssertionError: assert 0.9999999999999997 < 1e-09
+2026-10-22T04:43:27.6641972Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[phase-rzz] - AssertionError: the synthesized product is not close to the source
+2026-10-22T04:43:27.6644259Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[phase-rxx] - AssertionError: assert 0.41421356237309526 < 1e-09
+2026-10-22T04:43:27.6647856Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[u1-cx] - AssertionError: the synthesized product is not close to the source
+2026-10-22T04:43:27.6650119Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[u1-cz] - AssertionError: assert 0.36992407621548135 < 1e-09
+2026-10-22T04:43:27.6654062Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[u1-cy] - AssertionError: assert 0.9999999999999997 < 1e-09
+2026-10-22T04:43:27.6658122Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[u1-rzz] - AssertionError: the synthesized product is not close to the source
+2026-10-22T04:43:27.6660395Z FAILED tests/unit/test_compilation_two_qubit_synthesis.py::test_every_declared_two_qubit_unitary_reaches_the_entangler_basis[u1-rxx] - AssertionError: assert 0.41421356237309526 < 1e-09
+2026-10-22T04:43:27.8709993Z === 25 failed, 14301 passed, 187 skipped, 116 warnings in 236.42s (0:03:56) ====
