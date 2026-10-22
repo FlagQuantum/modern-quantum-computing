@@ -1,9 +1,9 @@
 {
-  "result": "All8final Python fragments match executed assembly/checker source.No post-validation code change.",
+  "result": "All8final Python snippets match final source and passed exact-output execution.Latest explicit native gate/request backfill ran13queries;main complete program remained byte-identical.",
   "snippets": [
     "7e0bef2f4aa9f1b7e6de38b9c2b217e5f54d72ad087c2d738d51f128df3181d6",
     "8071ba72cd8759b7754403952b6892b60890b6e6d905b8ae6e2248d4b2d4985a",
-    "dd18e8bc8cd585b79ca137e8033104ba12c8ee8c2cf14cd15c799e1ffb6352d3",
+    "7f53ff04e5320805eac46f340bdf726db7533c5afe81f9c3e4313cdfc05af3f5",
     "aa1a7bb1e62b77f5aebd220cd814c3a1abba63952d88125041edcd4f17dde29e",
     "7423981346f08dd8bcc78a33d2aaa1fcbc37f18f7636916afd5b89b41e005b86",
     "0efd1777c8cdf98ae34a7316e7419218ec2031eadf0ccb7f6066559e85d91d5f",

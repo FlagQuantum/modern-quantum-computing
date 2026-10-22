@@ -60,7 +60,7 @@
     "author_execution": "passed",
     "complete_program_circuits_per_invocation": 70,
     "body_fragments": 8,
-    "body_circuits_per_invocation": 12,
+    "body_circuits_per_invocation": 13,
     "separate_transfer_circuits": 18,
     "execution_ledger": {
       "initial_passing": 70,
@@ -68,8 +68,9 @@
       "body_assembly": 12,
       "body_plus_complete_checker": 82,
       "separate_transfer": 18,
-      "total_section69_circuits": 252,
-      "note": "Initial10-contract version passed;expanded12-contract/program-reference guards then passed. Initial passing source/output retained;not a failure repair. Scoped6.8 regression50 and futureCI separate."
+      "total_section69_circuits": 265,
+      "note": "Initial10-contract version passed;expanded12-contract/program-reference guards then passed. Initial passing source/output retained;not a failure repair. Scoped6.8 regression50 and futureCI separate. Final native gate/request body backfill ran13queries;all8exact outputs passed. Complete program unchanged,so its prior70-query validation remains applicable. Historical body/full82log precedes this backfill;future final checker uses83.",
+      "native_body_backfill": 13
     },
     "checks": [
       "16basis queries:8declared-order pass,4of8reversed-order fail.",
@@ -81,7 +82,8 @@
     "tolerance": "Deterministic full-vector/probability/effect atol1e-12,rtol0.No phase alignment,input renormalization or negative-probability clipping.No random interval must-cover assertion.",
     "unplanned_example_execution_failures": "None;deliberate rejections are expected protocol outputs,not native runtime failures.",
     "limitations": "One bounded3qubit teaching protocol,not general hardware certification,external attestation,new skill or independent scholarly acceptance.Native gate/probability/sample support only;branches/effects/acceptance classical;no sampled collapse/reset/noise calibration.",
-    "script_sha256": "98b8c668a2e1f40bdebb675aa7dfb4aa80156b6e7e41fd86618a19bd2d59f39f"
+    "script_sha256": "98b8c668a2e1f40bdebb675aa7dfb4aa80156b6e7e41fd86618a19bd2d59f39f",
+    "final_checker_circuits_per_invocation": 83
   },
   "assessment": {
     "tasks": [
@@ -97,7 +99,7 @@
     "implementation": "author-run bounded protocol passed;independent review pending",
     "reader": "pending",
     "scientific_acceptance": "not accepted",
-    "author_checks": "70complete/12body/18transfer calls,independent references and expected failures passed;scoped6.8regression passed;website/formula QA recorded separately. Strict fresh71-page build,all local links/fragments,details parsing and actual-browser formulas/expanded answers passed."
+    "author_checks": "70complete/12body/18transfer calls,independent references and expected failures passed;scoped6.8regression passed;website/formula QA recorded separately. Strict fresh71-page build,all local links/fragments,details parsing and actual-browser formulas/expanded answers passed. Final explicit native gate/request backfill:13body queries passed and raw seeded bits/probabilities matched wrapper. Strict fresh71-page build,all local links/fragments,details parsing and actual-browser formulas/expanded answers passed."
   },
   "production": {
     "next_draft": "7.1 Product states and entangled states",

@@ -3207,10 +3207,20 @@ Expanding the projector expectation consequently yields
 p_{xy}=\frac{1+(-1)^{x+y}C}{4}.
 \]
 
-The target here is \(C=3/4\) and the ordered probabilities are \((7,1,1,7)/16\). `acquire` actually calls native `fq.run` once for the preparation, and once for the prepared circuit with P/H/H analyzer, selected `fq.probabilities` and `fq.samples`. The complete program exposes these calls. Its independent matrix reference verifies the post-analyzer vector; explicit Pauli projectors and the scalar law independently check the measurement probabilities. A discrepancy is not repaired by renormalizing or aligning phases.
+The target here is \(C=3/4\) and the ordered probabilities are \((7,1,1,7)/16\). `acquire` actually calls native `fq.run` once for the preparation, and once for the prepared circuit with P/H/H analyzer, selected `fq.probabilities` and `fq.samples`. The complete program exposes these calls. Its independent matrix reference verifies the post-analyzer vector; explicit Pauli projectors and the scalar law independently check the measurement probabilities. A discrepancy is not repaired by renormalizing or aligning phases. The body also executes the native gate sequence and terminal request directly, comparing its probabilities and pinned-seed raw record with the wrapper. This adds one explicit native query; it is not counted as independent statistical evidence.
 
 ```python
+import flagquantum as fq
+from dataclasses import replace
+native_circuit = fq.Circuit(3,dtype=torch.complex128)
+native_circuit.ry(0,pi/3).cx(0,2).x(1).p(0,pi/3)
+native_circuit.p(0,-pi/2).h(0).h(2)
+native_result = fq.run(native_circuit,
+    outputs=[fq.probabilities(qubits=(2,0)),fq.samples(qubits=(2,0))],
+    shots=N,options=replace(lab.b.OPTIONS,seed=31))
 packet = lab.acquire(pi/3,pi/3,N=N,seed=31)
+torch.testing.assert_close(native_result.probabilities[0],packet['p'],atol=1e-12,rtol=0)
+assert torch.equal(native_result.samples[0],packet['bits'])
 report = lab.audit(packet)
 expected = torch.tensor([7/16,1/16,1/16,7/16],dtype=torch.float64)
 torch.testing.assert_close(packet['p'],expected,atol=1e-12,rtol=0)

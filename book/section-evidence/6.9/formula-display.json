@@ -7,5 +7,6 @@
     "Expanded chapter synthesis answers"
   ],
   "result": "Passed:inspected formulas render without garbling or clipping.",
-  "online": "Publication HTML comparison separate;no online screenshot claimed."
+  "online": "Publication HTML comparison separate;no online screenshot claimed.",
+  "native_body_backfill": "Final build reloaded in actual IAB;native Circuit/gates/fq.run/request selection and expected output inspected. All TeX fragments byte-identical to originally visually checked build."
 }

@@ -1,0 +1,2 @@
+8 cumulative 6.9 prose fragments: exact outputs and assertions passed.
+Final body13native queries:12wrapper/calibration calls plus1explicit native gate/request reproduction. Complete program unchanged; no unnecessary70-circuit rerun.
