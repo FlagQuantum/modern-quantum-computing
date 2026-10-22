@@ -6,7 +6,7 @@ This is a revision-specific repair ledger, checked on **October 22, 2026**. It s
 
 | Defect | Proposed source repair | Validation | Merge/release status |
 |---|---|---|---|
-| [#685: nonunitary custom matrices accepted by `Circuit.adjoint`](https://github.com/flagos-ai/FlagQuantum/issues/685) | Draft [PR #711](https://github.com/flagos-ai/FlagQuantum/pull/711), commit `1f001da4c1f13260b1bba34dda14d958399a5a3f` | 202 focused adjoint/composition tests pass, including 80 adjoint tests | Submitted for review; not merged; no fixed release verified |
+| [#685: nonunitary custom matrices accepted by `Circuit.adjoint`](https://github.com/flagos-ai/FlagQuantum/issues/685) | Merged [PR #711](https://github.com/flagos-ai/FlagQuantum/pull/711), commit `1f001da4c1f13260b1bba34dda14d958399a5a3f` | 202 focused adjoint/composition tests pass, including 80 adjoint tests | Merged by maintainer on October 22, 2026 at 05:13 UTC as `a1aab92d89dc732dbdc8b7fe020a5acb35c1a0fb`; no fixed release verified |
 | [#704: tiny nonzero amplitudes lost in exact execution](https://github.com/flagos-ai/FlagQuantum/issues/704) | Draft [PR #712](https://github.com/flagos-ai/FlagQuantum/pull/712), implementation `046c465c6`; PR head `99f8c90befef7ca3480ef5f88909462b9e137115` | 439 focused compiler/inversion/synthesis tests pass, including 34 end-to-end cases | Submitted for review; not merged; no fixed release verified |
 
 Both branches start from upstream `main` commit `f187adbbf`. Their changes concern separate Core and Compiler ownership domains. A temporary local combination also passes **575 distinct selected tests**. These overlapping selections are separate checks, not additive test counts.
@@ -41,7 +41,7 @@ The initial Compiler patch's remote CPU job found 25 synthesis/factorization reg
 
 One earlier local Core whole-suite run loaded a transient compiler file while the working copy was being restored. It raised missing-helper import errors and is invalidated as mixed-source verification, not attributed to the product. The frozen-commit rerun above replaces it.
 
-The PRs remain drafts while broader validation is unresolved. Their GitHub check panels are the authoritative live CI status. No GPU, hardware, distributed scalability or package-release validation is claimed here. Independent code review, mathematical review and reader acceptance have not been invented or marked complete.
+PR #711 was merged by maintainer `FlagQuantum`; its final head has 41 successful and two skipped checks. PR #712 remains open as a draft, with latest-head checks pending at this status update. Their GitHub check panels are the authoritative live CI status. The merge is recorded separately from the CPU validation and does not establish a fixed package release. No GPU, hardware, distributed scalability or package-release validation is claimed here. Independent code review, mathematical review and reader acceptance have not been invented or marked complete.
 
 ## Benchmark-policy follow-up
 

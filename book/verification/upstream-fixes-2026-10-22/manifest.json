@@ -1,15 +1,18 @@
 {
   "date": "2026-10-22",
-  "scope": "Upstream correctness fixes only. Both draft PRs submitted and validated against baseline; no new sections/skills/papers. Remaining remote CI/review does not authorize merge or book writing.",
+  "scope": "Upstream correctness fixes only. PR #711 merged by maintainer; PR #712 remains a draft. No new sections/skills/papers; no merge or release performed by this task.",
   "base_commit": "f187adbbfa906828fc1f124ce5e63fdb698341a7",
   "fixes": [
     {
       "issue": 685,
       "pr": 711,
       "commit": "1f001da4c1f13260b1bba34dda14d958399a5a3f",
-      "status": "draft PR; not merged/released",
+      "status": "merged by maintainer; no fixed release verified",
       "focused_passed": 202,
-      "adjoint_tests": 80
+      "adjoint_tests": 80,
+      "merge_commit": "a1aab92d89dc732dbdc8b7fe020a5acb35c1a0fb",
+      "merged_at": "2026-10-22T05:13:42Z",
+      "merged_by": "FlagQuantum"
     },
     {
       "issue": 704,
@@ -286,5 +289,23 @@
       "job": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39724819845/job/119648687075",
       "followup": "99f8c90be updates current benchmark contracts and reference measurement; production compiler Python is unchanged; all241 benchmark contracts now pass"
     }
-  ]
+  ],
+  "remote_status_update": {
+    "checked_at": "2026-10-22T05:37Z",
+    "pr711": {
+      "state": "MERGED",
+      "head": "1f001da4c1f13260b1bba34dda14d958399a5a3f",
+      "checks": {
+        "success": 41,
+        "skipped": 2
+      }
+    },
+    "pr712": {
+      "state": "OPEN",
+      "draft": true,
+      "head": "99f8c90befef7ca3480ef5f88909462b9e137115",
+      "checks": "pending; no failure reported in current rollup"
+    },
+    "release": "not verified; released-0.3.1 safeguards remain"
+  }
 }
