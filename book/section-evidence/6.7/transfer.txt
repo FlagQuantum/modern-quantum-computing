@@ -1,0 +1,2 @@
+16 fresh native circuits: 6 new spectral/centered quantum variances; 8 complex four-qubit ordered score/covariance checks; 2 new separate-basis readouts passed.
+New four-category exact ensemble: variance of mean23/25, expected sample variance69/25 over64 records; zero quantum calls.

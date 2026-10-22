@@ -1,0 +1,113 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-measurement-expectation-values-and-statistical-estimation-7",
+  "ref": "6.7",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+  "depth": "F",
+  "result": "Variance of a weighted estimator",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-3",
+    "sec-measurement-expectation-values-and-statistical-estimation-6"
+  ],
+  "assumptions": [
+    "Finite second moments and jointly defined classical scores; fixed real coefficients and positive fixed shot counts.",
+    "Within-trial covariance retained; inter-trial and inter-group independence declared separately.",
+    "IID sample covariance proof requires at least two joint observations; no postselection or adaptive estimated coefficients."
+  ],
+  "proof_obligations": [
+    "Derive centered/second-moment/spectral-vector variance identities.",
+    "Expand every covariance term in a fixed weighted estimator and prove PSD quadratic form.",
+    "Prove independence gives zero covariance without asserting the converse.",
+    "Derive IID mean covariance, duplicated/common-offset counterexamples and categorical negative covariance.",
+    "Prove compatible-group and independent-group formulas, distinguishing variance of A from variance of its separately sampled term estimator.",
+    "Prove unbiased sample covariance with a complete centered outer-product identity and expectation expansion.",
+    "Distinguish population, observed, estimated standard error and confidence/systematic claims."
+  ],
+  "formula_code_units": [
+    "formula-code-6-7-spread",
+    "formula-code-6-7-weighted",
+    "formula-code-6-7-means",
+    "formula-code-6-7-categorical",
+    "formula-code-6-7-joint",
+    "formula-code-6-7-groups",
+    "formula-code-6-7-estimated",
+    "formula-code-6-7-boundaries"
+  ],
+  "sources": [
+    {
+      "locator": "NC:A1",
+      "edition": "10th Anniversary Edition(2010)",
+      "printed_page_start": 608,
+      "inspection": "Assigned contents locator; no fresh user-local PDF inspection claimed. Full local finite-sum argument supplied."
+    },
+    {
+      "author": "Marco Taboga",
+      "url": "https://www.statlect.com/fundamentals-of-probability/covariance",
+      "locator": "Definition; equivalent definition; bilinearity; variance of sum; author-written open page inspected."
+    },
+    {
+      "local": "6.3",
+      "result": "Hermitian spectral mean identity"
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/variance_estimators.py",
+    "command": "python examples/foundations/variance_estimators.py",
+    "prose_check_command": "python scripts/check_variance_estimators_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "cpu",
+      "precision": "complex128 state/float64 statistics"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 56,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 6,
+    "separate_transfer_circuits": 16,
+    "execution_ledger": {
+      "initial_complete": 56,
+      "body_assembly": 6,
+      "body_plus_complete_checker": 62,
+      "separate_transfer": 16,
+      "total_section67_circuits": 140,
+      "note": "Prior6.6 scoped regression70 and future remoteCI separate; exact rational ensembles are zero-circuit classical checks. No reruns for prose-only clarifications."
+    },
+    "checks": [
+      "12 actual native expectation queries versus spectral and analytic centered references.",
+      "20 pair readouts with positive/negative within-shot covariance.",
+      "12 ordered categorical readouts;12 separate X/Z setting readouts.",
+      "4 exact rational families prove implementation agreement for categorical covariance, sample variance mean, variance/N and independent group addition.",
+      "16 new transfers:6 quantum variances,8 four-qubit ordered weighted scores/covariances,2 separate readouts; fresh rational score case.",
+      "14 malformed contracts; centered1e8 offset reference retains1/4; observed-zero population-positive counterexample."
+    ],
+    "tolerance": "Deterministic reference/probability atol1e-12,rtol0. Observed random variance is not allclose-tested to its population value; no clipping or interval certificate.",
+    "unplanned_example_execution_failures": "None.",
+    "limitations": "Native exact expectation, probabilities and terminal samples; covariance and variance are explicit classical helpers. No native variance endpoint, confidence coverage, hardware independence, collapse or noise calibration claim. Within-group and between-group covariance must not be silently deleted; optimal allocation and general uncertainty relations deferred.",
+    "script_sha256": "a83a6b8cfe1eb3dab8e121a41e343113d2f4ba5c1f3be2b095d232bc3cc88585"
+  },
+  "assessment": {
+    "tasks": [
+      "6.7-A sign/covariance",
+      "6.7-B independent groups and shared covariance",
+      "6.7-C exact/new native categorical variance",
+      "6.7-D interpretation of zero error estimate"
+    ],
+    "answers": "Supplied; reader trial not performed."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "56 complete/6 prose/16 fresh native transfers and exact rational ensemble references passed; scoped6.6 prose/complete regression passed; website and actual-browser QA recorded separately. Strict fresh71-page build, local links/fragments and details parsing passed; actual-browser key formulas and expanded answers passed."
+  },
+  "production": {
+    "next_draft": "6.8 Confidence intervals and shot budgets",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Actual local IAB1280x720 screenshots checked weighted covariance aligned expansion, independent-group cross terms, sample covariance/outer-product unbiasedness proof, and expanded answers. Inspected math renders without garbling or clipping."
+  }
+}

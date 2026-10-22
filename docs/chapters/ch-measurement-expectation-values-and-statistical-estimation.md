@@ -1,6 +1,6 @@
 # 6. Measurement, Expectation Values, and Statistical Estimation
 
-**Working drafts: sections 6.1–6.6 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
+**Working drafts: sections 6.1–6.7 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
 
 <span id="sec-measurement-expectation-values-and-statistical-estimation-1"></span>
 
@@ -2281,3 +2281,415 @@ Tested on FlagQuantum 0.3.1, PyTorch 2.13.0, Python 3.12.14, CPU complex128. Pro
 The assigned reference is Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), Appendix 1, “Notes on basic probability theory,” beginning on printed page 608 (`NC:A1`). This section supplies its own finite-sum proofs. For an openly accessible author-written treatment of indicators and their expectation, see Marco Taboga, [Indicator function, definition and Expected value](https://www.statlect.com/fundamentals-of-probability/indicator-functions). The implementation contract was checked against the installed released FlagQuantum sampling source; its backend's [PyTorch multinomial documentation](https://docs.pytorch.org/docs/stable/generated/torch.multinomial.html) describes sampling with replacement and generator control. A seeded record is not evidence of IID hardware outcomes. Variance, covariance, confidence intervals and shot-budget guarantees are deliberately left to 6.7–6.8.
 
 The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.6.json) distinguishes author checks from pending independent mathematical/implementation review and reader trials. Continue, when drafted, with [6.7 Variance, covariance, and uncertainty](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7).
+
+
+<span id="sec-measurement-expectation-values-and-statistical-estimation-7"></span>
+
+## 6.7 Variance, covariance, and uncertainty
+
+**Working draft — author execution completed; independent mathematical/implementation review and reader trial pending.**
+
+An unbiased estimate can still fluctuate substantially between experiments. A second question is therefore essential: how widely do the possible estimates spread around their target? We now quantify that spread, retaining correlations between quantities measured from the same record. Dropping those correlations can either overstate or understate the uncertainty.
+
+**Entry:** the spectral mean from 6.3 and finite expectations, indicators and IID records from 6.6. All random variables below are real, have finite second moments, and are defined on a declared joint classical probability model. Coefficients and shot counts are fixed before seeing the data. If coefficients carry units, every term in the weighted sum must have the same resulting unit. We explicitly distinguish independence between repeated trials, independence between measurement groups, and correlations within one trial. A finite outcome set with finite scores automatically has finite second moments.
+
+Here **uncertainty** means standard deviation of an outcome or an estimator under that model. A standard deviation is not a confidence interval, a worst-case error bound or a bound on preparation bias. Noncommuting quantum observables do not automatically supply a joint classical record. This section proves the frozen result, variance of a weighted estimator; general uncertainty-relation theorems and optimal measurement allocation are outside this section. Confidence statements begin in 6.8.
+<span id="formula-code-6-7-spread"></span>
+
+### 1. Distinguish single-measurement spread from a mean
+
+
+For a real random variable \(X\) with mean \(\mu=\mathbb E[X]\), define
+
+\[
+\operatorname{Var}(X)=\mathbb E[(X-\mu)^2]
+=\mathbb E[X^2]-\mu^2,\qquad
+\sigma_X=\sqrt{\operatorname{Var}(X)}.
+\]
+
+**Derivation.** Expand \((X-\mu)^2=X^2-2\mu X+\mu^2\), take expectations, and use \(\mathbb E[X]=\mu\) and \(\mathbb E[1]=1\). The centered-square definition is nonnegative; \(\sigma_X\) is its nonnegative square root. If \(X\) has unit \(u\), variance has unit \(u^2\) and standard deviation has unit \(u\). Zero variance means that every positive-probability value equals the mean; it does not say that the state or measurement protocol is known without error.
+
+For a Hermitian observable \(A=\sum_j\lambda_jP_j\), its spectral outcome has mean \(\mu_A=\langle\psi|A|\psi\rangle\). Orthogonal projectors imply \(A^2=\sum_j\lambda_j^2P_j\), hence
+
+\[
+\sigma_A^2=\langle\psi|A^2|\psi\rangle-\mu_A^2
+=\|(A-\mu_AI)|\psi\rangle\|^2.
+\]
+
+The second equality follows by expanding the squared norm and using \(A^\dagger=A\). These are two ways to compute the *single spectral measurement* spread. They do not specify how a decomposition of \(A\) will be sampled on hardware.
+
+**Formula → actual native expectation → independent centered-vector calculation.** Prepare \(R_y(\pi/3)\) then \(P(\pi/2)\), with angles in radians, and choose dimensionless \(A=.7X-.4Z\). Since \(X^2=Z^2=I\) and \(XZ+ZX=0\), \(A^2=.65I\). This state has \(\langle X\rangle=0\), \(\langle Z\rangle=1/2\), so \(\mu_A=-.2\) and \(\sigma_A^2=.61\). The variance calculation below is explicit classical postprocessing; no native variance request is invented.
+
+```python
+from math import pi,sqrt
+from fractions import Fraction as F
+import torch
+import flagquantum as fq
+from examples.foundations import variance_estimators as v
+from examples.foundations import observables as o
+circuit = fq.Circuit(1,dtype=torch.complex128).ry(0,pi/3).p(0,pi/2)
+result = fq.run(circuit,outputs=[fq.expectation(.7*fq.X(0)-.4*fq.Z(0),name='A')],options=v.s.OPTIONS)
+psi = result.statevector()[0]
+mu = result.expectation('A')[0].item()
+centered = (.7*o.X-.4*o.Z-mu*o.I) @ psi
+variance_A = torch.vdot(centered,centered).real.item()
+assert abs(mu+.2)<1e-12 and abs(variance_A-.61)<1e-12
+print('Native mean:',round(mu,12),'; centered single-measurement variance:',round(variance_A,12))
+```
+
+```text
+Native mean: -0.2 ; centered single-measurement variance: 0.61
+```
+
+<span id="formula-code-6-7-weighted"></span>
+
+### 2. Expand every covariance term before deleting any
+
+
+For jointly defined real variables \(X_i,X_j\), let \(\mu_i=\mathbb E[X_i]\) and define
+
+\[
+\Sigma_{ij}=\operatorname{Cov}(X_i,X_j)
+=\mathbb E[(X_i-\mu_i)(X_j-\mu_j)]
+=\mathbb E[X_iX_j]-\mu_i\mu_j.
+\]
+
+Expanding the product gives the last equality. Multiplication of real numbers gives symmetry, \(\Sigma_{ij}=\Sigma_{ji}\), and \(\Sigma_{ii}=\operatorname{Var}(X_i)\). For fixed real weights \(a_i\), center the weighted sum, multiply it out, and exchange finite expectation and sums:
+
+\[
+\begin{aligned}
+\operatorname{Var}\!\left(\sum_i a_iX_i\right)
+&=\mathbb E\!\left[\left(\sum_i a_i(X_i-\mu_i)\right)^2\right]\\
+&=\sum_{i,j}a_ia_j\Sigma_{ij}\\
+&=\sum_i a_i^2\Sigma_{ii}
++2\sum_{i<j}a_ia_j\Sigma_{ij}
+=\boldsymbol a^T\Sigma\boldsymbol a.
+\end{aligned}
+\]
+
+This proves the central identity. It also proves that a true covariance matrix is positive semidefinite: the quadratic form is a nonnegative variance for every \(\boldsymbol a\). If \(X_i,X_j\) are independent, their finite joint probability factors; summing \(x_ix_jP(x_i)P(x_j)\) separates into \(\mu_i\mu_j\), giving zero covariance. The converse fails: for uniform \(T\in\{-1,0,1\}\), \(T\) and \(T^2\) have zero covariance by symmetry, yet the latter is determined by the former.
+
+The code first makes two identical signs. Their difference is exactly zero, although deleting covariance would predict variance 2. Then it checks the dependent, zero-covariance example. These are classical fixtures to exercise the formula, not simulated hardware data.
+
+```python
+prob = torch.tensor([.5,.5],dtype=torch.float64)
+signs = torch.tensor([[1.,1.],[-1.,-1.]],dtype=torch.float64)
+means, C = v.moments(prob,signs)
+a = torch.tensor([1.,-1.],dtype=torch.float64)
+assert v.weighted(C,a) == 0.
+_, uncorrelated = v.moments(torch.full((3,),1/3,dtype=torch.float64),
+    torch.tensor([[-1.,1.],[0.,0.],[1.,1.]],dtype=torch.float64))
+assert abs(uncorrelated[0,1].item())<1e-12
+print('Identical-sign difference variance:',v.weighted(C,a),'; deleting covariance would give 2.')
+print('Covariance(T,T squared):',round(uncorrelated[0,1].item(),12),'; dependence remains.')
+```
+
+```text
+Identical-sign difference variance: 0.0 ; deleting covariance would give 2.
+Covariance(T,T squared): 0.0 ; dependence remains.
+```
+
+<span id="formula-code-6-7-means"></span>
+
+### 3. Derive the uncertainty of an IID mean
+
+
+For \(N\) measurements of the same score, let \(\overline X=N^{-1}\sum_{t=1}^NX_t\). With common variance \(\sigma^2\), the full formula is
+
+\[
+\operatorname{Var}(\overline X)
+=\frac1{N^2}\sum_{t,u}\operatorname{Cov}(X_t,X_u).
+\]
+
+If trials are independent, every off-diagonal covariance is zero. There are \(N\) diagonal terms, each \(\sigma^2\), giving
+
+\[
+\operatorname{Var}(\overline X)=\frac{\sigma^2}{N},\qquad
+\operatorname{sd}(\overline X)=\frac{\sigma}{\sqrt N}.
+\]
+
+The latter quantity is the **standard error** of this estimator under the model. The single-outcome standard deviation \(\sigma\) has not shrunk. Independence without identical distributions instead gives \(N^{-2}\sum_t\sigma_t^2\); the mean target also changes as described in 6.6. Zero cross-covariances suffice for this variance addition, although they do not imply the full IID record law.
+
+If all trials are copies of one random value, every covariance is \(\sigma^2\). There are now \(N^2\) such terms, so averaging leaves variance \(\sigma^2\). A common random offset shared by independent trials similarly leaves an uncertainty floor: if \(X_t=\mu+\epsilon_t+B\), where all zero-mean \(\epsilon_t\) have common variance \(\sigma_\epsilon^2\), are mutually independent, and are independent of the zero-mean \(B\) with variance \(\sigma_B^2\), then direct covariance expansion gives \(\operatorname{Var}(\overline X)=\sigma_\epsilon^2/N+\sigma_B^2\). A deterministic preparation offset is bias, not this variance.
+
+Here exact enumeration of all four-trial Bernoulli records with \(p=1/4\) checks \(\sigma^2=p(1-p)=3/16\) and mean variance \(3/64\). The copied-record comparison has variance \(3/16\).
+
+```python
+rows = v.s.ensemble((F(3,4),F(1,4)),4)
+iid_variance = sum(w*(f[1]-F(1,4))**2 for _,w,f in rows)
+copied_variance = F(3,4)*(0-F(1,4))**2 + F(1,4)*(1-F(1,4))**2
+assert iid_variance == F(3,64) and copied_variance == F(3,16)
+print('Exact IID mean variance:',iid_variance,'; copied-record mean variance:',copied_variance)
+print('Standard error of IID mean:',round(sqrt(float(iid_variance)),12))
+```
+
+```text
+Exact IID mean variance: 3/64 ; copied-record mean variance: 3/16
+Standard error of IID mean: 0.216506350946
+```
+
+<span id="formula-code-6-7-categorical"></span>
+
+### 4. Include the negative covariance between frequency components
+
+
+Let \(I_{t,j}=1_{\{Y_t=j\}}\) for a categorical record. Within one trial,
+
+\[
+I_{t,j}I_{t,k}=\delta_{jk}I_{t,j},\qquad
+\operatorname{Cov}(I_{t,j},I_{t,k})
+=\delta_{jk}p_j-p_jp_k.
+\]
+
+Here \(\delta_{jk}\) is 1 when \(j=k\) and zero otherwise. The product identity holds because one trial cannot have two distinct labels. For IID trials, distinct-trial covariance vanishes. Dividing the sum of \(N\) within-trial covariance matrices by \(N^2\) yields
+
+\[
+\operatorname{Cov}(\widehat p_j,\widehat p_k)
+=\frac{\delta_{jk}p_j-p_jp_k}{N}.
+\]
+
+Off-diagonal entries are negative when both labels have positive probability. Row sums are zero because the frequencies sum to exactly one. For a fixed score table \(w_j\), substitute this matrix in the weighted identity:
+
+\[
+\operatorname{Var}\!\left(\sum_jw_j\widehat p_j\right)
+=\frac{\sum_jp_jw_j^2-(\sum_jp_jw_j)^2}{N}.
+\]
+
+Thus covariance between frequency components is necessary even for independent trials. The actual three-qubit circuit below reports `(q2,q0)` in order `00,01,10,11`, with probabilities \((0,1/4,3/4,0)\). A one-hot row is the vector of indicators for a single categorical outcome. Our helper computes its covariance by centered sums, then compares it with the derived formula. The native random record is retained separately; no frequency-to-target tolerance assertion is used.
+
+```python
+p, bits, counts, frequencies = v.native(v.s.register(),(2,0),16,31)
+_, single_covariance = v.moments(p,torch.eye(4,dtype=torch.float64))
+frequency_covariance = single_covariance/16
+torch.testing.assert_close(frequency_covariance,(torch.diag(p)-torch.outer(p,p))/16,atol=1e-12,rtol=0)
+assert abs(frequency_covariance[1,2].item()+3/256)<1e-12
+assert torch.max(torch.abs(frequency_covariance.sum(dim=1))).item()<1e-12
+print('Exact Cov(frequency 01,frequency 10):',round(frequency_covariance[1,2].item(),12))
+print('Observed counts in declared order:',counts.tolist())
+```
+
+```text
+Exact Cov(frequency 01,frequency 10): -0.01171875
+Observed counts in declared order: [0, 3, 13, 0]
+```
+
+<span id="formula-code-6-7-joint"></span>
+
+### 5. Retain correlations inside one compatible readout group
+
+
+A single computational readout of two qubits supplies jointly defined scores \(Z_0=(-1)^{b_0}\) and \(Z_1=(-1)^{b_1}\). Preparing
+
+\[
+|\psi_\theta\rangle=
+\cos(\theta/2)|00\rangle+\sin(\theta/2)|11\rangle
+\]
+
+gives \(\mathbb E[Z_0]=\mathbb E[Z_1]=\cos\theta\) and \(\mathbb E[Z_0Z_1]=1\). Therefore their variances and covariance all equal \(\sin^2\theta\). Flipping qubit 1 changes the latter score's sign; its variance remains \(\sin^2\theta\), and covariance becomes \(-\sin^2\theta\).
+
+For the within-shot score \(W=aZ_0+bZ_1\), substitution gives
+
+\[
+\operatorname{Var}(W)=(a\pm b)^2\sin^2\theta,
+\qquad \operatorname{Var}(\overline W)=\frac{\operatorname{Var}(W)}N,
+\]
+
+where the plus sign is the unflipped circuit and the minus sign is the flipped circuit. At \(\theta=\pi/2\), \(a=.7,b=-1.2\), the single-shot variances are .25 and 3.61. Discarding covariance would give 1.93 for both. This is not a rule that grouping always helps: the sign of the covariance and of the weights matters.
+
+Below both circuits actually run. Exact moments come from native probabilities and the explicit joint score table; the observed records are used later for a separate estimate of their covariance.
+
+```python
+values = torch.tensor([[1.,1.],[1.,-1.],[-1.,1.],[-1.,-1.]],dtype=torch.float64)
+coeff = torch.tensor([.7,-1.2],dtype=torch.float64)
+exact_variances = []
+for flipped in (False,True):
+    pj, pair_bits, _, _ = v.joint(pi/2,flipped,31,7)
+    mean_pair, cov_pair = v.moments(pj,values)
+    exact_variances.append(v.weighted(cov_pair,coeff))
+assert abs(exact_variances[0]-.25)<1e-12 and abs(exact_variances[1]-3.61)<1e-12
+print('Single-shot weighted variances, same/opposite signs:',[round(x,12) for x in exact_variances])
+print('Ignoring covariance would give:',round(.7**2+1.2**2,12))
+```
+
+```text
+Single-shot weighted variances, same/opposite signs: [0.25, 3.61]
+Ignoring covariance would give: 1.93
+```
+
+<span id="formula-code-6-7-groups"></span>
+
+### 6. Add variances only after declaring independent groups
+
+
+Let group \(g\) produce IID score samples \(W_{g,t}\) with single-shot variance \(\sigma_g^2\) and mean \(\mu_g\). Group \(g\) has \(N_g\geq1\) trials. For fixed weights \(a_g\), the estimator is \(\widehat E=\sum_ga_g\overline W_g\), with target \(\sum_ga_g\mu_g\). The full covariance identity gives
+
+\[
+\operatorname{Var}(\widehat E)
+=\sum_g\frac{a_g^2\sigma_g^2}{N_g}
++2\sum_{g<h}a_ga_h\operatorname{Cov}(\overline W_g,\overline W_h).
+\]
+
+**Proof of the independent-group simplification.** Every group mean is a function of that group's complete record. If the joint probability of all group records factors, a finite sum of a product of their two mean functions factors into their separate expectations. Hence all cross-group covariances are zero, and only the first sum remains. Independence within groups is used for \(\sigma_g^2/N_g\); independence between groups is a separate assumption. Different seeds or separate API calls do not prove either assumption on hardware. If settings share data or a random calibration offset, retain the cross terms.
+
+For \(A=aX+bZ\), use separate X and Z readouts of \(R_y(\theta)\) followed by \(P(\phi)\). The X group appends H before computational readout. Define
+
+\[
+x=\sin\theta\cos\phi,\quad z=\cos\theta,\qquad
+V_{\mathrm{groups}}=\frac{a^2(1-x^2)}{N_X}
++\frac{b^2(1-z^2)}{N_Z}.
+\]
+
+Both scores take values \(\pm1\), so their variances are \(1-x^2\) and \(1-z^2\). These quantities are measured in separate experimental groups; no joint classical product of X and Z is assigned. By contrast, the variance of a *single spectral measurement of A* is \(a^2+b^2-(ax+bz)^2\), since \(XZ+ZX=0\). Dividing that variance by a shot count describes repeated spectral measurements of A, not this two-setting procedure. The following code executes the two native readouts and calculates the variance of their declared independent-group estimator. All coefficients and scores here are dimensionless.
+
+```python
+theta,phi = pi/3,pi/4
+variances, means, observed_means = [], [], []
+for setting,N,seed in [('X',32,19),('Z',64,41)]:
+    c = fq.Circuit(1,dtype=torch.complex128).ry(0,theta).p(0,phi)
+    if setting == 'X': c.h(0)
+    pg, bg, _, _ = v.native(c,(0,),N,seed)
+    mg,Cg = v.moments(pg,torch.tensor([[1.],[-1.]],dtype=torch.float64))
+    means.append(mg.item()); variances.append(Cg.item())
+    observed_means.append((1.-2.*bg.to(torch.float64)).mean().item())
+variance_estimator = v.independent_groups(tuple(variances),(.7,-.4),(32,64))
+assert abs(variance_estimator-.0114453125)<1e-12
+print('Independent-group estimator variance:',round(variance_estimator,12))
+print('Its standard error:',round(sqrt(variance_estimator),12))
+print('Observed weighted mean:',round(.7*observed_means[0]-.4*observed_means[1],12))
+```
+
+```text
+Independent-group estimator variance: 0.0114453125
+Its standard error: 0.106982767304
+Observed weighted mean: 0.0875
+```
+
+<span id="formula-code-6-7-estimated"></span>
+
+### 7. Estimate covariance from a finite record without claiming certainty
+
+
+Usually the exact \(\sigma_g^2\) or within-group covariance is unknown. For \(N\geq2\) IID joint observations \(\boldsymbol X_t\), define
+
+\[
+\widehat\Sigma=\frac1{N-1}\sum_{t=1}^N
+(\boldsymbol X_t-\overline{\boldsymbol X})
+(\boldsymbol X_t-\overline{\boldsymbol X})^T.
+\]
+
+**Proof of unbiasedness.** Set \(\boldsymbol U_t=\boldsymbol X_t-\boldsymbol\mu\) and \(\overline{\boldsymbol U}=\overline{\boldsymbol X}-\boldsymbol\mu\). Expanding the centered outer products and using \(\sum_t\boldsymbol U_t=N\overline{\boldsymbol U}\) gives the exact record identity
+
+\[
+\sum_t(\boldsymbol X_t-\overline{\boldsymbol X})
+(\boldsymbol X_t-\overline{\boldsymbol X})^T
+=\sum_t\boldsymbol U_t\boldsymbol U_t^T
+-N\overline{\boldsymbol U}\,\overline{\boldsymbol U}^{T}.
+\]
+
+The first sum has expectation \(N\Sigma\). For the second, expand \(\overline{\boldsymbol U}\overline{\boldsymbol U}^T=N^{-2}\sum_{t,u}\boldsymbol U_t\boldsymbol U_u^T\): independence and zero means remove the \(t\ne u\) terms, leaving expectation \(\Sigma/N\). Thus the entire right-hand side has expectation \((N-1)\Sigma\), proving \(\mathbb E[\widehat\Sigma]=\Sigma\).
+
+Consequently \(\boldsymbol a^T\widehat\Sigma\boldsymbol a/N\) is an unbiased estimate of the variance of the IID weighted mean. It is still random. Its square root is a reported **estimated standard error**; the nonlinear square root does not preserve unbiasedness. The finite record identity below compares two computations of the same observed quantity, not a comparison of random estimates to their exact population targets. We use centered products to reduce cancellation from large common offsets.
+
+```python
+joint_scores = 1.-2.*pair_bits.to(torch.float64)
+estimated_cov = v.sample_covariance(joint_scores)
+observed_var = v.weighted(estimated_cov,coeff)
+score_column = (joint_scores @ coeff)[:,None]
+assert abs(observed_var-v.sample_covariance(score_column).item())<1e-12
+estimated_variance_of_mean = observed_var/len(pair_bits)
+print('Observed score sample variance:',round(observed_var,12))
+print('Estimated variance of its mean:',round(estimated_variance_of_mean,12))
+print('Estimated standard error:',round(sqrt(estimated_variance_of_mean),12))
+```
+
+```text
+Observed score sample variance: 3.540129032258
+Estimated variance of its mean: 0.114197710718
+Estimated standard error: 0.337931517793
+```
+
+<span id="formula-code-6-7-boundaries"></span>
+
+### 8. Keep numerical checks and uncertainty claims separate
+
+
+The helpers reject nonfinite tables, invalid probabilities, wrong dimensions, asymmetric or materially indefinite covariance matrices, and invalid shot counts. The sample covariance requires at least two trials. `independent_groups` implements a formula under an explicit independence model; it cannot inspect numeric variances and determine whether the original groups shared data. Inputs with integer/float32 tensors are rejected rather than silently weakening the declared float64 reference calculation.
+
+A finite record can have zero sample variance when the true variance is positive. For a Bernoulli outcome with \(p=1/100\), the true variance is \(99/10000\), but an all-zero record gives sample variance zero and an estimated standard error of zero. Under IID sampling this record has positive probability \((99/100)^N\). A zero estimate is not a confidence certificate.
+
+The subtraction \(\mathbb E[X^2]-\mu^2\) is useful algebraically but can lose all significant digits for a large mean and small spread. The centered calculation below retains variance \(1/4\) for equiprobable values \(10^8\) and \(10^8+1\). This is not an arbitrary-precision or interval guarantee. The weighted covariance helper refuses a negative computed variance instead of clipping it to zero; near-null numerical cases may require a more accurate reference. Values lost to floating-point representation cannot be restored by centering.
+
+```python
+_, shifted_cov = v.moments(torch.tensor([.5,.5],dtype=torch.float64),
+    torch.tensor([[1e8],[1e8+1]],dtype=torch.float64))
+assert shifted_cov.item() == .25
+zero_record = torch.zeros((5,1),dtype=torch.float64)
+assert v.sample_covariance(zero_record).item() == 0.
+assert F(1,100)*(1-F(1,100)) == F(99,10000)
+assert v.invalid_checks() == 14
+print('Centered large-offset variance:',shifted_cov.item())
+print('All-zero fixture sample variance: 0; true Bernoulli variance may be 99/10000.')
+print('14 malformed contracts rejected; no clipping or confidence-interval inference.')
+```
+
+```text
+Centered large-offset variance: 0.25
+All-zero fixture sample variance: 0; true Bernoulli variance may be 99/10000.
+14 malformed contracts rejected; no clipping or confidence-interval inference.
+```
+
+### Complete program and independent verification
+
+Run from the repository root in the pinned example environment:
+
+```sh
+python examples/foundations/variance_estimators.py
+python scripts/check_variance_estimators_prose.py
+```
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/variance_estimators.py) executes 56 CPU complex128 circuits: 12 native expectation queries with independent spectral/centered-vector/analytic references; 20 correlated or anticorrelated pair readouts; 12 ordered categorical readouts; and 12 separate X/Z readouts. Four exact rational ensemble families independently check categorical covariance, the expectation of sample variance, the variance of a mean and independent-group addition. Exact enumeration is classical verification and is counted separately from circuit execution. No independent external reviewer or reader trial is claimed.
+
+Expected output of the complete program:
+
+```text
+12 native expectation circuits: spectral, centered-vector and analytic quantum variances agree.
+20 joint Z-readout circuits: positive/negative within-shot covariance and weighted sample-variance identities passed.
+12 categorical circuits: exact one-hot covariance and observed weighted-score identities passed with ordered labels.
+12 separate X/Z readout circuits: analytic group means and single-shot variances passed; cross-group independence is a declared model.
+4 exact rational ensemble families: categorical covariance, unbiased sample variance, variance/N and independent-group addition passed.
+14 malformed contracts rejected; centered large-offset variance .25 retained; a zero observed variance is not a zero-population certificate.
+56 actual CPU complex128 circuit executions; probability/reference atol 1e-12, rtol 0; no confidence-interval or hardware-independence claim.
+```
+
+The eight body snippets are cumulative; `v` names original book helpers, not a native FlagQuantum variance module. The body checker executes those snippets and compares their stdout, then runs the complete program. Tested versions: FlagQuantum 0.3.1, PyTorch 2.13.0, Python 3.12.14; CPU complex128 state evolution and float64 classical statistics. Probability and deterministic formula comparisons use absolute tolerance \(10^{-12}\), relative tolerance zero. Observed variances, frequencies and estimated errors are not required to equal their population targets within that tolerance. Sample-output fixtures depend on the pinned CPU sampling implementation.
+
+Native operations used here are unitary preparation/analyzers, exact Pauli expectation and computational probabilities, and terminal bit samples. All covariance matrices, sample variances and error calculations are explicit classical postprocessors. Joint Z scores are defined on the same observed record; separate X/Z group independence is an assumption of the stated experiment. No native uncertainty endpoint, sampled collapse, noise calibration or hardware-independence guarantee is asserted. The inherited small-system and exact-enumeration guards belong to the teaching references. Optimal shot allocation, data-adaptive coefficients, postselection and general uncertainty-relation theorems are not derived here.
+
+### Understanding checks and transfer tasks
+
+**A. Signs and covariance.** An ideal Bell pair has \(Z_0=Z_1\), each with variance 1. Find the single-shot variance of \(W=2Z_0-Z_1\), then the variance of its mean over 25 IID joint readouts. Repeat when \(Z_1=-Z_0\). What would deleting covariance predict?
+
+**B. Independent groups.** Two independent groups have single-shot variances \(3/4\) and \(1/2\), use 12 and 8 shots, and enter the estimator with coefficients 2 and −1. Find the estimator variance and standard error. Which additional term is necessary if the group means have covariance \(1/100\)?
+
+**C. New exact categorical model.** Use probabilities \((1/10,2/10,3/10,4/10)\), scores \((2,-1,0,3)\) and three IID trials. Compute the population score variance and the variance of its mean. Check both by exact enumeration, including the expectation of the unbiased sample variance. Then repeat with the new probabilities of a native four-qubit ordered partial readout and an explicit score table; do not claim exact rational arithmetic for floating-point circuit probabilities.
+
+**D. What does an error bar establish?** A five-shot all-zero Bernoulli record gives sample variance zero. Does that establish an exact probability, a confidence interval, a systematic-error bound or zero quantum spread? Why does increasing the number of copied records fail to help?
+
+<details markdown="1">
+<summary>Answers and variance checks for 6.7</summary>
+
+**A.** With equal signs, covariance is 1 and the weighted variance is \(4+1-4=1\); mean variance is \(1/25\). With opposite signs covariance is −1, giving \(4+1+4=9\) and \(9/25\). Deleting covariance gives single-shot variance 5 and mean variance \(1/5\) in both cases, missing the actual effect of the sign.
+
+**B.** The variance is \(4(3/4)/12+(1/2)/8=5/16\), and standard error is \(\sqrt5/4\). A group-mean covariance \(1/100\) adds \(2(2)(-1)/100=-1/25\), so the corrected variance is \(109/400\). This covariance is between means, so it is not divided by the group shot counts again.
+
+**C.** The mean is \(6/5\), second moment \(21/5\), and variance \(21/5-36/25=69/25\); mean variance is \(23/25\). Call `v.s.ensemble((F(1,10),F(2,10),F(3,10),F(4,10)),3)`, then compute each record's score mean and sample variance with denominator 2. Probability-weighted sums give variance of the mean \(23/25\) and expected sample variance \(69/25\). For a new native circuit, compare `v.moments(p,score_table)` with explicit label sums, and compare the observed score sample variance with the weighted sample covariance computed from the same rows. These are distinct comparisons.
+
+**D.** None follows. The record gives one random variance estimate. A positive event probability can produce that record with positive probability; no model bias or physical calibration has been bounded. Copying a record preserves the observed mean and creates deterministically dependent copies. The IID covariance cancellation is unavailable. A confidence method must specify its model and coverage, rather than treat the estimated standard error as a certificate.
+
+</details>
+
+### Sources and next step
+
+The assigned reference is Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), Appendix 1, “Notes on basic probability theory,” beginning on printed page 608 (`NC:A1`). The local proofs above supply the full finite covariance and weighted-estimator argument. An openly accessible author-written companion is Marco Taboga, [Covariance: definition, bilinearity, and variance of a sum](https://www.statlect.com/fundamentals-of-probability/covariance). Section 6.3 supplies the finite Hermitian spectral expectation identity used for quantum outcome variance. No fresh inspection of the user-local textbook PDF is claimed.
+
+See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.7.json) for separate author, independent-review and reader statuses. Continue, when drafted, with [6.8 Confidence intervals and shot budgets](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-8).

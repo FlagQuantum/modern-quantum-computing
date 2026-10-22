@@ -141,6 +141,29 @@
       ],
       "status": "draft",
       "next_transition": "6.7 Variance, covariance, and uncertainty."
+    },
+    {
+      "ref": "6.7",
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-7",
+      "title": "Variance, covariance, and uncertainty",
+      "depth": "F",
+      "requires": [
+        "sec-measurement-expectation-values-and-statistical-estimation-3",
+        "sec-measurement-expectation-values-and-statistical-estimation-6"
+      ],
+      "question": "Which covariance terms determine the uncertainty of a weighted measurement estimator, and when may independent-group variances be added?",
+      "entry": "6.3 spectral mean;6.6 finite expectation, IID law and unbiased frequencies.",
+      "exit": "Prove centered covariance expansion and weighted variance; derive IID mean/categorical covariance and independent-setting formulas; derive unbiased sample covariance and state its limits.",
+      "worked_case": "Complex Ry/P qubit with A=.7X-.4Z; correlated/anticorrelated pair readout; categorical one-hot covariance; separate X/Z settings; rare zero record and common offset.",
+      "boundary": "Finite second moments, fixed real weights, specified joint records and inter-trial/group independence. No confidence interval, shot allocation optimum, hardware-IID guarantee or general uncertainty-principle theorem.",
+      "code_plan": "Native fq.expectation, exact probabilities and terminal samples; original centered covariance helpers; no invented native variance endpoint.",
+      "independent_check": "Spectral/dense centered vector and analytic A\u00b2; joint scalar correlations; exact Fraction ensemble means and covariance; sample score versus covariance forms.",
+      "transfer_task": "Fresh complex four-qubit nonadjacent records, new one-qubit observables and independent setting pair.",
+      "source_locators": [
+        "NC:A1"
+      ],
+      "status": "draft",
+      "next_transition": "6.8 Confidence intervals and shot budgets."
     }
   ]
 }

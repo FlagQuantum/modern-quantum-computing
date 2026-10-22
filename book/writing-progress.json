@@ -431,6 +431,16 @@
       "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
       "record": "book/section-records/6.6.json",
       "author_execution": "passed: CPU complex128 FlagQuantum0.3.1/Torch2.13.0; native terminal samples, exact-fraction ensemble means; evidence in section record"
+    },
+    "sec-measurement-expectation-values-and-statistical-estimation-7": {
+      "state": "draft",
+      "brief": "book/briefs/ch06.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+      "record": "book/section-records/6.7.json",
+      "author_execution": "passed: Python3.12.14/FlagQuantum0.3.1/Torch2.13.0 CPUcomplex128;56 complete/6 prose/16 fresh transfers; explicit classical covariance from native expectation/probability/samples"
     }
   },
   "existing_pilots": [

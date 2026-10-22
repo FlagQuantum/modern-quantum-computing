@@ -1,0 +1,12 @@
+{
+  "version": "0.3.1",
+  "run_signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+  "expectation_signature": "(observable: 'Observable', *, name: 'str | None' = None) -> 'OutputRequest'",
+  "samples_signature": "(qubits: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED) -> 'OutputRequest'",
+  "uses": "Same released expectation/probabilities/samples interfaces already inspected and executed in6.3/6.6; no native variance endpoint claimed.",
+  "native_root_sha256": "8cedd180174be55d92f850465882fdf14fb464d654c0acbab7ce8442ad77b911",
+  "helper_sha256": {
+    "examples/foundations/exact_samples.py": "ac43c0381e45b1a74a151de9f7368cb6a761c963e04b56fec684ca98344c375f",
+    "examples/foundations/observables.py": "f45eed25ed43fce90417c6eb12063de270c488f396e681833535eaeb7b282bf1"
+  }
+}

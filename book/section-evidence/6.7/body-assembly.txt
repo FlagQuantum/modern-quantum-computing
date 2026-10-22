@@ -1,0 +1,1 @@
+Eight cumulative body fragments executed; 6 actual circuits: direct expectation1, categorical1, joint2, separate X/Z2. Five helper calls plus one direct call. Exact stdout embedded in body.

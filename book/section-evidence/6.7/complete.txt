@@ -1,0 +1,7 @@
+12 native expectation circuits: spectral, centered-vector and analytic quantum variances agree.
+20 joint Z-readout circuits: positive/negative within-shot covariance and weighted sample-variance identities passed.
+12 categorical circuits: exact one-hot covariance and observed weighted-score identities passed with ordered labels.
+12 separate X/Z readout circuits: analytic group means and single-shot variances passed; cross-group independence is a declared model.
+4 exact rational ensemble families: categorical covariance, unbiased sample variance, variance/N and independent-group addition passed.
+14 malformed contracts rejected; centered large-offset variance .25 retained; a zero observed variance is not a zero-population certificate.
+56 actual CPU complex128 circuit executions; probability/reference atol 1e-12, rtol 0; no confidence-interval or hardware-independence claim.

@@ -1,0 +1,11 @@
+{
+  "surface": "Actual local IAB browser1280x720",
+  "checked": [
+    "Covariance definition and aligned weighted quadratic expansion",
+    "Independent-group covariance and X/Z variance formulas",
+    "Centered outer-product sample covariance and unbiasedness proof",
+    "Expanded all four answers"
+  ],
+  "result": "No garbling or clipping in inspected formulas.",
+  "online": "Publication HTML byte comparison is separate; no online screenshot claimed."
+}
