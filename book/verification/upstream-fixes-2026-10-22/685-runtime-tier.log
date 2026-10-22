@@ -1,0 +1,380 @@
++ /private/tmp/fq-704685-venv/bin/python -m pytest -m integration -q
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-685
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 17730 items / 15850 deselected / 46 skipped / 1880 selected
+
+tests/api_contract/test_execution_options_semantics.py ......            [  0%]
+tests/api_contract/test_open_source_golden_paths.py ......               [  0%]
+tests/hybrid_compiler/test_directional_topology.py ..................... [  1%]
+.....................                                                    [  2%]
+tests/hybrid_compiler/test_dynamic_session.py .......................... [  4%]
+................                                                         [  5%]
+tests/hybrid_compiler/test_forward_vertical.py .....                     [  5%]
+tests/hybrid_compiler/test_gradient_vertical.py ....                     [  5%]
+tests/hybrid_compiler/test_native_gate_legalization.py ................. [  6%]
+.............                                                            [  7%]
+tests/hybrid_compiler/test_pass_differential.py .............            [  7%]
+tests/hybrid_compiler/test_physical_plan.py ....                         [  8%]
+tests/hybrid_compiler/test_physical_resource_allocation.py .....         [  8%]
+tests/hybrid_compiler/test_qir_emission.py ............................. [  9%]
+.....................................................                    [ 12%]
+tests/hybrid_compiler/test_schedule_legalization.py ........             [ 13%]
+tests/hybrid_compiler/test_target_conformance.py ........                [ 13%]
+tests/hybrid_compiler/test_target_emission.py ......                     [ 13%]
+tests/hybrid_compiler/test_target_legalization.py .............          [ 14%]
+tests/hybrid_compiler/test_topology_legalization.py .......              [ 14%]
+tests/hybrid_compiler/test_torch_compile.py .....                        [ 15%]
+tests/hybrid_compiler/test_translate.py ................................ [ 16%]
+..........                                                               [ 17%]
+tests/integration/test_algorithms_cobyla_golden_path.py ....             [ 17%]
+tests/integration/test_algorithms_nelder_mead_golden_path.py ....        [ 17%]
+tests/integration/test_algorithms_spsa_golden_path.py ....               [ 18%]
+tests/integration/test_artifact_compilation_pipeline.py .....            [ 18%]
+tests/integration/test_artifact_deployment_dry_run.py .......            [ 18%]
+tests/integration/test_carried_operand_example.py ...                    [ 18%]
+tests/integration/test_circuit_artifact_local_execution.py .....         [ 19%]
+tests/integration/test_compiler_optimize_golden_path.py ..               [ 19%]
+tests/integration/test_compiler_synthesis_golden_path.py ..              [ 19%]
+tests/integration/test_cpu_vertical_slice.py ...                         [ 19%]
+tests/integration/test_drawer_latex_rendering.py s..........             [ 20%]
+tests/integration/test_executable_artifact_preflight.py ......           [ 20%]
+tests/integration/test_gradient_modes.py ...................             [ 21%]
+tests/integration/test_hardware_provider_roster_golden_path.py ....      [ 21%]
+tests/integration/test_kaiwu_vertical_slice.py .                         [ 21%]
+tests/integration/test_local_target_emulation.py .................       [ 22%]
+tests/integration/test_mps_forward_truncation_evidence.py EEEEEE         [ 22%]
+tests/integration/test_mps_reverse_single_rank.py EEEEEEE                [ 23%]
+tests/integration/test_neutral_atom_pair_reference.py ........           [ 23%]
+tests/integration/test_qcis_import.py ...........................        [ 25%]
+tests/integration/test_realtime_device_call_golden_path.py ...           [ 25%]
+tests/integration/test_shared_dynamics_workflow.py .....                 [ 25%]
+tests/integration/test_target_aware_compilation_golden_path.py .         [ 25%]
+tests/integration/test_train_then_deploy_golden_path.py ....             [ 25%]
+tests/integration/test_vqe_backend_switch_golden_path.py ..              [ 25%]
+tests/integration/test_weighted_routing_golden_path.py .                 [ 26%]
+tests/optional/test_research_external_provider_parity.py s               [ 26%]
+tests/qec/test_colour_memory_execution.py ...........ssssss....          [ 27%]
+tests/qec/test_css_code.py ........s...                                  [ 27%]
+tests/qec/test_css_code_memory.py .......sssssss                         [ 28%]
+tests/qec/test_data_fault_families.py .......sss                         [ 29%]
+tests/qec/test_dem_chunks.py ...                                         [ 29%]
+tests/qec/test_dem_code_matrices.py .................................... [ 31%]
+                                                                         [ 31%]
+tests/qec/test_dem_cross_check.py ....                                   [ 31%]
+tests/qec/test_dem_from_memory_circuit.py .............................. [ 32%]
+.......................                                                  [ 34%]
+tests/qec/test_dem_signatures.py .................                       [ 35%]
+tests/qec/test_memory_circuit_execution.py ...............               [ 35%]
+tests/qec/test_repetition_memory.py .................................... [ 37%]
+......................................                                   [ 39%]
+tests/qec/test_sliding_window.py ....                                    [ 40%]
+tests/qec/test_steane_memory_execution.py ............                   [ 40%]
+tests/qec/test_toric_memory_execution.py ..........sssss.........s.s     [ 42%]
+tests/qec/test_zxxz_memory_execution.py .................ssss....ss      [ 43%]
+tests/team/ecosystem/test_kaiwu_community_conformance.py sss             [ 43%]
+tests/team/ecosystem/test_kaiwu_pytorch_plugin_conformance.py sss...     [ 44%]
+tests/team/ecosystem/test_qdiffusion_live_system_probe.py ......s....... [ 44%]
+..........                                                               [ 45%]
+tests/team/ecosystem/test_qiskit_boundary_semantics.py ..                [ 45%]
+tests/team/runtime/test_execution_lifecycle_characterization.py .....    [ 45%]
+tests/team/simulation/test_statevector_engine_characterization.py ....   [ 45%]
+tests/team/simulation/test_statevector_engine_replacement.py ....        [ 46%]
+tests/test_algorithm_examples.py ........................                [ 47%]
+tests/test_algorithms.py ...........                                     [ 47%]
+tests/test_backends.py ..........                                        [ 48%]
+tests/test_cloud_providers.py ..........................                 [ 49%]
+tests/test_convert_q_atlas_twin_evidence.py ......                       [ 50%]
+tests/test_deployment.py ........................                        [ 51%]
+tests/test_distributed_backend_policy.py ............................... [ 53%]
+........                                                                 [ 53%]
+tests/test_documentation_entry_examples.py ..s                           [ 53%]
+tests/test_domestic_single_card_certification.py s                       [ 53%]
+tests/test_double_single_conformance.py ..s                              [ 53%]
+tests/test_drawer_ir.py .............                                    [ 54%]
+tests/test_dynamic_circuit.py ..........................                 [ 56%]
+tests/test_dynamic_conformance.py .....ssss.                             [ 56%]
+tests/test_dynamic_feedback.py ....                                      [ 56%]
+tests/test_dynamic_noise.py ..........                                   [ 57%]
+tests/test_dynamic_observability.py ......                               [ 57%]
+tests/test_error_mitigation.py ...............                           [ 58%]
+tests/test_examples_modern_api.py ........s..                            [ 58%]
+tests/test_flagos_cuda_reference.py s                                    [ 59%]
+tests/test_flagos_distributed_conformance.py s                           [ 59%]
+tests/test_flagos_transport_observability.py s                           [ 59%]
+tests/test_hybrid_mlp_optimizer_suite.py ..                              [ 59%]
+tests/test_hybrid_model_acceptance_example.py .                          [ 59%]
+tests/test_hybrid_optimization.py .                                      [ 59%]
+tests/test_hybrid_optimizer_benchmark.py ..                              [ 59%]
+tests/test_local_fast_path.py ..........                                 [ 60%]
+tests/test_modern_measurements.py .............                          [ 60%]
+tests/test_mps_partitioning.py ............                              [ 61%]
+tests/test_native_circuit.py ........................................... [ 63%]
+........................................................................ [ 67%]
+................................................FFF...                   [ 70%]
+tests/test_noise.py .................................................... [ 73%]
+.........................                                                [ 74%]
+tests/test_operator_backends.py ..........                               [ 74%]
+tests/test_pauli_measurement_plan.py .....                               [ 75%]
+tests/test_qiskit_interop.py ...................                         [ 76%]
+tests/test_qiskit_interop_conformance.py ........s..                     [ 76%]
+tests/test_quafu_calibration.py ...                                      [ 76%]
+tests/test_readme_golden_path.py .                                       [ 77%]
+tests/test_service_preflight.py ......                                   [ 77%]
+tests/test_single_machine_examples.py ......s                            [ 77%]
+tests/test_split_real_imag_autograd_conformance.py .                     [ 77%]
+tests/test_split_real_imag_conformance.py .s                             [ 77%]
+tests/test_split_real_imag_device_double_single_conformance.py .         [ 77%]
+tests/test_split_real_imag_device_double_single_flagos.py s              [ 77%]
+tests/test_split_real_imag_double_single_conformance.py .s               [ 78%]
+tests/test_split_real_imag_double_single_flagos.py s                     [ 78%]
+tests/test_split_real_imag_flagos.py s                                   [ 78%]
+tests/test_split_real_imag_optimizer_accelerator.py s                    [ 78%]
+tests/test_split_real_imag_optimizer_conformance.py .                    [ 78%]
+tests/test_split_real_imag_precision_conformance.py .s                   [ 78%]
+tests/test_split_real_imag_precision_flagos.py s                         [ 78%]
+tests/test_split_real_imag_training_conformance.py .s                    [ 78%]
+tests/test_split_real_imag_training_flagos.py s                          [ 78%]
+tests/test_statevector_triton_gates.py sssssssssssss                     [ 79%]
+tests/test_tebd.py ..............                                        [ 80%]
+tests/test_tensor_network.py .................................s......... [ 82%]
+................................                                         [ 84%]
+tests/test_third_party_target.py ......................                  [ 85%]
+tests/test_twin.py ............                                          [ 85%]
+tests/test_twin_circuit_support.py .........                             [ 86%]
+tests/test_twin_connected_region.py ..........                           [ 86%]
+tests/test_twin_drift.py .......                                         [ 87%]
+tests/test_twin_evidence.py .........                                    [ 87%]
+tests/test_twin_evidence_import.py ..............                        [ 88%]
+tests/test_twin_evolution.py ......                                      [ 88%]
+tests/test_twin_experiment.py .....................                      [ 89%]
+tests/test_twin_history.py ............                                  [ 90%]
+tests/test_twin_persistence.py .......                                   [ 90%]
+tests/test_twin_region_candidate_holdout.py ...............              [ 91%]
+tests/test_twin_region_holdout.py ..............                         [ 92%]
+tests/test_twin_region_holdout_history.py ..............                 [ 93%]
+tests/test_twin_region_model.py ............                             [ 93%]
+tests/test_twin_region_model_persistence.py ............................ [ 95%]
+                                                                         [ 95%]
+tests/test_twin_region_release_assessment.py .....................       [ 96%]
+tests/test_twin_region_validation_history.py ........                    [ 96%]
+tests/test_twin_region_validation_suite.py ......                        [ 97%]
+tests/test_twin_submission.py ....                                       [ 97%]
+tests/test_twin_validation_history.py ..................                 [ 98%]
+tests/test_twin_validation_series.py ..........                          [ 98%]
+tests/unit/test_lindblad_boson_consumer.py ......                        [ 99%]
+tests/unit/test_lindblad_mixed_dimensions.py ......                      [ 99%]
+tests/unit/test_lindblad_operator_coefficients.py .......                [ 99%]
+tests/unit/test_lindblad_piecewise_controls.py .                         [ 99%]
+tests/unit/test_matrix_expectation_contract.py .                         [100%]
+
+==================================== ERRORS ====================================
+____ ERROR at setup of test_enforce_refuses_an_unmeasured_truncation_error _____
+tests/integration/test_mps_forward_truncation_evidence.py:49: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_forward_truncation_evidence.py:34: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_ ERROR at setup of test_report_only_records_an_unmeasured_total_without_refusing _
+tests/integration/test_mps_forward_truncation_evidence.py:49: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_forward_truncation_evidence.py:34: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_ ERROR at setup of test_an_unmeasured_total_is_not_reported_as_an_exact_state _
+tests/integration/test_mps_forward_truncation_evidence.py:49: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_forward_truncation_evidence.py:34: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_ ERROR at setup of test_exact_truncation_gradients_refuse_an_unmeasured_split _
+tests/integration/test_mps_forward_truncation_evidence.py:49: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_forward_truncation_evidence.py:34: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+___ ERROR at setup of test_a_measured_truncation_is_reported_and_not_refused ___
+tests/integration/test_mps_forward_truncation_evidence.py:49: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_forward_truncation_evidence.py:34: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_ ERROR at setup of test_a_run_without_truncation_still_reports_an_exact_state _
+tests/integration/test_mps_forward_truncation_evidence.py:49: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_forward_truncation_evidence.py:34: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+__ ERROR at setup of test_reverse_gradient_matches_dense_statevector_autograd __
+tests/integration/test_mps_reverse_single_rank.py:47: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_reverse_single_rank.py:32: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+___ ERROR at setup of test_reverse_reports_a_deterministic_single_rank_tape ____
+tests/integration/test_mps_reverse_single_rank.py:47: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_reverse_single_rank.py:32: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+__ ERROR at setup of test_reverse_summary_claims_only_what_single_rank_earned __
+tests/integration/test_mps_reverse_single_rank.py:47: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_reverse_single_rank.py:32: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_____ ERROR at setup of test_reverse_gradient_can_drive_an_optimizer_step ______
+tests/integration/test_mps_reverse_single_rank.py:47: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_reverse_single_rank.py:32: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_ ERROR at setup of test_reverse_approximate_policy_is_reported_as_approximate _
+tests/integration/test_mps_reverse_single_rank.py:47: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_reverse_single_rank.py:32: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+________ ERROR at setup of test_reverse_accepts_hamiltonian_objectives _________
+tests/integration/test_mps_reverse_single_rank.py:47: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_reverse_single_rank.py:32: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_____ ERROR at setup of test_reverse_rejects_conflicting_objective_inputs ______
+tests/integration/test_mps_reverse_single_rank.py:47: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_reverse_single_rank.py:32: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+=================================== FAILURES ===================================
+__________ test_distributed_tensor_network_torch_executor_single_rank __________
+tests/test_native_circuit.py:2018: in test_distributed_tensor_network_torch_executor_single_rank
+    init_uri = _free_tcp_init_method()
+               ^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_native_circuit.py:57: in _free_tcp_init_method
+    sock.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_______________ test_distributed_mps_torch_executor_single_rank ________________
+tests/test_native_circuit.py:2062: in test_distributed_mps_torch_executor_single_rank
+    init_uri = _free_tcp_init_method()
+               ^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_native_circuit.py:57: in _free_tcp_init_method
+    sock.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_______ test_distributed_mps_site_local_two_qubit_gate_uses_tensor_sync ________
+tests/test_native_circuit.py:2129: in test_distributed_mps_site_local_two_qubit_gate_uses_tensor_sync
+    init_uri = _free_tcp_init_method()
+               ^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_native_circuit.py:57: in _free_tcp_init_method
+    sock.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+=============================== warnings summary ===============================
+tests/integration/test_local_target_emulation.py: 18 warnings
+tests/test_third_party_target.py: 13 warnings
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/flagquantum/remote/emulation.py:674: DeprecationWarning: wires is deprecated; use qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    wires = tuple(measurement.wires)
+
+tests/test_documentation_entry_examples.py::test_algorithms_guide_examples_execute_and_match_their_quotes
+tests/test_documentation_entry_examples.py::test_algorithms_guide_examples_execute_and_match_their_quotes
+  docs/guides/ALGORITHMS.md:block-27:5: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[02_measurement.ipynb]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/examples/tutorials/02_measurement.ipynb:cell-2:8: DeprecationWarning: observable_wires is deprecated; use observable_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[03_parameterized_gates.ipynb]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/examples/tutorials/03_parameterized_gates.ipynb:cell-1:14: DeprecationWarning: observable_wires is deprecated; use observable_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[05_quantum_machine_learning.ipynb]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/examples/tutorials/05_quantum_machine_learning.ipynb:cell-1:13: DeprecationWarning: observable_wires is deprecated; use observable_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[09_gradient_precision_speed_benchmark.ipynb]
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[09_gradient_precision_speed_benchmark.ipynb]
+tests/test_examples_modern_api.py::test_modern_intro_notebook_executes[09_gradient_precision_speed_benchmark.ipynb]
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/examples/tutorials/09_gradient_precision_speed_benchmark.ipynb:cell-2:6: DeprecationWarning: observable_wires is deprecated; use observable_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+
+tests/test_native_circuit.py::test_circuit_prefers_qubit_count_and_preserves_wire_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:90: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert circuit.n_wires == 3
+
+tests/test_native_circuit.py::test_circuit_prefers_qubit_count_and_preserves_wire_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:92: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_wires=3).n_qubits == 3
+
+tests/test_native_circuit.py::test_circuit_prefers_qubit_count_and_preserves_wire_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:93: DeprecationWarning: nqubits is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(nqubits=3).n_qubits == 3
+
+tests/test_native_circuit.py::test_circuit_prefers_qubit_count_and_preserves_wire_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:94: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_qubits=3, n_wires=3, nqubits=3).n_qubits == 3
+
+tests/test_native_circuit.py::test_circuit_prefers_qubit_count_and_preserves_wire_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:94: DeprecationWarning: nqubits is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_qubits=3, n_wires=3, nqubits=3).n_qubits == 3
+
+tests/test_native_circuit.py::test_circuit_rejects_conflicting_qubit_count_aliases
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:99: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    fq.Circuit(n_qubits=2, n_wires=3)
+
+tests/test_native_circuit.py::test_circuit_accepts_integral_scalars_from_other_libraries
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:167: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_qubits=IntegralLike(7)).n_wires == 7
+
+tests/test_native_circuit.py::test_circuit_accepts_integral_scalars_from_other_libraries
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:168: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_qubits=torch.tensor(6)).n_wires == 6
+
+tests/test_native_circuit.py::test_circuit_accepts_integral_scalars_from_other_libraries
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_native_circuit.py:169: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    assert fq.Circuit(n_qubits=torch.tensor([8])).n_wires == 8
+
+tests/test_noise.py::test_bit_flip_channel_on_density_matrix
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_noise.py:932: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    circuit.n_wires,
+
+tests/test_noise.py::test_noise_selector_uses_only_exact_device_calibration_matches
+tests/test_noise.py::test_run_native_consumes_selector_calibration_option
+tests/test_noise.py::test_target_error_cost_can_select_faster_exact_density_backend
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_noise.py:1198: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    "n_wires": circuit.n_wires,
+
+tests/test_tensor_network.py::test_tensor_network_proxy_is_not_an_upper_bound_on_the_measured_peak
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/test_tensor_network.py:979: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    circuit.n_wires,
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_native_circuit.py::test_distributed_tensor_network_torch_executor_single_rank
+FAILED tests/test_native_circuit.py::test_distributed_mps_torch_executor_single_rank
+FAILED tests/test_native_circuit.py::test_distributed_mps_site_local_two_qubit_gate_uses_tensor_sync
+ERROR tests/integration/test_mps_forward_truncation_evidence.py::test_enforce_refuses_an_unmeasured_truncation_error
+ERROR tests/integration/test_mps_forward_truncation_evidence.py::test_report_only_records_an_unmeasured_total_without_refusing
+ERROR tests/integration/test_mps_forward_truncation_evidence.py::test_an_unmeasured_total_is_not_reported_as_an_exact_state
+ERROR tests/integration/test_mps_forward_truncation_evidence.py::test_exact_truncation_gradients_refuse_an_unmeasured_split
+ERROR tests/integration/test_mps_forward_truncation_evidence.py::test_a_measured_truncation_is_reported_and_not_refused
+ERROR tests/integration/test_mps_forward_truncation_evidence.py::test_a_run_without_truncation_still_reports_an_exact_state
+ERROR tests/integration/test_mps_reverse_single_rank.py::test_reverse_gradient_matches_dense_statevector_autograd
+ERROR tests/integration/test_mps_reverse_single_rank.py::test_reverse_reports_a_deterministic_single_rank_tape
+ERROR tests/integration/test_mps_reverse_single_rank.py::test_reverse_summary_claims_only_what_single_rank_earned
+ERROR tests/integration/test_mps_reverse_single_rank.py::test_reverse_gradient_can_drive_an_optimizer_step
+ERROR tests/integration/test_mps_reverse_single_rank.py::test_reverse_approximate_policy_is_reported_as_approximate
+ERROR tests/integration/test_mps_reverse_single_rank.py::test_reverse_accepts_hamiltonian_objectives
+ERROR tests/integration/test_mps_reverse_single_rank.py::test_reverse_rejects_conflicting_objective_inputs
+= 3 failed, 1788 passed, 122 skipped, 15850 deselected, 53 warnings, 13 errors in 578.91s (0:09:38) =

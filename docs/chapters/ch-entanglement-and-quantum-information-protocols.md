@@ -266,6 +266,8 @@ which tends to zero. Finite precision can therefore make entangled and product v
 
 An initial native example at epsilon $10^{-14}$ failed: the returned entangling amplitude was exactly zero. A four-value probe found this also at $10^{-12}$ and $10^{-13}$; an explicit unitary-matrix probe did not restore it. This behavior is retained as an implementation boundary, reported in [FlagQuantum issue #704](https://github.com/flagos-ai/FlagQuantum/issues/704), and is not a proof of an exact product input or a library fix. The runnable example uses the validated larger amplitude; the exact theorem above includes arbitrarily small nonzero epsilon.
 
+**Upstream repair status (October 22, 2026).** [PR #712](https://github.com/flagos-ai/FlagQuantum/pull/712), source commit `6aba5b774`, preserves tiny nonzero angles and supplied matrix components through the affected compiler paths. The source-checkout regressions include the smaller amplitudes and use zero absolute tolerance on those components. This is a draft PR, not a merged or released repair. The released-0.3.1 example and its original tiny-angle failure remain unchanged; see the [validation ledger](../upstream-fixes.md).
+
 ```python
 zero, _ = e.query(fq.Circuit(2, dtype=e.D))
 epsilon = 1e-10
@@ -729,7 +731,7 @@ This definition is a declared resolution diagnostic on computed numbers $\wideha
 
 There is no state normalization repair, zero clipping, automatic degeneracy grouping or interval certificate. The matrix contract is finite CPU complex128, two-dimensional, unit Frobenius norm within $10^{-12}$, and side lengths 1–16; these are book reference guards. Empty, nonfinite, real-dtype and unnormalized arrays are rejected. `coefficients` additionally requires an explicitly ordered qubit bipartition and a pure vector; measurement counts or a density operator are different inputs. For dimension-one subsystems the sole nonzero Schmidt coefficient is one, and no entanglement across that cut is possible.
 
-**Implementation boundary.** Section 7.1's initial tiny-angle failure is retained in [FlagQuantum issue #704](https://github.com/flagos-ai/FlagQuantum/issues/704). A returned zero amplitude at epsilon $10^{-14}$ did not establish that the intended state was a product. Here epsilon $10^{-10}$ uses the native path already verified to retain that amplitude. We make no claim that the smaller-angle behavior has been fixed.
+**Implementation boundary.** Section 7.1's initial tiny-angle failure is retained in [FlagQuantum issue #704](https://github.com/flagos-ai/FlagQuantum/issues/704). A returned zero amplitude at epsilon $10^{-14}$ did not establish that the intended state was a product. Here epsilon $10^{-10}$ uses the native path already verified to retain that amplitude. The installed release remains subject to that boundary. A source repair is proposed in [PR #712](https://github.com/flagos-ai/FlagQuantum/pull/712); the [repair ledger](../upstream-fixes.md) distinguishes source validation from merge and release status.
 
 **FlagQuantum code → verification result.** Inspect the small coefficient directly, then compare two explicitly chosen diagnostic thresholds. Both counts describe the same computed vector.
 

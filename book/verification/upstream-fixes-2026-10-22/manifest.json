@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-22",
+  "scope": "Upstream correctness fixes only; new sections on hold",
+  "base_commit": "f187adbbfa906828fc1f124ce5e63fdb698341a7",
+  "fixes": [
+    {
+      "issue": 685,
+      "pr": 711,
+      "commit": "1f001da4c1f13260b1bba34dda14d958399a5a3f",
+      "status": "draft PR; not merged/released",
+      "focused_passed": 202,
+      "adjoint_tests": 80
+    },
+    {
+      "issue": 704,
+      "pr": 712,
+      "commit": "6aba5b7742c30bef09e84f43f9255949bb81ffc9",
+      "status": "draft PR; not merged/released",
+      "focused_passed": 336,
+      "end_to_end_tests": 34
+    }
+  ],
+  "combined": {
+    "passed": 472,
+    "distinct_selected_tests": true,
+    "note": "Overlaps with individual runs; do not sum them"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.13.0",
+    "platform": "Darwin arm64",
+    "device": "cpu",
+    "source_version_string": "0.3.1",
+    "note": "Source checkouts identified by commit, not the released 0.3.1 wheel"
+  },
+  "broad_tiers": {
+    "pr-default": "running with observed failures; not green",
+    "pr-runtime": {
+      "685": {
+        "initial_passed": 1788,
+        "skipped": 122,
+        "failed": 3,
+        "errors": 13,
+        "cause": "All 16 failures/errors are sandbox-denied local TCP binds",
+        "permitted_tcp_rerun_passed": 16
+      },
+      "704": {
+        "initial_passed": 1818,
+        "skipped": 122,
+        "failed": 3,
+        "errors": 13,
+        "cause": "All 16 failures/errors are sandbox-denied local TCP binds",
+        "permitted_tcp_rerun_passed": 16
+      },
+      "claim": "Every case that failed/errored in these integration invocations passed the permitted TCP rerun; not a fresh uninterrupted all-green tier invocation"
+    }
+  },
+  "baseline_control": "Unmodified base reproduces 4 local TCP fixture PermissionErrors. Other broad failures not yet assigned a cause.",
+  "book_release": "Existing 0.3.1 examples/guards and original failed evidence retained",
+  "formal_review": "pending; no acceptance claimed",
+  "logs": {
+    "685-before": {
+      "file": "685-before.log",
+      "sha256": "c3b9d91c2e75980c940a9d8aa9aaa3097e349a3d3564e043fc8fc7f5ffc875d2"
+    },
+    "685-focused": {
+      "file": "685-focused.log",
+      "sha256": "ba64694a5210fe0d975ef38868691e82b5defb1f9c17bbc6b69fbcca06982903"
+    },
+    "704-before": {
+      "file": "704-before.log",
+      "sha256": "7090d80096346063ca425cf57780809ec8dac891c59ac0202983598c406c5c9f"
+    },
+    "704-focused": {
+      "file": "704-focused.log",
+      "sha256": "930e8f3e3e0312c2e595bf3d75908413a1c1ebe6eb09e4918845fec43de85c48"
+    },
+    "combined-focused": {
+      "file": "combined-focused.log",
+      "sha256": "0d4380d9d28d71eba303ad77d0459b3f7c08f35581cdc106048d0b1e0fd515a8"
+    },
+    "base-tcp-failure": {
+      "file": "base-tcp-failure.log",
+      "sha256": "7f798f5fcea8a65e2e3f5a22a86d1d00d87aefc412c20c8c5e61df0b22d31b99"
+    },
+    "685-runtime-tier": {
+      "file": "685-runtime-tier.log",
+      "sha256": "fba29228f214b9acc284a63a838b5995e47e2baff6f81e2e7fbc84da34a5245f"
+    },
+    "704-runtime-tier": {
+      "file": "704-runtime-tier.log",
+      "sha256": "74b47895eaa08130b828afe75b3ffdb39517a82ee6645805523d231b655e1627"
+    },
+    "685-tcp-recovery": {
+      "file": "685-tcp-recovery.log",
+      "sha256": "074390dbaa0cfbde504c65c79d14e73ffcc4235d758835372a064a5856e2049c"
+    },
+    "704-tcp-recovery": {
+      "file": "704-tcp-recovery.log",
+      "sha256": "d6099b5b4f1e617d06e40e79f824ff30c438bdaa723f85c24745c55d27069569"
+    },
+    "release-5.1": {
+      "file": "release-5.1.log",
+      "sha256": "605b0b06dab43f13da110fa3e11d42a942613b9dcca3442efa3966b4a2d5d7bc"
+    },
+    "release-7.1": {
+      "file": "release-7.1.log",
+      "sha256": "e3113ab21dbeab5eb651a18038cf754b38cafab1d7ee34e975026396bcd5950c"
+    },
+    "release-7.2": {
+      "file": "release-7.2.log",
+      "sha256": "ba99d225df0bc6cfc55b9c00e4621d7374bcc3fbc410d8f8bad3784dcbb0073f"
+    },
+    "strict-build": {
+      "file": "strict-build.log",
+      "sha256": "6d7e315d1ff8280a86b0585a4cece4b260712d6356f0d66bce9190ab5d43ab59"
+    },
+    "local-links": {
+      "file": "local-links.log",
+      "sha256": "70e6b10dd9a1fe8b38f459d1cce0d192948b877ccd8aee656d7d6c3e9d21377b"
+    }
+  },
+  "book_checks": {
+    "released_prose": [
+      "5.1 exact output + complete program passed",
+      "7.1 exact output + complete program passed",
+      "7.2 exact output + complete program passed"
+    ],
+    "unchanged": "All fenced programs/output and inline/display mathematics in affected chapter pages byte-for-byte unchanged",
+    "website": "Strict MkDocs passed; 73 rendered pages have valid local links/unique IDs; repair table checked as 3x4 static HTML; no new actual browser screenshot claimed",
+    "released_example_circuits": {
+      "5.1": 109,
+      "7.1": 51,
+      "7.2": 52,
+      "note": "New compatibility rechecks, separate from original section execution ledgers"
+    }
+  }
+}

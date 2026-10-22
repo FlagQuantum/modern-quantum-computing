@@ -1,0 +1,14 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-685
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 202 items
+
+tests/unit/test_circuit_adjoint.py ..................................... [ 18%]
+...........................................                              [ 39%]
+tests/unit/test_circuit_composition_contract.py ........................ [ 51%]
+........................................................................ [ 87%]
+..........................                                               [100%]
+
+======================== 202 passed in 78.52s (0:01:18) ========================

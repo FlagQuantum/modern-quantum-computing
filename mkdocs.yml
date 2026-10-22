@@ -60,6 +60,7 @@ nav:
       - 'Part 9: From Papers to Reproducible Research': section-plans/07-research.md
   - Learning design: learning-design.md
   - FlagQuantum implementation roadmap: implementation-roadmap.md
+  - Upstream correctness fixes: upstream-fixes.md
   - Conventions: conventions.md
   - Textbook draft:
       - "Chapter 1: What Quantum Computing Computes": chapters/ch-what-quantum-computing-computes.md

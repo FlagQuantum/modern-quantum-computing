@@ -265,6 +265,8 @@ For a general matrix M, the adjoint $M^\dagger$ exists even if M has no inverse.
 
 **Verified FlagQuantum 0.3.1 boundary.** The installed `Circuit.adjoint` docstring states that a custom nonunitary matrix is rejected, but the actual release accepts both P and 2H and returns their matrix adjoints. Neither returned block undoes its input block. The initial author check caught this discrepancy after its 98 simulator runs; its raw failure and a construction-only reproduction are retained. It is reported as [FlagQuantum #685](https://github.com/flagos-ai/FlagQuantum/issues/685). This does not invalidate the preceding tests on genuinely unitary gates.
 
+**Upstream repair status (October 22, 2026).** A native unitary-admission fix is proposed in [PR #711](https://github.com/flagos-ai/FlagQuantum/pull/711), source commit `1f001da4c`. Its focused adjoint/composition regressions pass. The PR is a draft; it has not been merged or released. The examples here remain verified against the installed release with the explicit `checked_adjoint` guard. See the [validation and release ledger](../upstream-fixes.md); the original failure evidence remains unchanged.
+
 The companion therefore defines `checked_adjoint`, an explicitly **book-side precondition guard**, not a new FlagQuantum method. It checks the finite custom matrices' Gram matrices against I before delegating to the real `block.adjoint()`. Native named-gate handling still belongs to FlagQuantum; our fixed test programs contain only the declared unitary gates. This is not an inverse for measurements, noise, resets or arbitrary conditional programs.
 
 ```python

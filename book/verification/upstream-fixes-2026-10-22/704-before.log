@@ -1,0 +1,174 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-704-685
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 24 items
+
+tests/integration/test_small_exact_rotations.py .FFF.FFF.FFF.FFF.FFF.FFF [100%]
+
+=================================== FAILURES ===================================
+_______ test_small_entangled_amplitude_is_not_an_identity[0-False-1e-12] _______
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-12 ± 1.0e-24
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-12 ± 1.0e-24
+_______ test_small_entangled_amplitude_is_not_an_identity[0-False-1e-13] _______
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-13 ± 1.0e-25
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-13 ± 1.0e-25
+_______ test_small_entangled_amplitude_is_not_an_identity[0-False-1e-14] _______
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-14 ± 1.0e-26
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-14 ± 1.0e-26
+_______ test_small_entangled_amplitude_is_not_an_identity[0-True-1e-12] ________
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-12 ± 1.0e-24
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-12 ± 1.0e-24
+_______ test_small_entangled_amplitude_is_not_an_identity[0-True-1e-13] ________
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-13 ± 1.0e-25
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-13 ± 1.0e-25
+_______ test_small_entangled_amplitude_is_not_an_identity[0-True-1e-14] ________
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-14 ± 1.0e-26
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-14 ± 1.0e-26
+_______ test_small_entangled_amplitude_is_not_an_identity[1-False-1e-12] _______
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-12 ± 1.0e-24
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-12 ± 1.0e-24
+_______ test_small_entangled_amplitude_is_not_an_identity[1-False-1e-13] _______
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-13 ± 1.0e-25
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-13 ± 1.0e-25
+_______ test_small_entangled_amplitude_is_not_an_identity[1-False-1e-14] _______
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-14 ± 1.0e-26
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-14 ± 1.0e-26
+_______ test_small_entangled_amplitude_is_not_an_identity[1-True-1e-12] ________
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-12 ± 1.0e-24
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-12 ± 1.0e-24
+_______ test_small_entangled_amplitude_is_not_an_identity[1-True-1e-13] ________
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-13 ± 1.0e-25
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-13 ± 1.0e-25
+_______ test_small_entangled_amplitude_is_not_an_identity[1-True-1e-14] ________
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-14 ± 1.0e-26
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-14 ± 1.0e-26
+_______ test_small_entangled_amplitude_is_not_an_identity[2-False-1e-12] _______
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-12 ± 1.0e-24
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-12 ± 1.0e-24
+_______ test_small_entangled_amplitude_is_not_an_identity[2-False-1e-13] _______
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-13 ± 1.0e-25
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-13 ± 1.0e-25
+_______ test_small_entangled_amplitude_is_not_an_identity[2-False-1e-14] _______
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-14 ± 1.0e-26
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-14 ± 1.0e-26
+_______ test_small_entangled_amplitude_is_not_an_identity[2-True-1e-12] ________
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-12 ± 1.0e-24
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-12 ± 1.0e-24
+_______ test_small_entangled_amplitude_is_not_an_identity[2-True-1e-13] ________
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-13 ± 1.0e-25
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-13 ± 1.0e-25
+_______ test_small_entangled_amplitude_is_not_an_identity[2-True-1e-14] ________
+tests/integration/test_small_exact_rotations.py:42: in test_small_entangled_amplitude_is_not_an_identity
+    assert actual[3].item() == pytest.approx(epsilon, rel=1e-12, abs=0)
+E   assert 0j == 1e-14 ± 1.0e-26
+E     
+E     comparison failed
+E     Obtained: 0j
+E     Expected: 1e-14 ± 1.0e-26
+=========================== short test summary info ============================
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[0-False-1e-12]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[0-False-1e-13]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[0-False-1e-14]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[0-True-1e-12]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[0-True-1e-13]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[0-True-1e-14]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[1-False-1e-12]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[1-False-1e-13]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[1-False-1e-14]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[1-True-1e-12]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[1-True-1e-13]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[1-True-1e-14]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[2-False-1e-12]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[2-False-1e-13]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[2-False-1e-14]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[2-True-1e-12]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[2-True-1e-13]
+FAILED tests/integration/test_small_exact_rotations.py::test_small_entangled_amplitude_is_not_an_identity[2-True-1e-14]
+========================= 18 failed, 6 passed in 0.89s =========================

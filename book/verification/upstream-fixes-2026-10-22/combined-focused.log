@@ -1,0 +1,28 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /private/tmp/FlagQuantum-fixes-combined
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 472 items
+
+tests/unit/test_circuit_adjoint.py ..................................... [  7%]
+...........................................                              [ 16%]
+tests/unit/test_circuit_composition_contract.py ........................ [ 22%]
+........................................................................ [ 37%]
+..........................                                               [ 42%]
+tests/unit/test_compilation_inverse_cancellation.py .................... [ 47%]
+...........................                                              [ 52%]
+tests/unit/test_compilation_commutation_cancellation.py ................ [ 56%]
+..........................                                               [ 61%]
+tests/unit/test_compilation_one_qubit_synthesis.py ..................... [ 66%]
+..........                                                               [ 68%]
+tests/unit/test_compilation_one_qubit_optimization.py .................. [ 72%]
+.............                                                            [ 74%]
+tests/unit/test_compilation_two_qubit_optimization.py .................. [ 78%]
+....                                                                     [ 79%]
+tests/unit/test_compilation_identity_elimination.py .................... [ 83%]
+...........................................                              [ 92%]
+tests/integration/test_small_exact_rotations.py ........................ [ 97%]
+..........                                                               [100%]
+
+======================== 472 passed in 98.01s (0:01:38) ========================

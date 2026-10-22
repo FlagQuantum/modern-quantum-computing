@@ -1,0 +1,25 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-704-685
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 336 items
+
+tests/unit/test_compilation_inverse_cancellation.py .................... [  5%]
+...........................                                              [ 13%]
+tests/unit/test_compilation_commutation_cancellation.py ................ [ 18%]
+..........................                                               [ 26%]
+tests/unit/test_circuit_adjoint.py ..................................... [ 37%]
+.............................                                            [ 46%]
+tests/unit/test_compilation_one_qubit_synthesis.py ..................... [ 52%]
+..........                                                               [ 55%]
+tests/unit/test_compilation_one_qubit_optimization.py .................. [ 60%]
+.............                                                            [ 64%]
+tests/unit/test_compilation_two_qubit_optimization.py .................. [ 69%]
+....                                                                     [ 71%]
+tests/unit/test_compilation_identity_elimination.py .................... [ 77%]
+...........................................                              [ 89%]
+tests/integration/test_small_exact_rotations.py ........................ [ 97%]
+..........                                                               [100%]
+
+============================= 336 passed in 3.70s ==============================

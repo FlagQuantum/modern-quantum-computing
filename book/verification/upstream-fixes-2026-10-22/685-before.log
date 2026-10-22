@@ -1,0 +1,60 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-685
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 76 items / 66 deselected / 10 selected
+
+tests/unit/test_circuit_adjoint.py FFFFFFFF..                            [100%]
+
+=================================== FAILURES ===================================
+______ test_adjoint_rejects_nonunitary_custom_matrices[dtype0-projector] _______
+tests/unit/test_circuit_adjoint.py:456: in test_adjoint_rejects_nonunitary_custom_matrices
+    with pytest.raises(CapabilityError, match="finite unitary"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE CapabilityError
+________ test_adjoint_rejects_nonunitary_custom_matrices[dtype0-scaled] ________
+tests/unit/test_circuit_adjoint.py:456: in test_adjoint_rejects_nonunitary_custom_matrices
+    with pytest.raises(CapabilityError, match="finite unitary"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE CapabilityError
+_________ test_adjoint_rejects_nonunitary_custom_matrices[dtype0-nan] __________
+tests/unit/test_circuit_adjoint.py:456: in test_adjoint_rejects_nonunitary_custom_matrices
+    with pytest.raises(CapabilityError, match="finite unitary"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE CapabilityError
+_________ test_adjoint_rejects_nonunitary_custom_matrices[dtype0-inf] __________
+tests/unit/test_circuit_adjoint.py:456: in test_adjoint_rejects_nonunitary_custom_matrices
+    with pytest.raises(CapabilityError, match="finite unitary"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE CapabilityError
+______ test_adjoint_rejects_nonunitary_custom_matrices[dtype1-projector] _______
+tests/unit/test_circuit_adjoint.py:456: in test_adjoint_rejects_nonunitary_custom_matrices
+    with pytest.raises(CapabilityError, match="finite unitary"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE CapabilityError
+________ test_adjoint_rejects_nonunitary_custom_matrices[dtype1-scaled] ________
+tests/unit/test_circuit_adjoint.py:456: in test_adjoint_rejects_nonunitary_custom_matrices
+    with pytest.raises(CapabilityError, match="finite unitary"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE CapabilityError
+_________ test_adjoint_rejects_nonunitary_custom_matrices[dtype1-nan] __________
+tests/unit/test_circuit_adjoint.py:456: in test_adjoint_rejects_nonunitary_custom_matrices
+    with pytest.raises(CapabilityError, match="finite unitary"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE CapabilityError
+_________ test_adjoint_rejects_nonunitary_custom_matrices[dtype1-inf] __________
+tests/unit/test_circuit_adjoint.py:456: in test_adjoint_rejects_nonunitary_custom_matrices
+    with pytest.raises(CapabilityError, match="finite unitary"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE CapabilityError
+=========================== short test summary info ============================
+FAILED tests/unit/test_circuit_adjoint.py::test_adjoint_rejects_nonunitary_custom_matrices[dtype0-projector]
+FAILED tests/unit/test_circuit_adjoint.py::test_adjoint_rejects_nonunitary_custom_matrices[dtype0-scaled]
+FAILED tests/unit/test_circuit_adjoint.py::test_adjoint_rejects_nonunitary_custom_matrices[dtype0-nan]
+FAILED tests/unit/test_circuit_adjoint.py::test_adjoint_rejects_nonunitary_custom_matrices[dtype0-inf]
+FAILED tests/unit/test_circuit_adjoint.py::test_adjoint_rejects_nonunitary_custom_matrices[dtype1-projector]
+FAILED tests/unit/test_circuit_adjoint.py::test_adjoint_rejects_nonunitary_custom_matrices[dtype1-scaled]
+FAILED tests/unit/test_circuit_adjoint.py::test_adjoint_rejects_nonunitary_custom_matrices[dtype1-nan]
+FAILED tests/unit/test_circuit_adjoint.py::test_adjoint_rejects_nonunitary_custom_matrices[dtype1-inf]
+================== 8 failed, 2 passed, 66 deselected in 1.53s ==================

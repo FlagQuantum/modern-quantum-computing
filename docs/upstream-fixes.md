@@ -1,0 +1,48 @@
+# Upstream correctness fixes
+
+This is a revision-specific repair ledger, checked on **October 22, 2026**. It supplements the original implementation evidence in Sections 5.1, 7.1 and 7.2. It does not replace those records or change their draft/review status.
+
+## Source repair, merge and release are separate
+
+| Defect | Proposed source repair | Validation | Merge/release status |
+|---|---|---|---|
+| [#685: nonunitary custom matrices accepted by `Circuit.adjoint`](https://github.com/flagos-ai/FlagQuantum/issues/685) | Draft [PR #711](https://github.com/flagos-ai/FlagQuantum/pull/711), commit `1f001da4c1f13260b1bba34dda14d958399a5a3f` | 202 focused adjoint/composition tests pass, including 80 adjoint tests | Submitted for review; not merged; no fixed release verified |
+| [#704: tiny nonzero amplitudes lost in exact execution](https://github.com/flagos-ai/FlagQuantum/issues/704) | Draft [PR #712](https://github.com/flagos-ai/FlagQuantum/pull/712), commit `6aba5b774` | 336 focused compiler/inversion tests pass, including 34 end-to-end cases | Submitted for review; not merged; no fixed release verified |
+
+Both branches start from upstream `main` commit `f187adbbf`. Their changes concern separate Core and Compiler ownership domains. A temporary local combination also passes **472 distinct selected tests**. These overlapping selections are separate checks, not additive test counts.
+
+The source checkouts still report package version `0.3.1`; that string does **not** identify the published wheel or establish that a released package contains these changes. The commit IDs above identify the actual repaired implementations. Tests used Python 3.12.14, PyTorch 2.13.0, CPU, and complex128 unless an explicit complex64/other-dtype case was selected.
+
+## What the repairs validate
+
+### Custom-matrix inversion
+
+Before the repair, all eight invalid-matrix regression cases failed because no rejection occurred: projectors, scaled unitaries, NaN and Inf were accepted in both complex64 and complex128. Two legitimate phase/gradient controls passed on the original implementation.
+
+The proposed guard checks finite entries and both unitary Gram products, using zero relative tolerance and an absolute tolerance of 32 machine epsilons of the real component dtype. It validates the flattened operator rather than confusing tensor storage axes with matrix axes. Integer permutations remain admissible. The emitted conjugate transpose retains the original autograd graph and overall phase.
+
+This is a numerical admission check, not an exact unitarity certificate or an inverse for a general nonunitary map. Channel and conditional-operation refusals remain in place.
+
+### Tiny amplitudes and phases
+
+Before the repair, 18 of the original 24 named/custom Ry-and-CNOT cases failed; six larger-amplitude controls passed. The new tests inspect tiny complex components with **zero absolute tolerance**, so a returned zero cannot pass merely because a general-purpose tolerance exceeds the expected amplitude.
+
+The proposed compiler changes require an actual scalar zero for zero-angle deletion, retain nonzero residues near an identity period, and conservatively decline tolerance-based matrix folds for explicitly supplied components below their resolution. A guard on a small angle/component preserves the original gate; it is not permission to truncate that value. Matrix Euler extraction selects its degenerate cases only for zero entries.
+
+The 34 end-to-end cases cover optimization levels 0/1/2; named and custom-matrix Ry; amplitudes from `1e-10` to `1e-14`; signed complex amplitudes; tiny relative and overall phases; nearly cancelling rotations; a trainable parameter initialized at zero; and nearly antidiagonal matrices. The implementation may retain extra gates where a tolerance-based rewrite cannot establish the required distinction. It is not a general interval error certificate or a claim about every backend, device or compiler transformation.
+
+## Validation limits and review status
+
+Ruff, Black and the domain ownership checks pass. The repository-wide tiers were also run. The Core `pr-runtime` invocation had 1,788 passes and the Compiler invocation had 1,818 passes; each had 122 skips and the same 16 failures/errors from sandbox-denied localhost TCP fixtures. The TCP restriction was reproduced on the unmodified base. All 16 blocked cases passed on each branch when localhost process groups were permitted. This is a targeted recovery, not a claim that the original tier invocation was green.
+
+The broader `pr-default` selections still have observed failures under investigation. **Full-suite green is not claimed.** Passing an individually re-run file does not establish that a larger, order-sensitive selection passes.
+
+The PRs remain drafts while broader validation is unresolved. Their GitHub check panels are the authoritative live CI status. No GPU, hardware, distributed scalability or package-release validation is claimed here. Independent code review, mathematical review and reader acceptance have not been invented or marked complete.
+
+## What readers should do now
+
+Continue to use the released-version safeguards in [Section 5.1](chapters/ch-gates-reversible-computation-and-circuit-synthesis.md#sec-gates-reversible-computation-and-circuit-synthesis-1), [Section 7.1](chapters/ch-entanglement-and-quantum-information-protocols.md#sec-entanglement-and-quantum-information-protocols-1) and [Section 7.2](chapters/ch-entanglement-and-quantum-information-protocols.md#sec-entanglement-and-quantum-information-protocols-2). The book-side `checked_adjoint` guard and the validated larger epsilon remain in their released-0.3.1 examples. The original projector/scaled-H admission failure and tiny-angle failure evidence are retained.
+
+The literal prose programs and complete examples in Sections 5.1, 7.1 and 7.2 were re-run on the installed released package; their expected outputs and assertions pass with the existing safeguards. The status update preserves all existing program/output fences and inline/display mathematics in those chapter pages. No new textbook section, skill, paper reproduction or PDF edition is introduced.
+
+After a repair is merged and a release containing it is available, re-run the affected textbook programs and literal prose examples in a clean environment on that release, record its package provenance and independent references, and only then revise the compatibility notes or remove a workaround. A source regression, a merged PR and a newly published version each require their own evidence.

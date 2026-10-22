@@ -1,0 +1,45 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /private/tmp/FlagQuantum-baseline-704-685
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 59 items
+
+tests/integration/test_mps_forward_truncation_evidence.py EEEE
+
+==================================== ERRORS ====================================
+____ ERROR at setup of test_enforce_refuses_an_unmeasured_truncation_error _____
+tests/integration/test_mps_forward_truncation_evidence.py:49: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_forward_truncation_evidence.py:34: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_ ERROR at setup of test_report_only_records_an_unmeasured_total_without_refusing _
+tests/integration/test_mps_forward_truncation_evidence.py:49: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_forward_truncation_evidence.py:34: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_ ERROR at setup of test_an_unmeasured_total_is_not_reported_as_an_exact_state _
+tests/integration/test_mps_forward_truncation_evidence.py:49: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_forward_truncation_evidence.py:34: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+_ ERROR at setup of test_exact_truncation_gradients_refuse_an_unmeasured_split _
+tests/integration/test_mps_forward_truncation_evidence.py:49: in single_rank_group
+    init_method=f"tcp://127.0.0.1:{_free_port()}",
+                                   ^^^^^^^^^^^^
+tests/integration/test_mps_forward_truncation_evidence.py:34: in _free_port
+    probe.bind(("127.0.0.1", 0))
+E   PermissionError: [Errno 1] Operation not permitted
+=========================== short test summary info ============================
+ERROR tests/integration/test_mps_forward_truncation_evidence.py::test_enforce_refuses_an_unmeasured_truncation_error
+ERROR tests/integration/test_mps_forward_truncation_evidence.py::test_report_only_records_an_unmeasured_total_without_refusing
+ERROR tests/integration/test_mps_forward_truncation_evidence.py::test_an_unmeasured_total_is_not_reported_as_an_exact_state
+ERROR tests/integration/test_mps_forward_truncation_evidence.py::test_exact_truncation_gradients_refuse_an_unmeasured_split
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 4 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+============================== 4 errors in 2.14s ===============================

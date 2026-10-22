@@ -2,6 +2,10 @@
 
 The textbook's theory and learning outcomes determine implementation requirements. A missing API must not remove an important subject from the [curriculum](book-plan.md). Confirmed capability gaps are reported to [flagos-ai/FlagQuantum](https://github.com/flagos-ai/FlagQuantum/issues), using the [issue specification template](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/templates/flagquantum-capability-gap.md).
 
+## Confirmed defects with proposed repairs
+
+The source fixes for [#685](https://github.com/flagos-ai/FlagQuantum/issues/685) and [#704](https://github.com/flagos-ai/FlagQuantum/issues/704) are submitted in draft PRs [#711](https://github.com/flagos-ai/FlagQuantum/pull/711) and [#712](https://github.com/flagos-ai/FlagQuantum/pull/712). See the [revision-specific validation and release status](upstream-fixes.md). A passing source regression does not change the textbook's released-0.3.1 compatibility claims or remove its safeguards.
+
 ## Separate three kinds of status
 
 | Record | Example statuses | Meaning |

@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-685
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 182 items / 166 deselected / 16 selected
+
+tests/integration/test_mps_forward_truncation_evidence.py ......         [ 37%]
+tests/integration/test_mps_reverse_single_rank.py .......                [ 81%]
+tests/test_native_circuit.py ...                                         [100%]
+
+=============================== warnings summary ===============================
+tests/integration/test_mps_reverse_single_rank.py::test_reverse_gradient_matches_dense_statevector_autograd
+tests/integration/test_mps_reverse_single_rank.py::test_reverse_gradient_matches_dense_statevector_autograd
+  /Users/baai/Documents/liuwei/FlagQuantum-fix-685/tests/integration/test_mps_reverse_single_rank.py:73: DeprecationWarning: n_wires is deprecated; use n_qubits. Removal is planned for 0.4.0 after the 0.3.x migration window.
+    bit = (indices >> (circuit.n_wires - wire - 1)) & 1
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================ 16 passed, 166 deselected, 2 warnings in 1.86s ================
