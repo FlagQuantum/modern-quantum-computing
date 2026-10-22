@@ -1,0 +1,1 @@
+Eight cumulative body fragments executed with exact captured outputs; 4 native circuits (one direct, three helper calls).

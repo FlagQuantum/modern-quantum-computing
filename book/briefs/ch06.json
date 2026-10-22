@@ -119,6 +119,28 @@
       ],
       "status": "draft",
       "next_transition": "6.6 From exact probabilities to samples."
+    },
+    {
+      "ref": "6.6",
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-6",
+      "title": "From exact probabilities to samples",
+      "depth": "F",
+      "requires": [
+        "sec-measurement-expectation-values-and-statistical-estimation-1"
+      ],
+      "question": "How do native terminal bit records give unbiased event, categorical and score estimates without confusing a record with its probability law?",
+      "entry": "6.1 Born probabilities; a local finite classical probability/expectation bridge is supplied.",
+      "exit": "Prove IID product law, indicator and categorical means, score mean and multinomial count law; distinguish unbiasedness from independence or a confidence guarantee.",
+      "worked_case": "Ry Bernoulli; reversed nonadjacent correlated register labels; exact rational ensembles and rare/dependent/drifting counterexamples.",
+      "boundary": "Finite IID trials, fixed known readout, no postselection. Variance and confidence in 6.7-6.8; no inferred collapse or hardware IID guarantee.",
+      "code_plan": "Native fq.probabilities and fq.samples with shots and seed; explicit integer histogram; independent rational enumeration.",
+      "independent_check": "Analytic Ry probabilities, scalar full-state indices, explicit Python counts and exact Fraction ensemble means.",
+      "transfer_task": "Fresh four-qubit nonadjacent selections, new angles/seeds and rational categorical score.",
+      "source_locators": [
+        "NC:A1"
+      ],
+      "status": "draft",
+      "next_transition": "6.7 Variance, covariance, and uncertainty."
     }
   ]
 }

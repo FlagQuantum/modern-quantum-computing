@@ -1,6 +1,6 @@
 # 6. Measurement, Expectation Values, and Statistical Estimation
 
-**Working drafts: sections 6.1–6.5 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
+**Working drafts: sections 6.1–6.6 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
 
 <span id="sec-measurement-expectation-values-and-statistical-estimation-1"></span>
 
@@ -1915,3 +1915,369 @@ Expected output of the complete program:
 The assigned targets are Nielsen and Chuang, 10th Anniversary Edition (2010), §2.2.3, beginning at printed page 84, and §2.2.6, beginning at printed page 90. These locators are retained without claiming fresh inspection of the user-local textbook PDF. The public author source [Preskill, Caltech Chapter 3, §3.1.2](https://www.preskill.caltech.edu/ph219/chap3_15.pdf), equations (3.23)–(3.31), PDF pages 9–11, was checked for the operator/effect probability and pure-state update setup; its served header says October 2018. Our hidden-branch examples and representation comparison are supplied locally within the declared pure-input scope.
 
 The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.5.json) separates author execution from independent mathematical/implementation review and reader trials, which remain pending. Continue, when drafted, with [6.6 From exact probabilities to samples](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-6).
+
+
+<span id="sec-measurement-expectation-values-and-statistical-estimation-6"></span>
+
+## 6.6 From exact probabilities to samples
+
+**Working draft — author-verified implementation; independent review and reader trial pending.**
+
+Section 6.1 assigns a probability to each outcome. A run with 64 recorded outcomes produces integers, not another exact probability distribution. This section builds the mathematical bridge between those objects and implements it with native FlagQuantum terminal samples. The central result is finite-sample **unbiasedness**: the mean of an estimator over all possible records equals its target. This statement does not say that one record equals the target, or give a confidence interval.
+
+**Entry:** normalized preparations and Born probabilities from 6.1. No density operators, variance formulas or prior statistics course are required. **Assumptions:** a fixed finite set of labels, a fixed preparation/readout protocol, and independently repeated, identically distributed trials (IID). All counts below include every requested trial; no postselection. In a physical experiment, preparation drift, memory and readout errors must be investigated separately. Independent re-preparation is a model assumption, not a conclusion from observing a plausible histogram.
+
+**Notation:** \(\Omega=\{0,\ldots,K-1\}\) is the outcome index set; \(p_j\) its dimensionless probability; \(Y_t\) the index on trial \(t\); \(N\geq1\) the number of trials. A random variable is a numerical function of possible outcomes. Once a record is observed, its entries and computed estimates are ordinary numbers. Probabilities and frequencies have no physical unit; a numerical outcome score can carry a declared unit.
+<span id="formula-code-6-6-native"></span>
+
+### 1. Keep the distribution and the record separate
+
+
+For a binary computational readout of \(R_y(\theta)|0\rangle\), with \(\theta\) in radians,
+
+\[
+p_0=\cos^2(\theta/2),\qquad p_1=\sin^2(\theta/2).
+\]
+
+A finite probability model assigns \(p_j\geq0\) with \(\sum_jp_j=1\). An event \(A\subseteq\Omega\) has probability \(P(A)=\sum_{j\in A}p_j\). A sample is one label chosen according to this law. The simulator first computes a floating-point representation of the Born distribution and then generates a pseudorandom record. Its ideal probabilities are “exact” in the sense of no shot noise; floating-point error still exists.
+
+**Formula → implementation.** The following actual native call requests both objects from the same circuit. The leading dimension is an execution batch of size one. The sample tensor has shape `(1, N, number_of_selected_qubits)`. We remove the batch axis explicitly. A terminal sampling request is not a mid-circuit measurement/update instruction.
+
+```python
+from dataclasses import replace
+from math import pi
+from fractions import Fraction as F
+import torch
+import flagquantum as fq
+from examples.foundations import exact_samples as s
+circuit = fq.Circuit(1, dtype=torch.complex128).ry(0, pi/3)
+result = fq.run(circuit,
+    outputs=[fq.probabilities(qubits=(0,)), fq.samples(qubits=(0,))],
+    shots=64, options=replace(s.OPTIONS, seed=17))
+p = result.probabilities[0]
+bits = result.samples[0]
+assert result.samples.shape == (1,64,1)
+torch.testing.assert_close(p, torch.tensor([.75,.25],dtype=torch.float64), atol=1e-12,rtol=0)
+print('Native shapes:', tuple(result.probabilities.shape), tuple(result.samples.shape))
+print('Born probabilities:', [round(x,12) for x in p.tolist()])
+```
+
+```text
+Native shapes: (1, 2) (1, 64, 1)
+Born probabilities: [0.75, 0.25]
+```
+
+<span id="formula-code-6-6-iid"></span>
+
+### 2. Define conditional probability and the IID record law
+
+
+For events \(A,B\) with \(P(B)>0\), define \(P(A\mid B)=P(A\cap B)/P(B)\). This is classical conditioning on records, independent of any conditional quantum-state rule. In particular,
+
+\[
+P(A\cap B)=P(A\mid B)P(B).
+\]
+
+Two events are independent when their joint probability is their product. For a sequence of trials the relevant assumption is stronger than pairwise independence: every next-trial conditional law, given any positive-probability prior history, is the same fixed \(p\). Iterating the displayed identity gives
+
+\[
+P(Y_1=j_1,\ldots,Y_N=j_N)=\prod_{t=1}^{N}p_{j_t}.
+\]
+
+**Proof.** For \(N=1\) this is the declared distribution. If the formula holds for a prefix, multiply its probability by the conditional probability \(p_{j_N}\) of the next outcome. A prefix with zero probability makes every extension zero; no conditional probability on that prefix is needed. This proves the formula by induction. Summing over every record gives \((\sum_jp_j)^N=1\), so it is a normalized law. Qubits *within* one trial can be correlated; independence here concerns separate repeated trials.
+
+The book helper `ensemble` enumerates this law using exact rational arithmetic, not more circuit executions. For two binary trials the probability of the ordered record `(1,0)` is \((1/4)(3/4)=3/16\), and conditioning on the first label being 1 leaves probability \(1/4\) for the second being 1.
+
+```python
+rows2 = s.ensemble((F(3,4),F(1,4)), 2)
+weights = {seq:w for seq,w,_ in rows2}
+first_one = sum(w for seq,w,_ in rows2 if seq[0] == 1)
+both_one = weights[(1,1)]
+assert weights[(1,0)] == F(3,16)
+assert both_one / first_one == F(1,4)
+print('Ordered record P(1,0):', weights[(1,0)])
+print('P(second=1 | first=1):', both_one/first_one)
+```
+
+```text
+Ordered record P(1,0): 3/16
+P(second=1 | first=1): 1/4
+```
+
+<span id="formula-code-6-6-bernoulli"></span>
+
+### 3. Turn one event into an unbiased Bernoulli estimator
+
+
+For an event \(A\), define an indicator \(I_t=1\) when \(Y_t\in A\), and \(I_t=0\) otherwise. It is a Bernoulli random variable: its probabilities are \(p_A=P(A)\) for 1 and \(1-p_A\) for 0. Define the count and frequency
+
+\[
+C_A=\sum_{t=1}^N I_t,\qquad \widehat p_A=C_A/N.
+\]
+
+For any finite random variable \(X\), its expectation is the probability-weighted sum \(\mathbb E[X]=\sum_x xP(X=x)\). Equivalently sum the value of its defining function over all elementary outcomes with their probabilities. Thus \(\mathbb E[I_t]=1p_A+0(1-p_A)=p_A\).
+
+**Proof of unbiasedness.** In a finite model, exchange the two finite sums over trials and possible records:
+
+\[
+\mathbb E[\widehat p_A]
+=\frac1N\sum_{\boldsymbol j}P(\boldsymbol j)
+  \sum_{t=1}^N 1_{\{j_t\in A\}}
+=\frac1N\sum_{t=1}^N\mathbb E[I_t]
+=p_A.
+\]
+
+This also proves the linearity of expectation used here, without assuming independent summands. Identical event marginals are enough for unbiasedness; independence is needed for the product record law, and later for the usual variance reduction. The observed frequency below is a realized estimate, not an identity to assert against `p[1]` with a numerical tolerance.
+
+```python
+ones = int(bits[:,0].sum().item())
+frequency = ones/len(bits)
+assert 0 <= ones <= 64 and 0 <= frequency <= 1
+print('Observed one count:', ones, 'of', len(bits))
+print('Observed frequency:', frequency, '; target:', round(p[1].item(),12))
+```
+
+```text
+Observed one count: 9 of 64
+Observed frequency: 0.140625 ; target: 0.25
+```
+
+<span id="formula-code-6-6-categorical"></span>
+
+### 4. Preserve label order when estimating a categorical law
+
+
+For every label define \(C_j=\sum_t1_{\{Y_t=j\}}\) and \(\widehat p_j=C_j/N\). Exactly one label occurs per trial, so
+
+\[
+\sum_j C_j=N,\qquad \sum_j\widehat p_j=1,
+\qquad \mathbb E[\widehat p_j]=p_j.
+\]
+
+The last equality follows by the indicator proof separately for each label. These frequency components are constrained by their sum; IID trials do not make the label counts independent.
+
+For selected qubits \((q_{a_0},\ldots,q_{a_{k-1}})\), sample columns follow that declared order. The corresponding integer is
+
+\[
+j_t=\sum_{\ell=0}^{k-1} b_{t,\ell}2^{k-1-\ell}.
+\]
+
+Here \(q_0\) is first in the full computational basis. The actual circuit prepares \(\sqrt3|001\rangle/2+|100\rangle/2\). Requesting `(2,0)` therefore reports `10` with probability \(3/4\), and `01` with probability \(1/4\). This is a selection/reordering of classical output coordinates, not a physical SWAP. `histogram` includes zero-count labels and checks binary integer rows; it does not infer the column order from data.
+
+```python
+register = fq.Circuit(3,dtype=torch.complex128).ry(0,pi/3).cx(0,2).x(2)
+preg, record, counts, frequencies = s.native(register,(2,0),64,23)
+ids, _, _ = s.histogram(record)
+assert counts.tolist() == [ids.tolist().count(j) for j in range(4)]
+torch.testing.assert_close(preg,torch.tensor([0.,.25,.75,0.],dtype=torch.float64),atol=1e-12,rtol=0)
+assert counts[0] == counts[3] == 0 and counts.sum() == 64
+print('Labels in column order (q2,q0):', ['00','01','10','11'])
+print('Exact probabilities:', [round(x,12) for x in preg.tolist()])
+print('Observed counts:', counts.tolist())
+```
+
+```text
+Labels in column order (q2,q0): ['00', '01', '10', '11']
+Exact probabilities: [0.0, 0.25, 0.75, 0.0]
+Observed counts: [0, 15, 49, 0]
+```
+
+<span id="formula-code-6-6-scores"></span>
+
+### 5. Estimate a declared numerical score without changing labels
+
+
+Assign each label a fixed real score \(v_j\), known before inspecting the record. Its target mean and estimator are
+
+\[
+\mu=\sum_jv_jp_j,\qquad
+\widehat\mu=\frac1N\sum_tv_{Y_t}
+=\sum_jv_j\widehat p_j.
+\]
+
+**Derivation.** In the sum over trials, group together terms with the same observed label: there are \(C_j\) terms with value \(v_j\). Then take the expectation of the final finite sum and insert \(\mathbb E[\widehat p_j]=p_j\), giving \(\mathbb E[\widehat\mu]=\mu\). The proof allows negative scores and scores with a physical unit. A score table is not a quantum observable implementation by itself: it must be attached to the actual declared readout protocol. Here the scores are dimensionless classical diagnostics.
+
+For the preceding four labels choose \((-1,2,-3,4)\); only labels `01` and `10` occur, so \(\mu=2/4-9/4=-7/4\). The code compares two computations of the *same observed* score, while keeping its ideal target separate.
+
+```python
+scores = torch.tensor([-1.,2.,-3.,4.],dtype=torch.float64)
+observed = (scores @ frequencies).item()
+direct = scores[ids].mean().item()
+assert abs(observed-direct) < 1e-12
+assert abs((scores @ preg).item()+1.75) < 1e-12
+print('Observed score by two routes:', observed, direct)
+print('Ideal mean score:', round((scores @ preg).item(),12))
+```
+
+```text
+Observed score by two routes: -1.828125 -1.828125
+Ideal mean score: -1.75
+```
+
+<span id="formula-code-6-6-ensemble"></span>
+
+### 6. Verify the estimator over the entire finite ensemble
+
+
+Under the IID law, all ordered records with a specified count vector \((c_0,\ldots,c_{K-1})\) have the same product probability. There are
+
+\[
+\frac{N!}{\prod_jc_j!}
+\]
+
+such records: choose the positions of label 0, then those of label 1 among the remaining positions, and continue; the factorial denominators cancel to the displayed expression. Therefore
+
+\[
+P(C_0=c_0,\ldots,C_{K-1}=c_{K-1})
+=\frac{N!}{\prod_jc_j!}\prod_jp_j^{c_j},
+\qquad \sum_jc_j=N.
+\]
+
+This is the multinomial law. A factor with exponent zero is 1, including when its probability is zero. For \(K=2\), it becomes the binomial count law. It is a law for counts, not for individual ordered records.
+
+Our independent check uses exact fractions and all \(2^4=16\) binary records, avoiding Monte Carlo noise. It verifies the normalization, the weighted frequency mean \(1/4\), the weighted score mean \(-7/4\) for scores \((-3,2)\), and the binomial probability of exactly one `1`. Passing finitely many checks validates this enumerator, not the general proof above. Enumeration is exponential, and the helper rejects more than 4096 records; this is a teaching guard, not a FlagQuantum restriction.
+
+```python
+from math import comb
+rows4 = s.ensemble((F(3,4),F(1,4)),4)
+mean_frequency = sum(w*f[1] for _,w,f in rows4)
+mean_score = sum(w*(-3*f[0]+2*f[1]) for _,w,f in rows4)
+prob_one = sum(w for seq,w,_ in rows4 if seq.count(1)==1)
+assert prob_one == comb(4,1)*F(1,4)*F(3,4)**3
+assert mean_frequency == F(1,4) and mean_score == F(-7,4)
+print('All',len(rows4),'records: E[frequency] =',mean_frequency,'; E[score] =',mean_score)
+print('P(count of ones = 1):', prob_one)
+```
+
+```text
+All 16 records: E[frequency] = 1/4 ; E[score] = -7/4
+P(count of ones = 1): 27/64
+```
+
+<span id="formula-code-6-6-failures"></span>
+
+### 7. Separate zero observations, dependence and drift
+
+
+With \(p_A>0\), an IID record can still contain no occurrences of \(A\): every trial misses it, so
+
+\[
+P(C_A=0)=(1-p_A)^N.
+\]
+
+Consequently a zero count does not establish zero probability. By contrast, a mathematically zero-probability label never occurs under the ideal model. Numerical probabilities near zero can be unresolved in floating-point simulation; these examples are not rare-event error certificates.
+
+Two different assumption failures deserve separate treatment. First, draw one Bernoulli value \(B\) with parameter \(p\) and duplicate it \(N\) times. Every marginal still has probability \(p\), and \(\widehat p=B\) is unbiased, but it remains either 0 or 1 for any \(N\); the IID count law is false. Second, with trial-dependent event probabilities \(p_t\), linearity gives
+
+\[
+\mathbb E[\widehat p]=\frac1N\sum_tp_t.
+\]
+
+The estimate targets this average, not a chosen nominal probability. Neither case is repaired by a larger record or a more permissive numerical tolerance. The code uses exact finite counterexamples; no additional circuit or hardware observation is claimed.
+
+```python
+rare = F(1,10000)
+miss_all = (1-rare)**10
+assert miss_all > F(999,1000)
+correlated = [((0,)*8,F(3,4)),((1,)*8,F(1,4))]
+assert sum(w*F(sum(seq),len(seq)) for seq,w in correlated) == F(1,4)
+assert all(sum(seq) in (0,8) for seq,_ in correlated)
+drift_mean = (F(1,4)+F(3,4))/2
+assert drift_mean == F(1,2) and drift_mean != F(1,4)
+print('Rare positive event can be absent in all 10 trials:', miss_all > F(999,1000))
+print('Duplicated trials: unbiased but only all-zero/all-one records.')
+print('Two-trial drift targets:', drift_mean, '; not nominal 1/4.')
+```
+
+```text
+Rare positive event can be absent in all 10 trials: True
+Duplicated trials: unbiased but only all-zero/all-one records.
+Two-trial drift targets: 1/2 ; not nominal 1/4.
+```
+
+<span id="formula-code-6-6-contracts"></span>
+
+### 8. Use replay and validation for the right purposes
+
+
+A seed fixes a pseudorandom stream within a specified implementation. Repeating the same seeded query is useful for debugging and does not add independent statistical evidence. Distinct seeds are not a proof of physical independence, nor must they produce different finite records. Reordering or adding sampling requests may change stream use. Store the protocol, ordered selection, seed, shot count, software versions and complete raw record, not only a rounded frequency.
+
+**Formula → contract.** The denominator \(N\) must be positive; binary records must contain declared integer bits with a known column order. A batch axis cannot silently become a trial or qubit axis. Reject an empty record rather than assign it frequency zero. The book validators also reject Boolean seeds/shot counts, duplicated selections and invalid exact distributions. They do not diagnose hardware IID violations from data. The raw native result retains the pre-readout simulated state; no collapse or conditional update is inferred from the sample record.
+
+```python
+first = s.native(register,(2,0),8,101)
+replay = s.native(register,(2,0),8,101)
+assert torch.equal(first[1],replay[1])
+assert s.invalid_checks() == 14
+print('Pinned replay identical:', torch.equal(first[1],replay[1]))
+print('14 malformed contracts rejected; replay is not a new independent record.')
+```
+
+```text
+Pinned replay identical: True
+14 malformed contracts rejected; replay is not a new independent record.
+```
+
+### Complete program, support and verification
+
+Run from the repository root with the pinned example environment:
+
+```sh
+python -m pip install -r requirements-examples.txt
+python examples/foundations/exact_samples.py
+python scripts/check_exact_samples_prose.py
+```
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/exact_samples.py) checks deterministic basis inputs, analytic single-qubit probabilities, all ordered nonempty three-qubit selections, short records, seed replay and exact rational ensembles. The checker executes the eight cumulative body fragments and compares their outputs, then runs the complete program. Copy the snippets in order; `s` names the original book helper, not a native FlagQuantum module.
+
+Expected output of the complete program:
+
+```text
+14 basis circuits: exact labels, ordered sample columns and deterministic counts passed.
+12 Bernoulli circuits: analytic Ry probabilities and finite-shot accounting passed; no frequency-equality threshold.
+30 ordered-register circuits: all 15 nonempty ordered selections at two seeds; scalar probability and independent count references passed.
+10 replay/short-record circuits: pinned-seed replay and 1-8-shot contracts passed; replay is not new statistical evidence.
+5 exact rational ensembles: normalized IID laws and all categorical/event/score estimator means passed.
+14 malformed contracts rejected before native execution; empty records are not assigned a zero frequency.
+66 actual CPU complex128 circuit executions; native terminal samples, not hardware shots or mid-circuit collapse.
+Exact-probability atol 1e-12, rtol 0; random frequencies are observations, not exact-probability assertions.
+```
+
+| Object | What was actually executed | What is not established |
+|---|---|---|
+| Born probabilities | Native statevector probability requests, checked against analytic or independently indexed amplitudes | Floating-point values are not interval certificates |
+| Terminal bit records | Native `fq.samples`, positive `shots`, seeded CPU execution | Not hardware shots, mid-circuit collapse or feedback |
+| Counts and frequencies | Original explicit binary-index/histogram helper | No inference of undeclared qubit or label order |
+| Ensemble means | Exhaustive classical exact-fraction enumeration | No additional quantum executions or proof by Monte Carlo |
+| Statistical assumptions | IID finite-trial model stated explicitly | Drift/memory absence is not inferred from a seed or histogram |
+
+Tested on FlagQuantum 0.3.1, PyTorch 2.13.0, Python 3.12.14, CPU complex128. Probability/reference comparisons use absolute tolerance \(10^{-12}\), relative tolerance zero. No observed frequency is required to match its target within that tolerance. Seeded example records are regression fixtures of this pinned CPU implementation; across changed versions/backends a different valid record requires revalidation, not a claim of broken quantum physics. We inspect the released terminal sampling path; it samples with replacement from state probabilities and selects output columns in the requested order. This is a mathematical sampling model implemented by a pseudorandom generator, not a proof about physical repeated preparations.
+
+### Understanding checks and transfer tasks
+
+**A. Event versus label.** In a fresh register output with ordered labels `00,01,10,11` and probabilities \((1/10,2/10,3/10,4/10)\), take event “the first selected qubit is 1.” Find its target, a count-based estimator, and its expectation. Does exchanging the two selected columns preserve that target?
+
+**B. New score.** For the same distribution use scores \((2,-1,0,3)\). Find the ideal mean; explain why zero observations of `00` do not justify deleting its score/probability contribution from the ideal target. Verify the estimator mean using exact enumeration of three trials.
+
+**C. Dependence diagnosis.** Someone concatenates a single seeded 64-shot record with itself ten times and reports a 640-shot experiment. Which algebraic frequency identity remains true, and which independence claim fails? Can unbiasedness alone distinguish it from ten new records?
+
+**D. Empty and rare records.** Why is frequency undefined for zero shots, but well-defined and equal to zero when an event is absent from a nonempty record? For \(p_A=1/100\), derive the probability of no occurrences in 3 IID trials.
+
+<details markdown="1">
+<summary>Answers and verification routes</summary>
+
+**A.** The event indices are 2 and 3, so its target is \(7/10\), estimate \((C_2+C_3)/N\), and expectation \(7/10\) by summing the two indicator means. Exchanging columns makes the *new first column* refer to the old second qubit; that target is \(p_1+p_3=6/10\). A physical event stays unchanged only if its label predicate is translated too.
+
+**B.** The mean is \(2/10-2/10+12/10=6/5\). An absent label contributes zero to this record's empirical score, but its ideal contribution remains \(2/10\). Call `s.ensemble((F(1,10),F(2,10),F(3,10),F(4,10)),3)` and sum each record's probability times `sum(v*f for v,f in zip((2,-1,0,3),frequencies))`. Exact arithmetic returns \(6/5\), without simulating extra circuits.
+
+**C.** Every count and the denominator are multiplied by ten, so all frequencies and mean scores remain unchanged. The copies are deterministically dependent; the 640-trial product law is unsupported. Across an ensemble of original records the repeated estimator may still be unbiased. Unbiasedness alone cannot establish independence or an uncertainty reduction.
+
+**D.** Division by zero has no defined empirical proportion. With positive \(N\), a zero count divided by \(N\) is a valid observed zero; it does not imply zero target probability. Independence gives \((99/100)^3=970299/1000000\) for missing the event in all three trials.
+
+</details>
+
+### Sources, limitations and next step
+
+The assigned reference is Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010), Appendix 1, “Notes on basic probability theory,” beginning on printed page 608 (`NC:A1`). This section supplies its own finite-sum proofs. For an openly accessible author-written treatment of indicators and their expectation, see Marco Taboga, [Indicator function, definition and Expected value](https://www.statlect.com/fundamentals-of-probability/indicator-functions). The implementation contract was checked against the installed released FlagQuantum sampling source; its backend's [PyTorch multinomial documentation](https://docs.pytorch.org/docs/stable/generated/torch.multinomial.html) describes sampling with replacement and generator control. A seeded record is not evidence of IID hardware outcomes. Variance, covariance, confidence intervals and shot-budget guarantees are deliberately left to 6.7–6.8.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.6.json) distinguishes author checks from pending independent mathematical/implementation review and reader trials. Continue, when drafted, with [6.7 Variance, covariance, and uncertainty](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-7).

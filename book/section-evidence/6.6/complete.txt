@@ -1,0 +1,8 @@
+14 basis circuits: exact labels, ordered sample columns and deterministic counts passed.
+12 Bernoulli circuits: analytic Ry probabilities and finite-shot accounting passed; no frequency-equality threshold.
+30 ordered-register circuits: all 15 nonempty ordered selections at two seeds; scalar probability and independent count references passed.
+10 replay/short-record circuits: pinned-seed replay and 1-8-shot contracts passed; replay is not new statistical evidence.
+5 exact rational ensembles: normalized IID laws and all categorical/event/score estimator means passed.
+14 malformed contracts rejected before native execution; empty records are not assigned a zero frequency.
+66 actual CPU complex128 circuit executions; native terminal samples, not hardware shots or mid-circuit collapse.
+Exact-probability atol 1e-12, rtol 0; random frequencies are observations, not exact-probability assertions.

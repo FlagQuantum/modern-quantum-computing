@@ -1,0 +1,11 @@
+{
+  "surface": "Actual local IAB browser,1280x720",
+  "checked": [
+    "indicator count and expectation finite sums",
+    "ordered qubit index and categorical normalization",
+    "multinomial factorial/product formula",
+    "expanded Answers and verification routes, all four answers"
+  ],
+  "result": "Passed: inspected formulas render without garbling or clipping.",
+  "online": "Publication HTML comparison performed separately; no online screenshot claimed."
+}

@@ -1,0 +1,108 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-measurement-expectation-values-and-statistical-estimation-6",
+  "ref": "6.6",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+  "depth": "F",
+  "result": "Unbiased Bernoulli and categorical estimators",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-1"
+  ],
+  "assumptions": [
+    "Finite fixed labels and readout protocol; independent identically distributed trials; positive fixed N.",
+    "All requested trials retained; no postselection; ideal native terminal sampling is separated from physical repeated preparation."
+  ],
+  "proof_obligations": [
+    "Define finite probabilities, conditional probabilities and expectation locally.",
+    "Prove IID record law by conditional-probability induction and normalization.",
+    "Prove finite-sum linearity, indicator, categorical and numerical-score estimator means.",
+    "Derive multinomial law by counting ordered records.",
+    "Explain that identical marginals suffice for unbiasedness but not IID counts or concentration; derive drift-average and rare zero-count counterexamples."
+  ],
+  "formula_code_units": [
+    "formula-code-6-6-native",
+    "formula-code-6-6-iid",
+    "formula-code-6-6-bernoulli",
+    "formula-code-6-6-categorical",
+    "formula-code-6-6-scores",
+    "formula-code-6-6-ensemble",
+    "formula-code-6-6-failures",
+    "formula-code-6-6-contracts"
+  ],
+  "sources": [
+    {
+      "locator": "NC:A1",
+      "edition": "10th Anniversary Edition (2010)",
+      "printed_page_start": 608
+    },
+    {
+      "author": "Marco Taboga",
+      "url": "https://www.statlect.com/fundamentals-of-probability/indicator-functions",
+      "locator": "Definition; Expected value; author-written open textbook page inspected"
+    },
+    {
+      "url": "https://docs.pytorch.org/docs/stable/generated/torch.multinomial.html",
+      "inspection": "Stable URL redirected; actual installed FQ backend source inspected for with-replacement/generator implementation; no claim fresh 2.13 online page retrieved."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/exact_samples.py",
+    "command": "python examples/foundations/exact_samples.py",
+    "prose_check_command": "python scripts/check_exact_samples_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "cpu",
+      "precision": "complex128"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 66,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 4,
+    "separate_transfer_circuits": 16,
+    "execution_ledger": {
+      "api_probe": 1,
+      "initial_failed": 21,
+      "complete": 66,
+      "body_assembly": 4,
+      "body_plus_complete_checker": 70,
+      "separate_transfer": 16,
+      "total_section66_circuits": 178,
+      "note": "Prior-section regression and future CI separate. Initial failure count inferred directly from loop order and observed point of failure; no rerun of failed attempt."
+    },
+    "checks": [
+      "14 deterministic basis inputs; 12 analytic Bernoulli queries; 30 ordered selections; 10 replay/short-record native calls.",
+      "Five exact rational ensembles cover categorical/event/score estimator means without quantum executions.",
+      "14 malformed inputs rejected before native execution; exact zero and rare-positive cases retained.",
+      "16 new native transfers and fresh exact rational score check."
+    ],
+    "tolerance": "Probability/reference atol1e-12 rtol0; no frequency-to-target tolerance test or interval certificate.",
+    "unplanned_example_execution_failures": "Initial analytic reference defaulted to float32, producing ~1.19e-8 disagreement after 21 native calls. Corrected reference dtype to float64; failed source and contemporaneous summary retained. Not native API failure.",
+    "limitations": "CPU terminal samples and fixed-seed regression, not hardware shots, collapse, feedback, IID diagnostics, confidence bounds, or rare-event precision guarantees. Enumeration4096 and reference1-4qubit guards are book limits.",
+    "script_sha256": "ac43c0381e45b1a74a151de9f7368cb6a761c963e04b56fec684ca98344c375f"
+  },
+  "assessment": {
+    "tasks": [
+      "6.6-A label-event order",
+      "6.6-B new score ensemble",
+      "6.6-C duplicated records",
+      "6.6-D empty versus rare"
+    ],
+    "answers": "Supplied; no reader trial claimed."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed; independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "66 complete-program native circuits, 8 cumulative prose units/4 circuits and 16 fresh transfers passed; scoped6.5 body/full58-circuit regression passed. Strict fresh71-page build, all local links/fragments and details-markup checks passed; actual browser including expanded answers passed. Independent reviews and reader trials not performed."
+  },
+  "production": {
+    "next_draft": "6.7 Variance, covariance, and uncertainty",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Actual local IAB1280x720 screenshots inspected indicator/unbiasedness finite-sum proof, categorical qubit index and normalization, multinomial count law, and expanded exercise answers. No garbling or clipping in inspected formulas."
+  }
+}

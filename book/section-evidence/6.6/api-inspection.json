@@ -1,0 +1,22 @@
+{
+  "version": "0.3.1",
+  "run_signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+  "samples_signature": "(qubits: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED) -> 'OutputRequest'",
+  "paths": [
+    {
+      "module": "circuit.py",
+      "sha256": "beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b"
+    },
+    {
+      "module": "measurements.py",
+      "sha256": "a8b04d434cb137bc6df2d3380c342a9bdb6cbe09cf1b9ae5e132388cbb79be11"
+    },
+    {
+      "module": "local.py",
+      "sha256": "a95e9a3caf5974afb1256c2651313b687a24c4ff3dc95de22cfe9802f5975783"
+    }
+  ],
+  "sampling_path": "Circuit.sample -> statevector.local._sample_statevector -> torch.multinomial(replacement=True,generator); runtime.measurements._sample selects declared columns",
+  "probe": "One native 3-qubit probabilities/samples query at shots8, seed6 succeeded before program authoring; separately counted.",
+  "note": "No native hardware or collapse contract inferred. Source hash coverage includes runtime measurement and local state sampling."
+}

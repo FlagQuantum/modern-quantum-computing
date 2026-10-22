@@ -1,0 +1,2 @@
+16 fresh native circuits: 10 new phase-bearing Bernoulli cases; 6 complex correlated four-qubit ordered nonadjacent readouts passed.
+Fresh exact four-category score ensemble: mean 6/5 over 64 records; zero quantum calls.
