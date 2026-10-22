@@ -1,0 +1,7 @@
+{
+  "version": "0.3.1",
+  "run_signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+  "samples_signature": "(qubits: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED) -> 'OutputRequest'",
+  "source_sha256": "8cedd180174be55d92f850465882fdf14fb464d654c0acbab7ce8442ad77b911",
+  "used": "Same released unitary gates,probabilities and selected terminal samples;explicit classical effects/branches/report.No native acceptance,instrument or collapse endpoint invented."
+}

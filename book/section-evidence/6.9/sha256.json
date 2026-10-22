@@ -1,0 +1,8 @@
+{
+  "examples/foundations/measurement_lab.py": "98b8c668a2e1f40bdebb675aa7dfb4aa80156b6e7e41fd86618a19bd2d59f39f",
+  "scripts/check_measurement_lab_prose.py": "0cee4183e57eee6ccc5e93f5df30af22d6d8e789584fbdc11635d7b9cfb86dcf",
+  "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md": "201c6a7487d2889987ec2434d07b4c361629604074c9cfb41997bce07fa79fc0",
+  "book/section-records/6.9.json": "f93f6232eedb941b866684b06d2d6430f119c04f9974b51a7bc34987526b5495",
+  "book/section-evidence/6.9/reports.json": "338b506216650e287f557bf697c6fb8be62a810cb52c1604ab4319380fd6af2b",
+  "book/section-evidence/6.9/raw-candidates.json": "06b7eb53916c695a169c11224a5d69d1560bc982208da9794a0a502d2f179d53"
+}

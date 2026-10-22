@@ -1,0 +1,11 @@
+{
+  "surface": "Actual local IAB1280x720",
+  "checked": [
+    "Complex state/ordered effects/Y action and scalar correlation",
+    "Conditional phases and coarse/fine XX+",
+    "Outcome-diagonal effect equivalence",
+    "Expanded chapter synthesis answers"
+  ],
+  "result": "Passed:inspected formulas render without garbling or clipping.",
+  "online": "Publication HTML comparison separate;no online screenshot claimed."
+}

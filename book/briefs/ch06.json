@@ -186,6 +186,31 @@
       ],
       "status": "draft",
       "next_transition": "6.9 Measurement laboratory and failure diagnosis."
+    },
+    {
+      "ref": "6.9",
+      "section_id": "sec-measurement-expectation-values-and-statistical-estimation-9",
+      "title": "Measurement laboratory and failure diagnosis",
+      "depth": "V",
+      "requires": [
+        "sec-measurement-expectation-values-and-statistical-estimation-2",
+        "sec-measurement-expectation-values-and-statistical-estimation-4",
+        "sec-measurement-expectation-values-and-statistical-estimation-7",
+        "sec-measurement-expectation-values-and-statistical-estimation-8"
+      ],
+      "question": "Can one bounded experiment distinguish correct measurements,operationally equivalent analyzers,incorrect branches and unsupported uncertainty claims?",
+      "entry": "6.2ideal branch/ignored outcomes;6.4effective projectors;6.7score variance;6.8fixed-design coverage.",
+      "exit": "Execute basis,preparation,branch,effects,raw-count and fixed-budget checks;diagnose deliberate failures without confusing author verification with independent acceptance.",
+      "worked_case": "Complex c|010>+exp(i phi)s|111>;Y0/X2 ordered terminal readout;alternative idealZq2 branches and parity coarse/fine comparison.",
+      "boundary": "One3qubit ideal-state laboratory with dense classical references and native terminal samples;general arbitrary instruments,hardware calibration and new skills not claimed.",
+      "code_plan": "Native unitary preparation,two-qubit selected probabilities/samples;explicit scalar/matrix references,branch ensemble and diagnostic report with retained candidate data.",
+      "independent_check": "All8basis calibration,closed scalar probabilities,explicit Pauli projectors,coordinate branch masks,count reconstruction and exact budget inequality.",
+      "transfer_task": "Fresh positive/negative angles and phases,wrong-sign holdouts and asymmetric basis probe.",
+      "source_locators": [
+        "ED:protocol"
+      ],
+      "status": "draft",
+      "next_transition": "Chapter7;chapter6iscomplete as working drafts,not independently accepted."
     }
   ]
 }

@@ -1,0 +1,162 @@
+{
+  "valid": {
+    "accepted": true,
+    "checks": {
+      "initial_model": true,
+      "normalized": true,
+      "reference_evolution": true,
+      "program_reference": true,
+      "probability_normalized": true,
+      "analyzer_unitary": true,
+      "measurement_effects": true,
+      "probability_model": true,
+      "probability_from_effects": true,
+      "labels_and_counts": true,
+      "fixed_budget": true
+    },
+    "candidate_sha256": "a38214dc53e670a6cb8f996a5433daee6430c555b09141b959e6cfbb37598c5a",
+    "exact_correlation": 0.7499999999999999,
+    "observed_correlation": "33/40",
+    "interval_half_width": "1/4",
+    "interval_contains_toy_target": true,
+    "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+  },
+  "wrong-Y": {
+    "accepted": false,
+    "checks": {
+      "initial_model": true,
+      "normalized": true,
+      "reference_evolution": true,
+      "program_reference": true,
+      "probability_normalized": true,
+      "analyzer_unitary": true,
+      "measurement_effects": false,
+      "probability_model": false,
+      "probability_from_effects": true,
+      "labels_and_counts": true,
+      "fixed_budget": true
+    },
+    "candidate_sha256": "182674849b68b23ecbe079693ab68d05a944867ff586d6ec972b85f0d841b968",
+    "exact_correlation": 0.7499999999999999,
+    "observed_correlation": "-3/5",
+    "interval_half_width": "1/4",
+    "interval_contains_toy_target": false,
+    "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+  },
+  "zero-signal-wrong-Y": {
+    "accepted": false,
+    "checks": {
+      "initial_model": true,
+      "normalized": true,
+      "reference_evolution": true,
+      "program_reference": true,
+      "probability_normalized": true,
+      "analyzer_unitary": true,
+      "measurement_effects": false,
+      "probability_model": true,
+      "probability_from_effects": true,
+      "labels_and_counts": true,
+      "fixed_budget": true
+    },
+    "candidate_sha256": "04401bbfea4b91a6d51beeccb375d2ae91ca5ccc2db394940a81d1fe6c410828",
+    "exact_correlation": 0.0,
+    "observed_correlation": "1/10",
+    "interval_half_width": "1/4",
+    "interval_contains_toy_target": true,
+    "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+  },
+  "insufficient-shots": {
+    "accepted": false,
+    "checks": {
+      "initial_model": true,
+      "normalized": true,
+      "reference_evolution": true,
+      "program_reference": true,
+      "probability_normalized": true,
+      "analyzer_unitary": true,
+      "measurement_effects": true,
+      "probability_model": true,
+      "probability_from_effects": true,
+      "labels_and_counts": true,
+      "fixed_budget": false
+    },
+    "candidate_sha256": "890f564a0ac1948b1a83bf828798eb441f7b8c18da753b9c18f94a8cd85882fa",
+    "exact_correlation": 0.7499999999999999,
+    "observed_correlation": "1",
+    "interval_half_width": "1/4",
+    "interval_contains_toy_target": false,
+    "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+  },
+  "corrupted-counts": {
+    "accepted": false,
+    "checks": {
+      "initial_model": true,
+      "normalized": true,
+      "reference_evolution": true,
+      "program_reference": true,
+      "probability_normalized": true,
+      "analyzer_unitary": true,
+      "measurement_effects": true,
+      "probability_model": true,
+      "probability_from_effects": true,
+      "labels_and_counts": false,
+      "fixed_budget": true
+    },
+    "candidate_sha256": "94ae2cbf4fc9c3f14cf36143001b50ae15a0e959cc793a73d5ab5ac30b3013f0",
+    "exact_correlation": 0.7499999999999999,
+    "observed_correlation": "33/40",
+    "interval_half_width": "1/4",
+    "interval_contains_toy_target": true,
+    "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+  },
+  "stale-phase-source": {
+    "accepted": false,
+    "checks": {
+      "initial_model": false,
+      "normalized": true,
+      "reference_evolution": true,
+      "program_reference": true,
+      "probability_normalized": true,
+      "analyzer_unitary": true,
+      "measurement_effects": true,
+      "probability_model": false,
+      "probability_from_effects": true,
+      "labels_and_counts": true,
+      "fixed_budget": true
+    },
+    "candidate_sha256": "26d46265c26dd911c2991f9021fd9e63d589b37ab5818321e10724fb586751c7",
+    "exact_correlation": -0.7499999999999999,
+    "observed_correlation": "33/40",
+    "interval_half_width": "1/4",
+    "interval_contains_toy_target": false,
+    "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+  },
+  "unsupported-variance": {
+    "accepted": false,
+    "checks": {
+      "initial_model": true,
+      "normalized": true,
+      "reference_evolution": true,
+      "program_reference": true,
+      "probability_normalized": true,
+      "analyzer_unitary": true,
+      "measurement_effects": true,
+      "probability_model": true,
+      "probability_from_effects": true,
+      "labels_and_counts": true,
+      "fixed_budget": false
+    },
+    "candidate_sha256": "f1e9f5950b4e4e897c39e1405622787fb72ec6d851c8eaa104e5d3066981d906",
+    "exact_correlation": 0.7499999999999999,
+    "observed_correlation": "33/40",
+    "interval_half_width": "1/4",
+    "interval_contains_toy_target": true,
+    "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+  },
+  "averaged-branch": {
+    "accepted": false,
+    "wrong_plus": 0.6499999999999999,
+    "correct_plus": 0.5,
+    "reason": "A normalized average vector still retains false coherence;keep an outcome ensemble."
+  }
+}

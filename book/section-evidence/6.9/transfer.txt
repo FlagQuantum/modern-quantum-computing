@@ -1,0 +1,2 @@
+18 fresh native circuits:three new signed-angle/complex-phase cases x three analyzer variants; correct/effect-equivalent pass,wrong-Y rejects.
+Signed conditional phases and ignored-outcome ensemble predictions checked classically; no new skill,hardware or independent-review claim.

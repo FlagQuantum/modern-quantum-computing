@@ -1,6 +1,6 @@
 # 6. Measurement, Expectation Values, and Statistical Estimation
 
-**Working drafts: sections 6.1–6.8 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
+**Working drafts: sections 6.1–6.9 · Writing Baseline 1.0 · October 22, 2026.** Author execution is separate from independent mathematical, implementation and reader review, which remain pending. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU with complex128 statevectors. The earlier measurement page remains a format pilot, rather than a substitute for this chapter.
 
 <span id="sec-measurement-expectation-values-and-statistical-estimation-1"></span>
 
@@ -3088,3 +3088,365 @@ Tested versions: FlagQuantum 0.3.1, PyTorch 2.13.0 and Python 3.12.14. Evolution
 The frozen source is Boyd and Vandenberghe, *Convex Optimization* (2004), [§7.4.1 Chebyshev bounds, printed pages 374–375](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf#page=388), PDF pages 388–389 (`CVX:7.4`). The author-hosted PDF was downloaded and these pages inspected for the Markov/Chebyshev setup; only a locator and source hash are retained, not the PDF or extracted source text. This section supplies its own complete finite-model proofs, range-bound derivation, shot conversion and exact discrete examples. Public author-written companions are Marco Taboga's [Markov inequality](https://www.statlect.com/fundamentals-of-probability/Markov-inequality) and [Chebyshev inequality](https://www.statlect.com/fundamentals-of-probability/Chebyshev-inequality). Chernoff/Hoeffding bounds, exact interval inversion, sequential confidence procedures and optimal allocation are not proved or claimed here.
 
 The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.8.json) keeps author execution, independent review and reader trials separate. Continue, when drafted, with [6.9 Measurement laboratory and failure diagnosis](../section-plans/01-foundations.md#sec-measurement-expectation-values-and-statistical-estimation-9).
+
+
+<span id="sec-measurement-expectation-values-and-statistical-estimation-9"></span>
+
+## 6.9 Measurement laboratory and failure diagnosis
+
+**Working draft — bounded author-run verification; independent mathematical/implementation review and reader trial pending.**
+
+This laboratory closes Chapter 6 by making a measurement claim inspectable. We use the earlier results to distinguish four questions: Was the intended state prepared? Does the readout implement the declared measurement? Are conditional and ignored-outcome predictions consistent? Is the uncertainty statement justified by its design? Passing one question cannot substitute for the others.
+
+**Entry:** ideal conditional branches from 6.2, effective readout projectors from 6.4, covariance and mean uncertainty from 6.7, and fixed-design confidence guarantees from 6.8. Depth **V** requires executing an acceptance protocol and diagnosing deliberate failures; it does not introduce a new measurement postulate or replace the earlier proofs by finite tests. “Accepted” in the program means *passes this specific implementation protocol*. It does not mark this section, the chapter, a physical device or a paper reproduction as independently accepted.
+
+The recurring preparation uses three qubits in full basis order \(q_0q_1q_2\), with \(q_0\) the most significant bit. All angles are radians. CPU statevectors are complex128; classical probabilities are float64. We use full-vector and deterministic probability absolute tolerance \(10^{-12}\), relative tolerance zero, without phase alignment or input normalization repair. Branch alternatives are explicit classical calculations on the actual simulated input; native terminal samples do not supply a collapsed state.
+<span id="formula-code-6-9-contract"></span>
+
+### 1. Declare the experiment and the acceptance gates
+
+
+Prepare, in chronological call order, \(R_y(\theta)\) on qubit 0, CX from 0 to 2, X on spectator qubit 1, and \(P(\phi)\) on qubit 0. With \(c=\cos(\theta/2)\), \(s=\sin(\theta/2)\), the independent scalar reference is
+
+\[
+|\psi\rangle=c|010\rangle+e^{i\phi}s|111\rangle.
+\]
+
+Our main terminal readout measures \(Y_0\) and \(X_2\): apply P(−π/2) then H on qubit 0, H on qubit 2, and request ordered qubits `(2,0)`. Write its two output bits as x for qubit 2 and y for qubit 0. Labels are `00,01,10,11`; their score is \(w_{xy}=(-1)^{x+y}\). The main unknown mean is the expectation of that declared joint score, not a conditional-state amplitude.
+
+| Protocol on the same preparation | Purpose | Executed boundary |
+|---|---|---|
+| Y0/X2 terminal readout | Joint score and finite record | Actual native rotations, selected probabilities and samples |
+| Ideal Z measurement on qubit 2 | Conditional branches and repeatability | Classical projector/branch enumeration of the actual prepared state |
+| Coarse even parity versus fine Z outcomes with forgotten record | Preserve or remove within-event coherence | Alternative ideal update models, not inferred native collapse |
+
+For the terminal score the range is [−1,1]. Fix \(\epsilon=1/4\), \(\delta=1/5\) and the uniform single-shot variance bound 1 *before* observing data. Section 6.8 gives
+
+\[
+N=\left\lceil\frac{1}{\delta\epsilon^2}\right\rceil=80.
+\]
+
+The protocol checks preparation, basis/effects, raw counting and this fixed budget. Exact probability checks are deterministic; whether one reported interval contains the toy target is a separate diagnostic. The book helper is a bounded laboratory, not a new FlagQuantum endpoint or agent skill.
+
+```python
+from math import pi,sin,cos
+from fractions import Fraction as F
+import torch
+from examples.foundations import measurement_lab as lab
+N = lab.conf.budget(F(1),lab.EPS,lab.DELTA)
+assert N==80
+print('Declared readout columns: q2 then q0; labels00,01,10,11.')
+print('Fixed design:',N,'trials; half-width',lab.EPS,'; failure budget',lab.DELTA)
+```
+
+```text
+Declared readout columns: q2 then q0; labels00,01,10,11.
+Fixed design: 80 trials; half-width 1/4 ; failure budget 1/5
+```
+
+<span id="formula-code-6-9-labels"></span>
+
+### 2. Calibrate labels with a state that can expose an order reversal
+
+
+The main state's qubits 0 and 2 always have equal computational bits. Its ordinary computational marginal on `(2,0)` is therefore identical to the one on `(0,2)`. Such a symmetric fixture cannot establish column order.
+
+Use separate computational-basis calibration inputs. On \(|001\rangle\), the declared order `(2,0)` means bits `(1,0)`, label `10`, integer index
+
+\[
+j=2b_2+b_0=2.
+\]
+
+Reversing the requested order reports `01`, index 1. The complete program tests all eight basis words and rejects four asymmetric words under reversal. These queries test the native output convention with the analyzer absent; they are not eight copies of the main experiment. The subsequent experiment checks its analyzer separately.
+
+```python
+one_fixture = ((0,0,1),)
+calibration = lab.calibrate((2,0),one_fixture)
+reversed_calibration = lab.calibrate((0,2),one_fixture)
+assert calibration['accepted'] and not reversed_calibration['accepted']
+print('Asymmetric001 calibration, intended/reversed order:',calibration['accepted'],reversed_calibration['accepted'])
+```
+
+```text
+Asymmetric001 calibration, intended/reversed order: True False
+```
+
+<span id="formula-code-6-9-readout"></span>
+
+### 3. Match the actual circuit to independent scalar and projector references
+
+
+For \(\theta=\phi=\pi/3\), the main state has amplitudes \(c=\sqrt3/2\) and \(e^{i\pi/3}s=e^{i\pi/3}/2\). In the preparation, indices 2 and 7 are the only nonzero coordinates.
+
+Let R be the analyzer matrix. For the bit outcome `(x,y)` its effective projector is \(E_{xy}=R^\dagger Q_{xy}R\), where \(Q_{xy}\) selects computational bit \(b_2=x,b_0=y\) and leaves spectator qubit 1 unresolved. Using the Y and X analyzer identities from 6.4,
+
+\[
+E_{xy}=\frac14
+\bigl(I+(-1)^yY_0\bigr)
+\bigl(I+(-1)^xX_2\bigr).
+\]
+
+The operators act on different qubits and commute; the product is a rank-two projector. The one-qubit Y0 and X2 means vanish because each alone maps the two occupied coordinates outside their span. Their product acts as
+
+\[
+Y_0X_2|010\rangle=i|111\rangle,\qquad
+Y_0X_2|111\rangle=-i|010\rangle.
+\]
+
+Substitution in the inner product gives
+
+\[
+C=\langle Y_0X_2\rangle
+=-ics e^{i\phi}+ics e^{-i\phi}
+=2cs\sin\phi=\sin\theta\sin\phi.
+\]
+
+Expanding the projector expectation consequently yields
+
+\[
+p_{xy}=\frac{1+(-1)^{x+y}C}{4}.
+\]
+
+The target here is \(C=3/4\) and the ordered probabilities are \((7,1,1,7)/16\). `acquire` actually calls native `fq.run` once for the preparation, and once for the prepared circuit with P/H/H analyzer, selected `fq.probabilities` and `fq.samples`. The complete program exposes these calls. Its independent matrix reference verifies the post-analyzer vector; explicit Pauli projectors and the scalar law independently check the measurement probabilities. A discrepancy is not repaired by renormalizing or aligning phases.
+
+```python
+packet = lab.acquire(pi/3,pi/3,N=N,seed=31)
+report = lab.audit(packet)
+expected = torch.tensor([7/16,1/16,1/16,7/16],dtype=torch.float64)
+torch.testing.assert_close(packet['p'],expected,atol=1e-12,rtol=0)
+assert report['accepted'] and all(report['checks'].values())
+print('Native ordered probabilities:',[round(p,12) for p in packet['p'].tolist()])
+print('Closed scalar correlation:',round(report['exact_correlation'],12))
+print('Bounded implementation protocol:',report['accepted'])
+```
+
+```text
+Native ordered probabilities: [0.4375, 0.0625, 0.0625, 0.4375]
+Closed scalar correlation: 0.75
+Bounded implementation protocol: True
+```
+
+<span id="formula-code-6-9-branches"></span>
+
+### 4. Keep a branch ensemble when an outcome is ignored
+
+
+Analyze an *alternative* ideal Zq2 measurement on the actual prepared input. For the worked positive angles its probabilities and normalized conditional vectors are
+
+\[
+p_0=c^2,\quad |\psi_0\rangle=|010\rangle,
+\qquad
+p_1=s^2,\quad |\psi_1\rangle=e^{i\phi}|111\rangle.
+\]
+
+The implementation uses full coordinate masks and preserves the branch phase; for general signed angles it retains the signs of c and s too. Exactly impossible branches are `None`. Positive tiny branches are not dropped merely because their probability is below the numerical comparison tolerance. Section 6.2 supplies the projector normalization and zero/underflow contract.
+
+Repeatability requires \(P(a,\text{repeat }b)=\delta_{ab}p_a\). If the first outcome is ignored, a later projector Q has probability \(\sum_ap_a\langle\psi_a|Q|\psi_a\rangle\), not a probability evaluated on an average vector. For an XX+ test on qubits 0 and 2,
+
+\[
+p_+^{\mathrm{original}}=
+\frac{1+\sin\theta\cos\phi}{2},\qquad
+p_+^{\mathrm{forgotten\ Z_2}}=\frac12.
+\]
+
+Each Z branch is a basis state with zero XX mean, giving the latter value. An ideal **coarse** even-parity projection on q0 and q2 leaves the original state unchanged because both occupied basis states have even parity; its later XX+ probability remains the original value. It is a different update from fine measurement followed by forgetting the record.
+
+The deliberate wrong proposal normalizes \(\sum_ap_a|\psi_a\rangle\). For this example it gives amplitudes proportional to \((3/4,e^{i\pi/3}/4)\), hence XX mean \(3/10\) and plus probability .65. Even after normalization it retains false coherence. The accepted algorithm never uses that proposal; it keeps the ensemble and obtains .5.
+
+```python
+branch = lab.branch_report(packet['initial'])
+wrong_average = lab.averaged_branch_fault(packet['initial'])
+assert not wrong_average['accepted']
+assert abs(wrong_average['wrong_plus']-.65)<1e-12
+print('Zq2 branch probabilities:',[round(p,12) for p in branch['probabilities'].tolist()])
+print('XX+ after forgotten Zq2:',round(branch['xx_after_forgotten_Z'][0].item(),12))
+print('Deliberate normalized-vector-average proposal:',round(wrong_average['wrong_plus'],12),'-> rejected.')
+```
+
+```text
+Zq2 branch probabilities: [0.75, 0.25]
+XX+ after forgotten Zq2: 0.5
+Deliberate normalized-vector-average proposal: 0.65 -> rejected.
+```
+
+<span id="formula-code-6-9-basis"></span>
+
+### 5. Accept effect-equivalent output phases and reject the wrong Y sign
+
+
+A terminal measurement is specified by its effects, not by a unique analyzer matrix. Append an output phase D=P0(.37) after the correct analyzer. It commutes with every computational \(Q_{xy}\), because it is diagonal in those selected output bits. Therefore
+
+\[
+(DR)^\dagger Q_{xy}(DR)
+=R^\dagger D^\dagger Q_{xy}DR
+=R^\dagger Q_{xy}R.
+\]
+
+The after-analyzer statevector can change by outcome-dependent phases; this is not necessarily one global phase. The protocol compares native evolution with the *declared* candidate analyzer, then compares its effects with the intended measurement. It accepts this operational equivalence. It does not claim the circuits interchangeable for later coherent operations before terminal readout.
+
+By contrast, changing P(−π/2) to P(+π/2) changes the measured Y to −Y. The joint correlation becomes −C and the probabilities swap the two parity classes. The program records a rejected candidate instead of hiding the failure or changing the target formula. A later passing candidate is a new result; it does not retroactively accept the failed one.
+
+```python
+gauge_packet = lab.acquire(pi/3,pi/3,'outcome-phase',N=N,seed=31)
+wrong_packet = lab.acquire(pi/3,pi/3,'wrong-y',N=N,seed=31)
+gauge_report, wrong_report = lab.audit(gauge_packet),lab.audit(wrong_packet)
+assert gauge_report['accepted'] and not wrong_report['accepted']
+assert gauge_report['checks']['measurement_effects']
+assert not wrong_report['checks']['measurement_effects']
+assert wrong_report['candidate_sha256'] != report['candidate_sha256']
+print('Output-phase equivalent analyzer accepted:',gauge_report['accepted'])
+print('Wrong-Y candidate accepted:',wrong_report['accepted'])
+```
+
+```text
+Output-phase equivalent analyzer accepted: True
+Wrong-Y candidate accepted: False
+```
+
+<span id="formula-code-6-9-records"></span>
+
+### 6. Reconstruct counts and check the declared preparation source
+
+
+For the requested column order, each raw bit row has index \(j_t=2b_{t,0}+b_{t,1}\), count \(C_j=\sum_t1_{\{j_t=j\}}\), and joint score \((-1)^{b_{t,0}+b_{t,1}}\). Rebuild counts from the raw integer bits and verify \(\sum_jC_j=N\). If a saved histogram disagrees, its attractive mean or error bar cannot rescue it.
+
+Source consistency also matters. Reusing the old preparation state while declaring a different φ can leave its computational probabilities unchanged: those depend only on \(c^2,s^2\). The full preparation reference retains the phase and exposes the stale-source mismatch; the declared joint correlation also changes. A digest of the packet is useful for identifying which candidate a report describes. It is not authentication of metadata, a guarantee of hardware provenance, or a substitute for a trusted acquisition path. The lab's analyzer program and its matrix reference are checked for internal agreement; it is not an external attestation system.
+
+The following edits are deliberate fault injections into copies. The original raw record remains unchanged, and both failures retain their own fingerprints.
+
+```python
+bad_counts = dict(packet)
+bad_counts['counts'] = packet['counts'].clone()
+bad_counts['counts'][0] += 1
+stale_phase = dict(packet)
+stale_phase['phi'] = -packet['phi']
+count_report, source_report = lab.audit(bad_counts),lab.audit(stale_phase)
+assert not count_report['accepted'] and not count_report['checks']['labels_and_counts']
+assert not source_report['accepted'] and not source_report['checks']['initial_model']
+assert lab.audit(packet)['candidate_sha256'] == report['candidate_sha256']
+print('Count corruption and stale phase-source candidates accepted:',count_report['accepted'],source_report['accepted'])
+print('Original candidate remains separately identifiable:',lab.audit(packet)['accepted'])
+```
+
+```text
+Count corruption and stale phase-source candidates accepted: False False
+Original candidate remains separately identifiable: True
+```
+
+<span id="formula-code-6-9-uncertainty"></span>
+
+### 7. Check the uncertainty design separately from whether one interval covers
+
+
+The joint score W takes values ±1. Its variance is \(1-C^2\leq1\), and IID averaging gives a conservative mean-variance bound \(1/N\). The frozen laboratory design uses that uniform bound 1, not an observed variance or a newly inferred tighter bound. With 80 trials its declared interval is \([\widehat C-1/4,\widehat C+1/4]\), with at least 80% coverage under the model from 6.8.
+
+The protocol rejects a packet with four trials for this design, even if its state, effects and exact probabilities are all correct. It also rejects an unexplained replacement of the certified variance bound by zero. A legitimate tighter analytic or separately validated bound would require a documented design change; this lab does not infer it from a favorable record.
+
+Interval membership and implementation validity have different roles. The actual toy-model membership diagnostic may be true or false for a valid packet. A miss is a statistical alert to interpret under the fixed procedure and its model, not an automatic deterministic code defect. Conversely, a deliberately corrupted packet cannot be accepted because its interval happened to include the target. Repeatedly selecting seeds or increasing shots until an interval looks favorable would change the experiment; this protocol does not authorize that stopping/selection rule.
+
+```python
+short_packet = lab.acquire(pi/3,pi/3,N=4,seed=31)
+short_report = lab.audit(short_packet)
+unsupported_bound = dict(packet)
+unsupported_bound['variance_bound'] = F(0)
+bound_report = lab.audit(unsupported_bound)
+assert short_report['checks']['probability_model'] and not short_report['checks']['fixed_budget']
+assert not bound_report['checks']['fixed_budget']
+assert not short_report['accepted'] and not bound_report['accepted']
+print('Four-shot and unexplained-zero-bound candidates accepted:',short_report['accepted'],bound_report['accepted'])
+print('Observed correlation estimate:',report['observed_correlation'])
+print('This toy interval contains its target:',report['interval_contains_toy_target'],'; diagnostic only.')
+```
+
+```text
+Four-shot and unexplained-zero-bound candidates accepted: False False
+Observed correlation estimate: 33/40
+This toy interval contains its target: True ; diagnostic only.
+```
+
+<span id="formula-code-6-9-evidence"></span>
+
+### 8. Diagnose a blind spot and retain the original failed evidence
+
+
+At φ=0 the intended joint correlation C is zero. Both the correct and wrong-sign Y analyzers then produce the same four probabilities for this particular preparation. A probability-only check would pass the faulty candidate. Its *effects* still differ as operators, so the protocol rejects it. This is why the independent operator check and asymmetric calibration are part of the acceptance contract rather than optional decorations.
+
+The evidence bundle retains declared angles, program and IR fingerprint, selected columns, shot count/seed, actual prepared and after-analyzer vectors, exact probabilities, raw bits, counts and separate diagnostic reports. The complete program exports no file by default; the author-run wrapper archives these objects under the section evidence directory. Negative/malformed probabilities, invalid shapes/dtypes/seeds, unknown variants and invalid labels are rejected without repair. Twelve malformed-contract tests run before any new native execution.
+
+A reproducible packet and a passing deterministic protocol are author evidence. Independent mathematical/implementation review and reader trials remain separate. No synthetic raw record is presented as a native observation, and no physical experiment or independent agent review is claimed.
+
+```python
+zero_signal_wrong = lab.acquire(pi/3,0.,'wrong-y',N=N,seed=31)
+blind_report = lab.audit(zero_signal_wrong)
+assert blind_report['checks']['probability_model']
+assert not blind_report['checks']['measurement_effects'] and not blind_report['accepted']
+assert lab.invalid_checks(packet)==12
+assert not wrong_report['accepted'] and lab.audit(packet)['accepted']
+print('Zero-signal wrong-Y: probability test passes, effect test fails -> rejected.')
+print('12 malformed contracts rejected; original wrong candidate remains rejected after a valid candidate passes.')
+```
+
+```text
+Zero-signal wrong-Y: probability test passes, effect test fails -> rejected.
+12 malformed contracts rejected; original wrong candidate remains rejected after a valid candidate passes.
+```
+
+### Complete program and verification record
+
+Run from the repository root with the pinned example environment:
+
+```sh
+python examples/foundations/measurement_lab.py
+python scripts/check_measurement_lab_prose.py
+```
+
+The [complete program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/measurement_lab.py) executes 70 native circuits: 16 basis-calibration queries, 48 queries for 24 normal/effect-equivalent preparation-readout cases, and six queries for three deliberate-failure cases. Conditional branches, repeated-projector tables, coarse/fine predictions and classical corruptions use the actual prepared vectors without additional quantum executions. Deterministic code checks never demand that every random confidence interval cover.
+
+Expected output of the complete program:
+
+```text
+16 native basis-calibration circuits: all8 intended-order fixtures pass; reversed order fails4 asymmetric fixtures.
+48 native circuits:24 preparations/readouts over complex/zero-branch inputs and two effect-equivalent analyzers pass; branch/repeatability checks are classical.
+6 more native circuits:wrong-Y,zero-signal wrong-Y and insufficient-shot candidates rejected; exact effect tests expose a probability-only blind spot.
+4 additional classical faults rejected:corrupted counts,stale preparation phase,unsupported variance bound and normalized-vector averaging.
+12 malformed contracts rejected before execution; correct and rejected candidate fingerprints/raw records kept separately.
+70 actual CPU complex128 circuit executions; deterministic atol1e-12,rtol0; interval membership is diagnostic and is not forced to pass.
+Acceptance here is this bounded author-run implementation protocol,not independent scholarly review,hardware validation or a new agent skill.
+```
+
+The complete evidence records the deliberately wrong Y sign, its zero-signal probability blind spot, short budget, corrupted count, stale preparation phase, unsupported variance bound, and normalized-vector-average proposal. Their rejection is an intended test result, not an unexpected native API failure. After the first passing version, the author strengthened malformed probability/seed and program-reference guards; the initial passing program/output and subsequent guarded version are retained separately. No original failure is erased by a later passing candidate.
+
+The eight body snippets are cumulative. `lab` is a book helper, not a FlagQuantum acceptance endpoint. Native support here is CPU complex128 unitary preparation and analyzer execution, exact selected computational probabilities and terminal samples, checked on FlagQuantum 0.3.1/PyTorch 2.13.0/Python 3.12.14. General projectors, conditional updates, covariance/design arithmetic and acceptance reports are explicit classical references. The three-qubit setup is a bounded teaching experiment, not a package limit or a general hardware certification tool. Native statevector returns remain pre-readout simulated vectors; no collapse, reset, generalized instrument endpoint or noise-calibrated device result is asserted.
+
+### Chapter 6 synthesis and problems
+
+Chapter 6 now has nine working drafts. Its path separates a probability law, a conditional update, an observable's spectral mean, a basis analyzer, a generalized measurement/instrument, a finite record, its covariance and a confidence procedure. This laboratory checks their interfaces without conflating them. Chapter completion as working drafts is not formal acceptance.
+
+**A. Concept and identifiability.** Why does the main state's computational marginal fail to diagnose qubit-order reversal? Why can wrong-sign Y pass a probability test at φ=0? Give an independent test that resolves each blind spot.
+
+**B. Derivation and update.** In the worked state, derive the forgotten-Zq2 XX+ probability .5 and the normalized-average proposal's .65. Explain why normalization cannot turn that average into the correct ignored-outcome state. What changes for an exactly impossible branch?
+
+**C. Implementation transfer.** Choose θ=−.43 and φ=1.19, then a second fresh pair of angles. Predict the preparation amplitudes and Y0/X2 probabilities. Run both the intended and output-phase analyzers, retain the full conditional phase, and check all report gates. Include one deliberately wrong-sign candidate; predict which gate should reject it before executing it.
+
+**D. Diagnosis and reporting.** Classify each observation: raw-count sum is wrong; prepared probabilities match but phase is stale; a valid fixed-design interval misses; an unexplained zero variance bound is used; a new output phase leaves all effects unchanged. State which evidence to keep and whether implementation acceptance, statistical interpretation or a design change is required.
+
+<details markdown="1">
+<summary>Answers and chapter-laboratory checks</summary>
+
+**A.** The occupied basis states have equal q0/q2 bits, so their marginal is invariant under that swap. An asymmetric basis word such as `001` distinguishes labels `10` and `01`. At φ=0, \(C=\sin\theta\sin\phi=0\), making the two wrong/correct analyzers agree on that preparation's probabilities. Compare full effective projectors with the intended Pauli family, or use an independent input with nonzero Y0/X2 correlation. Do not relabel the wrong analyzer as correct solely because the chosen input hides it.
+
+**B.** Each retained Zq2 branch is a computational basis state and has XX mean zero, hence the weighted later plus probability is .5. The wrong normalized average has coefficients \((3/4,e^{i\pi/3}/4)/\sqrt{10/16}\). Its XX mean is \(2(3/4)(1/4)\cos(\pi/3)/(10/16)=3/10\), giving .65. The error is the retained coherence between alternatives, not merely the vector norm. An exactly zero-probability branch is `None` and contributes zero to the ensemble sum; it is not a zero vector to normalize. Tiny positive branches retain their own normalized phase, subject to the explicit underflow contract.
+
+**C.** Use \(v_2=\cos(\theta/2)\), \(v_7=e^{i\phi}\sin(\theta/2)\), and zero elsewhere. For negative θ, the sign of the second amplitude is part of the vector; do not remove it by replacing it with its magnitude. With \(C=\sin\theta\sin\phi\), probabilities are \((1+C,1-C,1-C,1+C)/4\). Both intended and output-phase variants should satisfy the effect and reference-evolution gates. Wrong-sign Y fails the operator-family gate and, for nonzero C, also the probability-model gate. Use the pinned helper and a separately indexed or scalar reference, not only two calls to the same circuit routine.
+
+**D.** Count corruption rejects the record layer; stale phase rejects source/preparation consistency even when computational probabilities agree. A valid interval miss is a statistical diagnostic, requiring the fixed procedure and assumptions to be reported rather than secretly selecting another seed. The unexplained zero bound rejects this design's uncertainty gate; any legitimate tighter bound needs documented justification. Output phases commuting with all final computational projectors are accepted for this terminal measurement, while coherent future uses require their own contract. Preserve each original packet and report separately; a corrected implementation is a new candidate.
+
+</details>
+
+### Sources, status and transition
+
+The frozen source `ED:protocol` is the repository's original [reader continuity and acceptance evidence standard](../reader-continuity.md#reader-review-and-acceptance-evidence). It requires reconstructible reasoning, usable prerequisites, independent references and separate reviewer/reader evidence. The physical and mathematical ingredients are the working drafts of 6.1–6.8, particularly 6.2, 6.4, 6.7 and 6.8; this V section reuses those results rather than importing a new postulate or starting a paper audit. See the [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/6.9.json) for author checks and the [retained diagnostic reports](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-evidence/6.9/reports.json) for deliberate rejection outcomes. Independent mathematical/implementation review and reader trials remain pending.
+
+Continue, when drafted, with [7.1 Product states and entangled states](../section-plans/01-foundations.md#sec-entanglement-and-quantum-information-protocols-1).
+
+<!-- end-section-6.9 -->

@@ -1,0 +1,7 @@
+16 native basis-calibration circuits: all8 intended-order fixtures pass; reversed order fails4 asymmetric fixtures.
+48 native circuits:24 preparations/readouts over complex/zero-branch inputs and two effect-equivalent analyzers pass; branch/repeatability checks are classical.
+6 more native circuits:wrong-Y,zero-signal wrong-Y and insufficient-shot candidates rejected; exact effect tests expose a probability-only blind spot.
+4 additional classical faults rejected:corrupted counts,stale preparation phase,unsupported variance bound and normalized-vector averaging.
+12 malformed contracts rejected before execution; correct and rejected candidate fingerprints/raw records kept separately.
+70 actual CPU complex128 circuit executions; deterministic atol1e-12,rtol0; interval membership is diagnostic and is not forced to pass.
+Acceptance here is this bounded author-run implementation protocol,not independent scholarly review,hardware validation or a new agent skill.

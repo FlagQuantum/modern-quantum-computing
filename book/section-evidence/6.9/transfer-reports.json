@@ -1,0 +1,245 @@
+[
+  {
+    "theta": -0.43,
+    "phi": 1.19,
+    "variant": "correct",
+    "report": {
+      "accepted": true,
+      "checks": {
+        "initial_model": true,
+        "normalized": true,
+        "reference_evolution": true,
+        "program_reference": true,
+        "probability_normalized": true,
+        "analyzer_unitary": true,
+        "measurement_effects": true,
+        "probability_model": true,
+        "probability_from_effects": true,
+        "labels_and_counts": true,
+        "fixed_budget": true
+      },
+      "candidate_sha256": "5021342d272969fc916914b06557c4ea6990c0007795039dc33044ddbc126a9e",
+      "exact_correlation": -0.38700991632753784,
+      "observed_correlation": "-7/20",
+      "interval_half_width": "1/4",
+      "interval_contains_toy_target": true,
+      "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+    }
+  },
+  {
+    "theta": -0.43,
+    "phi": 1.19,
+    "variant": "outcome-phase",
+    "report": {
+      "accepted": true,
+      "checks": {
+        "initial_model": true,
+        "normalized": true,
+        "reference_evolution": true,
+        "program_reference": true,
+        "probability_normalized": true,
+        "analyzer_unitary": true,
+        "measurement_effects": true,
+        "probability_model": true,
+        "probability_from_effects": true,
+        "labels_and_counts": true,
+        "fixed_budget": true
+      },
+      "candidate_sha256": "80eca50611ea5bcb14ba21cd33ed9f00b05957bcfb8effcf658de176f5b8d383",
+      "exact_correlation": -0.38700991632753784,
+      "observed_correlation": "-7/20",
+      "interval_half_width": "1/4",
+      "interval_contains_toy_target": true,
+      "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+    }
+  },
+  {
+    "theta": -0.43,
+    "phi": 1.19,
+    "variant": "wrong-y",
+    "report": {
+      "accepted": false,
+      "checks": {
+        "initial_model": true,
+        "normalized": true,
+        "reference_evolution": true,
+        "program_reference": true,
+        "probability_normalized": true,
+        "analyzer_unitary": true,
+        "measurement_effects": false,
+        "probability_model": false,
+        "probability_from_effects": true,
+        "labels_and_counts": true,
+        "fixed_budget": true
+      },
+      "candidate_sha256": "4f1503a8830895679d5edc572e1866b4e72fb4947c1122146b7debade7666be1",
+      "exact_correlation": -0.38700991632753784,
+      "observed_correlation": "19/40",
+      "interval_half_width": "1/4",
+      "interval_contains_toy_target": false,
+      "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+    }
+  },
+  {
+    "theta": 1.27,
+    "phi": -2.33,
+    "variant": "correct",
+    "report": {
+      "accepted": true,
+      "checks": {
+        "initial_model": true,
+        "normalized": true,
+        "reference_evolution": true,
+        "program_reference": true,
+        "probability_normalized": true,
+        "analyzer_unitary": true,
+        "measurement_effects": true,
+        "probability_model": true,
+        "probability_from_effects": true,
+        "labels_and_counts": true,
+        "fixed_budget": true
+      },
+      "candidate_sha256": "316c94a2307b370a58662e1a8a8e4fd2b66ecc8124586eb8b24679e115cd14f2",
+      "exact_correlation": -0.6928152490973373,
+      "observed_correlation": "-3/5",
+      "interval_half_width": "1/4",
+      "interval_contains_toy_target": true,
+      "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+    }
+  },
+  {
+    "theta": 1.27,
+    "phi": -2.33,
+    "variant": "outcome-phase",
+    "report": {
+      "accepted": true,
+      "checks": {
+        "initial_model": true,
+        "normalized": true,
+        "reference_evolution": true,
+        "program_reference": true,
+        "probability_normalized": true,
+        "analyzer_unitary": true,
+        "measurement_effects": true,
+        "probability_model": true,
+        "probability_from_effects": true,
+        "labels_and_counts": true,
+        "fixed_budget": true
+      },
+      "candidate_sha256": "f5734b715ebf6cd4dd255bf48bdd2ab57300023051a2eeae60a881851e4d3d3f",
+      "exact_correlation": -0.6928152490973373,
+      "observed_correlation": "-3/5",
+      "interval_half_width": "1/4",
+      "interval_contains_toy_target": true,
+      "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+    }
+  },
+  {
+    "theta": 1.27,
+    "phi": -2.33,
+    "variant": "wrong-y",
+    "report": {
+      "accepted": false,
+      "checks": {
+        "initial_model": true,
+        "normalized": true,
+        "reference_evolution": true,
+        "program_reference": true,
+        "probability_normalized": true,
+        "analyzer_unitary": true,
+        "measurement_effects": false,
+        "probability_model": false,
+        "probability_from_effects": true,
+        "labels_and_counts": true,
+        "fixed_budget": true
+      },
+      "candidate_sha256": "4ea62ba6bb030e57b9961c26a0bfc0bc10eff898fe49a324e519fbb6ca162d6d",
+      "exact_correlation": -0.6928152490973373,
+      "observed_correlation": "31/40",
+      "interval_half_width": "1/4",
+      "interval_contains_toy_target": false,
+      "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+    }
+  },
+  {
+    "theta": 2.48,
+    "phi": 0.37,
+    "variant": "correct",
+    "report": {
+      "accepted": true,
+      "checks": {
+        "initial_model": true,
+        "normalized": true,
+        "reference_evolution": true,
+        "program_reference": true,
+        "probability_normalized": true,
+        "analyzer_unitary": true,
+        "measurement_effects": true,
+        "probability_model": true,
+        "probability_from_effects": true,
+        "labels_and_counts": true,
+        "fixed_budget": true
+      },
+      "candidate_sha256": "a167c0fbd70c0df33492d885ce4d9b075ea588ba75ed18d6d79b4ea11fcbb8da",
+      "exact_correlation": 0.22216721262456537,
+      "observed_correlation": "13/40",
+      "interval_half_width": "1/4",
+      "interval_contains_toy_target": true,
+      "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+    }
+  },
+  {
+    "theta": 2.48,
+    "phi": 0.37,
+    "variant": "outcome-phase",
+    "report": {
+      "accepted": true,
+      "checks": {
+        "initial_model": true,
+        "normalized": true,
+        "reference_evolution": true,
+        "program_reference": true,
+        "probability_normalized": true,
+        "analyzer_unitary": true,
+        "measurement_effects": true,
+        "probability_model": true,
+        "probability_from_effects": true,
+        "labels_and_counts": true,
+        "fixed_budget": true
+      },
+      "candidate_sha256": "2a3372f75d440f60da98ebebd65fa7ae0604fceb5bc6c2b8c30d23a08a7a5f3b",
+      "exact_correlation": 0.22216721262456537,
+      "observed_correlation": "13/40",
+      "interval_half_width": "1/4",
+      "interval_contains_toy_target": true,
+      "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+    }
+  },
+  {
+    "theta": 2.48,
+    "phi": 0.37,
+    "variant": "wrong-y",
+    "report": {
+      "accepted": false,
+      "checks": {
+        "initial_model": true,
+        "normalized": true,
+        "reference_evolution": true,
+        "program_reference": true,
+        "probability_normalized": true,
+        "analyzer_unitary": true,
+        "measurement_effects": false,
+        "probability_model": false,
+        "probability_from_effects": true,
+        "labels_and_counts": true,
+        "fixed_budget": true
+      },
+      "candidate_sha256": "8dfd38227228a8eea95e069111b7cffa59a97a43a93c785e240dd783fe892e8d",
+      "exact_correlation": 0.22216721262456537,
+      "observed_correlation": "-9/40",
+      "interval_half_width": "1/4",
+      "interval_contains_toy_target": false,
+      "note": "Interval membership is a statistical diagnostic,not an implementation acceptance gate. Hash is a fingerprint,not authentication."
+    }
+  }
+]

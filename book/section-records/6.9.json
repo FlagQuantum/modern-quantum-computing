@@ -1,0 +1,108 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-measurement-expectation-values-and-statistical-estimation-9",
+  "ref": "6.9",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
+  "depth": "V",
+  "result": "Measurement acceptance protocol",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-2",
+    "sec-measurement-expectation-values-and-statistical-estimation-4",
+    "sec-measurement-expectation-values-and-statistical-estimation-7",
+    "sec-measurement-expectation-values-and-statistical-estimation-8"
+  ],
+  "assumptions": [
+    "Earlier pure-state/projective postulates and fixed-design statistical assumptions;three-qubit ideal CPU experiment.",
+    "Angles radians;full basis q0q1q2;main selected columns q2,q0;all phases retained.",
+    "Terminal Y0/X2 query distinct from alternative classical ideal Zq2/parity branch calculations.",
+    "Fixed score range[-1,1],variance bound1,epsilon1/4,delta1/5,N80;interval membership is not a deterministic gate."
+  ],
+  "verification_obligations": [
+    "Calibrate all basis labels including asymmetric fixtures so main-state symmetry cannot hide order reversal.",
+    "Check native preparation and evolution against independent scalar/matrix references and intended Pauli effects.",
+    "Retain conditional phase,repeatability and outcome ensemble;reject normalized average-vector update.",
+    "Accept effect-equivalent outcome phases without falsely requiring one full-vector phase relation between different analyzers.",
+    "Reject wrong-Y even at zero-signal input where probabilities accidentally agree.",
+    "Validate raw-count reconstruction,source phase and fixed uncertainty budget.",
+    "Keep rejected and valid packets separately;hash is fingerprint,not authentication or hardware provenance."
+  ],
+  "formula_code_units": [
+    "formula-code-6-9-contract",
+    "formula-code-6-9-labels",
+    "formula-code-6-9-readout",
+    "formula-code-6-9-branches",
+    "formula-code-6-9-basis",
+    "formula-code-6-9-records",
+    "formula-code-6-9-uncertainty",
+    "formula-code-6-9-evidence"
+  ],
+  "sources": [
+    {
+      "locator": "ED:protocol",
+      "local": "docs/reader-continuity.md#reader-review-and-acceptance-evidence",
+      "frozen_url": "https://github.com/FlagQuantum/modern-quantum-computing/blob/ad17637ff3ccc32c32b93994cfe5b589d3c30e53/docs/reader-continuity.md",
+      "inspection": "Original editorial specification read locally;prior6.2/6.4/6.7/6.8 working mathematical results reused;no new paper audit."
+    }
+  ],
+  "implementation": {
+    "path": "examples/foundations/measurement_lab.py",
+    "command": "python examples/foundations/measurement_lab.py",
+    "prose_check_command": "python scripts/check_measurement_lab_prose.py",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "cpu",
+      "precision": "complex128/float64"
+    },
+    "author_execution": "passed",
+    "complete_program_circuits_per_invocation": 70,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 12,
+    "separate_transfer_circuits": 18,
+    "execution_ledger": {
+      "initial_passing": 70,
+      "strengthened_guard_complete": 70,
+      "body_assembly": 12,
+      "body_plus_complete_checker": 82,
+      "separate_transfer": 18,
+      "total_section69_circuits": 252,
+      "note": "Initial10-contract version passed;expanded12-contract/program-reference guards then passed. Initial passing source/output retained;not a failure repair. Scoped6.8 regression50 and futureCI separate."
+    },
+    "checks": [
+      "16basis queries:8declared-order pass,4of8reversed-order fail.",
+      "48native calls for24normal/effect-equivalent preparation/readout candidates and classically checked branches.",
+      "6native calls for wrong-Y,zero-signal wrong-Y andshort-budget rejection.",
+      "Classical faults:corrupted counts,stale phase,unsupported zero variance bound,normalized-vector averaging.",
+      "12malformed contracts;18fresh signed-angle/complex-phase candidate calls."
+    ],
+    "tolerance": "Deterministic full-vector/probability/effect atol1e-12,rtol0.No phase alignment,input renormalization or negative-probability clipping.No random interval must-cover assertion.",
+    "unplanned_example_execution_failures": "None;deliberate rejections are expected protocol outputs,not native runtime failures.",
+    "limitations": "One bounded3qubit teaching protocol,not general hardware certification,external attestation,new skill or independent scholarly acceptance.Native gate/probability/sample support only;branches/effects/acceptance classical;no sampled collapse/reset/noise calibration.",
+    "script_sha256": "98b8c668a2e1f40bdebb675aa7dfb4aa80156b6e7e41fd86618a19bd2d59f39f"
+  },
+  "assessment": {
+    "tasks": [
+      "6.9-A identifiability/calibration",
+      "6.9-B branch/ignored update derivation",
+      "6.9-C new signed phase implementation",
+      "6.9-D layered diagnosis/reporting"
+    ],
+    "answers": "Supplied;reader trial not performed."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run bounded protocol passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "70complete/12body/18transfer calls,independent references and expected failures passed;scoped6.8regression passed;website/formula QA recorded separately. Strict fresh71-page build,all local links/fragments,details parsing and actual-browser formulas/expanded answers passed."
+  },
+  "production": {
+    "next_draft": "7.1 Product states and entangled states",
+    "chapter6": "Nine working drafts;no formal chapter acceptance",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Actual local IAB1280x720 screenshots checked complex preparation,ordered Pauli effects/Y action/correlation derivation,conditional branches and coarse/fine probabilities,effect-equivalent analyzer phase identity,and expanded chapter answers.No garbling or horizontal clipping in inspected math."
+  }
+}

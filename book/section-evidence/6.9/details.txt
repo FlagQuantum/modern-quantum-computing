@@ -1,0 +1,7 @@
+{
+  "rendered_pages": 71,
+  "details_blocks": 24,
+  "math_wrappers_in_details": 133,
+  "raw_answer_markup_findings": [],
+  "note": "Static HTML parse check;actual6.9formula/expanded-answer QA recorded separately."
+}
