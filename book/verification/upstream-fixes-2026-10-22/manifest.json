@@ -14,10 +14,13 @@
     {
       "issue": 704,
       "pr": 712,
-      "commit": "046c465c64005ebe8f464a958bdbaf10a453d6fe",
+      "commit": "99f8c90befef7ca3480ef5f88909462b9e137115",
       "status": "draft PR; not merged/released",
       "focused_passed": 439,
-      "end_to_end_tests": 34
+      "end_to_end_tests": 34,
+      "implementation_commit": "046c465c64005ebe8f464a958bdbaf10a453d6fe",
+      "benchmark_contract_passed": 241,
+      "production_python_diff_from_validated_implementation": []
     }
   ],
   "combined": {
@@ -225,6 +228,26 @@
     "final-status-links": {
       "file": "final-status-links.log",
       "sha256": "70e6b10dd9a1fe8b38f459d1cce0d192948b877ccd8aee656d7d6c3e9d21377b"
+    },
+    "compiler-benchmark-contracts": {
+      "file": "compiler-benchmark-contracts.log",
+      "sha256": "8744054734f59bd381e90727c90763600103e97e7eb858fb8f18efe760072919"
+    },
+    "current-benchmark-policy": {
+      "file": "current-benchmark-policy.json",
+      "sha256": "cf405b99238522a73e8479e548034c9328e8511d3c33b0291335ccda19801961"
+    },
+    "benchmark-initial-ci-failures": {
+      "file": "benchmark-initial-ci-failures.txt",
+      "sha256": "aaab60bbabe1f1f31d02933e57a19a533031b128041b40a4206095f9301c39d4"
+    },
+    "benchmark-followup-site-build": {
+      "file": "benchmark-followup-site-build.log",
+      "sha256": "c6bc877f8b037199193753ac68d65e215415f8f361b7cda9589e9ea96fb555e9"
+    },
+    "benchmark-followup-site-links": {
+      "file": "benchmark-followup-site-links.log",
+      "sha256": "70e6b10dd9a1fe8b38f459d1cce0d192948b877ccd8aee656d7d6c3e9d21377b"
     }
   },
   "book_checks": {
@@ -256,6 +279,12 @@
       "local_core_whole_suite": "invalidated mixed-source verification",
       "reason": "A compiler working-copy file was temporarily edited/restored while collection was running; missing-helper import failures are not product evidence. Replaced by clean frozen 1f001da4c rerun.",
       "original_log_sha256": "caf559ed7f6a6884f74fccc43c2a30687197151a4a7e667a9c15324373910373"
+    },
+    {
+      "compiler_revision": "046c465c64005ebe8f464a958bdbaf10a453d6fe",
+      "optional_qiskit_ci": "5 failed,234 passed; stale benchmark policy/counts and an invalid erased-measurement instrument",
+      "job": "https://github.com/flagos-ai/FlagQuantum/actions/runs/39724819845/job/119648687075",
+      "followup": "99f8c90be updates current benchmark contracts and reference measurement; production compiler Python is unchanged; all241 benchmark contracts now pass"
     }
   ]
 }

@@ -7,7 +7,7 @@ This is a revision-specific repair ledger, checked on **October 22, 2026**. It s
 | Defect | Proposed source repair | Validation | Merge/release status |
 |---|---|---|---|
 | [#685: nonunitary custom matrices accepted by `Circuit.adjoint`](https://github.com/flagos-ai/FlagQuantum/issues/685) | Draft [PR #711](https://github.com/flagos-ai/FlagQuantum/pull/711), commit `1f001da4c1f13260b1bba34dda14d958399a5a3f` | 202 focused adjoint/composition tests pass, including 80 adjoint tests | Submitted for review; not merged; no fixed release verified |
-| [#704: tiny nonzero amplitudes lost in exact execution](https://github.com/flagos-ai/FlagQuantum/issues/704) | Draft [PR #712](https://github.com/flagos-ai/FlagQuantum/pull/712), final commit `046c465c64005ebe8f464a958bdbaf10a453d6fe` | 439 focused compiler/inversion/synthesis tests pass, including 34 end-to-end cases | Submitted for review; not merged; no fixed release verified |
+| [#704: tiny nonzero amplitudes lost in exact execution](https://github.com/flagos-ai/FlagQuantum/issues/704) | Draft [PR #712](https://github.com/flagos-ai/FlagQuantum/pull/712), implementation `046c465c6`; PR head `99f8c90befef7ca3480ef5f88909462b9e137115` | 439 focused compiler/inversion/synthesis tests pass, including 34 end-to-end cases | Submitted for review; not merged; no fixed release verified |
 
 Both branches start from upstream `main` commit `f187adbbf`. Their changes concern separate Core and Compiler ownership domains. A temporary local combination also passes **575 distinct selected tests**. These overlapping selections are separate checks, not additive test counts.
 
@@ -42,6 +42,12 @@ The initial Compiler patch's remote CPU job found 25 synthesis/factorization reg
 One earlier local Core whole-suite run loaded a transient compiler file while the working copy was being restored. It raised missing-helper import errors and is invalidated as mixed-source verification, not attributed to the product. The frozen-commit rerun above replaces it.
 
 The PRs remain drafts while broader validation is unresolved. Their GitHub check panels are the authoritative live CI status. No GPU, hardware, distributed scalability or package-release validation is claimed here. Independent code review, mathematical review and reader acceptance have not been invented or marked complete.
+
+## Benchmark-policy follow-up
+
+The optional Qiskit job found five benchmark contracts still expecting the former near-zero deletion policy. Follow-up `99f8c90be` keeps the production compiler Python byte-for-byte unchanged from `046c465c6`, fixes the historical counterfactual tolerance explicitly, and re-measures the current contracts. **All 241 compiler benchmark-contract tests pass on certified Qiskit 2.5.2.**
+
+The audit also found that the old benchmark erased intermediate measurements before comparing coherent vectors. That changes the experiment. Its bounded classical reference now sums unnormalized measurement branches and independently compares each optimized circuit with its source, keeping the existing probability-error bound. A dedicated H–measurement–H check distinguishes the instruments. The current policy retains more gates than the lossy reference (net signed reduction **-174**, not a speedup); old published result files are not rewritten. See the [upstream benchmark note](https://github.com/flagos-ai/FlagQuantum/blob/99f8c90befef7ca3480ef5f88909462b9e137115/benchmarks/notes/exact_identity_policy.md) and the evidence ledger.
 
 ## What readers should do now
 

@@ -1,0 +1,7 @@
+Superseded optional-Qiskit benchmark contract failures at 046c465c6:
+2026-10-22T05:05:52.4358445Z FAILED tests/benchmark_contract/test_compiler_commutation_cancellation.py::test_the_identity_rows_the_rotation_merge_moved_are_attributed - AssertionError: zero_angle_rotations
+2026-10-22T05:05:52.4364489Z FAILED tests/benchmark_contract/test_compiler_identity_elimination.py::test_the_band_is_the_shipped_tolerance_and_both_edges_hold - AssertionError: rz
+2026-10-22T05:05:52.4366281Z FAILED tests/benchmark_contract/test_compiler_identity_elimination.py::test_a_population_that_was_not_shipped_shorter_says_so - AssertionError: ('zero_angle_rotations', 'superseded_rule_instruction_count')
+2026-10-22T05:05:52.4368041Z FAILED tests/benchmark_contract/test_compiler_one_qubit_optimization.py::test_the_vocabulary_decline_saves_gates_after_lowering - assert 386 == 384
+2026-10-22T05:05:52.4369409Z FAILED tests/benchmark_contract/test_compiler_two_qubit_optimization.py::test_the_fold_is_what_moved_the_round_18_pipeline_rows - AssertionError: mixed
+2026-10-22T05:05:52.4373889Z ================== 5 failed, 234 passed in 159.64s (0:02:39) ===================

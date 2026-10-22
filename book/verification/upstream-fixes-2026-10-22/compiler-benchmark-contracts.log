@@ -1,0 +1,33 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/baai/Documents/liuwei/FlagQuantum-fix-704-v2
+configfile: pytest.ini
+plugins: cov-7.1.0, xdist-3.8.0, platformdirs-4.13.5
+collected 241 items
+
+tests/benchmark_contract/test_compiler_basis_translation.py ...........  [  4%]
+tests/benchmark_contract/test_compiler_commutation_cancellation.py ..... [  6%]
+....................                                                     [ 14%]
+tests/benchmark_contract/test_compiler_diagonal_before_measure.py ...... [ 17%]
+................................                                         [ 30%]
+tests/benchmark_contract/test_compiler_identity_elimination.py ......... [ 34%]
+.......                                                                  [ 37%]
+tests/benchmark_contract/test_compiler_inverse_cancellation.py ......... [ 41%]
+............                                                             [ 46%]
+tests/benchmark_contract/test_compiler_lookahead_swap.py ..........      [ 50%]
+tests/benchmark_contract/test_compiler_one_qubit_decomposition.py ...... [ 52%]
+.                                                                        [ 53%]
+tests/benchmark_contract/test_compiler_one_qubit_optimization.py ....... [ 56%]
+.....                                                                    [ 58%]
+tests/benchmark_contract/test_compiler_one_qubit_synthesis.py .........  [ 61%]
+tests/benchmark_contract/test_compiler_routing_cache.py .                [ 62%]
+tests/benchmark_contract/test_compiler_routing_quality.py ..........     [ 66%]
+tests/benchmark_contract/test_compiler_stochastic_swap.py ..........     [ 70%]
+tests/benchmark_contract/test_compiler_two_qubit_optimization.py ....... [ 73%]
+......                                                                   [ 75%]
+tests/benchmark_contract/test_compiler_two_qubit_synthesis.py .......... [ 80%]
+.....                                                                    [ 82%]
+tests/benchmark_contract/test_compiler_zero_state_reset.py ............. [ 87%]
+..............................                                           [100%]
+
+======================== 241 passed in 64.44s (0:01:04) ========================

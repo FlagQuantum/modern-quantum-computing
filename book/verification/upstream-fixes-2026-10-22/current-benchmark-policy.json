@@ -1,0 +1,317 @@
+{
+  "context": "Counterfactual identity predicate in current pipeline; not a full historical compiler replay",
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.13.0",
+    "qiskit": "2.5.2",
+    "device": "cpu",
+    "precision": "complex128"
+  },
+  "deletion_tolerance": 0.0,
+  "matrix_probability_error_bound": 1e-12,
+  "instrument": "Unnormalized computational-measurement branches; source compared independently with each optimized program",
+  "pipeline_delta": [
+    {
+      "label": "parameter_free_gates",
+      "circuit_count": 30,
+      "executed_circuit_count": 30,
+      "source_instruction_count": 554,
+      "superseded_rule_instruction_count": 167,
+      "optimized_instruction_count": 167,
+      "removed_by_the_rule_alone": 44,
+      "removed_by_the_rule_in_the_pipeline": 0,
+      "net_instruction_delta_against_the_superseded_rule": 0,
+      "changed_circuit_count": 0,
+      "max_probability_vector_difference": 6.661338147750939e-16
+    },
+    {
+      "label": "zero_angle_rotations",
+      "circuit_count": 30,
+      "executed_circuit_count": 30,
+      "source_instruction_count": 554,
+      "superseded_rule_instruction_count": 162,
+      "optimized_instruction_count": 282,
+      "removed_by_the_rule_alone": 83,
+      "removed_by_the_rule_in_the_pipeline": 0,
+      "net_instruction_delta_against_the_superseded_rule": -120,
+      "changed_circuit_count": 28,
+      "max_probability_vector_difference": 4.8960835385969403e-14
+    },
+    {
+      "label": "full_turn_rotations",
+      "circuit_count": 30,
+      "executed_circuit_count": 30,
+      "source_instruction_count": 554,
+      "superseded_rule_instruction_count": 139,
+      "optimized_instruction_count": 150,
+      "removed_by_the_rule_alone": 181,
+      "removed_by_the_rule_in_the_pipeline": 6,
+      "net_instruction_delta_against_the_superseded_rule": -11,
+      "changed_circuit_count": 19,
+      "max_probability_vector_difference": 7.771561172376096e-16
+    },
+    {
+      "label": "zero_polar_u3",
+      "circuit_count": 30,
+      "executed_circuit_count": 30,
+      "source_instruction_count": 810,
+      "superseded_rule_instruction_count": 176,
+      "optimized_instruction_count": 176,
+      "removed_by_the_rule_alone": 101,
+      "removed_by_the_rule_in_the_pipeline": 1,
+      "net_instruction_delta_against_the_superseded_rule": 0,
+      "changed_circuit_count": 5,
+      "max_probability_vector_difference": 1.2212453270876722e-15
+    },
+    {
+      "label": "two_wire_rotations",
+      "circuit_count": 30,
+      "executed_circuit_count": 30,
+      "source_instruction_count": 322,
+      "superseded_rule_instruction_count": 200,
+      "optimized_instruction_count": 200,
+      "removed_by_the_rule_alone": 47,
+      "removed_by_the_rule_in_the_pipeline": 0,
+      "net_instruction_delta_against_the_superseded_rule": 0,
+      "changed_circuit_count": 0,
+      "max_probability_vector_difference": 9.020562075079397e-17
+    },
+    {
+      "label": "mixed",
+      "circuit_count": 30,
+      "executed_circuit_count": 30,
+      "source_instruction_count": 678,
+      "superseded_rule_instruction_count": 405,
+      "optimized_instruction_count": 421,
+      "removed_by_the_rule_alone": 128,
+      "removed_by_the_rule_in_the_pipeline": 4,
+      "net_instruction_delta_against_the_superseded_rule": -16,
+      "changed_circuit_count": 23,
+      "max_probability_vector_difference": 2.3453461395206432e-14
+    },
+    {
+      "label": "mixed_with_mid_circuit_measures",
+      "circuit_count": 30,
+      "executed_circuit_count": 30,
+      "source_instruction_count": 761,
+      "superseded_rule_instruction_count": 505,
+      "optimized_instruction_count": 532,
+      "removed_by_the_rule_alone": 121,
+      "removed_by_the_rule_in_the_pipeline": 4,
+      "net_instruction_delta_against_the_superseded_rule": -27,
+      "changed_circuit_count": 21,
+      "max_probability_vector_difference": 1.429412144204889e-14
+    }
+  ],
+  "basis_reach": [
+    {
+      "label": "ibm-rz-sx-cx",
+      "strict_rule": {
+        "optimized_gates": 771,
+        "legal_gates": 771
+      },
+      "shipped_rule": {
+        "optimized_gates": 763,
+        "legal_gates": 763
+      },
+      "no_decline_rule": {
+        "optimized_gates": 386,
+        "legal_gates": 909
+      },
+      "refused_circuits": 0
+    },
+    {
+      "label": "ibm-heron-cz",
+      "strict_rule": {
+        "optimized_gates": 771,
+        "legal_gates": 771
+      },
+      "shipped_rule": {
+        "optimized_gates": 763,
+        "legal_gates": 763
+      },
+      "no_decline_rule": {
+        "optimized_gates": 386,
+        "legal_gates": 909
+      },
+      "refused_circuits": 0
+    },
+    {
+      "label": "rotational",
+      "strict_rule": {
+        "optimized_gates": 771,
+        "legal_gates": 771
+      },
+      "shipped_rule": {
+        "optimized_gates": 763,
+        "legal_gates": 763
+      },
+      "no_decline_rule": {
+        "optimized_gates": 386,
+        "legal_gates": 909
+      },
+      "refused_circuits": 0
+    },
+    {
+      "label": "ion-trap-rz-rx-rzz",
+      "strict_rule": {
+        "optimized_gates": 771,
+        "legal_gates": 771
+      },
+      "shipped_rule": {
+        "optimized_gates": 763,
+        "legal_gates": 763
+      },
+      "no_decline_rule": {
+        "optimized_gates": 386,
+        "legal_gates": 909
+      },
+      "refused_circuits": 0
+    },
+    {
+      "label": "clifford-t",
+      "strict_rule": {
+        "optimized_gates": 771,
+        "legal_gates": 0
+      },
+      "shipped_rule": {
+        "optimized_gates": 763,
+        "legal_gates": 0
+      },
+      "no_decline_rule": {
+        "optimized_gates": 386,
+        "legal_gates": 0
+      },
+      "refused_circuits": 80
+    }
+  ],
+  "attribution": {
+    "parameter_free_gates": {
+      "off:True": [
+        167,
+        167
+      ],
+      "off:False": [
+        167,
+        167
+      ],
+      "shipped:True": [
+        167,
+        167
+      ],
+      "shipped:False": [
+        167,
+        167
+      ]
+    },
+    "zero_angle_rotations": {
+      "off:True": [
+        162,
+        286
+      ],
+      "off:False": [
+        162,
+        282
+      ],
+      "shipped:True": [
+        162,
+        286
+      ],
+      "shipped:False": [
+        162,
+        282
+      ]
+    },
+    "full_turn_rotations": {
+      "off:True": [
+        139,
+        150
+      ],
+      "off:False": [
+        139,
+        150
+      ],
+      "shipped:True": [
+        139,
+        150
+      ],
+      "shipped:False": [
+        139,
+        150
+      ]
+    },
+    "zero_polar_u3": {
+      "off:True": [
+        176,
+        176
+      ],
+      "off:False": [
+        176,
+        176
+      ],
+      "shipped:True": [
+        176,
+        176
+      ],
+      "shipped:False": [
+        176,
+        176
+      ]
+    },
+    "two_wire_rotations": {
+      "off:True": [
+        245,
+        245
+      ],
+      "off:False": [
+        244,
+        244
+      ],
+      "shipped:True": [
+        201,
+        201
+      ],
+      "shipped:False": [
+        200,
+        200
+      ]
+    },
+    "mixed": {
+      "off:True": [
+        418,
+        432
+      ],
+      "off:False": [
+        416,
+        430
+      ],
+      "shipped:True": [
+        406,
+        423
+      ],
+      "shipped:False": [
+        405,
+        421
+      ]
+    },
+    "mixed_with_mid_circuit_measures": {
+      "off:True": [
+        518,
+        540
+      ],
+      "off:False": [
+        517,
+        538
+      ],
+      "shipped:True": [
+        506,
+        534
+      ],
+      "shipped:False": [
+        505,
+        532
+      ]
+    }
+  },
+  "note": "Historical result artifacts were not rewritten. Retaining tiny nonzero instructions has a measured signed gate cost, not a claimed speedup."
+}
