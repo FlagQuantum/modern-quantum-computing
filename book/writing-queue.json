@@ -688,7 +688,7 @@
         "sec-composite-systems-tensor-products-and-qubit-ordering-1"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md"
     },
     {

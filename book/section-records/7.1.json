@@ -1,0 +1,94 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-entanglement-and-quantum-information-protocols-1",
+  "ref": "7.1",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+  "depth": "F",
+  "result": "Pure-state separability is rank one",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-1"
+  ],
+  "assumptions": [
+    "Finite normalized nonzero pure vector;fixed bipartition and ordered orthonormal product coordinates.",
+    "Numeric residuals do not certify exact rank or unknown physical state."
+  ],
+  "verification_obligations": [
+    "Prove both directions via column span;recover normalized phase-preserving factors.",
+    "Prove all-minors equivalence including rectangular/singleton boundary.",
+    "Index complementary ordered supports explicitly;distinguish recut from local unitary.",
+    "Compare actual native complex amplitudes with independent scalar constructions.",
+    "Retain tiny-angle native failure and do not claim native fixed."
+  ],
+  "formula_code_units": [
+    "formula-code-7-1-coefficients",
+    "formula-code-7-1-partition",
+    "formula-code-7-1-proof",
+    "formula-code-7-1-entangled",
+    "formula-code-7-1-local",
+    "formula-code-7-1-probabilities",
+    "formula-code-7-1-precision",
+    "formula-code-7-1-contract"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.5",
+      "scope": "Frozen locator at printed109;original rank/minor proof supplied here. No new external paper audit or claim of completed source proof review."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/product_entanglement.py",
+    "prose_checker": "scripts/check_product_entanglement_prose.py",
+    "evidence": "book/section-evidence/7.1",
+    "environment": "Python3.12.14 / FlagQuantum0.3.1 / Torch2.13.0;CPUcomplex128",
+    "complete_program_circuits_per_invocation": 43,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 8,
+    "separate_transfer_circuits": 12,
+    "execution_ledger": {
+      "complete": 43,
+      "initial_failed_body": 8,
+      "tiny_probe": 4,
+      "explicit_matrix_failed_probe": 1,
+      "corrected_body_plus_complete": 51,
+      "transfer": 12,
+      "total": 119,
+      "note": "Scoped6.9regression83 and futureCI separate. No duplicate rerun of complete program for comment/docstring edits."
+    },
+    "contracts": 10,
+    "checks": [
+      "12 basis states across all ordered cuts",
+      "12 complex products with scalar amplitudes",
+      "9 entangled phase pairs",
+      "3 nonadjacent cut comparisons",
+      "3 near-product diagnostics",
+      "4 local-unitary Bell transformations",
+      "12 fresh four-qubit transfer circuits and3 classical rectangular fixtures"
+    ],
+    "tolerance": "Implementation atol1e-12,rtol0;near-product diagnostic allclose separately1e-9. No phase alignment,normalization repair,numeric exact-rank or interval certificate.",
+    "initial_failure": "Body epsilon1e-14 minor>0 failed after8body circuits;four-value native probe and one explicit-unitary probe reproduced zero output. Initial body retained;issue704 filed. Corrected teaching example uses validatedepsilon1e-10 and separatelydeclared diagnostic tolerance1e-9;not native fix.",
+    "script_sha256": "2c83207e0e76f48245632e7d473f6041145e101ab007b164e4cdac7f29ef6586"
+  },
+  "assessment": {
+    "tasks": [
+      "7.1-A cut dependence",
+      "7.1-B normalized proof",
+      "7.1-C fresh four-qubit ordered implementation",
+      "7.1-D false acceptance diagnosis"
+    ],
+    "answers": "Supplied;reader trial pending"
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Complete43/body8/transfer12 passed;scoped6.9body+complete83 regression passed. Fresh strict72-page build,all links/fragments and details parsing passed. Actual localIAB screenshots checked coefficient tensor/matrix,full normalized rank-one proof,local-unitary index formula,near-product precision and expanded exercise answers;no garbling in inspected mathematics."
+  },
+  "production": {
+    "next_draft": "7.2 Schmidt decomposition",
+    "pdf": "Existing edition unchanged",
+    "formula_display": "Actual browser1280x720 local rendered page and expanded answers inspected. No online screenshot claimed."
+  }
+}

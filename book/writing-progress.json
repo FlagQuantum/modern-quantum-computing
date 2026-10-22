@@ -461,6 +461,16 @@
       "body": "docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md",
       "record": "book/section-records/6.9.json",
       "author_execution": "passed:Python3.12.14/FlagQuantum0.3.1/Torch2.13.0 CPUcomplex128;70complete/12body/18fresh transfer;deliberate rejections retained;author-run protocol only"
+    },
+    "sec-entanglement-and-quantum-information-protocols-1": {
+      "state": "draft",
+      "brief": "book/briefs/ch07.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+      "record": "book/section-records/7.1.json",
+      "author_execution": "passed:43complete/8body/12fresh transfer circuits;originaltiny-anglefailure/probes/issue704 retained;not independently accepted"
     }
   },
   "existing_pilots": [

@@ -1,0 +1,2 @@
+Actual browser1280x720 local rendered page and expanded answers inspected. No online screenshot claimed.
+Inspected coefficient expansion and complex2x2matrix;rank-one pivot/normalization;local L C R^T;epsilon determinant/distance;expanded A-D answers including transfer kets. All displayed without rawTeX or clipping in inspected math.

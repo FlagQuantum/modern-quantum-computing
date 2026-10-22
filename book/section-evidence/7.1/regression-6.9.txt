@@ -1,0 +1,2 @@
+8 cumulative 6.9 prose fragments: exact outputs and assertions passed.
+Complete 6.9 example: exact expected-output comparison passed.

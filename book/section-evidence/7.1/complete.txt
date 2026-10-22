@@ -1,0 +1,8 @@
+12 native basis states: all ordered bipartitions passed.
+12 complex product preparations: scalar factors and pivot reconstructions passed.
+9 entangled pair preparations: closed complex determinant passed.
+3 nonadjacent-register preparations: product across one cut, entangled across another.
+3 near-product states: nonzero small minors retained; no exact numeric rank certificate.
+4 local-unitary Bell transformations: determinant magnitude preserved.
+10 malformed contracts rejected before simulation.
+43 CPU complex128 circuits passed; exact theorem and numeric diagnostics remain distinct.

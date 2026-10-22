@@ -1,0 +1,1 @@
+Metadata utility stopped when it expected a blank line after the final README paragraph at EOF. Earlier metadata writes were valid;remaining README/index/CI entries were appended explicitly,then fresh strict build repeated. This was not a scientific execution failure.

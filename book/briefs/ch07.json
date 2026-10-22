@@ -1,0 +1,32 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "scope": "Chapter7 frozen queue;author verification separate from acceptance",
+  "sections": [
+    {
+      "sequence": 47,
+      "batch": "B02",
+      "section_id": "sec-entanglement-and-quantum-information-protocols-1",
+      "ref": "7.1",
+      "title": "Product states and entangled states",
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-1"
+      ],
+      "role": "batch target",
+      "state": "not_started",
+      "planned_body_path": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+      "question": "When is a normalized pure state a product across a declared bipartition?",
+      "entry": "4.1 product bases;rank is defined here as column-span dimension.",
+      "exit": "Prove product iff coefficient rank one,with normalized factors and phase retained.",
+      "worked_case": "Complex products,Bell phases,nonadjacent ordered cuts,near-product and identical-probability counterexamples.",
+      "boundary": "Finite pure state and fixed bipartition;no mixed separability or exact floating-point rank certificate.",
+      "code_plan": "Visible native FQ preparation/run;explicit indexed coefficient gather,minors and pivot reconstruction as classical analysis.",
+      "independent_check": "Scalar coordinate products,closed sparse amplitudes,explicit minors and local invertible transformations.",
+      "transfer_task": "Fresh four-qubit nonadjacent partitions and complex phases.",
+      "source_locators": [
+        "NC:2.5"
+      ],
+      "status": "draft"
+    }
+  ]
+}

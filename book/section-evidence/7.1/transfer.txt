@@ -1,0 +1,2 @@
+12 fresh four-qubit native circuits: scalar amplitudes, ordered products and entangled recuts passed.
+3 rectangular 2x3 classical products: zero columns and complex pivot boundaries passed; no extra quantum calls.
