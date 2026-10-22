@@ -1,0 +1,2 @@
+Final8bodyfragments:explicitnativegate/run path andall exactprintedoutputs passed;6actualcircuits.
+Completeprogramunchanged;its46nativecircuits werealready independentlyexecuted andoutputchecked.

@@ -1,0 +1,9 @@
+12 native complex products: all ordered cuts reconstruct with one resolved coefficient.
+18 complex entangled pairs: closed coefficients, scalar reconstruction and product-overlap checks passed.
+3 degenerate Bell spectra: conjugate paired basis rotations reconstruct unchanged states.
+3 nonadjacent-register states: spectra depend on the bipartition, not its internal ordering.
+2 near-product spectra: all singular values retained; threshold-dependent diagnostics declared.
+6 native inverse-basis analyzers: complete amplitudes and matched-label probabilities passed.
+2 identical computational distributions: different Schmidt spectra verified.
+10 malformed contracts rejected before simulation.
+46 CPU complex128 circuits passed; no exact numerical-rank or hardware certificate claimed.

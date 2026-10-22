@@ -1,0 +1,9 @@
+Unit1: complex Schmidt reconstruction passed; using V directly failed
+Unit2: sum of squared Schmidt coefficients = 1.000000
+Unit3: Schmidt-basis readout: only labels 00 and 11; weights equal squared coefficients
+Unit4: local unitaries preserve the entire Schmidt spectrum
+Unit5: degenerate spectrum: different orthonormal Schmidt bases, same complex state
+Unit6: maximum squared product overlap = 0.810805
+Unit7: grouped cut: (1,0); split cut: (1/sqrt(2),1/sqrt(2)); internal reorder unchanged
+Unit8: same nonzero coefficient: 1 resolved at 1e-9, 2 at 1e-12; 3 invalid contracts rejected
+6 actual native circuits;one direct fq.run and five s.query calls.

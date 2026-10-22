@@ -13,7 +13,7 @@
         "sec-composite-systems-tensor-products-and-qubit-ordering-1"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
       "question": "When is a normalized pure state a product across a declared bipartition?",
       "entry": "4.1 product bases;rank is defined here as column-span dimension.",
@@ -23,6 +23,28 @@
       "code_plan": "Visible native FQ preparation/run;explicit indexed coefficient gather,minors and pivot reconstruction as classical analysis.",
       "independent_check": "Scalar coordinate products,closed sparse amplitudes,explicit minors and local invertible transformations.",
       "transfer_task": "Fresh four-qubit nonadjacent partitions and complex phases.",
+      "source_locators": [
+        "NC:2.5"
+      ],
+      "status": "draft"
+    },
+    {
+      "ref": "7.2",
+      "section_id": "sec-entanglement-and-quantum-information-protocols-2",
+      "title": "Schmidt decomposition",
+      "depth": "F",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-5",
+        "sec-entanglement-and-quantum-information-protocols-1"
+      ],
+      "question": "How does a complex matrix SVD yield orthonormal subsystem vectors and an invariant entanglement rank?",
+      "entry": "2.5 finite spectral theorem/SVD;7.1 coefficient matrix and fixed ordered bipartition.",
+      "exit": "Prove Schmidt existence,normalization,rank/minimal product count,local-unitary invariance,degenerate freedom and maximal product overlap.",
+      "worked_case": "Complex locally rotated pair,matched Schmidt readout,degenerate Bell gauges,nonadjacent register cuts and small nonzero coefficients.",
+      "boundary": "Finite normalized pure states;all singular values retained numerically,no exact-rank certificate,mixed-state criteria or hardware tomography.",
+      "code_plan": "Visible native FQ preparation/run and inverse local analyzers;Torch thin SVD is explicit classical postprocessing,not invented native endpoint.",
+      "independent_check": "Closed pair singular values,scalar component reconstruction,orthogonality,analytic matched outcomes and exact rectangular fixtures.",
+      "transfer_task": "Fresh four-qubit ordered nonadjacent cuts plus rectangular complex matrices.",
       "source_locators": [
         "NC:2.5"
       ],

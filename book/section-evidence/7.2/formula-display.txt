@@ -1,0 +1,1 @@
+Actual local IAB1280x720:theorem,spectral construction and orthogonality,B complex conjugation,localunitarysimilarity,degeneratepairedrotations,overlapbound/distance,expandedA-Danswer formulas displayed without garbling or clipping in inspected views. ExactprintedexerciseC additionally executed and recorded separately.

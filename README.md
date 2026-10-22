@@ -12,7 +12,7 @@ FlagQuantum Team · Beijing Academy of Artificial Intelligence (BAAI)
 
 An open English textbook that connects quantum computing equations to executable programs and independent numerical checks.
 
-**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7, 4.1–4.8, 5.1–5.8, 6.1–6.9 and 7.1, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
+**Status: early draft.** This repository contains a nine-part, 50-chapter plan, shared conventions, working drafts of sections 1.1–1.6, 2.1–2.8, 3.1–3.7, 4.1–4.8, 5.1–5.8, 6.1–6.9 and 7.1–7.2, and three earlier starter chapters. It is not a complete textbook. The examples target **FlagQuantum 0.3.1** on CPU with complex128 precision; newer releases require revalidation.
 
 ## Two entry points: learners and agents
 
@@ -183,3 +183,5 @@ Section [6.8 Confidence intervals and shot budgets](docs/chapters/ch-measurement
 Section [6.9 Measurement laboratory and failure diagnosis](docs/chapters/ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-9) now integrates preparation, branch, basis, raw-record and uncertainty checks in a bounded native experiment. Eight checked units and 70 complete-program circuits retain deliberate failures and distinguish equivalent analyzers from false positives. Chapter 6 has nine working drafts; independent acceptance remains pending.
 
 Section [7.1 Product states and entangled states](docs/chapters/ch-entanglement-and-quantum-information-protocols.md#sec-entanglement-and-quantum-information-protocols-1) opens Chapter 7 with a full rank-one/minors proof and eight formula-to-code units. Native preparations, explicit ordered cuts and independent scalar checks distinguish exact entanglement from tolerance-based diagnostics. A tiny-angle execution limitation is retained and reported in [FlagQuantum issue #704](https://github.com/flagos-ai/FlagQuantum/issues/704). Independent acceptance remains pending.
+
+Section [7.2 Schmidt decomposition](docs/chapters/ch-entanglement-and-quantum-information-protocols.md#sec-entanglement-and-quantum-information-protocols-2) supplies a full finite existence proof, normalization, rank/minimality and local-unitary invariance, with complex-conjugation and degenerate-basis conventions. Eight checked formula-to-code units, 46 complete-program circuits and native inverse-basis analyzers distinguish actual quantum execution from classical SVD postprocessing. Independent acceptance remains pending.

@@ -1,0 +1,100 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-entanglement-and-quantum-information-protocols-2",
+  "ref": "7.2",
+  "date": "2026-10-22",
+  "state": "draft",
+  "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+  "depth": "F",
+  "result": "Schmidt decomposition and Schmidt-rank invariance",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-5",
+    "sec-entanglement-and-quantum-information-protocols-1"
+  ],
+  "assumptions": [
+    "Finite normalized bipartite pure vector and fixed ordered orthonormal product coordinates.",
+    "Spectral theorem from2.5,coefficient interpretation from7.1;no partial trace/mixed-state assumptions."
+  ],
+  "verification_obligations": [
+    "Full existence proof fromCCdagger spectralbasis,zeroeigenvalue terms vanish,rightvectors orthonormal,B=conjugateV.",
+    "Prove norm sumsk^2=1,rank=minimal producttermcount,product iff rank1.",
+    "Derive matchedlocalmeasurement and actual square inverseanalyzers;rectangularthin factors need completion.",
+    "Prove localunitary spectrum/rank invariance with multiplicities.",
+    "Prove opposite phases/degenerate conjugate paired rotations;do not compare arbitrary SVD vector phases.",
+    "Prove maximum normalizedproductoverlap and phaseoptimizeddistance via triangle/CauchySchwarz.",
+    "Keep numerical thresholds separate from exactrank;retainall computed singularvalues."
+  ],
+  "formula_code_units": [
+    "formula-code-7-2-existence",
+    "formula-code-7-2-normalization",
+    "formula-code-7-2-rank",
+    "formula-code-7-2-invariance",
+    "formula-code-7-2-freedom",
+    "formula-code-7-2-overlap",
+    "formula-code-7-2-cuts",
+    "formula-code-7-2-boundaries"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.5",
+      "scope": "Frozen printed109 sectionlocator;complete original spectral-to-Schmidt proof supplied here. No new external paper audit or unsupported proof-review claim."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/schmidt_decomposition.py",
+    "prose_checker": "scripts/check_schmidt_decomposition_prose.py",
+    "evidence": "book/section-evidence/7.2",
+    "environment": "Python3.12.14 / FlagQuantum0.3.1 / Torch2.13.0;CPUcomplex128",
+    "complete_program_circuits_per_invocation": 46,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 6,
+    "separate_transfer_circuits": 13,
+    "execution_ledger": {
+      "complete": 46,
+      "body_assembly": 6,
+      "body_plus_complete_checker": 52,
+      "transfer": 12,
+      "total": 129,
+      "note": "7.1scoped body/complete regression51 and later remoteCI separate. No unintended scientific execution failures. Twelve fresh transfercircuits andone separateexactprintedexerciseC circuit are distinct;no transfer rerun. Previewserver initially couldnot bind inside sandbox;restarted with socket permission andactualbrowserverified successfully. Final firstbodyunit expandsnativegatecalls;all8finalfragments actuallyreexecuted6circuits withsame exactoutputs. Completeprogramunchanged,prior46-run remains applicable;Futurefinalchecker52=body6+complete46. Final bodyalsoexpands torch.linalg.svd,B=Vh.T andbothGrams directly;6actualbodycircuits rerun,completeprogramunchanged.",
+      "exact_printed_exercise": 1,
+      "final_explicit_native_body": 6,
+      "explicit_svd_body": 6
+    },
+    "contracts": 10,
+    "checks": [
+      "12complexproduct nativepreparations acrossallorderedcuts",
+      "18complexentangled pairs withclosedanalytic spectra/scalarreconstruction",
+      "3degenerateBell gauges",
+      "3nonadjacentregister cuts",
+      "2nearproduct resolution cases",
+      "6actual nativeinversebasisanalyzers",
+      "2samecomputationaldistribution differentSchmidtspectra",
+      "12freshfourqubittransfers and3rectangularclassicfixtures plus singleton/globalphase"
+    ],
+    "tolerance": "Fullvector/probability/spectrum/Gram/reconstruction atol1e-12,rtol0;explicit resolutionthresholds1e-9 and1e-12,not exactrank certificates. No normalizationrepair,phasealignment,zero clipping,degeneracy clustering or interval arithmetic.",
+    "native_boundary": "FQ prepares/executes squareunitaries andexactcomputationalprobabilities;TorchSVD/decomposition/thresholds classical. Thinrectangularisometry notsubmittedassquaregate. No nativeSchmidtendpoint,hardwaretomography or mixedseparability claim.",
+    "prior_failure": "7.1tinyangle/nativeissue704 retained andcrosslinked;no claimoffix. Native epsilon1e-10 confirmed here.",
+    "script_sha256": "d9c7254b8b06304011dbf397445d345beb9158fd5bdca22d4182ae6618f6142f"
+  },
+  "assessment": {
+    "tasks": [
+      "7.2-A complexconjugation/analyzers",
+      "7.2-B rankminimality/numerics",
+      "7.2-C freshfourqubitcuts",
+      "7.2-D degeneracy/overlap/distance"
+    ],
+    "answers": "Supplied;reader trial not performed."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "46complete/6body/12freshtransfer plus1exactprintedexercise passed;7.1regression51 passed. Fresh strict72page build,all local links/fragments anddetailsparse checks passed. Actual IAB checked theorem/spectralconstruction/conjugation,localunitary/degeneracy/overlap formulas andexpandedA-Danswers. Finalnativegate/request andclassicalSVD/B=Vh.T/Gram body paths explicitly expanded andactuallyexecuted;all8exactoutputs passed."
+  },
+  "production": {
+    "next_draft": "7.3 Bell states and basis changes",
+    "pdf": "Existing sample edition unchanged",
+    "formula_display": "Actual localbrowser1280x720 screenshots:Schmidt theorem,positiveeigenvalueconstruction,zeroeigenspaceelimination,Bconjugation,localunitarysimilarity,degeneratepairedrotations,overlapbound andexpandedanswers;no garbling/clipping in inspected math. No online screenshot claimed."
+  }
+}

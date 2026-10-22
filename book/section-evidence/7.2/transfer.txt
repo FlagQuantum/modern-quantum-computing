@@ -1,0 +1,2 @@
+12 fresh four-qubit circuits: scalar amplitudes, two ordered-cut spectra and product overlap passed.
+3 rectangular 2x3 spectra plus singleton/global-phase classical boundaries passed; no extra circuits.

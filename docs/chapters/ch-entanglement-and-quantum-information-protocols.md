@@ -1,6 +1,6 @@
 # 7. Entanglement and Quantum Information Protocols
 
-**Working draft: section 7.1 · Writing Baseline 1.0 · October 22, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
+**Working drafts: sections 7.1–7.2 · Writing Baseline 1.0 · October 22, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
 
 <span id="sec-entanglement-and-quantum-information-protocols-1"></span>
 
@@ -368,3 +368,451 @@ Gather the native vector using that cut and compare it with $ab^{\mathsf T}$, no
 **Source and next step.** The frozen reference is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §2.5, beginning on printed page 109, for the bipartite pure-state/Schmidt setting ([source locator](../references/proof-sources.md)). The rank-one and minors arguments above are supplied in full as original exposition, rather than assumed from that reference. Section 7.2 will construct the Schmidt decomposition and explain the general rank beyond one. No later result is required for this section's theorem.
 
 <!-- end-section-7.1 -->
+
+
+<span id="sec-entanglement-and-quantum-information-protocols-2"></span>
+
+## 7.2 Schmidt decomposition
+
+Section 7.1 distinguished a product vector from an entangled pure vector across a fixed cut. Schmidt decomposition provides an orthonormal product expansion for **every** finite bipartite pure state and exposes exactly how many such terms are needed. Prerequisites are [2.5, spectral decomposition and singular values](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-5), and [7.1](#sec-entanglement-and-quantum-information-protocols-1). Depth **F** means full proofs of existence, normalization and local-unitary invariance; the rank, degeneracy and overlap consequences are also proved below.
+
+We retain orthonormal product coordinates and the q0-most-significant convention. Amplitudes, singular values and overlaps are dimensionless; rotation angles are radians. The examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0, CPU complex128, absolute tolerance $10^{-12}$ and relative tolerance zero for deterministic implementation checks. Theorems concern exact finite vectors. Numerical singular-value thresholds and uncertain experimental data require separate interpretation.
+
+The eight Python fragments run cumulatively from the repository root with `requirements-examples.txt`. The actual complete program is [schmidt_decomposition.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/schmidt_decomposition.py). The native prepared amplitudes are checked against analytic references; `torch.linalg.svd` supplies the explicitly classical decomposition. It is not presented as an undocumented FlagQuantum request.
+
+<span id="formula-code-7-2-existence"></span>
+
+### 1. Construct the Schmidt vectors and keep the complex conjugate
+
+**Theorem (finite pure-state Schmidt decomposition).** For a normalized vector in $\mathcal H_A\otimes\mathcal H_B$, with finite dimensions $d_A,d_B$, there are positive real numbers $s_1,\ldots,s_r$ and orthonormal families $\{|a_k\rangle_A\}$ and $\{|b_k\rangle_B\}$ such that
+
+$$
+|\psi\rangle=\sum_{k=1}^r s_k|a_k\rangle_A\otimes|b_k\rangle_B,
+\qquad 1\le r\le\min(d_A,d_B).
+$$
+
+The numbers $s_k$ are the **Schmidt coefficients**, listed in nonincreasing order. They are amplitudes; their squares will be probabilities for a particular matched measurement.
+
+**Construction and full existence proof.** Fix orthonormal product coordinates and write $|\psi\rangle=\sum_{i,j}C_{ij}|i\rangle_A|j\rangle_B$ as in 7.1. By [2.5's finite spectral theorem](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-5), the positive semidefinite matrix $H=CC^\dagger$ has an orthonormal eigenbasis $u_k$, with eigenvalues $\lambda_k\ge0$. Positivity follows directly from $x^\dagger Hx=\|C^\dagger x\|^2$. For each positive eigenvalue define
+
+$$
+s_k=\sqrt{\lambda_k}>0,\qquad v_k=\frac{C^\dagger u_k}{s_k}.
+$$
+
+These right vectors are orthonormal, because
+
+$$
+v_k^\dagger v_l
+=\frac{u_k^\dagger CC^\dagger u_l}{s_ks_l}
+=\frac{\lambda_l\delta_{kl}}{s_ks_l}
+=\delta_{kl}.
+$$
+
+In particular there are at most $d_B$ of them. If $\lambda_k=0$, then $\|C^\dagger u_k\|^2=0$, so $u_k^\dagger C=0$. Expanding the identity in the full left eigenbasis therefore gives
+
+$$
+C=\sum_k u_ku_k^\dagger C
+=\sum_{\lambda_k>0}s_k u_kv_k^\dagger.
+$$
+
+This is precisely the positive part of a singular value decomposition. For each component,
+
+$$
+C_{ij}=\sum_{k=1}^r s_k(u_k)_i\overline{(v_k)_j}.
+$$
+
+Define $|a_k\rangle=\sum_i(u_k)_i|i\rangle_A$ and $|b_k\rangle=\sum_j\overline{(v_k)_j}|j\rangle_B$. The first family is orthonormal by construction. For the second,
+
+$$
+\langle b_k|b_l\rangle
+=\sum_j(v_k)_j\overline{(v_l)_j}
+=\overline{v_k^\dagger v_l}=\delta_{kl}.
+$$
+
+Substituting the component identity reconstructs every amplitude of the claimed Schmidt expansion. At least one coefficient is positive because the original vector is nonzero. This proves existence, with both local orthonormality conditions; no assumed Schmidt theorem is hidden in the construction.
+
+**Formula → code.** In matrix notation $C=U\Sigma V^\dagger$, the B-system columns are $\overline V$. PyTorch returns `U, sigma, Vh`, with `Vh = V.mH`; hence **`B = Vh.T`**, a transpose without conjugation. This yields $C=(U\Sigma)B^{\mathsf T}$. `s.decompose` uses a thin SVD and retains *all* computed singular values, including numerical zeros, for reconstruction. It is explicit classical analysis of an actual FlagQuantum state, not a native Schmidt-decomposition API.
+
+The native two-qubit preparation is $R_y(\theta)$ on q0, CX(q0,q1), phase $P(\phi)$ on q0, then $R_y(\alpha)$ on q0 and $P(\beta)$ on q1. The independent coefficient reference is
+
+$$
+C=R_y(\alpha)\operatorname{diag}\!\left(\cos(\theta/2),e^{i\phi}\sin(\theta/2)\right)P(\beta)^{\mathsf T}.
+$$
+
+**FlagQuantum code → verification result.** Native preparation and execution are visible here. The coefficient helper validates shape and norm; the SVD, conjugate-basis translation, Gram matrices and reconstruction are explicit below, without phase alignment or input repair.
+
+```python
+import math
+import torch
+import flagquantum as fq
+import examples.foundations.schmidt_decomposition as s
+import examples.foundations.product_entanglement as e
+theta, phi, alpha, beta = .9, .71, .4, .23
+circuit = fq.Circuit(2, dtype=s.D)
+circuit.ry(0, theta).cx(0, 1).p(0, phi)
+circuit.ry(0, alpha).p(1, beta)
+result = fq.run(circuit, outputs=[fq.probabilities()], options=s.OPTIONS)
+assert result.statevector().shape == (1, 4)
+state = result.statevector()[0]
+C = e.coefficients(state, (0,), (1,))
+assert torch.allclose(C, s.pair_reference(theta, phi, alpha, beta), atol=s.ATOL, rtol=0)
+U, sigma, Vh = torch.linalg.svd(C, full_matrices=False)
+B = Vh.T
+assert torch.allclose(U.mH@U, torch.eye(2, dtype=s.D), atol=s.ATOL, rtol=0)
+assert torch.allclose(B.mH@B, torch.eye(2, dtype=s.D), atol=s.ATOL, rtol=0)
+assert torch.allclose(C, s.scalar_rebuild(U, sigma, B), atol=s.ATOL, rtol=0)
+wrong = (U*sigma)@B.conj().T
+assert torch.linalg.vector_norm(C-wrong).item() > .1
+print('complex Schmidt reconstruction passed; using V directly failed')
+```
+```text
+complex Schmidt reconstruction passed; using V directly failed
+```
+
+<span id="formula-code-7-2-normalization"></span>
+
+### 2. Prove the normalization and distinguish amplitudes from weights
+
+**Formula and derivation.** The inner product of two tensor terms factors:
+
+$$
+\langle a_k,b_k|a_l,b_l\rangle
+=\langle a_k|a_l\rangle\langle b_k|b_l\rangle
+=\delta_{kl}.
+$$
+
+Taking the squared norm of the expansion, retaining all cross terms before applying orthogonality, gives
+
+$$
+1=\langle\psi|\psi\rangle
+=\sum_{k,l}s_ks_l\delta_{kl}
+=\sum_{k=1}^r s_k^2.
+$$
+
+Thus $p_k=s_k^2$ are nonnegative and sum to one. There is no requirement that $\sum_k s_k=1$. The equivalent coefficient identity is $\|C\|_F^2=\sum_{i,j}|C_{ij}|^2=\sum_k s_k^2$, with $\|\cdot\|_F$ the Frobenius norm. This equality also shows why rescaling an unnormalized input would change the stated problem.
+
+**Code → verification result.** Form the product columns explicitly, check their orthonormal Gram matrix, and reconstruct the complete native state. `torch.kron` receives contiguous vectors so its reference construction does not depend on a noncontiguous SVD column view.
+
+```python
+terms = torch.stack([torch.kron(U[:, k].contiguous(), B[:, k].contiguous())
+                     for k in range(sigma.numel())], dim=1)
+assert torch.allclose(terms.mH@terms, torch.eye(2, dtype=s.D), atol=s.ATOL, rtol=0)
+assert torch.allclose(terms@sigma.to(s.D), state, atol=s.ATOL, rtol=0)
+assert abs(sigma.square().sum().item()-1) < s.ATOL
+print(f'sum of squared Schmidt coefficients = {sigma.square().sum().item():.6f}')
+```
+```text
+sum of squared Schmidt coefficients = 1.000000
+```
+
+<span id="formula-code-7-2-rank"></span>
+
+### 3. Prove the relation to entanglement and matched outcomes
+
+**Schmidt rank.** The coefficient matrix satisfies $Cv_k=s_ku_k$. Its column space therefore contains r independent left vectors. Conversely, its SVD expansion makes every column a combination of those r vectors. Both inclusions prove
+
+$$
+\operatorname{rank}C=r.
+$$
+
+This also proves that r is the **minimum number of product terms** in any expansion, even one using nonorthogonal or unnormalized factors. If $C=\sum_{t=1}^m x_ty_t^{\mathsf T}$, each column lies in $\operatorname{span}\{x_1,\ldots,x_m\}$, so $r\le m$. The Schmidt expansion attains $m=r$.
+
+By 7.1, a normalized pure state is a product exactly when $r=1$. Normalization then forces its single Schmidt coefficient to be one. A pure state is entangled across this cut exactly when $r>1$. A statement about r always names a bipartition; it is not a classification of a mixed-state density operator.
+
+**Matched measurement, derived.** Extend each orthonormal Schmidt family to a full local orthonormal basis. Such completion is possible by repeatedly taking a vector outside the current span, subtracting its orthogonal projections and normalizing the remaining nonzero vector, until the finite dimension is reached. For the matched product measurement,
+
+$$
+\langle a_j,b_l|\psi\rangle
+=\sum_k s_k\langle a_j|a_k\rangle\langle b_l|b_k\rangle
+=s_j\delta_{jl},\qquad p(j,l)=s_j^2\delta_{jl},
+$$
+
+with coefficients zero for any added basis directions. Only matching Schmidt labels occur. This statement concerns the specified local bases; measuring an entangled state in an arbitrary basis need not give such a diagonal table.
+
+**FlagQuantum code → verification result.** For this two-qubit example the thin local matrices are already two-by-two unitaries, so applying $U^\dagger$ and $B^\dagger$ turns the state into $s_1|00\rangle+s_2|11\rangle$. We execute those gates and query the entire vector and probabilities. For rectangular matrices a thin factor is an isometry, so it cannot be submitted directly as a square unitary gate without basis completion.
+
+```python
+analyzer = s.pair(theta, phi, alpha, beta)
+analyzer.unitary(0, unitary=U.mH.contiguous())
+analyzer.unitary(1, unitary=B.mH.contiguous())
+aligned, probabilities = s.query(analyzer)
+expected = torch.diag(sigma.to(s.D)).reshape(-1)
+assert torch.allclose(aligned, expected, atol=s.ATOL, rtol=0)
+assert torch.allclose(probabilities, expected.abs()**2, atol=s.ATOL, rtol=0)
+assert abs(sigma[1].item()-abs(math.sin(theta/2))) < s.ATOL
+print('Schmidt-basis readout: only labels 00 and 11; weights equal squared coefficients')
+```
+```text
+Schmidt-basis readout: only labels 00 and 11; weights equal squared coefficients
+```
+
+<span id="formula-code-7-2-invariance"></span>
+
+### 4. Prove local-unitary invariance of the entire spectrum
+
+**Formula.** Under local unitaries L and R, 7.1's index expansion gives $C'=LCR^{\mathsf T}$. Because $R^\dagger R=I$, complex conjugation gives $R^{\mathsf T}\overline R=I$. Therefore
+
+$$
+C'C'^\dagger
+=LC R^{\mathsf T}\overline R C^\dagger L^\dagger
+=L(CC^\dagger)L^\dagger.
+$$
+
+**Proof and consequence.** If $CC^\dagger u=\lambda u$, then $C'C'^\dagger(Lu)=\lambda Lu$. The invertible map L maps each eigenspace bijectively to the corresponding eigenspace of the new matrix, with inverse $L^\dagger$. Eigenvalues and their multiplicities are unchanged. Their nonnegative square roots are the Schmidt coefficients; hence the entire sorted Schmidt spectrum, and in particular its positive count r, are invariant. Extra zero eigenvalues on the larger subsystem do not add Schmidt terms.
+
+Equivalently, apply L and R to each local Schmidt vector; unitarity preserves orthonormality and leaves the same coefficients in the expansion. Local orthonormal basis changes and internal relabelings are also unitary coordinate changes. They preserve the spectrum for a fixed cut. Moving a qubit from one side of the cut to the other is not covered by this statement.
+
+**FlagQuantum code → verification result.** Both local matrices here are complex; comparison checks every coefficient with $LCR^{\mathsf T}$ and every singular value with the original spectrum. It does not require the newly computed singular vectors to match a particular phase convention.
+
+```python
+local_left, local_right = s.phase(-.37)@s.ry(.83), s.ry(-.29)@s.phase(.41)
+moved_circuit = s.pair(theta, phi, alpha, beta)
+moved_circuit.unitary(0, unitary=local_left).unitary(1, unitary=local_right)
+moved, _ = s.query(moved_circuit)
+C_moved = e.coefficients(moved, (0,), (1,))
+assert torch.allclose(C_moved, local_left@C@local_right.T, atol=s.ATOL, rtol=0)
+_, moved_sigma, _ = s.decompose(C_moved)
+assert torch.allclose(moved_sigma, sigma, atol=s.ATOL, rtol=0)
+print('local unitaries preserve the entire Schmidt spectrum')
+```
+```text
+local unitaries preserve the entire Schmidt spectrum
+```
+
+<span id="formula-code-7-2-freedom"></span>
+
+### 5. Explain what is unique and what is free
+
+**Formula and proof.** The sorted positive coefficients are unique because their squares are the positive eigenvalues of $CC^\dagger$, with multiplicity. Individual Schmidt vectors need not be unique. Opposite changes of phase,
+
+$$
+|a_k\rangle\longmapsto e^{i\chi_k}|a_k\rangle,
+\qquad |b_k\rangle\longmapsto e^{-i\chi_k}|b_k\rangle,
+$$
+
+leave their product unchanged. A global phase of the complete state can instead be carried by all A factors; singular values remain positive real numbers.
+
+For a block of equal coefficients s, let A and B collect the corresponding local columns. Its coefficient contribution is $sAB^{\mathsf T}$. For **any unitary** W of the block dimension, choose
+
+$$
+A'=AW,\qquad B'=B\overline W.
+$$
+
+Both column families remain orthonormal, and
+
+$$
+sA'B'^{\mathsf T}
+=sAW\overline W^{\mathsf T}B^{\mathsf T}
+=sAWW^\dagger B^{\mathsf T}=sAB^{\mathsf T}.
+$$
+
+Rotating both blocks by W instead of the conjugate paired rotation is generally wrong for complex W. For a nondegenerate positive coefficient, the corresponding eigenspace of $CC^\dagger$ is one-dimensional, so the A vector is fixed up to phase and its B partner follows from $C^\dagger a_k/s_k$ and conjugation. Zero-coefficient directions contribute no state amplitude and may be completed differently. Nearly equal floating-point coefficients do not automatically justify treating them as an exactly degenerate block.
+
+**FlagQuantum code → verification result.** A phase Bell state has two exactly equal theoretical coefficients $1/\sqrt2$. We deliberately change both local bases with the paired conjugate rotation and compare full complex reconstruction; comparing singular-vector arrays for exact equality would wrongly reject this valid freedom.
+
+```python
+bell, _ = s.query(fq.Circuit(2, dtype=s.D).h(0).cx(0, 1).p(0, .67))
+C_equal = e.coefficients(bell, (0,), (1,))
+A_equal, equal_sigma, B_equal = s.decompose(C_equal)
+W = s.phase(.53)@s.ry(.91)
+rotated_A, rotated_B = A_equal@W, B_equal@W.conj()
+assert torch.linalg.vector_norm(rotated_A-A_equal).item() > .1
+assert torch.allclose((rotated_A*equal_sigma)@rotated_B.T, C_equal, atol=s.ATOL, rtol=0)
+assert torch.allclose(equal_sigma, torch.full((2,), 1/math.sqrt(2), dtype=torch.float64), atol=s.ATOL, rtol=0)
+print('degenerate spectrum: different orthonormal Schmidt bases, same complex state')
+```
+```text
+degenerate spectrum: different orthonormal Schmidt bases, same complex state
+```
+
+<span id="formula-code-7-2-overlap"></span>
+
+### 6. Relate the largest coefficient to the best product overlap
+
+**Result.** Among normalized product vectors, the largest squared overlap with $|\psi\rangle$ is $s_1^2$.
+
+**Full derivation.** For normalized $|x\rangle_A,|y\rangle_B$, define $\alpha_k=\langle x|a_k\rangle$ and $\beta_k=\langle y|b_k\rangle$. Orthogonality implies $\sum_k|\alpha_k|^2\le1$: subtract the orthogonal projection of x onto the Schmidt span, whose squared norm is the sum of its squared coefficients; the remainder has nonnegative squared norm. The same argument gives $\sum_k|\beta_k|^2\le1$. Thus the triangle and Cauchy–Schwarz inequalities yield
+
+$$
+|\langle x,y|\psi\rangle|
+=\left|\sum_k s_k\alpha_k\beta_k\right|
+\le s_1\sum_k|\alpha_k||\beta_k|
+\le s_1\sqrt{\sum_k|\alpha_k|^2}\sqrt{\sum_k|\beta_k|^2}
+\le s_1.
+$$
+
+Taking $x=a_1,y=b_1$ attains the upper bound, so it is a maximum, not just an estimate. This gives another exact criterion for product pure states: $s_1=1$ exactly when all remaining coefficients vanish. After optimizing the overall phase of a product vector, its best Euclidean distance from the state is
+
+$$
+\min_{x,y,\gamma}\|\psi-e^{i\gamma}x\otimes y\|_2
+=\sqrt{2-2s_1},
+$$
+
+because the squared distance between two normalized vectors is $2-2\operatorname{Re}\langle\psi|e^{i\gamma}x,y\rangle$, and phase choice maximizes that real part to the overlap modulus. This normalized-product distance is different from simply discarding terms without normalizing the retained vector.
+
+**Code → verification result.** The scalar overlap helper expands every conjugated bra component explicitly. The known maximizing product attains the bound and reproduces the distance formula; a few other trial vectors are implementation checks, not the proof of optimality.
+
+```python
+best_a, best_b = U[:, 0], B[:, 0]
+best_overlap = abs(s.overlap(C, best_a, best_b))
+assert abs(best_overlap-sigma[0].item()) < s.ATOL
+best_product = torch.outer(best_a, best_b)
+distance_squared = torch.sum((C-best_product).abs()**2).item()
+assert abs(distance_squared-(2-2*sigma[0].item())) < s.ATOL
+for angle in (.19, .73, 1.31):
+    trial_a = torch.tensor([math.cos(angle), 1j*math.sin(angle)], dtype=s.D)
+    trial_b = torch.tensor([math.sin(angle), complex(math.cos(.47), math.sin(.47))*math.cos(angle)], dtype=s.D)
+    assert abs(s.overlap(C, trial_a, trial_b)) <= best_overlap+s.ATOL
+print(f'maximum squared product overlap = {best_overlap**2:.6f}')
+```
+```text
+maximum squared product overlap = 0.810805
+```
+
+<span id="formula-code-7-2-cuts"></span>
+
+### 7. Separate a different cut from a different ordering
+
+**Formula and derivation.** For a Bell pair on q0/q2 and a separate q1 state, the cut $A=(q_2,q_0)$, $B=(q_1)$ has
+
+$$
+C_{A|B}=ab^{\mathsf T},\quad
+ a=\frac{(1,0,0,e^{i\phi})^{\mathsf T}}{\sqrt2},\quad
+ b=\left(\cos(\eta/2),\sin(\eta/2)\right)^{\mathsf T}.
+$$
+
+Both factors are normalized, so the thin spectrum is $(1,0)$. For the cut $A'=(q_0)$, $B'=(q_1,q_2)$, write instead
+
+$$
+|\psi\rangle=\frac{|0\rangle_{q_0}\,|r\rangle_{q_1}|0\rangle_{q_2}
++e^{i\phi}|1\rangle_{q_0}\,|r\rangle_{q_1}|1\rangle_{q_2}}{\sqrt2}.
+$$
+
+The two B-side vectors are orthogonal because the last qubit labels are orthogonal; both have norm one because $|r\rangle$ does. Moving the phase into either local family gives a Schmidt expansion with two coefficients $1/\sqrt2$. The spectrum changed because the physical pair was split across the cut. Merely reversing q2/q0 *within* A permutes rows by a unitary matrix and leaves its spectrum unchanged.
+
+**FlagQuantum code → verification result.** Explicit indexed gathering from 7.1 determines the rectangular matrices. No bare reshape is used to change the partition.
+
+```python
+three, _ = s.query(fq.Circuit(3, dtype=s.D).h(0).cx(0, 2).p(0, .43).ry(1, .82))
+C_grouped = e.coefficients(three, (2, 0), (1,))
+C_split = e.coefficients(three, (0,), (1, 2))
+_, grouped_sigma, _ = s.decompose(C_grouped)
+_, split_sigma, _ = s.decompose(C_split)
+assert torch.allclose(grouped_sigma, torch.tensor([1., 0.], dtype=torch.float64), atol=s.ATOL, rtol=0)
+assert torch.allclose(split_sigma, torch.full((2,), 1/math.sqrt(2), dtype=torch.float64), atol=s.ATOL, rtol=0)
+_, reordered_sigma, _ = s.decompose(e.coefficients(three, (0, 2), (1,)))
+assert torch.allclose(reordered_sigma, grouped_sigma, atol=s.ATOL, rtol=0)
+print('grouped cut: (1,0); split cut: (1/sqrt(2),1/sqrt(2)); internal reorder unchanged')
+```
+```text
+grouped cut: (1,0); split cut: (1/sqrt(2),1/sqrt(2)); internal reorder unchanged
+```
+
+<span id="formula-code-7-2-boundaries"></span>
+
+### 8. Keep the exact theorem separate from numerical resolution
+
+**Formula and derivation.** The exactly specified state
+
+$$
+|\psi_\epsilon\rangle=\sqrt{1-\epsilon^2}|00\rangle+\epsilon|11\rangle
+\quad(0<\epsilon<1/\sqrt2)
+$$
+
+has Schmidt coefficients $(\sqrt{1-\epsilon^2},\epsilon)$ and exact rank two. A numerical report at threshold $\tau>0$ may instead count
+
+$$
+r_\tau=\#\{k:\widehat s_k>\tau\}.
+$$
+
+This definition is a declared resolution diagnostic on computed numbers $\widehat s_k$, not the exact r of the theorem. If $\epsilon<\tau$, the diagnostic can report one even for this exactly entangled input. Conversely, rounding can give a mathematically zero singular value a tiny nonzero representation. The helper always retains all computed singular values for reconstruction; `resolved_rank` only reports a separate thresholded count.
+
+There is no state normalization repair, zero clipping, automatic degeneracy grouping or interval certificate. The matrix contract is finite CPU complex128, two-dimensional, unit Frobenius norm within $10^{-12}$, and side lengths 1–16; these are book reference guards. Empty, nonfinite, real-dtype and unnormalized arrays are rejected. `coefficients` additionally requires an explicitly ordered qubit bipartition and a pure vector; measurement counts or a density operator are different inputs. For dimension-one subsystems the sole nonzero Schmidt coefficient is one, and no entanglement across that cut is possible.
+
+**Implementation boundary.** Section 7.1's initial tiny-angle failure is retained in [FlagQuantum issue #704](https://github.com/flagos-ai/FlagQuantum/issues/704). A returned zero amplitude at epsilon $10^{-14}$ did not establish that the intended state was a product. Here epsilon $10^{-10}$ uses the native path already verified to retain that amplitude. We make no claim that the smaller-angle behavior has been fixed.
+
+**FlagQuantum code → verification result.** Inspect the small coefficient directly, then compare two explicitly chosen diagnostic thresholds. Both counts describe the same computed vector.
+
+```python
+epsilon = 1e-10
+tiny, _ = s.query(fq.Circuit(2, dtype=s.D).ry(0, 2*math.asin(epsilon)).cx(0, 1))
+_, tiny_sigma, _ = s.decompose(e.coefficients(tiny, (0,), (1,)))
+assert abs(tiny_sigma[1].item()-epsilon) < 1e-20
+assert s.resolved_rank(tiny_sigma, 1e-9) == 1
+assert s.resolved_rank(tiny_sigma, 1e-12) == 2
+for bad in [lambda: s.decompose(C*2), lambda: s.decompose(C.real),
+            lambda: s.resolved_rank(tiny_sigma, 0)]:
+    try:
+        bad()
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('invalid contract admitted')
+print('same nonzero coefficient: 1 resolved at 1e-9, 2 at 1e-12; 3 invalid contracts rejected')
+```
+```text
+same nonzero coefficient: 1 resolved at 1e-9, 2 at 1e-12; 3 invalid contracts rejected
+```
+
+### Complete example, verification scope and exercises
+
+```bash
+python examples/foundations/schmidt_decomposition.py
+python scripts/check_schmidt_decomposition_prose.py
+```
+
+The complete program executes 46 native circuits: 12 complex products checked over all ordered cuts, 18 pairs with closed-form spectra, 3 degenerate Bell preparations, 3 nonadjacent-register preparations, 2 near-product cases, 6 actual inverse-basis analyzers and 2 states with identical computational distributions but different Schmidt spectra. Scalar component sums independently check reconstruction; closed coefficients, explicit Gram matrices and predicted matched outcomes check the SVD translation. Ten malformed contracts are rejected. A separate fresh four-qubit transfer run and rectangular mathematical fixtures are recorded in the section evidence.
+
+Expected output of the complete program:
+
+```text
+12 native complex products: all ordered cuts reconstruct with one resolved coefficient.
+18 complex entangled pairs: closed coefficients, scalar reconstruction and product-overlap checks passed.
+3 degenerate Bell spectra: conjugate paired basis rotations reconstruct unchanged states.
+3 nonadjacent-register states: spectra depend on the bipartition, not its internal ordering.
+2 near-product spectra: all singular values retained; threshold-dependent diagnostics declared.
+6 native inverse-basis analyzers: complete amplitudes and matched-label probabilities passed.
+2 identical computational distributions: different Schmidt spectra verified.
+10 malformed contracts rejected before simulation.
+46 CPU complex128 circuits passed; no exact numerical-rank or hardware certificate claimed.
+```
+
+Native support used here is circuit preparation, explicit square local unitaries, exact statevector and computational-probability queries. Decomposition, thresholds and overlap analysis are classical postprocessing. The theorem is for a known pure vector and a fixed bipartition; it is not a mixed-state separability test or hardware tomography protocol. Finite examples support implementation correctness but do not substitute for the proofs. Author verification is separate from pending independent mathematical/implementation review and reader trial.
+
+**7.2-A — Translate a complex SVD.** Given $C=U\Sigma V^\dagger$, write the B-system columns and show that their inner products are orthonormal. What is wrong with setting B equal to V for a general complex coefficient matrix? Derive the actual inverse local analyzers in the two-qubit example.
+
+**7.2-B — Rank and minimality.** Prove why no expansion with fewer than r nonorthogonal product terms can reproduce a state of Schmidt rank r. Does the count of strictly positive floating-point singular values necessarily equal r?
+
+**7.2-C — Fresh ordered-register implementation.** Prepare q0 with $R_y(-.61)$, apply CX(q0,q3) and phase .92 on q0, and put q1 and q2 in independent $R_y(.37)$ and $R_y(-.83)$ states. Predict the sorted spectra for $(q_3,q_0)|(q_2,q_1)$ and $(q_0,q_2)|(q_3,q_1)$. Check the full complex native vector, gathered coefficient matrices and reconstructions. Compare spectra rather than arbitrary SVD vector phases.
+
+**7.2-D — Degeneracy and distance.** For the phase Bell state, choose a complex two-by-two unitary W and derive the paired transformations that leave the state unchanged. Calculate its maximal squared product overlap and best phase-optimized normalized-product distance. Explain how the conclusions differ for a product state.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 7.2-A–D</summary>
+
+**A.** The B columns are $\overline V$, so if PyTorch returns Vh, use `B = Vh.T`. Their Gram matrix is $V^{\mathsf T}\overline V=\overline{V^\dagger V}=I$. Using V directly reconstructs $U\Sigma V^{\mathsf T}$, which generally differs from C. The actual analyzers are $U^\dagger$ and $B^\dagger=V^{\mathsf T}$; their transformed coefficient matrix is
+
+$$
+U^\dagger C\,(B^\dagger)^{\mathsf T}
+=U^\dagger C\overline B=\Sigma.
+$$
+
+This gate submission requires square unitaries, which both factors are for the two-qubit example; thin rectangular factors require completion first.
+
+**B.** In an m-term product expansion, every coefficient column lies in the span of its m left factors. Thus rank is at most m. The r-term Schmidt expansion attains that lower bound. Floating-point SVD can round a zero away from zero or fail to resolve a small positive value; a declared threshold describes numerical resolution, not the exact theorem.
+
+**C.** The first cut groups the whole q0/q3 pair on one side and the two spectator qubits on the other. Its thin spectrum is $(1,0,0,0)$. The second splits the pair; spectators are normalized local factors and do not change its positive coefficients. Its thin spectrum is
+
+$$
+\left(\cos(.61/2),\sin(.61/2),0,0\right).
+$$
+
+The negative sine in the preparation and the .92 phase belong to local Schmidt vectors; the coefficients themselves are nonnegative. Gather using the declared tuple orders, retaining every singular value in reconstruction. Native execution plus independent bit-index amplitudes and these analytic spectra are recorded in the transfer test.
+
+**D.** With coefficient contribution $sAB^{\mathsf T}$, choose $A'=AW$, $B'=B\overline W$, yielding $sA'B'^{\mathsf T}=sAB^{\mathsf T}$. Both Bell coefficients are $1/\sqrt2$, so its maximum squared product overlap is $1/2$ and its minimum normalized-product distance is $\sqrt{2-\sqrt2}$. A product state has coefficient one, overlap one and distance zero. Degenerate bases may change while these numerical invariants stay fixed.
+
+</details>
+
+**Source and transition.** The frozen reference is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §2.5, beginning on printed page 109 ([NC:2.5 source locator](../references/proof-sources.md#source-nc-2-5)). This section supplies its own complete finite proof from the previously proved spectral theorem; no third-party text or unsolved exercise is used as a missing proof step. Section 7.3 will use Bell states and basis changes for explicit information protocols.
+
+<!-- end-section-7.2 -->

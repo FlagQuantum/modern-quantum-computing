@@ -1,0 +1,1 @@
+Initial localpreview server bind inside sandbox failed PermissionError;first browser attempt consequently refused connection. Restarted the sameserver with socketpermission and used a freshpreviewtab;actualscreenshots checked after recovery. This is not a scientificexample execution failure.
