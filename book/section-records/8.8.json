@@ -1,0 +1,89 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-density-matrices-reduced-states-and-purification-8",
+  "ref": "8.8",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+  "depth": "V",
+  "requires": [
+    "sec-density-matrices-reduced-states-and-purification-2",
+    "sec-density-matrices-reduced-states-and-purification-3",
+    "sec-density-matrices-reduced-states-and-purification-4",
+    "sec-density-matrices-reduced-states-and-purification-5",
+    "sec-complex-vectors-operators-and-numerical-reasoning-8"
+  ],
+  "result": "Density-operator acceptance protocol",
+  "assumptions": [
+    "Finite tolerance and declared reference representation/access scope."
+  ],
+  "verification_obligations": [
+    "Representation/Hermiticity/trace/positivity",
+    "Scalar partial traces and target/effect agreement",
+    "Retained deliberate failures",
+    "Local versus joint acceptance"
+  ],
+  "formula_code_units": [
+    "target",
+    "admissibility",
+    "partial traces",
+    "effects",
+    "failures",
+    "scope",
+    "stale reference",
+    "tolerance"
+  ],
+  "sources": [
+    {
+      "locator": "ED:protocol",
+      "scope": "Editorial protocol reusing8.1-8.6;no new external theorem."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/density_lab.py",
+    "prose_checker": "scripts/check_density_lab_prose.py",
+    "evidence": "book/section-evidence/8.8",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 10,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 3,
+    "separate_transfer_circuits": 4,
+    "execution_ledger": {
+      "complete": 10,
+      "body_assembly": 3,
+      "body_plus_complete": 13,
+      "transfer": 4,
+      "total_author_section_native_runs": 30,
+      "separate_previous_8_7_regression": 29
+    },
+    "malformed_contracts": 10,
+    "tolerance": "Absolute1e-12,relative0;no input normalization repair,clipping or phase alignment. Finite implementation checks do not replace the all-effect proof.",
+    "native_boundary": "Actual pure square-unitary preparation/full and selected native density requests via8.6helper in both modes. Acceptance logic,spectral diagnostics,scalar partial traces and dense effects are host-only. No mixed-input/reset/hardware/interval certificate claims.",
+    "script_sha256": "d8e578535b61205c38ce0b88e9808e3d63a4d4bbadb45bd6ce421f1961c6e063"
+  },
+  "assessment": {
+    "tasks": [
+      "8.8A-D"
+    ],
+    "answers": "Accessible solutions,fresh modes and scope transfers;reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "10complete/3body/13checker/4freshtransfer;prior8.7regression separate"
+  },
+  "production": {
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual IAB residual/positivity and complex rank-one probability formulas visually checked,expandedA-D answers checked;globalMathJaxerrors0.",
+    "website": "Fresh strict build and74page local links passed;deployment receipt verified separately.",
+    "html_sha256": "8f0b9eaebb5698c371e2c910bd2410758b56e40249f8f2666b1a5c5786d67a67"
+  }
+}

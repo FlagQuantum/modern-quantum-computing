@@ -1,0 +1,2 @@
+Eight literal8.8units:3native circuits,all assertions and exact outputs passed.
+Complete8.8program:10native circuits,density acceptance/failure checks and exact output passed.

@@ -189,6 +189,35 @@
       "source_locators": [
         "NC:2.4.3"
       ]
+    },
+    {
+      "sequence": 63,
+      "batch": "B02",
+      "section_id": "sec-density-matrices-reduced-states-and-purification-8",
+      "ref": "8.8",
+      "title": "Density-operator verification laboratory",
+      "depth": "V",
+      "requires": [
+        "sec-density-matrices-reduced-states-and-purification-2",
+        "sec-density-matrices-reduced-states-and-purification-3",
+        "sec-density-matrices-reduced-states-and-purification-4",
+        "sec-density-matrices-reduced-states-and-purification-5",
+        "sec-complex-vectors-operators-and-numerical-reasoning-8"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "question": "Which independent checks accept a declared density output and diagnose wrong candidates?",
+      "entry": "8.2density validity,8.3updates,8.4partialtrace,8.5spectra,2.8tolerances.",
+      "exit": "Explicit scoped candidate protocol,retained failures and numerical limits.",
+      "worked_case": "Complex rotated biased purification with full/system/reference outputs.",
+      "boundary": "Small CPUcomplex128matrices;declared reference and local/joint access;no exact positivity certificate.",
+      "code_plan": "Explicit native run plus independently constructed matrices,scalar reductions and local effect means.",
+      "independent_check": "Analytic coefficient/outer products,partial traces,eigenvalues,purity and operational probabilities.",
+      "transfer_task": "Fresh phases/weights,stale phase packets,threshold boundaries and no-repair failures.",
+      "source_locators": [
+        "ED:protocol"
+      ]
     }
   ]
 }

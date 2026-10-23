@@ -1,0 +1,34 @@
+[
+  {
+    "code": "import math,torch,flagquantum as fq\nfrom examples.foundations import density_lab as lab\nfrom examples.foundations import purification as g,statistical_ensembles as e,partial_trace as t\nC,rho=lab.reference(.27,.62)\nc=fq.Circuit(2,dtype=g.D).unitary(0,1,unitary=g.first_column(C.reshape(-1)))\nr=fq.run(c,outputs=[fq.density_matrix(name='full'),\n fq.density_matrix(qubits=(0,),name='S'),fq.density_matrix(qubits=(1,),name='R')],options=e.OPTIONS)\npacket={name:r.measurement(name).value[0].clone()for name in ('full','S','R')}\naccepted=lab.report(packet,C)\nassert accepted['accepted']\nprint('Explicit native full/system/reference packet accepted against the declared joint target')\n",
+    "output": "Explicit native full/system/reference packet accepted against the declared joint target\n"
+  },
+  {
+    "code": "e.close(packet['S'],rho)\ne.close(torch.trace(packet['full']@packet['full']),1)\ne.close(torch.trace(packet['S']@packet['S']),.27**2+.73**2)\ne.close(torch.linalg.eigvalsh(packet['S']),torch.tensor([.27,.73],dtype=torch.float64))\nprint('Global purity1;local eigenvalues[0.27,0.73]and purity0.6058 match analytic weights')\n",
+    "output": "Global purity1;local eigenvalues[0.27,0.73]and purity0.6058 match analytic weights\n"
+  },
+  {
+    "code": "e.close(packet['S'],t.trace_ab(packet['full'],2,2))\ne.close(packet['R'],C.T@C.conj())\nassert torch.linalg.vector_norm(packet['S'].conj()-packet['S']).item()>.1\nprint('Partial traces and complex conjugation checked as full matrices,not only spectra')\n",
+    "output": "Partial traces and complex conjugation checked as full matrices,not only spectra\n"
+  },
+  {
+    "code": "for v in e.probes(2):\n E=torch.outer(v,v.conj())\n e.close(torch.trace(packet['S']@E),torch.vdot(v,rho@v))\nprint('Informationally complete local effects agree with independent quadratic forms')\n",
+    "output": "Informationally complete local effects agree with independent quadratic forms\n"
+  },
+  {
+    "code": "bad=lab.errors(packet,C)\nassert all(not x['accepted']for x in bad.values())\nprint('7 incorrect packets rejected;failure reports retain the original candidate residuals')\n",
+    "output": "7 incorrect packets rejected;failure reports retain the original candidate residuals\n"
+  },
+  {
+    "code": "phase_packet,_=lab.prepare(.27,.62,W=e.Z)\nlocal=lab.report(phase_packet,C,'local');joint=lab.report(phase_packet,C,'joint')\nassert local['accepted']and not joint['accepted']\nprint('Ancillary phase candidate:local accepted,joint rejected;scope is explicit')\n",
+    "output": "Ancillary phase candidate:local accepted,joint rejected;scope is explicit\n"
+  },
+  {
+    "code": "matched,_=lab.prepare(.81,-.47,mode='density_matrix')\notherC,_=lab.reference(.81,-.47)\nassert lab.report(matched,otherC)['accepted']\nassert not lab.report(matched,C)['accepted']\nprint('Fresh declared target accepted;stale reference rejected')\n",
+    "output": "Fresh declared target accepted;stale reference rejected\n"
+  },
+  {
+    "code": "for tol in (0.,1e-8,float('nan')):\n try:lab.report(packet,C,atol=tol)\n except ValueError:pass\n else:raise AssertionError('Invalid tolerance accepted')\nassert g.RUNS==2\nprint('3invalid tolerances rejected;body executed2helper calls plus1explicit native run')\n",
+    "output": "3invalid tolerances rejected;body executed2helper calls plus1explicit native run\n"
+  }
+]

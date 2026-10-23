@@ -937,7 +937,7 @@
         "sec-complex-vectors-operators-and-numerical-reasoning-8"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md"
     },
     {

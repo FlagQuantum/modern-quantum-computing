@@ -1,6 +1,6 @@
 # 8. Density Matrices, Reduced States, and Purification
 
-**Working drafts: sections 8.1–8.7 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
+**Working drafts: sections 8.1–8.8 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
 
 <span id="sec-density-matrices-reduced-states-and-purification-1"></span>
 
@@ -3082,3 +3082,236 @@ Expected output of the complete program:
 The frozen locator is NC §2.4.3 (contents locator printed105; no new full-text review claimed). The operational reduction convention was checked against [Watrous §2.1.3, printed68](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=76); the all-effect proof and access-qualified counterexamples are supplied here. This author-verified draft still awaits independent mathematical/implementation review, reader trial and formal acceptance.
 
 <!-- end-section-8.7 -->
+
+<span id="sec-density-matrices-reduced-states-and-purification-8"></span>
+## 8.8 Density-operator verification laboratory
+
+**Laboratory question.** A simulator returns a full density and two reductions. Which independent checks justify accepting these as outputs for a *declared task*, and which incorrect candidates can pass a weaker check?
+
+This V-depth laboratory reuses the density criteria of 8.2, the operational probabilities/updates of 8.3, the partial-trace convention of 8.4, the reduced spectra of 8.5 and the tolerance discipline of 2.8. It does not replace their proofs by tests. The system is S=q0, reference R=q1, with joint index 2i+μ. Angles are radians; densities, probabilities and amplitudes are dimensionless. CPU complex128 matrices and a fixed absolute tolerance ε=10⁻¹², relative tolerance zero, define the implementation comparison. These finite comparisons are not exact positivity or interval certificates.
+
+### 8.8.1 Freeze the target before inspecting the candidate
+
+Let p=.27, Q=`prepare(qubit(.83,.62))`, and let Q's orthonormal columns be u_0,u_1. The intended coefficient matrix and joint state are
+
+$$
+\begin{gathered}
+C=Q\operatorname{diag}(\sqrt p,\sqrt{1-p}),\\
+|\Psi\rangle=\sum_{i,\mu}C_{i\mu}|i,\mu\rangle,\qquad
+P=|\Psi\rangle\langle\Psi|.
+\end{gathered}
+$$
+
+Freeze the ordered supports, target parameters, execution mode, dtype, reference representation, tolerance and **acceptance scope** before running. Joint scope requires the full target and both reductions; local scope requires the specified system density, while still checking internal consistency of the supplied extension. A scope change is a new task. It is never a repair that makes an originally wrong joint candidate acceptable.
+
+Here the explicit native route uses a host-completed square preparation unitary from 8.6, then requests all three matrices by name. The analytic C and its outer product are independent references to the returned matrices, rather than a second reading of the same density output.
+
+```python
+import math,torch,flagquantum as fq
+from examples.foundations import density_lab as lab
+from examples.foundations import purification as g,statistical_ensembles as e,partial_trace as t
+C,rho=lab.reference(.27,.62)
+c=fq.Circuit(2,dtype=g.D).unitary(0,1,unitary=g.first_column(C.reshape(-1)))
+r=fq.run(c,outputs=[fq.density_matrix(name='full'),
+ fq.density_matrix(qubits=(0,),name='S'),fq.density_matrix(qubits=(1,),name='R')],options=e.OPTIONS)
+packet={name:r.measurement(name).value[0].clone()for name in ('full','S','R')}
+accepted=lab.report(packet,C)
+assert accepted['accepted']
+print('Explicit native full/system/reference packet accepted against the declared joint target')
+```
+
+```text
+Explicit native full/system/reference packet accepted against the declared joint target
+```
+
+**Predict.** The global state is pure, but the two reduced eigenvalues are .27 and .73. A test that insists that every returned density have purity one would reject a correct result.
+
+### 8.8.2 Separate physical admissibility from target correctness
+
+For each d×d candidate A, first require a finite dense square matrix of the declared dtype and shape. Compute
+
+$$
+\begin{gathered}
+h=\max_{ij}|A_{ij}-A_{ji}^*|,\qquad
+z=|\operatorname{Tr}A-1|,\\
+\lambda_{\min}=\min\operatorname{eigvalsh}(A).
+\end{gathered}
+$$
+
+Only evaluate the Hermitian eigenvalue routine after the Hermitian residual passes. Otherwise a routine that reads one triangle could conceal an invalid other triangle. Require h≤ε, z≤ε and λ_min≥−ε, reporting the actual residuals. The last allowance is a numerical feasibility guard, not permission to silently replace negative eigenvalues by zero. Nor does it prove the exact matrix positive: a tiny negative eigenvalue may be unresolved at the declared tolerance. Do not symmetrize, clip eigenvalues or renormalize the candidate during verification.
+
+Trace one alone permits negative eigenvalues; positivity and trace one permit many *wrong* target states. Target comparison remains a separate obligation. For our pure preparation, 8.5 predicts
+
+$$
+\operatorname{Tr}P^2=1,\qquad
+\operatorname{Tr}\rho_S^2=p^2+(1-p)^2=.6058.
+$$
+
+```python
+e.close(packet['S'],rho)
+e.close(torch.trace(packet['full']@packet['full']),1)
+e.close(torch.trace(packet['S']@packet['S']),.27**2+.73**2)
+e.close(torch.linalg.eigvalsh(packet['S']),torch.tensor([.27,.73],dtype=torch.float64))
+print('Global purity1;local eigenvalues[0.27,0.73]and purity0.6058 match analytic weights')
+```
+
+```text
+Global purity1;local eigenvalues[0.27,0.73]and purity0.6058 match analytic weights
+```
+
+Purity is a useful cross-check, not an informationally complete specification. Distinct states can share trace, spectrum and purity. In particular, complex conjugating a density in the computational basis preserves these quantities but can reverse its Y mean.
+
+### 8.8.3 Check both coordinate contractions explicitly
+
+The independent coefficient predictions are ρ_S=CC† and ρ_R=CᵀC*. The matrix-entry partial trace is
+
+$$
+(\rho_S)_{ij}=\sum_\mu P_{i\mu,j\mu},
+\qquad
+(\rho_R)_{\mu\nu}=\sum_i P_{i\mu,i\nu}.
+$$
+
+The companion uses scalar indexed sums for these contractions, and checks each returned reduction against the supplied full matrix. It also compares against the *intended* coefficient matrix: internal consistency alone would accept a self-consistent but stale preparation. A generic transpose or a reversal of the selected qubit tuple must not be inferred from the eigenvalues alone.
+
+```python
+e.close(packet['S'],t.trace_ab(packet['full'],2,2))
+e.close(packet['R'],C.T@C.conj())
+assert torch.linalg.vector_norm(packet['S'].conj()-packet['S']).item()>.1
+print('Partial traces and complex conjugation checked as full matrices,not only spectra')
+```
+
+```text
+Partial traces and complex conjugation checked as full matrices,not only spectra
+```
+
+The right expression is CᵀC*, not C†C in this ket-coordinate convention. In a diagonal example the wrong expression may accidentally agree; complex system rotations and independent effect checks prevent that special case from concealing an error.
+
+### 8.8.4 Verify probabilities as well as matrices
+
+For a normalized system vector v, the rank-one effect E=|v⟩⟨v| has probability Tr(ρ_SE)=v†ρ_Sv. Use both a matrix trace on the candidate and a scalar quadratic form on the reference. The qubit probes |0⟩, |1⟩, |+⟩ and |+i⟩ determine the diagonal and the real and imaginary parts of the off-diagonal entry. Indeed
+
+$$
+\begin{aligned}
+p_+&=\tfrac12(\rho_{00}+\rho_{11})+\operatorname{Re}\rho_{01},\\
+p_{+i}&=\tfrac12(\rho_{00}+\rho_{11})-\operatorname{Im}\rho_{01}.
+\end{aligned}
+$$
+
+The sign in the second line follows by inserting v=(1,i)/√2 into v†ρv. This is an operational sign check in addition to the array comparison. A finite probe family is complete here because the displayed coordinate equations reconstruct every Hermitian qubit entry; an arbitrary finite selection of probes in larger dimensions would need its own completeness argument.
+
+```python
+for v in e.probes(2):
+ E=torch.outer(v,v.conj())
+ e.close(torch.trace(packet['S']@E),torch.vdot(v,rho@v))
+print('Informationally complete local effects agree with independent quadratic forms')
+```
+
+```text
+Informationally complete local effects agree with independent quadratic forms
+```
+
+**Check.** Why are computational-basis probabilities insufficient? They determine only the diagonal. Both a stale phase and an incorrect conjugation can survive that check.
+
+### 8.8.5 Retain wrong candidates and diagnose the failed layer
+
+The laboratory keeps original packets unchanged and constructs separate deliberately corrupted candidates. They include nonfinite data, an unequal pair of conjugate entries, a doubled trace, a trace-one matrix with eigenvalue −.1, the wrong complex conjugation of S, substituting S for R, and a real-valued full matrix that violates the declared representation. The reports include failed check names and residuals, not a normalized replacement result.
+
+```python
+bad=lab.errors(packet,C)
+assert all(not x['accepted']for x in bad.values())
+print('7 incorrect packets rejected;failure reports retain the original candidate residuals')
+```
+
+```text
+7 incorrect packets rejected;failure reports retain the original candidate residuals
+```
+
+A representation failure stops downstream numerical checks that have no valid input. A Hermitian failure prevents an eigenvalue-based positivity claim for that candidate. Once the matrices pass numerical admissibility, failed contractions or reference comparisons explain a different class of error. A later successful rerun is a new packet; it does not retroactively accept the original one.
+
+### 8.8.6 Test equivalence under the declared access scope
+
+Apply Z to the reference of the intended purification. The system density remains CC†, while the full state and reference coherences must be judged according to their actual target. For this particular diagonal reference density, its matrix remains unchanged too; the full joint phase correlation changes. Thus the candidate passes a local-S task but fails the original joint task.
+
+```python
+phase_packet,_=lab.prepare(.27,.62,W=e.Z)
+local=lab.report(phase_packet,C,'local');joint=lab.report(phase_packet,C,'joint')
+assert local['accepted']and not joint['accepted']
+print('Ancillary phase candidate:local accepted,joint rejected;scope is explicit')
+```
+
+```text
+Ancillary phase candidate:local accepted,joint rejected;scope is explicit
+```
+
+The local report checks that the supplied full and reduced matrices form a consistent extension and that S matches the local target. It deliberately does not compare the extension to a specified global target. The joint report additionally compares the full projector and R against their declared reference matrices. The report's `scope` field is therefore part of its meaning, not decorative metadata.
+
+### 8.8.7 Detect a stale reference and budget numerical error honestly
+
+A new target with different p and system phase is a valid preparation in its own right, but it must fail comparison to the old reference. The test below executes it in density-matrix mode and compares both contracts.
+
+```python
+matched,_=lab.prepare(.81,-.47,mode='density_matrix')
+otherC,_=lab.reference(.81,-.47)
+assert lab.report(matched,otherC)['accepted']
+assert not lab.report(matched,C)['accepted']
+print('Fresh declared target accepted;stale reference rejected')
+```
+
+```text
+Fresh declared target accepted;stale reference rejected
+```
+
+With an entrywise bound max|Δ_ij|≤ε on a d-dimensional matrix, its Frobenius norm is at most dε. Cauchy–Schwarz on matrix entries therefore gives |Tr(ΔE)|≤dε∥E∥_F. This explains why a chosen entrywise tolerance does not automatically equal the error bound for every possible observable; the dimension and the observable norm matter. Numerical residuals from several operations need their own error budget if combined in a later computation. This laboratory reports them separately and does not promote floating-point equality into a certified error interval.
+
+The protocol refuses tolerance zero, nonfinite tolerances and tolerances larger than the frozen ceiling. A caller may request a stricter positive tolerance, accepting that correct floating-point results may then be unresolved. Increasing tolerance until a bad candidate passes would change the acceptance contract after observing the answer.
+
+### 8.8.8 Run the complete protocol and preserve its limits
+
+```python
+for tol in (0.,1e-8,float('nan')):
+ try:lab.report(packet,C,atol=tol)
+ except ValueError:pass
+ else:raise AssertionError('Invalid tolerance accepted')
+assert g.RUNS==2
+print('3invalid tolerances rejected;body executed2helper calls plus1explicit native run')
+```
+
+```text
+3invalid tolerances rejected;body executed2helper calls plus1explicit native run
+```
+
+The executable [density_lab.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/density_lab.py) runs 10 actual FlagQuantum circuits: eight matched preparations and two deliberately changed reference-phase preparations, in statevector and density-matrix modes. The body runs three actual circuits, including the explicit native call in 8.8.1. Tested versions are Python 3.12.14, released FlagQuantum 0.3.1 and Torch 2.13.0. The prior 8.6 helper validates the square preparation matrices and actual native full/selected density outputs; the laboratory's acceptance logic, scalar partial traces, spectral checks and effect contractions are host computations.
+
+This is not a claim of a native density-verification service, arbitrary mixed-input initialization, sampled measurement updates, reset or hardware validation. Shape, numerical admissibility, target agreement, operational agreement, execution provenance and independent scientific review are different questions. A packet's arrays alone do not authenticate its claimed source or runtime. The tests cover a small two-qubit protocol with a known pure joint target; applying it to arbitrary dimensions or other mixed global targets requires a new explicit reference and scope. Mathematical/implementation review, reader trial and scientific acceptance remain separate from author checks.
+
+Expected output of the complete program:
+
+```text
+10 actual native circuits:8matched preparations and2ancillary-phase candidates passed scoped acceptance checks.
+7 malformed/incorrect density packets rejected without clipping,symmetrization or normalization repair.
+3 invalid tolerance contracts rejected;local acceptance never substitutes for joint acceptance.
+```
+
+**Chapter synthesis and transfer.**
+
+- **8.8-A — derive.** Starting with C=Q diag(√p,√(1−p)), derive both reduced matrices and both purities. Explain why every pure global input does not produce a pure local density.
+- **8.8-B — implement.** Repeat the laboratory for p=.39 and φ=−.73 in both execution modes. Preserve the original candidate and all residuals, and compare full matrices, scalar reductions and probe probabilities.
+- **8.8-C — debug.** Apply a reference Z with this fresh target. Submit the packet to both scopes. Which full-state comparison fails? Does a local success authorize accepting the original joint candidate?
+- **8.8-D — challenge a certificate.** A matrix has trace one and min eigenvalue −5×10⁻¹³, within the numerical threshold. Can the report certify mathematical positivity? What if its spectrum matches the target but its imaginary off-diagonal signs differ?
+
+<details markdown="1">
+<summary>Answers and verification guidance for 8.8-A–D</summary>
+
+**A.** The system is Q diag(p,1−p) Q†, and the reference is diag(p,1−p). Their purities are p²+(1−p)², while the full outer-product purity is one by normalized-vector algebra. Except at p=0 or 1, a positive local rank-two spectrum is mixed despite global purity.
+
+**B.** The native preparation, full/selected queries and candidate acceptance run unchanged with the fresh parameters. The complete system/reference matrices and every rank-one probe must be compared; copying only eigenvalues omits basis and phase information. Fresh transfer evidence records both modes and the changed-phase candidates.
+
+**C.** The full projector comparison fails because its cross terms between the reference labels change sign. S remains unchanged. A local report answers a different task; retain the rejected joint report and do not silently lower its scope.
+
+**D.** The result is only numerical feasibility at the stated tolerance, not exact positivity. No clipping is allowed in the original report. Matching a spectrum cannot fix the eigenvectors or imaginary signs; the full entrywise target and the |+i⟩ probability expose that error.
+
+</details>
+
+This editorial acceptance protocol (`ED:protocol`) reuses the preceding chapter's established results; it introduces no new external theorem. Chapter 8 now has eight working drafts, not formal chapter acceptance. Independent mathematical/implementation review and reader trials remain pending.
+
+<!-- end-section-8.8 -->

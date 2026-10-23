@@ -1,0 +1,7 @@
+{
+  "flagquantum": "0.3.1",
+  "torch": "2.13.0",
+  "density_signature": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None) -> 'OutputRequest'",
+  "previousCI39970998744": "success",
+  "native_probe_runs": 0
+}

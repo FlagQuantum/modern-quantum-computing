@@ -1,0 +1,3 @@
+10 actual native circuits:8matched preparations and2ancillary-phase candidates passed scoped acceptance checks.
+7 malformed/incorrect density packets rejected without clipping,symmetrization or normalization repair.
+3 invalid tolerance contracts rejected;local acceptance never substitutes for joint acceptance.
