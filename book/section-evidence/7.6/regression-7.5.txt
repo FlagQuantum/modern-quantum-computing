@@ -1,0 +1,2 @@
+8 cumulative 7.5 body fragments:26 native circuits,assertions and exact outputs passed.
+Complete 7.5 program:155 native circuits and exact output passed;16 malformed contracts rejected.

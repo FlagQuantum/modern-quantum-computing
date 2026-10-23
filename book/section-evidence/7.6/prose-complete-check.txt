@@ -1,0 +1,2 @@
+8 cumulative7.6body units:33 native circuits,exact outputs and assertions passed.
+Complete7.6program:229 native circuits,exact output and16 malformed-contract rejections passed.

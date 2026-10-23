@@ -1,0 +1,38 @@
+Python 3.12.14 FlagQuantum 0.3.1 Torch 2.13.0
+Circuit source /private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py
+sha256 beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b
+h True
+cx True
+x True
+z True
+ry True
+p True
+send False
+transmit False
+measure False
+reset False
+0native runs in API inspection;network/hardware support outside this inspected public static workflow is not assessed.
+Temporary environments absent:initial scientific launch had no Python executable and0native runs;normal uv cache lock denied before mutation. Approved uv restore installed locked requirements,then all actual runs passed.
+contourpy==1.4.0
+cycler==0.12.1
+filelock==4.2.4
+flagquantum==0.3.1
+fonttools==4.67.0
+fsspec==2026.9.0
+Jinja2==3.1.6
+kiwisolver==1.5.1
+MarkupSafe==3.0.4
+matplotlib==3.11.2
+mpmath==1.3.0
+networkx==3.7
+numpy==2.5.4
+packaging==26.3
+pillow==13.0.0
+pyparsing==3.3.3
+python-dateutil==3.0.0
+setuptools==84.2.1
+six==1.17.0
+sympy==1.14.0
+torch==2.13.0
+typing_extensions==4.16.0
+tzdata==2026.5

@@ -1,0 +1,9 @@
+1 Shared Phi+ verified;A=q0 belongs to Alice,B=q1 to Bob before transmission.
+2 Alice-only X^b then Z^a produces beta_ab exactly;XX=(-1)^a,ZZ=(-1)^b.
+3 Four decoded full vectors are |a,b>;all17 native records per message recover(a,b).
+4 Mapped roles(A,B)=(q3,q1):raw columns(q1,q3) are(b,a);semantic messages remain(a,b).
+5 Omitting final H loses a:outputs(0,b),(1,b) each have probability1/2.
+6 Alternate encoding adds(-1)^(ab),without a message error;wrong decoder H-then-CX gives uniform outputs.
+7 Imperfect resource:correct-bit probability=(1+sin(theta)cos(phase))/2;parity bit b is exact.
+8 Relocation returns |0,b,a> in old-A,B,carrier order;all ordered records return(a,b).
+33 native circuits in eight body units;physical single-qubit transport is an explicit model assumption.

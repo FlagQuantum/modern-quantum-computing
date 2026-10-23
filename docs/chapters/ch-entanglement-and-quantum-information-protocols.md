@@ -1,6 +1,6 @@
 # 7. Entanglement and Quantum Information Protocols
 
-**Working drafts: sections 7.1–7.5 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
+**Working drafts: sections 7.1–7.6 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
 
 <span id="sec-entanglement-and-quantum-information-protocols-1"></span>
 
@@ -2290,3 +2290,532 @@ This evidence does not establish native sampled collapse, reset, general instrum
 **Sources and transition.** The frozen locator is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §1.3.7, “Quantum teleportation,” beginning on printed page 26 ([NC:1.3.7 locator](../references/proof-sources.md#source-nc-1-3-7)). The public [IBM Quantum Learning teleportation lesson](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/quantum-teleportation) was inspected for protocol/reference scope; translate its register and message letters to the S,A,B and (m,n) conventions here. Historical attribution is Bennett, Brassard, Crépeau, Jozsa, Peres and Wootters, [*Physical Review Letters* 70, 1895 (1993)](https://doi.org/10.1103/PhysRevLett.70.1895), whose publisher metadata and abstract were inspected. These are original local derivations and ideal simulator tests, not an experimental-paper reproduction. Independent review remains pending.
 
 <!-- end-section-7.5 -->
+
+<span id="sec-entanglement-and-quantum-information-protocols-6"></span>
+
+## 7.6 Superdense coding
+
+Alice wants to send one of four classical messages, written as two bits (a,b). If she and Bob already share a Bell pair, she can encode the message by operating on her half, send **that one qubit** to Bob, and let him decode both bits by a joint measurement. We will prove the four encoded states are orthogonal and that a specific inverse Bell circuit distinguishes them with certainty.
+
+The prerequisites are [7.3, Bell states and basis changes](#sec-entanglement-and-quantum-information-protocols-3), and [5.1, circuit composition and call order](ch-gates-reversible-computation-and-circuit-synthesis.md#sec-gates-reversible-computation-and-circuit-synthesis-1). Depth **F** requires the encoded-state and measurement proof for every message. Bits a,b are known classical inputs, not unknown quantum amplitudes. We use the 7.3 convention: a is the phase bit and b the parity bit.
+
+**Execution and resource contract.** Initially A=q0 belongs to Alice and B=q1 to Bob. The full statevector uses A,B order, q0 most significant. Alice applies gates only to A while the parties are separated. Bob's two-qubit decoder is permitted **after A has arrived at Bob**. Quantum transmission changes ownership, not the abstract statevector ordering. It is assumed ideal here. The released FlagQuantum 0.3.1 examples execute static gates and terminal probability/sample queries in one centralized simulator; they do not execute a network-send operation, a quantum link or a hardware Bell detector.
+
+Run the eight cumulative Python blocks from the repository root after installing requirements-examples.txt. The complete companion [superdense_coding.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/superdense_coding.py) supplies indexed references, ordered records and error guards. Angles are radians; amplitudes and probabilities are dimensionless. Deterministic checks use CPU complex128, absolute tolerance $10^{-12}$, relative tolerance zero. No phase alignment, probability clipping or input repair is performed.
+
+<span id="formula-code-7-6-resource"></span>
+
+### 7.6.1 — Supply entanglement before choosing the message
+
+**Formula.** The shared resource is
+
+$$
+|\Phi^+\rangle_{AB}=\frac{|00\rangle+|11\rangle}{\sqrt2}.
+$$
+
+It is prepared mathematically by the Bell encoder
+
+$$
+V=\operatorname{CX}_{A\to B}(H_A\otimes I_B),
+\qquad V|00\rangle=|\Phi^+\rangle.
+$$
+
+**Derivation and resource accounting.** H creates $(|0\rangle+|1\rangle)/\sqrt2$ on A; CX copies its computational-basis label into initially zero B, producing the two correlated terms. At this point the pair must be shared: preparing both qubits at Alice is not by itself distribution to Bob.
+
+The resource statement is: **one previously shared ideal Bell pair plus one subsequent ideal qubit transmission enables two classical message bits**. The prior pair is often called one ebit of entanglement; here that term means this specified Bell-pair resource, without assuming a general entropy theory. If Alice prepares the pair and sends B to establish it, that earlier transmission must also be counted in an end-to-end ledger. Counting it gives two one-qubit transmissions: the earlier B distribution and the later encoded A transmission. We do not claim two bits per total transmitted qubit with entanglement supplied for free.
+
+**FlagQuantum code and verification result.** Native H/CX prepare the resource, and its four amplitudes are checked independently. Ownership is a protocol declaration; no native transport operation is hidden in this code.
+
+```python
+import itertools, math, cmath
+import flagquantum as fq
+import torch
+from examples.foundations import superdense_coding as s
+from examples.foundations.tensor_spaces import OPTIONS
+D, ATOL = s.D, s.ATOL
+shared = fq.Circuit(2,dtype=D).h(0).cx(0,1)
+initial = fq.run(shared,outputs=[fq.probabilities()],options=OPTIONS)
+s.RUNS += 1
+phi = torch.tensor([1,0,0,1],dtype=D)/math.sqrt(2)
+assert torch.allclose(initial.statevector()[0],phi,atol=ATOL,rtol=0)
+print("Shared Phi+ verified;A=q0 belongs to Alice,B=q1 to Bob before transmission.")
+```
+
+```text
+Shared Phi+ verified;A=q0 belongs to Alice,B=q1 to Bob before transmission.
+```
+
+<span id="formula-code-7-6-encoding"></span>
+
+### 7.6.2 — Encode both bits using Alice's qubit alone
+
+**Formula.** For message (a,b), Alice first applies $X_A^b$, then $Z_A^a$. With matrices acting on the left, the encoder is
+
+$$
+E_{ab}=Z^aX^b.
+$$
+
+Acting on the Bell resource gives
+
+$$
+\begin{gathered}
+(E_{ab}\otimes I)|\Phi^+\rangle\\
+=\frac1{\sqrt2}\sum_{r=0}^1
+(-1)^{a(r\oplus b)}|r\oplus b,r\rangle\\
+=\frac1{\sqrt2}\sum_{i=0}^1
+(-1)^{ai}|i,i\oplus b\rangle\\
+=|\beta_{ab}\rangle.
+\end{gathered}
+$$
+
+**Derivation.** X changes Alice's basis bit r into $r\oplus b$. Z contributes the sign associated with that changed bit. Replacing the summation variable by $i=r\oplus b$ gives exactly the phase-fixed Bell vector of 7.3. Bob's qubit is untouched throughout this encoding.
+
+| Message | Alice's chronological calls | Encoded Bell state |
+|---|---|---|
+| 00 | none | $(\lvert00\rangle+\lvert11\rangle)/\sqrt2$ |
+| 01 | X | $(\lvert01\rangle+\lvert10\rangle)/\sqrt2$ |
+| 10 | Z | $(\lvert00\rangle-\lvert11\rangle)/\sqrt2$ |
+| 11 | X, then Z | $(\lvert01\rangle-\lvert10\rangle)/\sqrt2$ |
+
+The four message choices therefore select four **joint** states. They do not select four distinguishable states of A alone.
+
+**FlagQuantum code and verification result.** The code visibly performs only Alice's message-dependent gates. Independent coordinate vectors and native XX/ZZ expectations verify the label: XX has eigenvalue $(-1)^a$, and ZZ has eigenvalue $(-1)^b$. Bob's three local Pauli means remain zero.
+
+```python
+encoded = {}
+for a,b in itertools.product((0,1),repeat=2):
+    c = fq.Circuit(2,dtype=D).h(0).cx(0,1)
+    if b: c.x(0)   # chronological X^b,then Z^a on Alice only
+    if a: c.z(0)
+    out = fq.run(c,outputs=[fq.probabilities(),
+        fq.expectation(fq.X(0)@fq.X(1),name="xx"),
+        fq.expectation(fq.Z(0)@fq.Z(1),name="zz"),
+        fq.expectation(fq.X(1),name="bx"),fq.expectation(fq.Y(1),name="by"),
+        fq.expectation(fq.Z(1),name="bz")],options=OPTIONS)
+    s.RUNS += 1
+    encoded[(a,b)] = out.statevector()[0]
+    target = torch.zeros(4,dtype=D)
+    target[b]=1/math.sqrt(2);target[2+(1^b)]=(-1)**a/math.sqrt(2)
+    assert torch.allclose(encoded[(a,b)],target,atol=ATOL,rtol=0)
+    assert abs(float(out.expectation("xx")[0])-(-1)**a)<ATOL
+    assert abs(float(out.expectation("zz")[0])-(-1)**b)<ATOL
+    assert all(abs(float(out.expectation(k)[0]))<ATOL for k in ("bx","by","bz"))
+print("Alice-only X^b then Z^a produces beta_ab exactly;XX=(-1)^a,ZZ=(-1)^b.")
+```
+
+```text
+Alice-only X^b then Z^a produces beta_ab exactly;XX=(-1)^a,ZZ=(-1)^b.
+```
+
+<span id="formula-code-7-6-decoding"></span>
+
+### 7.6.3 — Receive A, then measure in the Bell basis
+
+**Formula.** After Alice physically sends A, Bob possesses both A and B. His decoder is
+
+$$
+\begin{gathered}
+D=V^\dagger,\\
+D=(H_A\otimes I_B)\operatorname{CX}_{A\to B}.
+\end{gathered}
+$$
+
+The chronological calls are therefore **CX(A,B), then H(A)**. To prove decoding directly, apply CX to the encoded expansion:
+
+$$
+|\beta_{ab}\rangle
+\longmapsto
+\frac{|0\rangle+(-1)^a|1\rangle}{\sqrt2}_A
+\otimes|b\rangle_B.
+$$
+
+H transforms the first factor into |a⟩. Hence
+
+$$
+D|\beta_{ab}\rangle=|a,b\rangle.
+$$
+
+**Distinguishability proof.** In the inner product between two Bell expansions, matching first bits forces the same i; matching second bits then forces $b=b'$. The remaining sign sum is
+
+$$
+\begin{aligned}
+\langle\beta_{a'b'}|\beta_{ab}\rangle
+&=\delta_{bb'}\frac12\sum_{i=0}^1(-1)^{(a+a')i}\\
+&=\delta_{bb'}\delta_{aa'}.
+\end{aligned}
+$$
+
+The last equality follows because the sum is two when a=a′ and zero otherwise. There are four orthonormal vectors in the four-dimensional A/B space, so they form a complete basis.
+
+Computational-basis measurement after D has effects
+
+$$
+\begin{aligned}
+F_{ab}&=D^\dagger|ab\rangle\langle ab|D\\
+&=|\beta_{ab}\rangle\langle\beta_{ab}|.
+\end{aligned}
+$$
+
+These projectors are nonnegative and sum to I by completeness. For input message (c,d),
+
+$$
+p(a,b\mid c,d)
+=|\langle\beta_{ab}|\beta_{cd}\rangle|^2
+=\delta_{ac}\delta_{bd}.
+$$
+
+Thus one four-outcome Bell measurement recovers **every** message without postselection. H, CX and terminal computational readout are a circuit realization of that ideal measurement; a platform's physical Bell-measurement capability must be checked separately.
+
+**FlagQuantum code and verification result.** Four native executions compare the full decoded vector with |a,b⟩ and the probabilities with its one-hot distribution. Raw columns are deliberately requested as (B,A), then decoded using their declared order.
+
+```python
+BELL = torch.stack(list(encoded.values()),dim=1)
+assert torch.allclose(BELL.conj().T@BELL,torch.eye(4,dtype=D),atol=ATOL,rtol=0)
+for a,b in encoded:
+    c = fq.Circuit(2,dtype=D).h(0).cx(0,1)
+    if b: c.x(0)
+    if a: c.z(0)
+    c.cx(0,1).h(0)  # Bob acts on both qubits after receiving A.
+    out = fq.run(c,outputs=[fq.probabilities(qubits=(0,1)),
+        fq.samples(qubits=(1,0))],shots=17,options=OPTIONS)
+    s.RUNS += 1
+    basis = torch.zeros(4,dtype=D);basis[2*a+b]=1
+    assert torch.allclose(out.statevector()[0],basis,atol=ATOL,rtol=0)
+    expected = torch.zeros(4,dtype=torch.float64);expected[2*a+b]=1
+    assert torch.allclose(out.probabilities[0],expected,atol=ATOL,rtol=0)
+    assert out.samples.shape==(1,17,2)
+    assert all(s.decode_record(row,(1,0),(0,1))==(a,b) for row in out.samples[0])
+print("Four decoded full vectors are |a,b>;all17 native records per message recover(a,b).")
+```
+
+```text
+Four decoded full vectors are |a,b>;all17 native records per message recover(a,b).
+```
+
+All seventeen records must match here because the ideal distribution is deterministic. This is not a demand that a random finite histogram match a nontrivial probability vector. A returned statevector is still the simulated state before terminal sampling; these calls do not demonstrate a sampled-collapse interface.
+
+<span id="formula-code-7-6-indices"></span>
+
+### 7.6.4 — Keep message order, qubit order and ownership distinct
+
+**Formula.** A record requested in columns (A,B) is (a,b), whereas columns (B,A) give (b,a). The probability-vector index is $2a+b$ in the former order and $2b+a$ in the latter. These are coordinate conventions, not different protocols.
+
+In a register of n qubits, suppose A and B occupy distinct positions p and q. For full-index bits $x_0,\ldots,x_{n-1}$, the encoded amplitude with factored spectators is
+
+$$
+\begin{gathered}
+\Psi(x_0,\ldots,x_{n-1})\\
+=\frac{(-1)^{a x_p}}{\sqrt2}
+\,\mathbf1_{x_q=x_p\oplus b}
+\prod_{j\notin\{p,q\}}s_{j,x_j}.
+\end{gathered}
+$$
+
+Here the indicator is one when its subscripted condition holds and zero otherwise. Each spectator has normalized coefficients $s_{j,0},s_{j,1}$. After the decoder the amplitude is
+
+$$
+\Psi_{\mathrm{out}}(x)
+=\mathbf1_{x_p=a}\mathbf1_{x_q=b}
+\prod_{j\notin\{p,q\}}s_{j,x_j}.
+$$
+
+**Derivation.** The gates act as the two-qubit decoder on the ordered pair and as identity on every spectator. Linearity therefore leaves their factors unchanged. This is the full-index version of $D|\beta_{ab}\rangle=|ab\rangle$. It also explains why sending A does not require reversing tensor axes or calling SWAP: the same labeled system simply changes which party can operate on it.
+
+**FlagQuantum code and verification result.** Use (A,B)=(q3,q1), with complex spectators at q0,q2. The helper prepares spectator j by Ry(.29+.17j), P(−.23(j+1)), so
+
+$$
+\begin{aligned}
+s_{j,0}&=\cos((.29+.17j)/2),\\
+s_{j,1}&=e^{-.23i(j+1)}\sin((.29+.17j)/2).
+\end{aligned}
+$$
+
+It compares every native amplitude with the indexed formula and reconstructs semantic messages from reversed native columns.
+
+```python
+for bits in encoded:
+    mapped = s.query(bits,n=4,pair=(3,1),columns=(1,3))
+    assert all(x==bits for x in mapped["messages"])
+    assert int(mapped["counts"][2*bits[0]+bits[1]])==17
+print("Mapped roles(A,B)=(q3,q1):raw columns(q1,q3) are(b,a);semantic messages remain(a,b).")
+```
+
+```text
+Mapped roles(A,B)=(q3,q1):raw columns(q1,q3) are(b,a);semantic messages remain(a,b).
+```
+
+A symmetric Bell histogram can hide swapped columns. The four asymmetric decoded labels and exact full-state indices provide a calibration that distinguishes those conventions. No classical label renaming is counted as a quantum transmission.
+
+<span id="formula-code-7-6-local"></span>
+
+### 7.6.5 — Identify why Bob needs a joint decoder
+
+**Formula.** Before A arrives, Bob can measure B alone. For any Hermitian one-qubit observable $O=\begin{pmatrix}u&v\\v^*&w\end{pmatrix}$, the encoded state predicts
+
+$$
+\langle\beta_{ab}|I_A\otimes O|\beta_{ab}\rangle
+=\frac{u+w}{2}.
+$$
+
+**Derivation.** The two terms of the Bell state have orthogonal A factors, so their off-diagonal contributions vanish when O acts only on B. Their B factors are b and $1\oplus b$, and their squared coefficients are both one half. Thus the result is the average of the two diagonal entries, independent of a,b. Every local measurement effect is Hermitian, so Bob has no local measurement whose probabilities reveal the message before transmission. The analogous calculation holds for A alone.
+
+After receiving A, a computational-basis measurement of both qubits still only reveals the parity b: the possibilities are $(0,b)$ and $(1,1\oplus b)$, each with probability one half. Their relative sign contains a, and ordinary computational probabilities do not retain that sign.
+
+If Bob performs CX but forgets H, the state is
+
+$$
+H|a\rangle_A\otimes|b\rangle_B,
+$$
+
+and his outputs are (0,b), (1,b), each with probability one half. He again recovers only b. The H in the correct decoder converts the relative sign into a deterministic first-bit outcome.
+
+**FlagQuantum code and verification result.** Native local Pauli means were checked in 7.6.2. Here four native circuits omit the final H and verify the exact distribution. The helper's parity stage ends immediately after CX(A,B).
+
+```python
+for a,b in encoded:
+    parity = s.query((a,b),"parity")
+    expected = torch.zeros(4,dtype=torch.float64)
+    expected[b]=.5;expected[2+b]=.5
+    assert torch.allclose(parity["probabilities"],expected,atol=ATOL,rtol=0)
+print("Omitting final H loses a:outputs(0,b),(1,b) each have probability1/2.")
+```
+
+```text
+Omitting final H loses a:outputs(0,b),(1,b) each have probability1/2.
+```
+
+The protocol exploits the four-dimensional **joint** space available after transmission. It does not place four orthogonal messages into an isolated two-dimensional qubit. General capacity statements for arbitrary coding schemes need the later information-theory results; no general capacity theorem is asserted by this four-message example.
+
+<span id="formula-code-7-6-errors"></span>
+
+### 7.6.6 — Diagnose phases separately from decoder errors
+
+**Formula.** An alternative convention applies Zᵃ first and Xᵇ second. Its matrix is $X^bZ^a=(-1)^{ab}Z^aX^b$. Consequently,
+
+$$
+\begin{gathered}
+D(X^bZ^a\otimes I)|\Phi^+\rangle\\
+=(-1)^{ab}|a,b\rangle.
+\end{gathered}
+$$
+
+**Derivation.** The Pauli anticommutation $XZ=-ZX$ contributes a minus sign only for a=b=1. In this protocol the message is classical: each run chooses one pair of bits. That run's overall sign does not change any measurement probability. The alternate convention still sends both bits correctly, though an exact-vector comparison must include its phase. A coherent superposition of message controls would have a relative phase and would require another contract; it is not the classical communication task here.
+
+Using H followed by CX as Bob's supposed inverse is a different error. It uses V instead of $V^\dagger$. On a Bell vector H already produces four amplitudes, all of modulus one half; CX merely permutes them. Thus this wrong decoder gives probability one quarter to each output for **every** message.
+
+**FlagQuantum code and verification result.** Four explicit native alternate-encoding circuits check the exact $(-1)^{ab}$ phase. Four further native circuits use the wrong decoder order and verify its uniform distribution.
+
+```python
+for a,b in encoded:
+    c = fq.Circuit(2,dtype=D).h(0).cx(0,1)
+    if a: c.z(0)  # alternate chronological Z^a,then X^b
+    if b: c.x(0)
+    c.cx(0,1).h(0)
+    out = fq.run(c,outputs=[fq.probabilities()],options=OPTIONS)
+    s.RUNS += 1
+    target = torch.zeros(4,dtype=D);target[2*a+b]=(-1)**(a*b)
+    assert torch.allclose(out.statevector()[0],target,atol=ATOL,rtol=0)
+    wrong = s.query((a,b),"wrong")
+    assert torch.allclose(wrong["probabilities"],torch.full((4,),.25,dtype=torch.float64),atol=ATOL,rtol=0)
+print("Alternate encoding adds(-1)^(ab),without a message error;wrong decoder H-then-CX gives uniform outputs.")
+```
+
+```text
+Alternate encoding adds(-1)^(ab),without a message error;wrong decoder H-then-CX gives uniform outputs.
+```
+
+A test that checks only normalized vectors can miss decoder mistakes, while a test that rejects every overall sign would falsely reject a working classical protocol. The checks must state whether they test exact circuit identity or classical message probabilities.
+
+<span id="formula-code-7-6-resource-errors"></span>
+
+### 7.6.7 — Calculate failure when the shared resource is not Phi+
+
+**Formula.** Replace the shared pair by the normalized pure state
+
+$$
+\begin{gathered}
+|\eta_{\theta,\phi}\rangle=c|00\rangle+e^{i\phi}s|11\rangle,\\
+c=\cos(\theta/2),\qquad s=\sin(\theta/2).
+\end{gathered}
+$$
+
+This is a specified pure-resource mismatch, not a noise model. Use the same encoding and decoder. After encoding and CX, the state is
+
+$$
+\begin{gathered}
+\sum_{r=0}^1d_r(-1)^{a(r\oplus b)}
+|r\oplus b,b\rangle,\\
+d_0=c,\qquad d_1=e^{i\phi}s.
+\end{gathered}
+$$
+
+H contributes $(-1)^{t(r\oplus b)}/\sqrt2$ to output first bit t. Set $u=t\oplus a$ and sum the two r values:
+
+$$
+\begin{gathered}
+\text{amplitude of }|t,b\rangle\\
+=\frac{(-1)^{ub}}{\sqrt2}
+\left(c+(-1)^u e^{i\phi}s\right).
+\end{gathered}
+$$
+
+Define $g_\pm=(c\pm e^{i\phi}s)/\sqrt2$. The complete decoded vector is
+
+$$
+g_+|a,b\rangle+(-1)^b g_-|a\oplus1,b\rangle.
+$$
+
+**Derivation of the error probabilities.** Since c,s are real and $c^2+s^2=1$,
+
+$$
+\begin{aligned}
+p(\text{both bits correct})&=|g_+|^2\\
+&=\frac{1+\sin\theta\cos\phi}{2},\\
+p(\text{only a flipped})&=|g_-|^2\\
+&=\frac{1-\sin\theta\cos\phi}{2}.
+\end{aligned}
+$$
+
+The parity bit b remains exact. At θ=π/2,φ=0 the resource is Phi+ and the first probability is one. At θ=0 the resource is a product and the phase bit is completely ambiguous. At θ=π/2,φ=π the resource is Phi− and the assumed decoder flips a with certainty. That pair is still maximally entangled: the failure is a resource-convention mismatch, not proof that entanglement has disappeared.
+
+A common overall phase on both resource coefficients cancels from probabilities. The φ here is their **relative** phase and changes interference. This distinction prevents a phase-alignment routine from concealing a real error.
+
+**FlagQuantum code and verification result.** Native Ry/P/CX prepare the declared imperfect resource, and explicit message gates and decoder follow. All four decoded vectors and exact success probabilities are checked.
+
+```python
+theta, phase = .83, -.47
+gp = (math.cos(theta/2)+cmath.exp(phase*1j)*math.sin(theta/2))/math.sqrt(2)
+gm = (math.cos(theta/2)-cmath.exp(phase*1j)*math.sin(theta/2))/math.sqrt(2)
+for a,b in encoded:
+    c = fq.Circuit(2,dtype=D).ry(0,theta).p(0,phase).cx(0,1)
+    if b: c.x(0)
+    if a: c.z(0)
+    c.cx(0,1).h(0)
+    out = fq.run(c,outputs=[fq.probabilities()],options=OPTIONS)
+    s.RUNS += 1
+    target = torch.zeros(4,dtype=D)
+    target[2*a+b]=gp;target[2*(a^1)+b]=(-1)**b*gm
+    assert torch.allclose(out.statevector()[0],target,atol=ATOL,rtol=0)
+    assert abs(float(out.probabilities[0,2*a+b])-(1+math.sin(theta)*math.cos(phase))/2)<ATOL
+print("Imperfect resource:correct-bit probability=(1+sin(theta)cos(phase))/2;parity bit b is exact.")
+```
+
+```text
+Imperfect resource:correct-bit probability=(1+sin(theta)cos(phase))/2;parity bit b is exact.
+```
+
+The complete program also tests the three boundary resources just discussed, a negative preparation angle and other complex phases. Random frequencies are not required to equal these nontrivial exact probabilities.
+
+<span id="formula-code-7-6-relocation"></span>
+
+### 7.6.8 — Model register relocation without inventing a network API
+
+**Formula.** A simulator may keep A's label fixed during transmission. If an implementation instead assigns the received state to a new slot C initialized to zero, a SWAP(A,C) is an explicit register-relocation fixture. Its three-CX identity follows on every basis input:
+
+$$
+\begin{aligned}
+(x,y)&\longmapsto(x,y\oplus x)\\
+&\longmapsto(y,y\oplus x)\\
+&\longmapsto(y,x).
+\end{aligned}
+$$
+
+The chronological controls are A→C, C→A, A→C. Linearity extends the basis identity to arbitrary, even entangled, amplitudes. For the encoded state with C=0,
+
+$$
+\begin{gathered}
+|\beta_{ab}\rangle_{AB}|0\rangle_C\longmapsto\\
+\frac1{\sqrt2}\sum_{i=0}^1(-1)^{ai}
+|0,i\oplus b,i\rangle_{A,B,C}.
+\end{gathered}
+$$
+
+Bob now decodes the ordered pair (C,B), using CX(C,B), H(C). The full result in **old-A,B,C** index order is
+
+$$
+|0,b,a\rangle.
+$$
+
+**Derivation and API boundary.** The old slot becomes zero and the correlations move into C,B, exactly as the SWAP identity states. In this fixture C is Alice's spare local slot before departure. After the SWAP, C is the carrier assumed delivered to Bob, while old A stays with Alice; a cross-party SWAP is not being offered as a substitute for the transmission channel. Terminal columns (C,B) therefore return (a,b). This test catches a receiver using the old slot or the wrong ordered pair. It does not establish a physical transport channel: a centralized SWAP is a unitary on simulator registers, not evidence of remote connectivity, loss, latency or hardware transmission.
+
+The physical protocol requires only sending the already encoded A. No SWAP gate is inherently required to move a physical carrier between parties. The fixture is useful for implementations that explicitly change register allocation; it is not an extra hidden quantum-communication resource.
+
+**FlagQuantum code and verification result.** Four native three-qubit runs implement this fixture with explicit CX calls and verify both the old slot and received message.
+
+```python
+for a,b in encoded:
+    c = fq.Circuit(3,dtype=D).h(0).cx(0,1)
+    if b: c.x(0)
+    if a: c.z(0)
+    c.cx(0,2).cx(2,0).cx(0,2)  # local-register relocation fixture
+    c.cx(2,1).h(2)              # now decode ordered pair(carrier,B)
+    out = fq.run(c,outputs=[fq.probabilities(qubits=(2,1)),
+        fq.samples(qubits=(2,1))],shots=11,options=OPTIONS)
+    s.RUNS += 1
+    target = torch.zeros(8,dtype=D);target[2*b+a]=1
+    assert torch.allclose(out.statevector()[0],target,atol=ATOL,rtol=0)
+    assert all(tuple(map(int,row))==(a,b) for row in out.samples[0])
+assert s.RUNS==33
+print("Relocation returns |0,b,a> in old-A,B,carrier order;all ordered records return(a,b).")
+print("33 native circuits in eight body units;physical single-qubit transport is an explicit model assumption.")
+```
+
+```text
+Relocation returns |0,b,a> in old-A,B,carrier order;all ordered records return(a,b).
+33 native circuits in eight body units;physical single-qubit transport is an explicit model assumption.
+```
+
+After ideal decoding and measurement, Bob holds a product basis state encoding the two bits. The original shared Bell pair is no longer available as a resource. Alice cannot send a second two-bit message by assuming the consumed pair was silently restored; another shared pair must be supplied. The terminal-query examples do not demonstrate a reset operation or resource recycling.
+
+### Complete execution and support limits
+
+Run the complete program and literal-body checker:
+
+~~~bash
+python examples/foundations/superdense_coding.py
+python scripts/check_superdense_coding_prose.py
+~~~
+
+The complete program checks all four messages on all twenty ordered two-qubit supports in registers of two, three and four qubits, including complex spectators and reversed readout columns. Scalar indexed amplitudes, exact marginal sums, Pauli expectations and integer record counts independently check the native outputs. The small register bound belongs to this explicit reference, not to FlagQuantum's capacity.
+
+Sixteen malformed contracts are rejected before an additional native run: invalid message length/type/value; undersized register, repeated/out-of-range supports; nonfinite/nonreal angles; unknown stage/order; invalid shot count/seed; invalid column declaration; and wrong-dtype, nonbinary or mismatched-column records. No unsupported network method, physical Bell detector or noisy channel is fabricated. All demonstrated preparations, encoders, decoders and relocation fixtures use actual released static gates and native terminal queries.
+
+Expected output of the complete program:
+
+```text
+160 native circuits:four messages on all20 ordered2/3/4qubit pairs;exact encoded/decoded vectors,reversed-column records and spectator phases passed.
+17 native circuits:resource,omitted-H/wrong-order decoders and alternate encoding phase passed.
+48 native circuits:six imperfect pure resources;exact phase-bit error formula and parity-bit preservation passed.
+4 native relocation fixtures:old Alice slot=0,carrier/B decoder returns(a,b);not a network transport test.
+16 malformed contracts rejected before another native execution.
+229 CPU complex128 native circuits passed;one transmitted qubit assumes a previously shared Bell pair.
+```
+
+The finite executions verify implementation; they do not replace the four-state proof. This is an author-verified working draft, with independent mathematical review, implementation review and reader trial still pending.
+
+### Understanding checks and transfer exercises
+
+**7.6-A — Fix the convention.** Derive the 11 encoded vector using only Alice's X then Z actions. What changes if she uses Z then X? Which result changes under exact-vector comparison, and which under classical message readout?
+
+**7.6-B — Count the resources.** Explain why Bob cannot run the two-qubit decoder before A arrives. List the shared resource, transmitted system and terminal outputs. If Alice originally prepared both resource halves, identify the extra transmission needed to establish sharing. Is the pair available again after decoding?
+
+**7.6-C — Fresh ordered-register experiment.** Use four qubits with (A,B)=(q2,q0). For spectator j in {1,3}, use Ry(.29+.17j), P(−.23(j+1)). Run all four messages with terminal columns (q0,q2). Predict the full decoded indices and semantic messages. Explain why replacing transport by a relabeling of classical records would not implement the protocol.
+
+**7.6-D — Diagnose a wrong resource.** For θ=1.17,φ=−.31 derive both decoded amplitudes and probabilities for every message. Repeat with θ=π/2,φ=π. Is a measured zero error frequency in a finite batch a certificate of the ideal resource? Propose an exact-probability or interference check suited to the simulator.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 7.6-A–D</summary>
+
+**A.** X(A) sends $(|00\rangle+|11\rangle)/\sqrt2$ to $(|10\rangle+|01\rangle)/\sqrt2$. Z(A) changes the sign of the first term, giving $(|01\rangle-|10\rangle)/\sqrt2=\beta_{11}$. Reversing the calls gives its negative. The exact vectors differ, but Bob's decoded message is 11 in both conventions. The four message-selected signs must not be mistaken for a coherent controlled-encoding identity.
+
+**B.** Before transmission Bob controls only B; the joint CX is unavailable under the separated-party contract. A prior shared Phi+ pair and one subsequent A transmission give Bob the two systems needed for Bell readout. The terminal outputs on ordered (A,B) are (a,b). If Alice initially prepared both halves she must first send B to distribute the resource; that earlier use is separate from the encoded-A transmission. The decoded state is a product and the Bell resource is consumed. There is no automatic recycling.
+
+**C.** At full bits $(x_0,x_1,x_2,x_3)$, decoding fixes $x_2=a,x_0=b$. Full indices are $8b+4x_1+2a+x_3$, weighted by the two spectator coefficients. Native raw columns (q0,q2) contain (b,a), while the semantic message remains (a,b). The full state still contains every coherent spectator factor. The printed parameters and all four messages are executed in transfer evidence. Merely permuting a classical record cannot deliver Alice's physical qubit or grant Bob a joint operation on it.
+
+**D.** Set $g_\pm=(\cos(.585)\pm e^{-.31i}\sin(.585))/\sqrt2$. The vector is $g_+|a,b\rangle+(-1)^b g_-|a\oplus1,b\rangle$, with probabilities $(1\pm\sin(1.17)\cos(.31))/2$. For Phi−, $g_+=0,g_-=1$, so a flips certainly and b remains exact; the sign on that erroneous branch is $(-1)^b$. A finite zero-error sample is not a certificate that the true error probability is zero. In this simulator compare the full encoded coefficients, native exact decoder probabilities and XX sign against their declared resource convention.
+
+</details>
+
+**Sources.** The frozen locator is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §2.3, “Application: superdense coding,” beginning on printed page 97 ([NC:2.3 locator](../references/proof-sources.md#source-nc-2-3)); the existing record is a contents-locator check, not a new full-text proof review. The public [IBM Quantum Learning superdense-coding lesson](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/superdense-coding) was inspected for the protocol and message conventions. Its register order and chronological Z/X choice differ from our phase-fixed convention and must be translated. Historical attribution is Bennett and Wiesner, [*Physical Review Letters* 69, 2881 (1992)](https://doi.org/10.1103/PhysRevLett.69.2881); publisher metadata and abstract were inspected, not a full experimental-paper reproduction. All derivations and execution references above are local original work. Section 7.7 develops no-signalling and classical-communication distinctions further.
+
+<!-- end-section-7.6 -->

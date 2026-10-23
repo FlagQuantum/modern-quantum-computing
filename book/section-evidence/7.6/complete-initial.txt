@@ -1,0 +1,6 @@
+160 native circuits:four messages on all20 ordered2/3/4qubit pairs;exact encoded/decoded vectors,reversed-column records and spectator phases passed.
+17 native circuits:resource,omitted-H/wrong-order decoders and alternate encoding phase passed.
+48 native circuits:six imperfect pure resources;exact phase-bit error formula and parity-bit preservation passed.
+4 native relocation fixtures:old Alice slot=0,carrier/B decoder returns(a,b);not a network transport test.
+16 malformed contracts rejected before another native execution.
+229 CPU complex128 native circuits passed;one transmitted qubit assumes a previously shared Bell pair.

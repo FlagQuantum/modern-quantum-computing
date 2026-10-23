@@ -1,0 +1,103 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-entanglement-and-quantum-information-protocols-6",
+  "ref": "7.6",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+  "depth": "F",
+  "result": "Dense-coding decode identity",
+  "requires": [
+    "sec-entanglement-and-quantum-information-protocols-3",
+    "sec-gates-reversible-computation-and-circuit-synthesis-1"
+  ],
+  "assumptions": [
+    "Shared ideal Phi+ before message selection,one subsequent ideal A transmission,agreed phase/parity message(a,b).",
+    "Alice can act only on A before transport;Bob can jointly decode(A,B) only after receipt.",
+    "Ideal static gates and terminal computational probabilities/samples;pure mismatch example is not a noise model."
+  ],
+  "verification_obligations": [
+    "Derive Alice Z^a X^b encodings and all four phase-fixed Bell vectors.",
+    "Prove orthonormal completeness and deterministic inverse Bell measurement for every message.",
+    "Track ordered full indices,raw columns,spectator phases and semantic messages independently.",
+    "Prove local input-independent marginal,omitted-H distribution,alternate overall phase and wrong-order decoder distribution.",
+    "Derive imperfect-resource amplitudes and exact phase-bit error law.",
+    "Prove three-CX relocation on basis vectors and explain its distinction from transport/ownership."
+  ],
+  "formula_code_units": [
+    "resource",
+    "encoding",
+    "decoding",
+    "indices",
+    "local",
+    "errors",
+    "resource-errors",
+    "relocation"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.3",
+      "scope": "Frozen contents locator printed97;not a new full-text NC proof review."
+    },
+    {
+      "url": "https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/superdense-coding",
+      "scope": "Public lesson inspected;register order and chronological Pauli convention translated."
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevLett.69.2881",
+      "scope": "Publisher metadata/abstract inspected;no new standalone paper reproduction."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/superdense_coding.py",
+    "prose_checker": "scripts/check_superdense_coding_prose.py",
+    "evidence": "book/section-evidence/7.6",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 229,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 33,
+    "separate_transfer_circuits": 16,
+    "execution_ledger": {
+      "initial_complete_passed": 229,
+      "body_assembly": 33,
+      "final_body_plus_complete_checker": 262,
+      "transfer_and_relocation_checks": 16,
+      "total_author_section_circuits": 540,
+      "separate_7_5_regression": 181,
+      "note": "All native scientific executions passed on first execution. Initial launch stopped because temporary Python environment was absent,0circuits;locked dependencies restored before running. Transfer16 includes exact printed7.6C4,new resource/ordered support8,and repeated relocation contract4;not16previously unseen states or statistical evidence. Later CI separate."
+    },
+    "malformed_contracts": 16,
+    "tolerance": "Full amplitudes,exact probabilities and Pauli expectations atol1e-12,rtol0;raw records/counts exact,no phase alignment,normalization repair,clipping or random-frequency equality test.",
+    "native_boundary": "Real released static H/CX/X/Z/Ry/P and terminal statevectors,probabilities,samples,Pauli expectations. One centralized simulator does not validate network transport,distributed connectivity,hardware Bell measurement,reset,noise or sampled collapse. Three-CX relocation is explicitly a fixture.",
+    "script_sha256": "e15af08251e1511b4779c63c2d71acfb4ae0a9d7d2c6bcdc114497ab26396ff9"
+  },
+  "assessment": {
+    "tasks": [
+      "7.6-A Pauli convention and message phase",
+      "7.6-B resource/ownership ledger",
+      "7.6-C ordered-index transfer",
+      "7.6-D mismatched resource diagnostic"
+    ],
+    "answers": "Supplied;printed7.6C and D(theta1.17,phase-.31) executed separately;Phi-minus D boundary covered in complete program. Reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "229complete/33body/16transfer+relocation and181previous-section regression passed. Eight cumulative literal units/exact outputs checked. Strict fresh build,73page links and actual IAB formulas/expanded answers passed;independent review pending."
+  },
+  "production": {
+    "next_draft": "7.7 No-signalling and classical communication",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual default narrow IAB local preview:encoding/table5rowsx3cells,decoder identity,orthogonality,resource coefficients/error probabilities and relocation identity inspected. Expanded7.6A-D answer panel has11MathJax containers;global MathJax error count0. Long displays split into shorter lines;existing horizontal scrolling retained for wide expressions/table,not a universal no-overflow claim.",
+    "website": "Strict fresh build and73page local links passed;publish this exact HTML and verify HTTP200/byte equality after deployment.",
+    "html_sha256": "4cf4b8796d1253900c4dc30e9089e0a7d47ca4fc04b8b8f173d3e953d9ebf181"
+  }
+}

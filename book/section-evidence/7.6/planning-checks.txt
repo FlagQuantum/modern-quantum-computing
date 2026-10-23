@@ -1,0 +1,6 @@
+Curriculum records, prerequisites, stable IDs and generated views agree.
+Reviewed 50 chapters / 435 sections / 1045 direct edges / 19 routes; generated views agree.
+{"sections": 435, "works": 88, "locators": 344, "volumes": 7, "depth_counts": {"P": 34, "M": 78, "V": 69, "F": 224, "R": 30}, "series_pages": [1464, 2826]}
+{"baseline": "writing-baseline-v1.0", "chapters": 50, "sections": 435, "batches": 16, "states": {"draft": 52, "not_started": 383}, "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314"}
+Validated 23 catalog skills / 6 levels / 50 chapters / 435 section assignments; no released skills.
+No flagged shortcut phrases in drafted chapters; mathematical/reader review is still required.

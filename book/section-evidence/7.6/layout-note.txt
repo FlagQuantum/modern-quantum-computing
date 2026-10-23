@@ -1,0 +1,1 @@
+Narrow default preview showed long encoding display requiring horizontal navigation. Split encoding,decoder,projectors,index/resource/relocation formulas into shorter lines. All8Python and expected-output blocks byte-identical to executed fragments. Existing horizontal-scroll containers remain for wide expressions/table;no universal no-overflow claim.
