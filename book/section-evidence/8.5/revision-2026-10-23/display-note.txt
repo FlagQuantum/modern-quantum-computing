@@ -1,0 +1,1 @@
+Actual browser detected inline r<d_A parsed as an HTML tag,swallowing prose until a later greater-than sign. Replaced by explicit words;no Python/output changes. Final rebuilt page rechecked.

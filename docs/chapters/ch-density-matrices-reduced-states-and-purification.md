@@ -2140,6 +2140,17 @@ A three-qubit example retains A=(q2,q0) and B=(q1). Its coefficient matrix is 4�
 
 For portable displayed output, we print the padded Schmidt-square targets. The actual native eigenvalues, including tiny signed floating-point residuals near zero, remain unmodified and are compared against those targets in full. No computed value is clipped or discarded to make the result look exact.
 
+The multiplicity claim can also be written as a pair of characteristic polynomials. For a complex variable z define χ_A(z)=det(zI_A−ρ_A), and likewise χ_B. In the completed orthonormal Schmidt basis the matrices are diagonal. A unitary change back to the computational basis leaves the determinant unchanged, because det(U)det(U†)=det(UU†)=1. Therefore
+
+$$
+\begin{aligned}
+\chi_A(z)&=z^{d_A-r}\prod_{k=1}^{r}(z-s_k^2),\\
+\chi_B(z)&=z^{d_B-r}\prod_{k=1}^{r}(z-s_k^2).
+\end{aligned}
+$$
+
+A repeated positive weight appears as a repeated factor, not as one eigenvalue after deduplication. The only possible difference between the two full characteristic polynomials is the zero-root multiplicity. This is another consequence of the completed-basis proof, not an inference from matching finitely many polynomial samples. The next code independently compares native-matrix determinants with products of the padded computed Schmidt weights at two complex test points; full matrix/eigenpair comparisons remain in place.
+
 ```python
 rect_result,rect_data=g.rectangular(.76,-.58)
 rect=rect_data[0]
@@ -2147,6 +2158,10 @@ print('A dimension4,B dimension2;thin coefficient shape4x2')
 print('A target spectrum:',[round(x,9) for x in g.full_spectrum(rect[1],4).tolist()])
 print('B target spectrum:',[round(x,9) for x in g.full_spectrum(rect[1],2).tolist()])
 e.close(rect[3],g.full_spectrum(rect[1],4));e.close(rect[4],g.full_spectrum(rect[1],2))
+for local,dimension in ((rect_result.measurement('A0').value[0],4),(rect_result.measurement('B0').value[0],2)):
+    for z in (.23+.31j,-.41+.19j):
+        target=g.full_spectrum(rect[1],dimension).to(g.D)
+        e.close(torch.linalg.det(z*torch.eye(dimension,dtype=g.D)-local),torch.prod(z-target))
 print('Complete spectra match Schmidt squares with their own zero complements')
 ```
 
@@ -2187,6 +2202,15 @@ $$
 $$
 
 For r≥2, at least two positive λ_i lie strictly below one, so the common local purity is strictly less than one. The full projector always obeys ρ_AB²=ρ_AB and purity one. There is no requirement that a subsystem share that global purity.
+
+One can also quantify the distinction at fixed exact Schmidt rank. Put λ_k=s_k² for the r positive weights. Expanding a sum of real squares gives
+
+$$
+\sum_{k=1}^{r}(\lambda_k-1/r)^2
+=\sum_k\lambda_k^2-1/r\geq0.
+$$
+
+Thus the common reduced purity is at least 1/r, with equality exactly when all positive Schmidt weights equal 1/r. This is uniformity on the occupied Schmidt subspace; when r is smaller than d_A, it is not the full ambient density I_A/d_A. In conjunction with the upper bound just proved, r=1 gives purity one, while r>1 permits globally pure states with strictly mixed local descriptions. These are exact statements about the declared pure bipartition, not numerical rank estimates.
 
 A product preparation and a Bell preparation exhibit the difference in actual native density outputs. The trace squares are explicit host calculations on those matrices.
 

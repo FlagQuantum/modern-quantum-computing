@@ -93,6 +93,20 @@
     "pdf": "Existing PDF edition unchanged",
     "formula_display": "Actual default narrow IAB:Schmidt form/full outer product,both independent partial-trace expansions,complex right reduction,nonzero-spectrum multiplicities/zero-complement proof and global/local purity visually checked. Expanded8.5A-D answers checked including conjugate local matrices;one answer display container,no raw$$,globalMathJaxerrors0. Wide code may horizontally scroll;no universal-fit claim.",
     "website": "Fresh strict build and74page local links passed;publish this checked HTML and confirm Pages success/HTTP200/exact equality.",
-    "html_sha256": "3f546943ee00229a12d91c298bdcf72d339d0213a80be7a0ae239f0b7f008f26"
-  }
+    "html_sha256": "5c0db9e6e8445bcc2fdd84e0206ec2b46295f3aa4bf3379e3943c3023fddee13"
+  },
+  "revisions": [
+    {
+      "date": "2026-10-23",
+      "scope": "Full multiplicity characteristic-polynomial bridge and fixed-rank purity lower bound;no prerequisite/depth/scope change.",
+      "evidence": "book/section-evidence/8.5/revision-2026-10-23",
+      "executions": {
+        "body_plus_complete": 55,
+        "fresh_transfer": 4,
+        "new_author_runs": 59
+      },
+      "checks": "8literalunits and unchanged complete44program pass;two-mode fresh characteristic-polynomial checks pass;strict build/74page links and actual browser formulas/expandedanswers pass. Inline rawless-than HTML rendering issue repaired and rechecked;Python/outputs unchanged by that prose repair.",
+      "review": "Independent reviews/reader trial pending;not accepted."
+    }
+  ]
 }
