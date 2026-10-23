@@ -1,0 +1,26 @@
+{
+  "native_circuits": 14,
+  "printed_exercises": [
+    "8.4B",
+    "8.4C",
+    "8.4D"
+  ],
+  "extra_retained_triples": [
+    [
+      3,
+      0,
+      2
+    ],
+    [
+      2,
+      0,
+      3
+    ]
+  ],
+  "classical_3_by_2_diagonal": [
+    0.4,
+    0.3,
+    0.3
+  ],
+  "status": "passed"
+}

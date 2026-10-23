@@ -1,0 +1,22 @@
+Native A/B reductions: [0.5, 0.5]
+Local trace consistency passed;global XX=1.000000
+
+Product reduction:Hermitian,positive,trace=1.000000
+
+Hermitian probes reconstruct rho01=(3.061616997868383e-17-0.5j)
+Native Y=1.000000;wrong conjugated density predicts Y=-1.000000
+
+Same A and B densities;global XX:Bell=1.000000,classical mixture=0.000000
+
+Discarded-basis contraction and actual local B rotation give the same retained density
+
+Ordered retained tuple(2,0):scalar indices,tensor axes,native density/probability agree
+Reversing retained tuple permutes both matrix axes;it does not transpose/conjugate the matrix
+
+Recorded B outcomes: [0.875902865, 0.124097135]
+Conditional A states differ;ignored-result A equals its prior native reduction
+
+Host empty/full/dimension-one and3x2factor traces passed;no normalization performed
+14 malformed contracts rejected
+9 actual native body circuits;native empty tuple is not host trace-all
+

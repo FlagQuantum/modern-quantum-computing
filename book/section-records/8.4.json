@@ -1,0 +1,105 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-density-matrices-reduced-states-and-purification-4",
+  "ref": "8.4",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+  "depth": "F",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+    "sec-density-matrices-reduced-states-and-purification-3"
+  ],
+  "result": "Partial trace is fixed by local expectations",
+  "assumptions": [
+    "Finite nonzero tensor factors;orthonormal product coordinates.",
+    "Positive Hermitian unit-trace full density;consistency for every Hermitian local observable.",
+    "Specified ordered retained tuple;discarded factor basis arbitrary orthonormal."
+  ],
+  "verification_obligations": [
+    "Complete product-index expansion of local expectation leading to paired discarded-index sum.",
+    "Hermiticity,positivity,trace preservation/existence and linearity on unnormalized operators.",
+    "Uniqueness using Hermitian difference and full dA-squared Hermitian coordinate frame.",
+    "Discarded-basis invariance and local discarded-unitary invariance with distinct interpretations.",
+    "Complex imaginary sign,nonadjacent ordered selections,coefficient/axis/index/frame references.",
+    "Global correlations not fixed by marginals;conditional versus ignored local process,unequal Bayesian weights.",
+    "Native empty-tuple full-register convention distinct from mathematical trace-all;dimension-one/non-qubit host boundaries."
+  ],
+  "formula_code_units": [
+    "local expectation and matrix entries",
+    "density existence/product rule",
+    "Hermitian uniqueness/frame",
+    "equal marginals/different correlations",
+    "discarded basis/unitary",
+    "ordered nonadjacent supports",
+    "conditioning versus unread reduction",
+    "edge cases and API convention"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.4.3",
+      "scope": "Frozen contents locator printed105;no new full-text review."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=75",
+      "scope": "Author-hosted manuscript2.1.3printed67-68/PDF75-76 inspected for coordinate and retained-register conventions;original local derivations supplied,no third-party text uploaded."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/partial_trace.py",
+    "prose_checker": "scripts/check_partial_trace_prose.py",
+    "evidence": "book/section-evidence/8.4",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 50,
+    "complete_selected_density_outputs": 464,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 9,
+    "separate_transfer_circuits": 14,
+    "execution_ledger": {
+      "native_API_probes": 2,
+      "complete_program": 50,
+      "initial_body_scientific_checks_passed_then_counter_assertion_failed": 9,
+      "corrected_body_assembly": 9,
+      "initial_body_plus_complete_checker": 59,
+      "fresh_transfer": 14,
+      "final_formatted_body_only_checker": 9,
+      "total_author_section_native_runs": 152,
+      "separate_previous_8_3_regression": 71,
+      "separate_previous_8_2_regression": 53,
+      "note": "Initial literal-body assembly incorrectly expected10instead of9actual native calls;all scientific assertions passed before final counter failure. Original source/stderr retained,counter corrected. Raw printed tiny real rho01 residual replaced by portable rounded imaginary output;all full-precision assertions retained,9final body runs verified. Complete companion unchanged after its50/59checks;futureCI and prior regressions separate."
+    },
+    "malformed_contracts": 14,
+    "tolerance": "Absolute1e-12,relative0;no clipping,symmetrization,normalization repair or phase alignment. Numerical PSD guards/probe equality are not interval or hardware certificates.",
+    "native_boundary": "Real selected full/reduced density output and ordered probabilities/Pauli expectations in both tested modes. Native empty tuple returned full two-qubit density in2probes;host empty retained set returns1x1trace and native wrapper refuses empty selections. Test global inputs pure;host mixed ensembles explicit. General dense probes,non-qubit factorization,conditional branches and contractions host-only. Statevector route10qubit guard source-inspected,not large-memory tested.",
+    "script_sha256": "05a873292bfab4367dad57827155af79a786d047e3d12329da498109b0de8d7d"
+  },
+  "assessment": {
+    "tasks": [
+      "8.4A factor contraction and uniqueness",
+      "8.4B fresh four-qubit ordered/mixed reductions",
+      "8.4C discarded q1 rotations/biased Bell records",
+      "8.4D complex3x2classical matrix and empty selection"
+    ],
+    "answers": "Accessible answers supplied;printed8.4B-D plus fresh retained triples executed in14native transfer runs;reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "50complete/464selected outputs/9literalbody/14freshtransfer plus59body+complete and9finalformatted-body checks passed. Initial body counter-only failure retained. Prior8.3regression71 and8.2regression53 separate. Strict fresh build,74page links,actual browser key formulas and expanded answers passed;independent reviews pending."
+  },
+  "production": {
+    "next_draft": "8.5 Reduced states of entangled systems",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual default narrow IAB:local trace consistency,full product-coordinate expansion,boxed matrix contraction,Delta uniqueness proof and nonadjacent bit-lift formulas visually inspected. Expanded8.4A-D inspected including3x2entry formula,four-qubit bit mapping and complex six-coordinate example. GlobalMathJaxerrors0;expandedanswers3displaycontainers,no raw$$. Wide code/formulas may use horizontal scrolling;no universal-fit claim.",
+    "website": "Strict fresh build and74page links passed;publish checked HTML and confirm Pages success/HTTP200/exact local equality.",
+    "html_sha256": "4bcb6d5a5ac2980e91e3adf1af877e0cda645016df1a24ffe4fd14d14407bf11"
+  }
+}

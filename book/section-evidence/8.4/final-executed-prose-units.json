@@ -1,0 +1,34 @@
+[
+  {
+    "code": "import math\nimport torch\nimport flagquantum as fq\nfrom examples.foundations import partial_trace as t\nfrom examples.foundations import statistical_ensembles as e\nc=fq.Circuit(2,dtype=t.D).H(0).CX(0,1)\nresult=fq.run(c,outputs=[fq.density_matrix(name='full'),\n    fq.density_matrix(qubits=(0,),name='A'),fq.density_matrix(qubits=(1,),name='B'),\n    fq.expectation(fq.X(0)@fq.X(1),name='xx')],options=e.OPTIONS)\nt.RUNS+=1\nbell_full=result.measurement('full').value[0]\nRA=result.measurement('A').value[0];RB=result.measurement('B').value[0]\nexplicit=torch.tensor([[sum(bell_full[2*i+mu,2*j+mu].item()for mu in range(2))\n    for j in range(2)]for i in range(2)],dtype=t.D)\ne.close(RA,explicit);e.close(RA,e.I/2);e.close(RB,e.I/2)\nA=.7*e.X-.2*e.Y+1.3*e.Z\ne.close(torch.trace(RA@A),torch.trace(bell_full@torch.kron(A,e.I)))\nprint('Native A/B reductions:',[round(x.real.item(),6)for x in RA.diagonal()])\nprint('Local trace consistency passed;global XX=%.6f'%result.expectation('xx')[0].item())\n",
+    "output": "Native A/B reductions: [0.5, 0.5]\nLocal trace consistency passed;global XX=1.000000\n"
+  },
+  {
+    "code": "product_result,product_vector=t.native(2,.81,-.26,kind='product')\nproduct_full=product_result.measurement('full').value[0]\nproduct_A=product_result.measurement('r_0').value[0]\nproduct_B=product_result.measurement('r_1').value[0]\ne.close(product_A,e.outer(e.qubit(.81,-.26)))\ne.close(product_full,torch.kron(product_A,product_B))\nt.density(product_A);t.density(product_B)\nprint('Product reduction:Hermitian,positive,trace=%.6f'%torch.trace(product_A).real.item())\n",
+    "output": "Product reduction:Hermitian,positive,trace=1.000000\n"
+  },
+  {
+    "code": "c=fq.Circuit(2,dtype=t.D).H(0).P(0,theta=math.pi/2)\nresult=fq.run(c,outputs=[fq.density_matrix(name='full'),fq.density_matrix(qubits=(0,),name='A'),\n    fq.expectation(fq.Y(0),name='y')],options=e.OPTIONS)\nt.RUNS+=1\nfull=result.measurement('full').value[0];actual=result.measurement('A').value[0]\nreconstructed=t.reconstruct(full,2,(0,));e.close(reconstructed,actual)\ny=result.expectation('y')[0].item()\ne.close(y,torch.trace(reconstructed@e.Y));e.close(reconstructed[0,1],-.5j)\nwrong=reconstructed.conj();e.close(torch.trace(wrong@e.Y),-1)\nprint('Hermitian probes:Im(rho01)=%.9f;Re(rho01) checked against0'%reconstructed[0,1].imag.item())\nprint('Native Y=%.6f;wrong conjugated density predicts Y=%.6f'%(y,torch.trace(wrong@e.Y).real.item()))\n",
+    "output": "Hermitian probes:Im(rho01)=-0.500000000;Re(rho01) checked against0\nNative Y=1.000000;wrong conjugated density predicts Y=-1.000000\n"
+  },
+  {
+    "code": "components=[t.native(2,0.,0.,kind='basis',basis=b)for b in ((0,0),(1,1))]\nmixture=sum(.5*r.measurement('full').value[0]for r,v in components)\nmixture_A=t.indexed(mixture,2,(0,))\ne.close(mixture_A,RA);e.close(t.indexed(mixture,2,(1,)),RB)\nassert not torch.allclose(mixture,bell_full,atol=t.ATOL,rtol=0)\nmixture_xx=sum(.5*r.expectation('xx')[0]for r,v in components)\nprint('Same A and B densities;global XX:Bell=1.000000,classical mixture=%.6f'%mixture_xx.item())\n",
+    "output": "Same A and B densities;global XX:Bell=1.000000,classical mixture=0.000000\n"
+  },
+  {
+    "code": "U=e.prepare(e.qubit(.63,.27))\nbefore,_=t.native(2,.91,-.36)\nafter,_=t.native(2,.91,-.36,rotate_last=U)\nfull=before.measurement('full').value[0]\nB=torch.kron(e.I,U)\nchanged_coordinates=B.mH@full@B\npassive=t.trace_ab(changed_coordinates,2,2)\ne.close(passive,before.measurement('r_0').value[0])\ne.close(before.measurement('r_0').value,after.measurement('r_0').value)\nprint('Discarded-basis contraction and actual local B rotation give the same retained density')\n",
+    "output": "Discarded-basis contraction and actual local B rotation give the same retained density\n"
+  },
+  {
+    "code": "c,expected=t.preparation(3,.76,-.58)\nresult=fq.run(c,outputs=[fq.density_matrix(name='full'),\n    fq.density_matrix(qubits=(2,0),name='A20'),fq.density_matrix(qubits=(0,2),name='A02'),\n    fq.probabilities(qubits=(2,0),name='p20')],options=e.OPTIONS)\nt.RUNS+=1\nfull3=result.measurement('full').value[0]\nA20=result.measurement('A20').value[0];A02=result.measurement('A02').value[0]\nscalar=t.indexed(full3,3,(2,0));tensor=t.axes(full3,3,(2,0))\ne.close(A20,scalar);e.close(A20,tensor)\npermutation=torch.tensor([0,2,1,3]);e.close(A20,A02[permutation][:,permutation])\ne.close(A20.diagonal().real,result.measurement('p20').value[0])\nprint('Ordered retained tuple(2,0):scalar indices,tensor axes,native density/probability agree')\nprint('Reversing retained tuple permutes both matrix axes;it does not transpose/conjugate the matrix')\n",
+    "output": "Ordered retained tuple(2,0):scalar indices,tensor axes,native density/probability agree\nReversing retained tuple permutes both matrix axes;it does not transpose/conjugate the matrix\n"
+  },
+  {
+    "code": "from examples.foundations import density_updates as d\nbiased,_=t.native(2,.72,.43,kind='bell')\nfull=biased.measurement('full').value[0];prior=biased.measurement('r_0').value[0]\ngroups=((torch.kron(e.I,d.P0),),(torch.kron(e.I,d.P1),))\nprobs,states,sigmas,ignored=d.instrument(full,groups)\nselected_A=[t.indexed(state,2,(0,))for state in states]\ne.close(selected_A[0],d.P0);e.close(selected_A[1],d.P1)\ne.close(t.indexed(ignored,2,(0,)),prior)\ne.close(sum(p*a for p,a in zip(probs,selected_A)),prior)\nassert not torch.allclose((selected_A[0]+selected_A[1])/2,prior,atol=t.ATOL,rtol=0)\nprint('Recorded B outcomes:',[round(p,9)for p in probs])\nprint('Conditional A states differ;ignored-result A equals its prior native reduction')\n",
+    "output": "Recorded B outcomes: [0.875902865, 0.124097135]\nConditional A states differ;ignored-result A equals its prior native reduction\n"
+  },
+  {
+    "code": "one=t.indexed(full3,3,());e.close(one,torch.ones((1,1),dtype=t.D))\ne.close(t.indexed(full3,3,(0,1,2)),full3)\ne.close(t.indexed(3*full3,3,()),torch.tensor([[3]],dtype=t.D))\ngeneral=torch.diag(torch.tensor([.1,.2,.1,.3,.2,.1],dtype=t.D))\ne.close(t.trace_ab(general,3,2),torch.diag(torch.tensor([.3,.4,.3],dtype=t.D)))\ne.close(t.trace_ab(general,1,6),torch.ones((1,1),dtype=t.D))\ne.close(t.trace_ab(general,6,1),general)\nprint('Host empty/full/dimension-one and3x2factor traces passed;no normalization performed')\nprint('%d malformed contracts rejected'%t.invalid_checks())\nprint('%d actual native body circuits;native empty tuple is not host trace-all'%t.RUNS)\n",
+    "output": "Host empty/full/dimension-one and3x2factor traces passed;no normalization performed\n14 malformed contracts rejected\n9 actual native body circuits;native empty tuple is not host trace-all\n"
+  }
+]

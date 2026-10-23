@@ -1,0 +1,6 @@
+24 native basis circuits:all nonempty ordered two/three-qubit selections match scalar sums and paired-axis traces.
+16 native complex product/chain circuits:entry/axis/coefficient/observable-frame references and host mixed reductions passed.
+6 native Bell-family circuits:reduced states and phase-sensitive global Pauli correlations passed.
+4 native discarded-subsystem rotations:retained density invariant,including passive basis contraction.
+14 malformed contracts rejected;dimension-one/empty/full and unnormalized linear traces passed.
+50 actual native circuits;464 selected-density outputs;classical probes and host mixtures are not extra quantum executions.

@@ -84,6 +84,33 @@
         "NC:8.2.3"
       ],
       "status": "draft"
+    },
+    {
+      "sequence": 59,
+      "batch": "B02",
+      "section_id": "sec-density-matrices-reduced-states-and-purification-4",
+      "ref": "8.4",
+      "title": "Partial trace from operational consistency",
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-1",
+        "sec-density-matrices-reduced-states-and-purification-3"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "question": "Which local density reproduces all local expectations,and why is it unique?",
+      "entry": "4.1finite tensor product coordinates and8.3density expectations/measurement updates.",
+      "exit": "Derive contracted components from local trace consistency;prove density properties,existence,uniqueness and retained/discarded basis conventions.",
+      "worked_case": "Bell versus classical correlations,complex Y reconstruction,ordered nonadjacent supports,discarded-basis changes and conditional versus unread records.",
+      "boundary": "Finite tensor products;native selected density outputs in both tested modes;no subsystem collapse or guessed mixed initializer.",
+      "code_plan": "Visible named fq.density_matrix selections and native Pauli/probability queries;independent scalar index sums,tensor contractions and observable-frame reconstruction.",
+      "independent_check": "Full native density plus scalar component sums,reshaped paired-axis trace,pure coefficient contraction and all dA-squared Hermitian probes.",
+      "transfer_task": "Fresh four-qubit ordered supports,new complex mixed ensembles,discarded rotations and biased recorded branches.",
+      "source_locators": [
+        "NC:2.4.3"
+      ],
+      "status": "draft"
     }
   ]
 }

@@ -1,6 +1,6 @@
 # 8. Density Matrices, Reduced States, and Purification
 
-**Working drafts: sections 8.1–8.3 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
+**Working drafts: sections 8.1–8.4 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
 
 <span id="sec-density-matrices-reduced-states-and-purification-1"></span>
 
@@ -1522,3 +1522,477 @@ Both branches have the same real off-diagonal sum here. Divide each row by pᵣ 
 **Sources and proof scope.** The frozen locators are NC §2.4.2, printed page 101, and §8.2.3, printed page 360 (contents locators checked; no new full-text NC review claimed). We also consulted [Watrous, author-hosted manuscript §2.3.2, printed pages 111–112](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=119) for selective-state and instrument conventions. The finite ensemble, normalization, hidden-label and chronological derivations are provided explicitly above. The general operator-sum representation theorem and full channel/instrument theory are not substituted for these proofs. This is an author-verified draft, not formal acceptance.
 
 <!-- end-section-8.3 -->
+
+<span id="sec-density-matrices-reduced-states-and-purification-4"></span>
+
+## 8.4 Partial trace from operational consistency
+
+Suppose a laboratory has access only to subsystem A of a joint system AB. What density operator should it use? Deleting entries of a statevector, keeping a diagonal block, and averaging blocks are different operations. We will derive the correct operation by requiring agreement with **every local expectation**, then prove that no other local density can satisfy that requirement.
+
+The frozen prerequisites are [4.1, finite tensor-product spaces](ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-composite-systems-tensor-products-and-qubit-ordering-1), and [8.3, density expectations and measurement updates](#sec-density-matrices-reduced-states-and-purification-3). This section has depth **F**. The component derivation, positivity, existence and uniqueness are proved for arbitrary finite factor dimensions. The implementation is bounded to small systems for independent dense references; it does not replace these proofs with numerical examples.
+
+Let the joint space be H_A⊗H_B with dimensions d_A,d_B≥1 and orthonormal product basis |i⟩_A|μ⟩_B. Latin indices refer to A; Greek indices refer to B. The full density ρ_AB is positive, Hermitian and unit trace. A Hermitian operator A on H_A represents an observable accessible to the local laboratory. Its action on the joint space is A⊗I_B: the identity leaves B unobserved. Expectation values and probabilities in the examples are dimensionless; gate angles are radians. If an observable carries units, the two expectations compared below carry those same units.
+
+Run the eight cumulative units from the repository root. The companion [partial_trace.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/partial_trace.py) uses actual released FlagQuantum 0.3.1 selected-density outputs in both tested modes. Scalar index sums, tensor contractions and observable-frame reconstruction are explicit independent host calculations. Deterministic comparisons use absolute tolerance $10^{-12}$ and relative tolerance zero, without clipping, symmetrization, normalization repair or phase alignment.
+
+### 8.4.1 Derive the retained matrix from local expectations
+
+A local state ρ_A must satisfy the operational consistency requirement
+
+$$
+\boxed{\operatorname{Tr}_A(\rho_A A)
+ =\operatorname{Tr}_{AB}\bigl(\rho_{AB}(A\otimes I_B)\bigr)}
+$$
+
+for **every Hermitian A**. This requirement says that predictions for experiments restricted to A do not depend on whether we use the local description or the full one. It does not assert that all these experiments can be performed simultaneously on one copy.
+
+Use the product-basis coordinates
+
+$$
+\begin{aligned}
+\rho_{i\mu,j\nu}
+ &=\langle i,\mu|\rho_{AB}|j,\nu\rangle,\\
+(A\otimes I_B)_{j\nu,i\mu}
+ &=A_{ji}\delta_{\nu\mu}.
+\end{aligned}
+$$
+
+Expanding the full trace and applying the Kronecker delta gives
+
+$$
+\begin{aligned}
+\operatorname{Tr}_{AB}\bigl(\rho_{AB}(A\otimes I_B)\bigr)
+ &=\sum_{i,j,\mu,\nu}\rho_{i\mu,j\nu}A_{ji}\delta_{\nu\mu}\\
+ &=\sum_{i,j}\left(\sum_\mu\rho_{i\mu,j\mu}\right)A_{ji}.
+\end{aligned}
+$$
+
+The local trace has the form Σᵢⱼ(ρ_A)ᵢⱼAⱼᵢ. The candidate that makes the two traces equal is therefore
+
+$$
+\boxed{(\rho_A)_{ij}=\sum_{\mu=0}^{d_B-1}\rho_{i\mu,j\mu}.}
+$$
+
+We call this operator the **partial trace over B**, written ρ_A=Tr_Bρ_AB. “Over B” names the subsystem removed, not the subsystem returned. The same discarded index μ appears in the ket and bra positions. We sum it; we do not sum arbitrary independent μ,ν, and do not divide by d_B.
+
+For two qubits in basis order |q0,q1⟩, q0 is the most significant bit and the full index is 2i+μ. For the Bell state (|00⟩+|11⟩)/√2, the rule gives I/2 on either qubit. The code visibly requests full and selected native density matrices, retrieves them by name, and checks the derived formula and a local Pauli-sum expectation. With several density requests, named access avoids confusing a full output with a reduction.
+
+```python
+import math
+import torch
+import flagquantum as fq
+from examples.foundations import partial_trace as t
+from examples.foundations import statistical_ensembles as e
+c=fq.Circuit(2,dtype=t.D).H(0).CX(0,1)
+result=fq.run(c,outputs=[fq.density_matrix(name='full'),
+    fq.density_matrix(qubits=(0,),name='A'),fq.density_matrix(qubits=(1,),name='B'),
+    fq.expectation(fq.X(0)@fq.X(1),name='xx')],options=e.OPTIONS)
+t.RUNS+=1
+bell_full=result.measurement('full').value[0]
+RA=result.measurement('A').value[0];RB=result.measurement('B').value[0]
+explicit=torch.tensor([[sum(bell_full[2*i+mu,2*j+mu].item()for mu in range(2))
+    for j in range(2)]for i in range(2)],dtype=t.D)
+e.close(RA,explicit);e.close(RA,e.I/2);e.close(RB,e.I/2)
+A=.7*e.X-.2*e.Y+1.3*e.Z
+e.close(torch.trace(RA@A),torch.trace(bell_full@torch.kron(A,e.I)))
+print('Native A/B reductions:',[round(x.real.item(),6)for x in RA.diagonal()])
+print('Local trace consistency passed;global XX=%.6f'%result.expectation('xx')[0].item())
+```
+
+```text
+Native A/B reductions: [0.5, 0.5]
+Local trace consistency passed;global XX=1.000000
+```
+
+### 8.4.2 Prove that the candidate is a density and that it exists
+
+The component formula must still produce a legitimate local state. Hermiticity follows entry by entry:
+
+$$
+(\rho_A)_{ji}^*
+ =\sum_\mu\rho_{j\mu,i\mu}^*
+ =\sum_\mu\rho_{i\mu,j\mu}
+ =(\rho_A)_{ij}.
+$$
+
+For any local vector x, use the corresponding joint vectors x⊗|μ⟩. Positivity of the full density gives
+
+$$
+\begin{aligned}
+x^\dagger\rho_Ax
+ &=\sum_\mu
+ (x\otimes|\mu\rangle)^\dagger
+ \rho_{AB}(x\otimes|\mu\rangle)\\
+ &\geq0.
+\end{aligned}
+$$
+
+Finally, its trace is the sum of every joint diagonal entry exactly once:
+
+$$
+\operatorname{Tr}\rho_A
+ =\sum_{i,\mu}\rho_{i\mu,i\mu}
+ =\operatorname{Tr}\rho_{AB}=1.
+$$
+
+Thus the candidate is Hermitian, positive and normalized. Substituting its entries in the local trace reproduces the expansion of 8.4.1, so it satisfies the consistency requirement for every Hermitian A. This proves existence.
+
+The contraction also defines a linear map on any joint operator M, including unnormalized measurement branches: Tr_B(αM+βN)=αTr_BM+βTr_BN, because the entry sums distribute. It preserves the total trace rather than repairing it. A branch operator of trace p reduces to an operator of trace p, not automatically to a density of trace one.
+
+For a product operator C⊗D, the same entries give
+
+$$
+\operatorname{Tr}_B(C\otimes D)
+ =C\sum_\mu D_{\mu\mu}
+ =C\operatorname{Tr}D.
+$$
+
+Consequently a product density ρ_A⊗ρ_B reduces to ρ_A. Its local coherences are preserved; a partial trace is not an instruction to diagonalize the retained matrix. The following native complex product preparation verifies this identity and the density conditions.
+
+```python
+product_result,product_vector=t.native(2,.81,-.26,kind='product')
+product_full=product_result.measurement('full').value[0]
+product_A=product_result.measurement('r_0').value[0]
+product_B=product_result.measurement('r_1').value[0]
+e.close(product_A,e.outer(e.qubit(.81,-.26)))
+e.close(product_full,torch.kron(product_A,product_B))
+t.density(product_A);t.density(product_B)
+print('Product reduction:Hermitian,positive,trace=%.6f'%torch.trace(product_A).real.item())
+```
+
+```text
+Product reduction:Hermitian,positive,trace=1.000000
+```
+
+### 8.4.3 Prove uniqueness using only Hermitian local observables
+
+Suppose σ_A is another density satisfying the same local-expectation requirement. The difference Δ=σ_A−ρ_A is Hermitian, and Tr(ΔA)=0 for every Hermitian A. In particular, choose A=Δ. Then
+
+$$
+\begin{aligned}
+0=\operatorname{Tr}(\Delta^2)
+ &=\sum_{i,j}\Delta_{ij}\Delta_{ji}\\
+ &=\sum_{i,j}|\Delta_{ij}|^2.
+\end{aligned}
+$$
+
+Each term is nonnegative, so every entry is zero and σ_A=ρ_A. This proves uniqueness among local density operators without assuming that a non-Hermitian matrix unit is itself a measurable observable.
+
+There is also an explicit finite reconstruction. Use the d_A diagonal projectors Eᵢᵢ=|i⟩⟨i| and, for each i<j, the Hermitian operators
+
+$$
+\begin{aligned}
+X_{ij}&=|i\rangle\langle j|+|j\rangle\langle i|,\\
+Y_{ij}&=-i|i\rangle\langle j|+i|j\rangle\langle i|.
+\end{aligned}
+$$
+
+They give Tr(ρ_AEᵢᵢ)=(ρ_A)ᵢᵢ, Tr(ρ_AXᵢⱼ)=2Re(ρ_A)ᵢⱼ and Tr(ρ_AYᵢⱼ)=−2Im(ρ_A)ᵢⱼ. Thus
+
+$$
+(\rho_A)_{ij}
+ =\frac{\langle X_{ij}\rangle-i\langle Y_{ij}\rangle}{2}
+ \quad(i<j).
+$$
+
+There are d_A+2·d_A(d_A−1)/2=d_A² such Hermitian probes. Their expectations determine every coordinate, with the conjugates fixing the lower triangle. These are mathematical reconstruction queries, not a simultaneous-measurement claim or a finite-shot tomography certificate.
+
+Our independent reference constructs each A⊗I in full coordinates and evaluates its trace against the actual native full density. The resulting local matrix must agree with the native selected density. A direct native Y query calibrates the imaginary sign: a local (|0⟩+i|1⟩)/√2 has ρ₀₁=−i/2 and Y mean +1. Conjugating that density leaves its diagonal probabilities unchanged but predicts the wrong Y sign. The general d_A² dense probes here are host calculations, not an unverified native arbitrary-matrix expectation API.
+
+```python
+c=fq.Circuit(2,dtype=t.D).H(0).P(0,theta=math.pi/2)
+result=fq.run(c,outputs=[fq.density_matrix(name='full'),fq.density_matrix(qubits=(0,),name='A'),
+    fq.expectation(fq.Y(0),name='y')],options=e.OPTIONS)
+t.RUNS+=1
+full=result.measurement('full').value[0];actual=result.measurement('A').value[0]
+reconstructed=t.reconstruct(full,2,(0,));e.close(reconstructed,actual)
+y=result.expectation('y')[0].item()
+e.close(y,torch.trace(reconstructed@e.Y));e.close(reconstructed[0,1],-.5j)
+wrong=reconstructed.conj();e.close(torch.trace(wrong@e.Y),-1)
+print('Hermitian probes:Im(rho01)=%.9f;Re(rho01) checked against0'%reconstructed[0,1].imag.item())
+print('Native Y=%.6f;wrong conjugated density predicts Y=%.6f'%(y,torch.trace(wrong@e.Y).real.item()))
+```
+
+```text
+Hermitian probes:Im(rho01)=-0.500000000;Re(rho01) checked against0
+Native Y=1.000000;wrong conjugated density predicts Y=-1.000000
+```
+
+### 8.4.4 A local density does not identify the global correlations
+
+Consider the Bell density and the classical mixture
+
+$$
+\begin{aligned}
+\rho^{\mathrm{Bell}}&=|\Phi^+\rangle\langle\Phi^+|,\\
+\rho^{\mathrm{classical}}
+ &=\tfrac12|00\rangle\langle00|
+  +\tfrac12|11\rangle\langle11|.
+\end{aligned}
+$$
+
+Both reduce to I/2 on A and on B. However, the Bell matrix contains joint off-diagonal terms |00⟩⟨11|/2 and its adjoint. Those terms disappear under a trace over either factor because their discarded ket and bra indices differ. They remain observable jointly: ⟨X⊗X⟩ is one for the Bell state and zero for the classical mixture. The latter equality follows because each product component has zero X mean on either qubit.
+
+This is consistent with uniqueness. The local state is uniquely determined by all local experiments, but the global state is not uniquely determined by its local states. Partial trace deliberately retains only the predictions available on the specified subsystem. It does not reveal a unique hidden ensemble or certify that a physical measurement was performed on B. In particular, deleting one tensor index from the Bell statevector and normalizing the result would invent a pure local vector with coherences absent from I/2.
+
+The native Bell result from unit 1 is compared with a host mixture of two additional native product preparations. The global correlation distinguishes them even though their complete local density matrices coincide.
+
+```python
+components=[t.native(2,0.,0.,kind='basis',basis=b)for b in ((0,0),(1,1))]
+mixture=sum(.5*r.measurement('full').value[0]for r,v in components)
+mixture_A=t.indexed(mixture,2,(0,))
+e.close(mixture_A,RA);e.close(t.indexed(mixture,2,(1,)),RB)
+assert not torch.allclose(mixture,bell_full,atol=t.ATOL,rtol=0)
+mixture_xx=sum(.5*r.expectation('xx')[0]for r,v in components)
+print('Same A and B densities;global XX:Bell=1.000000,classical mixture=%.6f'%mixture_xx.item())
+```
+
+```text
+Same A and B densities;global XX:Bell=1.000000,classical mixture=0.000000
+```
+
+### 8.4.5 Remove dependence on the discarded basis
+
+The definition used a basis {|μ⟩} of B. It must not depend on which orthonormal basis a calculation happens to use. Let |fν⟩=ΣμUμν|μ⟩, with U unitary. Contracting in the new basis gives
+
+$$
+\begin{aligned}
+R'_{ij}
+ &=\sum_{\nu,\mu,\lambda}
+ U_{\mu\nu}^*U_{\lambda\nu}
+ \rho_{i\mu,j\lambda}\\
+ &=\sum_\mu\rho_{i\mu,j\mu}
+ =R_{ij},
+\end{aligned}
+$$
+
+because ΣνU*μνUλν=δμλ. This is a passive change of coordinates in the discarded factor, not a physical SWAP or a new retained subsystem.
+
+A physical unitary V applied only on B also leaves the retained state invariant. For every local A, finite trace cyclicity gives
+
+$$
+\begin{aligned}
+\operatorname{Tr}\bigl[
+ (I\otimes V)\rho(I\otimes V^\dagger)(A\otimes I)\bigr]
+ &=\operatorname{Tr}\bigl[\rho(A\otimes V^\dagger V)\bigr]\\
+ &=\operatorname{Tr}\bigl[\rho(A\otimes I)\bigr].
+\end{aligned}
+$$
+
+Uniqueness then fixes the same ρ_A. The two statements have different interpretations even though both follow from unitarity on the factor not accessed. A change of coordinates on the retained factor instead changes its matrix representation covariantly; it is not an invariance of every displayed matrix entry.
+
+For a nontrivial complex two-qubit input, we check both passive contraction of (I⊗U†)ρ(I⊗U) and an actual native U gate on the discarded qubit. The actual full states may change; the retained matrices must agree in the same A basis.
+
+```python
+U=e.prepare(e.qubit(.63,.27))
+before,_=t.native(2,.91,-.36)
+after,_=t.native(2,.91,-.36,rotate_last=U)
+full=before.measurement('full').value[0]
+B=torch.kron(e.I,U)
+changed_coordinates=B.mH@full@B
+passive=t.trace_ab(changed_coordinates,2,2)
+e.close(passive,before.measurement('r_0').value[0])
+e.close(before.measurement('r_0').value,after.measurement('r_0').value)
+print('Discarded-basis contraction and actual local B rotation give the same retained density')
+```
+
+```text
+Discarded-basis contraction and actual local B rotation give the same retained density
+```
+
+### 8.4.6 Match tensor axes to the ordered retained qubits
+
+A nonadjacent subsystem is still a tensor factor after a declared regrouping of the basis. For n qubits, the full basis index is Σq b_q2^{n−1−q}. Let S=(s₀,…,sₖ₋₁) be the ordered tuple of retained qubits, and let T list the others in increasing physical-label order. Define the local and discarded indices by their bit strings in those respective orders. The function ℓ(i,μ) places those bits back into their full positions. Then
+
+$$
+(\rho_S)_{ij}
+ =\sum_\mu\rho_{\ell(i,\mu),\ell(j,\mu)}.
+$$
+
+For S=(q2,q0) in a three-qubit register, i=2b₂+b₀ and μ=b₁, so
+
+$$
+\begin{aligned}
+\ell(i,\mu)
+ &=4(i\bmod2)+2\mu+\lfloor i/2\rfloor,\\
+(\rho_{(q2,q0)})_{2,1}
+ &=\rho_{1,4}+\rho_{3,6}.
+\end{aligned}
+$$
+
+This explicit index sum is the first reference implementation. The second reshapes the full matrix into n ket axes followed by n bra axes. It permutes them into the order (S,T,S′,T′), then reshapes to (d_S,d_T,d_S,d_T). Here a prime means a bra-coordinate axis, not a second physical register. Contracting with `einsum('imjm->ij', tensor)` uses the same discarded index m in the two discarded positions. A reshape alone does not regroup nonadjacent qubits; the permutation is essential. These axis operations are classical coordinate manipulations, not physical SWAP gates.
+
+For a pure full vector, one further independent check places its coefficients into Cᵢμ=ψ_{ℓ(i,μ)}. Expanding the outer product gives ρ_S=CC† entry by entry. No Schmidt-spectrum identity is assumed here; that result belongs to 8.5.
+
+The native density request uses the tuple as the returned basis order. Thus (q2,q0) and (q0,q2) retain the same physical subsystem but display different matrix coordinates. The two-qubit reordering is π=(0,2,1,3), so R₂₀[i,j]=R₀₂[π(i),π(j)]. Both matrix axes must be permuted; this is not a transpose or a conjugation. The diagonal must also agree with the native computational probabilities requested in that same tuple order.
+
+```python
+c,expected=t.preparation(3,.76,-.58)
+result=fq.run(c,outputs=[fq.density_matrix(name='full'),
+    fq.density_matrix(qubits=(2,0),name='A20'),fq.density_matrix(qubits=(0,2),name='A02'),
+    fq.probabilities(qubits=(2,0),name='p20')],options=e.OPTIONS)
+t.RUNS+=1
+full3=result.measurement('full').value[0]
+A20=result.measurement('A20').value[0];A02=result.measurement('A02').value[0]
+scalar=t.indexed(full3,3,(2,0));tensor=t.axes(full3,3,(2,0))
+e.close(A20,scalar);e.close(A20,tensor)
+permutation=torch.tensor([0,2,1,3]);e.close(A20,A02[permutation][:,permutation])
+e.close(A20.diagonal().real,result.measurement('p20').value[0])
+print('Ordered retained tuple(2,0):scalar indices,tensor axes,native density/probability agree')
+print('Reversing retained tuple permutes both matrix axes;it does not transpose/conjugate the matrix')
+```
+
+```text
+Ordered retained tuple(2,0):scalar indices,tensor axes,native density/probability agree
+Reversing retained tuple permutes both matrix axes;it does not transpose/conjugate the matrix
+```
+
+### 8.4.7 Distinguish reduction, conditioning and unread local processing
+
+Partial trace alone does not condition on any outcome. If a measurement on B has operators Kᵣα, then the full unnormalized branch from 8.3 is
+
+$$
+\sigma_r=\sum_\alpha
+ (I_A\otimes K_{r\alpha})\rho
+ (I_A\otimes K_{r\alpha}^\dagger).
+$$
+
+For pᵣ=Trσᵣ>0, the retained conditional density is Tr_Bσᵣ/pᵣ. Linearity makes its unnormalized reduction have trace pᵣ. If the local process on B is complete and its outcome is ignored, then for every A
+
+$$
+\begin{aligned}
+\sum_r\operatorname{Tr}\bigl[\sigma_r(A\otimes I)\bigr]
+ &=\operatorname{Tr}\!\left[
+ \rho\left(A\otimes\sum_{r,\alpha}K_{r\alpha}^\dagger K_{r\alpha}\right)\right]\\
+ &=\operatorname{Tr}\bigl[\rho(A\otimes I)\bigr].
+\end{aligned}
+$$
+
+Uniqueness implies
+
+$$
+\sum_{r:p_r>0}p_r\rho_{A\mid r}=\rho_A.
+$$
+
+Thus local complete processing of the discarded subsystem does not change the unread local predictions on A, while conditional predictions can change when a record is supplied. An incomplete selected process must not be treated as this complete average. For a zero-probability outcome no conditional density is defined; its unnormalized contribution is zero. This argument is an algebraic local-consistency consequence, not an assertion that a classical outcome has been sent to A.
+
+For ψ=cos(θ/2)|00⟩+e^{iφ}sin(θ/2)|11⟩, a Z result on B conditions A into |0⟩ or |1⟩. Their weights are cos²(θ/2) and sin²(θ/2). The unread A density equals the original native reduction, diag(cos²(θ/2),sin²(θ/2)); an unweighted average is generally wrong. The full ignored-result state loses joint coherence, even though A's local state is unchanged. The following uses θ=.72, φ=.43 and explicit host projective branches on a native full density. It is not a native sampled collapse request.
+
+```python
+from examples.foundations import density_updates as d
+biased,_=t.native(2,.72,.43,kind='bell')
+full=biased.measurement('full').value[0];prior=biased.measurement('r_0').value[0]
+groups=((torch.kron(e.I,d.P0),),(torch.kron(e.I,d.P1),))
+probs,states,sigmas,ignored=d.instrument(full,groups)
+selected_A=[t.indexed(state,2,(0,))for state in states]
+e.close(selected_A[0],d.P0);e.close(selected_A[1],d.P1)
+e.close(t.indexed(ignored,2,(0,)),prior)
+e.close(sum(p*a for p,a in zip(probs,selected_A)),prior)
+assert not torch.allclose((selected_A[0]+selected_A[1])/2,prior,atol=t.ATOL,rtol=0)
+print('Recorded B outcomes:',[round(p,9)for p in probs])
+print('Conditional A states differ;ignored-result A equals its prior native reduction')
+```
+
+```text
+Recorded B outcomes: [0.875902865, 0.124097135]
+Conditional A states differ;ignored-result A equals its prior native reduction
+```
+
+### 8.4.8 Keep mathematical edge cases separate from native request conventions
+
+When d_B=1, the partial trace is the identity on the matrix of A. When d_A=1, the output is the 1×1 matrix [Trρ]=[1]. Keeping all qubits in their original order likewise returns the full matrix, while keeping them in a different order permutes its coordinates. Keeping no qubits mathematically leaves a one-dimensional retained space, so the host reference returns [TrM] even for an unnormalized operator M. It never divides by the trace.
+
+A **native API convention differs at this boundary**. In two actual 0.3.1 probes, one in each tested mode, `fq.density_matrix(qubits=())` returned the full two-qubit density with shape (1,4,4), not (1,1,1). The request constructor accepts the empty tuple, but its executed behavior must not be interpreted as the mathematical trace-all operation. All selected native outputs used for the proofs and examples therefore name a nonempty tuple. The companion explicitly rejects an empty native selection and uses the host reference for trace-all. Omitting the selection also requests the full register; the source and the measured probe evidence are retained separately.
+
+Factor dimensions need not be powers of two in the mathematics. A 3×2 bipartite space has a 6×6 joint matrix and a 3×3 retained matrix; the host factor-index implementation covers this case. This does not claim a native qutrit interface. Invalid dimensions, duplicated or out-of-range qubit labels, nonfinite matrices, wrong dtypes and malformed densities are rejected by the corresponding teaching contracts. The dense dimension≤16 and n≤4 limits bound these independent examples; they are not FlagQuantum's general system limits. Numerical positivity checks and equality tolerances are diagnostics, not interval certificates for an unknown preparation.
+
+```python
+one=t.indexed(full3,3,());e.close(one,torch.ones((1,1),dtype=t.D))
+e.close(t.indexed(full3,3,(0,1,2)),full3)
+e.close(t.indexed(3*full3,3,()),torch.tensor([[3]],dtype=t.D))
+general=torch.diag(torch.tensor([.1,.2,.1,.3,.2,.1],dtype=t.D))
+e.close(t.trace_ab(general,3,2),torch.diag(torch.tensor([.3,.4,.3],dtype=t.D)))
+e.close(t.trace_ab(general,1,6),torch.ones((1,1),dtype=t.D))
+e.close(t.trace_ab(general,6,1),general)
+print('Host empty/full/dimension-one and3x2factor traces passed;no normalization performed')
+print('%d malformed contracts rejected'%t.invalid_checks())
+print('%d actual native body circuits;native empty tuple is not host trace-all'%t.RUNS)
+```
+
+```text
+Host empty/full/dimension-one and3x2factor traces passed;no normalization performed
+14 malformed contracts rejected
+9 actual native body circuits;native empty tuple is not host trace-all
+```
+
+**Actual support and costs.** Released FlagQuantum's real `fq.density_matrix(qubits=..., name=...)` output computes selected subsystem matrices, and these examples actually verify nonempty ordered selections in both `statevector` and `density_matrix` modes. Values carry a leading execution batch axis; the code explicitly selects batch element zero. Native selected probabilities and Pauli expectations provide additional local and joint checks. A selected density is a query result, not a physical instruction to erase, measure or reset the other qubits.
+
+The inspected 0.3.1 runtime source constructs a full density matrix on its statevector route and guards that route at 10 qubits before reduction. This limit is source-inspected, not tested by allocating a large matrix here. The density-matrix route already holds a full joint matrix. Therefore a small returned subsystem does not imply that simulation or intermediate memory is small; a full n-qubit dense matrix has 4ⁿ entries. No performance or scalability claim follows from these small examples.
+
+The tested global preparations are pure, but their native reductions can be mixed. Additional mixed global matrices are explicit host weighted sums of actual component outputs, checked using linearity. We do not infer an arbitrary mixed-state initializer, invoke noise, implement native collapse, or claim hardware access. General dense local probes and conditional branch calculations are host references. We do not silently diagonalize, clip, normalize or average statevectors to obtain agreement.
+
+Expected output of the complete program:
+
+```text
+24 native basis circuits:all nonempty ordered two/three-qubit selections match scalar sums and paired-axis traces.
+16 native complex product/chain circuits:entry/axis/coefficient/observable-frame references and host mixed reductions passed.
+6 native Bell-family circuits:reduced states and phase-sensitive global Pauli correlations passed.
+4 native discarded-subsystem rotations:retained density invariant,including passive basis contraction.
+14 malformed contracts rejected;dimension-one/empty/full and unnormalized linear traces passed.
+50 actual native circuits;464 selected-density outputs;classical probes and host mixtures are not extra quantum executions.
+```
+
+The complete program executes 50 native circuits and checks 464 selected-density outputs across all nonempty ordered two-/three-qubit selections for its declared preparations. These outputs, classical trace probes and mixture calculations are not additional quantum executions. The literal body executes nine circuits; transfer cases, the body/complete checker and two API probes are recorded separately. Existence and uniqueness for arbitrary finite dimensions follow from the proofs above, not from the number of numerical cases.
+
+### Understanding checks and transfer exercises
+
+**8.4-A — Fix the contraction.** Derive (ρ_A)₀₁ explicitly for a 2×3 factorization. Explain why the discarded ket and bra indices must match and why dividing the sum by three is wrong. Derive Tr_B(C⊗D) for a general, possibly unnormalized, product operator. Prove uniqueness using either Δ or the d_A² Hermitian frame; do not treat a non-Hermitian matrix unit as a physical observable without explanation.
+
+**8.4-B — Fresh ordered four-qubit subsystem.** Use the companion's chain preparation with θ=−.67, φ=.39 on four qubits. Request S=(q3,q1), its reversed order, and the single-qubit reductions. Derive the bit-lift rule for S and the discarded order (q0,q2). Verify native matrices with scalar sums, tensor contraction, coefficient contraction and the Hermitian frame. Repeat for a host mixture with a fresh product preparation θ=1.08, φ=−.53 and weights (.29,.71), in both modes.
+
+**8.4-C — Fresh discarded basis and retained correlations.** On a three-qubit chain preparation with θ=.64, φ=−.82, retain (q2,q0) and apply U=prepare(qubit(−.47,.62)) only to q1. Check invariance of the retained matrix in both modes. Then use biased Bell preparations with θ=1.07 and φ=−.51 or π/2. Compare local reductions, conditional Z branches on B, and the full coherence before and after ignoring B's result. Does a zero XX correlation establish absence of the joint off-diagonal terms?
+
+**8.4-D — Empty selection and a non-qubit factorization.** Contrast the mathematical result for no retained qubits with the measured native empty-tuple behavior. Construct a positive normalized 6×6 matrix with complex off-diagonal entries on a 3×2 space, reduce it by scalar sums and a paired-axis contraction, and verify all nine retained Hermitian probes. Include the d_A=1 and d_B=1 cases and an unnormalized branch. State which parts are classical rather than native qutrit or collapse operations.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 8.4-A–D</summary>
+
+**A.** With the full index 3i+μ,
+
+$$
+(\rho_A)_{01}=\rho_{0,3}+\rho_{1,4}+\rho_{2,5}.
+$$
+
+The identity on the discarded factor supplies δνμ. Dividing by three would give total trace 1/3, not a density, for a normalized joint input. Product entries CᵢⱼDμν give CᵢⱼTrD. The Δ argument gives a sum of squared entry magnitudes, all forced to zero. The finite frame alternatively fixes every diagonal entry and both real components of every upper-triangle entry, with the minus sign for the Y expectation as in 8.4.3.
+
+**B.** Let i=2b₃+b₁ and μ=2b₀+b₂. Reinsert the bits into the declared full order:
+
+$$
+\begin{aligned}
+\ell(i,\mu)
+ &=8\lfloor\mu/2\rfloor
+   +4(i\bmod2)\\
+ &\quad+2(\mu\bmod2)+\lfloor i/2\rfloor.
+\end{aligned}
+$$
+
+Use Σμρℓ(i,μ),ℓ(j,μ). Reversing the retained tuple permutes both matrix axes with (0,2,1,3). For the mixture, each retained entry is .29 times the chain reduction plus .71 times the product reduction. The transfer checks complete complex matrices and native probabilities; agreement only on the diagonals would not test all local expectations.
+
+**C.** For the discarded q1 unitary, trace consistency and unitarity force the same density on (q2,q0), regardless of the entanglement of the input. The biased Bell local densities are diag(cos²(1.07/2),sin²(1.07/2)), independent of φ. A Z record on B selects the corresponding A basis density with those unequal probabilities; ignoring the record recovers the prior local density. The full ignored state loses its 00–11 coherence. At φ=π/2, XX vanishes but XY=sin(1.07), so zero XX alone does not imply that the joint coherence is absent.
+
+**D.** The mathematical empty retained space gives [TrM], whereas the measured native empty request returned the full register matrix in this version. One explicit positive complex 3×2 example is the mixture with weights (.4,.6) of
+
+$$
+\begin{aligned}
+|u\rangle&=(1,i,0,0,0,0)^\mathsf{T}/\sqrt2,\\
+|v\rangle&=(0,0,1,0,0,i)^\mathsf{T}/\sqrt2.
+\end{aligned}
+$$
+
+Its retained density is diag(.4,.3,.3); the full off-diagonal entries include −.2i at (0,1) and −.3i at (2,5), with their conjugates. Its trace is one and it is positive by construction. Scalar contraction equals `einsum('imjm->ij', M.reshape(3,2,3,2))`. The nine Hermitian probes of the retained dimension reconstruct the same matrix. Multiplying M by a positive branch weight p multiplies the reduced operator and its trace by p; it does not normalize it. Dimension-one cases reduce to the trace or to the identity map as appropriate. These are classical finite-matrix checks, not native non-qubit preparation or a sampled measurement.
+
+</details>
+
+**Sources and proof scope.** The frozen source locator is NC §2.4.3, printed page 105 (contents locator checked; no new full-text NC review claimed). We also inspected [Watrous, author-hosted manuscript §2.1.3, printed pages 67–68](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=75) for coordinate and retained-register conventions. The local-expectation derivation, positivity and uniqueness arguments are supplied explicitly here. Independent mathematical review, implementation review and reader trial remain pending; this is an author-verified draft rather than formal acceptance.
+
+<!-- end-section-8.4 -->

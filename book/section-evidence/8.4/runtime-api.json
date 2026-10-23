@@ -1,0 +1,14 @@
+{
+  "python": "3.12.14",
+  "flagquantum": "0.3.1",
+  "torch": "2.13.0",
+  "density_signature": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None) -> 'OutputRequest'",
+  "density_source": "def density_matrix(\n    qubits: Iterable[int] | int | None | Omitted = OMITTED,\n    *,\n    name: str | None = None,\n) -> OutputRequest:\n    \"\"\"Request the density matrix of selected qubits, tracing the rest out.\n\n    Args:\n        qubits: The qubits to keep, in the basis order the result should use.\n            Omitting them keeps every qubit.\n        name: An optional label for selecting this output from the result.\n\n    The result is whatever the execution state is, mixed or pure: a noisy run\n    returns the state its noise left behind, and readout confusion is refused\n    rather than folded in, because readout acts on outcomes after the state.\n\n    Examples:\n        >>> import flagquantum as fq\n        >>> circuit = fq.Circuit(2).h(0).cx(0, 1)\n        >>> density = fq.run(circuit, outputs=fq.density_matrix(qubits=0))\n        >>> density.density_matrix.shape\n        torch.Size([1, 2, 2])\n    \"\"\"\n\n    selected = _selection_alias(qubits, OMITTED)\n    if isinstance(selected, Observable):\n        raise TypeError(\"density_matrix requires qubit indices, not an Observable\")\n    return OutputRequest(\n        \"density_matrix\", _optional_qubits(selected, kind=\"density_matrix\"), name=name\n    )\n",
+  "files": {
+    "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/__init__.py": "8cedd180174be55d92f850465882fdf14fb464d654c0acbab7ce8442ad77b911",
+    "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py": "beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b"
+  },
+  "empty_tuple": "2actual probes returned full matrix,both modes;request construction0circuits.",
+  "source_limit": "runtime.measurements._DEFAULT_MAX_DENSITY_MATRIX_QUBITS=10;source inspected,no limit-allocation test.",
+  "metadata_note": "Initial sparse progress lookup assumed a not-started entry existed and raised KeyError before API inspection or quantum execution;corrected to use actual frozen queue/overlay.0scientific calls in that utility failure."
+}
