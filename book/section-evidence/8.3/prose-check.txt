@@ -1,0 +1,2 @@
+Eight literal8.3units:13native circuits,all assertions and exact outputs passed.
+Complete8.3program:58native circuits,13malformed contracts,rare/zero/underflow and exact output passed.

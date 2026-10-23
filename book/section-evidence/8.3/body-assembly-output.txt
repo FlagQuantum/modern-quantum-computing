@@ -1,0 +1,24 @@
+H expectation:trace/spectrum/ensemble/native=0.949601734
+
+Z outcome probabilities: [0.69981939, 0.30018061]
+Fresh branch preparations agree;unweighted averaging gives a different state
+
+X mean:unperformed=1.000000,performed/result ignored=0.000000
+Normalized branch-vector average predicts X=1.000000 and is wrong
+
+Identical POVM probabilities: [0.619891634, 0.380108366]
+Conditional Z at record1:ordinary=-0.263558025,flipped=0.263558025
+
+One visible outcome:p=1.000000,conditional X=0.000000
+Hidden-label unitary mixing preserves the full update;coherently summing its operators does not
+
+xx:coarse=0.000000,fine/result forgotten=0.000000
+xy:coarse=1.000000,fine/result forgotten=0.000000
+
+Joint rows(Z record),columns(X outcome): [[0.349909695, 0.349909695], [0.150090305, 0.150090305]]
+Ignored-record X probabilities: [0.5, 0.5]
+
+Zero event:None;positive1e-20 event:normalized state retained
+13 malformed contracts rejected;nonzero-factor underflow raises
+13 actual native body circuits;no native sampled collapse asserted
+

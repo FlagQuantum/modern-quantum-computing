@@ -1,6 +1,6 @@
 # 8. Density Matrices, Reduced States, and Purification
 
-**Working drafts: sections 8.1–8.2 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
+**Working drafts: sections 8.1–8.3 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
 
 <span id="sec-density-matrices-reduced-states-and-purification-1"></span>
 
@@ -1029,3 +1029,494 @@ This state is mixed despite the rounded display. The three-state uniform two-qub
 **Sources and proof scope.** The frozen source locator is NC §2.4.2, printed page 101 (contents locator checked; no new claim of full-text NC review). For pure-ray and spectral-ensemble conventions we consulted [Watrous, author-hosted manuscript §2.1.2, printed page 64](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=72). The bounds, ensemble overlap criterion, rank-r extension and coordinate derivations above are supplied explicitly in this section. Independent mathematical review, implementation review and reader trial remain pending; this is an author-verified draft, not formal acceptance.
 
 <!-- end-section-8.2 -->
+
+<span id="sec-density-matrices-reduced-states-and-purification-3"></span>
+
+## 8.3 Expectation values and measurement updates
+
+The density operator predicts both probabilities and means, but a probability distribution alone does not specify what happens to the system after a measurement. Moreover, “the result was r” and “a measurement occurred but its result is unavailable” describe different information. We will construct the corresponding density operators, prove their normalization, and compare their predictions for a later measurement.
+
+The frozen prerequisites are [8.1, density operators](#sec-density-matrices-reduced-states-and-purification-1), [6.2, conditional states and ignored outcomes](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-2), and [6.3, spectra and expectations](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-3). This section has depth **F**. The finite-sum proofs below establish the density update for a specified complete instrument; numerical examples check the implementation rather than establish the theorem.
+
+All spaces are finite and nonzero. The input ρ is Hermitian, positive semidefinite and has trace one. An observable A is Hermitian. A measurement process must specify its update operators as well as its reported labels. The physical update model is an assumption, additional to the Born probability rule. We do not derive disturbance from outcome probabilities alone. The examples use dimensionless observables and probabilities; gate angles are radians. If A has physical units, its expectation has the same units.
+
+Run the eight cumulative units from the repository root with the pinned example requirements. The companion [density_updates.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/density_updates.py) supplies contracts and complete checks. Actual released FlagQuantum 0.3.1 density/probability/Pauli outputs are used explicitly. Mixture formation and conditional density updates are labelled as host calculations. Deterministic comparisons use absolute tolerance $10^{-12}$ and relative tolerance zero, without phase alignment, input repair or probability clipping.
+
+### 8.3.1 Derive the density expectation, not just the outcome probability
+
+Write an input ensemble as ρ=Σⱼwⱼ|ψⱼ⟩⟨ψⱼ| with normalized ψⱼ, wⱼ≥0 and Σⱼwⱼ=1. For one component, the spectral expectation rule of 6.3 gives ⟨ψⱼ|A|ψⱼ⟩. Averaging the classical alternatives and using the trace identity from 8.1 gives
+
+$$
+\begin{aligned}
+\langle A\rangle_\rho
+&=\sum_j w_j\langle\psi_j|A|\psi_j\rangle\\
+&=\operatorname{Tr}\!\left(
+ A\sum_jw_j|\psi_j\rangle\langle\psi_j|\right)\\
+&=\operatorname{Tr}(\rho A).
+\end{aligned}
+$$
+
+This is independent of the chosen ensemble because it depends only on ρ. To connect it with an actual observable distribution, let A=ΣₐaPₐ be its spectral decomposition with distinct real eigenvalues a and orthogonal projectors Pₐ summing to I. The projective Born probabilities are p(a)=Tr(ρPₐ), so
+
+$$
+\langle A\rangle_\rho
+=\sum_a a\,p(a).
+$$
+
+Each p(a) is real and nonnegative: the ensemble expression is a sum of wⱼ||Pₐψⱼ||². Their sum is one because the projectors are complete. Thus the expectation is real and lies between the smallest and largest eigenvalues. Real linearity in A follows directly from the trace; it does not assert that noncommuting observables have jointly available outcomes on one trial. The mean alone also does not determine the complete distribution or its measurement update.
+
+Use the convention qubit(θ,φ)=cos(θ/2)|0⟩+e^{iφ}sin(θ/2)|1⟩ from 8.1. For a concrete complex mixed qubit, we use weights (.34,.66) and A=.7X−.2Y+1.3Z. The native observable sum, direct vector quadratics, density trace and numerical spectral probabilities are checked separately. Native matrices come from the two component preparations; the weighted density is assembled classically.
+
+```python
+import math
+import torch
+import flagquantum as fq
+from examples.foundations import density_updates as d
+from examples.foundations import statistical_ensembles as e
+weights=(.34,.66)
+u=e.qubit(.83,-.49);v=e.qubit(1.31,.72)
+components=(u,v);matrices=[];native_means=[]
+for component in components:
+    c=fq.Circuit(1,dtype=d.D).unitary(0,unitary=e.prepare(component))
+    result=fq.run(c,outputs=[fq.density_matrix(),fq.probabilities(),
+        fq.expectation(.7*fq.X(0)-.2*fq.Y(0)+1.3*fq.Z(0),name='h')],options=e.OPTIONS)
+    d.RUNS+=1
+    matrices.append(result.density_matrix[0]);native_means.append(result.expectation('h')[0])
+    e.close(result.probabilities[0],component.abs().square())
+rho=sum(w*a for w,a in zip(weights,matrices))
+trace_mean=torch.trace(rho@d.H).real.item()
+scalar_mean=sum(w*torch.vdot(c,d.H@c).real.item() for w,c in zip(weights,components))
+values,Q=torch.linalg.eigh(d.H)
+spectral_mean=sum(values[j].item()*torch.trace(rho@e.outer(Q[:,j])).real.item() for j in range(2))
+e.close(trace_mean,scalar_mean);e.close(trace_mean,spectral_mean)
+e.close(trace_mean,sum(w*a for w,a in zip(weights,native_means)))
+print('H expectation:trace/spectrum/ensemble/native=%.9f'%trace_mean)
+```
+
+```text
+H expectation:trace/spectrum/ensemble/native=0.949601734
+```
+
+### 8.3.2 Select one ideal projective result and normalize only that branch
+
+For an ideal projective measurement with a complete orthogonal family {Pᵣ}, the physical update assumption is the Lüders rule. For a pure input, its unnormalized branch vector is Pᵣψ. For a density input, define
+
+$$
+\begin{aligned}
+\sigma_r&=P_r\rho P_r,\\
+p_r&=\operatorname{Tr}(\sigma_r)
+ =\operatorname{Tr}(\rho P_r),\\
+\rho_r&=\frac{\sigma_r}{p_r}\quad(p_r>0).
+\end{aligned}
+$$
+
+Here σᵣ includes the probability weight; ρᵣ is the conditional density given that r was observed. These are different objects. Since σᵣ=Σⱼwⱼ|Pᵣψⱼ⟩⟨Pᵣψⱼ|, it is Hermitian and positive. Its trace is Σⱼwⱼ||Pᵣψⱼ||²=pᵣ. For pᵣ>0, division by this one scalar preserves positivity and gives trace one. If pᵣ=0, all positive-weight projected vectors vanish, hence σᵣ=0 and there is no conditional state to normalize. The implementation returns `None` for an exactly impossible branch; it never chooses an arbitrary replacement vector.
+
+For projectors the conditional state remains in the recorded subspace: PᵣρᵣPᵣ=ρᵣ. A repeated identical ideal projective measurement therefore returns r with probability one. This repeatability statement is specific to that update model, not a consequence of the POVM probabilities alone.
+
+For a one-qubit Z measurement, P₀=|0⟩⟨0| and P₁=|1⟩⟨1|. Both positive-probability conditional states are the corresponding basis densities. The code below also prepares those states in **new** native circuits as an independent output check. Preparing a branch in a fresh circuit does not mean the original native circuit sampled or collapsed into it.
+
+```python
+probs,states,sigmas,ignored=d.instrument(rho,d.Z_GROUPS)
+branch_native=[]
+for r,P in enumerate((d.P0,d.P1)):
+    sigma=P@rho@P
+    e.close(sigmas[r],sigma);e.close(states[r],sigma/torch.trace(sigma))
+    c=fq.Circuit(1,dtype=d.D)
+    if r:c.X(0)
+    result=fq.run(c,outputs=[fq.density_matrix(),fq.expectation(fq.X(0),name='x')],options=e.OPTIONS)
+    d.RUNS+=1;branch_native.append(result)
+    e.close(result.density_matrix[0],states[r])
+e.close(sum(p*a for p,a in zip(probs,states)),ignored)
+assert not torch.allclose((states[0]+states[1])/2,ignored,atol=d.ATOL,rtol=0)
+print('Z outcome probabilities:',[round(p,9) for p in probs])
+print('Fresh branch preparations agree;unweighted averaging gives a different state')
+```
+
+```text
+Z outcome probabilities: [0.69981939, 0.30018061]
+Fresh branch preparations agree;unweighted averaging gives a different state
+```
+
+### 8.3.3 Ignore the result by summing unnormalized branches
+
+If the measurement occurred but its record is unavailable, the state must average the alternatives with their actual probabilities:
+
+$$
+\begin{aligned}
+\rho_{\mathrm{out}}
+&=\sum_{r:p_r>0}p_r\rho_r\\
+&=\sum_r\sigma_r
+ =\sum_rP_r\rho P_r.
+\end{aligned}
+$$
+
+The first equality is a classical mixture of conditional states. The second follows by cancellation of each branch's normalization; zero branches contribute zero. Hermiticity and positivity are preserved by the sum. Its trace is Σᵣpᵣ=Tr(ρΣᵣPᵣ)=1, so it is again a density operator. Generally it differs from the input. In particular, completeness does not permit replacing ΣᵣPᵣρPᵣ by (ΣᵣPᵣ)ρ(ΣₛPₛ): the latter includes cross terms r≠s that the unread record has removed.
+
+For any later observable B, linearity gives
+
+$$
+\langle B\rangle_{\mathrm{out}}
+=\sum_{r:p_r>0}p_r\langle B\rangle_{\rho_r}.
+$$
+
+This is a weighted average of density predictions, not an unweighted average of branches and not a coherent sum of their statevectors. For |+⟩, a Z measurement has probabilities (.5,.5). Ignoring its result gives I/2: its X mean is zero. Leaving the system unmeasured preserves |+⟩ and X mean one. Normalizing the vector sum of |0⟩ and |1⟩ would incorrectly restore |+⟩. The computational Z probabilities happen to agree before and after, so checking only that distribution would miss the disturbance.
+
+```python
+plus=torch.tensor([1,1],dtype=d.D)/math.sqrt(2)
+plus_result=d.native(plus)
+plus_rho=plus_result.density_matrix[0]
+pp,ss,uu,forgotten=d.instrument(plus_rho,d.Z_GROUPS)
+before=plus_result.expectation('x')[0].item();after=d.mean(forgotten,d.X)
+e.close(after,sum(p*r.expectation('x')[0] for p,r in zip(pp,branch_native)))
+wrong_vector=torch.tensor([1,1],dtype=d.D)/math.sqrt(2)
+print('X mean:unperformed=%.6f,performed/result ignored=%.6f'%(before,after))
+print('Normalized branch-vector average predicts X=%.6f and is wrong'%d.mean(e.outer(wrong_vector),d.X))
+```
+
+```text
+X mean:unperformed=1.000000,performed/result ignored=0.000000
+Normalized branch-vector average predicts X=1.000000 and is wrong
+```
+
+### 8.3.4 Give the complete instrument, then derive its mixed-input update
+
+Projective Lüders measurements are one model. More generally, assume a **specified finite instrument** is given by operators Kᵣα, where r is the reported outcome and α indexes alternatives not distinguished within that outcome. All operators have one common input space and one common output space. They obey the completeness condition
+
+$$
+\sum_{r,\alpha}K_{r\alpha}^\dagger K_{r\alpha}=I.
+$$
+
+For a pure input, the model assigns an unnormalized vector Kᵣαψ to each fine alternative, with squared norm as its probability. This is the physical process assumption; it must be supplied or justified for the apparatus. We are not proving that every conceivable operation has this representation. The general representation and composition theory is developed in Chapter 9.
+
+For a mixed input ensemble, the unnormalized contribution of fine alternative (j,r,α) is wⱼ|Kᵣαψⱼ⟩⟨Kᵣαψⱼ|. Sum over the inaccessible initial label j and internal label α while holding the reported label r fixed. Finite distributivity gives
+
+$$
+\begin{aligned}
+\sigma_r
+&=\sum_{j,\alpha}w_j
+ |K_{r\alpha}\psi_j\rangle\langle K_{r\alpha}\psi_j|\\
+&=\sum_\alpha K_{r\alpha}\rho K_{r\alpha}^\dagger,\\
+E_r&=\sum_\alpha K_{r\alpha}^\dagger K_{r\alpha},\\
+p_r&=\operatorname{Tr}(\sigma_r)
+ =\operatorname{Tr}(\rho E_r).
+\end{aligned}
+$$
+
+Each effect Eᵣ is positive, since x†Eᵣx=Σα||Kᵣαx||²≥0, and completeness gives ΣᵣEᵣ=I. These effects form the POVM, which determines outcome probabilities. They need not be orthogonal projectors. Cyclicity of the trace establishes the displayed probability identity, including rectangular input/output operators.
+
+For any output vector y,
+
+$$
+y^\dagger\sigma_r y
+=\sum_\alpha(K_{r\alpha}^\dagger y)^\dagger
+ \rho(K_{r\alpha}^\dagger y)\geq0.
+$$
+
+The expression also shows Hermiticity. Its trace is nonnegative and Σᵣpᵣ=Trρ=1. If pᵣ=0, the earlier ensemble formula is a sum of nonnegative weighted squared norms, so every positive-weight branch vector vanishes and σᵣ=0. If pᵣ>0, ρᵣ=σᵣ/pᵣ is a normalized density. Finally,
+
+$$
+\boxed{\begin{aligned}
+\rho_r&=\sigma_r/p_r\quad(p_r>0),\\
+\rho_{\mathrm{out}}&=\sum_r\sigma_r.
+\end{aligned}}
+$$
+
+These equations prove both selective and nonselective normalization. They also prove ensemble independence of the entire update, not merely of its probabilities. The unnormalized σᵣ is linear in ρ; normalization usually makes the conditional map nonlinear. In ensemble language, conditioning changes the weights: for a single operator per outcome, an initial component j with q(r|j)>0 receives weight wⱼq(r|j)/pᵣ, not its original wⱼ. This follows directly by dividing its contribution by pᵣ. With several α, the corresponding fine weights are wⱼ||Kᵣαψⱼ||²/pᵣ.
+
+For an explicit counterexample to determining updates from the POVM, let 0≤κ≤1 and set a=√((1+κ)/2), b=√((1−κ)/2). Use
+
+$$
+\begin{aligned}
+M_0&=\operatorname{diag}(a,b),\\
+M_1&=\operatorname{diag}(b,a),\\
+N_0&=M_0,\qquad N_1=XM_1.
+\end{aligned}
+$$
+
+Both models have E₀=(I+κZ)/2 and E₁=(I−κZ)/2 because X†X=I, but their record-1 conditional states obey ρ₁ᴺ=Xρ₁ᴹX. In particular their conditional Z means have opposite signs. At κ=0 the ordinary model leaves the state unchanged within either branch, whereas the second applies X in one branch. At κ=1 the ordinary model is ideal Z measurement. Thus equal effects determine equal record statistics for every input but do not guarantee equal later states.
+
+The native verification uses system q0 and a meter q1 initially |0⟩. Here RY(g) has matrix [[cos(g/2),−sin(g/2)],[sin(g/2),cos(g/2)]], and controlled-RY applies that rotation to q1 only when q0 is one. For g₀=2 arccos a and g₁=2 arccos b, RY(g₀) on the meter followed by controlled-RY(g₁−g₀) gives, respectively, a|0⟩+b|1⟩ when the system is zero and b|0⟩+a|1⟩ when it is one. Therefore the full joint vector is
+
+$$
+|\Psi\rangle
+ =M_0|\psi\rangle|0\rangle
+  +M_1|\psi\rangle|1\rangle.
+$$
+
+A subsequent CX controlled by the meter implements the N model coherently. It is not a native classical feedback call. In full basis order (q0,q1), the entries with a fixed meter r have indices (r,2+r). The corresponding 2×2 diagonal block of the native joint density equals Mᵣ|ψ⟩⟨ψ|Mᵣ†, or its N counterpart. Summing the actual component outputs with weights gives the mixed-input σᵣ. This direct coordinate verification uses no unintroduced general partial-trace theorem; 8.4 supplies that construction.
+
+```python
+strength=.6
+a=math.sqrt((1+strength)/2);b=math.sqrt((1-strength)/2)
+outputs=[]
+for flip in (False,True):
+    joint_matrices=[];record_probs=[];native_z=[]
+    for component in components:
+        c=fq.Circuit(2,dtype=d.D).unitary(0,unitary=e.prepare(component))
+        c.RY(1,theta=2*math.acos(a)).CRY(0,1,theta=2*math.acos(b)-2*math.acos(a))
+        if flip:c.CX(1,0)
+        result=fq.run(c,outputs=[fq.density_matrix(),fq.probabilities(qubits=(1,),name='record'),
+            fq.expectation(fq.Z(0),name='z')],options=e.OPTIONS)
+        d.RUNS+=1
+        joint_matrices.append(result.density_matrix[0])
+        record_probs.append(result.measurement('record').value[0])
+        native_z.append(result.expectation('z')[0])
+    groups=d.weak(strength,flip)
+    p,s,unnormalized,total=d.instrument(rho,groups)
+    joint=sum(w*m for w,m in zip(weights,joint_matrices))
+    for r in range(2):
+        idx=torch.tensor([r,2+r]);block=joint[idx][:,idx]
+        explicit=groups[r][0]@rho@groups[r][0].mH
+        e.close(block,explicit);e.close(unnormalized[r],explicit)
+    e.close(torch.tensor(p,dtype=torch.float64),sum(w*p0 for w,p0 in zip(weights,record_probs)))
+    e.close(d.mean(total,d.Z),sum(w*z0 for w,z0 in zip(weights,native_z)))
+    outputs.append((p,s,total))
+e.close(outputs[0][0],outputs[1][0])
+z0=d.mean(outputs[0][1][1],d.Z);z1=d.mean(outputs[1][1][1],d.Z)
+e.close(z0,-z1)
+print('Identical POVM probabilities:',[round(x,9) for x in outputs[0][0]])
+print('Conditional Z at record1:ordinary=%.9f,flipped=%.9f'%(z0,z1))
+```
+
+```text
+Identical POVM probabilities: [0.619891634, 0.380108366]
+Conditional Z at record1:ordinary=-0.263558025,flipped=0.263558025
+```
+
+### 8.3.5 An observed label need not specify a pure branch
+
+Suppose a single reported outcome r has two internal operators Kᵣ₀=P₀ and Kᵣ₁=P₁. Its effect is I, so its reported probability is one. For |+⟩ input, however,
+
+$$
+\begin{aligned}
+\rho_r&=P_0|+\rangle\langle+|P_0
+       +P_1|+\rangle\langle+|P_1\\
+&=\frac12|0\rangle\langle0|
+ +\frac12|1\rangle\langle1|.
+\end{aligned}
+$$
+
+Thus even knowing the only visible outcome does not make the system pure. Compare this with the single operator K=I: its effect is also I, but its output remains |+⟩⟨+|. The internal alternatives are summed as operators, not as vectors. Replacing the two internal operators by their coherent sum P₀+P₁=I would create a different physical process.
+
+Conversely, different internal operator lists can describe the **same** instrument. For each fixed r, let V be a unitary mixing matrix on its finite internal labels and set Lᵣβ=ΣαVβαKᵣα. Expand the update:
+
+$$
+\begin{aligned}
+\sum_\beta L_{r\beta}\rho L_{r\beta}^\dagger
+&=\sum_{\alpha,\eta}
+ \left(\sum_\beta V_{\beta\alpha}V_{\beta\eta}^*\right)
+ K_{r\alpha}\rho K_{r\eta}^\dagger\\
+&=\sum_\alpha K_{r\alpha}\rho K_{r\alpha}^\dagger.
+\end{aligned}
+$$
+
+Unitarity makes the parenthesized sum δαη. Hence the unnormalized state, outcome probability and all later conditional predictions are unchanged. This argument mixes internal labels within a reported outcome; it does not license changing which reported outcomes are grouped together. For (P₀,P₁), the two-label Hadamard mixing produces (I/√2,Z/√2), the same dephasing update. Code checks the full output for both a pure input and the earlier mixed input, and checks the pure-input result against native joint-density blocks.
+
+```python
+hidden=((d.P0,d.P1),)
+hp,hs,hu,ht=d.instrument(plus_rho,hidden)
+_,blocks,_=d.coupled(plus,1.)
+e.close(ht,blocks[0]+blocks[1]);e.close(hs[0],d.I/2)
+rotated=((d.I/math.sqrt(2),d.Z/math.sqrt(2)),)
+for input_rho in (plus_rho,rho):
+    e.close(d.instrument(input_rho,hidden)[3],d.instrument(input_rho,rotated)[3])
+print('One visible outcome:p=%.6f,conditional X=%.6f'%(hp[0],d.mean(hs[0],d.X)))
+print('Hidden-label unitary mixing preserves the full update;coherently summing its operators does not')
+```
+
+```text
+One visible outcome:p=1.000000,conditional X=0.000000
+Hidden-label unitary mixing preserves the full update;coherently summing its operators does not
+```
+
+### 8.3.6 A coarse Lüders measurement differs from forgetting fine results
+
+Let Pᵣ=ΣαQᵣα sum mutually orthogonal fine projectors belonging to a coarse label r. An **ideal coarse Lüders** measurement has one operator Pᵣ per outcome:
+
+$$
+\sigma_r^{\mathrm{coarse}}=P_r\rho P_r.
+$$
+
+A fine measurement followed by forgetting α instead gives
+
+$$
+\sigma_r^{\mathrm{fine}}
+ =\sum_\alpha Q_{r\alpha}\rho Q_{r\alpha}.
+$$
+
+Both have effect Pᵣ and probability Tr(ρPᵣ), since Qᵣα²=Qᵣα. Expanding PᵣρPᵣ shows exactly the difference: the coarse ideal update retains terms QᵣαρQᵣη for α≠η within the same subspace; forgetting fine outcomes removes them. The word “coarse” applied only to a readout label does not uniquely specify an apparatus's disturbance.
+
+For two qubits, take even parity Pₑ=|00⟩⟨00|+|11⟩⟨11| and odd parity Pₒ=I−Pₑ. Prepare ψφ=(|00⟩+e^{iφ}|11⟩)/√2. Both processes always report even. Coarse ideal parity preserves the full input density, while fine computational measurement followed by forgetting which even string occurred gives diag(.5,0,0,.5). Their correlations are
+
+$$
+\begin{aligned}
+\langle X\!\otimes\!X\rangle_{\mathrm{coarse}}&=\cos\phi,\\
+\langle X\!\otimes\!Y\rangle_{\mathrm{coarse}}&=\sin\phi,
+\end{aligned}
+$$
+
+and both vanish in the fine-forgotten state. These formulas follow by applying the two Pauli products to |00⟩ and |11⟩ and keeping the two conjugate cross terms. For φ=π/2, XX is accidentally zero in both states, but XY distinguishes them. A single matching expectation is not equality of states or instruments. The following native preparation and exact Pauli queries check this phase-sensitive case; the two alternative updates are computed explicitly on its native density.
+
+```python
+c=fq.Circuit(2,dtype=d.D).H(0).P(0,theta=math.pi/2).CX(0,1)
+result=fq.run(c,outputs=[fq.density_matrix(),
+    fq.expectation(fq.X(0)@fq.X(1),name='xx'),
+    fq.expectation(fq.X(0)@fq.Y(1),name='xy')],options=e.OPTIONS)
+d.RUNS+=1
+joint_rho=result.density_matrix[0]
+even=torch.diag(torch.tensor([1,0,0,1],dtype=d.D));odd=torch.eye(4,dtype=d.D)-even
+basis=tuple(torch.diag(torch.eye(4,dtype=d.D)[i]) for i in range(4))
+coarse=d.instrument(joint_rho,((even,),(odd,)))
+fine=d.instrument(joint_rho,((basis[0],basis[3]),(basis[1],basis[2])))
+e.close(coarse[0],fine[0]);e.close(coarse[3],joint_rho)
+assert coarse[1][1]is None and fine[1][1]is None
+for name,A in (('xx',torch.kron(d.X,d.X)),('xy',torch.kron(d.X,d.Y))):
+    e.close(d.mean(coarse[3],A),result.expectation(name)[0])
+    print(name+':coarse=%.6f,fine/result forgotten=%.6f'%(d.mean(coarse[3],A),d.mean(fine[3],A)))
+```
+
+```text
+xx:coarse=0.000000,fine/result forgotten=0.000000
+xy:coarse=1.000000,fine/result forgotten=0.000000
+```
+
+### 8.3.7 Keep chronological joint probabilities before conditioning again
+
+Let a second complete instrument have operators Lₛβ. Its outcome s follows the first outcome r. Starting with the **unnormalized** first branch σᵣ, define
+
+$$
+\begin{aligned}
+q(r,s)
+&=\sum_\beta\operatorname{Tr}
+ (L_{s\beta}\sigma_rL_{s\beta}^\dagger)\\
+&=\sum_{\alpha,\beta}\operatorname{Tr}
+ (L_{s\beta}K_{r\alpha}\rho
+ K_{r\alpha}^\dagger L_{s\beta}^\dagger).
+\end{aligned}
+$$
+
+The product LₛβKᵣα acts in chronological order, first K then L. Each term is nonnegative by the same branch argument. Summing over s and using second-stage completeness yields Σₛq(r,s)=Trσᵣ=pᵣ. Summing over r and s therefore gives one. When pᵣ>0,
+
+$$
+\begin{aligned}
+p(s\mid r)&=q(r,s)/p_r,\\
+p_{\mathrm{ignored}}(s)
+ &=\sum_rq(r,s)\\
+ &=\sum_\beta\operatorname{Tr}
+ (L_{s\beta}\rho_{\mathrm{out}}L_{s\beta}^\dagger).
+\end{aligned}
+$$
+
+A zero-probability first outcome has a zero joint row and no conditional distribution; do not divide it by zero. A conditional mean for B is Tr(Bρᵣ), and its probability-weighted mean is Tr(Bρout). If the second process changes according to r, that is a different protocol: the system uses an available classical record, and a single fixed ignored-result instrument cannot generally replace it.
+
+For first Z and then X, any positive Z branch has X probabilities (.5,.5). Thus q(r,s)=pᵣ/2 and the ignored-record X marginal is (.5,.5), even when the original input's X probabilities were unequal. The native circuit below performs the unitary Z-record coupling and applies H to the system before terminal computational readout. Requested columns are (meter q1, system q0); reshaping the four returned probabilities into 2×2 gives rows r and columns s. This checks the joint probability law without claiming an intermediate native collapse.
+
+```python
+second=(((d.I+d.X)/2,),((d.I-d.X)/2,))
+table=d.sequential(rho,d.Z_GROUPS,second)
+explicit=torch.tensor([[sum(torch.trace(L@sigma@L.mH).real.item() for L in group)
+    for group in second] for sigma in sigmas],dtype=torch.float64)
+e.close(table,explicit)
+native_tables=[d.coupled(c,1.,analyzer=True)[2] for c in components]
+e.close(table,sum(w*t for w,t in zip(weights,native_tables)))
+print('Joint rows(Z record),columns(X outcome):',[[round(x,9) for x in row] for row in table.tolist()])
+print('Ignored-record X probabilities:',[round(x,9) for x in table.sum(0).tolist()])
+```
+
+```text
+Joint rows(Z record),columns(X outcome): [[0.349909695, 0.349909695], [0.150090305, 0.150090305]]
+Ignored-record X probabilities: [0.5, 0.5]
+```
+
+### 8.3.8 Retain zero, rare and numerically unresolved branches distinctly
+
+An impossible branch has σᵣ=0 and pᵣ=0 in the exact model. A rare branch with pᵣ>0 remains a legitimate conditional state however small its weight. For ρ=diag(1−ε,ε) and projective Z, the record-1 conditional density is |1⟩⟨1| for **every** ε>0, although its probability is only ε. Dropping this branch merely because pᵣ is below an implementation tolerance would change the model.
+
+There is a third possibility: arithmetic cannot resolve the branch weight. The helper detects a zero trace with nonzero Kρ factors or a nonzero branch matrix and raises a numerical error instead of calling the event impossible. For example, a group K₀=10⁻²⁰⁰I has nonzero K₀ρ while K₀ρK₀† underflows to zero in complex128. This diagnostic is conservative: in other problems a cancellation residual can also trigger it. It is not a complete floating-point underflow detector or an interval certificate. Normalization by a very small probability can be ill-conditioned even if the guard passes.
+
+The instrument contract requires completeness. A deliberately incomplete collection models a different, trace-decreasing selected operation; to treat it as an entire measurement one must supply its failure outcomes. The helper rejects incompleteness rather than dividing by the sum of whatever probabilities remain. It also rejects malformed densities, matrices, strengths, dtypes and observables. Its square dimension-2-or-4 operators are a bounded teaching scope, not a native FlagQuantum limit or a restriction of the mathematical formulas above.
+
+```python
+zero=d.instrument(d.P0,d.Z_GROUPS)
+assert zero[0][1]==0 and zero[1][1]is None
+rare=torch.diag(torch.tensor([1-1e-20,1e-20],dtype=d.D))
+rare_result=d.instrument(rare,d.Z_GROUPS)
+assert rare_result[0][1]>0 and rare_result[1][1]is not None
+print('Zero event:None;positive1e-20 event:normalized state retained')
+print('%d malformed contracts rejected;nonzero-factor underflow raises'%d.invalid_checks())
+print('%d actual native body circuits;no native sampled collapse asserted'%d.RUNS)
+```
+
+```text
+Zero event:None;positive1e-20 event:normalized state retained
+13 malformed contracts rejected;nonzero-factor underflow raises
+13 actual native body circuits;no native sampled collapse asserted
+```
+
+**Actual API support and limits.** In the installed released version we inspected, `fq.density_matrix`, `fq.probabilities` and Pauli-based `fq.expectation` outputs are available and are actually executed here. Both tested simulator modes produce the full density of the prepared system or coupled system–meter register. The unitary coupling uses the actual RY/CRY/CX gates; the arbitrary matrix calls are unitary preparation matrices, never nonunitary measurement operators submitted to `Circuit.unitary`.
+
+Every σᵣ, ρᵣ, ignored-result sum and sequential table in this section is explicit classical postprocessing or a comparison with the native unitary circuit's outputs. The inspected root API and Circuit surface do not expose an outcome-indexed `instrument` call or a Circuit measurement/reset/conditional method used by these examples. This is a scoped statement about the checked version and interface, not a denial that generalized measurement can be built using gates, or that other noise/runtime interfaces may exist. We do not call a guessed mixed-state initializer, noise function, native sampled collapse, reset or classical-feedback endpoint. Fresh branch preparation is a separate run. Coherent meter-controlled X is unitary control. No hardware or dynamic-circuit implementation claim follows from these simulator checks.
+
+Expected output of the complete program:
+
+```text
+12 native input circuits:both modes;density,probabilities and X/Y/Z/H means passed.
+36 native weak couplings:strength0/.6/1,two instruments,two modes;host mixed branches match joint-density blocks.
+4 native Z-record/X-readout circuits:chronological joint probabilities,conditionals and ignored marginal passed.
+6 native joint preparations:coarse parity preserves coherence,fine Z with forgotten labels removes it.
+13 malformed contracts rejected;positive1e-20 retained,zero returns None,underflow raises.
+58 actual native circuits;all conditional updates and ensemble sums are explicit host calculations.
+```
+
+The complete program executes 58 native circuits: 12 input expectation checks, 36 weak couplings, four chronological readout checks and six joint preparations. Host ensembles and updates are not extra quantum executions. The literal body executes 13 additional circuits. Fresh transfer cases and the body/complete checker are recorded separately, as are prior-section regressions. The full finite-instrument proofs apply beyond these examples; independent mathematical review, implementation review and reader trial remain pending.
+
+### Understanding checks and transfer exercises
+
+**8.3-A — Which object is normalized?** Given σᵣ and pᵣ, derive the trace of σᵣ, the trace of ρᵣ when it exists, and the trace of Σᵣσᵣ. Explain what fails if one averages conditional densities with equal weights. What should be returned when a complete measurement has pᵣ=0? Why should an incomplete operator list not be silently renormalized?
+
+**8.3-B — Fresh mixed input and equal effects.** Prepare u=qubit(.57,−.68) and v=qubit(1.92,.44) with weights (.41,.59). For κ=.43, compute the two record probabilities, both conditional densities, the ignored-result state and its Z mean for the M and N models of 8.3.4. Use native component densities and actual couplings to compare complete branch matrices. Predict which quantities must agree for all inputs and which need not.
+
+**8.3-C — A phase-sensitive coarse test.** Prepare ψφ for φ=−.38 and for φ=π/2 in both native modes. Derive the coarse-even and fine-forgotten densities. Check XX and XY; explain why XX alone is inadequate in the second case. Separately prove that (P₀,P₁) and (I/√2,Z/√2) within one outcome give the same update for every input density, not just |+⟩.
+
+**8.3-D — New chronological table and rare branch.** For the fresh mixed input of B, use ordinary weak measurement κ=.43 followed by X. Derive q(r,s), the conditional rows and ignored-record marginal. Verify against native system–meter coupling followed by H, in both modes, with output order (q1,q0). Does replacing the first weak measurement by projective Z give the same table? Retain a projective Z branch with probability 10⁻²⁰ and explain how it differs from both a zero branch and an arithmetic-underflow report.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 8.3-A–D</summary>
+
+**A.** The respective traces are pᵣ, one for pᵣ>0, and one by completeness. Equal branch weights generally describe another mixture. A zero branch has no conditional state; `None` conveys this without inventing one. An incomplete list omits physical alternatives, so normalizing its retained sum changes an unconditional question into conditioning on their union. That must be a declared protocol, not a numerical repair.
+
+**B.** Write the native mixed matrix as ρ=[[a,z],[z*,1−a]]. With h=√(1−κ²), the two unnormalized ordinary branches are
+
+$$
+\begin{aligned}
+\sigma_0^M&=\frac12\begin{pmatrix}
+ (1+\kappa)a&hz\\hz^*&(1-\kappa)(1-a)
+\end{pmatrix},\\
+\sigma_1^M&=\frac12\begin{pmatrix}
+ (1-\kappa)a&hz\\hz^*&(1+\kappa)(1-a)
+\end{pmatrix}.
+\end{aligned}
+$$
+
+Their traces are p₀=[1+κ(2a−1)]/2 and p₁=1−p₀. Divide each by its own positive trace. For N, σ₀ is unchanged and σ₁ is Xσ₁ᴹX. Probabilities agree; the record-1 conditional Z mean changes sign, and the ignored-result densities can differ. The ordinary ignored result has diagonal (a,1−a) and off-diagonal hz, so its Z mean remains 2a−1. The N model instead sums σ₀ᴹ+Xσ₁ᴹX. Its diagonal entries are ((1+κ)/2,(1−κ)/2), so its Z mean is κ for every input, which need not equal 2a−1. The transfer program checks these formulas against native joint blocks.
+
+**C.** Coarse-even output is |ψφ⟩⟨ψφ| with off-diagonal entries e^{∓iφ}/2 between indices 0 and 3. Fine-forgotten output has only diagonal entries .5 at those indices. Their (XX,XY) means are respectively (cosφ,sinφ) and (0,0). At φ=π/2 the first coordinate is zero in both cases. For the hidden-label equivalence, expand [(IρI)+(ZρZ)]/2 and substitute I=P₀+P₁, Z=P₀−P₁: the cross terms cancel, leaving P₀ρP₀+P₁ρP₁.
+
+**D.** Let σᵣ be the ordinary weak branches of B. For X outcomes s=0,1, corresponding to eigenvalues +1,−1,
+
+$$
+\begin{aligned}
+q(r,s)&=\frac{p_r+(-1)^s t_r}{2},\\
+t_r&=\operatorname{Tr}(X\sigma_r)
+ =\sqrt{1-\kappa^2}\,\operatorname{Re}z.
+\end{aligned}
+$$
+
+Both branches have the same real off-diagonal sum here. Divide each row by pᵣ to condition; sum rows to ignore r. The ignored X probabilities are [1+(-1)ˢ2√(1−κ²)Re z]/2. For projective Z, κ=1 and every row has equal columns pᵣ/2; the probabilities pᵣ also change with κ, so the full tables generally differ. A 10⁻²⁰ Z branch remains a positive event with a valid normalized basis density. A zero event has no conditional density. An underflow report says arithmetic could not safely establish that distinction; it does not provide evidence for probability zero.
+
+</details>
+
+**Sources and proof scope.** The frozen locators are NC §2.4.2, printed page 101, and §8.2.3, printed page 360 (contents locators checked; no new full-text NC review claimed). We also consulted [Watrous, author-hosted manuscript §2.3.2, printed pages 111–112](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=119) for selective-state and instrument conventions. The finite ensemble, normalization, hidden-label and chronological derivations are provided explicitly above. The general operator-sum representation theorem and full channel/instrument theory are not substituted for these proofs. This is an author-verified draft, not formal acceptance.
+
+<!-- end-section-8.3 -->

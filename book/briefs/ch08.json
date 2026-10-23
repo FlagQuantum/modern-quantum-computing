@@ -55,6 +55,35 @@
       "source_locators": [
         "NC:2.4.2"
       ]
+    },
+    {
+      "sequence": 58,
+      "batch": "B02",
+      "section_id": "sec-density-matrices-reduced-states-and-purification-3",
+      "ref": "8.3",
+      "title": "Expectation values and measurement updates",
+      "depth": "F",
+      "requires": [
+        "sec-density-matrices-reduced-states-and-purification-1",
+        "sec-measurement-expectation-values-and-statistical-estimation-2",
+        "sec-measurement-expectation-values-and-statistical-estimation-3"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "question": "How do density expectations,selective measurement branches and ignored outcomes differ?",
+      "entry": "8.1 density/trace construction,6.2conditional pure states,6.3observable spectral means.",
+      "exit": "Complete finite-instrument branch normalization/ensemble independence and sum of unnormalized branches,with later-event predictions.",
+      "worked_case": "Complex mixed qubit,projective Z,weak-Z with equal effects/different updates,hidden labels,coarse versus fine parity and sequential X readout.",
+      "boundary": "Given finite complete measurement operators are a physical model;no general Kraus representation theorem,partial trace construction or native collapse API assumed.",
+      "code_plan": "Visible native density/probability/Pauli requests and unitary system-meter couplings;explicit host operator updates and fresh branch preparation.",
+      "independent_check": "Scalar component Kraus amplitudes,full native joint density blocks,analytic probabilities,Pauli means and normalized branch tables.",
+      "transfer_task": "Fresh complex mixed inputs,instrument variants,Bell phases,ordered two-stage probabilities and rare/zero branches.",
+      "source_locators": [
+        "NC:2.4.2",
+        "NC:8.2.3"
+      ],
+      "status": "draft"
     }
   ]
 }

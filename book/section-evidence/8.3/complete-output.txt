@@ -1,0 +1,6 @@
+12 native input circuits:both modes;density,probabilities and X/Y/Z/H means passed.
+36 native weak couplings:strength0/.6/1,two instruments,two modes;host mixed branches match joint-density blocks.
+4 native Z-record/X-readout circuits:chronological joint probabilities,conditionals and ignored marginal passed.
+6 native joint preparations:coarse parity preserves coherence,fine Z with forgotten labels removes it.
+13 malformed contracts rejected;positive1e-20 retained,zero returns None,underflow raises.
+58 actual native circuits;all conditional updates and ensemble sums are explicit host calculations.

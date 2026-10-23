@@ -1,0 +1,24 @@
+{
+  "python": "3.12.14",
+  "flagquantum": "0.3.1",
+  "torch": "2.13.0",
+  "signatures": {
+    "run": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+    "density_matrix": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None) -> 'OutputRequest'",
+    "probabilities": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | None | Omitted' = OMITTED) -> 'OutputRequest'",
+    "expectation": "(observable: 'Observable', *, name: 'str | None' = None) -> 'OutputRequest'"
+  },
+  "circuit_relevant": [
+    "CRY",
+    "cry"
+  ],
+  "root_relevant": [
+    "MeasurementResult",
+    "density_matrix"
+  ],
+  "runtime_files": {
+    "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/__init__.py": "8cedd180174be55d92f850465882fdf14fb464d654c0acbab7ce8442ad77b911",
+    "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py": "beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b"
+  },
+  "scope": "Actual installed surface inspected,not a general claim about all modules or future versions;0new circuit runs."
+}

@@ -1,0 +1,111 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-density-matrices-reduced-states-and-purification-3",
+  "ref": "8.3",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+  "depth": "F",
+  "requires": [
+    "sec-density-matrices-reduced-states-and-purification-1",
+    "sec-measurement-expectation-values-and-statistical-estimation-2",
+    "sec-measurement-expectation-values-and-statistical-estimation-3"
+  ],
+  "result": "Selective and nonselective density updates",
+  "assumptions": [
+    "Finite normalized positive density input and Hermitian observables.",
+    "Specified finite complete instrument with reported outcome r and internal alpha;physical pure-branch rule supplied,not inferred from effects.",
+    "Common finite input/output spaces;code bounded to square2or4operators.",
+    "Only positive-probability branches normalized;zero returns no conditional state."
+  ],
+  "verification_obligations": [
+    "Full ensemble/spectral density expectation derivation and reality/probability conditions.",
+    "Projective selective normalization and repeatability;weighted ignored-result sum distinct from unperformed measurement.",
+    "General complete-instrument positivity,probability/completeness,zero branch and full ensemble independence.",
+    "Equal POVMs/different conditional and ignored states;Bayesian posterior component weights.",
+    "Hidden-label sums and unitary internal-label mixing;coarse ideal versus fine-forgotten parity.",
+    "Chronological joint law,row conditionals and ignored marginal,including zero and rare branches."
+  ],
+  "formula_code_units": [
+    "density means",
+    "projective conditional branches",
+    "ignored results",
+    "complete instrument and native meter blocks",
+    "hidden labels",
+    "coarse/fine parity",
+    "chronological table",
+    "zero/rare/underflow and malformed contracts"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.4.2",
+      "scope": "Frozen contents locator printed101;no new full-text review."
+    },
+    {
+      "locator": "NC:8.2.3",
+      "scope": "Frozen contents locator printed360;no new full-text review."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=119",
+      "scope": "Author-hosted manuscript2.3.2printed111-112/PDF119-120 inspected for selective-update/instrument conventions;local finite proofs supplied,no third-party text uploaded."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/density_updates.py",
+    "prose_checker": "scripts/check_density_updates_prose.py",
+    "evidence": "book/section-evidence/8.3",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 58,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 13,
+    "separate_transfer_circuits": 14,
+    "execution_ledger": {
+      "complete_program": 58,
+      "literal_body_assembly": 13,
+      "body_plus_complete_checker": 71,
+      "fresh_transfer": 14,
+      "total_author_section_native_runs": 156,
+      "separate_previous_8_2_regression": 53,
+      "separate_previous_8_1_regression": 88,
+      "note": "All actual scientific executions passed without unexpected failures;API introspection0circuits. Text-only clarifications kept all8Python/output pairs byte-identical. FutureCI and previous-section regression separate."
+    },
+    "malformed_contracts": 13,
+    "additional_boundaries": [
+      "Positive1e-20event retained",
+      "Exactly zero branch returnsNone",
+      "Nonzero K rho with zero branch trace raises underflow/cancellation error"
+    ],
+    "tolerance": "Absolute1e-12,relative0. No clipping,symmetrization,normalization repair or phase alignment;no small positive probability pruning. Numerical guards not interval or hardware certificate;zero-trace/nonzero-factor guard conservative,not complete underflow detector.",
+    "native_boundary": "Actual full density/probability/Pauli expectations in statevector and density_matrix modes,RY/CRY/CX coherent system-meter couplings. Mixed inputs are host weighted component sums;all selective/nonselective operators and sequential tables are host postprocessing. Fresh branch circuits not native collapse;coherent CX not classical feedback. No unverified initializer,noise,instrument/reset/hardware endpoint called.",
+    "script_sha256": "6a2d7b924e69c615c886be5e9f1a0214f7d079ce99ba27167cb49ef806274cf8"
+  },
+  "assessment": {
+    "tasks": [
+      "8.3A probability weight versus normalization",
+      "8.3B fresh equal-effect models and Bayesian weights",
+      "8.3C coarse/fine phases and hidden-unitary labels",
+      "8.3D new weak/X chronology,rare versus zero/underflow"
+    ],
+    "answers": "Accessible answers supplied;printed8.3B-D executed in14fresh native transfer runs;reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "58complete/13literalbody/14freshtransfer and71body+complete checker passed. Previous8.2regression53 and8.1regression88 separate. Strict fresh build,74page links and actual browser formulas/expanded answers passed;independent reviews pending."
+  },
+  "production": {
+    "next_draft": "8.4 Partial trace from operational consistency",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual default narrow IAB:projective branch normalization,weighted ignored-result sum,complete-instrument sigma/effect/probability derivation,chronological K-then-L order visually inspected. Expanded8.3A-D inspected including both complex weak-branch matrices and q(r,s)/t_r formula. GlobalMathJaxerrors0;expandedanswers2displaycontainers,no raw$$. Wide code/formulas may use horizontal scrolling;no universal-fit claim.",
+    "website": "Strict fresh build and74page links passed;publish checked HTML and confirm Pages success/online HTTP200/exact local equality.",
+    "html_sha256": "f3d504dedcdec5ad8e9c7bcb55b6ace78a912831dffd350a7dfb29c4b9d662f9"
+  }
+}
