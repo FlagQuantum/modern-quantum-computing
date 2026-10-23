@@ -1,0 +1,2 @@
+16 fresh four-qubit circuits:full amplitudes,ordered probabilities,scalar correlations and local marginals passed.
+Printed exercise 7.4-C and its phi+pi variant both executed;two additional angle quartets and ordered supports passed.

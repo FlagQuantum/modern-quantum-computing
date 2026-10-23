@@ -1,0 +1,32 @@
+UNIT 1
+16 deterministic strategies: S is -2 or +2; stochastic mixture obeys the same bound
+
+UNIT 2
+Phi+: XX=1, ZZ=1, XZ=0, ZX=0; full phase-fixed vector verified
+
+UNIT 3
+p(00,01,10,11) = 0.426776695 0.073223305 0.073223305 0.426776695
+native ZZ after analyzers = 0.707106781
+
+UNIT 4
+E00,E01,E10,E11 = 0.707106781 0.707106781 0.707106781 -0.707106781
+S = 2.828427125; uniform CHSH-game win probability = 0.853553391
+
+UNIT 5
+four complete batches: 4096 two-column records per setting
+sample correlations = 0.701660 0.710938 0.714844 -0.709473
+
+UNIT 6
+S_hat = 2.836914; estimated SE = 0.022033
+95% conservative radius = 0.139754; lower endpoint = 2.697160
+interval coverage is a model guarantee, not a deterministic check on each random sample
+
+UNIT 7
+wrong Bob analyzer sign: S=0; outcome-selected records: apparent S=4
+fixed-budget contract rejects discarded records; postselection changes the experiment
+
+UNIT 8
+ordered pair (q3,q0): Alice p(0)=0.828551924 for both Bob settings
+Phi- is entangled but gives S=0 for this fixed measurement quartet
+
+Actual native circuits in body assembly: 20

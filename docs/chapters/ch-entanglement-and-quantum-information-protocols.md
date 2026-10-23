@@ -1,6 +1,6 @@
 # 7. Entanglement and Quantum Information Protocols
 
-**Working drafts: sections 7.1–7.3 · Writing Baseline 1.0 · October 22, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
+**Working drafts: sections 7.1–7.4 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
 
 <span id="sec-entanglement-and-quantum-information-protocols-1"></span>
 
@@ -1282,3 +1282,509 @@ The spectator factors multiply the full amplitudes but do not change this two-qu
 **Source and transition.** The frozen source is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §1.3.6, “Example: Bell states,” beginning on printed page 25 ([NC:1.3.6 locator](../references/proof-sources.md#source-nc-1-3-6)). The phase/label convention and all derivations are stated locally; examples and answer explanations are original. Section 7.4 will use these states to distinguish quantum correlations from classical assumptions in the CHSH experiment.
 
 <!-- end-section-7.3 -->
+
+<span id="sec-entanglement-and-quantum-information-protocols-4"></span>
+## 7.4 Correlations and the CHSH experiment
+
+**Question.** Can correlations between two qubits be explained by shared randomness and local responses to independently chosen measurement settings? A large correlation alone does not answer that question. Two classical copies of a random bit are perfectly correlated. CHSH combines four different measurement contexts into one testable restriction.
+
+**Entry and scope.** Import the spectral expectation identity from [6.3](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-3), independent-group variance addition from [6.7](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-7), and the phase-fixed Bell state from [7.3](#sec-entanglement-and-quantum-information-protocols-3). The finite-probability reasoning and conservative interval below are also spelled out locally. The depth is **F**: prove the classical bound under explicit assumptions and calculate a quantum violation. This section does not promise a loophole-free experiment, an optimal-measurement search or a proof of the general quantum CHSH maximum.
+
+The complete program is [chsh_experiment.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/chsh_experiment.py). Run the following Python fragments cumulatively from the repository root in the existing examples environment. All angles are in radians. Examples use released FlagQuantum 0.3.1 and PyTorch 2.13.0, CPU complex128, absolute implementation tolerance $10^{-12}$ and zero relative tolerance. The previously recorded 0.3.1 limitations and safeguards remain in place; a source merge is not a package-release validation.
+
+### 7.4.1 — Define the local model before calculating its bound
+
+**Formula.** Alice chooses a setting $x\in\{0,1\}$ and Bob chooses $y\in\{0,1\}$. Their recorded bits are $u,v\in\{0,1\}$. Assign numerical outcomes $a=(-1)^u$ and $b=(-1)^v$, each in $\{-1,+1\}$. The settings are choices of apparatus; they are not extra qubits or measured outcome bits. Define
+
+$$
+E_{xy}=\mathbb E[ab\mid x,y],
+\qquad S=E_{00}+E_{01}+E_{10}-E_{11}.
+$$
+
+Specify a shared hidden variable $\lambda$ with normalized probability measure $\mu$. The local model assumes, for every setting pair,
+
+$$
+p(u,v\mid x,y)=
+\int p_A(u\mid x,\lambda)\,p_B(v\mid y,\lambda)\,d\mu(\lambda).
+$$
+
+This expression includes two separate restrictions. **Local factorization** says Alice's conditional response does not depend on Bob's setting and conversely, once $\lambda$ is given. **Measurement independence** says the same $\mu$ applies to all four choices; it is not a different distribution selected by $(x,y)$. Each response is normalized over the complete pair of possible outcomes. Dropping an outcome or retaining different subsets for different settings can invalidate this model for the retained data. These are assumptions to test or justify in a physical application, not facts proved by a simulator.
+
+**Derivation: stochastic responses.** Introduce conditional means
+
+$$
+A_x(\lambda)=\sum_{u=0}^1(-1)^u p_A(u\mid x,\lambda),
+\qquad
+B_y(\lambda)=\sum_{v=0}^1(-1)^v p_B(v\mid y,\lambda).
+$$
+
+Normalization and positivity imply $-1\leq A_x,B_y\leq1$. Summing the factorized joint probabilities gives $E_{xy}=\int A_x B_y\,d\mu$. For a fixed $\lambda$, the integrand of $S$ is
+
+$$
+s(\lambda)=A_0(B_0+B_1)+A_1(B_0-B_1).
+$$
+
+The triangle inequality and the bounds on $A_0,A_1$ give
+
+$$
+\begin{aligned}
+\lvert s(\lambda)\rvert
+&\leq \lvert B_0+B_1\rvert+\lvert B_0-B_1\rvert\\
+&=2\max(\lvert B_0\rvert,\lvert B_1\rvert)\leq2 .
+\end{aligned}
+$$
+
+To justify the middle equality, first suppose $\lvert B_0\rvert\geq\lvert B_1\rvert$. The two quantities $B_0+B_1$ and $B_0-B_1$ have the sign of $B_0$, allowing zero, so their absolute values add to $2\lvert B_0\rvert$. Exchanging the labels covers the other case. Integration now proves the full scoped result:
+
+$$
+\lvert S\rvert
+=\left\lvert\int s(\lambda)\,d\mu(\lambda)\right\rvert
+\leq\int\lvert s(\lambda)\rvert\,d\mu(\lambda)
+\leq2.
+$$
+
+No independence between trials is needed for this algebraic ensemble bound. Independence will enter our later, narrower statistical calculation. For deterministic responses $A_0,A_1,B_0,B_1\in\{-1,+1\}$, one of $B_0+B_1,B_0-B_1$ is zero and the other is $\pm2$, so $s$ is exactly $\pm2$. Shared randomness only averages these conditional values.
+
+**Code → verification result.** The finite helper represents one setting-independent distribution and two local response means per party. Exhausting the 16 deterministic assignments checks a finite special case; the conditioning proof above covers arbitrary stochastic responses and continuous $\lambda$.
+
+<!-- formula-code: chsh-7-4-local-model -->
+```python
+import math
+import itertools
+import torch
+import flagquantum as fq
+from dataclasses import replace
+from examples.foundations import chsh_experiment as t
+
+scores = [t.chsh(t.classical_correlations([1.], [a], [b]))
+          for a in itertools.product((-1, 1), repeat=2)
+          for b in itertools.product((-1, 1), repeat=2)]
+assert set(scores) == {-2., 2.}
+e_local = t.classical_correlations([.25, .75],
+                                 [(.2, -.4), (.8, .1)],
+                                 [(-.3, .6), (.7, -.2)])
+assert abs(t.chsh(e_local)) <= 2
+print('16 deterministic strategies: S is -2 or +2; stochastic mixture obeys the same bound')
+```
+```text
+16 deterministic strategies: S is -2 or +2; stochastic mixture obeys the same bound
+```
+
+### 7.4.2 — What the Bell pair actually correlates
+
+**Formula.** Prepare the Bell state already defined in 7.3:
+
+$$
+\lvert\Phi^+\rangle
+=\frac{\lvert00\rangle+\lvert11\rangle}{\sqrt2}.
+$$
+
+In the full statevector, q0 is the most significant qubit and q1 is the least significant qubit. A and B below act on Alice's and Bob's distinct qubits, respectively.
+
+**Derivation.** Applying $X\otimes X$ exchanges the two nonzero basis components, leaving this vector unchanged. Applying $Z\otimes Z$ multiplies each component by $+1$. In contrast,
+
+$$
+\begin{aligned}
+(X\otimes Z)\lvert\Phi^+\rangle
+&=(\lvert10\rangle-\lvert01\rangle)/\sqrt2,\\
+(Z\otimes X)\lvert\Phi^+\rangle
+&=(\lvert01\rangle-\lvert10\rangle)/\sqrt2.
+\end{aligned}
+$$
+
+Both resulting vectors are orthogonal to $\lvert\Phi^+\rangle$, because they have support only on 01 and 10. Therefore
+
+$$
+\langle X\otimes X\rangle=1,\quad
+\langle Z\otimes Z\rangle=1,\quad
+\langle X\otimes Z\rangle=\langle Z\otimes X\rangle=0.
+$$
+
+Computational-basis probabilities alone give $(1/2,0,0,1/2)$. They establish a Z correlation, but do not establish an X correlation or a CHSH violation. For example, a classical source emitting 00 or 11 with equal probabilities has the same Z statistics. Our calculation must include other bases.
+
+**FlagQuantum code → verification result.** H(q0) then CX(q0,q1) is the actual preparation; the native Pauli expectation requests directly test all four correlations. The accompanying full-vector comparison retains the phase convention.
+
+<!-- formula-code: chsh-7-4-bell-correlations -->
+```python
+bell = fq.Circuit(2, dtype=torch.complex128).h(0).cx(0, 1)
+bell_result = fq.run(bell, outputs=[
+    fq.expectation(fq.X(0)@fq.X(1), name='xx'),
+    fq.expectation(fq.Z(0)@fq.Z(1), name='zz'),
+    fq.expectation(fq.X(0)@fq.Z(1), name='xz'),
+    fq.expectation(fq.Z(0)@fq.X(1), name='zx')], options=t.OPTIONS)
+t.RUNS += 1
+phi = torch.tensor([1, 0, 0, 1], dtype=t.D)/math.sqrt(2)
+assert torch.allclose(bell_result.statevector()[0], phi, atol=t.ATOL, rtol=0)
+correlations = [float(bell_result.expectation(name)[0]) for name in ('xx','zz','xz','zx')]
+assert all(abs(a-b) < t.ATOL for a,b in zip(correlations, (1,1,0,0)))
+print('Phi+: XX=1, ZZ=1, XZ=0, ZX=0; full phase-fixed vector verified')
+```
+```text
+Phi+: XX=1, ZZ=1, XZ=0, ZX=0; full phase-fixed vector verified
+```
+
+### 7.4.3 — Translate a measurement direction into a gate call
+
+**Formula.** In the X–Z plane define a dichotomic observable
+
+$$
+A(\alpha)=\cos\alpha\, Z+\sin\alpha\, X
+=\begin{pmatrix}
+\cos\alpha&\sin\alpha\\
+\sin\alpha&-\cos\alpha
+\end{pmatrix}.
+$$
+
+Because $Z^2=X^2=I$ and $ZX+XZ=0$, squaring gives $A(\alpha)^2=I$. It is Hermitian, so the outcome values are $\pm1$. Bob's $B(\beta)$ has the same form on his qubit. Their projectors are $(I+(-1)^u A)/2$ and $(I+(-1)^v B)/2$.
+
+**Derivation: the sign and the angle.** Let $U_\alpha=R_y(-\alpha)$. Its explicit matrix and the effective measured observable are
+
+$$
+U_\alpha=
+\begin{pmatrix}
+\cos(\alpha/2)&\sin(\alpha/2)\\
+-\sin(\alpha/2)&\cos(\alpha/2)
+\end{pmatrix},
+\qquad
+U_\alpha^\dagger ZU_\alpha=A(\alpha).
+$$
+
+For example, with $c=\cos(\alpha/2)$ and $s=\sin(\alpha/2)$, multiplication gives diagonal entries $c^2-s^2$ and $s^2-c^2$, and off-diagonal entries $2cs$. The half-angle identities give the matrix above. Thus a Z readout after **Ry of minus the observable angle** implements the requested measurement. The gate's matrix contains half-angles; that does not mean the gate call should use $-\alpha/2$.
+
+Expand the product observable and use 7.4.2:
+
+$$
+\begin{aligned}
+E(\alpha,\beta)
+&=\cos\alpha\cos\beta\,\langle Z\otimes Z\rangle
++\sin\alpha\sin\beta\,\langle X\otimes X\rangle\\
+&\quad+\cos\alpha\sin\beta\,\langle Z\otimes X\rangle
++\sin\alpha\cos\beta\,\langle X\otimes Z\rangle\\
+&=\cos\alpha\cos\beta+\sin\alpha\sin\beta
+=\cos(\alpha-\beta).
+\end{aligned}
+$$
+
+Each local mean is zero on this Bell pair: $Z\otimes I$ gives opposite signs on 00 and 11, while $X\otimes I$ moves to the orthogonal odd subspace; Bob's calculation has the same two steps. Expanding the joint projectors therefore gives
+
+$$
+p(u,v\mid\alpha,\beta)
+=\frac{1+(-1)^{u+v}\cos(\alpha-\beta)}4.
+$$
+
+**FlagQuantum code → verification result.** Both analyzer gates and the actual native run are visible below. Requested probabilities are in ordered label sequence 00,01,10,11 for columns (q0,q1). The book's independent checks use explicit scalar amplitudes and projector matrices, rather than asking the native gate implementation to verify itself.
+
+<!-- formula-code: chsh-7-4-analyzers -->
+```python
+alpha, beta = 0., math.pi/4
+analyzer = (fq.Circuit(2, dtype=t.D).h(0).cx(0, 1)
+            .ry(0, -alpha).ry(1, -beta))
+readout = fq.run(analyzer, outputs=[fq.probabilities(qubits=(0, 1)),
+    fq.expectation(fq.Z(0)@fq.Z(1), name='zz')], options=t.OPTIONS)
+t.RUNS += 1
+expected_e, expected_p = t.analytic(alpha, beta)
+assert torch.allclose(readout.probabilities[0], expected_p, atol=t.ATOL, rtol=0)
+assert torch.allclose(readout.probabilities[0], t.matrix_probabilities(alpha,beta), atol=t.ATOL, rtol=0)
+assert torch.allclose(readout.statevector()[0], t.scalar_state(alpha,beta,math.pi/2,0.,2,(0,1)), atol=t.ATOL, rtol=0)
+print('p(00,01,10,11) =', ' '.join(f'{p:.9f}' for p in readout.probabilities[0]))
+print(f'native ZZ after analyzers = {float(readout.expectation("zz")[0]):.9f}')
+```
+```text
+p(00,01,10,11) = 0.426776695 0.073223305 0.073223305 0.426776695
+native ZZ after analyzers = 0.707106781
+```
+
+### 7.4.4 — Four contexts, one signed combination
+
+**Formula.** Choose Alice's angles $\alpha_0=0,\alpha_1=\pi/2$ and Bob's angles $\beta_0=\pi/4,\beta_1=-\pi/4$. The labels 00,01,10,11 in $E_{xy}$ now refer to **settings**, not to the outcome labels of the previous joint probability vector.
+
+**Derivation.** Substituting each pair into $\cos(\alpha_x-\beta_y)$ gives, in setting order,
+
+$$
+(E_{00},E_{01},E_{10},E_{11})
+=\frac1{\sqrt2}(1,1,1,-1).
+$$
+
+The last sign in the definition of $S$ is also negative, so all four contributions to $S$ are positive:
+
+$$
+S=\frac{1+1+1-(-1)}{\sqrt2}=2\sqrt2>2.
+$$
+
+An operator check reaches the same result. The chosen directions give $A_0=Z,A_1=X$, $B_0=(Z+X)/\sqrt2$ and $B_1=(Z-X)/\sqrt2$. Hence
+
+$$
+A_0\otimes(B_0+B_1)+A_1\otimes(B_0-B_1)
+=\sqrt2(Z\otimes Z+X\otimes X),
+$$
+
+whose expectation on $\Phi^+$ is $2\sqrt2$. The incompatible A settings have no simultaneous outcome in this circuit model; different settings use fresh preparations. The local model's bound concerns a common distribution of local responses. It is not a constraint that quantum theory imposes on the four separately measured contexts.
+
+As a related interpretation, suppose the settings are uniform and the winning rule is $u\mathbin{\oplus}v=xy$. The event indicator is $(1+(-1)^{xy}ab)/2$. Averaging over four settings yields
+
+$$
+p_{\rm win}=\frac12+\frac S8.
+$$
+
+Thus the classical upper bound gives $p_{\rm win}\leq3/4$, while this quantum construction gives $(2+\sqrt2)/4$. This is another expression of this experiment's signed correlations, not an additional simulation claim.
+
+**FlagQuantum code → verification result.** Four fresh analyzer circuits produce the deterministic exact probabilities and expectations. The complete program additionally compares these analyzer results to native pre-analyzer requests for $A_x\otimes B_y$.
+
+<!-- formula-code: chsh-7-4-quantum-value -->
+```python
+quartet = [t.run_setting(a,b) for a,b in t.SETTINGS]
+exact = [r['correlation'] for r in quartet]
+s_exact = t.chsh(exact)
+assert abs(s_exact-2*math.sqrt(2)) < t.ATOL
+print('E00,E01,E10,E11 =', ' '.join(f'{e:.9f}' for e in exact))
+print(f'S = {s_exact:.9f}; uniform CHSH-game win probability = {.5+s_exact/8:.9f}')
+```
+```text
+E00,E01,E10,E11 = 0.707106781 0.707106781 0.707106781 -0.707106781
+S = 2.828427125; uniform CHSH-game win probability = 0.853553391
+```
+
+### 7.4.5 — From two bits to a correlation estimate
+
+**Formula.** For a fixed setting pair collect $N$ complete two-bit records. If $n_{uv}$ denotes the count of outcome label $uv$, then
+
+$$
+\widehat E_{xy}
+=\frac1N\sum_{k=1}^N(-1)^{u_k+v_k}
+=\frac{n_{00}-n_{01}-n_{10}+n_{11}}N,
+\qquad \sum_{u,v}n_{uv}=N.
+$$
+
+**Derivation.** Equal bits have product sign +1; different bits have product sign −1. Grouping the record sum into these four mutually exclusive outcome labels gives the count formula. Every row contributes exactly once. A bit XOR therefore becomes the numerical product score through $1-2(u\mathbin{\oplus}v)$, not through an unsigned bit sum. With a common target distribution in each setting, linearity of expectation gives $\mathbb E[\widehat E_{xy}]=E_{xy}$ and $\mathbb E[\widehat S]=S$.
+
+The first axis of the native sample tensor is the execution batch; the second enumerates records; the third has the explicitly requested qubit columns. It has shape (1,N,2). Do not confuse execution-batch axes, record positions, setting labels and qubit indices. Each record belongs to one setting pair; pooling the four data sets destroys this correspondence.
+
+**FlagQuantum code → verification result.** The helper appends an actual <code>fq.samples(qubits=pair)</code> request to <code>fq.run</code>, with a positive fixed shot count and a recorded seed. It checks the native shape, exact binary record accounting and agreement of the two empirical formulas. It does not require random frequencies to equal exact probabilities. The printed values below are one executed, seeded example in the pinned environment, not a platform-independent random sequence.
+
+<!-- formula-code: chsh-7-4-samples -->
+```python
+shots = 4096
+records = [t.run_setting(a,b,shots=shots,seed=71+j)
+           for j,(a,b) in enumerate(t.SETTINGS)]
+means = []
+for report in records:
+    counts, mean = t.sample_statistics(report['bits'], shots)
+    assert int(counts.sum()) == shots
+    means.append(mean)
+print('four complete batches: 4096 two-column records per setting')
+print('sample correlations =', ' '.join(f'{e:.6f}' for e in means))
+```
+```text
+four complete batches: 4096 two-column records per setting
+sample correlations = 0.701660 0.710938 0.714844 -0.709473
+```
+
+### 7.4.6 — State what the error bars assume
+
+**Formula.** For this calculation assume independent, identically prepared ±1 records within each of the four settings, and independent batches across settings, each of fixed size $N\geq2$. These are sampling-model assumptions. Write $Q_{xy,k}=(-1)^{u_k+v_k}$. Then
+
+$$
+\operatorname{Var}(Q_{xy,k})=1-E_{xy}^2,
+\qquad
+\operatorname{Var}(\widehat S)
+=\frac1N\sum_{x,y}(1-E_{xy}^2)\leq\frac4N.
+$$
+
+**Derivation.** A ±1 variable has $Q^2=1$, giving the first identity from $\operatorname{Var}(Q)=\mathbb E[Q^2]-\mathbb E[Q]^2$. Expanding the centered sum of N records gives N diagonal variance terms. The off-diagonal terms vanish by independence. Different setting batches have zero covariance under the stated assumption, so the variance of their signed sum is the sum of their variances; the signs square to one. For the ideal Bell quartet each $E_{xy}^2=1/2$, giving the sharper model value $2/N$.
+
+The ordinary sample variance for these scores is
+
+$$
+s_{xy}^2=\frac{N}{N-1}(1-\widehat E_{xy}^{\,2}),
+\qquad
+\widehat{\rm SE}(\widehat S)
+=\sqrt{\sum_{x,y}\frac{s_{xy}^2}{N}}
+=\sqrt{\sum_{x,y}\frac{1-\widehat E_{xy}^{\,2}}{N-1}}.
+$$
+
+To obtain the numerator of $s^2$, expand $\sum_k(Q_k-\widehat E)^2$ and use $\sum_kQ_k=N\widehat E$ and $\sum_kQ_k^2=N$. This gives $N(1-\widehat E^2)$. The estimated SE is useful, but it is not by itself a confidence interval.
+
+For a conservative interval, apply the elementary bound to $W=(\widehat S-S)^2\geq0$: since $W\geq r^2$ on the event $W\geq r^2$, $\mathbb E[W]\geq r^2\Pr(W\geq r^2)$. Unbiasedness and the variance bound therefore give
+
+$$
+\Pr(\lvert\widehat S-S\rvert\geq r)\leq\frac4{Nr^2}.
+$$
+
+For a chosen error probability $0<\delta<1$, set $r=\sqrt{4/(N\delta)}$. This yields a confidence interval $[\widehat S-r,\widehat S+r]$ with coverage at least $1-\delta$ under the stated model. If its lower endpoint exceeds 2, that is evidence against the local-model upper bound **conditional on all these modeling and sampling assumptions**. It is not a loophole-free physical certification. A covered interval is not guaranteed for every realized random sample, and repeated sampling until a favorable interval appears changes this fixed-budget guarantee.
+
+**Code → verification result.** The code reports the estimated SE and the separate conservative radius. The radius uses a proved population bound, not an observed zero variance or a fitted Gaussian quantile. No probabilistic interval-membership event is used as a deterministic implementation acceptance criterion.
+
+<!-- formula-code: chsh-7-4-uncertainty -->
+```python
+s_hat = t.chsh(means)
+se, radius = t.uncertainty(means, shots, delta=.05)
+assert abs(radius-math.sqrt(4/(shots*.05))) < t.ATOL
+print(f'S_hat = {s_hat:.6f}; estimated SE = {se:.6f}')
+print(f'95% conservative radius = {radius:.6f}; lower endpoint = {s_hat-radius:.6f}')
+print('interval coverage is a model guarantee, not a deterministic check on each random sample')
+```
+```text
+S_hat = 2.836914; estimated SE = 0.022033
+95% conservative radius = 0.139754; lower endpoint = 2.697160
+interval coverage is a model guarantee, not a deterministic check on each random sample
+```
+
+### 7.4.7 — Diagnose signs and outcome-dependent selection
+
+**Formula and derivation: wrong analyzer sign.** Calling Ry(+β) on Bob implements $B(-\beta)$, not $B(\beta)$. For the Bell state the four requested correlations become $(1,1,-1,1)/\sqrt2$ and their CHSH combination is zero. The two tests with $\alpha=0$ still agree with the intended probabilities, because cosine is even. Testing only those contexts would miss the error.
+
+**Formula and derivation: discarded records.** Now retain only equal-bit records for settings 00,01,10 and only different-bit records for setting 11. The retained-data correlations are exactly
+
+$$
+(\widehat E_{00},\widehat E_{01},\widehat E_{10},\widehat E_{11})_{\rm kept}
+=(1,1,1,-1),
+\qquad \widehat S_{\rm kept}=4.
+$$
+
+Each retained row has been selected precisely because its score has the desired sign. This is conditional selection, not the original complete experiment. The denominators shrink differently; the four distributions have changed. A large number calculated this way does not establish stronger quantum correlations. The example below performs this global, setting-dependent data manipulation deliberately so that the failure is inspectable.
+
+**FlagQuantum code → verification result.** Four actual wrong-sign circuits reproduce the predicted zero. Postselection operates on the already generated native records. The fixed-budget input contract rejects those shortened records. That contract catches this form of discarding; it does not authenticate provenance or detect every possible fabricated record.
+
+<!-- formula-code: chsh-7-4-failure-diagnosis -->
+```python
+wrong_sign = [t.run_setting(a,-b)['correlation'] for a,b in t.SETTINGS]
+assert abs(t.chsh(wrong_sign)) < t.ATOL
+kept = [r['bits'][(r['bits'][:,0]^r['bits'][:,1]) == (j == 3)]
+        for j,r in enumerate(records)]
+fake = t.chsh([t.sample_statistics(bits,len(bits))[1] for bits in kept])
+assert fake == 4
+try:
+    t.histogram(kept[0],shots)
+except ValueError:
+    pass
+else:
+    raise AssertionError('outcome-selected records accepted as the complete fixed-budget experiment')
+print('wrong Bob analyzer sign: S=0; outcome-selected records: apparent S=4')
+print('fixed-budget contract rejects discarded records; postselection changes the experiment')
+```
+```text
+wrong Bob analyzer sign: S=0; outcome-selected records: apparent S=4
+fixed-budget contract rejects discarded records; postselection changes the experiment
+```
+
+### 7.4.8 — Generalize the state, keep the conventions
+
+**Formula.** Consider a normalized even-parity family, with real $\theta,\phi$:
+
+$$
+\lvert\psi_{\theta,\phi}\rangle
+=\cos(\theta/2)\lvert00\rangle
++e^{i\phi}\sin(\theta/2)\lvert11\rangle.
+$$
+
+**Derivation.** ZZ has eigenvalue +1 on each component. XX exchanges the components, so its expectation is
+$2\cos(\theta/2)\sin(\theta/2)\cos\phi=\sin\theta\cos\phi$.
+The XZ and ZX expectations still vanish. The local Z mean is
+$\cos^2(\theta/2)-\sin^2(\theta/2)=\cos\theta$ and the local X mean is zero. Expanding the same product projectors gives
+
+$$
+\begin{aligned}
+E(\alpha,\beta)
+&=\cos\alpha\cos\beta+\sin\theta\cos\phi\,\sin\alpha\sin\beta,\\
+p(u,v\mid\alpha,\beta)
+&=\frac14\bigl[
+1+(-1)^u\cos\theta\cos\alpha
++(-1)^v\cos\theta\cos\beta\\
+&\hspace{23mm}+(-1)^{u+v}E(\alpha,\beta)\bigr].
+\end{aligned}
+$$
+
+Summing over Bob's two outcomes cancels every term containing $(-1)^v$:
+
+$$
+p_A(u\mid\alpha,\beta)
+=\frac{1+(-1)^u\cos\theta\cos\alpha}{2}.
+$$
+
+The result does not depend on β. This model therefore has setting-independent local marginals even when its joint correlations violate CHSH. No signaling through these local outcome probabilities follows from the calculation; it does not restore the local factorized explanation ruled out by $S>2$.
+
+For this family and our fixed quartet,
+
+$$
+S_{\theta,\phi}=\sqrt2(1+\sin\theta\cos\phi).
+$$
+
+At $\theta=\pi/2,\phi=\pi$, the state is $\Phi^-$, still entangled by 7.1 or 7.2, but this quartet gives zero. Not observing a violation for a fixed choice of measurement directions does not prove a state is a product. At $\theta=0$, the state is 00 and this quartet gives $\sqrt2$, below the classical bound.
+
+**FlagQuantum code → verification result.** In an ordered pair (q3,q0), probability rows refer to q3 and columns to q0. Spectator qubits are in independently prepared complex states; the scalar full-vector reference includes their factors. Testing an unequal local-marginal example matters: the parity score itself is invariant under exchanging the two recorded columns, so a Bell-pair correlation alone cannot calibrate their ordering.
+
+<!-- formula-code: chsh-7-4-general-state -->
+```python
+theta, phase, alpha = .83, -.49, .23
+marginals = []
+for beta in (-.91, .47):
+    r = t.run_setting(alpha,beta,theta,phase,n=4,pair=(3,0))
+    p = r['probabilities'].reshape(2,2)  # rows q3, columns q0
+    marginals.append(float(p[0].sum()))
+expected = (1+math.cos(theta)*math.cos(alpha))/2
+assert all(abs(x-expected) < t.ATOL for x in marginals)
+phase_flipped = [t.run_setting(a,b,phase=math.pi)['correlation'] for a,b in t.SETTINGS]
+assert abs(t.chsh(phase_flipped)) < t.ATOL
+print(f'ordered pair (q3,q0): Alice p(0)={expected:.9f} for both Bob settings')
+print('Phi- is entangled but gives S=0 for this fixed measurement quartet')
+```
+```text
+ordered pair (q3,q0): Alice p(0)=0.828551924 for both Bob settings
+Phi- is entangled but gives S=0 for this fixed measurement quartet
+```
+
+**Contracts and implementation boundary.** The book helper accepts finite real radian angles, two distinct explicitly ordered qubits in a two-to-four-qubit teaching register, positive literal shot counts, nonnegative seeds, and complete CPU int64 two-column binary records. It rejects nonfinite or Boolean angles, duplicate qubits, malformed records, missing records, unnormalized hidden distributions and local response means outside [−1,1]. The register-size guard bounds the dense independent reference; it is not a FlagQuantum capacity limit.
+
+Native features demonstrated are Ry/P/H/CX preparation and analyzer gates, Pauli-sum/product expectation requests, exact ordered probabilities and terminal samples. The full reference retains complex phases and every probability without phase alignment, input normalization repair, probability clipping or backend fallback. No native Bell-test service, hardware timing, locality enforcement, random setting generator, sampled mid-circuit collapse, detector-loss model or device-independent significance test is implied. A single classical computer simulating four settings does not establish experimental separation, setting independence, detector completeness, absence of drift or an adversary-resistant sampling guarantee.
+
+### Complete program and independent verification
+
+Run:
+
+~~~bash
+python examples/foundations/chsh_experiment.py
+python scripts/check_chsh_experiment_prose.py
+~~~
+
+The complete program executes **117 actual native circuits**: 25 compare five pure-state families using direct native observables and four analyzer settings; 72 cover every ordered pair in three- and four-qubit registers with complex spectators; four produce complete fixed-budget sample batches; 12 calibrate basis-state output columns; and four deliberately use Bob's wrong analyzer sign. Thirteen malformed contracts are rejected before any additional native execution.
+
+Independent references are explicit projector matrices, scalar post-analyzer amplitudes, the derived correlation/probability formulas and exact record-count identities. A separate transfer run uses fresh states, settings and nonadjacent ordered supports. Finite tests validate these implementations; they do not replace the classical conditioning proof.
+
+Expected output of the complete program:
+
+```text
+16 deterministic local strategies and one stochastic mixture: classical bound passed.
+25 native circuits: five state families, direct observables and four analyzer settings agree.
+72 native circuits: all ordered pairs in three/four qubits, complex spectators and indexed amplitudes passed.
+4 native fixed-budget batches: raw records/counts/scores passed; SE and conservative radius kept separate.
+12 native basis calibrations: ordered output columns and bit-to-sign convention passed.
+4 wrong-sign analyzer circuits and postselection-to-S=4 expose distinct failure modes;13 malformed contracts rejected.
+117 CPU complex128 native circuits passed; simulation is not a loophole-free Bell experiment.
+```
+
+### Understanding checks and transfer exercises
+
+**7.4-A — Where the assumption enters.** Let λ contain two bits, and suppose a source could set λ=(x,y) after learning both settings. Construct deterministic responses producing $u=0,v=xy$. Which displayed local-model assumption fails? Why does the resulting S=4 not contradict the theorem?
+
+**7.4-B — Track the two meanings of 01.** For settings x=0,y=1, list the four possible outcome labels, their product signs and their ideal Bell probabilities. Explain why swapping the two qubit output columns leaves the parity correlation unchanged even though it changes the names of asymmetric outcomes. Propose a calibration that detects the swap.
+
+**7.4-C — Fresh formula-to-code experiment.** In a four-qubit register use ordered pair (q3,q1). Prepare the even-parity family with θ=.73, φ=−.39 using Ry(q3,θ), CX(q3,q1), P(q3,φ). Put q0 into Ry(.31), P(−.17), and q2 into Ry(.93), P(−.51), matching the helper's explicit spectator convention. Use the four angles of 7.4.4. Derive all four correlations, S and Alice's marginal for each setting. Run both the full-vector reference and ordered probability checks. Predict the result if φ is increased by π without changing the analyzers.
+
+**7.4-D — Choose a fixed budget.** Under the sampling assumptions of 7.4.6, find an integer N per setting sufficient for a conservative radius at most .1 at δ=.05. Compare with treating one estimated SE as a 95% radius. Explain why collecting samples until the lower endpoint exceeds 2 is outside the fixed-N proof.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 7.4-A–D</summary>
+
+**A.** Alice always outputs 0. Bob uses x stored inside λ and his local y to output xy. The distribution of λ now depends on the actual settings, so there is no setting-independent μ. Conditional local response notation alone does not save measurement independence. This is a constructed violation of a hypothesis, not a counterexample to the bound.
+
+**B.** Bob's angle is −π/4 and Alice's is zero, so $E_{01}=1/\sqrt2$. Outcome labels 00 and 11 have product +1 and probability $(1+1/\sqrt2)/4$ each. Labels 01 and 10 have product −1 and probability $(1-1/\sqrt2)/4$ each. Exchanging the columns exchanges 01 and 10 but not their sign, so this parity statistic cannot expose the swap. Prepare a known asymmetric basis state, such as Alice=0 and Bob=1, and require every ordered record to be 01; the complete program includes this calibration in both pair orders.
+
+**C.** Define $k=\sin(.73)\cos(.39)$. The setting-ordered correlations are $(1,1,k,-k)/\sqrt2$, and $S=\sqrt2(1+k)$. Alice's probability of bit zero is $(1+\cos(.73))/2$ for x=0 and one half for x=1, independently of Bob's setting. Bob's local probability is $(1+\cos(.73)/\sqrt2)/2$ for both of his chosen angles, so the local records distinguish the ordered columns. The complex spectator factors multiply amplitudes and disappear when their normalized probabilities are summed. Increasing φ by π reverses k; the predicted S becomes $\sqrt2(1-k)$. The exact printed parameters are executed in the separate transfer evidence; the proof does not depend on a numerical approximation to k.
+
+**D.** Require $4/(N\delta)\leq .1^2$, giving $N\geq8000$ per setting, or 32000 total records. An estimated SE is a plug-in dispersion summary; multiplying or interpreting it as a confidence radius requires further justification and does not follow from its name. Stopping when an endpoint looks favorable changes the event being bounded. The displayed Chebyshev proof controls a preselected fixed-N estimator; no sequential-test guarantee has been derived.
+
+</details>
+
+**Sources and transition.** The frozen textbook locator is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §2.6, “EPR and the Bell inequality,” beginning on printed page 111 ([NC:2.6 locator](../references/proof-sources.md#source-nc-2-6)). The classical-game and measurement-angle conventions were cross-checked against the publicly accessible [IBM Quantum Learning CHSH lesson](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/chsh-game); its state-vector angle convention must be translated to the observable-angle convention used here. Historical attribution is Clauser, Horne, Shimony and Holt, [*Physical Review Letters* 23, 880 (1969)](https://doi.org/10.1103/PhysRevLett.23.880), whose publisher lists an [erratum](https://doi.org/10.1103/PhysRevLett.24.549). The proofs, examples and answers above are local original derivations, not a claim to reproduce the photon proposal or its detection assumptions. Section 7.5 will use Bell pairs as a resource in a communication protocol.
+
+<!-- end-section-7.4 -->

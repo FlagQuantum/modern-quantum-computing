@@ -1,0 +1,1 @@
+Initial generated-view checks flagged stale contents and agent-skills coverage after the50thdraft;regenerated those views without changing frozen scope or creating a skill. Subsequent six checks passed. The first local-preview bind was sandbox-denied;approved loopback-only server then worked. These are production checks,not scientific execution failures.

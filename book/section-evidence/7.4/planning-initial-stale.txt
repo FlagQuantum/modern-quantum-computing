@@ -1,0 +1,2 @@
+COMMAND: scripts/build_curriculum.py --check
+Stale curriculum views: docs/contents.md

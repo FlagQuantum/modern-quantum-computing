@@ -1,0 +1,7 @@
+16 deterministic local strategies and one stochastic mixture: classical bound passed.
+25 native circuits: five state families, direct observables and four analyzer settings agree.
+72 native circuits: all ordered pairs in three/four qubits, complex spectators and indexed amplitudes passed.
+4 native fixed-budget batches: raw records/counts/scores passed; SE and conservative radius kept separate.
+12 native basis calibrations: ordered output columns and bit-to-sign convention passed.
+4 wrong-sign analyzer circuits and postselection-to-S=4 expose distinct failure modes;12 malformed contracts rejected.
+117 CPU complex128 native circuits passed; simulation is not a loophole-free Bell experiment.

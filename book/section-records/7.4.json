@@ -1,0 +1,104 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-entanglement-and-quantum-information-protocols-4",
+  "ref": "7.4",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+  "depth": "F",
+  "result": "CHSH classical bound and a quantum violation",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-3",
+    "sec-measurement-expectation-values-and-statistical-estimation-7",
+    "sec-entanglement-and-quantum-information-protocols-3"
+  ],
+  "assumptions": [
+    "Local factorization with one normalized setting-independent hidden-variable measure and complete binary outcomes.",
+    "Ideal pure even-parity state and declared XZ-plane observables;bits0/1 map to signs+1/-1;angles are radians.",
+    "Independent identically prepared records within each fixed-size setting batch,independent batches only for the statistical interval."
+  ],
+  "verification_obligations": [
+    "Full stochastic conditioning proof of |S|<=2,including absolute-value identity and deterministic cases.",
+    "Derive all Bell Pauli correlations,observable projectors,Ry(-angle) translation and exact joint distribution.",
+    "Calculate all four correlations,S=2sqrt2,and CHSH-game relation locally.",
+    "Derive raw-bit/count estimator,independent variance,unbiased sample variance,SE and conservative Chebyshev radius.",
+    "Verify wrong-sign analyzer,postselection-to-S=4,and fixed-setting nonviolation of an entangled state.",
+    "Derive general phase-dependent family and setting-independent local marginal;test ordered supports and complex spectator factors."
+  ],
+  "formula_code_units": [
+    "local-model",
+    "bell-correlations",
+    "analyzers",
+    "quantum-value",
+    "samples",
+    "uncertainty",
+    "failure-diagnosis",
+    "general-state"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.6",
+      "scope": "Frozen contents locator starts printed111. Local PDF read denied by OS even with approved escalation;no new full-text-read claim."
+    },
+    {
+      "url": "https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/chsh-game",
+      "scope": "Public author/publisher teaching source inspected for local classical game assumptions and angle-convention cross-check;not an independent review of this manuscript."
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevLett.23.880",
+      "scope": "Publisher metadata/abstract and erratum link verified;no reproduction of the optical experimental protocol or audit of all detection assumptions."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/chsh_experiment.py",
+    "prose_checker": "scripts/check_chsh_experiment_prose.py",
+    "evidence": "book/section-evidence/7.4",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 117,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 20,
+    "separate_transfer_circuits": 16,
+    "execution_ledger": {
+      "initial_complete_passed": 117,
+      "body_assembly": 20,
+      "final_body_plus_complete_checker": 137,
+      "transfer": 16,
+      "total_author_section_circuits": 290,
+      "separate_7_3_regression": 118,
+      "note": "Initial source and output retained;final adds one out-of-range empirical-mean guard and removes a no-op assertion. No accidental scientific execution failure. CI and old-section regression are separate;not an independent review."
+    },
+    "malformed_contracts": 13,
+    "tolerance": "Deterministic amplitudes,projectors,probabilities and expectations:atol1e-12,rtol0. Raw counts exact. No random-frequency equality or interval-membership must-pass test,no phase alignment,probability clipping or normalization repair.",
+    "native_boundary": "Released native Ry/P/H/CX gates,Pauli sum/product expectations,exact probabilities and terminal samples;classical CHSH/variance/reference calculations are book helpers,not invented native endpoints.",
+    "script_sha256": "9b3d9d23b454ab37b374e8b1e8e486197503b44f9d93a2d3f6496ac1436206fc"
+  },
+  "assessment": {
+    "tasks": [
+      "7.4-A measurement-independence failure",
+      "7.4-B setting labels,outcome signs and column calibration",
+      "7.4-C four-qubit transfer and phase reversal",
+      "7.4-D fixed budget and sequential-stopping boundary"
+    ],
+    "answers": "Supplied;exact printed7.4C and phase+pi variant executed in transfer. Reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "117final complete/20body/16transfer passed;7.3regression118passed. Eight literal cumulative code blocks and exact outputs checked;strict build and73page links passed. Actual browser key formulas and expanded answers passed. Independent review remains pending."
+  },
+  "production": {
+    "next_draft": "7.5 Teleportation, branch by branch",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual IAB local preview:classical proof,Pauli/analyzer matrices,CHSH quantum value,counts,variance/SE/Chebyshev radius,general complex family and expanded A-D answers inspected. MathJax error count0;11math containers in expanded7.4answers. No garbling/clipping in inspected views;no geometric metric claim;one local-preview screenshot saved separately.",
+    "website": "Strict local build passed;publication must use this exact rendered HTML and verify HTTP200/byte equality after deployment.",
+    "html_sha256": "88061b1b3d9fc4ff1f4c545b49579f9963296f34b42cc2bbdb2a53d160dc6ea0"
+  }
+}
