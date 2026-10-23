@@ -10,4 +10,4 @@ INFO    -  Doc file 'writing-order.md' contains a link 'chapters/ch-density-matr
 INFO    -  Doc file 'writing-order.md' contains a link 'chapters/ch-density-matrices-reduced-states-and-purification.md#sec-density-matrices-reduced-states-and-purification-6', but the doc 'chapters/ch-density-matrices-reduced-states-and-purification.md' does not contain an anchor '#sec-density-matrices-reduced-states-and-purification-6'.
 INFO    -  Doc file 'writing-order.md' contains a link 'chapters/ch-density-matrices-reduced-states-and-purification.md#sec-density-matrices-reduced-states-and-purification-7', but the doc 'chapters/ch-density-matrices-reduced-states-and-purification.md' does not contain an anchor '#sec-density-matrices-reduced-states-and-purification-7'.
 INFO    -  Doc file 'chapters/ch-density-matrices-reduced-states-and-purification.md' contains a link '#sec-density-matrices-reduced-states-and-purification-6', but there is no such anchor on this page.
-INFO    -  Documentation built in 2.19 seconds
+INFO    -  Documentation built in 2.94 seconds

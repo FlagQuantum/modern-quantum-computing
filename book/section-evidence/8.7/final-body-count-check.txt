@@ -1,0 +1,11 @@
+4native body calls passed after stdout count clarification;complete companion unchanged.
+Native pure extension and host recorded mixture have identical system densities
+Complex local effect agrees with both full-state contractions
+Preparation weights need context;different ensemble decompositions need not be distinct densities
+Joint effect separates the pure and classical extensions;it is outside system-only access
+Unread local state agrees;reference-X-selected states differ once a record is supplied
+Two pure extensions also share the same local density;global phase correlations differ
+Equal one-copy marginals do not imply equal correlated multi-copy records
+Invalid probability rejected before native execution
+Zero-probability conditioning rejected
+3 helper-native calls plus1explicit fq.run;mixture construction and conditional analysis run on host

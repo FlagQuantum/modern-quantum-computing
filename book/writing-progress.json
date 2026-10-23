@@ -620,7 +620,7 @@
       "reader_review": "pending",
       "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
       "record": "book/section-records/8.7.json",
-      "author_execution": "passed:25complete/4finalbody/4transfer;29finalchecker;89author native executions;independent acceptance pending"
+      "author_execution": "passed:25complete/4finalbody/4transfer;29finalchecker;93author native executions;independent acceptance pending"
     }
   },
   "existing_pilots": [

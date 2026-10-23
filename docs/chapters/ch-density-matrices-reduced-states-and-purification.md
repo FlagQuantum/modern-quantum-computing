@@ -3039,13 +3039,13 @@ try:m.conditional(PB,torch.zeros((2,2),dtype=g.D))
 except ValueError:print('Zero-probability conditioning rejected')
 else:raise AssertionError('Impossible branch normalized')
 assert g.RUNS==3
-print('3 actual native body circuits;mixture construction and conditional analysis run on host')
+print('3 helper-native calls plus1explicit fq.run;mixture construction and conditional analysis run on host')
 ```
 
 ```text
 Invalid probability rejected before native execution
 Zero-probability conditioning rejected
-3 actual native body circuits;mixture construction and conditional analysis run on host
+3 helper-native calls plus1explicit fq.run;mixture construction and conditional analysis run on host
 ```
 
 The companion [mixture_access.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/mixture_access.py) checks 25 actual CPU complex128 circuits in released FlagQuantum 0.3.1, using Python 3.12.14 and Torch 2.13.0. The body uses four native executions,including an explicit gate/run/request route. Actual square-unitary preparation, full/selected density outputs and probabilities are supplied by the checked 8.6 helper. Classical mixture matrices, dense joint effects and conditional contractions are host calculations. No native general joint-effect, mixed-input initializer, hardware readout, collapse, reset or interpretation-selection API is claimed.

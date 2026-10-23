@@ -60,9 +60,10 @@
       "complete": 25,
       "body_assembly": 3,
       "fresh_transfer": 4,
-      "total_author_section_native_runs": 89,
+      "total_author_section_native_runs": 93,
       "initial_body_plus_complete": 28,
-      "final_explicit_native_body_plus_complete": 29
+      "final_explicit_native_body_plus_complete": 29,
+      "final_body_count_clarification": 4
     },
     "malformed_contracts": 2,
     "tolerance": "Absolute1e-12,relative0;no input normalization repair,clipping or phase alignment. Finite implementation checks do not replace the all-effect proof.",
@@ -80,7 +81,7 @@
     "implementation": "author checks passed;independent review pending",
     "reader": "pending",
     "scientific_acceptance": "not accepted",
-    "author_checks": "25complete/initial3body/initial28checker/4transfer/final29checker=89author native executions;previous8.6regression44 separate"
+    "author_checks": "25complete/initial3body/initial28checker/4transfer/final29checker=89author native executions;previous8.6regression44 separate;4finalcountbody rerun,total93"
   },
   "production": {
     "next_draft": "Density-operator verification laboratory",
