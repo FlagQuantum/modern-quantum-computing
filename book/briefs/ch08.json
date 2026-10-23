@@ -163,6 +163,32 @@
       "source_locators": [
         "TQI:2.1.3"
       ]
+    },
+    {
+      "sequence": 62,
+      "batch": "B02",
+      "section_id": "sec-density-matrices-reduced-states-and-purification-7",
+      "ref": "8.7",
+      "title": "Proper and improper mixtures",
+      "depth": "F",
+      "requires": [
+        "sec-density-matrices-reduced-states-and-purification-4",
+        "sec-density-matrices-reduced-states-and-purification-6"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "question": "Which operations can distinguish two equal local densities?",
+      "entry": "8.4local consistency and8.6purification.",
+      "exit": "All-local-effect proof,access-qualified joint counterexample and conditional/unread distinction.",
+      "worked_case": "Complex biased pure extension versus classical recorded ensemble.",
+      "boundary": "Equal local densities,local access only;IID multi-copy assumption explicit.",
+      "code_plan": "Native pure extensions plus explicit host classical mixtures and effect contractions.",
+      "independent_check": "Scalar partial traces,analytic coherence witness,conditional contractions.",
+      "transfer_task": "Fresh biased phases and local rotations;wrong access and correlated-copy diagnoses.",
+      "source_locators": [
+        "NC:2.4.3"
+      ]
     }
   ]
 }

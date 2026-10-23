@@ -1,0 +1,91 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-density-matrices-reduced-states-and-purification-7",
+  "ref": "8.7",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+  "depth": "F",
+  "requires": [
+    "sec-density-matrices-reduced-states-and-purification-4",
+    "sec-density-matrices-reduced-states-and-purification-6"
+  ],
+  "result": "Local measurements cannot distinguish proper and improper mixtures",
+  "assumptions": [
+    "Equal reduced densities;local access only.",
+    "IID assumption explicitly required for tensor-power extension."
+  ],
+  "verification_obligations": [
+    "All local effects and converse",
+    "Joint coherence witness valid effect",
+    "Selected/unread conditional distinction",
+    "Correlated copies versus IID"
+  ],
+  "formula_code_units": [
+    "preparation",
+    "all effects",
+    "ensemble ambiguity",
+    "joint witness",
+    "conditioning",
+    "pure extensions",
+    "copies",
+    "failures"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.4.3",
+      "scope": "Frozen contents locator105;no full-text review claim."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=76",
+      "scope": "Operational reduction convention printed68 inspected;original all-effect proof supplied."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/mixture_access.py",
+    "prose_checker": "scripts/check_mixture_access_prose.py",
+    "evidence": "book/section-evidence/8.7",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 25,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 4,
+    "separate_transfer_circuits": 4,
+    "execution_ledger": {
+      "complete": 25,
+      "body_assembly": 3,
+      "fresh_transfer": 4,
+      "total_author_section_native_runs": 89,
+      "initial_body_plus_complete": 28,
+      "final_explicit_native_body_plus_complete": 29
+    },
+    "malformed_contracts": 2,
+    "tolerance": "Absolute1e-12,relative0;no normalization repair,clipping or phase alignment. Host1e-20weight retained;completion pivot1e-10 is not an eigenvalue rank cutoff. Numerical equality is not an interval or hardware certificate.",
+    "native_boundary": "Pure square-unitary circuit preparation and selected densities via8.6helper;classical mixed extensions,joint effects and conditioning are host-only.",
+    "script_sha256": "fd81d870f29b6833b326688699d53cd1456580cbb526c6153d38ff3311207902"
+  },
+  "assessment": {
+    "tasks": [
+      "8.7A-D"
+    ],
+    "answers": "Accessible answers and fresh transfer checks;reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "25complete/initial3body/initial28checker/4transfer/final29checker=89author native executions;previous8.6regression44 separate"
+  },
+  "production": {
+    "next_draft": "Density-operator verification laboratory",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual IAB local all-effect proof,joint witness/probability formulas and expandedA-D answers checked;MathJaxerrors0.",
+    "website": "Fresh strict build and74page local links checked;deployment verified separately."
+  }
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "code": "import math,torch,flagquantum as fq\nfrom examples.foundations import mixture_access as m\nfrom examples.foundations import purification as g,statistical_ensembles as e,partial_trace as t\np=.68;phi=.57;alpha=.81\nresult,rho,P,M,W=m.case(p,phi,alpha)\ne.close(result.measurement('S').value[0],t.trace_ab(M,2,2))\nprint('Native pure extension and host recorded mixture have identical system densities')\n",
+    "output": "Native pure extension and host recorded mixture have identical system densities\n"
+  },
+  {
+    "code": "v=e.qubit(.93,-.74);E=torch.outer(v,v.conj())\nlocal=torch.kron(E,e.I)\ne.close(torch.trace(P@local),torch.trace(M@local))\nprint('Complex local effect agrees with both full-state contractions')\n",
+    "output": "Complex local effect agrees with both full-state contractions\n"
+  },
+  {
+    "code": "Q=e.prepare(e.qubit(alpha,.43));u0,u1=Q[:,0],Q[:,1]\nensemble=e.rho((p,1-p),(u0,u1));e.close(ensemble,rho)\nplus=e.qubit(math.pi/2,0.);minus=e.qubit(-math.pi/2,0.)\ne.close(e.rho((.5,.5),(plus,minus)),e.I/2)\nprint('Preparation weights need context;different ensemble decompositions need not be distinct densities')\n",
+    "output": "Preparation weights need context;different ensemble decompositions need not be distinct densities\n"
+  },
+  {
+    "code": "J=(torch.eye(4,dtype=g.D)+W)/2\npure_prob=torch.trace(P@J).real.item();mixed_prob=torch.trace(M@J).real.item()\nassert pure_prob>.9;e.close(mixed_prob,.5)\nprint('Joint effect separates the pure and classical extensions;it is outside system-only access')\n",
+    "output": "Joint effect separates the pure and classical extensions;it is outside system-only access\n"
+  },
+  {
+    "code": "bell,rb,PB,MB,WB=m.case(.5,0.,0.,mode='density_matrix')\nz=torch.diag(torch.tensor([1,0],dtype=g.D));o=e.I-z\nfor full in (PB,MB):\n pa,A=m.conditional(full,z);pb,B=m.conditional(full,o)\n e.close(pa*A+pb*B,e.I/2)\npp,AP=m.conditional(PB,torch.outer(plus,plus.conj()))\npm,AM=m.conditional(MB,torch.outer(plus,plus.conj()))\ne.close(pp,.5);e.close(pm,.5);e.close(AP,torch.outer(plus,plus.conj()));e.close(AM,e.I/2)\nprint('Unread local state agrees;reference-X-selected states differ once a record is supplied')\n",
+    "output": "Unread local state agrees;reference-X-selected states differ once a record is supplied\n"
+  },
+  {
+    "code": "opposite,rr,Pminus,Mminus,_=m.case(.5,math.pi,0.)\ne.close(rr,e.I/2);e.close(Mminus,MB)\nassert torch.linalg.vector_norm(Pminus-PB).item()>1\nprint('Two pure extensions also share the same local density;global phase correlations differ')\n",
+    "output": "Two pure extensions also share the same local density;global phase correlations differ\n"
+  },
+  {
+    "code": "iid=torch.kron(e.I/2,e.I/2)\ncorrelated=torch.diag(torch.tensor([.5,0,0,.5],dtype=g.D))\ne.close(t.trace_ab(iid,2,2),t.trace_ab(correlated,2,2))\ne.close(torch.trace(iid@torch.kron(e.Z,e.Z)),0)\ne.close(torch.trace(correlated@torch.kron(e.Z,e.Z)),1)\nprint('Equal one-copy marginals do not imply equal correlated multi-copy records')\n",
+    "output": "Equal one-copy marginals do not imply equal correlated multi-copy records\n"
+  },
+  {
+    "code": "try:m.case(-.1,0.,0.)\nexcept ValueError:print('Invalid probability rejected before native execution')\nelse:raise AssertionError('Bad probability accepted')\ntry:m.conditional(PB,torch.zeros((2,2),dtype=g.D))\nexcept ValueError:print('Zero-probability conditioning rejected')\nelse:raise AssertionError('Impossible branch normalized')\nassert g.RUNS==3\nprint('3 actual native body circuits;mixture construction and conditional analysis run on host')\n",
+    "output": "Invalid probability rejected before native execution\nZero-probability conditioning rejected\n3 actual native body circuits;mixture construction and conditional analysis run on host\n"
+  }
+]

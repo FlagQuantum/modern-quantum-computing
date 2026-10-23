@@ -1,6 +1,6 @@
 # 8. Density Matrices, Reduced States, and Purification
 
-**Working drafts: sections 8.1–8.6 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
+**Working drafts: sections 8.1–8.7 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
 
 <span id="sec-density-matrices-reduced-states-and-purification-1"></span>
 
@@ -2827,3 +2827,258 @@ W† also supplies a unitary coordinate transformation and preserves CC†, but 
 The frozen source target is [Watrous, *The Theory of Quantum Information*, §2.1.3, Theorems 2.10 and 2.12](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=79), printed pages 71–72 in the author manuscript. The section's full constructive and common-frame proofs are supplied here in our coefficient convention; no external text is redistributed. This is an author-verified draft. Independent mathematical/implementation review, reader trial and formal acceptance remain pending.
 
 <!-- end-section-8.6 -->
+
+<span id="sec-density-matrices-reduced-states-and-purification-7"></span>
+## 8.7 Proper and improper mixtures
+
+**Question.** If a system density comes either from a randomized preparation or from discarding part of an entangled pure state, can a measurement on that system tell which happened?
+
+We import the local expectation identity from [8.4](#sec-density-matrices-reduced-states-and-purification-4) and the purification construction from [8.6](#sec-density-matrices-reduced-states-and-purification-6). All spaces are finite. S is the accessible system and R a reference that is initially inaccessible. An effect E on S is a Hermitian operator with 0≤E≤I; its event probability is Tr(ρE). Amplitudes, probabilities and densities are dimensionless; circuit angles are radians. The conclusion below concerns access and predictions, not an interpretation of unobserved individual outcomes.
+
+### 8.7.1 Specify the preparation and the accessible register
+
+A **proper mixture**, in the preparation sense used here, describes an explicitly randomized preparation: choose j with probability p_j and prepare the normalized ket v_j. If the preparation record is unavailable, the density is ρ=Σ_j p_j|v_j⟩⟨v_j|. A **reduced or improper mixture** describes a density obtained by tracing out a reference from an entangled pure state. These terms label descriptions of a preparation or extension; they are not two mathematical species of density operator.
+
+For an orthogonal pair u_0,u_1 and 0<p<1, compare the joint pure state and the recorded classical extension
+
+$$
+\begin{gathered}
+|\Psi\rangle=\sqrt p\,|u_0,0\rangle
+ +e^{i\phi}\sqrt{1-p}\,|u_1,1\rangle,\\
+M=p|u_0,0\rangle\langle u_0,0|
+ +(1-p)|u_1,1\rangle\langle u_1,1|.
+\end{gathered}
+$$
+
+Tracing R in either expression leaves ρ=p|u_0⟩⟨u_0|+(1−p)|u_1⟩⟨u_1|. The cross terms of the pure projector vanish locally because ⟨0|1⟩=0. They are absent altogether in M. In the code, S=q0 and R=q1, and Q supplies the complex system basis. `m.case` uses actual FlagQuantum pure preparation and full/selected density requests through the 8.6 helper; M is an explicit classical weighted sum on the host.
+
+```python
+import math,torch,flagquantum as fq
+from examples.foundations import mixture_access as m
+from examples.foundations import purification as g,statistical_ensembles as e,partial_trace as t
+p=.68;phi=.57;alpha=.81
+result,rho,P,M,W=m.case(p,phi,alpha)
+e.close(result.measurement('S').value[0],t.trace_ab(M,2,2))
+# Explicit native route for the same known pure extension.
+Q=e.prepare(e.qubit(alpha,.43));C,_=g.spectral((p,1-p),Q,2)
+C[:,1]*=complex(math.cos(phi),math.sin(phi))
+c=fq.Circuit(2,dtype=g.D).unitary(0,1,unitary=g.first_column(C.reshape(-1)))
+native=fq.run(c,outputs=[fq.density_matrix(name='full'),
+    fq.density_matrix(qubits=(0,),name='S')],options=e.OPTIONS)
+e.close(native.measurement('S').value[0],rho)
+e.close(native.measurement('full').value[0],P)
+print('Native pure extension and host recorded mixture have identical system densities')
+```
+
+```text
+Native pure extension and host recorded mixture have identical system densities
+```
+
+The implementation prepares the known pure vector with a checked square unitary. It does not initialize M through a mixed-input API. The two routes are compared as mathematical extensions with a declared local access contract.
+
+### 8.7.2 Prove equality for every local measurement
+
+Let P and M be any joint densities, pure or mixed, with the same reduction ρ on S. For every local effect E the defining identity of partial trace gives
+
+$$
+\begin{aligned}
+\Pr_P(E)&=\operatorname{Tr}[P(E\otimes I_R)]\\
+ &=\operatorname{Tr}(\rho E)\\
+ &=\operatorname{Tr}[M(E\otimes I_R)]
+ =\Pr_M(E).
+\end{aligned}
+$$
+
+This proves equality of the entire outcome distribution of every local POVM, since each of its outcomes is an effect. It does not rely on choosing a particular basis or a finite test set. A local unitary V before measuring changes the effect to V†EV, still a local effect, so it cannot help. The ordinary quantum measurement model represents the event for any fixed local apparatus by an effect on its input; including a fixed independent local ancilla in that apparatus does not give access to R.
+
+For a decision rule based on these identical distributions, the distribution of the decision is also identical: sum the same event probabilities over outcomes assigned to each decision. There is therefore no statistical test with a distinguishing advantage from S-only data under these assumptions. Tests of several explicit effects below validate the translation into code, not this universal quantifier.
+
+```python
+v=e.qubit(.93,-.74);E=torch.outer(v,v.conj())
+local=torch.kron(E,e.I)
+e.close(torch.trace(P@local),torch.trace(M@local))
+print('Complex local effect agrees with both full-state contractions')
+```
+
+```text
+Complex local effect agrees with both full-state contractions
+```
+
+**Converse check.** Equal probabilities for all effects imply equal local densities. Let Δ=ρ−σ be nonzero and Hermitian. Its spectral decomposition has a nonzero eigenvalue δ and a normalized eigenvector x. The rank-one effect |x⟩⟨x| has probability difference ⟨x|Δ|x⟩=δ≠0. Thus equality for all effects is exactly equality of densities; equality for one basis alone is weaker.
+
+### 8.7.3 Avoid assigning a unique hidden ensemble
+
+The density does not specify a unique preparation decomposition. For example, I/2 is both the equal mixture of |0⟩,|1⟩ and the equal mixture of |+⟩,|−⟩. Expanding the two plus/minus projectors cancels their off-diagonal entries and leaves I/2. Without a preparation record, neither decomposition can be selected by a local experiment.
+
+```python
+Q=e.prepare(e.qubit(alpha,.43));u0,u1=Q[:,0],Q[:,1]
+ensemble=e.rho((p,1-p),(u0,u1));e.close(ensemble,rho)
+plus=e.qubit(math.pi/2,0.);minus=e.qubit(-math.pi/2,0.)
+e.close(e.rho((.5,.5),(plus,minus)),e.I/2)
+print('Preparation weights need context;different ensemble decompositions need not be distinct densities')
+```
+
+```text
+Preparation weights need context;different ensemble decompositions need not be distinct densities
+```
+
+Knowing that a source actually used a particular randomized procedure adds preparation information. It does not change the unread local density or allow its ensemble labels to be inferred perfectly from nonorthogonal states. Conversely, the existence of a purification does not show that the physical source used that purification. The operational theorem compares predictions under specified access, without deciding which extension physically exists.
+
+### 8.7.4 Exhibit a joint measurement that changes the task
+
+Write a=|u_0,0⟩ and b=|u_1,1⟩, which are orthonormal, and define
+
+$$
+W=e^{-i\phi}|a\rangle\langle b|
+  +e^{i\phi}|b\rangle\langle a|.
+$$
+
+On span{a,b}, W exchanges the two basis vectors with conjugate phases and W²=I on that span; it is zero on the complement. Its eigenvalues are +1,−1 and zeros. Therefore J=(I+W)/2 is a valid joint effect. Direct expansion yields
+
+$$
+\begin{gathered}
+\langle\Psi|W|\Psi\rangle=2\sqrt{p(1-p)},
+\qquad \operatorname{Tr}(MW)=0,\\
+\Pr_P(J)=\tfrac12+\sqrt{p(1-p)},
+\qquad \Pr_M(J)=\tfrac12.
+\end{gathered}
+$$
+
+This witness distinguishes extensions when joint access is permitted. It does not contradict the local theorem because J is not an effect acting on S alone. At p=.5 its probabilities are 1 and .5, so this example does not claim perfect single-shot discrimination of the two hypotheses.
+
+```python
+J=(torch.eye(4,dtype=g.D)+W)/2
+pure_prob=torch.trace(P@J).real.item();mixed_prob=torch.trace(M@J).real.item()
+assert pure_prob>.9;e.close(mixed_prob,.5)
+print('Joint effect separates the pure and classical extensions;it is outside system-only access')
+```
+
+```text
+Joint effect separates the pure and classical extensions;it is outside system-only access
+```
+
+At the endpoints p=0 or 1 the two displayed extensions coincide and the gap vanishes. The complete program includes p=1. For 0<p<1 the joint pure state is entangled, whereas M is an explicit mixture of product preparations. Their system spectra alone cannot certify which extension was used.
+
+### 8.7.5 Distinguish an unread reference from a supplied outcome
+
+For a reference effect F, the unnormalized system branch has coordinates
+
+$$
+(\tau_F)_{ij}=\sum_{\mu,\nu}
+ P_{i\mu,j\nu} F_{\nu\mu},
+\qquad p_F=\operatorname{Tr}\tau_F.
+$$
+
+For p_F>0 the normalized conditional state is τ_F/p_F. This expression gives the system's conditional state when the reference measurement has effect F and no further action touches S; it is computed by the joint Born rule. Summing a complete reference POVM replaces F by I and gives the same unread ρ. Zero-probability branches cannot be normalized.
+
+For the plus Bell state and its classical Z-recorded mixture, a reference Z result selects the same corresponding Z system ket. A reference X-plus result instead selects |+⟩ for the Bell state and I/2 for the classical mixture, each with probability .5. The code evaluates these conditional matrices explicitly.
+
+```python
+bell,rb,PB,MB,WB=m.case(.5,0.,0.,mode='density_matrix')
+z=torch.diag(torch.tensor([1,0],dtype=g.D));o=e.I-z
+for full in (PB,MB):
+ pa,A=m.conditional(full,z);pb,B=m.conditional(full,o)
+ e.close(pa*A+pb*B,e.I/2)
+pp,AP=m.conditional(PB,torch.outer(plus,plus.conj()))
+pm,AM=m.conditional(MB,torch.outer(plus,plus.conj()))
+e.close(pp,.5);e.close(pm,.5);e.close(AP,torch.outer(plus,plus.conj()));e.close(AM,e.I/2)
+print('Unread local state agrees;reference-X-selected states differ once a record is supplied')
+```
+
+```text
+Unread local state agrees;reference-X-selected states differ once a record is supplied
+```
+
+Selecting that subensemble requires knowing the reference result. With no record supplied, both local states remain I/2. Comparing selected events with an unread population would change the data-access assumptions. This example uses host conditional contractions, not a native sampled-collapse or remote feedback endpoint.
+
+### 8.7.6 Do not infer an extension from its marginal
+
+Even if global purity is promised, a local density can have several pure extensions. The plus and minus Bell states are orthogonal but both reduce to I/2. They differ in accessible joint phase correlations, not in local density.
+
+```python
+opposite,rr,Pminus,Mminus,_=m.case(.5,math.pi,0.)
+e.close(rr,e.I/2);e.close(Mminus,MB)
+assert torch.linalg.vector_norm(Pminus-PB).item()>1
+print('Two pure extensions also share the same local density;global phase correlations differ')
+```
+
+```text
+Two pure extensions also share the same local density;global phase correlations differ
+```
+
+The 8.6 ancillary-unitary theorem explains this freedom. Knowing the system density and knowing a complete joint preparation are different specifications. A local tomography experiment reconstructs the former. It cannot reconstruct inaccessible system-reference correlations.
+
+### 8.7.7 State the repeated-copy assumption
+
+If independent copies have density ρ under both hypotheses, their joint accessible density is ρ raised to a tensor power under both hypotheses. The same all-effect argument then applies to collective measurements on any finite number of those copies. This is an exact equality claim, not merely a limitation from a finite shot budget.
+
+Equal one-copy marginals alone do not justify an independence assumption. The two accessible two-qubit densities I/4 and .5|00⟩⟨00|+.5|11⟩⟨11| each have I/2 marginals, but their ZZ means are 0 and 1. Correlated records can therefore reveal information that was not encoded in the one-copy density specification.
+
+```python
+iid=torch.kron(e.I/2,e.I/2)
+correlated=torch.diag(torch.tensor([.5,0,0,.5],dtype=g.D))
+e.close(t.trace_ab(iid,2,2),t.trace_ab(correlated,2,2))
+e.close(torch.trace(iid@torch.kron(e.Z,e.Z)),0)
+e.close(torch.trace(correlated@torch.kron(e.Z,e.Z)),1)
+print('Equal one-copy marginals do not imply equal correlated multi-copy records')
+```
+
+```text
+Equal one-copy marginals do not imply equal correlated multi-copy records
+```
+
+**Check.** Why does this example not distinguish two IID sources of I/2? One candidate is not the product of its one-copy marginals. A source with time correlations requires a joint model before the local-equality theorem can be applied to its full accessible record.
+
+### 8.7.8 Validate the access contract and failures
+
+```python
+try:m.case(-.1,0.,0.)
+except ValueError:print('Invalid probability rejected before native execution')
+else:raise AssertionError('Bad probability accepted')
+try:m.conditional(PB,torch.zeros((2,2),dtype=g.D))
+except ValueError:print('Zero-probability conditioning rejected')
+else:raise AssertionError('Impossible branch normalized')
+assert g.RUNS==3
+print('3 actual native body circuits;mixture construction and conditional analysis run on host')
+```
+
+```text
+Invalid probability rejected before native execution
+Zero-probability conditioning rejected
+3 actual native body circuits;mixture construction and conditional analysis run on host
+```
+
+The companion [mixture_access.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/mixture_access.py) checks 25 actual CPU complex128 circuits in released FlagQuantum 0.3.1, using Python 3.12.14 and Torch 2.13.0. The body uses four native executions,including an explicit gate/run/request route. Actual square-unitary preparation, full/selected density outputs and probabilities are supplied by the checked 8.6 helper. Classical mixture matrices, dense joint effects and conditional contractions are host calculations. No native general joint-effect, mixed-input initializer, hardware readout, collapse, reset or interpretation-selection API is claimed.
+
+Implementation equality uses absolute tolerance 1e-12 and relative tolerance zero. No input normalization repair, clipping or phase alignment is used. `m.case` rejects invalid probabilities; `conditional` validates a density and effect and refuses zero-probability branches. It is a two-qubit teaching helper, not an arbitrary-dimension measurement library. The all-effect proof is independent of numerical tolerances.
+
+Expected output of the complete program:
+
+```text
+24 native pure extensions:equal full local densities/effect probabilities;host classical extensions and joint coherence witness passed.
+25 actual native circuits;classical mixtures/conditional states are explicit host calculations,no sampled collapse.
+```
+
+**Problems and transfer.**
+
+- **8.7-A.** Derive the local reduction and both witness probabilities for p=.37, φ=−.84 and Q=`prepare(qubit(-.62,.43))`. Which steps require access to R?
+- **8.7-B.** Repeat the conditional reference-X example at p=.37. Find the plus-outcome probability and normalized system ket for the pure extension; compare its classical counterpart. Verify that plus and minus branches sum to the same unread density.
+- **8.7-C.** Construct a pair of different densities with equal computational-basis probabilities but different Y means. Explain why this cannot refute the all-effect theorem.
+- **8.7-D.** For the correlated-copy example, evaluate the effect (I+Z⊗Z)/2. Then explain which extra source assumption would be needed before using the tensor-power argument.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 8.7-A–D</summary>
+
+**A.** The unread state is Q diag(.37,.63) Q†. The joint witness gap in probabilities is √(.37·.63), while a local effect has exactly zero gap. Preparing the system basis does not require R, but the joint witness does.
+
+**B.** In the declared u basis, the pure plus branch has probability .5 and ket √p u_0+e^{iφ}√(1−p)u_1. The minus branch changes the sign of the second term. Each is normalized by orthonormality. The classical plus and minus branches each have probability .5 and conditional density ρ; off-diagonal terms cancel in the weighted pure-branch sum. A basis rotation Q changes the coordinate matrices consistently.
+
+**C.** The kets (|0⟩+i|1⟩)/√2 and (|0⟩−i|1⟩)/√2 have the same Z probabilities but Y means +1 and −1. Their complete densities differ, so the equal-density premise fails.
+
+**D.** The effect probabilities are .5 for the independent I/4 state and 1 for the correlated state. Independent identical preparation across copies, or an explicit equality of the whole accessible joint densities, is needed. Equality of individual marginals is insufficient.
+
+</details>
+
+The frozen locator is NC §2.4.3 (contents locator printed105; no new full-text review claimed). The operational reduction convention was checked against [Watrous §2.1.3, printed68](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=76); the all-effect proof and access-qualified counterexamples are supplied here. This author-verified draft still awaits independent mathematical/implementation review, reader trial and formal acceptance.
+
+<!-- end-section-8.7 -->

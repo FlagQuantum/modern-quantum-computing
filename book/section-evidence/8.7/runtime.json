@@ -1,0 +1,9 @@
+{
+  "flagquantum": "0.3.1",
+  "torch": "2.13.0",
+  "unitary_signature": "(self, *qubits: 'int', unitary: 'Any', name: 'str' = 'any') -> \"'Circuit'\"",
+  "density_signature": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None) -> 'OutputRequest'",
+  "environment": "Temporary environments disappeared;restored from unchanged pinned requirements before science execution.",
+  "browser": "local formulas and expanded answers passed;no MathJaxerrors",
+  "previousCI39915783125": "success"
+}

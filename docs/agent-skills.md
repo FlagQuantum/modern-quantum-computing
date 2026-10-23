@@ -19,7 +19,7 @@ Levels describe increasing task composition and evaluation scope. They do not re
 
 ## Complete chapter-to-skill mapping
 
-All **50 chapters and 435 sections** have one primary task-family assignment in the JSON catalog. Current source states: 61 drafts, 374 not started, 0 accepted. A draft with checked examples is useful prototype evidence, not a released skill.
+All **50 chapters and 435 sections** have one primary task-family assignment in the JSON catalog. Current source states: 62 drafts, 373 not started, 0 accepted. A draft with checked examples is useful prototype evidence, not a released skill.
 
 The primary owner is an editorial responsibility, not exclusive use or a claim that every section already implements the task. Support references and selected domain workflows create many-to-many reuse. Source links below lead to stable planning anchors; a planned section must not be presented as completed prose.
 
@@ -32,7 +32,7 @@ The primary owner is an editorial responsibility, not exclusive use or a claim t
 | [5. Gates, Reversible Computation, and Circuit Synthesis](section-plans/01-foundations.md#ch-gates-reversible-computation-and-circuit-synthesis) (5.1–5.8) | [build-and-check-circuits](#build-and-check-circuits) | 8 / 8 |
 | [6. Measurement, Expectation Values, and Statistical Estimation](section-plans/01-foundations.md#ch-measurement-expectation-values-and-statistical-estimation) (6.1–6.9) | [measure-and-estimate-observables](#measure-and-estimate-observables) | 9 / 9 |
 | [7. Entanglement and Quantum Information Protocols](section-plans/01-foundations.md#ch-entanglement-and-quantum-information-protocols) (7.1–7.9) | [model-composite-states-and-channels](#model-composite-states-and-channels) | 9 / 9 |
-| [8. Density Matrices, Reduced States, and Purification](section-plans/01-foundations.md#ch-density-matrices-reduced-states-and-purification) (8.1–8.8) | [model-composite-states-and-channels](#model-composite-states-and-channels) | 6 / 8 |
+| [8. Density Matrices, Reduced States, and Purification](section-plans/01-foundations.md#ch-density-matrices-reduced-states-and-purification) (8.1–8.8) | [model-composite-states-and-channels](#model-composite-states-and-channels) | 7 / 8 |
 | [9. Quantum Channels and Their Representations](section-plans/02-information.md#ch-quantum-channels-and-their-representations) (9.1–9.8) | [model-composite-states-and-channels](#model-composite-states-and-channels) | 0 / 8 |
 | [10. Distinguishability, Fidelity, and Quantum State Inference](section-plans/02-information.md#ch-distinguishability-fidelity-and-quantum-state-inference) (10.1–10.9) | [measure-and-estimate-observables](#measure-and-estimate-observables) | 0 / 9 |
 | [11. Entropy, Relative Entropy, and Information Processing](section-plans/02-information.md#ch-entropy-relative-entropy-and-information-processing) (11.1–11.8) | [audit-information-and-security-claims](#audit-information-and-security-claims) | 0 / 8 |
