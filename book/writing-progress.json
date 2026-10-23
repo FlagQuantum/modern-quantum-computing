@@ -541,6 +541,16 @@
       "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
       "record": "book/section-records/7.8.json",
       "author_execution": "passed:Python3.12.14,releasedFlagQuantum0.3.1,PyTorch2.13.0,CPUcomplex128;89complete/12body/12transfer;no distributed hardware claim"
+    },
+    "sec-entanglement-and-quantum-information-protocols-8": {
+      "state": "draft",
+      "brief": "book/briefs/ch07.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+      "record": "book/section-records/7.9.json",
+      "author_execution": "passed:Python3.12.14,releasedFlagQuantum0.3.1,PyTorch2.13.0,CPUcomplex128;51complete/28body/12transfer;scoped task counterexamples"
     }
   },
   "existing_pilots": [

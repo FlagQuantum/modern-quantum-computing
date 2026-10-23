@@ -1,0 +1,1 @@
+After final prose spacing edits,all8Python units and their exact output blocks are byte-for-byte equal to the executed final fragments. No TeX changes after actual browser QA. No science execution repeated solely for prose spacing.

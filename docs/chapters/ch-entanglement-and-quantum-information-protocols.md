@@ -1,6 +1,6 @@
 # 7. Entanglement and Quantum Information Protocols
 
-**Working drafts: sections 7.1–7.8 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
+**Working drafts: sections 7.1–7.9 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
 
 <span id="sec-entanglement-and-quantum-information-protocols-1"></span>
 
@@ -3920,3 +3920,551 @@ The values, rounded only for this answer, are p₀₀=p₁₀≈.29546028, p₀�
 **Sources.** The frozen [NC:1.3.7 locator](../references/proof-sources.md#source-nc-1-3-7) supplies the teleportation connection; its stored locator status is not a new full-text review. Kimble's [*The Quantum Internet*, arXiv:0806.4195v1](https://arxiv.org/html/0806.4195v1), Introduction, §II and §V, was inspected for the distinction between quantum nodes, interconnects, stored resources and operational verification. It is historical context, not a claim about today's hardware capability. The swapping branch proof, counterexamples and FlagQuantum checks here are original and self-contained. No third-party source pages are redistributed.
 
 <!-- end-section-7.8 -->
+
+<span id="sec-entanglement-and-quantum-information-protocols-8"></span>
+
+## 7.9 What entanglement alone does not guarantee
+
+An entangled state is a property of a joint preparation across a declared split. A successful task is a property of a **resource together with a protocol**: who holds which systems, what operations and messages are allowed, what output is requested, and how success is checked. Confusing these statements turns correct demonstrations of correlations into unsupported claims about communication, copying or computational speed.
+
+This is a depth **M** section: it builds task models and counterexamples rather than a universal resource ordering or a complexity separation. We use [7.5 teleportation](#sec-entanglement-and-quantum-information-protocols-5), [7.6 superdense coding](#sec-entanglement-and-quantum-information-protocols-6), [7.7 no-signalling](#sec-entanglement-and-quantum-information-protocols-7) and [7.8 swapping](#sec-network-entanglement-primitives). The no-cloning overlap argument from [4.7](ch-composite-systems-tensor-products-and-qubit-ordering.md#sec-single-qubit-states-and-rotations-8) and the [7.4 CHSH convention](#sec-entanglement-and-quantum-information-protocols-4) are recalled locally where used.
+
+For each claim, specify an input set, a fixed initial resource independent of any unknown input, an allowed protocol, an output event or target state, and an error criterion. A single allowed input that violates the claimed guarantee is a counterexample to that guarantee. A failed candidate circuit does not prove that every allowed protocol fails; an impossibility argument needs its own assumptions. Conversely, a successful example does not establish success for every input or permission to omit the protocol's communication costs.
+
+All examples use finite pure preparations, declared ideal operations, q0 as the most significant full-vector bit, radian angles and dimensionless amplitudes. Run the eight cumulative units from the repository root with the pinned example requirements. The complete companion is [entanglement_limits.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/entanglement_limits.py). Native execution uses released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128. Deterministic amplitudes/probabilities use absolute tolerance $10^{-12}$ and relative tolerance zero; random samples are not required to match exact frequencies.
+
+### 7.9.1 Correlated randomness is not a chosen message
+
+**Claim to test:** Alice and Bob share Φ⁺, so Alice can send a chosen bit x without sending any physical message.
+
+**Task model:** the pair is fixed before x is selected. Alice may act locally; Bob must produce x from his own record before any message, with success for both possible values. Shared random outputs do not meet this task.
+
+For a simple candidate, Alice applies Xˣ. The joint state becomes
+
+$$
+|\Psi_x\rangle
+ =\frac1{\sqrt2}\sum_{i=0}^1|i\oplus x,i\rangle.
+$$
+
+The two terms have distinct Alice labels. Therefore Bob's Z probabilities are
+
+$$
+p_B(0\mid x)=p_B(1\mid x)=\frac12.
+$$
+
+The complete no-signalling result of 7.7 extends this equality to any Bob measurement and any complete Alice-only process under its stated locality assumptions. For the equal-prior bit task, if Bob's fixed decoder guesses 0 with probability g under their common record distribution, then
+
+$$
+p_{\mathrm{success}}
+ =\tfrac12 g+\tfrac12(1-g)=\tfrac12.
+$$
+
+This argument permits Bob's processing of his whole local record; it does not depend on the particular X gate candidate. It excludes a chosen-bit channel from that resource and those allowed operations.
+
+```python
+import math
+import torch
+import flagquantum as fq
+from examples.foundations import entanglement_limits as t
+from examples.foundations.tensor_spaces import OPTIONS
+
+for message in (0,1):
+    c = fq.Circuit(2,dtype=torch.complex128).h(0).cx(0,1)
+    if message:
+        c.x(0)
+    r = fq.run(c,outputs=[fq.probabilities(qubits=(1,)),
+        fq.samples(qubits=(0,1))],shots=17,options=OPTIONS)
+    t.RUNS += 1
+    t.close(r.probabilities[0],[.5,.5])
+    assert all((a ^ b)==message for a,b in r.samples[0].tolist())
+print("Two Alice choices:Bob probabilities=[0.5,0.5] in both cases.")
+print("Correlated random records do not give Bob Alice's chosen bit.")
+```
+
+```text
+Two Alice choices:Bob probabilities=[0.5,0.5] in both cases.
+Correlated random records do not give Bob Alice's chosen bit.
+```
+
+For x=0 the two Z records agree; for x=1 they disagree. Bob cannot determine agreement from his own record alone. Alice's comparison record is extra information. Shared fair randomness is useful, but the same Z record distribution can be generated by a classical source distributing one fair bit to each party; observing it alone does not certify entanglement or a communication channel.
+
+### 7.9.2 An entangled pair does not replace the teleportation message
+
+**Claim to test:** the Bell pair lets Bob use an arbitrary input qubit as soon as Alice performs her local teleportation gates, even if she never sends the measurement result.
+
+Let $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$, with $|\alpha|^2+|\beta|^2=1$. Section 7.5 gives four equally likely normalized Bob branches
+
+$$
+|v_{mn}\rangle=X^nZ^m|\psi\rangle.
+$$
+
+In order 00,01,10,11, their coordinate vectors are
+
+$$
+\begin{gathered}
+(\alpha,\beta),\quad(\beta,\alpha),\\
+(\alpha,-\beta),\quad(-\beta,\alpha).
+\end{gathered}
+$$
+
+Without the label, an effect E on Bob has probability
+
+$$
+p(E)=\frac14\sum_{m,n}\langle v_{mn}|E|v_{mn}\rangle.
+$$
+
+Expand E in its two computational indices. For each fixed n, summing m cancels the cross terms. Summing n then gives each diagonal entry weight $(|\alpha|^2+|\beta|^2)/2=1/2$. Hence
+
+$$
+p(E)=\frac{E_{00}+E_{11}}2,
+$$
+
+independent of ψ. This is the same ignored-outcome prediction for every input, not a usable unknown copy of ψ. With the correctly matched two-bit record, the local correction $D_{mn}=Z^mX^n$ instead satisfies $D_{mn}v_{mn}=\psi$ exactly.
+
+The native circuit below prepares a known test input, creates the resource, applies Alice's gates and queries Bob. The branches and their corrections are explicit classical analyses of the returned joint state; no sampled-collapse or retained-state feedback endpoint is invoked.
+
+```python
+psi = t.qubit(.93,-.47)
+c = fq.Circuit(3,dtype=torch.complex128).unitary(0,unitary=t.prepare(psi))
+c.h(1).cx(1,2).cx(0,1).h(0)
+r = fq.run(c,outputs=[fq.probabilities(qubits=(2,)),
+    fq.expectation(fq.X(2),name="bx"),
+    fq.expectation(fq.Y(2),name="by"),
+    fq.expectation(fq.Z(2),name="bz")],options=OPTIONS)
+t.RUNS += 1
+t.close(r.statevector()[0],t.teleport_reference(psi))
+branches = t.teleport_branches(r.statevector()[0])
+for k,(p,v) in enumerate(branches):
+    m,n = divmod(k,2)
+    t.close(p,.25)
+    t.close(t.correction(m,n)@v,psi)
+for name in ("bx","by","bz"):
+    t.close(r.expectation(name)[0],0.)
+for A in (t.X,t.Y,t.Z):
+    t.close(sum(p*t.mean(v,A) for p,v in branches),0.)
+print("Four corrected branches equal the input;without the message Bob X=Y=Z=0.")
+```
+
+```text
+Four corrected branches equal the input;without the message Bob X=Y=Z=0.
+```
+
+A lucky record or a favorable input does not remove the missing-message condition. The protocol promises arbitrary input transmission only with the assumed communication and correction steps. After ideal measurement and correction, Alice's two original systems hold computational records mn while Bob holds ψ. Teleportation does not promise that Alice retains the original unknown ψ as a second independent copy.
+
+### 7.9.3 An entangled resource does not make a universal cloner
+
+**Claim to test:** adding a known entangled resource allows one fixed machine to copy every unknown pure input perfectly.
+
+Specify a normalized fixed resource |R⟩, a blank target, and one deterministic coherent machine W. Permit an input-dependent normalized residual state $|r_\psi\rangle$ containing the resource, records and any additional retained systems. Exact independent copies would require
+
+$$
+W(|\psi\rangle|0\rangle|R\rangle)
+ =|\psi\rangle|\psi\rangle|r_\psi\rangle.
+$$
+
+For two possible inputs ψ,φ, let $t=\langle\psi|\phi\rangle$. W preserves inner products and the identical initial resource has overlap one. Thus
+
+$$
+t=t^2\langle r_\psi|r_\phi\rangle.
+$$
+
+Normalized residual states have overlap magnitude at most one by Cauchy–Schwarz. Taking magnitudes would require $|t|\leq|t|^2$. Choosing |0⟩ and |+⟩ gives $|t|=1/\sqrt2$, contradicting that inequality. Fixed entanglement changes neither input overlap nor this obstruction, even if the residual is allowed to vary. This is the coherent-machine model of 4.7; it is not a claimed bound on every approximate or heralded copying task.
+
+A concrete failed candidate makes the distinction visible. CNOT copies computational basis values, but
+
+$$
+(\alpha|0\rangle+\beta|1\rangle)|0\rangle
+ \longmapsto\alpha|00\rangle+\beta|11\rangle.
+$$
+
+The desired two-copy vector instead contains four coefficients α²,αβ,βα,β². For input |+⟩ the actual output is Φ⁺, whose squared overlap with |++⟩ is 1/2. Appending a fixed Bell pair to both actual and target states leaves this overlap unchanged. The next code supplies that extra pair explicitly; it does not hide it in an omitted factor.
+
+```python
+resource = torch.tensor([1,0,0,1],dtype=torch.complex128)/math.sqrt(2)
+states = [t.qubit(0.,0.),t.qubit(math.pi,0.),
+          t.qubit(math.pi/2,0.),t.qubit(math.pi/2,math.pi/2)]
+fidelities = []
+for v in states:
+    c = fq.Circuit(4,dtype=torch.complex128).unitary(0,unitary=t.prepare(v))
+    c.h(2).cx(2,3).cx(0,1)
+    r = fq.run(c,outputs=[fq.probabilities()],options=OPTIONS)
+    t.RUNS += 1
+    expected,target = t.clone_reference(v)
+    t.close(r.statevector()[0],expected)
+    fidelities.append(float(abs(torch.vdot(target,r.statevector()[0]))**2))
+left,right = torch.kron(states[0],resource),torch.kron(states[2],resource)
+t.close(torch.vdot(left,right),1/math.sqrt(2))
+t.close(fidelities,[1.,1.,.5,.25])
+print("CNOT candidate target fidelities for 0,1,+,+i:",
+      [round(x,8) for x in fidelities])
+print("Fixed entangled resource preserves the obstructing input overlap 1/sqrt(2).")
+```
+
+```text
+CNOT candidate target fidelities for 0,1,+,+i: [1.0, 1.0, 0.5, 0.25]
+Fixed entangled resource preserves the obstructing input overlap 1/sqrt(2).
+```
+
+The candidate failure and the overlap impossibility have different roles. The first checks a real implementation. The second excludes every W satisfying the specified exact-copy contract. Copying a known classical bit, preparing a known state twice from its classical description, preserving basis correlations and reproducing a few measurement probabilities are all different output tasks.
+
+### 7.9.4 Dense coding still needs a transmitted qubit
+
+**Claim to test:** because the four Bell states are orthogonal, Alice can send two chosen classical bits using only her pre-existing half of a pair and no transmission.
+
+Alice encodes (a,b) using Xᵇ then Zᵃ on her half, producing βₐᵦ in the established phase convention. For a Bob effect E, both β terms have orthogonal Alice labels, so
+
+$$
+p_B(E\mid a,b)=\frac{E_{00}+E_{11}}2.
+$$
+
+Bob alone cannot identify the four messages. Orthogonality of the **joint** states permits joint discrimination only when the joint measurement is an allowed operation. In the actual dense-coding protocol, Alice transmits her encoded qubit, Bob receives it, and Bob applies CX then H to decode βₐᵦ to computational ab.
+
+```python
+for a in (0,1):
+    for b in (0,1):
+        for received in (False,True):
+            c = fq.Circuit(2,dtype=torch.complex128).h(0).cx(0,1)
+            if b:
+                c.x(0)
+            if a:
+                c.z(0)
+            if received:
+                c.cx(0,1).h(0)  # Bob must hold both qubits for this decoder
+            r = fq.run(c,outputs=[fq.probabilities(qubits=(1,),name="bob"),
+                fq.probabilities(qubits=(0,1),name="joint")],options=OPTIONS)
+            t.RUNS += 1
+            if not received:
+                t.close(r.measurement("bob").value[0],[.5,.5])
+            else:
+                target = torch.zeros(4,dtype=torch.complex128)
+                target[2*a+b] = 1.
+                t.close(r.statevector()[0],target)
+print("Four messages:Bob-only marginals identical;after qubit receipt and joint decode,labels are exact.")
+```
+
+```text
+Four messages:Bob-only marginals identical;after qubit receipt and joint decode,labels are exact.
+```
+
+All qubits in this native simulator are centrally accessible. The flag called received records which stage is being modelled; it does not call a network receive API. Assigning the decoder to Bob means assuming he has obtained both qubits.
+
+The resource accounts for these ideal protocols are distinct:
+
+| Task | Prior shared resource | Communication during this protocol | Additional required action |
+|---|---|---|---|
+| Teleport one unknown qubit | One known Bell pair | Two classical outcome bits | Matched local Pauli correction |
+| Dense-code two classical bits | One known Bell pair | One encoded qubit | Joint Bell decoder after receipt |
+| Swap two established links | Two known Bell pairs | Middle outcome announcement | Retained endpoints and correction/frame |
+| Obtain shared Z randomness | A Bell pair or a classical shared-bit source | None after distribution | Local readout |
+
+These are accounts of the stated ideal protocols, not a new general channel-capacity theorem or a claim that initial entanglement distribution was free. The same resource can support different tasks once different extra operations and channels are supplied.
+
+### 7.9.5 Entangled is not the same as correctly labelled
+
+**Claim to test:** if a remote pair is maximally entangled, it must already be the known Φ⁺ resource expected by a downstream task.
+
+Section 7.8 gives the conditional pair βₘₙ and the correction Dₘₙ. Suppose the parity bit is correct but a stale record flips the phase bit. Then
+
+$$
+\begin{aligned}
+D'_{mn}&=Z^{m\oplus1}X^n=ZD_{mn},\\
+(I\otimes D'_{mn})|\beta_{mn}\rangle
+ &=|\Phi^-\rangle.
+\end{aligned}
+$$
+
+The corrected-pair fidelity to the requested target, defined here as squared pure-state overlap, is
+
+$$
+F=|\langle\Phi^+|\Phi^-\rangle|^2=0.
+$$
+
+Yet Φ⁻ has the same two Schmidt coefficients as Φ⁺. Its coefficient determinant has magnitude 1/2, so it remains maximally entangled. Entanglement alone does not specify a basis convention, a frame, a trial identifier or which quantum systems remain in storage.
+
+```python
+c = fq.Circuit(4,dtype=torch.complex128)
+c.h(0).cx(0,1).h(2).cx(2,3).cx(1,2).h(1)
+r = fq.run(c,outputs=[fq.probabilities(qubits=(0,3))],options=OPTIONS)
+t.RUNS += 1
+family = t.swapping.branches(r.statevector()[0])
+correct_f,stale_f = [],[]
+for k,(p,v) in enumerate(family):
+    m,n = divmod(k,2)
+    good = torch.kron(t.I,t.correction(m,n))@v
+    stale = torch.kron(t.I,t.correction(m ^ 1,n))@v
+    correct_f.append(float(abs(torch.vdot(t.swapping.bell(0,0),good))**2))
+    stale_f.append(float(abs(torch.vdot(t.swapping.bell(0,0),stale))**2))
+    t.close(abs(torch.linalg.det(stale.reshape(2,2))),.5)
+t.close(correct_f,[1.]*4)
+t.close(stale_f,[0.]*4)
+print("Correct frames:four target fidelities1;stale phase frames:four target fidelities0.")
+print("All stale-frame states are still maximally entangled.")
+```
+
+```text
+Correct frames:four target fidelities1;stale phase frames:four target fidelities0.
+All stale-frame states are still maximally entangled.
+```
+
+A legitimate Pauli frame retains the actual pending operation and is propagated through later gates and measurements. A stale frame describes the wrong operation. Histogram agreement or a string labelled trial ID cannot authenticate a physical pair. Endpoint ownership, matched records and the target operation are part of the task contract; the book helpers cannot certify network provenance.
+
+### 7.9.6 Entanglement does not guarantee a violation for arbitrary settings
+
+**Claim to test:** measuring a maximally entangled state will violate a Bell inequality, regardless of the measurement choices.
+
+For Φ⁺ and real planar observables
+
+$$
+A(a)=\cos a\,Z+\sin a\,X,
+$$
+
+direct expansion uses $\langle ZZ\rangle=\langle XX\rangle=1$ and $\langle ZX\rangle=\langle XZ\rangle=0$, giving
+
+$$
+E(a,b)=\cos a\cos b+\sin a\sin b.
+$$
+
+Use the 7.4 signed combination $S=E_{00}+E_{01}+E_{10}-E_{11}$. If both parties choose Z for setting 0 and X for setting 1, the correlations are (1,0,0,1) and S=0. They admit an explicit local model: share two independent fair bits z,x, output z for setting 0 and x for setting 1. Same settings agree uniformly; different settings are independent. This reproduces each of the four entire joint distributions, not only S.
+
+By contrast, keep Alice's Z,X settings but choose Bob's angles π/4 and −π/4. The same scalar formula gives $(1,1,1,-1)/\sqrt2$ and $S=2\sqrt2$. The state has not changed; the task's measurement contexts have. For a more general real resource $\cos(\theta/2)|00\rangle+\sin(\theta/2)|11\rangle$, the XX term becomes sin θ, so the same chosen settings need not give the same S.
+
+```python
+zx = ((0.,0.),(0.,math.pi/2),(math.pi/2,0.),(math.pi/2,math.pi/2))
+tilted = ((0.,math.pi/4),(0.,-math.pi/4),
+          (math.pi/2,math.pi/4),(math.pi/2,-math.pi/4))
+values = []
+for j,(a,b) in enumerate(zx+tilted):
+    c = fq.Circuit(2,dtype=torch.complex128).h(0).cx(0,1)
+    c.ry(0,-a).ry(1,-b)
+    r = fq.run(c,outputs=[fq.probabilities(),
+        fq.expectation(fq.Z(0)@fq.Z(1),name="e")],options=OPTIONS)
+    t.RUNS += 1
+    e = float(r.expectation("e")[0])
+    t.close(e,t.correlation(a,b))
+    if j<4:
+        t.close(r.probabilities[0],t.local_table(j//2,j % 2))
+    values.append(e)
+S0 = sum(s*e for s,e in zip((1,1,1,-1),values[:4]))
+S1 = sum(s*e for s,e in zip((1,1,1,-1),values[4:]))
+t.close(S0,0.)
+t.close(S1,2*math.sqrt(2))
+print("Same Bell resource:Z/X contexts |S|="+format(abs(S0),".8f")+
+      ";tilted contexts S="+format(S1,".8f"))
+```
+
+```text
+Same Bell resource:Z/X contexts |S|=0.00000000;tilted contexts S=2.82842712
+```
+
+The native analyzer Ry(−a) followed by Z readout measures A(a); the sign matches the scalar reference. The complete companion checks the full joint probabilities. Finite experimental claims would additionally need a declared sampling/uncertainty procedure and physical setting, locality and detection assumptions. A simulator's exact S is not a loophole-free hardware Bell test. This counterexample concerns specified measurements; it does not claim that the Bell state lacks other violating settings or classify every mixed entangled state.
+
+### 7.9.7 Large entanglement does not certify computational hardness
+
+**Claim to test:** a family whose entanglement grows with system size must provide a computational speedup.
+
+A computational claim needs a family of inputs, permitted gates, requested outputs, precision, resource costs and a classical comparison algorithm. Consider k independent Bell pairs, grouped into all left halves versus all right halves:
+
+$$
+|\Gamma_k\rangle
+ =2^{-k/2}\sum_{s\in\{0,1\}^k}|s\rangle_L|s\rangle_R.
+$$
+
+Its coefficient matrix is $2^{-k/2}I_{2^k}$. All $2^k$ Schmidt coefficients are nonzero and equal, so the Schmidt rank is $2^k$, growing exponentially in k. Across this split the state is maximally entangled.
+
+Now specify the output task: sample all qubits in the computational basis, with no additional gates. Born probabilities are
+
+$$
+p(x,y)=
+\begin{cases}
+2^{-k},&x=y,\\
+0,&x\ne y.
+\end{cases}
+$$
+
+A classical sampler draws k independent fair bits s and returns (s,s), arranged in the declared physical role order. This produces **exactly** the requested distribution with O(k) bit operations and O(k) output storage, under the explicit unit-cost fair-bit model. The sampling problem therefore has a direct efficient classical solution despite its large Schmidt rank. Producing a classical record is not the same task as preparing the physical entangled state.
+
+```python
+k,roles = 3,(5,1,3,0,4,2)  # left roles first,then right roles
+c = fq.Circuit(2*k,dtype=torch.complex128)
+for j in range(k):
+    c.h(roles[j]).cx(roles[j],roles[k+j])
+r = fq.run(c,outputs=[fq.probabilities(),fq.samples()],shots=11,options=OPTIONS)
+t.RUNS += 1
+ref = t.pair_reference(k,roles)
+t.close(r.statevector()[0],ref)
+t.close(r.probabilities[0],ref.abs().square())
+C = torch.zeros((2**k,2**k),dtype=torch.complex128)
+for x in range(2**k):
+    for y in range(2**k):
+        bits = [0]*(2*k)
+        for q,b in zip(roles,format(x,"03b")+format(y,"03b")):
+            bits[q] = int(b)
+        idx = sum(b << (2*k-1-q) for q,b in enumerate(bits))
+        C[x,y] = r.statevector()[0,idx]
+t.close(C,torch.eye(2**k,dtype=torch.complex128)/math.sqrt(2**k))
+for row in r.samples[0].tolist():
+    assert all(row[roles[j]]==row[roles[k+j]] for j in range(k))
+print("Three Bell pairs:Schmidt rank8;Z distribution is exactly3fair bits duplicated.")
+print("All11native records obey the pair constraints;no frequency-equality test.")
+```
+
+```text
+Three Bell pairs:Schmidt rank8;Z distribution is exactly3fair bits duplicated.
+All11native records obey the pair constraints;no frequency-equality test.
+```
+
+The native code verifies three pairs in a nonadjacent role order; the complete program checks one through four pairs and two role orders. These finite checks validate the indexing and sampler comparison. The formula proves the all-k distribution.
+
+A statevector simulator may store exponentially many amplitudes for this example, while the direct sampler needs only k fair bits. Comparing against that statevector runtime would not establish an advantage over the appropriate classical baseline. Nor does this easy family prove that every entangled computation is easy: inserting a different algorithm or requesting different measurements changes the task. We have proved one classical upper bound, not BPP=BQP, a general simulation theorem or the absence of quantum advantage.
+
+### 7.9.8 Entanglement does not guarantee protocol fidelity or robustness
+
+**Claim to test:** every maximally entangled pair is interchangeable in an uncalibrated teleportation implementation, so entanglement by itself certifies successful transmission.
+
+Use the resource
+
+$$
+|\Phi_\varphi\rangle
+ =\frac{|00\rangle+e^{i\varphi}|11\rangle}{\sqrt2}.
+$$
+
+Its coefficient matrix has two singular values $1/\sqrt2$ for every real φ. Nevertheless, applying the **standard Φ⁺ teleportation protocol** yields normalized Bob branches
+
+$$
+|v_{mn}\rangle
+ =\sum_{i=0}^1
+ (-1)^{mi}\psi_i e^{i\varphi(i\oplus n)}|i\oplus n\rangle,
+$$
+
+where ψ₀=α, ψ₁=β. The two terms have squared magnitudes summing to one, and each branch still has probability 1/4. Applying Dₘₙ cancels the X/Z byproduct signs but leaves
+
+$$
+D_{mn}|v_{mn}\rangle
+ =\alpha e^{i\varphi n}|0\rangle
+  +\beta e^{i\varphi(1\oplus n)}|1\rangle.
+$$
+
+The squared overlap with ψ is
+
+$$
+\begin{aligned}
+F&=\left|
+ |\alpha|^2e^{i\varphi n}
+ +|\beta|^2e^{i\varphi(1\oplus n)}
+ \right|^2\\
+ &=1-4|\alpha|^2|\beta|^2\sin^2(\varphi/2).
+\end{aligned}
+$$
+
+For the last line, expand the squared magnitude, use $|\alpha|^2+|\beta|^2=1$ and $1-\cos\varphi=2\sin^2(\varphi/2)$. F is the same for all four branches in this model. For ψ=|+⟩ and φ=π it is zero, although the resource remains maximally entangled. For ψ=|0⟩ it is one, so a computational-basis-only input test would miss the phase error.
+
+If φ is known, compensate it on a resource half with P(−φ) **before** the teleportation operation. The resource then becomes Φ⁺ and the usual protocol succeeds. This failure was a missing calibration assumption, not evidence that the pair is intrinsically useless.
+
+```python
+vplus = t.qubit(math.pi/2,0.)
+for phi,calibrated in ((0.,False),(math.pi,False),(math.pi,True)):
+    c = fq.Circuit(3,dtype=torch.complex128).h(0).h(1).cx(1,2).p(1,phi)
+    if calibrated:
+        c.p(1,-phi)  # compensate the known resource phase before using the pair
+    c.cx(0,1).h(0)
+    r = fq.run(c,outputs=[fq.probabilities(qubits=(2,))],options=OPTIONS)
+    t.RUNS += 1
+    phase = 0. if calibrated else phi
+    t.close(r.statevector()[0],t.teleport_reference(vplus,phase))
+    f = []
+    for k,(p,v) in enumerate(t.teleport_branches(r.statevector()[0])):
+        m,n = divmod(k,2)
+        corrected = t.correction(m,n)@v
+        f.append(float(abs(torch.vdot(vplus,corrected))**2))
+    target = math.cos(phase/2)**2
+    t.close(f,[target]*4)
+    print("phi="+format(phi,".8f"),"calibrated="+str(calibrated),
+          "four-branch F="+format(target,".8f"))
+print("Literal body native executions:",t.RUNS)
+```
+
+```text
+phi=0.00000000 calibrated=False four-branch F=1.00000000
+phi=3.14159265 calibrated=False four-branch F=0.00000000
+phi=3.14159265 calibrated=True four-branch F=1.00000000
+Literal body native executions: 28
+```
+
+The examples do not introduce physical loss, decoherence or uncertain phase estimation. They show that even a known deterministic phase matters to a specified protocol. Storage lifetime, noise tolerance, error correction, communication latency and useful end-to-end rate need additional models and evidence; none follows from a numerical entanglement diagnostic. Those later subjects retain their own chapters.
+
+### Complete-program validation and model boundaries
+
+Run:
+
+```sh
+python examples/foundations/entanglement_limits.py
+python scripts/check_entanglement_limits_prose.py
+```
+
+The complete companion executes 51 native circuits: six Alice-choice cases; fifteen teleportation preparations covering five inputs and three resource phases, with all sixty conditional branches; five resource-assisted CNOT candidates; eight dense-coding stages; one swapping preparation; eight Bell contexts; and eight Bell-pair-family preparations. Native full vectors and terminal probabilities are checked against scalar coordinates, signed Pauli identities, explicit classical hidden records and exact pair-bit distributions. Twelve malformed contracts are rejected before another native execution.
+
+Expected output of the complete program:
+
+```text
+6native circuits:Alice bit/phase choices leave Bob Z probabilities uniform and X/Y means zero.
+15native teleportation circuits:all60phase-exact branches;missing-message Pauli means vanish;resource-phase fidelity formula passed.
+5native resource-assisted CNOT candidates:known basis copies work;unknown superpositions fail the full independent-copy target.
+8native dense-coding stages:Bob alone cannot decode;the joint decoder recovers four messages only with both qubits.
+1native swap:all four stale-phase frames preserve entanglement but give zero Phi+ target fidelity.
+8native Bell contexts:same maximally entangled state gives S=0 or2sqrt(2);explicit local Z/X table matches the former.
+8native pair-family circuits:one to four pairs,two role orders;exact fair-bit classical sampler and record constraints passed.
+12malformed contracts rejected before execution;51CPUcomplex128native circuits passed.
+Task counterexamples do not prove a general classical simulation theorem,capacity bound or hardware/network advantage.
+```
+
+The first two author attempts each completed six Alice-choice executions, then failed before a teleportation execution because the new companion called the released unitary API with the wrong argument form. The first omitted the matrix keyword; the second passed a tuple where the variadic method requires integer qubit labels. Both original sources and captured logs remain archived. Reading the actual method and the tested 7.5 call established the final form, unitary(0,unitary=matrix). The corrected complete program passed. Initial body assembly also caught an omitted control argument in the literal pair-family CX call after 24 native executions;that initial assembler and contemporaneous summary are retained. The corrected literal units passed without relaxing tolerances. These were author call errors, not claimed FlagQuantum bugs.
+
+All decisive preparation/analyzer gates and execution requests are visible in the body. General conditional branches, corrections selected from assumed records, fidelities and classical samplers are explicit host calculations. Native terminal samples do not demonstrate mid-circuit collapse, retained-state feedback, network transfer, hardware nonlocality or a certified speedup. Repreparing a simulator-known input is a fixture, not a way to clone an unknown state. The four-pair reference bound is pedagogical, not a framework limit.
+
+### Understanding checks and chapter-closing transfer tasks
+
+**7.9-A — State the quantifiers.** Compare these tasks: reproduce Alice's chosen bit at Bob before a message; obtain matching fair Z bits; teleport an arbitrary unknown qubit while retaining Alice's original copy. For each, identify the allowed resources and an exact equation above that supports or blocks the claim. Why does a successful |0⟩ test not settle either universal teleportation or cloning?
+
+**7.9-B — Fresh resource-phase transfer.** Use ψ=cos(.57)|0⟩+exp(−.38i)sin(.57)|1⟩ and φ=.83. Derive all four normalized branch vectors, including the n=1 overall representative phase, and predict F under the standard corrections. Check native full-vector amplitudes, Bob's unlabelled Pauli means, and the calibrated resource. State which steps are native and which are classical ideal analysis.
+
+**7.9-C — An easy family with a large coefficient rank.** Set k=4 and roles (L₀,L₁,L₂,L₃,R₀,R₁,R₂,R₃)=(q7,q1,q5,q3,q0,q6,q2,q4). Derive the 256-entry computational distribution without assuming contiguous halves. Give the classical sampling cost. Then Alice measures all left halves in X and Bob all right halves in Z. Derive that distribution and explain why the old “duplicate s” sampler no longer describes it. Does this new task nevertheless have a simple classical sampler?
+
+**7.9-D — Repair a resource claim.** A report gives a maximally entangled statevector and one uniform histogram, then claims Bell violation, fault tolerance, two bits of free communication and exponential computational acceleration. Specify separate missing task/measurement/channel/calibration/noise/baseline evidence. Explain which claims are already contradicted by this section's explicit counterexamples and which require a different operational model rather than a blanket impossibility declaration.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 7.9-A–D</summary>
+
+**A.** With no received message and a fixed prior shared state, Bob's distribution is independent of Alice's chosen input; equal-prior guessing succeeds with probability one half. Matching random Z bits are possible with Φ⁺ and even with a classical shared-bit source, but neither party chooses the common random value. Standard teleportation requires its outcome communication and leaves Alice with measurement records, not the original unknown qubit. Demanding an additional perfect independent copy invokes $|t|\leq|t|^2$, which fails for 0 and +. A single basis input can conceal both a relative phase error and a CNOT non-cloner.
+
+**B.** Write α=cos(.57), β=exp(−.38i)sin(.57). In 00,01,10,11 order the normalized Bob coordinate vectors are
+
+$$
+\begin{gathered}
+(\alpha,\beta e^{i\varphi}),\quad(\beta,\alpha e^{i\varphi}),\\
+(\alpha,-\beta e^{i\varphi}),\quad(-\beta,\alpha e^{i\varphi}).
+\end{gathered}
+$$
+
+After correction the n=0 vector is $(\alpha,\beta e^{i\varphi})$ and the n=1 vector is $(\alpha e^{i\varphi},\beta)$. Retaining the latter phase matters to a full-vector check even though fidelity ignores an isolated global phase. Each has probability one quarter. The exact target fidelity is
+
+$$
+F=1-\sin^2(1.14)\sin^2(.83/2).
+$$
+
+Bob's ignored X,Y,Z means are zero; resource-phase compensation before the protocol restores every corrected branch to ψ. Fresh input preparation and static gates/terminal requests are native, while branch extraction and the conditional corrections here are mathematical reference operations. The printed parameters are included in transfer evidence.
+
+**C.** Map each four-bit s to physical roles so that both halves of pair j equal sⱼ. Exactly sixteen of the 256 strings have probability 1/16 and every other string has zero probability. Four fair bits plus eight output placements suffice. For the X/Z version each pair has uniform joint probabilities 1/4: the X overlap with either Z basis vector has squared magnitude 1/2, and the Z value itself is fair. Independence across initial pairs gives
+
+$$
+p(x_L,z_R)=4^{-4}=1/256
+$$
+
+for every ordered pair of four-bit records, with physical columns permuted as declared. Eight independent fair bits now suffice; duplicating only four would impose correlations absent from this measurement. The exact printed mapped preparation, both distributions and fresh related cases are checked in transfer evidence. The rank does not determine the output-sampling cost.
+
+**D.** A violation needs settings and a correctly signed, statistically supported correlation calculation; our Z/X contexts are a maximally entangled nonviolating example. Communication needs an allowed physical channel and matched records; no-signalling excludes the zero-message chosen-input task, and dense coding includes a transmitted qubit. A specified target needs phase/frame calibration; maximally entangled Φ⁻ can fail a Φ⁺ protocol. Fault tolerance needs a noise and control model, code, decoding procedure and resource/error accounting. Computational acceleration needs a defined scalable task, input/output precision and appropriate classical baseline; the Bell-pair sampling family already has an exact O(k) classical algorithm. These diagnostics do not establish a general impossibility of quantum advantage or useful quantum networks.
+
+</details>
+
+**Sources and next step.** The frozen [NC:2.2.8 locator](../references/proof-sources.md#source-nc-2-2-8) is a contents-locator check, not a new full-text proof review. The resource-accounting discussion in [Watrous, *The Theory of Quantum Information*, §6.3.1](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=367), printed page 359, was inspected to distinguish the communication supplied by each ideal protocol. The local counterexamples and code are original; no source pages are redistributed. Chapter 7 now has nine working drafts, with independent mathematical/implementation review and reader trials still pending. Chapter 8 will introduce ensembles and density operators so that ignored outcomes and non-pure resources can be represented systematically; this closing section does not replace that formalism.
+
+<!-- end-section-7.9 -->

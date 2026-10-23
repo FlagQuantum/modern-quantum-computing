@@ -1,0 +1,2 @@
+Native S is still checked against zero before printing its magnitude. Printing |S| prevents a platform-dependent minus sign on rounded numerical zero. Only changed unit6 rerun:8native circuits.
+Same Bell resource:Z/X contexts |S|=0.00000000;tilted contexts S=2.82842712

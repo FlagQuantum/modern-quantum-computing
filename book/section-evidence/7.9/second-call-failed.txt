@@ -1,0 +1,25 @@
+6native circuits:Alice bit/phase choices leave Bob Z probabilities uniform and X/Y means zero.
+Traceback (most recent call last):
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/entanglement_limits.py", line 308, in <module>
+    main()
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/entanglement_limits.py", line 192, in main
+    r = run(teleport_circuit(psi, resource_phase), [fq.probabilities(qubits=(2,))])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/entanglement_limits.py", line 87, in teleport_circuit
+    c = fq.Circuit(3, dtype=D).unitary((0,), unitary=prepare(psi))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py", line 431, in any
+    return self.gate(name, qubits, matrix=unitary)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py", line 394, in gate
+    normalized_qubits = normalize_qubits(qubits, owner=f"Gate {name!r}")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/core/qubit_mapping.py", line 70, in normalize_qubits
+    return tuple(qubit_label(owner, item) for item in items)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/core/qubit_mapping.py", line 70, in <genexpr>
+    return tuple(qubit_label(owner, item) for item in items)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/core/qubit_mapping.py", line 44, in qubit_label
+    raise TypeError(f"{owner} qubit must be an integer, got {value!r}") from None
+TypeError: Gate 'any' qubit must be an integer, got (0,)

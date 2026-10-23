@@ -1,0 +1,23 @@
+Unit1
+Two Alice choices:Bob probabilities=[0.5,0.5] in both cases.
+Correlated random records do not give Bob Alice's chosen bit.
+Unit2
+Four corrected branches equal the input;without the message Bob X=Y=Z=0.
+Unit3
+CNOT candidate target fidelities for 0,1,+,+i: [1.0, 1.0, 0.5, 0.25]
+Fixed entangled resource preserves the obstructing input overlap 1/sqrt(2).
+Unit4
+Four messages:Bob-only marginals identical;after qubit receipt and joint decode,labels are exact.
+Unit5
+Correct frames:four target fidelities1;stale phase frames:four target fidelities0.
+All stale-frame states are still maximally entangled.
+Unit6
+Same Bell resource:Z/X contexts S=0.00000000;tilted contexts S=2.82842712
+Unit7
+Three Bell pairs:Schmidt rank8;Z distribution is exactly3fair bits duplicated.
+All11native records obey the pair constraints;no frequency-equality test.
+Unit8
+phi=0.00000000 calibrated=False four-branch F=1.00000000
+phi=3.14159265 calibrated=False four-branch F=0.00000000
+phi=3.14159265 calibrated=True four-branch F=1.00000000
+Literal body native executions: 28

@@ -1,0 +1,11 @@
+6native circuits:Alice bit/phase choices leave Bob Z probabilities uniform and X/Y means zero.
+Traceback (most recent call last):
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/entanglement_limits.py", line 308, in <module>
+    main()
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/entanglement_limits.py", line 192, in main
+    r = run(teleport_circuit(psi, resource_phase), [fq.probabilities(qubits=(2,))])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/entanglement_limits.py", line 87, in teleport_circuit
+    c = fq.Circuit(3, dtype=D).unitary(prepare(psi), (0,))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Circuit.any() missing 1 required keyword-only argument: 'unitary'

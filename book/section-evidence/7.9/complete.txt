@@ -1,0 +1,9 @@
+6native circuits:Alice bit/phase choices leave Bob Z probabilities uniform and X/Y means zero.
+15native teleportation circuits:all60phase-exact branches;missing-message Pauli means vanish;resource-phase fidelity formula passed.
+5native resource-assisted CNOT candidates:known basis copies work;unknown superpositions fail the full independent-copy target.
+8native dense-coding stages:Bob alone cannot decode;the joint decoder recovers four messages only with both qubits.
+1native swap:all four stale-phase frames preserve entanglement but give zero Phi+ target fidelity.
+8native Bell contexts:same maximally entangled state gives S=0 or2sqrt(2);explicit local Z/X table matches the former.
+8native pair-family circuits:one to four pairs,two role orders;exact fair-bit classical sampler and record constraints passed.
+12malformed contracts rejected before execution;51CPUcomplex128native circuits passed.
+Task counterexamples do not prove a general classical simulation theorem,capacity bound or hardware/network advantage.

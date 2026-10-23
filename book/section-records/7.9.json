@@ -1,0 +1,108 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-entanglement-and-quantum-information-protocols-8",
+  "ref": "7.9",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+  "depth": "M",
+  "result": "Entanglement is insufficient for unrestricted tasks",
+  "requires": [
+    "sec-entanglement-and-quantum-information-protocols-5",
+    "sec-entanglement-and-quantum-information-protocols-6",
+    "sec-entanglement-and-quantum-information-protocols-7",
+    "sec-network-entanglement-primitives"
+  ],
+  "assumptions": [
+    "Specified local operations and output tasks;fixed pure resource independent of unknown input.",
+    "Ideal coherent no-cloning machine with normalized input-dependent residual;no blanket claim about approximate/heralded cloning.",
+    "Ideal static protocol models;communication,ownership and phase/frame conventions explicitly accounted.",
+    "Classical O(k) claim applies only to declared Bell-pair computational sampling task with unit-cost fair bits,not all entangled computations."
+  ],
+  "verification_obligations": [
+    "No-signalling task counterexample and equal-prior chosen-bit success probability.",
+    "Teleportation branch ensemble diagonal/offdiagonal cancellation and message-dependent correction.",
+    "Fixed entangled resource preserves overlap obstruction to exact universal cloning;CNOT candidate separately checked.",
+    "Dense-coding Bob-only equality versus joint decoder after physical receipt assumption.",
+    "Stale swap frames retain entanglement but fail specified target fidelity.",
+    "Same Bell state nonviolating Z/X contexts have explicit local model;tilted contexts violate.",
+    "All-k Bell-pair sampling model has direct efficient classical sampler despite Schmidt rank2^k.",
+    "Resource-phase teleportation fidelity and known-phase calibration counterexample."
+  ],
+  "formula_code_units": [
+    "chosen bit",
+    "missing teleportation message",
+    "cloning",
+    "dense-coding cost",
+    "stale frame",
+    "measurement contexts",
+    "classical sampling comparison",
+    "phase calibration"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.2.8",
+      "scope": "Frozen contents-locator check only;no new full-text NC proof review."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=367",
+      "scope": "Author-hosted January2018 manuscript,6.3.1 printed359/PDF367 resource accounts inspected;own local pure-vector task models do not assume general density-channel treatment."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/entanglement_limits.py",
+    "prose_checker": "scripts/check_entanglement_limits_prose.py",
+    "evidence": "book/section-evidence/7.9",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 51,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 28,
+    "separate_transfer_circuits": 12,
+    "execution_ledger": {
+      "first_API_call_failed_attempt": 6,
+      "second_API_call_failed_attempt": 6,
+      "corrected_complete_passed": 51,
+      "initial_body_assembly_failed_after": 24,
+      "corrected_body_assembly": 28,
+      "changed_context_output_unit": 8,
+      "body_plus_complete_checker": 79,
+      "transfer": 12,
+      "total_author_section_native_runs": 214,
+      "separate_7_8_regression": 101,
+      "note": "Both initial unitary-call errors before any teleportation execution;actual variadic scalar label and matrix keyword checked against source/7.5. Initial body omitted CX control,failed before unit7execution;24prior executions counted. Original sources/logs or explicitly labelled contemporaneous summary retained. Printing native CHSH magnitude after unchanged zero assertion avoids signed rounded zero;only changed unit6rerun. Subsequent local runs passed. Future CI and prior-section regression separate."
+    },
+    "malformed_contracts": 12,
+    "tolerance": "Absolute1e-12,relative0 for deterministic full amplitudes and probabilities;no phase alignment,clipping or input repair. Display-only CHSH magnitude avoids signed rounded zero;no weakened science assertion. Native sample records checked for constraints,not frequency equality.",
+    "native_boundary": "Actual native static H/CX/P/Ry/unitary and terminal probabilities/samples/expectations. Ideal branch extraction,conditional corrections and classical model comparisons are host calculations. Centralized decoder does not implement qubit transfer. No native sampled collapse,retained-state feedback,network scheduler or hardware/complexity certificate.",
+    "script_sha256": "f7be5b445c345b4fb47d40cf39aa96a7059bfcac09e1a433cd394212edbb0cba"
+  },
+  "assessment": {
+    "tasks": [
+      "7.9-A task quantifiers",
+      "7.9-B fresh phase/input",
+      "7.9-C mapped sampling task change",
+      "7.9-D resource claim repair"
+    ],
+    "answers": "Accessible answers supplied;exact printed7.9B-C included in fresh native transfer. Independent reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Corrected51complete/28literalbody/12freshtransfer and79body+complete checker passed;101previous7.8regression separate. Actual IAB teleportation/cloning/sampling/resource-phase formulas,5x4resource table and expanded answers passed;strict fresh build and73page links passed. Independent review pending."
+  },
+  "production": {
+    "next_draft": "8.1 Statistical ensembles and density operators",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual default narrow IAB local build:four teleportation vectors and ignored-effect sum,resource-assisted no-cloning overlap,sampling cases,resource-phase residual/fidelity visually inspected. Resource table5rowsx4cells. Expanded7.9A-D answers6MathJax containers including3display blocks;raw$$absent and MathJax error count0. Existing horizontal scrolling available for wide equations/table;not a universal no-overflow claim.",
+    "website": "Strict fresh build and73page links passed;publish exact rendered HTML and confirm online HTTP200/byte equality.",
+    "html_sha256": "e32a384ddecd824896faeae7094805d6da68b39e5148028c4325b0c2f772aa1d"
+  }
+}

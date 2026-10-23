@@ -1,0 +1,21 @@
+{
+  "target": "final freshly rebuilt local HTML,default narrow IAB",
+  "main_formulas": [
+    "four teleportation vectors and effect sum",
+    "fixed-resource overlap obstruction",
+    "large-Schmidt-rank sampling cases",
+    "phase-dependent teleportation residual and fidelity"
+  ],
+  "resource_table": {
+    "rows": 5,
+    "cells_per_row": 4
+  },
+  "expanded_answers": {
+    "MathJax_containers": 6,
+    "display": 3,
+    "raw_dollar_delimiters": false
+  },
+  "MathJax_errors": 0,
+  "html_sha256": "e32a384ddecd824896faeae7094805d6da68b39e5148028c4325b0c2f772aa1d",
+  "limitations": "Wide equations/table retain horizontal scrolling;no universal viewport or laboratory certificate."
+}

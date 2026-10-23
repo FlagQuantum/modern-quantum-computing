@@ -813,7 +813,7 @@
         "sec-network-entanglement-primitives"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md"
     },
     {

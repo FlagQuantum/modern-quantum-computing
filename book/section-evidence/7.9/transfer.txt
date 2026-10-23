@@ -1,0 +1,2 @@
+12fresh CPUcomplex128native circuits:6resource-phase/calibration,2mapped four-pair distributions,4signed-angle correlations passed.
+Exact printed7.9B-C and all12fresh teleportation branches checked;no phase alignment or sample-frequency equality.

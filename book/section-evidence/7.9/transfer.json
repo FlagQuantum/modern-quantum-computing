@@ -1,0 +1,47 @@
+{
+  "native_runs": 12,
+  "fresh_resource_cases": [
+    {
+      "theta": 1.14,
+      "input_phase": -0.38,
+      "resource_phase": 0.83,
+      "branch_fidelities": [
+        0.8657863029183006,
+        0.8657863029183006,
+        0.8657863029183006,
+        0.8657863029183006
+      ],
+      "calibrated_fidelity": 1.0
+    },
+    {
+      "theta": 1.71,
+      "input_phase": 0.59,
+      "resource_phase": -0.64,
+      "branch_fidelities": [
+        0.9029529864134601,
+        0.9029529864134601,
+        0.9029529864134601,
+        0.9029529864134601
+      ],
+      "calibrated_fidelity": 1.0
+    },
+    {
+      "theta": 0.67,
+      "input_phase": -0.91,
+      "resource_phase": 1.23,
+      "branch_fidelities": [
+        0.8716331790944285,
+        0.8716331790944285,
+        0.8716331790944285,
+        0.8716331790944285
+      ],
+      "calibrated_fidelity": 1.0
+    }
+  ],
+  "printed_exercises": [
+    "7.9-B first resource case",
+    "7.9-C mapped four-pair Z/Z and X/Z"
+  ],
+  "fresh_correlation_cases": 4,
+  "no_phase_alignment": true
+}

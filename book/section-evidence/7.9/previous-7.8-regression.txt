@@ -1,0 +1,2 @@
+Eight literal7.8units:12native circuits,all assertions and exact outputs passed.
+Complete7.8program:89native circuits,16guard rejections,explicit norm-underflow boundary and exact output passed.
