@@ -501,6 +501,16 @@
       "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
       "record": "book/section-records/7.4.json",
       "author_execution": "passed:117 final complete/20 literal body/16 fresh transfer CPU complex128 circuits;native observables,ordered terminal queries,independent scalar/projector references;independent acceptance pending"
+    },
+    "sec-entanglement-and-quantum-information-protocols-5": {
+      "state": "draft",
+      "brief": "book/briefs/ch07.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+      "record": "book/section-records/7.5.json",
+      "author_execution": "passed:155 complete/26 body/16 transfer CPUcomplex128 native circuits;phase-fixed branches,reference correlations and explicit static/dynamic API boundary;independent acceptance pending"
     }
   },
   "existing_pilots": [

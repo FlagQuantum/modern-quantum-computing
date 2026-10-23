@@ -1,0 +1,2 @@
+Actual IAB local preview:resource and full four-branch expansion,projected probabilities,all table rows and horizontally scrolled correction column,correction identity,coherent identity,reference normalization and expanded A-D answers inspected. Zero MathJax errors;17math containers in the expanded7.5answer panel. Narrow displays split into shorter lines;remaining wide displays/table use existing horizontal-scroll containers,not an all-width no-overflow claim.
+Native browser screenshot saved outside repository;no binary committed.

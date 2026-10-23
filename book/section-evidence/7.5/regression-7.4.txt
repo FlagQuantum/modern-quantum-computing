@@ -1,0 +1,2 @@
+8 cumulative 7.4 body fragments:20 native circuits, assertions and exact printed outputs passed.
+Complete 7.4 program:117 native circuits and exact output passed;13 malformed contracts rejected.

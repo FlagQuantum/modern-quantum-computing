@@ -1,0 +1,1 @@
+Initial narrow319px browser view:long formulas required horizontal navigation. Split resource,expansion,correction and coefficient displays into shorter TeX lines. Python/text blocks byte-identical to executed body;no scientific rerun needed for line breaks. Tables and remaining wide displays retain the existing horizontal-scroll containers.

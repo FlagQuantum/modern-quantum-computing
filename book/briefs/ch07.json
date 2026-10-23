@@ -95,6 +95,33 @@
         "NC:2.6"
       ],
       "status": "draft"
+    },
+    {
+      "sequence": 51,
+      "batch": "B02",
+      "section_id": "sec-entanglement-and-quantum-information-protocols-5",
+      "ref": "7.5",
+      "title": "Teleportation, branch by branch",
+      "depth": "F",
+      "requires": [
+        "sec-measurement-expectation-values-and-statistical-estimation-2",
+        "sec-entanglement-and-quantum-information-protocols-3"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+      "question": "How do every ideal measurement branch,classical message and phase-tracked correction recover an arbitrary input,including external correlations?",
+      "entry": "6.2 ideal selective/ignored predictions;7.3 Bell decoder and ordered labels.",
+      "exit": "Full four-branch expansion,uniform probabilities,all corrections and reference-system proof.",
+      "worked_case": "Complex input,semantic messages,reversed columns,missing/swapped bits,coherent branch phases and correlated reference.",
+      "boundary": "Static native circuit/terminal queries;ideal extraction is classical;fresh Bob preparations are validation fixtures,not native feedback.",
+      "code_plan": "Visible fq.Circuit/unitary/H/CX/run/terminal requests and explicit X then Z correction calls;coherent CX/CZ alternative.",
+      "independent_check": "Explicit bit-index scalar amplitudes,Pauli ensemble means,full R/B amplitudes and native correlations.",
+      "transfer_task": "Exact printed7.5C plus fresh phases,ordered roles and entangled reference.",
+      "source_locators": [
+        "NC:1.3.7"
+      ],
+      "status": "draft"
     }
   ]
 }

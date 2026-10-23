@@ -1,6 +1,6 @@
 # 7. Entanglement and Quantum Information Protocols
 
-**Working drafts: sections 7.1–7.4 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
+**Working drafts: sections 7.1–7.5 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
 
 <span id="sec-entanglement-and-quantum-information-protocols-1"></span>
 
@@ -1788,3 +1788,505 @@ Expected output of the complete program:
 **Sources and transition.** The frozen textbook locator is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §2.6, “EPR and the Bell inequality,” beginning on printed page 111 ([NC:2.6 locator](../references/proof-sources.md#source-nc-2-6)). The classical-game and measurement-angle conventions were cross-checked against the publicly accessible [IBM Quantum Learning CHSH lesson](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/chsh-game); its state-vector angle convention must be translated to the observable-angle convention used here. Historical attribution is Clauser, Horne, Shimony and Holt, [*Physical Review Letters* 23, 880 (1969)](https://doi.org/10.1103/PhysRevLett.23.880), whose publisher lists an [erratum](https://doi.org/10.1103/PhysRevLett.24.549). The proofs, examples and answers above are local original derivations, not a claim to reproduce the photon proposal or its detection assumptions. Section 7.5 will use Bell pairs as a resource in a communication protocol.
 
 <!-- end-section-7.4 -->
+
+<span id="sec-entanglement-and-quantum-information-protocols-5"></span>
+
+## 7.5 Teleportation, branch by branch
+
+Teleportation transfers an unknown qubit state using a shared Bell pair, local operations and two classical bits. Correctness concerns **every measurement outcome**, including the phase convention. We will derive all four branches, identify the information Bob needs and prove that the protocol preserves entanglement with an untouched reference.
+
+The prerequisites are [6.2, conditional states and ignored outcomes](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-2), and [7.3, Bell states and basis changes](#sec-entanglement-and-quantum-information-protocols-3). Depth **F** requires the complete expansion and correction proof. Assume ideal gates, a normalized pure input and the ideal projective update of 6.2. Measurement is a physical assumption; the algebra proves its consequences here.
+
+**Execution contract.** By default S=q0 is the source qubit, A=q1 is Alice's Bell half, and B=q2 is Bob's Bell half. Full statevector order is S,A,B, with q0 the most significant index bit. The semantic message is (m,n): m is S's outcome and n is A's outcome. Angles are radians and amplitudes are dimensionless. Deterministic checks use CPU complex128, absolute tolerance $10^{-12}$ and relative tolerance zero, with no phase alignment, probability clipping or normalization repair.
+
+Run the eight cumulative Python blocks from the repository root after installing requirements-examples.txt. The companion [teleportation.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/teleportation.py) contains the complete references and guards. The demonstrated FlagQuantum 0.3.1 workflow supports the static gates, statevectors, probabilities, Pauli expectations and **terminal samples** below. Its public fq.Circuit object has no measure/reset/if_test/c_if methods for the dynamic protocol used here. We distinguish native preparation/readout, classical ideal-branch analysis with fresh Bob test circuits, and a native coherent substitute. None demonstrates mid-circuit collapse followed by native classical feedforward, a hardware link or a distributed implementation. Lower-level IR names alone do not establish that execution contract.
+
+<span id="formula-code-7-5-resource"></span>
+
+### 7.5.1 — Declare the input and shared resource
+
+**Formula.** Alice is given the unknown state
+
+$$
+|\psi\rangle_S=a|0\rangle+b|1\rangle,\qquad |a|^2+|b|^2=1.
+$$
+
+Alice and Bob already share $|\Phi^+\rangle_{AB}=(|00\rangle+|11\rangle)/\sqrt2$, so
+
+$$
+\begin{aligned}
+|\Omega_0\rangle&=|\psi\rangle_S|\Phi^+\rangle_{AB}\\
+&=\frac1{\sqrt2}\bigl(a|000\rangle+a|011\rangle\\
+&\qquad+b|100\rangle+b|111\rangle\bigr).
+\end{aligned}
+$$
+
+**Derivation.** Tensor multiplication assigns the input coefficient to S and equal Bell coefficients to equal A/B bits. H(A) followed by CX(A,B) prepares the pair. Its distribution to separated parties is assumed to have happened before this protocol.
+
+For a known simulator fixture, define
+
+$$
+U_\psi=\begin{pmatrix}a&-b^*\\b&a^*\end{pmatrix}.
+$$
+
+Both columns have norm one and inner product $a^*(-b^*)+b^*a^*=0$, proving $U_\psi^\dagger U_\psi=I$. Its first column is ψ. This is preparation of **test data**; in actual teleportation Alice receives the input and neither party needs to know a,b or synthesize this matrix. Bob's classical message will not contain the coefficients.
+
+**FlagQuantum code and verification result.** All eight native resource coordinates are compared with the explicit four-term expansion.
+
+```python
+import itertools, math
+import flagquantum as fq
+import torch
+from examples.foundations import teleportation as t
+from examples.foundations.tensor_spaces import OPTIONS
+D, ATOL = t.D, t.ATOL
+psi = torch.tensor([.6, .8*complex(math.cos(.43), math.sin(.43))], dtype=D)
+a, b = psi.tolist()
+U = torch.tensor([[a, -b.conjugate()], [b, a.conjugate()]], dtype=D)
+assert torch.allclose(U.conj().T@U, torch.eye(2, dtype=D), atol=ATOL, rtol=0)
+c = fq.Circuit(3, dtype=D).unitary(0, unitary=U).h(1).cx(1, 2)
+resource = fq.run(c, outputs=[fq.probabilities()], options=OPTIONS)
+t.RUNS += 1
+expected = torch.tensor([a,a*0,a*0,a,b,b*0,b*0,b], dtype=D)/math.sqrt(2)
+assert torch.allclose(resource.statevector()[0], expected, atol=ATOL, rtol=0)
+print("Resource amplitudes at indices 0,3,4,7 equal a,a,b,b divided by sqrt(2).")
+```
+
+```text
+Resource amplitudes at indices 0,3,4,7 equal a,a,b,b divided by sqrt(2).
+```
+
+Here a=.6 and $b=.8e^{.43i}$. Real inputs or computational probabilities alone would miss important phase errors.
+
+<span id="formula-code-7-5-decoder"></span>
+
+### 7.5.2 — Expand Alice's gates before measuring anything
+
+**Formula.** Alice applies CX(S,A), then H(S), using only her systems. After CX,
+
+$$
+\begin{aligned}
+|\Omega_1\rangle=\frac1{\sqrt2}\bigl(&a|000\rangle+a|011\rangle\\
+&+b|110\rangle+b|101\rangle\bigr).
+\end{aligned}
+$$
+
+Substitute $H|0\rangle=(|0\rangle+|1\rangle)/\sqrt2$ and $H|1\rangle=(|0\rangle-|1\rangle)/\sqrt2$:
+
+$$
+\begin{gathered}
+|\Omega_2\rangle=\frac12\bigl[\\
+a(|000\rangle+|100\rangle)\\
++a(|011\rangle+|111\rangle)\\
++b(|010\rangle-|110\rangle)\\
++b(|001\rangle-|101\rangle)\bigr].
+\end{gathered}
+$$
+
+Grouping by S/A gives
+
+$$
+\begin{gathered}
+|\Omega_2\rangle=\frac12\bigl[\\
+|00\rangle_{SA}(a|0\rangle+b|1\rangle)_B\\
++|01\rangle_{SA}(b|0\rangle+a|1\rangle)_B\\
++|10\rangle_{SA}(a|0\rangle-b|1\rangle)_B\\
++|11\rangle_{SA}(-b|0\rangle+a|1\rangle)_B\bigr].
+\end{gathered}
+$$
+
+Define $C_{mn}=X^nZ^m$. The compact identity is
+
+$$
+|\Omega_2\rangle=\frac12\sum_{m,n=0}^1|mn\rangle_{SA}C_{mn}|\psi\rangle_B.
+$$
+
+**Derivation and index check.** The rightmost Z first multiplies input bit i by $(-1)^{mi}$; X then sends i to $i\oplus n$. Thus at full index $4m+2n+z$,
+
+$$
+\langle mnz|\Omega_2\rangle
+=\frac12(-1)^{m(z\oplus n)}
+\begin{cases}a,&z\oplus n=0,\\b,&z\oplus n=1.\end{cases}
+$$
+
+This independently checks the gates and register indices. In particular, the 11 column is **[-b,a]**, not [b,−a] in this exact phase convention.
+
+**FlagQuantum code and verification result.** Request probabilities in (S,A) order and raw sample columns in the deliberately reversed (A,S) order. Column metadata maps each record back to (m,n). Terminal samples do not turn the returned joint vector into a selected branch.
+
+```python
+c.cx(0, 1).h(0)
+decoded = fq.run(c, outputs=[fq.probabilities(qubits=(0,1)),
+    fq.samples(qubits=(1,0)), fq.expectation(fq.X(2), name="bx"),
+    fq.expectation(fq.Y(2), name="by"), fq.expectation(fq.Z(2), name="bz")],
+    shots=32, options=OPTIONS)
+t.RUNS += 1
+full = decoded.statevector()[0]
+assert torch.allclose(full, t.scalar_state(psi), atol=ATOL, rtol=0)
+assert torch.allclose(decoded.probabilities[0], torch.full((4,), .25, dtype=torch.float64), atol=ATOL, rtol=0)
+records = decoded.samples[0]
+messages = [t.decode_record(row, (1,0)) for row in records]
+counts = torch.bincount(torch.tensor([2*m+n for m,n in messages]), minlength=4)
+assert records.shape == (32,2) and int(counts.sum()) == 32
+assert all(abs(float(decoded.expectation(name)[0])) < ATOL for name in ("bx","by","bz"))
+print("Decoded probabilities(m,n):", [round(x,6) for x in decoded.probabilities[0].tolist()])
+print("32 reversed-column records mapped; native Bob X,Y,Z means all zero.")
+```
+
+```text
+Decoded probabilities(m,n): [0.25, 0.25, 0.25, 0.25]
+32 reversed-column records mapped; native Bob X,Y,Z means all zero.
+```
+
+A finite shot histogram need not be uniform. We check binary records, shape, semantic mapping and total count; the exact native probabilities are compared to one quarter. A favorable histogram or seed replay would not prove correctness.
+
+<span id="formula-code-7-5-branches"></span>
+
+### 7.5.3 — Normalize each measurement branch
+
+**Formula.** The ideal projector is $P_{mn}=|mn\rangle\langle mn|_{SA}\otimes I_B$. Therefore
+
+$$
+\begin{gathered}
+P_{mn}|\Omega_2\rangle=\frac12|mn\rangle_{SA}C_{mn}|\psi\rangle_B,\\
+p_{mn}=\|P_{mn}\Omega_2\|^2=\frac14.
+\end{gathered}
+$$
+
+**Derivation.** X and Z are unitary, so $\|C_{mn}\psi\|=1$. Dividing by the positive square root $\sqrt{p_{mn}}=1/2$ gives
+
+$$
+|\Omega_{mn}\rangle=|mn\rangle_{SA}C_{mn}|\psi\rangle_B.
+$$
+
+The four probabilities sum to one for every normalized input. No branch is discarded, and no input makes a branch impossible.
+
+| Message (m,n) | Conditional Bob coordinates | Chronological correction calls | Correction matrix |
+|---|---|---|---|
+| 00 | $(a,b)^{\mathsf T}$ | none | $I$ |
+| 01 | $(b,a)^{\mathsf T}$ | X | $X$ |
+| 10 | $(a,-b)^{\mathsf T}$ | Z | $Z$ |
+| 11 | $(-b,a)^{\mathsf T}$ | X, then Z | $ZX$ |
+
+**Code and verification result.** The classical helper extract fixes the measured coordinates, computes their squared norm and divides by its positive square root. It implements the assumed ideal update mathematically; it is not a native collapse call. It retains the input's overall phase.
+
+```python
+branches = {}
+for bits in itertools.product((0,1), repeat=2):
+    p, w = t.extract(full, (0,1), bits, (2,))
+    branches[bits] = w
+    assert abs(p-.25) < ATOL
+    assert torch.allclose(w, t.byproduct(psi,bits), atol=ATOL, rtol=0)
+assert torch.allclose(branches[(1,1)], torch.tensor([-b,a], dtype=D), atol=ATOL, rtol=0)
+print("Four probabilities=1/4; phase-fixed columns: [a,b], [b,a], [a,-b], [-b,a].")
+```
+
+```text
+Four probabilities=1/4; phase-fixed columns: [a,b], [b,a], [a,-b], [-b,a].
+```
+
+For general use, extract rejects zero-probability branches and explicitly reports squared-norm underflow of a nonzero projected column. It does not silently reinterpret underflow as an impossible event. Teleportation's ideal one-quarter branches reach neither boundary.
+
+<span id="formula-code-7-5-messages"></span>
+
+### 7.5.4 — Send the message and undo its byproduct
+
+**Formula.** Alice measures S,A in the computational basis and sends (m,n) through a classical channel. Bob applies X if n=1, **then** Z if m=1. The corresponding matrix and product are
+
+$$
+\begin{gathered}
+D_{mn}=Z^mX^n,\\
+D_{mn}C_{mn}=Z^mX^nX^nZ^m=I.
+\end{gathered}
+$$
+
+**Every-branch proof.** Since $X^2=Z^2=I$, the adjacent X powers cancel and then the Z powers cancel. No commutation of X past Z is needed. For all complex a,b and all four messages,
+
+$$
+(I_{SA}\otimes D_{mn})|\Omega_{mn}\rangle
+=|mn\rangle_{SA}|\psi\rangle_B.
+$$
+
+The message identifies a known reversible disturbance, not a classical description of the amplitudes. Its distribution is input-independent. This constructs a two-bit protocol; it does not prove a general communication lower bound.
+
+**FlagQuantum code and verification result.** The host chooses gates using only (m,n). To test all branches with the static API, it prepares each **simulator-known conditional vector in a fresh circuit**. Bob could not perform that preparation on an unknown state; it is a test fixture, not the physical mechanism of teleportation or a resumed native measurement trajectory.
+
+```python
+corrected = {}
+for (m,n), w in branches.items():
+    # Known simulator branch is freshly prepared; this is not a native collapse.
+    bob = fq.Circuit(1, dtype=D).unitary(0, unitary=t.prepare_matrix(w))
+    if n: bob.x(0)
+    if m: bob.z(0)
+    out = fq.run(bob, outputs=[fq.probabilities(),
+        fq.expectation(fq.X(0),name="x"), fq.expectation(fq.Y(0),name="y"),
+        fq.expectation(fq.Z(0),name="z")], options=OPTIONS)
+    t.RUNS += 1
+    corrected[(m,n)] = out.statevector()[0]
+    assert torch.allclose(corrected[(m,n)], psi, atol=ATOL, rtol=0)
+    for op,name in ((t.X,"x"),(t.Y,"y"),(t.Z,"z")):
+        assert abs(float(out.expectation(name)[0])-float(torch.vdot(psi,op@psi).real)) < ATOL
+print("Four fresh native Bob circuits: chronological X^n then Z^m recovers the full input vector.")
+```
+
+```text
+Four fresh native Bob circuits: chronological X^n then Z^m recovers the full input vector.
+```
+
+These four real native circuits verify the correction sequence and exact vector phase. Physical teleportation would apply these selected gates to the same surviving B after the classical message arrived. No networking, latency model or native dynamic feedback endpoint is exercised.
+
+<span id="formula-code-7-5-ignored"></span>
+
+### 7.5.5 — Predict what Bob sees without all the bits
+
+**Formula.** Let $O=\begin{pmatrix}u&v\\v^*&w\end{pmatrix}$ be any Hermitian qubit observable, with u,w real. Ignoring Alice's outcome gives
+
+$$
+\overline{\langle O\rangle}
+=\frac14\sum_{m,n}
+\langle\psi|C_{mn}^\dagger O C_{mn}|\psi\rangle
+=\frac{u+w}{2}.
+$$
+
+**Derivation.** For n=0 the two vectors (a,b), (a,−b) have opposite off-diagonal cross terms. Averaging over m leaves $u|a|^2+w|b|^2$. For n=1 the average is $u|b|^2+w|a|^2$. Average these and use normalization to obtain $(u+w)/2$. This averages predictions with probability one quarter; averaging normalized statevectors would be incorrect.
+
+Every qubit measurement effect is Hermitian. Thus all Bob's local outcome probabilities before using the message are independent of the input. In particular, all three Pauli means vanish, as checked natively in 7.5.2. Choosing an input cannot signal to Bob faster than the classical channel.
+
+If Bob receives only n and applies $X^n$, his state is $Z^m\psi$. Averaging over unknown m erases X,Y and retains Z. If only m arrives and he applies $Z^m$, then
+
+$$
+Z^mX^nZ^m|\psi\rangle=(-1)^{mn}X^n|\psi\rangle.
+$$
+
+The global branch phase cancels from expectations. Averaging over n retains X but erases Y,Z. A special eigenstate can survive a missing correction; a generic unknown state cannot.
+
+**FlagQuantum code and verification result.** Eight fresh static circuits check both incomplete-message policies. The helper uses the same explicit gate selection as 7.5.4 with the missing correction omitted, and returns native Pauli expectations.
+
+```python
+means = {}
+for policy in ("only-n","only-m"):
+    values = [t.bob_reprepare(w,bits,policy)[1] for bits,w in branches.items()]
+    means[policy] = torch.tensor(values,dtype=torch.float64).mean(0)
+xyz = torch.tensor([float(torch.vdot(psi,op@psi).real) for op in (t.X,t.Y,t.Z)],dtype=torch.float64)
+assert torch.allclose(means["only-n"], torch.tensor([0.,0.,float(xyz[2])],dtype=torch.float64),atol=ATOL,rtol=0)
+assert torch.allclose(means["only-m"], torch.tensor([float(xyz[0]),0.,0.],dtype=torch.float64),atol=ATOL,rtol=0)
+print("Equal-weight branches: only n preserves Z; only m preserves X; no-message means are all zero.")
+```
+
+```text
+Equal-weight branches: only n preserves Z; only m preserves X; no-message means are all zero.
+```
+
+These are exact simulator means, not estimated sampling errors. Neither zero mean nor a one-bit success on a special input certifies that Bob has the original arbitrary state.
+
+<span id="formula-code-7-5-phase"></span>
+
+### 7.5.6 — Separate message mistakes from branch phases
+
+**Formula.** Swapping semantic m,n generally selects the wrong physical correction. Reversing Bob's two chronological calls has a different effect:
+
+$$
+(X^nZ^m)(X^nZ^m)=(-1)^{mn}I.
+$$
+
+**Derivation.** If either bit is zero, the repeated Pauli squares to I. If both are one, anticommutation gives $XZXZ=X(-XZ)Z=-I$. Thus reversed call order produces $(-1)^{mn}\psi$. On a selected measured branch this is global phase. It fails the exact-vector convention for 11 but **does not make ordinary measured teleportation physically incorrect**. Every subsequent Bob measurement still has the right probabilities.
+
+By contrast, swapping the message bits assigns Z instead of X in branch 01, and X instead of Z in branch 10. The generic complex fixture has wrong corrected rays in both. Uniform message probabilities cannot diagnose this: one must check column metadata and conditional outputs.
+
+**FlagQuantum code and verification result.** The helper's swap policy exchanges m,n before X-then-Z. Its reverse policy calls Z first. Eight native circuits verify the distinctions, including unit fidelity for all reversed-order outputs.
+
+```python
+bad = []
+for bits,w in branches.items():
+    wrong,_ = t.bob_reprepare(w,bits,"swap")
+    if not torch.allclose(wrong,psi,atol=ATOL,rtol=0): bad.append(bits)
+    reverse,_ = t.bob_reprepare(w,bits,"reverse")
+    assert torch.allclose(reverse,((-1)**(bits[0]*bits[1]))*psi,atol=ATOL,rtol=0)
+    assert abs(abs(torch.vdot(psi,reverse).item())**2-1) < ATOL
+assert bad == [(0,1),(1,0)]
+print("Swapped messages fail branches 01 and10; reverse gate order preserves every ray but gives -psi in11.")
+```
+
+```text
+Swapped messages fail branches 01 and10; reverse gate order preserves every ray but gives -psi in11.
+```
+
+For example, raw record (0,1) with declared columns (A,S) means semantic message (m,n)=(1,0). It does not mean (0,1). The complete program includes native deterministic basis calibrations for this reversed column order.
+
+<span id="formula-code-7-5-coherent"></span>
+
+### 7.5.7 — Execute a coherent substitute with quantum controls
+
+**Formula.** Keep S,A unmeasured and append CX(A,B), then CZ(S,B). Each branch receives $Z^mX^n$, so linearity gives
+
+$$
+\begin{aligned}
+|\Omega_2\rangle&\longmapsto
+\frac12\sum_{m,n}|mn\rangle_{SA}|\psi\rangle_B\\
+&=|+\rangle_S|+\rangle_A|\psi\rangle_B.
+\end{aligned}
+$$
+
+**Derivation and boundary.** Apply the identity $D_{mn}C_{mn}=I$ before adding the branches. Their amplitudes remain equal with the same phase. This is a native static unitary identity. It uses quantum controls between Alice's systems and Bob's system; there is no classical message. It is not a distributed implementation by local operations and classical communication.
+
+Reversing the controlled corrections instead gives
+
+$$
+|\Omega_{\mathrm{rev}}\rangle
+=\frac{|00\rangle+|01\rangle+|10\rangle-|11\rangle}{2}_{SA}
+\otimes|\psi\rangle_B.
+$$
+
+Bob is still correct, but Alice's joint coherence changes. XX exchanges 00 with 11 and 01 with 10. Its expectation is $2(-1/4)+2(1/4)=0$ for this state and one for $|++\rangle$. A branch-dependent sign that was unobservable after measurement is now observable when the branches remain coherent.
+
+**FlagQuantum code and verification result.** The first circuit visibly appends CX(A,B), CZ(S,B). The reversed helper appends CZ(S,B), CX(A,B), requesting Alice's XX and Bob's three Pauli means.
+
+```python
+# These are unmeasured quantum controls, not classical feedforward.
+coherent_c = fq.Circuit(3,dtype=D).unitary(0,unitary=U).h(1).cx(1,2).cx(0,1).h(0).cx(1,2).cz(0,2)
+coherent = fq.run(coherent_c,outputs=[fq.expectation(fq.X(0)@fq.X(1),name="axx")],options=OPTIONS)
+t.RUNS += 1
+assert torch.allclose(coherent.statevector()[0],psi.repeat(4)/2,atol=ATOL,rtol=0)
+assert abs(float(coherent.expectation("axx")[0])-1) < ATOL
+rev = t.query(psi,"reverse-coherent")
+assert abs(rev["alice_xx"]) < ATOL
+assert all(abs(x-y)<ATOL for x,y in zip(rev["bloch"],xyz.tolist()))
+print("Native coherent correction: Alice XX=1; reversed coherent order: Alice XX=0; Bob unchanged.")
+```
+
+```text
+Native coherent correction: Alice XX=1; reversed coherent order: Alice XX=0; Bob unchanged.
+```
+
+Testing Bob alone would miss this full-joint-state difference. The required comparison contract must say whether it concerns a selected branch ray, an exact vector or a coherent circuit identity.
+
+<span id="formula-code-7-5-reference"></span>
+
+### 7.5.8 — Transfer entanglement with an untouched reference
+
+**Formula.** An unknown input can be correlated with a finite reference R. For a qubit reference write
+
+$$
+\begin{gathered}
+|\chi\rangle_{RS}=\sum_{r,i=0}^1c_{ri}|r\rangle_R|i\rangle_S,\\
+\sum_{r,i}|c_{ri}|^2=1.
+\end{gathered}
+$$
+
+For a larger finite reference only the r range changes. Since the decoder acts trivially on R, linearity gives
+
+$$
+\begin{gathered}
+|\chi\rangle_{RS}|\Phi^+\rangle_{AB}\longmapsto\\
+\frac12\sum_{m,n}|mn\rangle_{SA}
+\sum_{r,i}c_{ri}|r\rangle_R C_{mn}|i\rangle_B.
+\end{gathered}
+$$
+
+The right side displays factors in grouped order SA,R,B. The four-qubit code uses index order R,S,A,B.
+
+**Complete proof.** For each message, the squared norm of the inner vector is
+
+$$
+\begin{gathered}
+\sum_{r,i,r',j}c_{ri}^*c_{r'j}
+\langle r|r'\rangle
+\langle i|C_{mn}^\dagger C_{mn}|j\rangle\\
+=\sum_{r,i}|c_{ri}|^2=1.
+\end{gathered}
+$$
+
+Hence every message still has probability one quarter, and the normalized R/B branch is $(I_R\otimes C_{mn})|\chi\rangle_{RB}$. Bob's correction gives
+
+$$
+(I_R\otimes D_{mn})(I_R\otimes C_{mn})|\chi\rangle_{RB}
+=|\chi\rangle_{RB}.
+$$
+
+This equality for arbitrary coefficients preserves the full joint vector and therefore every external correlation, rather than merely three local means. Coherent correction similarly gives $|++\rangle_{SA}\otimes|\chi\rangle_{RB}$ in grouped order. The algebra is the general proof; finite tests check its implementation.
+
+**FlagQuantum code and verification result.** The native reference fixture uses Ry(R,θ), P(R,φ), CX(R,S), Ry(S,.41), then H(A), CX(A,B), CX(S,A), H(S). Independent input coefficients in R/S order are
+
+$$
+\begin{aligned}
+c_{00}&=\cos(\theta/2)\cos(.41/2),\\
+c_{01}&=\cos(\theta/2)\sin(.41/2),\\
+c_{10}&=-e^{i\phi}\sin(\theta/2)\sin(.41/2),\\
+c_{11}&=e^{i\phi}\sin(\theta/2)\cos(.41/2).
+\end{aligned}
+$$
+
+The helper verifies every full amplitude and all four extracted R/B columns. Its coherent run also compares native R/B XX and ZZ with independent quadratic forms. Matrix correction of an extracted column is classical analysis; coherent correction is the native continuation.
+
+```python
+for stage in ("decoded","coherent"):
+    joint, chi = t.reference_pair(.72,.37,stage)
+    for bits in itertools.product((0,1),repeat=2):
+        p,w = t.extract(joint,(1,2),bits,(0,3))
+        if stage == "decoded": w = torch.kron(t.I,t.correction_matrix(bits))@w
+        assert abs(p-.25)<ATOL and torch.allclose(w,chi,atol=ATOL,rtol=0)
+assert t.RUNS == 26
+print("Reference entanglement: all four corrected R/B columns and coherent joint amplitudes recover chi.")
+print("26 native circuits in eight body units; no native dynamic teleportation claimed.")
+```
+
+```text
+Reference entanglement: all four corrected R/B columns and coherent joint amplitudes recover chi.
+26 native circuits in eight body units; no native dynamic teleportation claimed.
+```
+
+After an ordinary measured run, Alice has S,A in the recorded basis state |mn⟩. She retains no unknown input copy, and the Bell resource has been consumed. This is consistent with no-cloning. The coherent substitute instead leaves her in |++⟩ and spends nonlocal quantum gates; it has a different physical history.
+
+### Complete execution and failure boundaries
+
+Run the complete program and literal-body checker:
+
+~~~bash
+python examples/foundations/teleportation.py
+python scripts/check_teleportation_prose.py
+~~~
+
+The complete program uses eight inputs: computational poles, real/imaginary equatorial states and complex states retaining overall phase. It checks four corrections per input, every ordered role triple in three and four qubits, complex spectator factors, entangled reference inputs and reversed-column calibration. Its three/four-qubit bounds limit the explicit teaching reference, not FlagQuantum capacity.
+
+Sixteen malformed contracts are rejected before an additional native run, including nonnormalized/wrong-dtype input, repeated/out-of-range roles, malformed message, missing columns, invalid raw record, unsupported policy/stage and impossible branch extraction. Projectors are never submitted as unitary gates. Exact comparisons use absolute tolerance $10^{-12}$, relative tolerance zero. Random frequencies are not required to equal exact probabilities.
+
+Expected output of the complete program:
+
+```text
+56 native circuits:eight inputs,resource/decoder/coherent states and all32 phase-preserving Bob branch corrections passed.
+20 native Bob re-preparations:no-message/one-bit/two-bit ordering and branch-global-phase distinctions passed.
+60 native circuits:all ordered role triples in three/four qubits,complex spectator factors and full amplitudes passed.
+6 native reference-input circuits:all conditional joint R/B states and coherent transferred correlations passed.
+12 native basis calibrations:reversed raw columns decode into semantic messages(m,n).
+1 native reversed coherent correction:Bob is correct but Alice joint coherence differs from the phase-fixed identity.
+16 malformed contracts rejected before another native execution.
+155 CPU complex128 native circuits passed;host branch re-preparation is not native dynamic teleportation.
+```
+
+This evidence does not establish native sampled collapse, reset, general instruments, hardware networking, noisy fidelity or a dynamic compiler. A future public feedback interface needs tests of outcome-conditioned gates on the **retained** Bob system. Fresh known-state preparations would not establish that capability.
+
+### Understanding checks and transfer exercises
+
+**7.5-A — Resolve branch 11.** Derive its amplitudes without the compact Pauli expression. Compare X-then-Z with Z-then-X. What does an exact-vector checker distinguish, and what can a physical Bob measurement distinguish?
+
+**7.5-B — Decode the record.** Raw record (0,1) arrives in columns (A,S). Find (m,n) and the correction. If only n arrives, which Pauli mean survives averaging? Why can Bob's uncorrected local probabilities not transmit input information?
+
+**7.5-C — Fresh indexed experiment.** Use $|\psi\rangle=\sqrt{.3}|0\rangle+e^{-.61i}\sqrt{.7}|1\rangle$ in four qubits with roles (S,A,B)=(q3,q0,q2), and spectator q1 prepared by Ry(.61), P(−.37). Derive the decoded full-index amplitude, message probabilities and coherent corrected state. Execute both circuits. Also extract the four default three-qubit branches for this input and verify fresh native Bob corrections.
+
+**7.5-D — Preserve a stronger property.** Start with $(|00\rangle+|11\rangle)_{RS}/\sqrt2$. Derive and correct R/B branch 01. Why do Bob's local Pauli means alone fail to certify transferred entanglement? What remains at Alice, and what resource must be supplied again?
+
+<details markdown="1">
+<summary>Answers and verification guidance for 7.5-A–D</summary>
+
+**A.** The $a|011\rangle$ term acquires a positive S=1 amplitude from H on its S=0 input. The $b|101\rangle$ term acquires a negative S=1 amplitude from H on S=1. Their S/A=11 components are $a|111\rangle-b|110\rangle$, giving Bob $-b|0\rangle+a|1\rangle$. X then Z gives ψ; Z then X gives −ψ. Exact vectors differ, but selected-branch Bob probabilities agree. Coherent recombination makes the branch-dependent sign observable, as Alice's XX test shows.
+
+**B.** m=1,n=0: apply Z only. Learning n alone preserves Z and erases X/Y after averaging. With no bits, every Hermitian effect has mean $\operatorname{tr}(O)/2$, independent of ψ. The classical message must arrive before Bob can exploit the conditional state.
+
+**C.** At full-index bits $(x_0,x_1,x_2,x_3)$ set m=$x_3$, n=$x_0$, z=$x_2$, and $d_0=\sqrt{.3},d_1=e^{-.61i}\sqrt{.7}$. Spectator coefficients are $s_0=\cos(.61/2)$, $s_1=e^{-.37i}\sin(.61/2)$. The decoded amplitude is $s_{x_1}(-1)^{m(z\oplus n)}d_{z\oplus n}/2$. The coherent amplitude is $s_{x_1}d_z/2$. Summing normalized Bob/spectator probabilities gives $p_{mn}=1/4$. All conditional corrections recover d with the spectator unchanged. The exact printed parameters and separate four branch corrections are executed in transfer evidence.
+
+**D.** Branch 01 is $(|01\rangle+|10\rangle)_{RB}/\sqrt2$; Bob's X returns $(|00\rangle+|11\rangle)/\sqrt2$. Both have zero local Pauli means, as do many outcome-ignored ensembles, so those means alone do not identify their joint correlations. Full R/B amplitudes and correlation checks are needed. Alice retains S/A in |mn⟩ plus the classical bits, not an unknown input copy. Another input requires another shared Bell pair.
+
+</details>
+
+**Sources and transition.** The frozen locator is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §1.3.7, “Quantum teleportation,” beginning on printed page 26 ([NC:1.3.7 locator](../references/proof-sources.md#source-nc-1-3-7)). The public [IBM Quantum Learning teleportation lesson](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/quantum-teleportation) was inspected for protocol/reference scope; translate its register and message letters to the S,A,B and (m,n) conventions here. Historical attribution is Bennett, Brassard, Crépeau, Jozsa, Peres and Wootters, [*Physical Review Letters* 70, 1895 (1993)](https://doi.org/10.1103/PhysRevLett.70.1895), whose publisher metadata and abstract were inspected. These are original local derivations and ideal simulator tests, not an experimental-paper reproduction. Independent review remains pending.
+
+<!-- end-section-7.5 -->

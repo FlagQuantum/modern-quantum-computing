@@ -1,0 +1,10 @@
+1 Resource amplitudes at indices 0,3,4,7 equal a,a,b,b divided by sqrt(2).
+2 Decoded probabilities(m,n): [0.25, 0.25, 0.25, 0.25]
+32 reversed-column records mapped; native Bob X,Y,Z means all zero.
+3 Four probabilities=1/4; phase-fixed columns: [a,b], [b,a], [a,-b], [-b,a].
+4 Four fresh native Bob circuits: chronological X^n then Z^m recovers the full input vector.
+5 Equal-weight branches: only n preserves Z; only m preserves X; no-message means are all zero.
+6 Swapped messages fail branches 01 and10; reverse gate order preserves every ray but gives -psi in11.
+7 Native coherent correction: Alice XX=1; reversed coherent order: Alice XX=0; Bob unchanged.
+8 Reference entanglement: all four corrected R/B columns and coherent joint amplitudes recover chi.
+26 native circuits in eight body units; no native dynamic teleportation claimed.

@@ -1,0 +1,12 @@
+Python 3.12.14 FlagQuantum 0.3.1 Torch 2.13.0
+Circuit source /private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py
+sha256 beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b
+measure False
+reset False
+if_test False
+c_if False
+unitary True
+cx True
+cz True
+0 native circuits in API inspection;absence here does not deny lower-level IR or future/hardware support.
+Earlier introspection guesses __getattr__/_circuit.py absent;not product failures or scientific executions.

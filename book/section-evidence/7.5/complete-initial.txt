@@ -1,0 +1,8 @@
+56 native circuits:eight inputs,resource/decoder/coherent states and all32 phase-preserving Bob branch corrections passed.
+20 native Bob re-preparations:no-message/one-bit/two-bit ordering and branch-global-phase distinctions passed.
+60 native circuits:all ordered role triples in three/four qubits,complex spectator factors and full amplitudes passed.
+6 native reference-input circuits:all conditional joint R/B states and coherent transferred correlations passed.
+12 native basis calibrations:reversed raw columns decode into semantic messages(m,n).
+1 native reversed coherent correction:Bob is correct but Alice joint coherence differs from the phase-fixed identity.
+16 malformed contracts rejected before another native execution.
+155 CPU complex128 native circuits passed;host branch re-preparation is not native dynamic teleportation.

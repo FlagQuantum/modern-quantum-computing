@@ -1,0 +1,102 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-entanglement-and-quantum-information-protocols-5",
+  "ref": "7.5",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+  "depth": "F",
+  "result": "Teleportation correctness in every branch",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-2",
+    "sec-entanglement-and-quantum-information-protocols-3"
+  ],
+  "assumptions": [
+    "Normalized finite pure input,possibly entangled with an untouched reference.",
+    "Shared Phi+ resource,ideal gates and assumed ideal computational-basis selective update.",
+    "Semantic message(m,n)=(source,Alice-half),default roles(q0,q1,q2);classical communication arrives before Bob uses the bits."
+  ],
+  "verification_obligations": [
+    "Expand all four phase-fixed branches and prove p=1/4 independently of input.",
+    "Prove Z^m X^n X^n Z^m=I for every branch.",
+    "Derive ignored/partial message predictions without averaging statevectors.",
+    "Distinguish swapped messages,unobservable selected-branch phases and observable coherent relative phases.",
+    "Prove arbitrary finite reference-system correctness by coefficient linearity and unitary norm."
+  ],
+  "formula_code_units": [
+    "resource",
+    "decoder",
+    "branches",
+    "messages",
+    "ignored",
+    "phase",
+    "coherent",
+    "reference"
+  ],
+  "sources": [
+    {
+      "locator": "NC:1.3.7",
+      "scope": "Frozen contents locator printed26;no new full-text NC read claim."
+    },
+    {
+      "url": "https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/quantum-teleportation",
+      "scope": "Public lesson read for protocol and reference scope;translate bit/register conventions."
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevLett.70.1895",
+      "scope": "Publisher metadata and abstract inspected;not experimental reproduction."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/teleportation.py",
+    "prose_checker": "scripts/check_teleportation_prose.py",
+    "evidence": "book/section-evidence/7.5",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 155,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 26,
+    "separate_transfer_circuits": 16,
+    "execution_ledger": {
+      "initial_complete_passed": 155,
+      "body_assembly": 26,
+      "final_body_plus_complete_checker": 181,
+      "transfer": 16,
+      "total_author_section_circuits": 378,
+      "separate_7_4_regression": 137,
+      "note": "All scientific executions passed. First temporary body launcher lacked repository PYTHONPATH and stopped before any native run;fixed launcher then26 passed. Rejected JavaScript authoring calls wrote no files and executed no circuits. Copies and later CI are not added to author count."
+    },
+    "malformed_contracts": 16,
+    "tolerance": "Deterministic full vectors/probabilities/Pauli expectations atol1e-12,rtol0;no phase alignment,clipping or input repair. Raw bits/count totals exact;no random-frequency equality test.",
+    "native_boundary": "Released static unitary,H,CX,CZ,X,Z,Ry,P,exact/terminal outputs verified. Ideal branch extraction and reference analysis are classical;fresh known branch re-preparation is not native dynamic continuation. Coherent substitute uses quantum controls,not distributed LOCC.",
+    "script_sha256": "623035a4d1a6bbe610f6848c9339f10644becdc45f635b6eb5b273fcce940d92"
+  },
+  "assessment": {
+    "tasks": [
+      "7.5-A phase-fixed11 versus physical ray",
+      "7.5-B raw columns and missing bits",
+      "7.5-C fresh indexed four-qubit experiment",
+      "7.5-D reference entanglement and resource consumption"
+    ],
+    "answers": "Supplied;exact printed7.5C executed in16-run transfer. Reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "155complete/26body/16transfer passed;7.4regression137passed. Eight literal cumulative code/exact output units checked. Strict build,73page links and actual browser formulas/expanded answers passed;independent review pending."
+  },
+  "production": {
+    "next_draft": "7.6 Superdense coding",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual IAB local preview:resource and full four-branch expansion,projected probabilities,all table rows and horizontally scrolled correction column,correction identity,coherent identity,reference normalization and expanded A-D answers inspected. Zero MathJax errors;17math containers in the expanded7.5answer panel. Narrow displays split into shorter lines;remaining wide displays/table use existing horizontal-scroll containers,not an all-width no-overflow claim.",
+    "website": "Strict fresh local build and73page link check passed;publish exact build and verify deployed HTTP200/HTML byte equality.",
+    "html_sha256": "d179b4bb9edbf937c01171eb3060592f4af2084a4eb1a287fe67410ec476ad07"
+  }
+}

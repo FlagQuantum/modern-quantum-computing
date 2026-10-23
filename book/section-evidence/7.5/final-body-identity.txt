@@ -1,0 +1,1 @@
+All8Python/output units byte-identical to executed fragments after formula-only line breaks;no illegal control characters.

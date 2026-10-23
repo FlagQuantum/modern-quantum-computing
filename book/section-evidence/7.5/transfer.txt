@@ -1,0 +1,2 @@
+Exact printed7.5C:mapped decoder/coherent,spectator factors and four branch corrections passed;7 native runs.
+Fresh phase/role/reversed-column and reference-pair cases passed;16 total native transfer runs.
