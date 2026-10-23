@@ -1,0 +1,1 @@
+Prose rejection summary corrected to actual16executed cases:noninteger/repeated roles and unsupported correction policy. Out-of-range roles and unknown-stage guards exist but were not extra members of that16-case suite. No scientific failure or code/output change;no additional circuit execution.

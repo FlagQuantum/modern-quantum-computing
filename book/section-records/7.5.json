@@ -69,7 +69,7 @@
       "transfer": 16,
       "total_author_section_circuits": 378,
       "separate_7_4_regression": 137,
-      "note": "All scientific executions passed. First temporary body launcher lacked repository PYTHONPATH and stopped before any native run;fixed launcher then26 passed. Rejected JavaScript authoring calls wrote no files and executed no circuits. Copies and later CI are not added to author count."
+      "note": "All scientific executions passed. First temporary body launcher lacked repository PYTHONPATH and stopped before any native run;fixed launcher then26 passed. Rejected JavaScript authoring calls wrote no files and executed no circuits. Copies and later CI are not added to author count. Final prose scope audit narrowed the16-case rejection list to the cases actually executed;no additional native runs or claimed stage/out-of-range rejection cases."
     },
     "malformed_contracts": 16,
     "tolerance": "Deterministic full vectors/probabilities/Pauli expectations atol1e-12,rtol0;no phase alignment,clipping or input repair. Raw bits/count totals exact;no random-frequency equality test.",
@@ -97,6 +97,6 @@
     "pdf": "Existing PDF edition unchanged",
     "formula_display": "Actual IAB local preview:resource and full four-branch expansion,projected probabilities,all table rows and horizontally scrolled correction column,correction identity,coherent identity,reference normalization and expanded A-D answers inspected. Zero MathJax errors;17math containers in the expanded7.5answer panel. Narrow displays split into shorter lines;remaining wide displays/table use existing horizontal-scroll containers,not an all-width no-overflow claim.",
     "website": "Strict fresh local build and73page link check passed;publish exact build and verify deployed HTTP200/HTML byte equality.",
-    "html_sha256": "d179b4bb9edbf937c01171eb3060592f4af2084a4eb1a287fe67410ec476ad07"
+    "html_sha256": "88194afb16c6d92ffa8191b9990669c3befffd99c0934cf268f9770746d0b627"
   }
 }

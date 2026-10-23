@@ -2247,7 +2247,7 @@ python scripts/check_teleportation_prose.py
 
 The complete program uses eight inputs: computational poles, real/imaginary equatorial states and complex states retaining overall phase. It checks four corrections per input, every ordered role triple in three and four qubits, complex spectator factors, entangled reference inputs and reversed-column calibration. Its three/four-qubit bounds limit the explicit teaching reference, not FlagQuantum capacity.
 
-Sixteen malformed contracts are rejected before an additional native run, including nonnormalized/wrong-dtype input, repeated/out-of-range roles, malformed message, missing columns, invalid raw record, unsupported policy/stage and impossible branch extraction. Projectors are never submitted as unitary gates. Exact comparisons use absolute tolerance $10^{-12}$, relative tolerance zero. Random frequencies are not required to equal exact probabilities.
+Sixteen malformed contracts are rejected before an additional native run, including nonnormalized/wrong-dtype input, noninteger/repeated roles, malformed message, missing columns, invalid raw record, unsupported correction policy and impossible branch extraction. Projectors are never submitted as unitary gates. Exact comparisons use absolute tolerance $10^{-12}$, relative tolerance zero. Random frequencies are not required to equal exact probabilities.
 
 Expected output of the complete program:
 
