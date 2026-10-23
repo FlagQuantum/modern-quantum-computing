@@ -4281,7 +4281,7 @@ p(x,y)=
 \end{cases}
 $$
 
-A classical sampler draws k independent fair bits s and returns (s,s), arranged in the declared physical role order. This produces **exactly** the requested distribution with O(k) bit operations and O(k) output storage, under the explicit unit-cost fair-bit model. The sampling problem therefore has a direct efficient classical solution despite its large Schmidt rank. Producing a classical record is not the same task as preparing the physical entangled state.
+A classical sampler draws k independent fair bits s and returns (s,s), arranged in the declared physical role order. This produces **exactly** the requested distribution with O(k) record operations and O(k) bits of output storage. Here O(k) means bounded by a constant times k for large k; one fair-bit draw and one indexed output-bit placement each cost one step, and the declared fixed role mapping is already available. The sampling problem therefore has a direct efficient classical solution despite its large Schmidt rank. Producing a classical record is not the same task as preparing the physical entangled state.
 
 ```python
 k,roles = 3,(5,1,3,0,4,2)  # left roles first,then right roles
@@ -4315,7 +4315,7 @@ All11native records obey the pair constraints;no frequency-equality test.
 
 The native code verifies three pairs in a nonadjacent role order; the complete program checks one through four pairs and two role orders. These finite checks validate the indexing and sampler comparison. The formula proves the all-k distribution.
 
-A statevector simulator may store exponentially many amplitudes for this example, while the direct sampler needs only k fair bits. Comparing against that statevector runtime would not establish an advantage over the appropriate classical baseline. Nor does this easy family prove that every entangled computation is easy: inserting a different algorithm or requesting different measurements changes the task. We have proved one classical upper bound, not BPP=BQP, a general simulation theorem or the absence of quantum advantage.
+A statevector simulator may store exponentially many amplitudes for this example, while the direct sampler needs only k fair bits. Comparing against that statevector runtime would not establish an advantage over the appropriate classical baseline. Nor does this easy family prove that every entangled computation is easy: inserting a different algorithm or requesting different measurements changes the task. We have proved one classical upper bound, not an equivalence between general classical and quantum computation, a general simulation theorem or the absence of quantum advantage.
 
 ### 7.9.8 Entanglement does not guarantee protocol fidelity or robustness
 

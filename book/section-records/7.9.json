@@ -17,7 +17,7 @@
     "Specified local operations and output tasks;fixed pure resource independent of unknown input.",
     "Ideal coherent no-cloning machine with normalized input-dependent residual;no blanket claim about approximate/heralded cloning.",
     "Ideal static protocol models;communication,ownership and phase/frame conventions explicitly accounted.",
-    "Classical O(k) claim applies only to declared Bell-pair computational sampling task with unit-cost fair bits,not all entangled computations."
+    "Classical O(k) claim applies only to declared Bell-pair computational sampling task with unit-cost fair-bit draws/indexed output placements with a fixed declared role map,not all entangled computations."
   ],
   "verification_obligations": [
     "No-signalling task counterexample and equal-prior chosen-bit success probability.",
@@ -103,6 +103,6 @@
     "pdf": "Existing PDF edition unchanged",
     "formula_display": "Actual default narrow IAB local build:four teleportation vectors and ignored-effect sum,resource-assisted no-cloning overlap,sampling cases,resource-phase residual/fidelity visually inspected. Resource table5rowsx4cells. Expanded7.9A-D answers6MathJax containers including3display blocks;raw$$absent and MathJax error count0. Existing horizontal scrolling available for wide equations/table;not a universal no-overflow claim.",
     "website": "Strict fresh build and73page links passed;publish exact rendered HTML and confirm online HTTP200/byte equality.",
-    "html_sha256": "e32a384ddecd824896faeae7094805d6da68b39e5148028c4325b0c2f772aa1d"
+    "html_sha256": "8199b425e2220344c150cec3e0fc1672ecca6869f877f430f811f0c3c2db78b1"
   }
 }
