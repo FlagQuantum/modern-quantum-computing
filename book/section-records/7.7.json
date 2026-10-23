@@ -1,0 +1,103 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-entanglement-and-quantum-information-protocols-7",
+  "ref": "7.7",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+  "depth": "F",
+  "result": "No-signalling through local nonselective measurement",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-2",
+    "sec-entanglement-and-quantum-information-protocols-3"
+  ],
+  "assumptions": [
+    "Same normalized finite pure joint input or specified fixed ensemble independently of Alice choice.",
+    "Separate local factors,no interaction/message carrier,complete Alice process and unconditioned Bob record.",
+    "General finite operator model sum MdagM=I and positive Bob effects sum E=I stated locally;spacelike causal propagation limit not derived from matrices.",
+    "IID independent fixed batches only for the empirical-difference bound,not the fundamental theorem."
+  ],
+  "verification_obligations": [
+    "Full squared-norm/joint-sum complete-projector proof and zero-branch boundary.",
+    "Explicit finite-operator/hidden-label remote-effect proof,including rectangular mathematical scope.",
+    "Local-unitary,adaptive-composition and initialized-ancilla/discard completeness identities.",
+    "Derive complex-conjugate Bell steering and unequal conditional weights.",
+    "Reject success-only incomplete filter and diagnose normalized-vector averaging.",
+    "Distinguish Alice-only process from Bob correction after classical receipt.",
+    "Derive whole-record effect argument and self-contained fixed-batch Markov variance bound."
+  ],
+  "formula_code_units": [
+    "signal",
+    "projectors",
+    "conditional",
+    "complete",
+    "discard",
+    "selection",
+    "message",
+    "records"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.2.8",
+      "scope": "Frozen contents locator printed93;no new full-text NC proof-review claim."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "scope": "Author-hosted January2018 manuscript;Theorem2.26/Corollary2.27 printed87-89,PDF95-97 inspected for finite complete-operator normalization scope. No source pages redistributed;local pure-branch proof self-contained."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/no_signalling.py",
+    "prose_checker": "scripts/check_no_signalling_prose.py",
+    "evidence": "book/section-evidence/7.7",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 100,
+    "additional_complete_program_classical_cases": 302,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 21,
+    "separate_transfer_circuits": 12,
+    "execution_ledger": {
+      "initial_failed_execution_native_runs": 91,
+      "corrected_complete_passed": 100,
+      "body_assembly": 21,
+      "body_plus_complete_checker": 121,
+      "transfer": 12,
+      "total_author_section_native_runs": 345,
+      "separate_7_6_regression": 262,
+      "note": "First run90native+302classical checks passed,then weak native execution91succeeded but ambiguous multiple-probability shortcut accessor failed. Initial source/captured stdout/contemporaneous summary retained;not a native bug or proof failure. Corrected named .measurement(name).value reads both outputs and checks Alice marginal;all final scientific runs passed. Classical hidden branches/trine/ensemble reports are not native circuits;future CI separate."
+    },
+    "malformed_contracts": 16,
+    "tolerance": "Deterministic full amplitudes/probabilities at absolute1e-12,relative0,no phase alignment/clipping/input repair. Positive1e-20branch retained;zero conditional undefined,nonzero squared norm underflow raises explicitly. Numerical admissibility is not an interval certificate. Native random count equality/confidence membership not required.",
+    "native_boundary": "Real static preparation/basis/meter CX/CRy and terminal outputs. General operators/effects/branches are classical references;weak and reset-isometry fixtures are specific coherent native constructions. Fresh Bob states are validation fixtures after presumed classical receipt,not native dynamic feedback or retained-state network execution. No spacetime/hardware/IID certification.",
+    "script_sha256": "8879bc47f807d5bd80d2e02a202429827d6e29c7f02b95a778e3d14a40ac591e"
+  },
+  "assessment": {
+    "tasks": [
+      "7.7-A completeness and zero branch",
+      "7.7-B hidden reset labels",
+      "7.7-C complex mapped resource and trine effects",
+      "7.7-D postselection/classical channel/budget"
+    ],
+    "answers": "Supplied;printed7.7C all nine native bases,conditional Pauli formulas and classical trine effects verified separately. Independent reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Corrected100complete/21literalbody/12transfer passed;7.6regression262passed. Complete302additional classical cases,transfer12classical reports+3fixed-ensemble checks. Strict fresh build,73page links,actual IAB main proofs/reset/table and expanded answers passed;independent review pending."
+  },
+  "production": {
+    "next_draft": "7.8 Entanglement swapping and quantum-network primitives",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual default narrow IAB local preview:complete-projector and finite-operator proofs with explicit S_x cancellation,reset completeness and branch formulas inspected. Conditional table4rowsx3cells. Expanded7.7A-D answers contain10MathJax containers,including2display blocks;raw$$absent and MathJax error count0. Long lines shortened;remaining wide expressions use existing horizontal-scroll containers,not a universal no-overflow claim.",
+    "website": "Strict new build and73page link check passed;publish exact rendered HTML and confirm online HTTP200/byte equality.",
+    "html_sha256": "b55c105834ae5cf03a3a2c6379c148d0dc9b2788b4f7aeef924e60cb0a1feea6"
+  }
+}

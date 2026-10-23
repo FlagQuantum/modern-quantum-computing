@@ -149,6 +149,33 @@
       "source_locators": [
         "NC:2.3"
       ]
+    },
+    {
+      "sequence": 53,
+      "batch": "B02",
+      "section_id": "sec-entanglement-and-quantum-information-protocols-7",
+      "ref": "7.7",
+      "title": "No-signalling and classical communication",
+      "depth": "F",
+      "requires": [
+        "sec-measurement-expectation-values-and-statistical-estimation-2",
+        "sec-entanglement-and-quantum-information-protocols-3"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+      "status": "draft",
+      "question": "Why can complete local quantum operations change conditional remote predictions but never an unconditioned local record distribution?",
+      "entry": "6.2 branch probabilities and ignored outcomes;7.3 phase-fixed Bell states.",
+      "exit": "Full complete-projector marginal proof,finite complete-operator extension and clear classical-record/causal boundary.",
+      "worked_case": "Z/X/Y Bell steering,unequal branch weights,weak/reset dilations,postselection,wrong vector averages and message-conditioned Bob corrections.",
+      "boundary": "Finite local complete process,no interaction/channel and all records retained;not derivation of relativistic causal speed or native dynamic/reset/network capability.",
+      "code_plan": "Visible native state preparation/analyzers/probabilities/samples;indexed classical branches,effects and completeness checks;actual coherent ancilla fixtures.",
+      "independent_check": "Scalar full-index statevectors,complete operator sums,all basis joint probabilities,multi-qubit ordered supports and normalized branch diagnostics.",
+      "transfer_task": "Fresh complex resource/mapped supports,positive effects and hidden local branches with printed exercise parameters.",
+      "source_locators": [
+        "NC:2.2.8"
+      ]
     }
   ]
 }

@@ -1,0 +1,1 @@
+Static pre-browser check found answerCclosing$$sharing a line with prose after an editorial line-break edit;original own-source fragment retained. Fixed standalone delimiters/blank lines and split projector conditions. Python/output blocks byte-identical,no native rerun needed. Actual final browser QA recorded separately.

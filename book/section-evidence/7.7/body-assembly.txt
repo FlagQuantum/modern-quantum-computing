@@ -1,0 +1,10 @@
+1 Shared Phi+:Bob's unconditioned computational probabilities are(1/2,1/2).
+2 Nine native analyzer pairs:sum over Alice's complete outcomes leaves every Bob basis marginal unchanged.
+3 Reused native states:Alice Z/X/Y branches steer Bob to Z/X/conjugate-Y vectors;no new native run.
+4 Three native weak-meter fixtures:complete M0/M1 branches preserve Bob;named probability outputs read explicitly.
+5 Native two-CX isometry:Alice=0,Bob-meter correlations retained;hidden branches are not added as vectors.
+6 Unequal weights,success-only postselection and normalized-vector averaging expose three different mistakes.
+Incomplete filter rejected before another native run;positive1e-20branch retained.
+7 Four fresh native Bob fixtures:received basis/outcome allow correction to |0>;this is not Alice-only signalling.
+8 Two fixed160record batches:exact Bob probabilities agree;random count equality is not required.
+IID model bound on a frequency difference>=1/4:at most1/20;21native body circuits total.

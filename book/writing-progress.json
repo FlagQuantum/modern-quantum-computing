@@ -521,6 +521,16 @@
       "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
       "record": "book/section-records/7.6.json",
       "author_execution": "passed:229complete/33body/16transfer+relocation CPUcomplex128 native circuits;exact Bell decode,resource/ownership boundary and message conventions;independent acceptance pending"
+    },
+    "sec-entanglement-and-quantum-information-protocols-7": {
+      "state": "draft",
+      "brief": "book/briefs/ch07.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+      "record": "book/section-records/7.7.json",
+      "author_execution": "passed:100corrected complete/21body/12transfer CPUcomplex128 native circuits;302additional classical cases;full finite local no-signalling proof and explicit selection/communication boundaries;original accessor failure retained"
     }
   },
   "existing_pilots": [

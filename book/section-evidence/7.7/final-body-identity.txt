@@ -1,0 +1,1 @@
+All8Python/output units byte-identical to executed fragments after math line breaks,answer delimiter repair,local S_x sum definition and explicit probability-postulate clarification. No illegal control characters. No extra native rerun for presentation-only edits;native author ledger345,7.6regression262separate.

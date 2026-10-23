@@ -1,0 +1,3 @@
+First actual execution:27basis+60ordered-pair+3generic preparations=90successful native runs and302classical reference cases. First weak-dilation execution succeeded and incremented RUNS to91,then result.probabilities raised:
+flagquantum.errors.ExecutionError: execution result contains multiple probabilities outputs; select one with measurement(...)
+The command tool returned the traceback;this file is a contemporaneous summary,not a saved stderr stream or a rerun. Initial source and captured stdout retained. The request supports named outputs;the mistake was using an ambiguous convenience accessor. No native API bug or no-signalling-theorem failure claimed.

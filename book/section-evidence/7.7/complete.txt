@@ -1,0 +1,7 @@
+27 native circuits:Bell,unequal and product inputs;all nine basis pairs,complex Y branches and unchanged Bob marginals passed.
+60 native circuits:all20ordered supports,complex spectators and independent full amplitudes passed.
+3 native generic preparations and302classical complete-instrument/effect cases passed,including ordered composite local supports.
+6 native coherent dilation fixtures:weak meter/reset-isometry marginals match classical branches;no collapse/reset endpoint claimed.
+4 native fresh Bob branch fixtures:record-dependent corrections give zero only after assumed classical receipt.
+16malformed contracts rejected;positive1e-20branch retained,zero branch undefined and nonzero-norm underflow explicit.
+100CPUcomplex128native circuits passed;postselection and classical communication are not Alice-only nonselective operations.

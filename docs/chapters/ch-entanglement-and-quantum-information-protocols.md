@@ -1,6 +1,6 @@
 # 7. Entanglement and Quantum Information Protocols
 
-**Working drafts: sections 7.1–7.6 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
+**Working drafts: sections 7.1–7.7 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
 
 <span id="sec-entanglement-and-quantum-information-protocols-1"></span>
 
@@ -2819,3 +2819,567 @@ The finite executions verify implementation; they do not replace the four-state 
 **Sources.** The frozen locator is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §2.3, “Application: superdense coding,” beginning on printed page 97 ([NC:2.3 locator](../references/proof-sources.md#source-nc-2-3)); the existing record is a contents-locator check, not a new full-text proof review. The public [IBM Quantum Learning superdense-coding lesson](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/superdense-coding) was inspected for the protocol and message conventions. Its register order and chronological Z/X choice differ from our phase-fixed convention and must be translated. Historical attribution is Bennett and Wiesner, [*Physical Review Letters* 69, 2881 (1992)](https://doi.org/10.1103/PhysRevLett.69.2881); publisher metadata and abstract were inspected, not a full experimental-paper reproduction. All derivations and execution references above are local original work. Section 7.7 develops no-signalling and classical-communication distinctions further.
 
 <!-- end-section-7.6 -->
+
+<span id="sec-entanglement-and-quantum-information-protocols-7"></span>
+
+## 7.7 No-signalling and classical communication
+
+A measurement outcome can change the conditional predictions for a distant entangled system. That fact does not give the measuring party a way to choose the distant observer's unlabelled statistics. The difference is between a selected branch, the sum over all branches and a record that has actually been communicated. We will prove the no-signalling statement, including its completeness assumption, and then identify exactly what changes when classical information is available.
+
+The prerequisites are [6.2, conditional states and ignored outcomes](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-2), and [7.3, Bell states and basis changes](#sec-entanglement-and-quantum-information-protocols-3). Depth **F** requires the complete marginal-probability proof. We first prove it for arbitrary finite complete projective measurements, then give a local finite-operator bridge that covers local unitaries, weak measurements, ancillary systems and discarded records. Density-operator notation is not needed; its systematic development remains in Chapter 8.
+
+**Scope and execution contract.** Alice and Bob act on separate tensor factors A,B of a fixed shared state, with no interaction or message channel during the comparison. Alice chooses a controllable setting x; Bob's device setting y is held fixed when comparing x choices. The initial joint preparation must be the same, or the same stated ensemble, for every x. Alice's process is complete, and Bob keeps all records. The theorem concerns the finite quantum model under these assumptions. It does not derive the relativistic speed limit from matrix algebra, nor audit spacelike separation in a real experiment.
+
+Default qubits are A=q0 and B=q1, with q0 most significant in full indices. Angles are radians and probabilities are dimensionless. The eight Python units are cumulative from the repository root with requirements-examples.txt installed. [no_signalling.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/no_signalling.py) contains the complete program. Native FlagQuantum 0.3.1 performs the declared static preparations, basis rotations, coherent local-meter gates, exact probabilities and terminal samples. Conditional branches and general operator/effect calculations are explicit classical analysis, not invented native collapse, reset, general-instrument or classical-network endpoints. Deterministic checks use CPU complex128, absolute tolerance $10^{-12}$ and relative tolerance zero, without phase alignment, probability clipping or input normalization repair.
+
+<span id="formula-code-7-7-signal"></span>
+
+### 7.7.1 — Define the operational test for a signal
+
+**Formula.** Let x be a bit or other finite setting Alice can deliberately choose, a her random outcome, and b a result Bob can read locally. A usable change in Bob's probability law would require an event C for which
+
+$$
+p_B(C\mid x,y)\ne p_B(C\mid x',y).
+$$
+
+The no-signalling conclusion is equality for every C, every fixed y and every pair of allowed local choices x,x′. The conditional law $p(b\mid a,x,y)$ is a different object: it presumes that the branch label a is available.
+
+**Derivation of the distinction.** Alice can choose a measurement basis; she cannot, under the measurement postulate, force whichever random outcome is convenient. Bob cannot sort his records by an unreceived label. His probability is the law of total probability,
+
+$$
+p_B(b\mid x,y)
+=\sum_a p(a\mid x)\,p(b\mid a,x,y).
+$$
+
+Terms of zero weight contribute zero without assigning a normalized state to an impossible branch. No signalling means that this weighted sum, not every term separately, is independent of x.
+
+For the concrete Bell resource,
+
+$$
+|\Phi^+\rangle_{AB}=(|00\rangle+|11\rangle)/\sqrt2,
+$$
+
+Bob's computational probabilities start at one half each.
+
+**FlagQuantum code and verification result.** A real native preparation/run establishes the fixture and its unconditioned Bob marginal.
+
+```python
+import math, itertools
+import torch
+import flagquantum as fq
+from examples.foundations import no_signalling as s
+from examples.foundations.tensor_spaces import OPTIONS
+D, ATOL = s.D, s.ATOL
+c = fq.Circuit(2,dtype=D).h(0).cx(0,1)
+out = fq.run(c,outputs=[fq.probabilities(qubits=(1,))],options=OPTIONS)
+s.RUNS += 1
+phi = torch.tensor([1,0,0,1],dtype=D)/math.sqrt(2)
+assert torch.allclose(out.statevector()[0],phi,atol=ATOL,rtol=0)
+assert torch.allclose(out.probabilities[0],torch.tensor([.5,.5],dtype=torch.float64),atol=ATOL,rtol=0)
+print("Shared Phi+:Bob's unconditioned computational probabilities are(1/2,1/2).")
+```
+
+```text
+Shared Phi+:Bob's unconditioned computational probabilities are(1/2,1/2).
+```
+
+This verifies a simulator prediction, not a distance, clock synchronization or communication speed. The general result follows from the proof below.
+
+<span id="formula-code-7-7-projectors"></span>
+
+### 7.7.2 — Sum a complete local measurement, not a selected outcome
+
+**Formula.** Let $|\Psi\rangle\in\mathcal H_A\otimes\mathcal H_B$ be any normalized finite joint pure state. For each x, Alice's projectors obey
+
+$$
+\begin{gathered}
+P_{a|x}=P_{a|x}^\dagger,\\
+P_{a|x}P_{a'|x}=\delta_{aa'}P_{a|x},\\
+\sum_aP_{a|x}=I_A.
+\end{gathered}
+$$
+
+Bob uses any complete projective family $\{Q_{b|y}\}_b$. Local tensor-factor operations commute:
+
+$$
+\begin{gathered}
+(P_{a|x}\otimes I_B)(I_A\otimes Q_{b|y})\\
+=P_{a|x}\otimes Q_{b|y}.
+\end{gathered}
+$$
+
+The joint probability is
+
+$$
+q(a,b\mid x,y)
+=\|(P_{a|x}\otimes Q_{b|y})|\Psi\rangle\|^2.
+$$
+
+**Full marginal proof.** Expand the squared norm as an inner product and use both projectors' idempotence:
+
+$$
+q(a,b\mid x,y)
+=\langle\Psi|P_{a|x}\otimes Q_{b|y}|\Psi\rangle.
+$$
+
+Now sum over **every** Alice outcome:
+
+$$
+\begin{gathered}
+\sum_a q(a,b\mid x,y)\\
+=\left\langle\Psi\left|
+\left(\sum_aP_{a|x}\right)\otimes Q_{b|y}
+\right|\Psi\right\rangle\\
+=\langle\Psi|I_A\otimes Q_{b|y}|\Psi\rangle.
+\end{gathered}
+$$
+
+The last expression is Bob's probability if Alice does nothing. It contains no x. Summing it over any set C of Bob outcomes proves the event version of no-signalling. Summing over all b gives one, so no omitted probability is hiding in this calculation. Exchanging the two parties proves the corresponding statement in the other direction.
+
+For a branch with $p(a\mid x)>0$, the assumed ideal update gives
+
+$$
+|\Psi_{a|x}\rangle
+=\frac{(P_{a|x}\otimes I)|\Psi\rangle}{\sqrt{p(a\mid x)}}.
+$$
+
+Multiplying its Bob prediction by $p(a\mid x)$ cancels the normalization denominator and returns q. If p=0, the projected vector has zero norm and is zero, so all its joint probabilities are zero. There is no division by zero in the marginal proof.
+
+**FlagQuantum code and verification result.** The helper runs all nine Alice/Bob Z,X,Y analyzer pairs. Its native terminal joint probabilities are compared with independent local-projector calculations, and their Alice sum is compared with the probability before Alice's measurement.
+
+```python
+reports = {}
+for alice,bob in itertools.product(("Z","X","Y"),repeat=2):
+    reports[(alice,bob)] = s.query(alice=alice,bob=bob)
+    report = reports[(alice,bob)]
+    assert torch.allclose(report["joint"].sum(0),torch.tensor([.5,.5],dtype=torch.float64),atol=ATOL,rtol=0)
+    assert torch.allclose(report["marginal"],report["baseline"],atol=ATOL,rtol=0)
+print("Nine native analyzer pairs:sum over Alice's complete outcomes leaves every Bob basis marginal unchanged.")
+```
+
+```text
+Nine native analyzer pairs:sum over Alice's complete outcomes leaves every Bob basis marginal unchanged.
+```
+
+For a Z measurement there is no analyzer gate; for X use H; for Y use P(−π/2), then H. Without a restoring rotation, the analyzer/readout operators are $|a\rangle\langle a|R_x$, whereas ideal projectors in the original basis are $R_x^\dagger|a\rangle\langle a|R_x$. Their local output vectors differ, but their remote branch probabilities agree. The program checks this agreement explicitly. Terminal sampling does not collapse the returned statevector.
+
+<span id="formula-code-7-7-conditional"></span>
+
+### 7.7.3 — Conditional predictions can change without a signal
+
+**Formula.** For Phi+, suppose Alice measures in the orthonormal basis $\{|u_a\rangle\}$. Write $|u_a\rangle=u_{a0}|0\rangle+u_{a1}|1\rangle$. Direct contraction gives
+
+$$
+(\langle u_a|_A\otimes I_B)|\Phi^+\rangle
+=\frac{u_{a0}^*|0\rangle+u_{a1}^*|1\rangle}{\sqrt2}.
+$$
+
+Its squared norm is one half, so Bob's normalized conditional vector is $|u_a^*\rangle$. The complex conjugate matters for Y.
+
+| Alice basis | Bob conditional vector for a=0 | Bob conditional vector for a=1 |
+|---|---|---|
+| Z | $\lvert0\rangle$ | $\lvert1\rangle$ |
+| X | $\lvert+\rangle$ | $\lvert-\rangle$ |
+| Y | $\lvert-i\rangle$ | $\lvert+i\rangle$ |
+
+Here $|\pm i\rangle=(|0\rangle\pm i|1\rangle)/\sqrt2$ and $|\pm\rangle=(|0\rangle\pm|1\rangle)/\sqrt2$. Every row has branch weights one half.
+
+**Derivation.** Z-conditioned Bob results are deterministic in Z, X-conditioned results deterministic in X, and Y-conditioned results have the opposite Y sign. Averaging the two outcomes in the corresponding row makes every Bob Pauli mean zero. More generally, for any Hermitian effect $E=\begin{pmatrix}u&v\\v^*&w\end{pmatrix}$, averaging each of these orthogonal conditional pairs gives $(u+w)/2$. Thus changing the ensemble description does not change any unlabelled Bob measurement probability.
+
+**Code and verification result.** Reuse the actual native analyzed states from the preceding unit. Slicing an Alice row and normalizing it is classical ideal-branch analysis; it is not a new native measurement or remotely accessible statevector.
+
+```python
+expected = {"Z":(torch.tensor([1,0],dtype=D),torch.tensor([0,1],dtype=D)),
+    "X":(torch.tensor([1,1],dtype=D)/math.sqrt(2),torch.tensor([1,-1],dtype=D)/math.sqrt(2)),
+    "Y":(torch.tensor([1,-1j],dtype=D)/math.sqrt(2),torch.tensor([1,1j],dtype=D)/math.sqrt(2))}
+for basis in ("Z","X","Y"):
+    report = reports[(basis,"Z")]
+    for a in (0,1):
+        p = float(report["weights"][a])
+        bob_column = report["analyzed_state"].reshape(2,2)[a]/math.sqrt(p)
+        assert abs(p-.5)<ATOL
+        assert torch.allclose(bob_column,expected[basis][a],atol=ATOL,rtol=0)
+for a in (0,1):
+    assert abs(float(reports[("Y","Y")]["conditional"][a][1-a])-1)<ATOL
+print("Reused native states:Alice Z/X/Y branches steer Bob to Z/X/conjugate-Y vectors;no new native run.")
+```
+
+```text
+Reused native states:Alice Z/X/Y branches steer Bob to Z/X/conjugate-Y vectors;no new native run.
+```
+
+An observer who later receives Alice's labels can verify these conditional correlations. Before receiving them, Bob has no local event telling him which row's member occurred. Bell correlations can violate a local hidden-variable factorization while still obeying the marginal equality proved here.
+
+<span id="formula-code-7-7-complete"></span>
+
+### 7.7.4 — Extend the proof to a complete local process
+
+**Formula and local bridge.** Projectors are not the only allowed local operations. Describe a finite local process by operators $M_{ak|x}:\mathcal H_A\to\mathcal H_{A'}$, with visible outcome a and optional unobserved label k. Require
+
+$$
+\begin{gathered}
+\sum_{a,k}M_{ak|x}^\dagger M_{ak|x}=I_A\\
+\text{for every }x.
+\end{gathered}
+$$
+
+Denote the local sum by $S_x=\sum_{a,k}M_{ak|x}^\dagger M_{ak|x}$, so $S_x=I_A$. For pure global input, define the unnormalized branches
+
+$$
+\begin{gathered}
+|\eta_{ak|x}\rangle=(M_{ak|x}\otimes I_B)|\Psi\rangle,\\
+p(a\mid x)=\sum_k\|\eta_{ak|x}\|^2.
+\end{gathered}
+$$
+
+Completeness implies $\sum_a p(a\mid x)=\langle\Psi|I|\Psi\rangle=1$. Let Bob's outcome effects $E_{b|y}$ be positive Hermitian matrices summing to $I_B$. Positivity means every quadratic form is nonnegative; the identity sum normalizes their probabilities. Projectors are a special case, but $E^2=E$ is not assumed here.
+
+For this extension, the operator/effect probability rule is a physical assumption, just as the projective update was in 6.2; the no-signalling identity is its mathematical consequence. The joint probability and conditional prediction are
+
+$$
+\begin{gathered}
+q(a,b\mid x,y)\\
+=\sum_k\langle\eta_{ak|x}|I_{A'}\otimes E_{b|y}|\eta_{ak|x}\rangle.
+\end{gathered}
+$$
+
+$$
+\begin{gathered}
+p(b\mid a,x,y)=\frac{q(a,b\mid x,y)}{p(a\mid x)}\\
+\text{only when }p(a\mid x)>0.
+\end{gathered}
+$$
+
+**Full complete-process proof.** Insert each unnormalized branch into q, multiply tensor factors and then sum. Linearity collects the local operator sum into Sₓ:
+
+$$
+\begin{gathered}
+\sum_a q(a,b\mid x,y)\\
+=\sum_{a,k}\langle\Psi|
+M_{ak|x}^\dagger M_{ak|x}\otimes E_{b|y}
+|\Psi\rangle\\
+=\langle\Psi|S_x\otimes E_{b|y}|\Psi\rangle\\
+=\langle\Psi|I_A\otimes E_{b|y}|\Psi\rangle.
+\end{gathered}
+$$
+
+No Bob measurement choice and no input entanglement was restricted. Rectangular M are allowed in this mathematical statement; $I_{A'}$ in the intermediate prediction contracts to the input-space identity through completeness. When hidden k values remain, a single normalized vector need not describe the visible outcome a; keep their conditional ensemble rather than adding the vectors.
+
+This finite-operator update is the stated quantum-process model, not a claim that arbitrary nonlinear transformations are physically allowed. The reference program uses square qubit matrices for its bounded examples; its numerical completeness and positivity checks are tolerance checks, not interval certificates. General channel representations receive their full treatment in Chapter 9.
+
+**FlagQuantum code and verification result.** For weak Z measurement with $0\leq\kappa\leq1$, take
+
+$$
+M_0=\operatorname{diag}\left(\sqrt{(1+\kappa)/2},\sqrt{(1-\kappa)/2}\right),
+$$
+$$
+M_1=\operatorname{diag}\left(\sqrt{(1-\kappa)/2},\sqrt{(1+\kappa)/2}\right).
+$$
+
+Their squared diagonal entries sum to one, proving completeness. A local zero meter C=q2 can realize these branches coherently: use Ry(C,β₀), CRy(A,C,β₁−β₀), where $\beta_0=\arccos\kappa$ and $\beta_1=\pi-\beta_0$. For A=i, the meter angle is βᵢ; its 0/1 amplitudes are precisely the two M entries. This constructs only this specified dilation, not a general native-instrument compiler.
+
+The program requests two named probability outputs. Read each with measurement(name).value; the shortcut .probabilities is ambiguous when more than one probability output is present.
+
+```python
+theta, phase, strength = .87, -.39, .43
+groups = s.weak(strength)
+beta0 = math.acos(strength);beta1 = math.pi-beta0
+c = fq.Circuit(3,dtype=D).ry(0,theta).p(0,phase).cx(0,1)
+c.ry(2,beta0).cry(0,2,beta1-beta0)  # local meter q2 initially zero
+out = fq.run(c,outputs=[fq.probabilities(qubits=(2,1),name="joint"),
+    fq.probabilities(qubits=(0,),name="alice")],options=OPTIONS)
+s.RUNS += 1
+_, v = s.fixture(theta,phase)
+report = s.analyze(v,(0,),groups,(1,),s.projectors("Z"))
+assert torch.allclose(out.measurement("joint").value[0].reshape(2,2),report["joint"],atol=ATOL,rtol=0)
+assert torch.allclose(report["marginal"],torch.tensor([math.cos(theta/2)**2,math.sin(theta/2)**2],dtype=torch.float64),atol=ATOL,rtol=0)
+for meter,group in enumerate(groups):
+    assert torch.allclose(out.statevector()[0][meter::2],s.apply(v,group[0],(0,)),atol=ATOL,rtol=0)
+assert torch.allclose(out.measurement("alice").value[0],report["baseline"],atol=ATOL,rtol=0)
+for kappa in (0.,1.):s.dilation(kappa,theta,phase)
+print("Three native weak-meter fixtures:complete M0/M1 branches preserve Bob;named probability outputs read explicitly.")
+```
+
+```text
+Three native weak-meter fixtures:complete M0/M1 branches preserve Bob;named probability outputs read explicitly.
+```
+
+All three native fixtures leave Bob's marginal unchanged, including strength endpoints zero and one. Selecting a meter branch remains classical analysis of the unmeasured joint vector. No native sampled collapse or remote conditional execution is claimed.
+
+<span id="formula-code-7-7-discard"></span>
+
+### 7.7.5 — Include discarded records, local resets and local control
+
+**Formula.** A local reset model has one visible outcome and two hidden operators,
+
+$$
+\begin{gathered}
+R_0=|0\rangle\langle0|,\qquad R_1=|0\rangle\langle1|,\\
+R_0^\dagger R_0+R_1^\dagger R_1=I.
+\end{gathered}
+$$
+
+For $|\Psi\rangle=c|00\rangle+e^{i\phi}s|11\rangle$, the two hidden branches are $c|00\rangle$ and $e^{i\phi}s|01\rangle$. Predictions must add their quadratic forms; adding the vectors would invent a coherent Bob superposition that the discarded record does not supply.
+
+**Derivation and finite-operation scope.** The complete-process proof immediately preserves Bob's probabilities for this reset. It also includes a single local unitary U as the one-operator family, since $U^\dagger U=I$. If Alice applies an outcome-dependent local unitary $V_a$ after $M_a$, the operators are $V_aM_a$ and
+
+$$
+\sum_a M_a^\dagger V_a^\dagger V_aM_a
+=\sum_a M_a^\dagger M_a=I.
+$$
+
+More general finite local adaptive procedures remain complete. At a history h, let the next local operations be $N_{j|h}$ with $\sum_jN_{j|h}^\dagger N_{j|h}=I$. For the accumulated branch Kₕ,
+
+$$
+\sum_j(N_{j|h}K_h)^\dagger(N_{j|h}K_h)=K_h^\dagger K_h.
+$$
+
+Summing from the leaves of a finite decision tree back to its root gives identity. Keeping or forgetting labels merely groups these leaf operators. Thus local feedback does not evade the theorem.
+
+A local ancillary unitary followed by forgetting an ancilla also fits. With ancilla initialized in |0⟩, its operators are $K_j=(I_{A'}\otimes\langle j|)U(I_A\otimes|0\rangle)$. Inserting $\sum_j|j\rangle\langle j|=I$ between $U^\dagger,U$ proves $\sum_jK_j^\dagger K_j=I$. These identities cover finite standard local preparations, gates, measurements, local controls and discards. For any specified finite ensemble of initial pure states with fixed weights independent of x, applying the result to each component and averaging preserves the same equality. No density-operator update is silently assumed as a prerequisite.
+
+**FlagQuantum code and verification result.** A native coherent fixture implements $|i\rangle_A|0\rangle_C\mapsto|0\rangle_A|i\rangle_C$ by CX(A,C), CX(C,A). Its full output is
+
+$$
+|0\rangle_A\left(c|00\rangle+e^{i\phi}s|11\rangle\right)_{BC}.
+$$
+
+Alice's original qubit is zero, while its correlations have moved to her local meter. Forgetting that meter gives the reset predictions. This is an explicitly executed isometry on the zero-meter input subspace, not a native reset call or a hardware dissipation model.
+
+```python
+hidden = s.reset_groups()
+reset_report = s.analyze(v,(0,),hidden,(1,),s.projectors("X"))
+assert len(reset_report["columns"])==1 and len(reset_report["columns"][0])==2
+assert abs(float(reset_report["weights"][0])-1)<ATOL
+assert torch.allclose(reset_report["marginal"],reset_report["baseline"],atol=ATOL,rtol=0)
+native, meter_joint = s.dilation(theta=theta,phase=phase,kind="reset")
+target = torch.zeros(8,dtype=D)
+target[0]=math.cos(theta/2);target[3]=complex(math.cos(phase),math.sin(phase))*math.sin(theta/2)
+assert torch.allclose(native,target,atol=ATOL,rtol=0)
+print("Native two-CX isometry:Alice=0,Bob-meter correlations retained;hidden branches are not added as vectors.")
+```
+
+```text
+Native two-CX isometry:Alice=0,Bob-meter correlations retained;hidden branches are not added as vectors.
+```
+
+The environment that stores the discarded information matters to the joint state, even though Bob's unconditioned probabilities remain unchanged.
+
+<span id="formula-code-7-7-selection"></span>
+
+### 7.7.6 — Expose three incorrect routes to an apparent signal
+
+**Formula.** First consider the unequal resource $c|00\rangle+e^{i\phi}s|11\rangle$, with $c=\cos(\theta/2)$ and $s=\sin(\theta/2)$. Alice's Z outcomes have probabilities $c^2,s^2$. The correctly weighted Bob Z probability is
+
+$$
+p_B(0)=c^2\cdot1+s^2\cdot0=c^2.
+$$
+
+An equal-weight average of the normalized branches instead gives one half. Ignoring an outcome does not mean forgetting its probability weight.
+
+Second, Phi+ with Alice Z measurement gives $p_B(0\mid a=0)=1$ but $p_B(0)=1/2$. Keeping only a=0 is postselection. Its unnormalized success joint probability is one half; it becomes one only after dividing by success probability one half. The single filter $F=|0\rangle\langle0|$ has $F^\dagger F\ne I$. It is not a deterministic complete process.
+
+Third, the vectors |0⟩ and |1⟩, each with weight one half, cannot be replaced by the normalized vector sum |+⟩. The ensemble predicts Bob X=+ with probability one half; |+⟩ predicts one. Changing the unobservable phase of one measured branch would even change that false vector-average prediction.
+
+**Why this does not enable communication.** Alice's local decision to retain a record does not delete Bob's other records. Bob needs an acceptance label, an agreed record match or another physical indication to identify the selected subset. If detection or transmission timing carries that indication, it is itself a communication channel, outside the no-channel assumption. Alice also cannot convert a probabilistic filter into deterministic nonlinear renormalization by simply declaring its failed outcomes absent.
+
+**Code and verification result.** One new native unequal-resource run checks the weights; the earlier native Bell runs supply the other two comparisons. The incomplete-filter contract is rejected before another native execution. A separate explicit floating-point reference retains a positive probability near $10^{-20}$; it is not a native tiny-amplitude preparation claim.
+
+```python
+unequal = s.query(.83,.47,"Z","Z")
+weighted = sum(float(p)*q for p,q in zip(unequal["weights"],unequal["conditional"]))
+unweighted = sum(unequal["conditional"])/2
+assert torch.allclose(weighted,unequal["baseline"],atol=ATOL,rtol=0)
+assert abs(float(unweighted[0]-weighted[0]))>.1
+assert abs(float(reports[("Z","Z")]["conditional"][0][0])-1)<ATOL
+assert abs(float(reports[("Z","Z")]["marginal"][0])-.5)<ATOL
+wrong_vector = torch.tensor([1,1],dtype=D)/math.sqrt(2)
+wrong_p = float(torch.vdot(wrong_vector,s.projectors("X")[0]@wrong_vector).real)
+assert abs(wrong_p-1)<ATOL
+assert abs(float(reports[("Z","X")]["marginal"][0])-.5)<ATOL
+before = s.RUNS
+try:s.instrument(((s.P0,),),2)
+except ValueError:pass
+else:raise AssertionError("Incomplete deterministic filter admitted")
+assert before==s.RUNS
+rare = s.analyze(torch.tensor([1,0,0,1e-10],dtype=D),(0,),s.groups_for("Z"),(1,),s.projectors("Z"))
+assert float(rare["weights"][1])>0
+print("Unequal weights,success-only postselection and normalized-vector averaging expose three different mistakes.")
+print("Incomplete filter rejected before another native run;positive1e-20branch retained.")
+```
+
+```text
+Unequal weights,success-only postselection and normalized-vector averaging expose three different mistakes.
+Incomplete filter rejected before another native run;positive1e-20branch retained.
+```
+
+The complete program also checks that zero-probability branches have no normalized conditional distribution, and that a nonzero projected column whose squared norm underflows raises an explicit error. A numerical threshold is not permission to delete rare physical outcomes.
+
+<span id="formula-code-7-7-message"></span>
+
+### 7.7.7 — State what a classical message permits Bob to do
+
+**Formula.** In the Phi+ Z example, Bob's branch is |a⟩. If a classical record a arrives, Bob may apply $X^a$ to obtain |0⟩ on every branch. Before receipt his Z=0 probability is one half; after the record-dependent correction it is one.
+
+This does not contradict the theorem. The total protocol now contains Bob operations chosen using information from Alice. Its branch operators act on both systems, not just A:
+
+$$
+L_a=P_a\otimes X^a.
+$$
+
+Although the total process is normalized, it is not of the form $M_a\otimes I_B$ required by the Alice-only statement.
+
+For Alice X measurement, Bob's branch is $Z^a|+\rangle$. If both the basis setting and a are known, he applies Zᵃ, then H:
+
+$$
+H Z^a Z^a|+\rangle=|0\rangle.
+$$
+
+**Derivation of the distinction.** Merely learning a changes which subset of existing records is being predicted. Actually applying a correction changes Bob's subsequent local experiment. Both actions use available classical information; neither is an Alice-only mechanism for altering an unlabelled remote distribution. A pre-agreed basis does not reveal Alice's unpredictable outcome.
+
+**FlagQuantum code and verification result.** Four fresh static one-qubit runs prepare the simulator-known conditional fixtures and execute the selected correction gates. The host is given the presumed received record. These are checks of the correction logic, not a native classical-network or mid-circuit feedback implementation on the retained physical Bob system.
+
+```python
+for basis,a in itertools.product(("Z","X"),(0,1)):
+    # Fresh known conditional-state fixtures,not native mid-circuit feedback.
+    c = fq.Circuit(1,dtype=D)
+    if basis=="Z":
+        if a:c.x(0)  # prepare |a>
+        if a:c.x(0)  # message-dependent X^a
+    else:
+        c.h(0)
+        if a:c.z(0)  # prepare +/- branch
+        if a:c.z(0)  # message-dependent Z^a
+        c.h(0)
+    out = fq.run(c,outputs=[fq.probabilities(),fq.samples()],shots=17,options=OPTIONS)
+    s.RUNS += 1
+    assert torch.allclose(out.statevector()[0],torch.tensor([1,0],dtype=D),atol=ATOL,rtol=0)
+    assert bool((out.samples==0).all())
+print("Four fresh native Bob fixtures:received basis/outcome allow correction to |0>;this is not Alice-only signalling.")
+```
+
+```text
+Four fresh native Bob fixtures:received basis/outcome allow correction to |0>;this is not Alice-only signalling.
+```
+
+Teleportation needs its two classical outcome bits for this reason. Superdense coding instead changes Bob's accessible system when a qubit is physically delivered. Neither protocol is a counterexample to the fixed-system, no-communication theorem. If the parties are spacelike separated and no classical or quantum carrier can arrive, these resources are unavailable. The physical causal propagation restriction is a separate assumption; the matrix proof shows that entanglement alone adds no signalling channel.
+
+<span id="formula-code-7-7-records"></span>
+
+### 7.7.8 — Compare whole records without mistaking fluctuation for a signal
+
+**Formula.** The theorem applies to every Bob effect, not just Pauli means. A finite Bob protocol that adapts its measurement to its own past record has leaf operators Tₕ. The same decision-tree calculation as in 7.7.5 gives $\sum_hT_h^\dagger T_h=I$. Its complete-record effects are $E_h=T_h^\dagger T_h$. Applying the complete-process proof to each Eₕ shows that every local record probability is independent of Alice's setting. Any decision rule on those records just sums such probabilities and is likewise independent.
+
+Independence between repetitions is **not** needed for this fundamental statement: one can group the entire fixed shared preparation into a larger finite A/B system. It is needed for the following simple sampling bound. Assume two independent batches, each of N independent, identically prepared Bernoulli records for the same Bob event probability p. For the empirical difference $\widehat d=\widehat p_x-\widehat p_{x'}$,
+
+$$
+\mathbb E\widehat d=0,\qquad
+\operatorname{Var}(\widehat d)=\frac{2p(1-p)}N\leq\frac1{2N}.
+$$
+
+**Derivation.** Each indicator has variance p(1−p); independent averaging divides by N, and independent batch differences add the two variances. The inequality follows from $p(1-p)=1/4-(p-1/2)^2\leq1/4$. On $|\widehat d|\geq\epsilon$, the nonnegative variable $\widehat d^2$ is at least ε², so
+
+$$
+\epsilon^2\Pr(|\widehat d|\geq\epsilon)
+\leq\mathbb E\widehat d^2
+\leq\frac1{2N}.
+$$
+
+Thus $N\geq1/(2\delta\epsilon^2)$ suffices for probability at most δ. This is a fixed-budget model bound, not a certificate of hardware independence or a stopping rule.
+
+**FlagQuantum code and verification result.** Two actual terminal-sample batches use different Alice bases on a complex, nonmaximal resource in ordered four-qubit support (q3,q0). Their exact Bob probabilities agree, while finite counts need not. N=160, ε=1/4, δ=1/20 satisfy the bound. The code checks structure and exact probabilities; it does not require equal counts or require a random interval to contain its target.
+
+```python
+N, epsilon, delta = 160, .25, .05
+rZ = s.query(.91,-.63,"Z","Z",n=4,pair=(3,0),shots=N,seed=73)
+rX = s.query(.91,-.63,"X","Z",n=4,pair=(3,0),shots=N,seed=79)
+assert torch.allclose(rZ["marginal"],rX["marginal"],atol=ATOL,rtol=0)
+for report in (rZ,rX):
+    assert int(report["counts"].sum())==N
+    assert 0<=int(report["bits"][:,1].sum())<=N
+assert 1/(2*N*epsilon**2)<=delta
+assert s.RUNS==21
+print("Two fixed160record batches:exact Bob probabilities agree;random count equality is not required.")
+print("IID model bound on a frequency difference>=1/4:at most1/20;21native body circuits total.")
+```
+
+```text
+Two fixed160record batches:exact Bob probabilities agree;random count equality is not required.
+IID model bound on a frequency difference>=1/4:at most1/20;21native body circuits total.
+```
+
+A repeatable difference between exact simulator marginals would indicate a reference, indexing or locality-contract error to investigate. A finite empirical difference alone does not establish signalling. Source changes correlated with x, selective record loss or a physical cross-party gate violate the assumptions and must be diagnosed separately.
+
+### Complete execution and implementation boundaries
+
+Run the complete program and the literal-body checker:
+
+~~~bash
+python examples/foundations/no_signalling.py
+python scripts/check_no_signalling_prose.py
+~~~
+
+The program checks Bell, unequal and product inputs, all nine local basis pairs and all twenty ordered two-qubit supports across two-, three- and four-qubit registers. Three generic native preparations support 302 additional classical local-instrument/effect checks, including nonadjacent composite local supports. Weak/reset coherent fixtures and the four fresh Bob correction fixtures are counted as actual native executions; classical branch/effect calculations are not quantum executions.
+
+Sixteen malformed contracts are rejected before another native run: incomplete/empty/non-normalized local operator families; incomplete/nonpositive Bob effects; nonnormalized/wrong-dtype global input; overlapping/out-of-range supports; invalid weak strength; unknown basis; invalid shots/seed; and a nonliteral classical bit. Positive rare outcomes are retained, impossible branches remain undefined, and positive squared-norm underflow is explicit. The reference's two-to-four-qubit limit is a teaching bound, not a FlagQuantum capacity limit.
+
+Expected output of the complete program:
+
+```text
+27 native circuits:Bell,unequal and product inputs;all nine basis pairs,complex Y branches and unchanged Bob marginals passed.
+60 native circuits:all20ordered supports,complex spectators and independent full amplitudes passed.
+3 native generic preparations and302classical complete-instrument/effect cases passed,including ordered composite local supports.
+6 native coherent dilation fixtures:weak meter/reset-isometry marginals match classical branches;no collapse/reset endpoint claimed.
+4 native fresh Bob branch fixtures:record-dependent corrections give zero only after assumed classical receipt.
+16malformed contracts rejected;positive1e-20branch retained,zero branch undefined and nonzero-norm underflow explicit.
+100CPUcomplex128native circuits passed;postselection and classical communication are not Alice-only nonselective operations.
+```
+
+The first author run completed 90 native preparations/analyzers and then one weak-meter execution before an ambiguous multiple-probability accessor raised an error. That initial source and captured output remain archived. The correction uses named measurement results; it does not change the physical reference or relax tolerances, and is not a claimed native framework bug. The corrected full program and all literal body units were executed. Independent mathematical/implementation review and reader trial remain pending.
+
+### Understanding checks and transfer exercises
+
+**7.7-A — Locate the exact cancellation.** Reproduce the complete-projector proof with an entangled input of arbitrary finite dimensions. Identify the line that fails if Alice keeps only one outcome. Explain why a zero-probability branch does not require defining a conditional state.
+
+**7.7-B — Keep the hidden label hidden.** For $c|00\rangle+e^{i\phi}s|11\rangle$, compute Bob's X probabilities after the one-visible-outcome reset family R₀,R₁. Compare with adding and normalizing its two hidden branch vectors. What local environment holds the missing coherence in the native two-CX fixture?
+
+**7.7-C — Fresh complex, ordered-support experiment.** Use θ=1.03, φ=−.52 with (A,B)=(q2,q0) in four qubits. Use the helper's spectator preparation Ry(.39+.11j), P(−.17(j+1)) at j=1,3. Derive Bob's conditional Pauli means for Alice X and Y outcomes, then verify all nine local basis pairs. Predict Bob's unconditioned Z=0 probability. Extend the classical check to three trine effects $E_j=(2/3)|t_j\rangle\langle t_j|$, where $|t_j\rangle=(|0\rangle+e^{2\pi i j/3}|1\rangle)/\sqrt2$ and j=0,1,2.
+
+**7.7-D — Explain the purported faster-than-light protocol.** Alice chooses Z or X, retains only a=0, and claims Bob can tell the choice because his retained states are |0⟩ or |+⟩. State what record Bob actually has before any message and what extra data identifies Alice's subset. If she sends the labels and Bob corrects every branch, identify the changed premise. Under the IID batch assumptions, find N per batch for ε=.1,δ=.05.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 7.7-A–D</summary>
+
+**A.** Expand each squared joint norm to $\langle\Psi|P_{a|x}\otimes Q_{b|y}|\Psi\rangle$ and sum all a. The replacement $\sum_aP_{a|x}=I_A$ yields Bob's original probability. A proper selected sum is generally a nonidentity projector, so that replacement is unavailable. A zero branch is the zero vector and contributes zero joint probabilities; only division by its zero weight is forbidden.
+
+**B.** Bob's correct X distribution is (1/2,1/2), because summing the two hidden quadratic forms removes cross terms. Adding the vectors would give $c|0\rangle+e^{i\phi}s|1\rangle$, falsely predicting $p_X(0)=(1+\sin\theta\cos\phi)/2$. In the coherent native fixture, the meter carries the orthogonal labels 0,1 and remains correlated with B. Ignoring it requires summing probabilities, not erasing its label coherently.
+
+**C.** Write c=cos(θ/2), s=sin(θ/2). Alice X outcome a gives Bob $c|0\rangle+(-1)^ae^{i\phi}s|1\rangle$, with probability one half. Its Pauli means are
+
+$$
+\begin{aligned}
+\langle X\rangle_a&=(-1)^a\sin\theta\cos\phi,\\
+\langle Y\rangle_a&=(-1)^a\sin\theta\sin\phi,\\
+\langle Z\rangle_a&=\cos\theta.
+\end{aligned}
+$$
+
+For Alice Y the relative phase is φ−π/2, so
+
+$$
+\begin{aligned}
+\langle X\rangle_a&=(-1)^a\sin\theta\sin\phi,\\
+\langle Y\rangle_a&=-(-1)^a\sin\theta\cos\phi,\\
+\langle Z\rangle_a&=\cos\theta.
+\end{aligned}
+$$
+
+The weights are again one half. All unconditioned results have Z=0 probability $\cos^2(.515)$ and X/Y=0 probability one half. The spectators stay normalized and cannot change these marginals. Trine off-diagonal entries sum to zero because $1+e^{2\pi i/3}+e^{4\pi i/3}=0$; diagonal entries sum to one, proving completeness. Each Bob trine probability is one third for this diagonal unconditioned qubit prediction. The printed parameters, all nine native basis pairs and classical trine cases are executed in transfer evidence; no native trine endpoint is claimed.
+
+**D.** Bob holds all his records, with the same unlabelled probability distribution for either Alice basis. He needs her acceptance/outcome labels and a matching record convention to identify the selected subset. Sending those labels is classical communication. Applying a correction chosen from them adds Bob's record-dependent operation, so the protocol is no longer Alice-only. The batch bound gives $N\geq1/(2\cdot.05\cdot.1^2)=1000$ per batch. Neither a claimed postselected state nor an occasional frequency fluctuation supplies a signalling channel without that extra information.
+
+</details>
+
+**Sources.** The frozen locator is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §2.2.8, “Composite systems,” beginning on printed page 93 ([NC:2.2.8 locator](../references/proof-sources.md#source-nc-2-2-8)); its stored status is a contents-locator check, not a new full-text review. For the complete-operator boundary, the author-hosted [Watrous, *The Theory of Quantum Information*, Chapter 2.2.2](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf), Theorem 2.26 and Corollary 2.27, printed pages 87–89 (PDF pages 95–97), were inspected for normalization/representation scope. Its full density-operator formalism is not assumed here: the necessary finite branch identities are proved locally above. These are original derivations and simulator checks, not a reproduction or redistribution of either textbook. Section 7.8 uses these distinctions when introducing entanglement swapping.
+
+<!-- end-section-7.7 -->

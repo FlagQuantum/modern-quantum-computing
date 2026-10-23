@@ -1,0 +1,3 @@
+27 native circuits:Bell,unequal and product inputs;all nine basis pairs,complex Y branches and unchanged Bob marginals passed.
+60 native circuits:all20ordered supports,complex spectators and independent full amplitudes passed.
+3 native generic preparations and302classical complete-instrument/effect cases passed,including ordered composite local supports.

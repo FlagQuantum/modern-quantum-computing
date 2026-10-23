@@ -1,0 +1,15 @@
+Python 3.12.14 FlagQuantum 0.3.1 Torch 2.13.0
+Circuit /private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b
+ExecutionResult /private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/runtime/result.py 15bc3ee6f3c7a7830d87f109b10724cd867f8f4060951dd673514729519e6c86
+probabilities signature (qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | None | Omitted' = OMITTED) -> 'OutputRequest'
+measurement signature (self, selector: 'int | str') -> 'MeasurementResult'
+Source inspected:measurement(selector) resolves named metadata or kind,returns MeasurementResult with .value;ambiguous kind rejects. Native multiple named outputs verified in corrected program.
+h True
+p True
+ry True
+cx True
+cry True
+measure False
+reset False
+c_if False
+Inspection0native runs;no stronger claim about uninspected low-level IR,remote/hardware APIs or capabilities. No third-party source body redistributed.
