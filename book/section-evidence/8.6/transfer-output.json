@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "native_circuits": 14,
+  "cases": [
+    "printed8.6Bcomplexrotation",
+    "printed8.6Ccomplexisometry/degeneratecommonbasis",
+    "printed8.6Dnonorthogonalensemble/spectralrelation/wronglabels",
+    "rankonefour-dimensionalreference"
+  ],
+  "host_wrong_label_trace": 1.7406531170234638,
+  "host_normalized_wrong_label_density_rejected": true
+}

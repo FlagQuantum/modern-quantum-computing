@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/purification.py", line 140, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/purification.py", line 116, in main
+    W=e.prepare(e.qubit(beta,-.57));r,target=execute(C,W,mode)
+                                             ^^^^^^^^^^^^^^^^^
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/purification.py", line 60, in execute
+    c=fq.Circuit(n,dtype=D).unitary(tuple(range(n)),unitary=first_column(C.reshape(-1)).contiguous())
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py", line 431, in any
+    return self.gate(name, qubits, matrix=unitary)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py", line 394, in gate
+    normalized_qubits = normalize_qubits(qubits, owner=f"Gate {name!r}")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/core/qubit_mapping.py", line 70, in normalize_qubits
+    return tuple(qubit_label(owner, item) for item in items)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/core/qubit_mapping.py", line 70, in <genexpr>
+    return tuple(qubit_label(owner, item) for item in items)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/core/qubit_mapping.py", line 44, in qubit_label
+    raise TypeError(f"{owner} qubit must be an integer, got {value!r}") from None
+TypeError: Gate 'any' qubit must be an integer, got (0, 1)

@@ -1,0 +1,17 @@
+Eight body units executed:8native circuits(7helper+1explicit).
+1 Spectral purification:full purity=1,system spectrum=[0.73, 0.27]
+System matrix and every computational-basis probability match explicit coefficients
+2 Rank4density rejects a two-dimensional ancillary space
+Four-qubit preparation:system/reference dimensions4x4,full purity=1
+3 Ancillary unitary preserves the complete system density but changes the joint vector
+Coefficient update is C@W.T;C@W.mH is rejected as the same target vector
+4 Full ancillary frame recovers W;rank1support map is not a full-space unitary
+Known W supplies a valid orthonormal-complement extension
+5 Degenerate spectrum:the common-eigenbasis proof recovers the same ancillary unitary
+6 Rectangular isometry is not submitted as a square unitary gate
+Three-qubit pure preparation realizes the larger coefficient matrix;system density unchanged
+7 Nonorthogonal ensemble kets with orthogonal reference labels purify the same density
+Reference density has nonzero off-diagonal entries;it is not merely the probability list
+8 12 malformed contracts rejected
+Pure density admits a one-dimensional host reference;native examples use nonempty qubit factors
+Nonorthogonal reference labels fail the displayed ensemble-purification contract

@@ -1,0 +1,1 @@
+Initial call passed a tuple as one positional qubit to variadic Circuit.unitary;TypeError before fq.run,0native executions. Read actual method source,then splatted integer labels. Also corrected host reconstruction coefficient tensor to explicitfloat64 before its first execution;no assertion failure from that line claimed.

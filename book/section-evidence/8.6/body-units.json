@@ -1,0 +1,34 @@
+[
+  {
+    "code": "import math,torch,flagquantum as fq\nfrom dataclasses import replace\nfrom examples.foundations import purification as g\nfrom examples.foundations import statistical_ensembles as e\np=.73;weights=(p,1-p);Q=e.prepare(e.qubit(.87,-.52))\nC,rho=g.spectral(weights,Q,2)\n# System q0,reference q1;basis index=2*i+mu.\nc=fq.Circuit(2,dtype=g.D).RY(0,theta=2*math.acos(math.sqrt(p))).CX(0,1)\nc.unitary(0,unitary=Q)\nr=fq.run(c,outputs=[fq.density_matrix(name='full'),\n    fq.density_matrix(qubits=(0,),name='S'),\n    fq.density_matrix(qubits=(1,),name='R'),\n    fq.probabilities(name='p')],options=e.OPTIONS)\nfull=r.measurement('full').value[0]\ne.close(full,torch.outer(C.reshape(-1),C.reshape(-1).conj()))\ne.close(r.measurement('S').value[0],rho)\ne.close(r.measurement('R').value[0],torch.diag(torch.tensor(weights,dtype=g.D)))\ne.close(r.measurement('p').value[0],C.reshape(-1).abs().square())\ne.close(torch.trace(full@full),1)\nprint('Spectral purification:full purity=1,system spectrum=[0.73, 0.27]')\nprint('System matrix and every computational-basis probability match explicit coefficients')\n",
+    "output": "Spectral purification:full purity=1,system spectrum=[0.73, 0.27]\nSystem matrix and every computational-basis probability match explicit coefficients\n"
+  },
+  {
+    "code": "Q4=torch.kron(Q,e.prepare(e.qubit(-.63,.41)))\nC4,rho4=g.spectral((.1,.2,.3,.4),Q4,4)\nr4,_=g.execute(C4,mode='density_matrix')\ne.close(r4.measurement('S').value[0],rho4)\ntry:g.spectral((.1,.2,.3,.4),Q4,2)\nexcept ValueError:print('Rank4density rejects a two-dimensional ancillary space')\nelse:raise AssertionError('Insufficient ancillary dimension accepted')\nprint('Four-qubit preparation:system/reference dimensions4x4,full purity=1')\n",
+    "output": "Rank4density rejects a two-dimensional ancillary space\nFour-qubit preparation:system/reference dimensions4x4,full purity=1\n"
+  },
+  {
+    "code": "W=e.prepare(e.qubit(-.76,.68))\nrotated,CW=g.execute(C,W)\ne.close(rotated.measurement('S').value[0],rho)\ne.close(rotated.measurement('R').value[0],W@torch.diag(torch.tensor(weights,dtype=g.D))@W.mH)\nassert torch.linalg.vector_norm(CW-C).item()>.1\nwrong=C@W.mH\nassert torch.linalg.vector_norm(wrong-CW).item()>.1\nprint('Ancillary unitary preserves the complete system density but changes the joint vector')\nprint('Coefficient update is C@W.T;C@W.mH is rejected as the same target vector')\n",
+    "output": "Ancillary unitary preserves the complete system density but changes the joint vector\nCoefficient update is C@W.T;C@W.mH is rejected as the same target vector\n"
+  },
+  {
+    "code": "F=g.support_frames(C,Q,weights);G=g.support_frames(CW,Q,weights)\nrecovered=G@F.mH\ne.close(recovered,W);g.unitary(recovered,2);e.close(C@recovered.T,CW)\nCp,rhop=g.spectral((1.,0.),Q,2)\npure_rotated,CpW=g.execute(Cp,W)\nFp=g.support_frames(Cp,Q,(1.,0.));Gp=g.support_frames(CpW,Q,(1.,0.))\nT=Gp@Fp.mH\ne.close(T.mH@T,Fp@Fp.mH);e.close(T@Fp,Gp)\nassert not torch.allclose(T.mH@T,e.I,atol=g.ATOL,rtol=0)\ne.close(W@Fp,Gp)\nprint('Full ancillary frame recovers W;rank1support map is not a full-space unitary')\nprint('Known W supplies a valid orthonormal-complement extension')\n",
+    "output": "Full ancillary frame recovers W;rank1support map is not a full-space unitary\nKnown W supplies a valid orthonormal-complement extension\n"
+  },
+  {
+    "code": "Cd,rhod=g.spectral((.5,.5),e.I,2)\nUd=e.prepare(e.qubit(.91,-.36))\ndegenerate,CdU=g.execute(Cd,Ud)\nFd=g.support_frames(Cd,e.I,(.5,.5));Gd=g.support_frames(CdU,e.I,(.5,.5))\ne.close(Gd@Fd.mH,Ud);e.close(degenerate.measurement('S').value[0],e.I/2)\nV=e.prepare(e.qubit(-.57,.44))\n# Both columns' eigenvalues are equal;choose any fixed system eigenbasis V.\nFv=g.support_frames(Cd,V,(.5,.5));Gv=g.support_frames(CdU,V,(.5,.5))\ne.close(Gv@Fv.mH,Ud)\nprint('Degenerate spectrum:the common-eigenbasis proof recovers the same ancillary unitary')\n",
+    "output": "Degenerate spectrum:the common-eigenbasis proof recovers the same ancillary unitary\n"
+  },
+  {
+    "code": "J=torch.zeros((4,2),dtype=g.D);J[0,0]=1;J[3,1]=1j\ne.close(J.mH@J,e.I)\nenlarged,CJ=g.execute(C@J.T)\ne.close(enlarged.measurement('S').value[0],rho)\ne.close(enlarged.measurement('R').value[0],J@torch.diag(torch.tensor(weights,dtype=g.D))@J.mH)\ntry:g.unitary(J,2)\nexcept ValueError:print('Rectangular isometry is not submitted as a square unitary gate')\nelse:raise AssertionError('Rectangular gate accepted')\nprint('Three-qubit pure preparation realizes the larger coefficient matrix;system density unchanged')\n",
+    "output": "Rectangular isometry is not submitted as a square unitary gate\nThree-qubit pure preparation realizes the larger coefficient matrix;system density unchanged\n"
+  },
+  {
+    "code": "vectors=(e.qubit(0.,0.),e.qubit(math.pi/2,.59))\nE=g.ensemble_coeff((.4,.6),vectors)\nensemble_run,_=g.execute(E)\nrhoE=e.rho((.4,.6),vectors)\ne.close(ensemble_run.measurement('S').value[0],rhoE)\nlam,EV=torch.linalg.eigh(rhoE)\nCs,_=g.spectral(tuple(lam.tolist()),EV,2)\nspectral_run,_=g.execute(Cs)\nFs=g.support_frames(Cs,EV,tuple(lam.tolist()))\nGs=g.support_frames(E,EV,tuple(lam.tolist()))\nUE=Gs@Fs.mH;g.unitary(UE,2);e.close(Cs@UE.T,E)\ne.close(spectral_run.measurement('S').value,ensemble_run.measurement('S').value)\nassert abs(torch.vdot(vectors[0],vectors[1]).item())>.1\nassert abs((E.T@E.conj())[0,1].item())>.1\nprint('Nonorthogonal ensemble kets with orthogonal reference labels purify the same density')\nprint('Reference density has nonzero off-diagonal entries;it is not merely the probability list')\n",
+    "output": "Nonorthogonal ensemble kets with orthogonal reference labels purify the same density\nReference density has nonzero off-diagonal entries;it is not merely the probability list\n"
+  },
+  {
+    "code": "print(f'{g.invalid_checks()} malformed contracts rejected')\nC1,rho1=g.spectral((1.,0.),Q,1)\ne.close(C1@C1.mH,rho1)\nassert C1.shape==(2,1)\n# Nonorthogonal reference labels fail even normalization for this example.\nf=e.qubit(math.pi/2,0.)\nbad=(math.sqrt(.4)*torch.kron(vectors[0],torch.tensor([1,0],dtype=g.D))\n     +math.sqrt(.6)*torch.kron(vectors[1],f))\nassert abs(torch.vdot(bad,bad).item()-1)>.1\nprint('Pure density admits a one-dimensional host reference;native examples use nonempty qubit factors')\nprint('Nonorthogonal reference labels fail the displayed ensemble-purification contract')\n",
+    "output": "12 malformed contracts rejected\nPure density admits a one-dimensional host reference;native examples use nonempty qubit factors\nNonorthogonal reference labels fail the displayed ensemble-purification contract\n"
+  }
+]

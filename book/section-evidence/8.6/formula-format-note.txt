@@ -1,0 +1,1 @@
+Actual narrow-browser check found horizontal overflow in initial spectral/trace displays. Split long equations into gathered/aligned rows before publication;all Python/text blocks byte-identical,so no additional native executions. Final display rechecked in browser.

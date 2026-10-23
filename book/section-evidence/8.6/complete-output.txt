@@ -1,0 +1,5 @@
+24 native qubit purifications:complex spectral construction,ancillary rotation and supported equivalence passed.
+6 native larger-system purifications:rank2with2or4ancillary coordinates and full rank4 passed.
+6 native executions:rectangular ancillary isometry via separately prepared larger vector and nonorthogonal ensemble labels passed.
+12 malformed contracts rejected;dimension-one and tiny positive weights checked on host.
+36 actual native circuits;factorization/completion/support maps are explicit host computations,not a native purification compiler.

@@ -1,0 +1,98 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-density-matrices-reduced-states-and-purification-6",
+  "ref": "8.6",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+  "depth": "F",
+  "requires": [
+    "sec-density-matrices-reduced-states-and-purification-2",
+    "sec-density-matrices-reduced-states-and-purification-4"
+  ],
+  "result": "Purification and ancillary-unitary equivalence",
+  "assumptions": [
+    "Finite normalized positive density;declared system and reference spaces.",
+    "Reference dimension at least exact rank for existence;same reference dimension for full-space unitary equivalence."
+  ],
+  "verification_obligations": [
+    "Spectral purification normalization and full partial trace.",
+    "Necessity and sufficiency of reference dimension at least rank.",
+    "Common-system-eigenbasis contraction including zero and degenerate eigenspaces.",
+    "Supported partial isometry and completion to full ancillary unitary.",
+    "Unequal-dimensional isometry qualifications and common-space embeddings.",
+    "Nonorthogonal ensemble vectors versus orthogonal reference labels.",
+    "Actual pure preparation,full and local density verification;transpose and phase contracts."
+  ],
+  "formula_code_units": [
+    "spectral existence and named native outputs",
+    "minimal ancillary dimension",
+    "ancillary unitary invariance",
+    "complete supported-equivalence proof",
+    "degeneracy",
+    "unequal-dimensional reference",
+    "nonorthogonal ensemble",
+    "failure and API boundaries"
+  ],
+  "sources": [
+    {
+      "locator": "TQI:2.1.3",
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=79",
+      "scope": "Author-hosted manuscript Theorems2.10/2.12,printed71-72/PDF79-80 inspected;original spectral/common-frame proofs supplied;no external text redistributed."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/purification.py",
+    "prose_checker": "scripts/check_purification_prose.py",
+    "evidence": "book/section-evidence/8.6",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 36,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 8,
+    "separate_transfer_circuits": 14,
+    "execution_ledger": {
+      "initial_API_call_failure": 0,
+      "corrected_complete": 36,
+      "body_assembly": 8,
+      "body_plus_complete_checker": 44,
+      "fresh_transfer": 14,
+      "total_author_section_native_runs": 102,
+      "separate_previous_8_5_regression": 55,
+      "separate_previous_8_4_regression": 59,
+      "note": "Initial tuple-as-one-label unitary call raised TypeError before fq.run;source/stderr retained. Read actual variadic method and splatted labels. Host reconstruction tensor made explicitfloat64 before first use;no scientific failure from that line claimed. Body has7helper calls plus1explicitnative call. Prior regressions/futureCI separate."
+    },
+    "malformed_contracts": 12,
+    "tolerance": "Absolute1e-12,relative0;no normalization repair,clipping or phase alignment. Host1e-20weight retained;completion pivot1e-10 is not an eigenvalue rank cutoff. Numerical equality is not an interval or hardware certificate.",
+    "native_boundary": "Actual pure circuits with square dense unitary and selected/full densities/probabilities/Pauli requests in both tested modes. Native helper factors2or4;host reference1supported. Spectral factorization,first-column completion,partial isometry/ensemble sums host-only. Larger rectangular isometry realized by separately preparing its larger vector,never submitted as a gate. No nativepurify/efficientcompiler/mixed-input initialization/collapse/reset/hardware claims.",
+    "script_sha256": "9696b64cf0e93ddeae6d913bd9674fb1f27f388452e5190ff3cc5bf7c6b64434"
+  },
+  "assessment": {
+    "tasks": [
+      "8.6A minimal dimension/support extension",
+      "8.6B fresh complex phase/transpose",
+      "8.6C enlargement/degeneratecommonbasis",
+      "8.6D nonorthogonalensemble/wronglabels"
+    ],
+    "answers": "Accessible A-D answers;fresh B-D/rankone cases executed in14native transfer runs;reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "36complete/8literalbody/14freshtransfer plus44body+complete checker passed;102author native runs. Initial0execution API failure retained. Prior8.5regression55/8.4regression59 separate;production QA below. Fresh strict build,74page local links and actual browser key formulas/expanded answers passed."
+  },
+  "production": {
+    "next_draft": "8.7 Proper and improper mixtures",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual default narrow IAB:initial spectral/trace horizontal overflow detected and repaired with gathered/aligned rows. Final spectral construction/trace expansion,rank dimension theorem,common-eigenbasis contraction and supported frames visually checked. Expanded8.6A-D answers including complex coefficient/reduction equations checked;one answer display container,no raw$$,globalMathJaxerrors0. All Python/text blocks unchanged by formatting;no additional native executions.",
+    "website": "Fresh strict build and74page local links passed;publish checked HTML and confirm Pages success/HTTP200/exact equality.",
+    "html_sha256": "819eeacfcb80fadcc42e674bc20d2321f12541b61cfc5b46c2cd60e06acd2276"
+  }
+}

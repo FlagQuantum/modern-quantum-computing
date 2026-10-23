@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "counts": {
+    "draft": 61,
+    "not_started": 374,
+    "accepted": 0
+  },
+  "strict_build": "strict-build.txt",
+  "local_links": "74pages,unique IDs and local links/fragments all resolve",
+  "browser": "Actual default narrow IAB:initial spectral/trace horizontal overflow detected and repaired with gathered/aligned rows. Final spectral construction/trace expansion,rank dimension theorem,common-eigenbasis contraction and supported frames visually checked. Expanded8.6A-D answers including complex coefficient/reduction equations checked;one answer display container,no raw$$,globalMathJaxerrors0. All Python/text blocks unchanged by formatting;no additional native executions.",
+  "html_sha256": "819eeacfcb80fadcc42e674bc20d2321f12541b61cfc5b46c2cd60e06acd2276",
+  "parent_8_5_CI": {
+    "run": 39914054197,
+    "status": "in_progress",
+    "docs": "success",
+    "chemistry-provenance": "success",
+    "examples": "in_progress"
+  },
+  "execution_ledger": {
+    "initial_API_call_failure": 0,
+    "corrected_complete": 36,
+    "body_assembly": 8,
+    "body_plus_complete_checker": 44,
+    "fresh_transfer": 14,
+    "total_author_section_native_runs": 102,
+    "separate_previous_8_5_regression": 55,
+    "separate_previous_8_4_regression": 59,
+    "note": "Initial tuple-as-one-label unitary call raised TypeError before fq.run;source/stderr retained. Read actual variadic method and splatted labels. Host reconstruction tensor made explicitfloat64 before first use;no scientific failure from that line claimed. Body has7helper calls plus1explicitnative call. Prior regressions/futureCI separate."
+  }
+}

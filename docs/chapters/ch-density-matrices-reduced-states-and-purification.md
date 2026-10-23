@@ -1,6 +1,6 @@
 # 8. Density Matrices, Reduced States, and Purification
 
-**Working drafts: sections 8.1–8.5 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
+**Working drafts: sections 8.1–8.6 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
 
 <span id="sec-density-matrices-reduced-states-and-purification-1"></span>
 
@@ -2446,3 +2446,384 @@ The spectra are {c²,s²} and purity c⁴+s⁴. The phase φ enters the joint ve
 **Sources and proof scope.** The frozen source locator is NC §2.5, printed page 109 (contents locator checked; no new full-text NC review claimed). We also inspected [Watrous, author-hosted manuscript, Eq. (5.112), printed page 271](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=279) for the two reduced Schmidt-form expressions, without importing the surrounding entropy results as prerequisites. The full partial-trace, eigenvalue, zero-complement and pure/mixed derivations are supplied here. This is an author-verified draft, not formal acceptance.
 
 <!-- end-section-8.5 -->
+
+<span id="sec-density-matrices-reduced-states-and-purification-6"></span>
+## 8.6 Purification and nonuniqueness
+
+**Question.** Can a density with more than one positive eigenvalue be the local description of a pure joint state? If so, how much freedom remains in that joint description?
+
+The prerequisites are [8.2](#sec-density-matrices-reduced-states-and-purification-2), which supplies the finite spectral and purity criteria, and [8.4](#sec-density-matrices-reduced-states-and-purification-4), which fixes partial trace by local expectations. We use those results directly; no entropy or channel representation theorem is needed. Every space here is finite-dimensional. S denotes the system being described, R a reference register, d its system dimension, m its reference dimension, and I the identity on the indicated factor. Densities, amplitudes and probabilities are dimensionless; all circuit angles are radians.
+
+A **purification** of a density ρ on S is a normalized vector |Ψ⟩ in S⊗R such that Tr_R(|Ψ⟩⟨Ψ|)=ρ. The global density |Ψ⟩⟨Ψ| is pure. Calling ρ mixed says something about the local density; it does not contradict this pure joint description. A reference is a mathematical extension unless a concrete preparation and access model are also specified. Constructing a purification of a *known density matrix* does not purify an unknown physical input by a universal operation.
+
+### 8.6.1 Construct a purification from the spectral data
+
+Write the density in an orthonormal eigenbasis as
+
+$$
+\begin{gathered}
+\rho=\sum_{k=1}^{r}\lambda_k|u_k\rangle\langle u_k|,\\
+\lambda_k>0,\qquad \sum_k\lambda_k=1.
+\end{gathered}
+$$
+
+Here r is its rank in exact mathematics. Choose r orthonormal reference vectors |f_k⟩ in a space of dimension m≥r and define
+
+$$
+|\Psi\rangle=\sum_{k=1}^{r}\sqrt{\lambda_k}
+ |u_k\rangle|f_k\rangle.
+$$
+
+The square roots are the positive real square roots; phases can instead be included in the reference vectors. The norm squared is Σ_kl√(λ_kλ_l)⟨u_l|u_k⟩⟨f_l|f_k⟩=Σ_kλ_k=1. To verify the local state, expand the *whole* outer product, including its off-diagonal joint terms, before tracing:
+
+$$
+\begin{aligned}
+&\operatorname{Tr}_R(|\Psi\rangle\langle\Psi|)\\
+&\quad=\sum_{k,l}\sqrt{\lambda_k\lambda_l}
+ \langle f_l|f_k\rangle|u_k\rangle\langle u_l|\\
+&\quad=\sum_k\lambda_k|u_k\rangle\langle u_k|=\rho.
+\end{aligned}
+$$
+
+Orthogonality of the reference labels removes the local cross terms; they remain present in the joint pure density. This proves existence for any sufficiently large reference. It also tells us exactly what to implement. With Q's columns equal to the u_k, the coefficient matrix in system-row/reference-column coordinates has columns √λ_k u_k. The joint basis index is i·m+μ, and the local density is CC†. `g.spectral` is a book helper that builds these coefficients from supplied nonnegative spectral weights; it is not a FlagQuantum method.
+
+For a qubit with weights (.73,.27), `RY` and `CX` create the correlated reference labels, and a one-qubit Q puts the system in the chosen complex eigenbasis. This first unit shows the actual gates and execution requests explicitly.
+
+```python
+import math,torch,flagquantum as fq
+from dataclasses import replace
+from examples.foundations import purification as g
+from examples.foundations import statistical_ensembles as e
+p=.73;weights=(p,1-p);Q=e.prepare(e.qubit(.87,-.52))
+C,rho=g.spectral(weights,Q,2)
+# System q0,reference q1;basis index=2*i+mu.
+c=fq.Circuit(2,dtype=g.D).RY(0,theta=2*math.acos(math.sqrt(p))).CX(0,1)
+c.unitary(0,unitary=Q)
+r=fq.run(c,outputs=[fq.density_matrix(name='full'),
+    fq.density_matrix(qubits=(0,),name='S'),
+    fq.density_matrix(qubits=(1,),name='R'),
+    fq.probabilities(name='p')],options=e.OPTIONS)
+full=r.measurement('full').value[0]
+e.close(full,torch.outer(C.reshape(-1),C.reshape(-1).conj()))
+e.close(r.measurement('S').value[0],rho)
+e.close(r.measurement('R').value[0],torch.diag(torch.tensor(weights,dtype=g.D)))
+e.close(r.measurement('p').value[0],C.reshape(-1).abs().square())
+e.close(torch.trace(full@full),1)
+print('Spectral purification:full purity=1,system spectrum=[0.73, 0.27]')
+print('System matrix and every computational-basis probability match explicit coefficients')
+```
+
+```text
+Spectral purification:full purity=1,system spectrum=[0.73, 0.27]
+System matrix and every computational-basis probability match explicit coefficients
+```
+
+**Check.** Why does replacing the joint vector by the mixture Σ_kλ_k|u_k,f_k⟩⟨u_k,f_k| retain ρ but generally lose global purity? The mixture deletes the off-diagonal *joint* terms that were essential to the rank-one global projector.
+
+### 8.6.2 Prove the ancillary dimension bound is necessary
+
+Let |Ψ⟩ be any purification, and let C be its d×m coefficient matrix. The coordinate partial-trace formula is ρ=CC†. The column range of CC† lies in that of C. In fact the two matrices have the same rank: for any system vector x,
+
+$$
+x^\dagger CC^\dagger x=\|C^\dagger x\|^2,
+\qquad
+\ker(CC^\dagger)=\ker(C^\dagger).
+$$
+
+The two kernel inclusions follow in each direction from this displayed norm and multiplication by C. Taking dimensions, rank(CC†)=rank(C†)=rank(C), where the last equality follows from finite matrix row/column rank, or the SVD proved in 2.5. Since C has m columns, r≤m. Together with the construction above this proves
+
+$$
+\boxed{\begin{gathered}
+\rho\text{ has a purification in }S\otimes R\\
+\Longleftrightarrow\\
+\dim R\geq\operatorname{rank}\rho.
+\end{gathered}}
+$$
+
+Zero spectral weights require no reference directions. A pure density needs only a one-dimensional reference; a rank-four density needs at least four dimensions, hence at least two qubits if the reference must be a qubit register. More generally the minimum number of reference qubits is ceil(log₂r), with zero qubits when r=1. This is a dimension lower bound, not a gate-count or efficient-preparation result.
+
+The next unit realizes a four-dimensional system and reference as four qubits. `g.first_column` completes a known normalized vector to a square unitary on the host, and `g.execute` submits that square matrix on integer qubit labels. Its memory and completion costs are discussed below.
+
+```python
+Q4=torch.kron(Q,e.prepare(e.qubit(-.63,.41)))
+C4,rho4=g.spectral((.1,.2,.3,.4),Q4,4)
+r4,_=g.execute(C4,mode='density_matrix')
+e.close(r4.measurement('S').value[0],rho4)
+try:g.spectral((.1,.2,.3,.4),Q4,2)
+except ValueError:print('Rank4density rejects a two-dimensional ancillary space')
+else:raise AssertionError('Insufficient ancillary dimension accepted')
+print('Four-qubit preparation:system/reference dimensions4x4,full purity=1')
+```
+
+```text
+Rank4density rejects a two-dimensional ancillary space
+Four-qubit preparation:system/reference dimensions4x4,full purity=1
+```
+
+**Predict.** A rank-two density on a four-dimensional system needs a two-dimensional reference, not necessarily a four-dimensional one. The 4×2 cases in the complete program check this distinction.
+
+### 8.6.3 Show that ancillary unitaries preserve the local density
+
+Let U be any unitary on R and |Φ⟩=(I_S⊗U)|Ψ⟩. If C contains Ψ's coefficients, then
+
+$$
+C'_{i\nu}=\sum_{\mu}U_{\nu\mu}C_{i\mu},
+\qquad C'=CU^T.
+$$
+
+This is a transpose, not an adjoint: a ket's coefficients transform without complex conjugating U. Consequently
+
+$$
+C'C'^\dagger
+=C U^T U^* C^\dagger
+=C C^\dagger=\rho,
+$$
+
+because UᵀU*=I is the complex conjugate of U†U=I. The reference density σ=CᵀC* instead becomes UσU†. Thus system statistics remain fixed while the joint vector and reference statistics can change. The equality holds for every local system effect E, since its probability is Tr(ρE); no local measurement can identify the chosen ancillary rotation.
+
+```python
+W=e.prepare(e.qubit(-.76,.68))
+rotated,CW=g.execute(C,W)
+e.close(rotated.measurement('S').value[0],rho)
+e.close(rotated.measurement('R').value[0],W@torch.diag(torch.tensor(weights,dtype=g.D))@W.mH)
+assert torch.linalg.vector_norm(CW-C).item()>.1
+wrong=C@W.mH
+assert torch.linalg.vector_norm(wrong-CW).item()>.1
+print('Ancillary unitary preserves the complete system density but changes the joint vector')
+print('Coefficient update is C@W.T;C@W.mH is rejected as the same target vector')
+```
+
+```text
+Ancillary unitary preserves the complete system density but changes the joint vector
+Coefficient update is C@W.T;C@W.mH is rejected as the same target vector
+```
+
+For example, the two Bell vectors with a plus or minus sign between |00⟩ and |11⟩ are different purifications of I/2, related by Z on the reference. A wrong transpose can still produce *some* purification, since another unitary also preserves ρ. Therefore comparing only the system density cannot verify the intended global circuit. We check the full joint density, explicit transformed coefficients and reference density as well. No phase alignment is used to repair a wrong candidate.
+
+### 8.6.4 Prove every pair is related on the supported ancillary subspace
+
+The converse must include repeated eigenvalues and unused ancillary dimensions. Fix **one** complete orthonormal system eigenbasis {u_k} of ρ, including its kernel, and consider two arbitrary purifications Ψ and Φ of the same ρ. Expand them in this same basis:
+
+$$
+\begin{gathered}
+|\Psi\rangle=\sum_{k=1}^{d}|u_k\rangle|w_k\rangle,\\
+|w_k\rangle=(\langle u_k|\otimes I_R)|\Psi\rangle.
+\end{gathered}
+$$
+
+Computing the reduced matrix in that basis gives
+
+$$
+\langle w_l|w_k\rangle
+=\langle u_k|\rho|u_l\rangle
+=\lambda_k\delta_{kl}.
+$$
+
+For λ_k=0, the equation k=l gives ∥w_k∥²=0, hence w_k=0; there is no hidden component in a zero-eigenvalue system direction. For λ_k>0 define f_k=w_k/√λ_k. The last display shows that the f_k are orthonormal. Performing exactly the same contraction on Φ produces orthonormal g_k with
+
+$$
+\begin{gathered}
+|\Psi\rangle=\sum_{k=1}^{r}\sqrt{\lambda_k}|u_k\rangle|f_k\rangle,\\
+|\Phi\rangle=\sum_{k=1}^{r}\sqrt{\lambda_k}|u_k\rangle|g_k\rangle.
+\end{gathered}
+$$
+
+Let F and G be the matrices whose columns are f_k and g_k, and define T=GF†. Then TF=G, T†T=FF† and TT†=GG†. In words, T preserves norms and inner products *on the occupied reference span*, and maps it onto the second occupied span. It need not be unitary on the whole reference space: it is zero on the perpendicular complement of the first span. This is called a **partial isometry** here, with its precise two projector identities just given. Since T f_k=g_k term by term, (I⊗T)|Ψ⟩=|Φ⟩.
+
+If both purifications use the same m-dimensional reference space, complete each r-vector orthonormal frame to an m-vector orthonormal basis. Such completion exists: choose a vector outside the current span, subtract its orthogonal projections, normalize the nonzero remainder, and repeat until the finite dimension is exhausted. Map the first completed basis to the second one. The resulting square operator U preserves all basis inner products and is onto, so U†U=UU†=I. It agrees with T on the occupied span, and therefore
+
+$$
+\boxed{|\Phi\rangle=(I_S\otimes U_R)|\Psi\rangle.}
+$$
+
+This proves the full same-space equivalence theorem, not merely invariance under a proposed rotation. Different choices of the unused basis vectors give different valid extensions. The following unit reconstructs U when the occupied span is already the whole two-dimensional reference; it also checks why a rank-one support map alone is not a full-space unitary.
+
+```python
+F=g.support_frames(C,Q,weights);G=g.support_frames(CW,Q,weights)
+recovered=G@F.mH
+e.close(recovered,W);g.unitary(recovered,2);e.close(C@recovered.T,CW)
+Cp,rhop=g.spectral((1.,0.),Q,2)
+pure_rotated,CpW=g.execute(Cp,W)
+Fp=g.support_frames(Cp,Q,(1.,0.));Gp=g.support_frames(CpW,Q,(1.,0.))
+T=Gp@Fp.mH
+e.close(T.mH@T,Fp@Fp.mH);e.close(T@Fp,Gp)
+assert not torch.allclose(T.mH@T,e.I,atol=g.ATOL,rtol=0)
+e.close(W@Fp,Gp)
+print('Full ancillary frame recovers W;rank1support map is not a full-space unitary')
+print('Known W supplies a valid orthonormal-complement extension')
+```
+
+```text
+Full ancillary frame recovers W;rank1support map is not a full-space unitary
+Known W supplies a valid orthonormal-complement extension
+```
+
+**Check.** Multiplying the entire vector Φ by e^{iχ} causes no difficulty: multiply its g_k by the same phase, and extend that supported map. The equality can therefore be stated for actual vectors, not only rays. The extension's action outside the occupied span is not determined by ρ or by the pair of purifications.
+
+### 8.6.5 Handle degeneracy without matching numerical eigenvectors
+
+If λ_1=λ_2, a diagonalization routine may return any orthonormal basis in their shared eigenspace. The proof did not compare two independently computed eigenbases. It fixed one system basis and contracted *both* joint vectors against that basis. This supplies a common frame even in the degenerate case. It also prevents an arbitrary numerical basis choice from being mistaken for a physically different system density.
+
+For ρ=I/2 every system basis is an eigenbasis. The code repeats the supported-frame construction in two complex system bases. Both recover the same chosen U because the reference support is full. For a rank-deficient reference only the supported action would be fixed.
+
+```python
+Cd,rhod=g.spectral((.5,.5),e.I,2)
+Ud=e.prepare(e.qubit(.91,-.36))
+degenerate,CdU=g.execute(Cd,Ud)
+Fd=g.support_frames(Cd,e.I,(.5,.5));Gd=g.support_frames(CdU,e.I,(.5,.5))
+e.close(Gd@Fd.mH,Ud);e.close(degenerate.measurement('S').value[0],e.I/2)
+V=e.prepare(e.qubit(-.57,.44))
+# Both columns' eigenvalues are equal;choose any fixed system eigenbasis V.
+Fv=g.support_frames(Cd,V,(.5,.5));Gv=g.support_frames(CdU,V,(.5,.5))
+e.close(Gv@Fv.mH,Ud)
+print('Degenerate spectrum:the common-eigenbasis proof recovers the same ancillary unitary')
+```
+
+```text
+Degenerate spectrum:the common-eigenbasis proof recovers the same ancillary unitary
+```
+
+The familiar freedom to rotate paired Schmidt vectors inside a degenerate block is consistent with this result. Nothing here asserts that the separately returned columns of two numerical eigensolvers agree, or that a small eigenvalue has been mathematically proved zero.
+
+### 8.6.6 Distinguish unequal reference dimensions from a square unitary
+
+Suppose Ψ uses R of dimension m and Φ uses R′ of dimension n. The same common-system-basis proof still produces the support map T=GF†, now an n×m matrix with T†T=FF† and TT†=GG†. If n≥m, complete the f frame to a basis of R and extend the g frame to m orthonormal vectors in R′. This defines an **isometry** J:R→R′ with J†J=I_R and J f_k=g_k. Hence Φ=(I⊗J)Ψ. Usually JJ† is only a projector, not I_R′.
+
+If n<m, an isometry on all of R cannot exist: m orthonormal vectors cannot fit into n dimensions. The supported partial isometry still works, or one can reverse the isometry direction. Another equivalent statement embeds both references in a common larger space; their padded vectors are then related by a unitary there. These dimension qualifications are part of the theorem.
+
+```python
+J=torch.zeros((4,2),dtype=g.D);J[0,0]=1;J[3,1]=1j
+e.close(J.mH@J,e.I)
+enlarged,CJ=g.execute(C@J.T)
+e.close(enlarged.measurement('S').value[0],rho)
+e.close(enlarged.measurement('R').value[0],J@torch.diag(torch.tensor(weights,dtype=g.D))@J.mH)
+try:g.unitary(J,2)
+except ValueError:print('Rectangular isometry is not submitted as a square unitary gate')
+else:raise AssertionError('Rectangular gate accepted')
+print('Three-qubit pure preparation realizes the larger coefficient matrix;system density unchanged')
+```
+
+```text
+Rectangular isometry is not submitted as a square unitary gate
+Three-qubit pure preparation realizes the larger coefficient matrix;system density unchanged
+```
+
+In this example J embeds |0⟩ as |00⟩ and |1⟩ as i|11⟩. Mathematically it maps C to CJᵀ. The implementation prepares the resulting larger pure vector with a square unitary on three qubits. It does **not** pass the rectangular J to `Circuit.unitary`, and does not claim a native isometry compiler or physical register-allocation endpoint. A known extension to a square gate on a larger initialized register would be another implementation, with its initialization contract made explicit.
+
+### 8.6.7 Build a purification from a nonorthogonal ensemble
+
+Spectral data give a convenient existence proof, but they are not required for a construction. For any finite ensemble ρ=Σ_j p_j|v_j⟩⟨v_j| of normalized system kets, choose orthonormal reference labels |j⟩ and set
+
+$$
+|\Omega\rangle=\sum_j\sqrt{p_j}|v_j\rangle|j\rangle.
+$$
+
+The system vectors v_j need not be mutually orthogonal. The norm is Σ_jp_j=1 because the labels are orthogonal, and tracing the labels gives the stated ensemble density. The reference matrix has entries
+
+$$
+(\sigma_R)_{jk}=\sqrt{p_jp_k}\langle v_k|v_j\rangle.
+$$
+
+It need not be diagonal, and its diagonal probabilities need not be the eigenvalues of ρ. Ensemble length may exceed rank; the previous support theorem still applies. This is how two apparently different ensemble descriptions can yield different purifications with the same system density. It does not turn the purifying label into a uniquely determined record of how an actual sample was prepared.
+
+```python
+vectors=(e.qubit(0.,0.),e.qubit(math.pi/2,.59))
+E=g.ensemble_coeff((.4,.6),vectors)
+ensemble_run,_=g.execute(E)
+rhoE=e.rho((.4,.6),vectors)
+e.close(ensemble_run.measurement('S').value[0],rhoE)
+lam,EV=torch.linalg.eigh(rhoE)
+Cs,_=g.spectral(tuple(lam.tolist()),EV,2)
+spectral_run,_=g.execute(Cs)
+Fs=g.support_frames(Cs,EV,tuple(lam.tolist()))
+Gs=g.support_frames(E,EV,tuple(lam.tolist()))
+UE=Gs@Fs.mH;g.unitary(UE,2);e.close(Cs@UE.T,E)
+e.close(spectral_run.measurement('S').value,ensemble_run.measurement('S').value)
+assert abs(torch.vdot(vectors[0],vectors[1]).item())>.1
+assert abs((E.T@E.conj())[0,1].item())>.1
+print('Nonorthogonal ensemble kets with orthogonal reference labels purify the same density')
+print('Reference density has nonzero off-diagonal entries;it is not merely the probability list')
+```
+
+```text
+Nonorthogonal ensemble kets with orthogonal reference labels purify the same density
+Reference density has nonzero off-diagonal entries;it is not merely the probability list
+```
+
+Here a host eigendecomposition of the known two-dimensional ρ supplies a second spectral purification. The native outputs verify both system densities. Host contraction against the same eigenbasis constructs a square ancillary unitary relating the two coefficient matrices. This finite check validates the example; the general proof was the common-frame argument above.
+
+### 8.6.8 Preserve normalization, phase and implementation boundaries
+
+The mathematical construction needs orthogonal *reference* labels. Substituting overlapping reference kets can retain extra cross terms and even destroy normalization. Normalizing that incorrect vector afterward changes the candidate and does not validate the original construction. A nonunitary reference matrix also requires a separate physical operation/update contract; it cannot simply be submitted as a unitary gate.
+
+```python
+print(f'{g.invalid_checks()} malformed contracts rejected')
+C1,rho1=g.spectral((1.,0.),Q,1)
+e.close(C1@C1.mH,rho1)
+assert C1.shape==(2,1)
+# Nonorthogonal reference labels fail even normalization for this example.
+f=e.qubit(math.pi/2,0.)
+bad=(math.sqrt(.4)*torch.kron(vectors[0],torch.tensor([1,0],dtype=g.D))
+     +math.sqrt(.6)*torch.kron(vectors[1],f))
+assert abs(torch.vdot(bad,bad).item()-1)>.1
+print('Pure density admits a one-dimensional host reference;native examples use nonempty qubit factors')
+print('Nonorthogonal reference labels fail the displayed ensemble-purification contract')
+```
+
+```text
+12 malformed contracts rejected
+Pure density admits a one-dimensional host reference;native examples use nonempty qubit factors
+Nonorthogonal reference labels fail the displayed ensemble-purification contract
+```
+
+The complete executable [purification.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/purification.py) supplies the helpers used above. `first_column` starts with the normalized target vector and uses two-pass orthogonal projection of computational-basis vectors to complete it to a square unitary. It checks the final matrix and its first column before submission. Its 1e-10 completion-pivot threshold concerns numerical basis construction, not a spectral-rank cutoff. `spectral` takes declared weights, preserves every positive one and rejects an insufficient reference dimension; it does not infer exact rank from noisy eigenvalues. In the nonorthogonal two-vector example, all computed eigenvalues are positive and used without clipping.
+
+The tested runtime is Python 3.12.14, released FlagQuantum 0.3.1 and PyTorch 2.13.0 on CPU, complex128. Native calls prepare *pure* circuits, apply square dense unitaries and query full/selected density matrices, probabilities and Pauli expectations in both tested statevector and density-matrix modes. `unitary` takes variadic integer qubit labels; multi-qubit calls use `unitary(*labels, unitary=U)`. Its source was checked after an initial tuple-as-one-label call failed before execution; that record is retained. The density-matrix execution mode does not itself make this an arbitrary mixed-input initialization experiment.
+
+SVD/eigendecomposition, ensemble sums, spectral construction, partial isometries and first-column completion are explicit host mathematics. There is no claim of a native `purify` endpoint, efficient synthesis, recovery of a lost reference, reset, measurement collapse, noise model, hardware calibration or access to an inaccessible environment. The helper accepts system/reference qubit dimensions 2 or 4 for native runs, and host reference dimension 1 for the pure-state boundary. Four-qubit full dense preparation matrices have dimension 16; these teaching memory guards are not FlagQuantum capacity limits. Preparing a known pure joint vector is distinct from using a rectangular matrix as a gate.
+
+Implementation comparisons use absolute tolerance 1e-12 and relative tolerance zero, with no probability clipping, input normalization repair or phase alignment. A positive reference weight 1e-20 is retained in a host boundary check; a floating-point eigenspectrum is not an exact-rank or interval certificate. The initial API failure executed zero circuits. The complete program runs 36 actual circuits; the eight literal body units run eight, including the explicit first unit. Random trials cannot replace the existence or equivalence proofs.
+
+Expected output of the complete program:
+
+```text
+24 native qubit purifications:complex spectral construction,ancillary rotation and supported equivalence passed.
+6 native larger-system purifications:rank2with2or4ancillary coordinates and full rank4 passed.
+6 native executions:rectangular ancillary isometry via separately prepared larger vector and nonorthogonal ensemble labels passed.
+12 malformed contracts rejected;dimension-one and tiny positive weights checked on host.
+36 actual native circuits;factorization/completion/support maps are explicit host computations,not a native purification compiler.
+```
+
+**Problems and transfer.**
+
+- **8.6-A — dimension and proof.** A four-dimensional density has eigenvalues (.6,.4,0,0). What is the smallest reference dimension? Prove that no one-dimensional reference can work without assuming a circuit implementation. If R has dimension four, how many dimensions of an ancillary unitary are fixed by a pair of its purifications?
+- **8.6-B — fresh complex preparation.** Repeat the spectral/ancillary example with weights (.61,.39), system Q=`prepare(qubit(-.69,.77))` and reference W=`prepare(qubit(.83,-.48))`. Check every system/reference matrix entry and the joint target C Wᵀ. Explain why using W† can escape a system-only check.
+- **8.6-C — enlargement and degeneracy.** Embed the same two-dimensional reference into four dimensions using J|0⟩=i|01⟩ and J|1⟩=|10⟩. Compare its native system reduction to the small-reference case. Then use weights (.5,.5) and a different complex common system eigenbasis in the support-frame proof. Which map is square, and which is rectangular?
+- **8.6-D — ensemble boundary.** Use weights (.25,.75) with |v_0⟩=`qubit(.42,-.36)` and |v_1⟩=`qubit(1.27,.63)`. Compare the label purification with a spectral one and recover the ancillary relation. Replace the two orthonormal reference labels by the same ket. Determine both the unnormalized reduction and why any subsequent normalization is a different construction.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 8.6-A–D</summary>
+
+**A.** Rank is two, so two reference dimensions are necessary and sufficient by the column-rank bound and spectral construction. A one-dimensional reference gives a single column C and rank(CC†)≤1. For two purifications in a four-dimensional reference, their relation fixes the image of the occupied two-dimensional span. It leaves a unitary choice between the two unused two-dimensional complements; it need not be identity there.
+
+**B.** With D=diag(√.61,√.39), the coefficient matrices and reductions are
+
+$$
+\begin{gathered}
+C=QD,\quad C'=QD W^T,\\
+\rho_S=QD^2Q^\dagger,\\
+\rho_R'=WD^2W^\dagger.
+\end{gathered}
+$$
+
+W† also supplies a unitary coordinate transformation and preserves CC†, but generally gives the wrong intended global vector and reference matrix. Compare the complete joint projector and the physical transformed coefficients rather than only the system density.
+
+**C.** The rectangular J has J†J=I₂, while JJ† is a rank-two projector in four dimensions. The enlarged vector is flattened C Jᵀ and has the same system density; the reference is J diag(.61,.39) J†. A change of common system eigenbasis inside the degenerate eigenspace changes both contraction frames consistently, so GF† gives the same full two-dimensional unitary. The square ancillary U and rectangular embedding J have different domains.
+
+**D.** The orthogonal-label coefficient columns are √.25 v_0 and √.75 v_1. Contracting against a common eigenbasis yields orthonormal frames and U=GF†, since this example has full reference support. If both labels become |f⟩, the unnormalized system vector is h=√.25 v_0+√.75 v_1, and its reduction is |h⟩⟨h|, including cross terms. Its trace is ⟨h|h⟩ rather than necessarily one; after division by that trace the density is a pure projector, generally unequal to the intended two-component mixture. Fresh transfer assertions check this distinction.
+
+</details>
+
+The frozen source target is [Watrous, *The Theory of Quantum Information*, §2.1.3, Theorems 2.10 and 2.12](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=79), printed pages 71–72 in the author manuscript. The section's full constructive and common-frame proofs are supplied here in our coefficient convention; no external text is redistributed. This is an author-verified draft. Independent mathematical/implementation review, reader trial and formal acceptance remain pending.
+
+<!-- end-section-8.6 -->

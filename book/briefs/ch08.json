@@ -137,6 +137,32 @@
       "source_locators": [
         "NC:2.5"
       ]
+    },
+    {
+      "sequence": 61,
+      "batch": "B02",
+      "section_id": "sec-density-matrices-reduced-states-and-purification-6",
+      "ref": "8.6",
+      "title": "Purification and nonuniqueness",
+      "depth": "F",
+      "requires": [
+        "sec-density-matrices-reduced-states-and-purification-2",
+        "sec-density-matrices-reduced-states-and-purification-4"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "question": "How can a mixed density be a reduction of a pure vector,and how much of the purifying register is determined?",
+      "entry": "8.2spectral density/purity and8.4partial-trace coordinate rule.",
+      "exit": "Spectral existence/minimal dimension,common-eigenbasis support proof and ancillary unitary/isometry equivalence.",
+      "worked_case": "Biased complex qubit,degenerate maximally mixed state,rank-deficient four-dimensional density,unequal ancillary spaces.",
+      "boundary": "Finite spaces,normalized positive density;unitary equivalence refers to same ancillary dimension and isometry/support maps for unequal dimensions.",
+      "code_plan": "Explicit spectral coefficients and host first-column unitary completion;native pure circuit plus selected densities;native ancillary rotations and entangling gates.",
+      "independent_check": "Scalar partial trace,analytic weights,eigenbasis contractions,full vector/local-unitary covariance and probabilities.",
+      "transfer_task": "Fresh complex rotations,nonorthogonal ensemble purification,rank-one enlargement and wrong transpose/unnormalized/nonorthogonal failures.",
+      "source_locators": [
+        "TQI:2.1.3"
+      ]
     }
   ]
 }
