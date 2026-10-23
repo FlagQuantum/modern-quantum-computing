@@ -1,0 +1,29 @@
+Unit1
+Initial outer Z probabilities: [0.25, 0.25, 0.25, 0.25]
+Unit2
+Branches (m,n), probability, [XX,YY,ZZ]:
+(0, 0) 0.25 [1, -1, 1]
+(0, 1) 0.25 [1, 1, -1]
+(1, 0) 0.25 [-1, 1, 1]
+(1, 1) 0.25 [-1, -1, -1]
+Unit3
+Four fresh native fixtures: X^n then Z^m gives Phi+ exactly.
+Unit4
+Ignored ensemble: XX=YY=ZZ=0;local Z=0.
+Adding normalized branch vectors falsely gives local Z=1.
+Unit5
+Native raw record shape: (16, 2)
+Named columns reversed to (m,n);all16records retained,trial ID preserved.
+Unit6
+XX:all four conditional signs verified;ignored mean=0.
+YY:all four conditional signs verified;ignored mean=0.
+ZZ:all four conditional signs verified;ignored mean=0.
+Classical Pauli-frame reinterpretation gives corrected XX=ZZ=+1.
+Unit7
+(0, 0) p=0.31713620 corrected F=0.77429738
+(0, 1) p=0.18286380 corrected F=0.80609221
+(1, 0) p=0.31713620 corrected F=0.77429738
+(1, 1) p=0.18286380 corrected F=0.80609221
+Unit8
+Coherent circuit:middle |++> times outer Phi+;not a distributed LOCC implementation.
+Literal body native executions: 12

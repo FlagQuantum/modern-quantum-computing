@@ -1,0 +1,23 @@
+{
+  "target": "final local build,default narrow IAB",
+  "main_formulas": [
+    "phase-preserving branch expansion",
+    "grouped identity",
+    "outer-effect cancellation",
+    "XX/ZZ/YY signs",
+    "nonideal correction and fidelity"
+  ],
+  "table": {
+    "rows": 5,
+    "cells_per_row": 4,
+    "math_wrappers": 8
+  },
+  "expanded_answers": {
+    "math_containers": 5,
+    "display": 1,
+    "raw_dollar_delimiters": false
+  },
+  "MathJax_errors": 0,
+  "html_sha256": "c550146c22898ac5c841b454a1182a8c67a374c880b05b33e6c896705c115864",
+  "limitations": "Not a laboratory claim;remaining wide table/formulas have horizontal scrolling."
+}

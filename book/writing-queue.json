@@ -796,7 +796,7 @@
         "sec-entanglement-and-quantum-information-protocols-7"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md"
     },
     {

@@ -1,0 +1,103 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-network-entanglement-primitives",
+  "ref": "7.8",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+  "depth": "F",
+  "result": "Entanglement-swapping branch identity",
+  "requires": [
+    "sec-entanglement-and-quantum-information-protocols-3",
+    "sec-entanglement-and-quantum-information-protocols-5",
+    "sec-entanglement-and-quantum-information-protocols-7"
+  ],
+  "assumptions": [
+    "Specified normalized pure link pairs;four distinct roles with middle U,V at one node.",
+    "Ideal complete Bell measurement;communicated matched outcome and local correction after receipt.",
+    "No unmodelled interaction during communication;static simulator does not establish relativistic propagation or hardware availability."
+  ],
+  "verification_obligations": [
+    "Full indexed four-branch identity with exact phase and grouped-versus-physical order.",
+    "Branch normalization,rank-two/Schmidt entanglement and exact right-endpoint correction order.",
+    "Complete outer-effect sum and uniform product-ensemble equivalence without averaging vectors.",
+    "All Pauli branch signs and classical frame conjugation identities.",
+    "Nonideal complex-link branch weights,zero branch boundary and corrected fidelity.",
+    "Wrong analyzer uniform-outcome diagnostic,missing phase correction and packet column validation."
+  ],
+  "formula_code_units": [
+    "links",
+    "middle branches",
+    "corrections",
+    "ignored outcomes",
+    "messages",
+    "correlations and frames",
+    "nonideal links",
+    "coherent boundary"
+  ],
+  "sources": [
+    {
+      "locator": "NC:1.3.7",
+      "scope": "Existing frozen locator;no new full-text NC review claimed."
+    },
+    {
+      "locator": "NET:links",
+      "url": "https://arxiv.org/html/0806.4195v1",
+      "scope": "Introduction,II,V inspected for nodes/interconnects/stored resources and operational-verification distinctions;historical context,no present hardware claim. PDF fetch cache miss;HTML inspected instead."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/entanglement_swapping.py",
+    "prose_checker": "scripts/check_entanglement_swapping_prose.py",
+    "evidence": "book/section-evidence/7.8",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 89,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 12,
+    "separate_transfer_circuits": 12,
+    "additional_transfer_classical_effects": 3,
+    "execution_ledger": {
+      "initial_passed_coverage": 88,
+      "coverage_enhanced_complete_passed": 89,
+      "body_assembly": 12,
+      "body_plus_complete_checker": 101,
+      "transfer": 12,
+      "total_author_section_native_runs": 302,
+      "separate_7_7_regression": 121,
+      "note": "Initial88passed;added both-product zero-branch case,changed tiny positive case and added classical underflow rejection. No unexpected scientific execution failures. Deliberate wrong candidates are diagnostic fixtures. Prior-section regression and future remote CI separate."
+    },
+    "malformed_contracts": 16,
+    "tolerance": "Absolute1e-12,relative0 for deterministic amplitudes/probabilities;no phase alignment,clipping or input normalization repair. Tiny positive branch retained;nonzero squared-norm underflow raises. No random-count equality/confidence-membership must-pass.",
+    "native_boundary": "Actual released0.3.1static H/CX/CZ/Ry/P and terminal probabilities/samples/expectations. Ideal branch extraction and records are classical;fresh known Bell fixtures are not retained-state feedback. Coherent CX/CZ cross node boundary and are not distributed LOCC. No send/receive,collapse/reset,network scheduler,loss/storage/hardware certificate.",
+    "script_sha256": "0604a324f0db6d4cda48b33a2b7003a0ba283e63cd660fdd9220581495669fcd"
+  },
+  "assessment": {
+    "tasks": [
+      "7.8-A grouping/sign",
+      "7.8-B incomplete classical message",
+      "7.8-C complex mapped links",
+      "7.8-D network claim diagnosis"
+    ],
+    "answers": "Accessible answers supplied;exact printed7.8C executed among six fresh mapped cases. Independent reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Initial88passed;coverage-enhanced89complete/12literalbody/12freshtransfer/101body+complete checker passed;121previous7.7regression separate. Strict fresh build and73page links passed. Actual IAB branch/effect/Pauli/nonideal correction formulas,5x4Bell table and expanded answers passed;independent review pending."
+  },
+  "production": {
+    "next_draft": "7.9 What entanglement alone does not guarantee",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual default narrow IAB final local build:phase-exact branch expansion,grouped Bell identity,effect sum,Pauli signs and nonideal correction/fidelity visually inspected. Two wide main equations given readable multiline TeX. Four-branch table5rowsx4cells,8math wrappers. Expanded7.8A-D answers5MathJax containers including1display;raw$$absent and globalMathJaxerror count0. Remaining wide formulas/table use existing horizontal scrolling;not a universal no-overflow claim.",
+    "website": "Strict fresh build and73page links passed;publish exact rendered HTML and verify online HTTP200/byte equality.",
+    "html_sha256": "c550146c22898ac5c841b454a1182a8c67a374c880b05b33e6c896705c115864"
+  }
+}

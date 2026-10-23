@@ -1,6 +1,6 @@
 # 7. Entanglement and Quantum Information Protocols
 
-**Working drafts: sections 7.1–7.7 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
+**Working drafts: sections 7.1–7.8 · Writing Baseline 1.0 · October 23, 2026.** Author execution is recorded separately from independent mathematical review, implementation review and reader trial; all three remain pending. Examples use FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128 statevectors.
 
 <span id="sec-entanglement-and-quantum-information-protocols-1"></span>
 
@@ -3383,3 +3383,540 @@ The weights are again one half. All unconditioned results have Z=0 probability $
 **Sources.** The frozen locator is Nielsen and Chuang, *Quantum Computation and Quantum Information*, §2.2.8, “Composite systems,” beginning on printed page 93 ([NC:2.2.8 locator](../references/proof-sources.md#source-nc-2-2-8)); its stored status is a contents-locator check, not a new full-text review. For the complete-operator boundary, the author-hosted [Watrous, *The Theory of Quantum Information*, Chapter 2.2.2](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf), Theorem 2.26 and Corollary 2.27, printed pages 87–89 (PDF pages 95–97), were inspected for normalization/representation scope. Its full density-operator formalism is not assumed here: the necessary finite branch identities are proved locally above. These are original derivations and simulator checks, not a reproduction or redistribution of either textbook. Section 7.8 uses these distinctions when introducing entanglement swapping.
 
 <!-- end-section-7.7 -->
+
+<span id="sec-network-entanglement-primitives"></span>
+
+## 7.8 Entanglement swapping and quantum-network primitives
+
+Two elementary links can be joined without bringing their outer qubits together. The joining node measures its two local qubits in the Bell basis. Each outcome identifies an entangled state of the outer qubits; a classical message then tells an endpoint which Pauli correction or frame to use. The outcome label is part of the resource description. Omitting it changes the predictions available to the endpoints.
+
+We use [7.3's phase/parity Bell convention](#sec-entanglement-and-quantum-information-protocols-3), [7.5's branch-preserving correction order](#sec-entanglement-and-quantum-information-protocols-5), and [7.7's distinction between conditional and ignored outcomes](#sec-entanglement-and-quantum-information-protocols-7). Depth **F** requires the full four-branch identity, normalization, entanglement and correction proofs. All systems here are finite, the initial links are specified pure states, the middle measurement is an ideal complete Bell measurement, and no unmodelled interaction acts while the messages travel. These idealizations are assumptions, not network measurements.
+
+Name the ordered roles (L,U,V,R)=(q0,q1,q2,q3). The left endpoint holds L; the middle node holds U and V; the right endpoint holds R. Qubit q0 is the most significant full-vector bit. Both link distribution and agreement on these labels precede swapping. Source-preparation CX gates below represent already available link resources in one simulator; they are not a claim that separated nodes can apply a free CX across a physical channel. Angles are radians and amplitudes dimensionless. Deterministic checks use absolute tolerance $10^{-12}$ and relative tolerance zero, without aligning phases, clipping probabilities or repairing input normalization.
+
+Run the eight cumulative Python units below from the repository root using the pinned example requirements. The complete companion is [entanglement_swapping.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/entanglement_swapping.py). It tests actual FlagQuantum 0.3.1 static gates and terminal requests. Ideal branch extraction and message bookkeeping are explicitly classical book helpers.
+
+### 7.8.1 Declare two links and four roles
+
+Each link is initially Φ⁺. In the physical register order L,U,V,R,
+
+$$
+\begin{aligned}
+|\Omega\rangle
+ &=|\Phi^+\rangle_{LU}|\Phi^+\rangle_{VR}\\
+ &=\frac12\sum_{i,j=0}^1|i,i,j,j\rangle_{LUVR}.
+\end{aligned}
+$$
+
+The four nonzero amplitudes are at indices 0, 3, 12 and 15, all equal to one half. This is not a Bell state of L,R alone: an outer computational measurement is uniform because each pair of outer values has exactly one distinct middle label. Summing squared amplitudes over those labels gives $p_{LR}(i,j)=1/4$.
+
+In the code, H followed by CX prepares each link; the scalar reference fills those four bit-index amplitudes without multiplying a native gate matrix. The terminal query selects (q0,q3), so its four entries mean outer 00,01,10,11.
+
+```python
+import math
+import torch
+import flagquantum as fq
+from examples.foundations import entanglement_swapping as s
+from examples.foundations.tensor_spaces import OPTIONS
+
+c0 = fq.Circuit(4, dtype=torch.complex128)
+c0.h(0).cx(0, 1).h(2).cx(2, 3)
+r0 = fq.run(c0, outputs=[fq.probabilities(qubits=(0, 3))],
+            options=OPTIONS)
+s.RUNS += 1
+d = s.link(math.pi/2, 0.)
+s.close(r0.statevector()[0], s.reference(d, d))
+s.close(r0.probabilities[0], [.25]*4)
+print("Initial outer Z probabilities:", [round(x, 8) for x in r0.probabilities[0].tolist()])
+```
+
+```text
+Initial outer Z probabilities: [0.25, 0.25, 0.25, 0.25]
+```
+
+Changing the names or grouping axes in an equation does not physically move a qubit. Later tests permute all four physical role assignments, retaining the declared internal order of the middle and outer pairs.
+
+### 7.8.2 Derive every Bell measurement branch
+
+Apply CX(U,V), then H(U), at the middle node. This is the inverse of the Bell encoder, so a computational measurement of (U,V) implements a Bell-basis measurement of the original middle pair. Let m be the measured U bit and n the measured V bit. From the definition of H,
+
+$$
+\begin{aligned}
+|i,i,j,j\rangle
+ &\xrightarrow{\mathrm{CX}_{U,V}}|i,i,j\mathbin{\oplus}i,j\rangle,\\
+ &\xrightarrow{H_U}
+ \frac1{\sqrt2}\sum_{m=0}^1(-1)^{mi}
+ |i,m,j\mathbin{\oplus}i,j\rangle.
+\end{aligned}
+$$
+
+For a specified n, the original j must equal $i\oplus n$. Substituting this relation into the sum gives the decoded state
+
+$$
+\begin{aligned}
+|\Omega_{\mathrm{dec}}\rangle
+ &=\frac1{2\sqrt2}\sum_{m,n,i=0}^1\Bigl[\\
+ &\quad(-1)^{mi}|i,m,n,i\oplus n\rangle\Bigr].
+\end{aligned}
+$$
+
+Define the outer vector and its unnormalized branch by
+
+$$
+\begin{aligned}
+|\beta_{mn}\rangle_{LR}
+ &=\frac{|0,n\rangle+(-1)^m|1,1\oplus n\rangle}{\sqrt2},\\
+|\eta_{mn}\rangle_{LR}
+ &=\frac12|\beta_{mn}\rangle_{LR}.
+\end{aligned}
+$$
+
+The two terms in each β are orthogonal. Therefore its norm is one, the branch probability is $\|\eta_{mn}\|^2=1/4$, and division by its positive square root yields exactly βₘₙ. The branch 11 is $(|01\rangle-|10\rangle)/\sqrt2$, including the displayed sign. There is no arbitrary per-branch phase alignment in this derivation or the checks.
+
+With tensor factors **displayed in the grouped order** (U,V),(L,R), rather than the physical full-vector order, the same state is
+
+$$
+|\Omega_{\mathrm{dec}}\rangle
+ =\frac12\sum_{m,n=0}^1
+ |mn\rangle_{UV}|\beta_{mn}\rangle_{LR}.
+$$
+
+Applying the middle Bell encoder back to this identity proves the premeasurement swapping identity,
+
+$$
+|\Phi^+\rangle_{LU}|\Phi^+\rangle_{VR}
+ =\frac12\sum_{m,n=0}^1
+ |\beta_{mn}\rangle_{UV}|\beta_{mn}\rangle_{LR},
+$$
+
+with the same grouped-factor convention. No physical SWAP is implicit in the grouping.
+
+For each conditional outer pure state, the two rows of its coefficient matrix have one nonzero entry of magnitude $1/\sqrt2$ in different columns. Its determinant is $(-1)^{m+n}/2$, hence its rank is two. By 7.1 it is entangled across L|R; equivalently its two Schmidt coefficients are both $1/\sqrt2$. The initial product across the two **links** has thus become an entangled **conditional outer pair** through a joint measurement on the middle halves.
+
+```python
+c1 = fq.Circuit(4, dtype=torch.complex128)
+c1.h(0).cx(0, 1).h(2).cx(2, 3)
+c1.cx(1, 2).h(1)  # middle Bell analyzer: CX first, H second
+r1 = fq.run(c1, outputs=[
+    fq.probabilities(qubits=(1, 2), name="middle"),
+    fq.probabilities(qubits=(0, 3), name="outer")], options=OPTIONS)
+s.RUNS += 1
+s.close(r1.statevector()[0], s.reference(d, d, decoded=True))
+family = s.branches(r1.statevector()[0])
+for k, (p, v) in enumerate(family):
+    s.close(p, .25)
+    s.close(v, s.bell(k//2, k % 2))  # exact phase, including branch 11
+s.close(r1.measurement("middle").value[0], [.25]*4)
+s.close(r1.measurement("outer").value[0], [.25]*4)
+print("Branches (m,n), probability, [XX,YY,ZZ]:")
+for k, (p, v) in enumerate(family):
+    signs = [round(s.moment(v, a, a)) for a in (s.X, s.Y, s.Z)]
+    print((k//2, k % 2), round(p, 8), signs)
+```
+
+```text
+Branches (m,n), probability, [XX,YY,ZZ]:
+(0, 0) 0.25 [1, -1, 1]
+(0, 1) 0.25 [1, 1, -1]
+(1, 0) 0.25 [-1, 1, 1]
+(1, 1) 0.25 [-1, -1, -1]
+```
+
+The named output accessors matter: this run requests two different probability arrays. The four-entry middle array alone cannot validate the branch identity. The companion deliberately reverses the middle gate order and observes a uniform middle array even though the full conditional-state target is wrong.
+
+### 7.8.3 Send the label and correct the remote pair
+
+On R alone,
+
+$$
+|\beta_{mn}\rangle
+ =(I_L\otimes X_R^n Z_R^m)|\Phi^+\rangle.
+$$
+
+To verify this identity, act on the two Φ⁺ terms: the R input 0 acquires no Z sign and is sent to n; the input 1 acquires $(-1)^m$ and is sent to $1\oplus n$. Its inverse is
+
+$$
+\begin{aligned}
+D_{mn}&=Z^mX^n,\\
+D_{mn}(X^nZ^m)&=Z^m(X^nX^n)Z^m=I.
+\end{aligned}
+$$
+
+Thus the correction calls are **X first if n=1, then Z if m=1**. The middle node sends the two bits (m,n), with an agreed trial and link identity, to R. L need not correct its qubit in this convention. Both endpoints may still need notification before scheduling a task that consumes the shared pair.
+
+| Middle bits (m,n) | Conditional outer state | R calls after receipt | Result |
+|---|---|---|---|
+| (0,0) | $\lvert\Phi^+\rangle$ | identity | $\lvert\Phi^+\rangle$ |
+| (0,1) | $\lvert\Psi^+\rangle$ | X | $\lvert\Phi^+\rangle$ |
+| (1,0) | $\lvert\Phi^-\rangle$ | Z | $\lvert\Phi^+\rangle$ |
+| (1,1) | $\lvert\Psi^-\rangle$ | X then Z | $\lvert\Phi^+\rangle$ |
+
+The table uses named Bell states to avoid confusing the phase bit with the parity bit. If the two calls are reversed on branch 11, the result is −Φ⁺. It has the same isolated branch probabilities, but is not the exact branch vector above. Coherent reuse of an unmeasured outcome register makes such relative history phases observable.
+
+The next code prepares each simulator-known Bell branch **afresh**, then checks the literal X/Z calls. Repreparing a known vector is an implementation fixture; it does not retain a distributed unknown state or implement measurement-triggered hardware feedback.
+
+```python
+for m in (0, 1):
+    for n in (0, 1):
+        # Fresh known Bell-state fixture;not an unknown retained remote state.
+        c = fq.Circuit(4, dtype=torch.complex128).h(0).cx(0, 3)
+        if m:
+            c.z(0)
+        if n:
+            c.x(3)
+        # Assume the correctly matched classical message has arrived at R.
+        if n:
+            c.x(3)
+        if m:
+            c.z(3)
+        r = fq.run(c, outputs=[fq.probabilities(qubits=(0, 3))],
+                   options=OPTIONS)
+        s.RUNS += 1
+        expected = torch.zeros(16, dtype=torch.complex128)
+        expected[0] = expected[9] = 1/math.sqrt(2)
+        s.close(r.statevector()[0], expected)
+        Dmn = (s.Z if m else s.I) @ (s.X if n else s.I)
+        s.close(torch.kron(s.I, Dmn) @ s.bell(m, n), s.bell(0, 0))
+print("Four fresh native fixtures: X^n then Z^m gives Phi+ exactly.")
+```
+
+```text
+Four fresh native fixtures: X^n then Z^m gives Phi+ exactly.
+```
+
+A message belongs to the same physical trial as the stored pair. Reusing (m,n) from another trial applies an unrelated correction, even when the histogram of messages looks correct. Classical transmission carries the label and timing information; it does not transmit or copy the unknown outer amplitudes.
+
+### 7.8.4 Ignore the outcome correctly
+
+Before the message arrives, an endpoint cannot select a known branch. More strongly, even if L and R could combine their local records, their unlabelled outer predictions are those of the equal four-Bell ensemble. For any outer measurement effect E, a positive matrix describing one outcome,
+
+$$
+p(E)=\frac14\sum_{m,n}
+ \langle\beta_{mn}|E|\beta_{mn}\rangle.
+$$
+
+The four Bell vectors form a complete orthonormal basis, so their coefficient columns B obey $BB^\dagger=I_4$. Expanding E in computational indices r,s gives
+
+$$
+\begin{aligned}
+p(E)
+ &=\frac14\sum_{r,s}E_{rs}
+       \sum_{m,n}B_{s,mn}B_{r,mn}^*\\
+ &=\frac14\sum_r E_{rr}.
+\end{aligned}
+$$
+
+This is exactly the prediction of the uniform ensemble of the four computational product states. It does not supply a known entangled pair without a record. In particular the individual Pauli means and the joint XX,YY,ZZ means all vanish. Each labelled branch is entangled, while these ignored-outcome predictions admit a product-state ensemble explanation. This statement uses probabilities and finite sums; the general density-operator formulation comes in Chapter 8.
+
+The middle operation is local relative to the split UV | LR. Section 7.7 proves that its complete, nonselective action cannot change **any** outer effect probability. This is a useful stronger check than testing only one endpoint's marginal. Conditional entanglement is compatible with no-signalling because the branch label is unavailable outside the middle node until a message or an agreed retrospective record is received.
+
+Never average conditional statevectors. Here adding the four normalized Bell vectors and normalizing gives $|0\rangle_L|+\rangle_R$, falsely predicting L's Z mean to be one. The weighted **probability** sum predicts zero.
+
+```python
+B = torch.stack([v for _, v in family], dim=1)
+s.close(B @ B.mH, torch.eye(4, dtype=torch.complex128))
+for a in (s.X, s.Y, s.Z):
+    s.close(s.weighted_moment(family, a, a), 0.)
+s.close(s.weighted_moment(family, s.Z, s.I), 0.)
+wrong = sum(v for _, v in family)
+wrong /= torch.linalg.vector_norm(wrong)
+s.close(s.moment(wrong, s.Z, s.I), 1.)
+print("Ignored ensemble: XX=YY=ZZ=0;local Z=0.")
+print("Adding normalized branch vectors falsely gives local Z=1.")
+```
+
+```text
+Ignored ensemble: XX=YY=ZZ=0;local Z=0.
+Adding normalized branch vectors falsely gives local Z=1.
+```
+
+The equal weights are a consequence of the two ideal links, not a general rule for every swapping experiment. The nonideal example below will require actual branch probabilities.
+
+### 7.8.5 Match physical outcomes to classical messages
+
+A raw sample array has an ordered column contract. Requesting (V,U) produces columns (n,m); interpreting them as (m,n) silently exchanges which correction is phase and which is parity. For a record row (m,n), the message label index is $2m+n$. Reordering raw columns must precede that integer encoding.
+
+```python
+rs = fq.run(c1, outputs=[fq.samples(qubits=(2, 1))],
+            shots=16, options=OPTIONS)
+s.RUNS += 1
+raw_nm = rs.samples[0]  # actual columns are (n,m),not (m,n)
+bits_mn, trial = s.packet(raw_nm, (2, 1), (0, 1, 2, 3), "swap-trial-078")
+s.close(bits_mn[:, 0], raw_nm[:, 1])
+s.close(bits_mn[:, 1], raw_nm[:, 0])
+histogram = torch.bincount(2*bits_mn[:, 0]+bits_mn[:, 1], minlength=4)
+assert histogram.sum().item() == 16
+assert trial == "swap-trial-078"
+print("Native raw record shape:", tuple(raw_nm.shape))
+print("Named columns reversed to (m,n);all16records retained,trial ID preserved.")
+```
+
+```text
+Native raw record shape: (16, 2)
+Named columns reversed to (m,n);all16records retained,trial ID preserved.
+```
+
+The assertions validate record shape, bit values, column conversion and record conservation. They do not demand that 16 random records contain every branch or exactly four examples of each. Such a test would occasionally fail for a correct sampler. The packet helper checks that a trial ID is present; it cannot authenticate a physical source or detect a dishonest but well-formed ID. The application must match the receipt to the stored link IDs and trial, reject stale or duplicate delivery as appropriate, and know which endpoints remain available.
+
+This network primitive separates four jobs:
+
+- **Establish two links:** distribute and identify two elementary pairs, with one half of each at the middle node.
+- **Join locally:** perform the two-qubit Bell measurement on U,V and retain the outcome record.
+- **Announce:** send the matched label or an explicit failure indication through a classical channel.
+- **Consume or track:** correct R, retain a Pauli frame, or sort already acquired diagnostic records.
+
+The ideal complete Bell measurement has four successful outcomes whose probabilities sum to one; success is not restricted to branch 00. A physical analyzer may distinguish fewer outcomes or suffer loss. Its success probability, storage lifetime and communication latency require a specified physical model and evidence. They cannot be read from a lossless four-qubit simulation. Postselecting matching recorded data after both endpoints have measured can demonstrate correlations, but does not leave an unmeasured pair available for a later network task.
+
+### 7.8.6 Check correlations and retain a Pauli frame
+
+The conditional Bell signs can be derived directly from the two terms:
+
+$$
+\begin{aligned}
+(X\otimes X)|\beta_{mn}\rangle&=(-1)^m|\beta_{mn}\rangle,\\
+(Z\otimes Z)|\beta_{mn}\rangle&=(-1)^n|\beta_{mn}\rangle.
+\end{aligned}
+$$
+
+The first operator interchanges the two terms and the second gives their shared parity sign. Since $Y=iXZ$ and the joint XX and ZZ commute,
+
+$$
+\langle YY\rangle_{mn}=-(-1)^{m+n}.
+$$
+
+Measuring either endpoint alone gives unbiased ±1 in X, Y or Z for every branch. Therefore, for same-axis outcomes a,b encoded as bits, their joint conditional probability is
+
+$$
+p(a,b\mid m,n;A)
+ =\frac{1+(-1)^{a+b}C_A(m,n)}4,
+$$
+
+where $C_X=(-1)^m$, $C_Z=(-1)^n$ and $C_Y=-(-1)^{m+n}$. This follows by expanding the two local effects $(I+(-1)^a A)/2$ and using the zero individual means. Multiplication by 1/4 yields the full joint probability with the middle record. The code checks the conditional parity mean for every middle outcome, and the companion separately checks the entire 16-entry array against the scalar formula.
+
+An endpoint may defer the physical correction and retain a **Pauli frame**, a classical description of the pending Pauli operator. For the correction D,
+
+$$
+\begin{aligned}
+D^\dagger X D&=(-1)^mX,\\
+D^\dagger Z D&=(-1)^nZ,\\
+D^\dagger Y D&=(-1)^{m+n}Y.
+\end{aligned}
+$$
+
+These follow from XZ=−ZX and X²=Z²=I. Thus a recorded R X result changes sign when m=1, a Z result when n=1, and a Y result when m⊕n=1. The reinterpreted joint XX,ZZ signs are +1 and YY is −1, as for Φ⁺. For these specified Pauli measurements, classical reinterpretation and a physical correction before measurement give the same statistics. A frame must also be propagated through any intervening gates; it is not permission to ignore corrections in an arbitrary subsequent computation.
+
+```python
+for axis, A in (("X", s.X), ("Y", s.Y), ("Z", s.Z)):
+    c = s.source()
+    for q in (0, 3):
+        if axis == "X":
+            c.h(q)
+        elif axis == "Y":
+            c.p(q, -math.pi/2).h(q)
+    r = fq.run(c, outputs=[fq.probabilities(),
+        fq.expectation(fq.Z(0) @ fq.Z(3), name="parity")], options=OPTIONS)
+    s.RUNS += 1
+    p_full = r.probabilities[0]
+    for m in (0, 1):
+        for n in (0, 1):
+            conditional = sum((-1)**(a+b)*p_full[s.index((a,m,n,b),(0,1,2,3))].item()
+                              for a in (0,1) for b in (0,1))/.25
+            expected = s.moment(s.bell(m,n), A, A)
+            s.close(conditional, expected)
+    s.close(r.expectation("parity")[0], 0.)
+    corrected = [s.frame((-1)**m, (-1)**n, m, n) for m in (0,1) for n in (0,1)]
+    assert corrected == [(1,1)]*4
+    print(axis+axis+":all four conditional signs verified;ignored mean=0.")
+print("Classical Pauli-frame reinterpretation gives corrected XX=ZZ=+1.")
+```
+
+```text
+XX:all four conditional signs verified;ignored mean=0.
+YY:all four conditional signs verified;ignored mean=0.
+ZZ:all four conditional signs verified;ignored mean=0.
+Classical Pauli-frame reinterpretation gives corrected XX=ZZ=+1.
+```
+
+For Y, the native analyzer is P(−π/2) then H, followed by Z readout. Its sign agrees with the declared matrix Y. No hardware Pauli-frame service is invoked: this example uses native static basis gates plus classical outcome arithmetic.
+
+### 7.8.7 Replace ideal links with specified pure links
+
+To expose the boundary of the ideal resource, let
+
+$$
+\begin{aligned}
+|\lambda\rangle_{LU}&=d_0|00\rangle+d_1|11\rangle,\\
+|\mu\rangle_{VR}&=e_0|00\rangle+e_1|11\rangle,
+\end{aligned}
+$$
+
+with $\sum_i|d_i|^2=\sum_j|e_j|^2=1$. Repeating the same indexed gate expansion, without assuming equal amplitudes, gives
+
+$$
+|\eta_{mn}\rangle
+ =\frac1{\sqrt2}\sum_{i=0}^1
+ (-1)^{mi}d_i e_{i\oplus n}|i,i\oplus n\rangle.
+$$
+
+Orthogonality eliminates the cross term in its squared norm. Define
+
+$$
+\begin{aligned}
+S_n&=|d_0e_n|^2+|d_1e_{1\oplus n}|^2,\\
+p_{mn}&=S_n/2.
+\end{aligned}
+$$
+
+Summing m gives Sₙ and summing n gives $(|d_0|^2+|d_1|^2)(|e_0|^2+|e_1|^2)=1$, proving full normalization. If Sₙ=0, that branch is impossible and its conditional vector is undefined. If Sₙ>0, divide η by $\sqrt{S_n/2}$ and apply the same D:
+
+$$
+\begin{aligned}
+ &(I\otimes D_{mn})|\psi_{mn}\rangle\\
+ &\quad=\frac{d_0e_n|00\rangle+d_1e_{1\oplus n}|11\rangle}{\sqrt{S_n}}.
+\end{aligned}
+$$
+
+The factors $(-1)^{mi}$ from the branch and $(-1)^{mi}$ from the final Z cancel. The Pauli byproduct is removed, but unequal amplitudes and residual link phases remain. The corrected state's squared overlap with Φ⁺ is
+
+$$
+F_{mn}
+ =\frac{|d_0e_n+d_1e_{1\oplus n}|^2}{2S_n}.
+$$
+
+An entangled conditional state requires both coefficients in its numerator vector to be nonzero. Its coefficient determinant then has nonzero magnitude $|d_0d_1e_0e_1|/S_n$. If either initial link has only one nonzero coefficient, every nonzero output branch here is a product. A Bell measurement cannot repair a missing entangled link in this model.
+
+Use $d=(\cos(\theta_1/2),e^{i\phi_1}\sin(\theta_1/2))$ and the analogous e. The visible native Ry and P calls prepare these exact coefficients before entangling each link.
+
+```python
+angles = (1.13, .37, .89, -.51)  # theta1,phi1,theta2,phi2;all radians
+dc, ec = s.link(*angles[:2]), s.link(*angles[2:])
+c = fq.Circuit(4, dtype=torch.complex128)
+c.ry(0, angles[0]).p(0, angles[1]).cx(0, 1)
+c.ry(2, angles[2]).p(2, angles[3]).cx(2, 3)
+c.cx(1, 2).h(1)
+r = fq.run(c, outputs=[fq.probabilities(qubits=(1, 2))], options=OPTIONS)
+s.RUNS += 1
+s.close(r.statevector()[0], s.reference(dc, ec, decoded=True))
+nonideal = s.branches(r.statevector()[0])
+for k, (p, v) in enumerate(nonideal):
+    q, w = s.expected_branch(dc, ec, k//2, k % 2)
+    s.close(p, q)
+    s.close(v, w)
+    corrected = torch.kron(s.I, s.correction(k//2, k % 2)) @ v
+    S = abs(dc[0]*ec[k % 2])**2+abs(dc[1]*ec[1 ^ (k % 2)])**2
+    fidelity = abs(torch.vdot(s.bell(0,0), corrected))**2
+    scalar_fidelity = abs(dc[0]*ec[k % 2]+dc[1]*ec[1 ^ (k % 2)])**2/(2*S)
+    s.close(fidelity, scalar_fidelity)
+    print((k//2,k % 2), "p="+format(p,".8f"), "corrected F="+format(float(fidelity),".8f"))
+```
+
+```text
+(0, 0) p=0.31713620 corrected F=0.77429738
+(0, 1) p=0.18286380 corrected F=0.80609221
+(1, 0) p=0.31713620 corrected F=0.77429738
+(1, 1) p=0.18286380 corrected F=0.80609221
+```
+
+The phase bit still has equally likely values for a fixed n, but the two parities have different weights. Uniformly averaging the normalized branches would therefore be wrong. The complete program includes product links with exactly zero branches and a small-angle case with positive weights near $10^{-21}$. It does not replace small positive probabilities by zero. A nonzero vector whose squared norm underflows to zero raises explicitly. Floating-point tolerances establish implementation agreement, not an interval certificate or a laboratory entanglement witness.
+
+### 7.8.8 Separate a coherent circuit from a network protocol
+
+In one centralized simulator, leave U,V unmeasured and append CX(V,R), then CZ(U,R). On each ideal history, these are the controlled versions of Xⁿ then Zᵐ, so the exact state becomes
+
+$$
+\begin{aligned}
+|\Omega_{\mathrm{coh}}\rangle
+ &=\frac12\sum_{m,n}|mn\rangle_{UV}|\Phi^+\rangle_{LR}\\
+ &=|+\rangle_U|+\rangle_V|\Phi^+\rangle_{LR}.
+\end{aligned}
+$$
+
+This is an independent full-vector check of the byproduct algebra. It uses **quantum controls between the middle node and R**. A separated-node implementation cannot replace a classical channel with those cross-node gates for free. Conversely the genuine ideal network protocol measures locally, sends ordinary outcome bits, and applies local endpoint corrections while the memories retain their states. Its physical and timing requirements differ from a four-qubit static circuit.
+
+```python
+coherent = fq.Circuit(4, dtype=torch.complex128)
+coherent.h(0).cx(0, 1).h(2).cx(2, 3).cx(1, 2).h(1)
+coherent.cx(2, 3).cz(1, 3)  # cross-node quantum controls,not classical messages
+rc = fq.run(coherent, outputs=[fq.probabilities(qubits=(0,3))], options=OPTIONS)
+s.RUNS += 1
+s.close(rc.statevector()[0], s.reference(d,d,decoded=True,coherent=True))
+s.close(rc.probabilities[0], [.5,0,0,.5])
+expected = torch.zeros(16, dtype=torch.complex128)
+for i in (0,1):
+    for m in (0,1):
+        for n in (0,1):
+            expected[s.index((i,m,n,i),(0,1,2,3))] = 1/(2*math.sqrt(2))
+s.close(rc.statevector()[0], expected)
+print("Coherent circuit:middle |++> times outer Phi+;not a distributed LOCC implementation.")
+print("Literal body native executions:",s.RUNS)
+```
+
+```text
+Coherent circuit:middle |++> times outer Phi+;not a distributed LOCC implementation.
+Literal body native executions: 12
+```
+
+The released API used here supplies actual static H, CX, CZ, Ry, P gates and terminal probabilities/samples/expectations. There is no use of a native sampled-collapse request followed by retained-state classical feedback, a send/receive endpoint, a memory scheduler, a heralding device, or a calibrated network channel. The source signatures and source hashes were inspected and stored. Known-state fixtures validate the requested local corrections; coherent controls validate unitary algebra. Neither route demonstrates a distributed instrument. A dedicated network backend or dynamic protocol would need its own supported input/output and timing contracts.
+
+Swapping is a primitive for connecting established links. Repeating the idea needs additional middle memories, agreed frames, successful link records and a strategy for loss and storage errors. This section proves one join. It does not establish a repeater rate, purification protocol, fault tolerance or an end-to-end hardware advantage.
+
+### Complete-program verification and failure boundaries
+
+Run from the repository root:
+
+```sh
+python examples/foundations/entanglement_swapping.py
+python scripts/check_entanglement_swapping_prose.py
+```
+
+The final complete program executes 89 native CPU complex128 circuits: 72 across all 24 role permutations and three stages, four fresh corrected Bell fixtures, three joint Pauli analyzers, seven specified nonideal-link cases, and three deliberate diagnostic fixtures. A wrong-order middle analyzer has a plausible uniform histogram, while a missing phase correction produces an orthogonal outer target. These are deliberately rejected candidates, not unexpected framework failures.
+
+Sixteen malformed contracts are rejected before another native execution: duplicate/out-of-range/non-tuple/nonliteral roles; nonnormalized or wrong-dtype coefficients; nonfinite angles; invalid/nonliteral message bits; malformed global states; coherent correction before decoding; wrong output columns; absent trial IDs; invalid raw bits; invalid shots; and nonsigned Pauli outcomes. A separate nonzero-norm-underflow case raises explicitly. The fixed four-qubit size is a teaching reference bound, not a FlagQuantum capacity limit.
+
+Expected output of the complete program:
+
+```text
+72native circuits:all24role permutations;two sources,middle decoder and coherent non-network correction match scalar amplitudes.
+4native fresh Bell fixtures:all communicated-bit X-then-Z corrections recover Phi+ with exact branch phase.
+3native joint Pauli analyzers:XX/YY/ZZ branch signs,uniform ignored ensemble and reversed raw middle columns passed.
+7native nonideal-link cases:unequal weights,relative phases,zero branches and tiny positive branches retained;no entanglement repair claimed.
+3native diagnostic fixtures:wrong-order analyzer has plausible uniform outcomes;missing phase correction fails the full-state target.
+16malformed contracts rejected before native execution;squared-norm underflow explicit;normalized-vector averaging gives a false local bias.
+89CPUcomplex128native circuits passed;static/coherent fixtures do not certify distributed messaging,loss,storage or dynamic collapse.
+```
+
+The first 88-circuit program passed. A coverage review then added the both-product link case, made the small-positive-branch case more explicit and added the pure classical underflow guard; its original source and output remain archived. The final 89-circuit program, all literal units and fresh transfer cases were executed. Numerical agreement supports the implementation; the general swapping identity is proved above. Independent mathematical review, implementation review and reader trial remain pending.
+
+### Understanding checks and transfer exercises
+
+**7.8-A — Recover the grouping and sign.** Starting with physical order L,U,V,R, derive the middle-decoded amplitude for arbitrary i,m,n. Explain why the grouped premeasurement Bell identity has a plus coefficient on its β₁₁⊗β₁₁ term in the convention used here. What would reversing the ordered middle pair change?
+
+**7.8-B — Deliver only half the message.** Suppose R corrects X using n but never learns m. Derive the equal conditional-over-m ensemble after this partial correction, its XX and ZZ means, and an equivalent product-state ensemble. Is the pair then a known Φ⁺ resource? Explain the difference between correct Pauli-frame reinterpretation and discarding one bit.
+
+**7.8-C — Fresh ordered, complex-link transfer.** Set roles (L,U,V,R)=(q3,q0,q2,q1) and angles (θ₁,φ₁,θ₂,φ₂)=(.91,−.43,1.27,.29). Derive all branch probabilities and phase-exact conditional vectors. Predict the corrected Φ⁺ fidelity for each parity. Run native preparation and middle decoding, request columns (V,U), convert them to (m,n), and verify the scalar references without phase alignment.
+
+**7.8-D — Diagnose a network claim.** A report shows four nearly equal middle counts, prepares Φ⁺ locally in a fresh simulator for every record, and concludes that a remote memory has been entangled faster than a classical message could arrive. Identify the missing state, branch, ownership and timing evidence. What can still be concluded from a correct static coherent circuit? Explain why a zero observed count does not prove a zero branch probability.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 7.8-A–D</summary>
+
+**A.** The decoded amplitude is $(-1)^{mi}/(2\sqrt2)$ at physical bits (i,m,n,i⊕n). The middle Bell encoder maps computational mn to βₘₙ, giving the displayed sum with four plus coefficients. In branch 11, both middle and outer Bell vectors have the signed difference, so the appropriate original terms remain positive. Reversing the middle pair changes the decoded bit roles and the singlet's representative phase; rederive the ordered amplitude rather than swapping classical names after the calculation. The companion's all-permutation checks retain the declared role order; they do not silently redefine that convention.
+
+**B.** After Xⁿ alone, the outer state is $(|00\rangle+(-1)^m|11\rangle)/\sqrt2$. Averaging the two equally likely values of m removes off-diagonal interference: for every effect E the probability is $(\langle00|E|00\rangle+\langle11|E|11\rangle)/2$. Thus XX=0 and ZZ=1. This admits an equal product ensemble of 00 and 11, and is not a known Φ⁺ pair. A frame retains m and changes the sign of an X result when required; discarding m removes that possibility.
+
+**C.** With the stated d,e, use $p_{mn}=S_n/2$ and the two signed amplitudes in η. The two m values have the same weight for each n. After correction,
+
+$$
+F_{mn}=\frac{|d_0e_n+d_1e_{1\oplus n}|^2}
+ {2(|d_0e_n|^2+|d_1e_{1\oplus n}|^2)}.
+$$
+
+The values, rounded only for this answer, are p₀₀=p₁₀≈.29546028, p₀₁=p₁₁≈.20453972, F at n=0≈.81589610 and at n=1≈.84645068. The scalar expressions, rather than these printed decimals, are the execution targets. Native physical preparation is Ry(q3,.91),P(q3,−.43),CX(q3,q0) and Ry(q2,1.27),P(q2,.29),CX(q2,q1), then CX(q0,q2),H(q0). Requested columns (q2,q0) are (n,m). The exact printed exercise, all four phase-preserving branches and fresh mapped cases are included in transfer evidence.
+
+**D.** Middle counts alone do not identify the outer conditional state; the wrong analyzer counterexample already has uniform counts. A fresh preparation is not the same physical remote memory. One must establish the elementary resource, declared analyzer and matched records, surviving endpoint systems, branch-dependent corrections or frames, and the timing/availability of classical messages. The static coherent circuit verifies the unitary byproduct identity under its explicit cross-node control assumption. It does not verify distributed local operations plus classical communication or relativistic propagation. A positive branch may fail to appear in a finite random record; exact probabilities and statistical evidence have different roles.
+
+</details>
+
+**Sources.** The frozen [NC:1.3.7 locator](../references/proof-sources.md#source-nc-1-3-7) supplies the teleportation connection; its stored locator status is not a new full-text review. Kimble's [*The Quantum Internet*, arXiv:0806.4195v1](https://arxiv.org/html/0806.4195v1), Introduction, §II and §V, was inspected for the distinction between quantum nodes, interconnects, stored resources and operational verification. It is historical context, not a claim about today's hardware capability. The swapping branch proof, counterexamples and FlagQuantum checks here are original and self-contained. No third-party source pages are redistributed.
+
+<!-- end-section-7.8 -->

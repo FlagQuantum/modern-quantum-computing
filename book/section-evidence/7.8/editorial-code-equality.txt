@@ -1,0 +1,1 @@
+After formula-only narrow-screen line breaks,all8Python units and their exact text outputs remain byte-for-byte equal to the executed assembly. No scientific execution was repeated solely for formatting.

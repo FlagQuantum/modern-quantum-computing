@@ -1,0 +1,7 @@
+72native circuits:all24role permutations;two sources,middle decoder and coherent non-network correction match scalar amplitudes.
+4native fresh Bell fixtures:all communicated-bit X-then-Z corrections recover Phi+ with exact branch phase.
+3native joint Pauli analyzers:XX/YY/ZZ branch signs,uniform ignored ensemble and reversed raw middle columns passed.
+7native nonideal-link cases:unequal weights,relative phases,zero branches and tiny positive branches retained;no entanglement repair claimed.
+3native diagnostic fixtures:wrong-order analyzer has plausible uniform outcomes;missing phase correction fails the full-state target.
+16malformed contracts rejected before native execution;squared-norm underflow explicit;normalized-vector averaging gives a false local bias.
+89CPUcomplex128native circuits passed;static/coherent fixtures do not certify distributed messaging,loss,storage or dynamic collapse.

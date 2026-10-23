@@ -1,0 +1,2 @@
+Eight literal7.7units:21native circuits,all assertions and exact outputs passed.
+Complete7.7program:100native circuits,302additional classical cases,16guard rejections and exact output passed.

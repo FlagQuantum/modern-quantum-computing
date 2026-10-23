@@ -1,0 +1,2 @@
+12fresh mapped CPUcomplex128native circuits;all24conditional branches,raw column conversion and exact printed7.8C passed.
+3independent complex effects:partial-message product-ensemble equality passed;no native executions for these sums.

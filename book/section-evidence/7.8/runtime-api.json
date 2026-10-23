@@ -1,0 +1,39 @@
+{
+  "python": "3.12.14",
+  "flagquantum": "0.3.1",
+  "torch": "2.13.0",
+  "native": {
+    "Circuit": {
+      "signature": "(n_qubits: 'int | None' = None, *, n_wires: 'int | None' = None, nqubits: 'int | None' = None, bsz: 'int' = 1, device: 'torch.device | str | None' = None, dtype: 'torch.dtype | None' = None, inputs: 'torch.Tensor | None' = None, config: 'RuntimeConfig | None' = None) -> 'None'",
+      "source": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py",
+      "sha256": "beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b"
+    },
+    "run": {
+      "signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+      "source": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/_api.py",
+      "sha256": "6161a056b1de9b05b212df46c71fe4b1735bcc370f198b73f42e4500afc010b9"
+    },
+    "probabilities": {
+      "signature": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | None | Omitted' = OMITTED) -> 'OutputRequest'",
+      "source": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/observables/__init__.py",
+      "sha256": "3747a3b7dbd8dc9546a53361c0aff6545b4d7c2d254fc08fc6d7475fe5e9e2fa"
+    },
+    "samples": {
+      "signature": "(qubits: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED) -> 'OutputRequest'",
+      "source": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/observables/__init__.py",
+      "sha256": "3747a3b7dbd8dc9546a53361c0aff6545b4d7c2d254fc08fc6d7475fe5e9e2fa"
+    }
+  },
+  "Circuit_methods": {
+    "h": true,
+    "cx": true,
+    "cz": true,
+    "ry": true,
+    "p": true,
+    "measure": false,
+    "reset": false,
+    "c_if": false,
+    "send": false,
+    "receive": false
+  }
+}

@@ -176,6 +176,35 @@
       "source_locators": [
         "NC:2.2.8"
       ]
+    },
+    {
+      "sequence": 54,
+      "batch": "B02",
+      "section_id": "sec-network-entanglement-primitives",
+      "ref": "7.8",
+      "title": "Entanglement swapping and quantum-network primitives",
+      "depth": "F",
+      "requires": [
+        "sec-entanglement-and-quantum-information-protocols-3",
+        "sec-entanglement-and-quantum-information-protocols-5",
+        "sec-entanglement-and-quantum-information-protocols-7"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
+      "status": "draft",
+      "question": "How do two independent Bell links become a labelled remote Bell pair through a complete middle Bell measurement?",
+      "entry": "7.3 phase/parity Bell basis;7.5 exact correction calls;7.7 conditional versus ignored outcomes.",
+      "exit": "Full phase-exact four-branch swapping proof,nonselective outer-effect equality and communicated Pauli correction/frame.",
+      "worked_case": "All24role permutations,four corrections,XX/YY/ZZ signs,reversed raw columns,nonideal links,zero/tiny branches and wrong analyzer.",
+      "boundary": "Ideal pure links and complete local Bell measurement;native static preparation/terminal queries,not distributed retained-state feedforward or hardware/network certification.",
+      "code_plan": "Visible native H/CX/Ry/P sources,middle CX/H,terminal outputs,fresh X/Z correction fixtures and explicitly non-network coherent CX/CZ.",
+      "independent_check": "Scalar indexed global and conditional amplitudes,analytic Pauli signs,effect completeness and complex-link fidelity.",
+      "transfer_task": "Exact printed7.8C and five other fresh signed-angle/mapped-role cases.",
+      "source_locators": [
+        "NC:1.3.7",
+        "NET:links"
+      ]
     }
   ]
 }
