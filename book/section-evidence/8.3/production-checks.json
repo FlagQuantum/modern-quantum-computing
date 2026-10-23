@@ -9,7 +9,7 @@
     "display_containers": 2,
     "raw_double_dollars": false
   },
-  "html_sha256": "f3d504dedcdec5ad8e9c7bcb55b6ace78a912831dffd350a7dfb29c4b9d662f9",
+  "html_sha256": "2707d4091c3512d5a070766bbe67def7741fed7739042c697e5ca6daf5cd436e",
   "scientific_results": "58complete+13literal body assembly+71body/complete checker+14fresh transfer=156author native runs. No unexpected scientific failures. Previous8.2regression53 and8.1regression88 separate;futureCI separate.",
   "native_boundary": "Actual native expectations/full density/terminal probabilities and unitary coupling. All mixed density construction,conditional updates,block extraction and ignored-result sums explicitly host postprocessing;no collapse/reset/feedback/hardware claim."
 }

@@ -106,6 +106,7 @@
     "pdf": "Existing PDF edition unchanged",
     "formula_display": "Actual default narrow IAB:projective branch normalization,weighted ignored-result sum,complete-instrument sigma/effect/probability derivation,chronological K-then-L order visually inspected. Expanded8.3A-D inspected including both complex weak-branch matrices and q(r,s)/t_r formula. GlobalMathJaxerrors0;expandedanswers2displaycontainers,no raw$$. Wide code/formulas may use horizontal scrolling;no universal-fit claim.",
     "website": "Strict fresh build and74page links passed;publish checked HTML and confirm Pages success/online HTTP200/exact local equality.",
-    "html_sha256": "f3d504dedcdec5ad8e9c7bcb55b6ace78a912831dffd350a7dfb29c4b9d662f9"
+    "html_sha256": "2707d4091c3512d5a070766bbe67def7741fed7739042c697e5ca6daf5cd436e",
+    "proof_refinement": "Added local spectral-ensemble bridge for arbitrary positive unit-trace input,using the spectral theorem already inherited through6.3;no new prerequisite or new section. All8Python/output pairs unchanged;no extra scientific rerun."
   }
 }

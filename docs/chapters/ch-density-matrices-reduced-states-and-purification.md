@@ -1044,6 +1044,8 @@ Run the eight cumulative units from the repository root with the pinned example 
 
 ### 8.3.1 Derive the density expectation, not just the outcome probability
 
+A positive, unit-trace operator need not arrive with a preparation list. The finite Hermitian spectral theorem used in 6.3 supplies an orthonormal eigenbasis. Each eigenvalue equals the quadratic form of ρ on its normalized eigenvector and is therefore nonnegative; their sum is the trace, one. These eigenvectors and eigenvalues provide a finite normalized ensemble for any input allowed here.
+
 Write an input ensemble as ρ=Σⱼwⱼ|ψⱼ⟩⟨ψⱼ| with normalized ψⱼ, wⱼ≥0 and Σⱼwⱼ=1. For one component, the spectral expectation rule of 6.3 gives ⟨ψⱼ|A|ψⱼ⟩. Averaging the classical alternatives and using the trace identity from 8.1 gives
 
 $$
