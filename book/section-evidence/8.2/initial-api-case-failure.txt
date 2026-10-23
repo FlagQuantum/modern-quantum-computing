@@ -1,0 +1,1 @@
+Initial author script stopped before fq.run (0native executions):Circuit.Ry does not exist;released API uses RY. This was author spelling error,not a native regression. Corrected source to RY and inspected actual existing use/signatures before retrying.

@@ -1,0 +1,26 @@
+statevector:purity=1.000000000000
+density_matrix:purity=1.000000000000
+
+eigenvalues: [0.27, 0.73]
+purity=0.605800
+
+two positive labels,one ray:purity=1.000000
+diagonal-only sum=0.500000;offdiagonal coherence must be retained
+
+squared overlap=0.716840651
+trace/entries/spectrum/ensemble purity=0.885830150
+
+rank1:purity=1.000000000
+rank2:purity=0.500000000
+rank3:purity=0.333333333
+rank4:purity=0.250000000
+
+before=0.885830150,after=0.885830150
+
+entry formula=0.885830150,Bloch formula=0.885830150
+
+epsilon1e-8:purity=0.999999980000
+epsilon1e-20:rounded purity1 with positive second eigenvalue;no exact label inferred
+10malformed contracts rejected
+13native body circuits;mixtures and diagnostics are host calculations
+

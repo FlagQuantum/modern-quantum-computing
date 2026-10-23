@@ -1,0 +1,19 @@
+{
+  "native_circuits": 12,
+  "printed_exercises": [
+    "8.2B",
+    "8.2C",
+    "8.2D"
+  ],
+  "B_purity": 0.779201452223734,
+  "B_rotated": 0.7792014522237338,
+  "C_pure": 0.9999999999999998,
+  "C_orthogonal": 0.4999999999999998,
+  "fresh_Bell_spectrum": [
+    0.13,
+    0.29,
+    0.41,
+    0.17
+  ],
+  "status": "passed"
+}

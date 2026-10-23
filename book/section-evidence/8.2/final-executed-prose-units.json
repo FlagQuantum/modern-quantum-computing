@@ -1,0 +1,34 @@
+[
+  {
+    "code": "import math\nfrom dataclasses import replace\nimport torch\nimport flagquantum as fq\nfrom examples.foundations import state_purity as p\nfrom examples.foundations import statistical_ensembles as e\nfor mode in ('statevector','density_matrix'):\n    c=fq.Circuit(1,dtype=p.D).RY(0,theta=1.13).P(0,theta=-.42)\n    result=fq.run(c,outputs=[fq.density_matrix(),fq.probabilities()],\n                  options=replace(e.OPTIONS,mode=mode))\n    p.RUNS+=1\n    a=result.density_matrix[0]\n    v=e.qubit(1.13,-.42)\n    e.close(a,e.outer(v))\n    e.close(result.probabilities[0],v.abs().square())\n    d=p.diagnostics(a)\n    e.close(d['purity'],1)\n    values,Q=p.spectral_check(a)\n    print(mode+':purity=%.12f'%d['purity'])\n",
+    "output": "statevector:purity=1.000000000000\ndensity_matrix:purity=1.000000000000\n"
+  },
+  {
+    "code": "a0,v0=p.native(0.,0.)\na1,v1=p.native(math.pi,0.)\nrho,d=p.mixture((.73,.27),(v0,v1),(a0,a1))\ne.close(rho,torch.diag(torch.tensor([.73,.27],dtype=p.D)))\ne.close(torch.trace(rho@rho),d['purity'])\ne.close(d['purity'],.73**2+.27**2)\nprint('eigenvalues:',[round(x,6) for x in d['eigenvalues'].tolist()])\nprint('purity=%.6f'%d['purity'])\n",
+    "output": "eigenvalues: [0.27, 0.73]\npurity=0.605800\n"
+  },
+  {
+    "code": "ap,vp=p.native(math.pi/2,math.pi/2)\nphase=complex(math.cos(.61),math.sin(.61))\npure,dp=p.mixture((.2,.8),(vp,phase*vp),(ap,ap))\ne.close(pure,ap)\ndiagonal_only=sum(abs(pure[i,i].item())**2 for i in range(2))\nprint('two positive labels,one ray:purity=%.6f'%dp['purity'])\nprint('diagonal-only sum=%.6f;offdiagonal coherence must be retained'%diagonal_only)\n",
+    "output": "two positive labels,one ray:purity=1.000000\ndiagonal-only sum=0.500000;offdiagonal coherence must be retained\n"
+  },
+  {
+    "code": "au,u=p.native(.91,.37)\nav,v=p.native(1.57,-.62)\nrho,d=p.mixture((.28,.72),(u,v),(au,av))\noverlap=abs(sum(x.item().conjugate()*y.item() for x,y in zip(u,v)))**2\nexpected=.28**2+.72**2+2*.28*.72*overlap\ne.close(torch.trace(rho@rho),expected)\ne.close(d['purity'],expected)\nprint('squared overlap=%.9f'%overlap)\nprint('trace/entries/spectrum/ensemble purity=%.9f'%d['purity'])\n",
+    "output": "squared overlap=0.716840651\ntrace/entries/spectrum/ensemble purity=0.885830150\n"
+  },
+  {
+    "code": "basis=tuple(torch.eye(4,dtype=p.D));matrices=[]\nfor index in range(4):\n    c=fq.Circuit(2,dtype=p.D)\n    if index&2:c.X(0)\n    if index&1:c.X(1)\n    result=fq.run(c,outputs=[fq.density_matrix()],options=e.OPTIONS)\n    p.RUNS+=1\n    matrices.append(result.density_matrix[0])\nfor rank in (1,2,3,4):\n    flat,fd=p.mixture((1/rank,)*rank,basis[:rank],tuple(matrices[:rank]))\n    e.close(fd['purity'],1/rank)\n    print('rank%d:purity=%.9f'%(rank,fd['purity']))\n",
+    "output": "rank1:purity=1.000000000\nrank2:purity=0.500000000\nrank3:purity=0.333333333\nrank4:purity=0.250000000\n"
+  },
+  {
+    "code": "U=e.prepare(e.qubit(.47,-.82));after=[]\nfor component in (u,v):\n    c=fq.Circuit(1,dtype=p.D).unitary(0,unitary=e.prepare(component))\n    c.unitary(0,unitary=U)\n    result=fq.run(c,outputs=[fq.density_matrix()],options=e.OPTIONS)\n    p.RUNS+=1\n    after.append(result.density_matrix[0])\nrotated,rd=p.mixture((.28,.72),(U@u,U@v),tuple(after))\ne.close(rotated,U@rho@U.mH)\ne.close(rd['purity'],d['purity'])\nprint('before=%.9f,after=%.9f'%(d['purity'],rd['purity']))\n",
+    "output": "before=0.885830150,after=0.885830150\n"
+  },
+  {
+    "code": "population=rho[0,0].real.item();z=rho[0,1].item()\nx=2*z.real;y=-2*z.imag;zz=2*population-1\nentry_formula=population**2+(1-population)**2+2*abs(z)**2\nbloch_formula=(1+x*x+y*y+zz*zz)/2\ne.close(entry_formula,d['purity']);e.close(bloch_formula,d['purity'])\nassert abs(z)**2<=population*(1-population)+p.ATOL\nprint('entry formula=%.9f,Bloch formula=%.9f'%(entry_formula,bloch_formula))\n",
+    "output": "entry formula=0.885830150,Bloch formula=0.885830150\n"
+  },
+  {
+    "code": "eps=1e-8\nnear=torch.diag(torch.tensor([1-eps,eps],dtype=p.D))\nnd=p.diagnostics(near)\ne.close(nd['purity'],1-2*eps+2*eps**2)\ntiny=torch.diag(torch.tensor([1-1e-20,1e-20],dtype=p.D))\ntd=p.diagnostics(tiny)\nassert td['purity']==1.0 and td['minimum_eigenvalue']>0\nprint('epsilon1e-8:purity=%.12f'%nd['purity'])\nprint('epsilon1e-20:rounded purity1 with positive second eigenvalue;no exact label inferred')\nprint('%dmalformed contracts rejected'%p.rejected())\nprint('%dnative body circuits;mixtures and diagnostics are host calculations'%p.RUNS)\n",
+    "output": "epsilon1e-8:purity=0.999999980000\nepsilon1e-20:rounded purity1 with positive second eigenvalue;no exact label inferred\n10malformed contracts rejected\n13native body circuits;mixtures and diagnostics are host calculations\n"
+  }
+]

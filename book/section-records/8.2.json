@@ -1,0 +1,100 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-density-matrices-reduced-states-and-purification-2",
+  "ref": "8.2",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+  "depth": "F",
+  "requires": [
+    "sec-density-matrices-reduced-states-and-purification-1",
+    "sec-complex-vectors-operators-and-numerical-reasoning-5"
+  ],
+  "result": "Purity criterion for finite density operators",
+  "assumptions": [
+    "Finite nonzero space,Hermitian positive unit-trace operator;exact mathematics distinct from numerical guards.",
+    "Normalized common-space vectors,finite nonnegative classical weights;zero weights allowed."
+  ],
+  "verification_obligations": [
+    "Complete spectral ensemble converse and purity spectral expansion.",
+    "Both directions of pure iff rank-one iff idempotent iff purity1;lower bound and equality I/d.",
+    "Ensemble overlap formula and iff all positive-weight vectors same ray.",
+    "Entry Frobenius norm,rank-r normalized projector,unitary invariance and complex qubit criteria.",
+    "Near-pure rounded reports and invalid nonpositive/non-Hermitian trace-square counterexamples."
+  ],
+  "formula_code_units": [
+    "spectral representation/native modes",
+    "purity bounds and spectral criterion",
+    "phase-duplicate ensemble and entry norm",
+    "scalar-overlap ensemble proof",
+    "uniform occupied subspaces",
+    "fixed unitary",
+    "complex qubit coordinates",
+    "numerical diagnosis and rejection"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.4.2",
+      "scope": "Frozen contents locator printed101;no new full-text review."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=72",
+      "scope": "Author-hosted manuscript2.1.2printed64/PDF72 inspected for pure rays and spectral ensembles;original local full proofs,no redistribution."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/state_purity.py",
+    "prose_checker": "scripts/check_state_purity_prose.py",
+    "evidence": "book/section-evidence/8.2",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 40,
+    "complete_classical_mixture_cases": 16,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 13,
+    "separate_transfer_circuits": 12,
+    "execution_ledger": {
+      "initial_API_spelling_failure": 0,
+      "complete_program": 40,
+      "literal_body_assembly": 13,
+      "body_plus_complete_checker": 53,
+      "transfer": 12,
+      "total_author_section_native_runs": 118,
+      "separate_previous_8_1_regression": 88,
+      "note": "Ry spelling error stopped before fq.run;source/note retained. RY corrected after inspecting released use. All subsequent actual scientific executions passed;future CI and prior-section regression separate."
+    },
+    "malformed_contracts": 10,
+    "tolerance": "Absolute1e-12,relative0. Numerical Hermiticity/PSD/trace guard not an interval certificate. Full computed spectrum retained,no exact pure/mixed label,no clipping,symmetrization,normalization repair or phase alignment.",
+    "native_boundary": "Full fq.density_matrix output for actual pure preparations in both native modes. Native probabilities checked;host mixture sums,trace squares,spectra and overlaps. No arbitrary mixed initializer,native purity measurement,noise,collapse,hardware or partial-trace claim.",
+    "script_sha256": "e57ad1de7f41dd1eeb2fabee90567dff9081ebf68e091c53a0f3693aa4731795"
+  },
+  "assessment": {
+    "tasks": [
+      "8.2A domain assumptions",
+      "8.2B fresh complex ensemble and fixed U",
+      "8.2C phase duplicates/orthogonal replacement/zero weight",
+      "8.2D near-pure and rank3 Bell mixture"
+    ],
+    "answers": "Accessible answers supplied;printed8.2B-D executed in12fresh native transfers;reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "40complete/13literalbody/12freshtransfer and53body+complete checker passed;88previous8.1regression separate. Strict build,74page links and actual browser formulas/expanded answers passed;independent reviews pending."
+  },
+  "production": {
+    "next_draft": "8.3 Expectation values and measurement updates",
+    "pdf": "Existing PDF edition unchanged",
+    "bounded_correction": "8.1two forward references and native-boundary record corrected from8.3to actual frozen partial-trace section8.4;8.1code/output unchanged.",
+    "formula_display": "Actual default narrow IAB:boxed equivalence/lower bound,ensemble overlap and equality condition,complex qubit matrix/entry purity visually inspected;expanded8.2A-D answers inspected includingnear-pure Frobenius formula. GlobalMathJaxerrors0;expandedanswers2displaycontainers,no raw$$. Wide formulas/code may use horizontal scrolling,no universal fit claim.",
+    "website": "Strict fresh build and74page links passed;publish exact checked HTML and confirm Pages success/online HTTP200/byte equality.",
+    "html_sha256": "e0e70a16dfc5cf74489c47495062fb5148430fc257ec7765e9483c505ef9d996"
+  }
+}

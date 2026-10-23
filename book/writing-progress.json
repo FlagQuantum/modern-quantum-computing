@@ -561,6 +561,16 @@
       "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
       "record": "book/section-records/8.1.json",
       "author_execution": "passed:Python3.12.14,releasedFlagQuantum0.3.1,PyTorch2.13.0,CPUcomplex128;54complete/34body/12transfer;native density outputs in both modes"
+    },
+    "sec-density-matrices-reduced-states-and-purification-2": {
+      "state": "draft",
+      "brief": "book/briefs/ch08.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "record": "book/section-records/8.2.json",
+      "author_execution": "passed:40complete/13body/12fresh transfer;53body+complete checker;CPUcomplex128;independent acceptance pending"
     }
   },
   "existing_pilots": [

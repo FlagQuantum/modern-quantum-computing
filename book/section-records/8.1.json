@@ -74,7 +74,7 @@
     },
     "malformed_contracts": 14,
     "tolerance": "Absolute1e-12,relative0 for deterministic matrices/probabilities/expectations. No eigenvalue clipping,symmetrization,weight/vector repair or phase alignment. PSDguard numerical not interval certificate;ensemble global phases cancel mathematically. Zero weights retained with normalized components.",
-    "native_boundary": "Released fq.density_matrix native output in statevector and density_matrix modes on pure preparations;native probabilities and Pauli expectations. Full and reversed-full qubit selection exercised. Mixed ensemble matrices are explicit host weighted sums,not arbitrary mixed-state initialization. No general POVM/collapse/feedback/noise/hardware claim;subset reduction formal validation remains8.3.",
+    "native_boundary": "Released fq.density_matrix native output in statevector and density_matrix modes on pure preparations;native probabilities and Pauli expectations. Full and reversed-full qubit selection exercised. Mixed ensemble matrices are explicit host weighted sums,not arbitrary mixed-state initialization. No general POVM/collapse/feedback/noise/hardware claim;subset reduction formal validation remains8.4.",
     "script_sha256": "33fb9a2c294cbc43de9c53f8fd8d567d0e051d721e884f2ef3bbd5d3a899d90c"
   },
   "assessment": {

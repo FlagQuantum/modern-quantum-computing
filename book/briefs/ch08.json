@@ -28,6 +28,33 @@
       "source_locators": [
         "NC:2.4.1"
       ]
+    },
+    {
+      "sequence": 57,
+      "batch": "B02",
+      "section_id": "sec-density-matrices-reduced-states-and-purification-2",
+      "ref": "8.2",
+      "title": "Pure states, mixed states, and purity",
+      "depth": "F",
+      "requires": [
+        "sec-density-matrices-reduced-states-and-purification-1",
+        "sec-complex-vectors-operators-and-numerical-reasoning-5"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "status": "draft",
+      "question": "When does a density operator describe one ray,and what does its purity establish?",
+      "entry": "8.1 density operators and2.5finite Hermitian spectral theorem.",
+      "exit": "Prove spectral ensemble converse,purity bounds and all pure/rank-one/idempotent equivalences.",
+      "worked_case": "Phase-duplicate pure ensembles,nonorthogonal mixtures,rank-r uniform states,unitary invariance and near-pure diagnostics.",
+      "boundary": "Finite positive unit-trace matrices;floating-point diagnostics not exact rank or physical certificates.",
+      "code_plan": "Visible native density requests in both execution modes;host mixture sums and purity traces explicitly labelled.",
+      "independent_check": "Trace square,Frobenius entry sum,spectral sum and ensemble-overlap sum.",
+      "transfer_task": "New complex components,spectra and printed near-pure exercise.",
+      "source_locators": [
+        "NC:2.4.2"
+      ]
     }
   ]
 }

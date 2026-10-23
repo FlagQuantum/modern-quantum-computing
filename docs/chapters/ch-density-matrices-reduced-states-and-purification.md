@@ -1,6 +1,6 @@
 # 8. Density Matrices, Reduced States, and Purification
 
-**Working draft: section 8.1 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
+**Working drafts: sections 8.1–8.2 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
 
 <span id="sec-density-matrices-reduced-states-and-purification-1"></span>
 
@@ -308,7 +308,7 @@ $$
 p(j,E)=p_j\langle\psi_j|E|\psi_j\rangle.
 $$
 
-Summing j gives $\operatorname{Tr}(\rho E)$, while retaining j permits different conditional predictions. No partial-trace theorem is needed for this direct mixture calculation; the general reduced-state construction is developed in 8.3.
+Summing j gives $\operatorname{Tr}(\rho E)$, while retaining j permits different conditional predictions. No partial-trace theorem is needed for this direct mixture calculation; the general reduced-state construction is developed in 8.4.
 
 For the half/half Z and X preparations, write ΩZ and ΩX for these larger joint densities. The event “label=0 and Q measured in Z gives 0” has probability 1/2 for ΩZ and 1/4 for ΩX. Ignoring the label gives Q's zero probability 1/2 in both cases. Thus the two preparations have the same Q state and different JQ states, with no contradiction.
 
@@ -552,7 +552,7 @@ The support boundary is concrete:
 | General effect trace | Host matrix multiplication, plus selected native basis analyzers | No native general-POVM endpoint inferred |
 | Arbitrary mixed initialization, noise, collapse or feedback | Not used here | No support or performance claim from these examples |
 
-The public density request also accepts selected subsets according to its documented contract; this section exercises full and reversed full-register selections. The formal reduction operation and its independent validation belong to 8.3. The existence of density-matrix mode is not evidence that any guessed mixed-initializer signature, noisy instrument or hardware route works. This section neither passes ρ as a Circuit input nor invents an ensemble initializer.
+The public density request also accepts selected subsets according to its documented contract; this section exercises full and reversed full-register selections. The formal reduction operation and its independent validation belong to 8.4. The existence of density-matrix mode is not evidence that any guessed mixed-initializer signature, noisy instrument or hardware route works. This section neither passes ρ as a Circuit input nor invents an ensemble initializer.
 
 ### Complete-program verification
 
@@ -627,3 +627,405 @@ The complete output matrix is U diag(.61,.39)U†, whose off-diagonal entries ne
 **Sources.** The frozen [NC:2.4.1 locator](../references/proof-sources.md#source-nc-2-4-1) points to “Ensembles of quantum states,” beginning on printed page 99; it remains a contents-locator check, not a new full-text review. The author-hosted [Watrous, *The Theory of Quantum Information*, §2.1.2](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=70), printed pages 62–64, was inspected for density-state and convex-mixture conventions. The finite trace and operational-equivalence derivations here are self-contained original prose; no source pages are redistributed. Section 8.2 takes up spectral representations and purity without treating an ensemble list as uniquely determined by its density.
 
 <!-- end-section-8.1 -->
+
+<span id="sec-density-matrices-reduced-states-and-purification-2"></span>
+
+## 8.2 Pure states, mixed states, and purity
+
+Does a preparation with two classical labels necessarily produce a mixed state? Does a diagonal density matrix necessarily describe classical uncertainty? Can a purity printed as 1.000000 establish that a state is pure? These questions concern different properties. We will distinguish the mathematical state from a particular ensemble representation and from a finite-precision report.
+
+The frozen prerequisites are [8.1, statistical ensembles and density operators](#sec-density-matrices-reduced-states-and-purification-1), and [2.5, Hermitian spectra and singular values](ch-complex-vectors-operators-and-numerical-reasoning.md#sec-complex-vectors-operators-and-numerical-reasoning-5). This section has depth **F**. We prove the purity criterion from the finite Hermitian spectral theorem, including both directions and its assumptions; the code checks implementations of those formulas rather than replacing the proof.
+
+Fix a nonzero finite-dimensional complex Hilbert space of dimension d, an orthonormal coordinate basis, and a density operator ρ: it is Hermitian, positive semidefinite and has trace one. All quantities here are dimensionless; native gate angles are radians. A **pure state** is an operator of the form ρ=|ψ⟩⟨ψ| for a normalized vector ψ. A **mixed state** is a density operator with no such single-vector representation. “Mixed” refers to the specified system's state, not a uniquely reconstructible story about how it was prepared. In particular, an ensemble list is a representation, not an additional intrinsic property of ρ.
+
+The eight cumulative units below run from the repository root. The companion [state_purity.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/state_purity.py) contains the numerical contracts and complete checks. Native density matrices are obtained from actual preparations. Weighted mixtures, spectral decompositions and purity diagnostics are explicitly classical calculations on those outputs. Absolute tolerance is $10^{-12}$ with relative tolerance zero for deterministic comparisons; it is neither a physical calibration guarantee nor an exact rank certificate.
+
+### 8.2.1 Complete the spectral description of a density operator
+
+The spectral theorem supplies an orthonormal eigenbasis {|uᵢ⟩} and real eigenvalues λᵢ. Positivity, evaluated on uᵢ itself, gives λᵢ≥0. Trace invariance gives Σᵢλᵢ=1. Consequently
+
+$$
+\begin{aligned}
+\rho&=\sum_{i=1}^{d}\lambda_i|u_i\rangle\langle u_i|,\\
+\lambda_i&\geq0,\qquad\sum_i\lambda_i=1.
+\end{aligned}
+$$
+
+This is a statistical ensemble of normalized vectors with classical weights λᵢ. Zero eigenvalues can be omitted. Conversely, 8.1 proved that every normalized nonnegative weighted sum of normalized outer products is a density operator. Thus the positive, unit-trace operator conditions characterize exactly the finite ensemble states. The eigenvectors are not uniquely determined inside a degenerate eigenspace, and this spectral ensemble is not the only possible ensemble.
+
+For later use, orthonormality eliminates all cross factors in the operator product:
+
+$$
+\begin{aligned}
+\rho^2&=\sum_{i,j}\lambda_i\lambda_j
+ |u_i\rangle\langle u_i|u_j\rangle\langle u_j|\\
+&=\sum_i\lambda_i^2|u_i\rangle\langle u_i|.
+\end{aligned}
+$$
+
+Define the **purity** $\gamma(\rho)=\operatorname{Tr}(\rho^2)$. Taking the trace of this expansion gives $\gamma(\rho)=\sum_i\lambda_i^2$. This is the trace of the squared operator, not the square of its trace, which would always be one.
+
+The following code visibly prepares one complex qubit and requests the released native density output in both supported execution modes. `spectral_check` uses `torch.linalg.eigh` and reconstructs the matrix from all computed eigenpairs without dropping small values. The mode name does not determine whether a physical state is mixed: both modes can describe this same pure preparation.
+
+```python
+import math
+from dataclasses import replace
+import torch
+import flagquantum as fq
+from examples.foundations import state_purity as p
+from examples.foundations import statistical_ensembles as e
+for mode in ('statevector','density_matrix'):
+    c=fq.Circuit(1,dtype=p.D).RY(0,theta=1.13).P(0,theta=-.42)
+    result=fq.run(c,outputs=[fq.density_matrix(),fq.probabilities()],
+                  options=replace(e.OPTIONS,mode=mode))
+    p.RUNS+=1
+    a=result.density_matrix[0]
+    v=e.qubit(1.13,-.42)
+    e.close(a,e.outer(v))
+    e.close(result.probabilities[0],v.abs().square())
+    d=p.diagnostics(a)
+    e.close(d['purity'],1)
+    values,Q=p.spectral_check(a)
+    print(mode+':purity=%.12f'%d['purity'])
+```
+
+```text
+statevector:purity=1.000000000000
+density_matrix:purity=1.000000000000
+```
+
+### 8.2.2 Prove the purity bounds and the pure-state criterion
+
+Because 0≤λᵢ≤1, each λᵢ²≤λᵢ; summing gives γ≤1. More explicitly,
+
+$$
+1-\gamma(\rho)=\sum_i\lambda_i(1-\lambda_i)\geq0.
+$$
+
+Every summand is nonnegative, so equality holds exactly when every eigenvalue is either zero or one. Their sum is one, so exactly one is one. Therefore equality means rank one, and the spectral expansion is precisely |u⟩⟨u| for its unique occupied eigenvector ray. Conversely, if ρ=|ψ⟩⟨ψ| with ⟨ψ|ψ⟩=1, then ρ²=ρ and γ=Trρ=1. Finally, ρ²=ρ implies λᵢ²=λᵢ, and the same argument gives rank one. We have proved the complete equivalence
+
+$$
+\boxed{\begin{gathered}
+\rho\text{ pure}\ \Longleftrightarrow\ \operatorname{rank}\rho=1\\
+\Longleftrightarrow\ \rho^2=\rho
+\ \Longleftrightarrow\ \gamma(\rho)=1.
+\end{gathered}}
+$$
+
+The lower bound follows by completing a sum of squares rather than guessing the most mixed spectrum:
+
+$$
+\begin{aligned}
+\sum_i\left(\lambda_i-\frac1d\right)^2
+&=\gamma(\rho)-\frac1d\geq0,\\
+\frac1d&\leq\gamma(\rho)\leq1.
+\end{aligned}
+$$
+
+Equality on the left requires every λᵢ=1/d, hence ρ=I/d. At d=1 the two bounds coincide; the unique density operator is pure. For d>1, every mixed density has γ<1, although it may be arbitrarily close to one. Purity is not a probability of “being pure” on one trial.
+
+A source choosing |0⟩ and |1⟩ with weights .73 and .27 gives diagonal entries equal to the eigenvalues. Native pure-component matrices supply the two terms; the weighted addition is performed on the host.
+
+```python
+a0,v0=p.native(0.,0.)
+a1,v1=p.native(math.pi,0.)
+rho,d=p.mixture((.73,.27),(v0,v1),(a0,a1))
+e.close(rho,torch.diag(torch.tensor([.73,.27],dtype=p.D)))
+e.close(torch.trace(rho@rho),d['purity'])
+e.close(d['purity'],.73**2+.27**2)
+print('eigenvalues:',[round(x,6) for x in d['eigenvalues'].tolist()])
+print('purity=%.6f'%d['purity'])
+```
+
+```text
+eigenvalues: [0.27, 0.73]
+purity=0.605800
+```
+
+### 8.2.3 Several labels can still describe one pure ray
+
+A normalized vector and its global-phase multiple define the same outer product. Therefore two positive ensemble weights do not by themselves imply mixedness. This is a mathematical property of a ray, not a cancellation between amplitudes from mutually exclusive classical labels.
+
+There is also a useful coordinate formula. In any orthonormal basis, Hermiticity gives ρⱼᵢ=ρᵢⱼ* and therefore
+
+$$
+\begin{aligned}
+\gamma(\rho)
+&=\sum_i(\rho^2)_{ii}
+ =\sum_{i,j}\rho_{ij}\rho_{ji}\\
+&=\sum_{i,j}|\rho_{ij}|^2.
+\end{aligned}
+$$
+
+Thus the squared Frobenius norm equals purity for a density operator. Keeping only diagonal terms loses coherence and is generally wrong. For ψ=(|0⟩+i|1⟩)/√2, the density has all four entry magnitudes 1/2, so the correct sum is one; its diagonal-only sum is 1/2. The diagonal matrix I/2 is a different state. “Diagonal” itself is basis dependent: every pure density is diagonal in an eigenbasis, with one occupied entry. It is not a mixed-state criterion.
+
+```python
+ap,vp=p.native(math.pi/2,math.pi/2)
+phase=complex(math.cos(.61),math.sin(.61))
+pure,dp=p.mixture((.2,.8),(vp,phase*vp),(ap,ap))
+e.close(pure,ap)
+diagonal_only=sum(abs(pure[i,i].item())**2 for i in range(2))
+print('two positive labels,one ray:purity=%.6f'%dp['purity'])
+print('diagonal-only sum=%.6f;offdiagonal coherence must be retained'%diagonal_only)
+```
+
+```text
+two positive labels,one ray:purity=1.000000
+diagonal-only sum=0.500000;offdiagonal coherence must be retained
+```
+
+### 8.2.4 Derive purity directly from an arbitrary ensemble
+
+Let ρ=Σⱼpⱼ|ψⱼ⟩⟨ψⱼ|. Multiply this expression without assuming the components are orthogonal. For each pair, the trace of the outer product closes its two scalar overlaps:
+
+$$
+\begin{aligned}
+\operatorname{Tr}\bigl(
+ |\psi_j\rangle\langle\psi_j|
+ |\psi_k\rangle\langle\psi_k|\bigr)
+&=|\langle\psi_j|\psi_k\rangle|^2,\\
+\gamma(\rho)
+&=\sum_{j,k}p_jp_k
+ |\langle\psi_j|\psi_k\rangle|^2.
+\end{aligned}
+$$
+
+Normalized vectors have squared overlap at most one. To see its equality condition explicitly, put c=⟨ψⱼ|ψₖ⟩ and w=ψₖ−cψⱼ. Then ⟨ψⱼ|w⟩=0 and ||w||²=1−|c|². Equality |c|²=1 means w=0, so the vectors differ only by a global phase. Since Σⱼₖpⱼpₖ=1,
+
+$$
+1-\gamma(\rho)=\sum_{j,k}p_jp_k
+ \left(1-|\langle\psi_j|\psi_k\rangle|^2\right).
+$$
+
+Every term is nonnegative. Consequently an ensemble represents a pure density exactly when **all positive-weight components belong to one ray**. If γ=1, each positive-weight pair must saturate the overlap bound; picking any positive-weight component identifies the common ray. Conversely, a common ray makes every such overlap one, so the sum is one. Zero-weight vectors impose no condition on that ray. This proves why counting labels or merely noticing nonorthogonal components is insufficient.
+
+For two components u,v with weights p,1−p, the general formula reduces to
+
+$$
+\gamma=p^2+(1-p)^2+2p(1-p)|\langle u|v\rangle|^2.
+$$
+
+For 0<p<1 it equals one only for the same ray. The example below compares this scalar-overlap reference with three matrix-based calculations. The scalar expression never diagonalizes or multiplies the density matrix.
+
+```python
+au,u=p.native(.91,.37)
+av,v=p.native(1.57,-.62)
+rho,d=p.mixture((.28,.72),(u,v),(au,av))
+overlap=abs(sum(x.item().conjugate()*y.item() for x,y in zip(u,v)))**2
+expected=.28**2+.72**2+2*.28*.72*overlap
+e.close(torch.trace(rho@rho),expected)
+e.close(d['purity'],expected)
+print('squared overlap=%.9f'%overlap)
+print('trace/entries/spectrum/ensemble purity=%.9f'%d['purity'])
+```
+
+```text
+squared overlap=0.716840651
+trace/entries/spectrum/ensemble purity=0.885830150
+```
+
+### 8.2.5 Distinguish a projector from a normalized mixed state
+
+Let Π be an orthogonal projector of rank r≥1. Choose an orthonormal basis of its range; then Π is the sum of those r rank-one projectors and TrΠ=r. Its normalized density is ρ=Π/r. Hence
+
+$$
+\rho^2=\frac{\Pi}{r^2},\qquad
+\gamma(\rho)=\frac1r.
+$$
+
+For r>1 this is mixed, even though Π itself is idempotent. A rank-r projector is not a unit-trace density unless r=1. The earlier equivalences were explicitly about density operators; dropping their assumptions changes the result.
+
+More generally, if a density has exactly r positive eigenvalues, the same sum-of-squares proof on just those eigenvalues gives γ≥1/r, with equality exactly for ρ=Π/r on its occupied subspace. This statement does not make numerical threshold rank into an exact physical rank. The d-dimensional maximally mixed state corresponds to r=d; a uniform mixture on a smaller subspace is not I/d.
+
+Here the two-qubit basis index is 2q0+q1. We request four native full-register density matrices and build rank-1,2,3,4 uniform ensembles from their initial subsets. No partial trace or guessed mixed-state initializer is used.
+
+```python
+basis=tuple(torch.eye(4,dtype=p.D));matrices=[]
+for index in range(4):
+    c=fq.Circuit(2,dtype=p.D)
+    if index&2:c.X(0)
+    if index&1:c.X(1)
+    result=fq.run(c,outputs=[fq.density_matrix()],options=e.OPTIONS)
+    p.RUNS+=1
+    matrices.append(result.density_matrix[0])
+for rank in (1,2,3,4):
+    flat,fd=p.mixture((1/rank,)*rank,basis[:rank],tuple(matrices[:rank]))
+    e.close(fd['purity'],1/rank)
+    print('rank%d:purity=%.9f'%(rank,fd['purity']))
+```
+
+```text
+rank1:purity=1.000000000
+rank2:purity=0.500000000
+rank3:purity=0.333333333
+rank4:purity=0.250000000
+```
+
+### 8.2.6 A fixed unitary preserves purity
+
+For a fixed unitary U acting on every component, 8.1 gives ρ′=UρU†. Multiplication and U†U=I imply (ρ′)²=Uρ²U†. Trace cyclicity then gives
+
+$$
+\gamma(\rho')
+=\operatorname{Tr}(U\rho^2U^\dagger)
+=\operatorname{Tr}(\rho^2)=\gamma(\rho).
+$$
+
+The eigenvectors change to Uuᵢ while eigenvalues are unchanged. This proof applies equally to an active fixed unitary and to the corresponding unitary coordinate similarity, although those have different physical interpretations. It does not assert invariance under outcome-dependent processing or discarding systems; partial trace and local/global purity are developed in 8.4 and later sections.
+
+Below, two native circuits apply the same U to the actual component preparations. The resulting host mixture is compared with UρU† in its entirety, including off-diagonal phases. `unitary` takes integer qubit arguments and the matrix as the `unitary=` keyword; this is the actual released call signature.
+
+```python
+U=e.prepare(e.qubit(.47,-.82));after=[]
+for component in (u,v):
+    c=fq.Circuit(1,dtype=p.D).unitary(0,unitary=e.prepare(component))
+    c.unitary(0,unitary=U)
+    result=fq.run(c,outputs=[fq.density_matrix()],options=e.OPTIONS)
+    p.RUNS+=1
+    after.append(result.density_matrix[0])
+rotated,rd=p.mixture((.28,.72),(U@u,U@v),tuple(after))
+e.close(rotated,U@rho@U.mH)
+e.close(rd['purity'],d['purity'])
+print('before=%.9f,after=%.9f'%(d['purity'],rd['purity']))
+```
+
+```text
+before=0.885830150,after=0.885830150
+```
+
+### 8.2.7 Read the single-qubit criterion without losing complex phase
+
+Write a Hermitian, unit-trace qubit matrix as
+
+$$
+\rho=\begin{pmatrix}a&z\\z^*&1-a\end{pmatrix},
+\qquad a\in\mathbb R,\ z\in\mathbb C.
+$$
+
+Positivity requires 0≤a≤1. The eigenvalue product is the determinant a(1−a)−|z|², so positivity also requires |z|²≤a(1−a). Conversely these conditions imply positivity: the two real eigenvalues sum to one and have nonnegative product, so neither can be negative. Thus these conditions are necessary and sufficient. Directly summing the four entry magnitudes gives
+
+$$
+\begin{aligned}
+\gamma&=a^2+(1-a)^2+2|z|^2,\\
+1-\gamma&=2\bigl(a(1-a)-|z|^2\bigr).
+\end{aligned}
+$$
+
+Within the valid density domain, the equality |z|²=a(1−a) is exactly the pure-state boundary, including the poles a=0,1 with z=0.
+
+To connect with qubit coordinates, use the explicit Pauli matrices of 6.3. Expanding (I+xX+yY+z_B Z)/2 entry by entry gives a=(1+z_B)/2 and ρ₀₁=(x−iy)/2. Therefore x=2Re z, y=−2Im z and z_B=2a−1. Substitution, including the factor of two for the conjugate off-diagonal pair, yields
+
+$$
+\begin{aligned}
+\gamma&=\frac{1+x^2+y^2+z_B^2}{2},\\
+\rho\geq0&\ \Longleftrightarrow\ x^2+y^2+z_B^2\leq1.
+\end{aligned}
+$$
+
+Unit length means pure; an interior point means mixed. The previously derived pure-qubit sphere is the boundary, not the full mixed-qubit state space. The minus sign in y matters for representing the matrix even though its square hides that sign in this one scalar diagnostic. Purity agreement alone does not verify a whole density matrix.
+
+```python
+population=rho[0,0].real.item();z=rho[0,1].item()
+x=2*z.real;y=-2*z.imag;zz=2*population-1
+entry_formula=population**2+(1-population)**2+2*abs(z)**2
+bloch_formula=(1+x*x+y*y+zz*zz)/2
+e.close(entry_formula,d['purity']);e.close(bloch_formula,d['purity'])
+assert abs(z)**2<=population*(1-population)+p.ATOL
+print('entry formula=%.9f,Bloch formula=%.9f'%(entry_formula,bloch_formula))
+```
+
+```text
+entry formula=0.885830150,Bloch formula=0.885830150
+```
+
+### 8.2.8 Separate exact criteria from finite-precision diagnosis
+
+For the exact family ρₑ=diag(1−ε,ε), with 0<ε<1,
+
+$$
+\gamma(\rho_\varepsilon)
+=1-2\varepsilon+2\varepsilon^2<1.
+$$
+
+Every member is mixed, however small ε is. A tolerance-based comparison with one cannot decide exact rank. At ε=10⁻²⁰, double precision rounds 1−ε to one and the computed trace square to one while still representing a positive second diagonal entry. The numerical report describes a rounded matrix within the stated tolerance; it cannot certify the exact rank of the intended state. We retain all computed eigenvalues, report the idempotence residual and minimum eigenvalue, and never return an exact `pure` label from an `allclose` result.
+
+The matrix domain must also be checked first. For example, diag(2/3,2/3,−1/3,0) is Hermitian with trace one and trace square one, but it is not positive. The non-Hermitian matrix [[1,1],[0,0]] is idempotent and has trace one, but is not a density operator either. These do not contradict the theorem because they violate its assumptions. Our helpers reject these cases before interpreting a purity. They also reject bad dimensions, dtype, nonfinite data and malformed weights. The dimension-2-or-4 guard bounds this teaching example; it is not a FlagQuantum dimension limit.
+
+```python
+eps=1e-8
+near=torch.diag(torch.tensor([1-eps,eps],dtype=p.D))
+nd=p.diagnostics(near)
+e.close(nd['purity'],1-2*eps+2*eps**2)
+tiny=torch.diag(torch.tensor([1-1e-20,1e-20],dtype=p.D))
+td=p.diagnostics(tiny)
+assert td['purity']==1.0 and td['minimum_eigenvalue']>0
+print('epsilon1e-8:purity=%.12f'%nd['purity'])
+print('epsilon1e-20:rounded purity1 with positive second eigenvalue;no exact label inferred')
+print('%dmalformed contracts rejected'%p.rejected())
+print('%dnative body circuits;mixtures and diagnostics are host calculations'%p.RUNS)
+```
+
+```text
+epsilon1e-8:purity=0.999999980000
+epsilon1e-20:rounded purity1 with positive second eigenvalue;no exact label inferred
+10malformed contracts rejected
+13native body circuits;mixtures and diagnostics are host calculations
+```
+
+**Implementation support and limits.** Released FlagQuantum 0.3.1 actually returns full native density matrices through `fq.density_matrix()` and executes the tested preparations in both `statevector` and `density_matrix` modes. `fq.probabilities()` supplies the accompanying computational probabilities. The eight units show direct circuit gates, `fq.run`, and result access; the complete program additionally uses native Bell preparations. The purity trace, entry sums, spectra and ensemble additions here are host PyTorch/Python operations, not a claimed native purity measurement request. We neither initialize an arbitrary mixed matrix through an unverified signature nor invoke noise or a measurement-based purity experiment. This is exact simulator output with floating-point arithmetic, not tomography from finite shots, hardware certification, a collapse interface or an interval error certificate. No clipping, symmetrization, input normalization repair or global-phase alignment is used to obtain agreement.
+
+Expected output of the complete program:
+
+```text
+24native pure outputs:both modes,one/two qubits;purity1 and spectral reconstruction passed.
+12ensembles:trace-square,entry norm,spectrum and scalar overlap agree;zero weights and duplicate rays retained.
+Four native Bell components:uniform rank-r mixtures have purity1/r for r=1,2,3,4.
+Unitary invariance and near-pure diagnostics passed;rounded purity1 is not an exact rank-one certificate.
+10malformed contracts rejected;no clipping,normalization repair or exact numerical purity labels.
+40actual native circuits;host mixture algebra is recorded separately.
+```
+
+The complete program makes 40 actual native circuit executions. Its 12 two-component mixture cases and four rank-r mixtures are classical computations from component outputs; they are not additional quantum executions. The literal body makes 13 separate executions. The execution ledger records those runs, the body/complete regression and fresh transfer cases separately. The finite tests cannot establish a theorem for all dimensions; the spectral and nonnegative-sum arguments above do that work.
+
+### Understanding checks and transfer exercises
+
+**8.2-A — Check assumptions before using a scalar.** Explain why the two invalid matrices in 8.2.8 evade an unqualified “trace square one” test. For an orthogonal projector Π of rank 3, compare TrΠ² with the purity of Π/3. Which operator is a density?
+
+**8.2-B — Fresh complex ensemble.** Prepare u=qubit(.63,−.81) and v=qubit(1.84,.27), with weights (.37,.63), using the same qubit(θ,φ) convention as the code. Derive purity from scalar overlaps; verify the trace, entry and eigenvalue formulas against actual native component matrices. Apply the fixed U=prepare(qubit(−.52,.46)) to both components and verify invariance. Is comparing just the two diagonal probabilities sufficient to verify equality of two densities?
+
+**8.2-C — More labels, or more occupied rays?** Use weights (.2,.3,.5) and vectors (u,e^{i.4}u,e^{−i.7}u). Show the state is pure. Replace the last component by a normalized vector w orthogonal to u; find its purity and eigenvalues. Add a zero-weight unrelated vector and explain why the answer is unchanged.
+
+**8.2-D — Resolve a near-pure report.** For ε=10⁻⁷, calculate the purity and the Frobenius distance from ρₑ to |0⟩⟨0|. If a report rounds the purity to six decimal places, may it call the state pure? Compare with a two-qubit uniform density supported on three orthonormal native Bell preparations. State what remains unproved by a floating-point PSD check.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 8.2-A–D</summary>
+
+**A.** The first invalid matrix has a negative eigenvalue; the second violates Hermiticity. The theorem requires both, as well as trace one. Π has TrΠ²=3 and trace 3, whereas Π/3 has trace one and purity 1/3. Only Π/3 is a density operator. For rank one both coincide.
+
+**B.** Put c=cos(.63/2)cos(1.84/2)+e^{i( .27+.81 )}sin(.63/2)sin(1.84/2). Then
+
+$$
+\gamma=.37^2+.63^2+2(.37)(.63)|c|^2.
+$$
+
+The complete matrix transforms as UρU† and the proof gives the same purity. The fresh transfer program evaluates the displayed scalar expression and the full matrix against native outputs. Diagonals alone omit complex off-diagonal information; for example I/2 and |+⟩⟨+| have the same computational probabilities but different purity.
+
+**C.** All original positive-weight components are the same ray, so ρ=|u⟩⟨u| and γ=1. After replacement, the total weight on u is .5 and the weight on w is .5. Thus its occupied eigenvalues are (.5,.5) and γ=.5. A zero-weight vector contributes nothing; its ray need not match either occupied component.
+
+**D.** The exact values are
+
+$$
+\begin{aligned}
+\gamma&=1-2(10^{-7})+2(10^{-14}),\\
+\|\rho_\varepsilon-|0\rangle\langle0|\|_F
+&=\sqrt2\,10^{-7}.
+\end{aligned}
+$$
+
+This state is mixed despite the rounded display. The three-state uniform two-qubit ensemble has spectrum (1/3,1/3,1/3,0), purity 1/3, and a different ambient dimension. A numerical PSD check and residuals give finite-precision diagnostics, not a rigorous enclosure of unknown physical eigenvalues or exact rank. An experimental assertion would also need a declared measurement model, statistical uncertainty and systematic-error budget.
+
+</details>
+
+**Sources and proof scope.** The frozen source locator is NC §2.4.2, printed page 101 (contents locator checked; no new claim of full-text NC review). For pure-ray and spectral-ensemble conventions we consulted [Watrous, author-hosted manuscript §2.1.2, printed page 64](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=72). The bounds, ensemble overlap criterion, rank-r extension and coordinate derivations above are supplied explicitly in this section. Independent mathematical review, implementation review and reader trial remain pending; this is an author-verified draft, not formal acceptance.
+
+<!-- end-section-8.2 -->

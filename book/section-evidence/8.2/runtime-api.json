@@ -1,0 +1,11 @@
+{
+  "python": "3.12.14",
+  "flagquantum": "0.3.1",
+  "torch": "2.13.0",
+  "density_signature": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None) -> 'OutputRequest'",
+  "RY_signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+  "run_signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+  "runtime_file": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/__init__.py",
+  "runtime_sha256": "8cedd180174be55d92f850465882fdf14fb464d654c0acbab7ce8442ad77b911",
+  "scope": "Inspected current installed released API;not a new native circuit execution."
+}

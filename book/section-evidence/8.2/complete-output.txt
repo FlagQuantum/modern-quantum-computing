@@ -1,0 +1,6 @@
+24native pure outputs:both modes,one/two qubits;purity1 and spectral reconstruction passed.
+12ensembles:trace-square,entry norm,spectrum and scalar overlap agree;zero weights and duplicate rays retained.
+Four native Bell components:uniform rank-r mixtures have purity1/r for r=1,2,3,4.
+Unitary invariance and near-pure diagnostics passed;rounded purity1 is not an exact rank-one certificate.
+10malformed contracts rejected;no clipping,normalization repair or exact numerical purity labels.
+40actual native circuits;host mixture algebra is recorded separately.
