@@ -111,6 +111,32 @@
         "NC:2.4.3"
       ],
       "status": "draft"
+    },
+    {
+      "sequence": 60,
+      "batch": "B02",
+      "section_id": "sec-density-matrices-reduced-states-and-purification-5",
+      "ref": "8.5",
+      "title": "Reduced states of entangled systems",
+      "depth": "F",
+      "requires": [
+        "sec-entanglement-and-quantum-information-protocols-2",
+        "sec-density-matrices-reduced-states-and-purification-4"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "question": "Why do both reductions of a pure joint state have the same nonzero spectrum,and when are they mixed?",
+      "entry": "7.2Schmidt decomposition and coefficient conventions;8.4unique partial trace.",
+      "exit": "Full Schmidt insertion proof for both reductions,nonzero multiplicities/zero complements,pure-global versus mixed-local equivalence and mixed-input boundary.",
+      "worked_case": "Complex rotated pairs,rectangular4x2/2x4cuts,degenerate spectra,near-product state,partition dependence and correlated classical mixtures.",
+      "boundary": "Pure normalized bipartite input for spectral theorem;host mixed counterexamples distinguish necessity from a mixed-state entanglement test.",
+      "code_plan": "Native full and named reduced densities/probabilities/Pauli outputs;explicit C C-dagger and C-transpose C-conjugate,SVD and full eigenvalue comparisons.",
+      "independent_check": "Analytic Schmidt weights,scalar partial traces,native matrix eigenpair residuals,padded full spectra and local/global purity.",
+      "transfer_task": "Fresh complex rotations,four-qubit cuts,degeneracy,near-product resolution and printed mixed counterexamples.",
+      "source_locators": [
+        "NC:2.5"
+      ]
     }
   ]
 }

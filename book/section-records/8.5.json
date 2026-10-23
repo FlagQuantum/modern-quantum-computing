@@ -1,0 +1,98 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-density-matrices-reduced-states-and-purification-5",
+  "ref": "8.5",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+  "depth": "F",
+  "requires": [
+    "sec-entanglement-and-quantum-information-protocols-2",
+    "sec-density-matrices-reduced-states-and-purification-4"
+  ],
+  "result": "Reduced spectra equal squared Schmidt coefficients",
+  "assumptions": [
+    "Normalized finite bipartite pure state;specified ordered partition and orthonormal coordinates.",
+    "Schmidt coefficients nonnegative;nonzero list retains multiplicities;zero complements depend on factor dimensions."
+  ],
+  "verification_obligations": [
+    "Insert full Schmidt outer product and trace each subsystem explicitly.",
+    "Full local eigenpair and zero-complement proof;pure-global product iff local pure.",
+    "Complex right reduction C.T@C.conj() and right Schmidt columns Vh.T.",
+    "Global/local purity,degenerate freedom,partition/local-basis distinction.",
+    "Mixed-global counterexamples,near-product resolution and dimension-one boundaries."
+  ],
+  "formula_code_units": [
+    "complex coefficient reductions",
+    "rectangular full spectra",
+    "global pure/local mixed",
+    "near-product resolution",
+    "degenerate freedom",
+    "partition dependence",
+    "mixed input counterexamples",
+    "contracts and boundaries"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.5",
+      "scope": "Frozen contents locator printed109;no new full-text review."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=279",
+      "scope": "Author-hosted Eq5.112 printed271 inspected for two reduced Schmidt forms;original full derivations supplied;no third-party text uploaded."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/reduced_spectra.py",
+    "prose_checker": "scripts/check_reduced_spectra_prose.py",
+    "evidence": "book/section-evidence/8.5",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 44,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 11,
+    "separate_transfer_circuits": 14,
+    "execution_ledger": {
+      "initial_complete": 44,
+      "initial_body_assembly": 11,
+      "final_body_plus_complete_checker": 55,
+      "fresh_transfer": 14,
+      "total_author_section_native_runs": 124,
+      "separate_previous_8_4_regression": 59,
+      "separate_previous_8_3_regression": 71,
+      "note": "Initial complete scientific checks passed;lexical spacing SyntaxWarning retained with original source. Whitespace correction preserves AST. Portable stdout prints padded Schmidt-square targets;actual native eigvalsh values remain unmodified and fully checked. Added host-only assertions execute no extra circuits. Future CI and prior regressions separate."
+    },
+    "malformed_contracts": 12,
+    "tolerance": "Absolute1e-12,relative0 for implementation;positive1e-20 weight preserved. Resolution threshold is not exact rank;rounded purity is not a certificate. No clipping,phase alignment or normalization repair.",
+    "native_boundary": "Native pure circuit preparation/full and ordered reduced density outputs/Pauli expectations in both tested modes;SVD,eigvalsh,coefficient contractions and mixed counterexamples are explicit classical processing. Factor dimensions<=4 teaching guard;dimension-one host-only. No arbitrary mixed initialization,collapse,hardware or entropy API claim.",
+    "script_sha256": "97b741ae8d65c2abf0ae09d1d6396b3ebc4877bf5fc8b1d4fb453c3ed80a90d2"
+  },
+  "assessment": {
+    "tasks": [
+      "8.5A two reduced spectra and purity",
+      "8.5B fresh complex local rotations",
+      "8.5C four-qubit/rectangular cuts",
+      "8.5D global mixed counterexamples"
+    ],
+    "answers": "Accessible answers supplied;fresh B-D cases and degeneracy executed in14native transfer runs;reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "44complete/11literalbody/14freshtransfer plus55body+complete passed. Total124author native runs;12malformed contracts rejected. Prior8.4regression59 and8.3regression71 separate;production QA recorded below. Strict fresh build,74page links and actual browser formulas/expanded answers passed."
+  },
+  "production": {
+    "next_draft": "8.6 Purification and nonuniqueness",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual default narrow IAB:Schmidt form/full outer product,both independent partial-trace expansions,complex right reduction,nonzero-spectrum multiplicities/zero-complement proof and global/local purity visually checked. Expanded8.5A-D answers checked including conjugate local matrices;one answer display container,no raw$$,globalMathJaxerrors0. Wide code may horizontally scroll;no universal-fit claim.",
+    "website": "Fresh strict build and74page local links passed;publish this checked HTML and confirm Pages success/HTTP200/exact equality.",
+    "html_sha256": "3f546943ee00229a12d91c298bdcf72d339d0213a80be7a0ae239f0b7f008f26"
+  }
+}

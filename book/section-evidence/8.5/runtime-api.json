@@ -1,0 +1,23 @@
+{
+  "python": "3.12.14 (main, Sep  1 2026, 14:09:38) [Clang 22.1.3 ]",
+  "flagquantum": "0.3.1",
+  "torch": "2.13.0",
+  "native_execution_count": 0,
+  "API": {
+    "density_matrix": {
+      "signature": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None) -> 'OutputRequest'",
+      "source_file": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/observables/__init__.py",
+      "source_sha256": "6c2abd395a396e3e621f97fb10d0db805ba1f68e37b68305cc9e8937de820714"
+    },
+    "expectation": {
+      "signature": "(observable: 'Observable', *, name: 'str | None' = None) -> 'OutputRequest'",
+      "source_file": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/observables/__init__.py",
+      "source_sha256": "3352ea2a2475e16e1e38dfed4b13d8a72257ddfddd391970c29bfe2f233d9ed8"
+    },
+    "run": {
+      "signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+      "source_file": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/_api.py",
+      "source_sha256": "a9b43ad881e7b3a32433a04dae54a0bf9978ca99bc5dbb815405ee1e85493b68"
+    }
+  }
+}

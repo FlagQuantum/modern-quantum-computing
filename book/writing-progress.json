@@ -591,6 +591,16 @@
       "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
       "record": "book/section-records/8.4.json",
       "author_execution": "passed:50complete/464selected outputs/9body/14freshtransfer;59body+complete plus9formattedbody;CPUcomplex128;independent acceptance pending"
+    },
+    "sec-density-matrices-reduced-states-and-purification-5": {
+      "state": "draft",
+      "brief": "book/briefs/ch08.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "record": "book/section-records/8.5.json",
+      "author_execution": "passed:44complete/11body/14freshtransfer;55body+complete checker;124author native runs,CPUcomplex128;independent acceptance pending"
     }
   },
   "existing_pilots": [

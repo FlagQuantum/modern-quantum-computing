@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "scope_sha256": "04a13fa7fb2eddd33aa1db4735246f77ab355d38b36c1c9d6d35b5e092791314",
+  "counts": {
+    "draft": 60,
+    "not_started": 375,
+    "accepted": 0
+  },
+  "strict_build": "strict-build.txt",
+  "local_links": "74pages,unique IDs and all local fragments resolved",
+  "browser": "Actual default narrow IAB:Schmidt form/full outer product,both independent partial-trace expansions,complex right reduction,nonzero-spectrum multiplicities/zero-complement proof and global/local purity visually checked. Expanded8.5A-D answers checked including conjugate local matrices;one answer display container,no raw$$,globalMathJaxerrors0. Wide code may horizontally scroll;no universal-fit claim.",
+  "html_sha256": "3f546943ee00229a12d91c298bdcf72d339d0213a80be7a0ae239f0b7f008f26",
+  "parent_8_4_CI": {
+    "run": 39911922999,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "execution_ledger": {
+    "initial_complete": 44,
+    "initial_body_assembly": 11,
+    "final_body_plus_complete_checker": 55,
+    "fresh_transfer": 14,
+    "total_author_section_native_runs": 124,
+    "separate_previous_8_4_regression": 59,
+    "separate_previous_8_3_regression": 71,
+    "note": "Initial complete scientific checks passed;lexical spacing SyntaxWarning retained with original source. Whitespace correction preserves AST. Portable stdout prints padded Schmidt-square targets;actual native eigvalsh values remain unmodified and fully checked. Added host-only assertions execute no extra circuits. Future CI and prior regressions separate."
+  },
+  "note": "Loopback preview first denied by filesystem/network sandbox before serving;authorized loopback retry succeeded. No scientific failure or added native execution."
+}

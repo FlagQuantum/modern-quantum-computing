@@ -1,6 +1,6 @@
 # 8. Density Matrices, Reduced States, and Purification
 
-**Working drafts: sections 8.1–8.4 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
+**Working drafts: sections 8.1–8.5 · Writing Baseline 1.0 · October 23, 2026.** Author execution is separate from independent mathematical review, implementation review and reader trial; these remain pending. The examples use released FlagQuantum 0.3.1, PyTorch 2.13.0 and CPU complex128.
 
 <span id="sec-density-matrices-reduced-states-and-purification-1"></span>
 
@@ -1996,3 +1996,453 @@ Its retained density is diag(.4,.3,.3); the full off-diagonal entries include �
 **Sources and proof scope.** The frozen source locator is NC §2.4.3, printed page 105 (contents locator checked; no new full-text NC review claimed). We also inspected [Watrous, author-hosted manuscript §2.1.3, printed pages 67–68](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=75) for coordinate and retained-register conventions. The local-expectation derivation, positivity and uniqueness arguments are supplied explicitly here. Independent mathematical review, implementation review and reader trial remain pending; this is an author-verified draft rather than formal acceptance.
 
 <!-- end-section-8.4 -->
+
+<span id="sec-density-matrices-reduced-states-and-purification-5"></span>
+
+## 8.5 Reduced states of entangled systems
+
+A joint system can have a completely specified pure state while neither subsystem has a pure state of its own. This does not contradict normalization or the uniqueness of partial trace. The missing local information is tied to correlations with the other subsystem. We will make that statement precise by proving that the nonzero eigenvalues of either reduced density are the squared Schmidt coefficients of the joint vector, including their multiplicities.
+
+The frozen prerequisites are [7.2, Schmidt decomposition](ch-entanglement-and-quantum-information-protocols.md#sec-entanglement-and-quantum-information-protocols-2), and [8.4, the unique operational partial trace](#sec-density-matrices-reduced-states-and-purification-4). This section has depth **F**. We insert the Schmidt form into the joint density, trace each side explicitly, identify all eigenvectors and zero complements, and then derive the pure/mixed consequences. The result assumes a **normalized bipartite pure global state**. A matrix representing a mixed global state does not have a single statevector to which this argument can be applied.
+
+All spaces are finite and nonzero. Choose ordered orthonormal bases on A and B. State coefficients, probabilities and purities are dimensionless; native gate angles are radians. The code uses actual released FlagQuantum 0.3.1 full and selected density outputs on CPU complex128, together with native Pauli expectations. SVD, eigenvalues and purities are explicit host calculations. Deterministic comparisons use absolute tolerance $10^{-12}$ and relative tolerance zero. These numerical diagnostics do not certify exact physical rank or establish a theorem from finitely many tests.
+
+The eight Python units are cumulative and run from the repository root. The complete companion is [reduced_spectra.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/reduced_spectra.py). All computed singular values and native density eigenvalues are retained. Native qubit selections are explicit nonempty tuples; one-dimensional mathematical factors are checked separately on the host, rather than inferred from an empty native request.
+
+### 8.5.1 Insert the Schmidt form and trace both sides
+
+From 7.2, a normalized joint vector admits a Schmidt form
+
+$$
+\begin{aligned}
+|\psi\rangle&=\sum_{k=1}^{r}s_k|a_k\rangle|b_k\rangle,\\
+s_k&>0,\qquad\sum_ks_k^2=1,
+\end{aligned}
+$$
+
+where the a vectors are orthonormal in A, the b vectors are orthonormal in B, and r≤min(d_A,d_B). Here r counts the strictly positive coefficients in exact mathematics. Zero terms may be added for bookkeeping but do not increase Schmidt rank. Normalization follows because the tensor-product inner products give δkl on both sides, leaving Σks_k².
+
+Form the full density before removing anything:
+
+$$
+\rho_{AB}
+ =\sum_{k,l}s_ks_l
+ |a_k\rangle\langle a_l|\otimes|b_k\rangle\langle b_l|.
+$$
+
+The partial-trace rule of 8.4 gives, for any local vectors,
+
+$$
+\begin{aligned}
+\operatorname{Tr}_B
+ (|x\rangle\langle y|\otimes|u\rangle\langle v|)
+ &=|x\rangle\langle y|\sum_\mu
+ \langle\mu|u\rangle\langle v|\mu\rangle\\
+ &=\langle v|u\rangle\,|x\rangle\langle y|.
+\end{aligned}
+$$
+
+The second equality uses the resolution of identity on the discarded factor. Applying it to every joint term, orthonormality supplies ⟨b_l|b_k⟩=δlk:
+
+$$
+\begin{aligned}
+\rho_A&=\sum_{k,l}s_ks_l
+ \langle b_l|b_k\rangle\,|a_k\rangle\langle a_l|\\
+&=\sum_ks_k^2|a_k\rangle\langle a_k|.
+\end{aligned}
+$$
+
+Tracing A independently instead supplies ⟨a_l|a_k⟩=δlk:
+
+$$
+\begin{aligned}
+\rho_B&=\sum_{k,l}s_ks_l
+ \langle a_l|a_k\rangle\,|b_k\rangle\langle b_l|\\
+&=\sum_ks_k^2|b_k\rangle\langle b_k|.
+\end{aligned}
+$$
+
+Both reductions are therefore normalized positive operators. Their diagonal mixtures refer to their respective Schmidt bases; they are not generally diagonal in the computational bases used by a program.
+
+To match this proof to complex coordinates, write ψᵢμ=Cᵢμ. Direct partial-trace entries give
+
+$$
+\begin{aligned}
+\rho_A&=CC^\dagger,\\
+(\rho_B)_{\mu\nu}
+ &=\sum_iC_{i\mu}C_{i\nu}^*,\\
+\rho_B&=C^\mathsf{T}C^*.
+\end{aligned}
+$$
+
+The star here means entrywise conjugation. It is essential: C†C is the transpose of the physical B matrix in this coefficient convention. It has the same eigenvalues but can predict the wrong local Y expectation. For a thin SVD C=U diag(s)V†, the B Schmidt columns are V*, which in PyTorch is `Vh.T`. Reconstruction is `(U*s) @ B.T`, with no conjugate on that final transpose.
+
+The code below visibly prepares a rotated complex pair, requests both native reductions, and compares complete matrices and eigenpair residuals. It also exposes the conjugation error: checking only the spectrum would miss the wrong B state.
+
+```python
+import math
+import torch
+import flagquantum as fq
+from examples.foundations import reduced_spectra as g
+from examples.foundations import statistical_ensembles as e
+from examples.foundations import partial_trace as t
+theta=.83;phi=-.49
+L=e.prepare(e.qubit(.63,.31));R=e.prepare(e.qubit(-.82,-.47))
+C=L@torch.diag(e.qubit(theta,phi))@R.T
+c=fq.Circuit(2,dtype=g.D).RY(0,theta=theta).P(0,theta=phi).CX(0,1)
+c.unitary(0,unitary=L).unitary(1,unitary=R)
+result=fq.run(c,outputs=[fq.density_matrix(name='full'),
+    fq.density_matrix(qubits=(0,),name='A'),fq.density_matrix(qubits=(1,),name='B'),
+    fq.expectation(fq.Y(1),name='yB')],options=e.OPTIONS)
+g.RUNS+=1
+full=result.measurement('full').value[0]
+RA=result.measurement('A').value[0];RB=result.measurement('B').value[0]
+e.close(full,torch.outer(C.reshape(-1),C.reshape(-1).conj()))
+U,s,B,la,lb=g.inspect_reductions(C,RA,RB)
+e.close(RA,C@C.mH);e.close(RB,C.T@C.conj())
+wrong=C.mH@C
+e.close(torch.linalg.eigvalsh(wrong),torch.linalg.eigvalsh(RB))
+correct_y=result.expectation('yB')[0].item();wrong_y=torch.trace(wrong@e.Y).real.item()
+assert abs(correct_y-wrong_y)>.1
+print('Schmidt squares:',[round(x,9) for x in s.square().tolist()])
+print('Native B Y=%.9f;wrong C-dagger-C predicts Y=%.9f'%(correct_y,wrong_y))
+```
+
+```text
+Schmidt squares: [0.83743788, 0.16256212]
+Native B Y=0.223468856;wrong C-dagger-C predicts Y=-0.223468856
+```
+
+### 8.5.2 Identify every eigenvalue, including the zero complements
+
+Act on a Schmidt vector a_j with the derived A operator. Orthogonality gives
+
+$$
+\rho_A|a_j\rangle
+ =\sum_ks_k^2|a_k\rangle\langle a_k|a_j\rangle
+ =s_j^2|a_j\rangle.
+$$
+
+For any vector x perpendicular to the span of {a_k}, every inner product ⟨a_k|x⟩ vanishes, so ρ_Ax=0. Complete the r Schmidt vectors to an orthonormal basis of H_A. In that complete basis the operator is diagonal with entries s₁²,…,sᵣ² and d_A−r zeros, so there are no additional nonzero eigenvalues. The identical calculation for B gives ρ_Bb_j=s_j²b_j and zero on its orthogonal complement. Therefore
+
+$$
+\boxed{\begin{gathered}
+\operatorname{spec}_{>0}(\rho_A)
+ =\operatorname{spec}_{>0}(\rho_B)\\
+ =\{s_1^2,\ldots,s_r^2\}
+ \quad\text{with multiplicities}.
+\end{gathered}}
+$$
+
+Repeated coefficients give repeated eigenvalues. In particular, rankρ_A=rankρ_B=r, even though rankρ_AB=1. If d_A≠d_B, the full spectral lists have different lengths and different numbers of zero eigenvalues. The theorem concerns the nonzero multiset, not equality of differently sized matrices or eigenvectors.
+
+A three-qubit example retains A=(q2,q0) and B=(q1). Its coefficient matrix is 4×2. The thin SVD returns two columns on A, not a complete four-dimensional basis. The full A density still has four eigenvalues, including its zero complement. A thin rectangular matrix must not be submitted as a square native gate.
+
+For portable displayed output, we print the padded Schmidt-square targets. The actual native eigenvalues, including tiny signed floating-point residuals near zero, remain unmodified and are compared against those targets in full. No computed value is clipped or discarded to make the result look exact.
+
+```python
+rect_result,rect_data=g.rectangular(.76,-.58)
+rect=rect_data[0]
+print('A dimension4,B dimension2;thin coefficient shape4x2')
+print('A target spectrum:',[round(x,9) for x in g.full_spectrum(rect[1],4).tolist()])
+print('B target spectrum:',[round(x,9) for x in g.full_spectrum(rect[1],2).tolist()])
+e.close(rect[3],g.full_spectrum(rect[1],4));e.close(rect[4],g.full_spectrum(rect[1],2))
+print('Complete spectra match Schmidt squares with their own zero complements')
+```
+
+```text
+A dimension4,B dimension2;thin coefficient shape4x2
+A target spectrum: [0.789186398, 0.210813602, 0.0, 0.0]
+B target spectrum: [0.789186398, 0.210813602]
+Complete spectra match Schmidt squares with their own zero complements
+```
+
+### 8.5.3 Prove when global purity implies local mixedness
+
+A pure joint vector is a product exactly when r=1, as proved in 7.2. The reduced-state expressions now give an equivalent local criterion. If r=1, normalization forces s₁=1, so ρ_A=|a₁⟩⟨a₁| and ρ_B=|b₁⟩⟨b₁| are pure. Conversely, if either reduction is pure, it has rank one, so the spectral result forces r=1 and the joint vector is a product. Thus, under the pure-global hypothesis,
+
+$$
+\begin{gathered}
+|\psi\rangle\text{ is a product}
+ \ \Longleftrightarrow\ \rho_A\text{ is pure}\\
+\Longleftrightarrow\ \rho_B\text{ is pure}.
+\end{gathered}
+$$
+
+Equivalently, a bipartite pure state is entangled exactly when both its reductions are mixed. A local mixed density is not a failure to specify the global pure vector. It is the unique state reproducing experiments on that local subsystem while the other subsystem is inaccessible.
+
+For completeness, the purity criterion needed here follows directly from the reduced spectrum, without adding an unstated prerequisite. For any positive, unit-trace spectrum λ_i,
+
+$$
+1-\operatorname{Tr}(\rho^2)
+ =\sum_i\lambda_i(1-\lambda_i)\geq0.
+$$
+
+Equality requires each λ_i to be zero or one; their sum is one, so exactly one is one. This is precisely a normalized rank-one projector. For the two reductions,
+
+$$
+\boxed{\operatorname{Tr}(\rho_A^2)
+ =\operatorname{Tr}(\rho_B^2)
+ =\sum_ks_k^4.}
+$$
+
+For r≥2, at least two positive λ_i lie strictly below one, so the common local purity is strictly less than one. The full projector always obeys ρ_AB²=ρ_AB and purity one. There is no requirement that a subsystem share that global purity.
+
+A product preparation and a Bell preparation exhibit the difference in actual native density outputs. The trace squares are explicit host calculations on those matrices.
+
+```python
+cp,vp=t.preparation(2,.61,-.34,kind='product')
+product,product_data=g.query(cp,vp,(((0,),(1,)),))
+bell,bell_C,bell_data=g.pair(math.pi/2,0.)
+for label,r,data in (('product',product,product_data[0]),('Bell',bell,bell_data)):
+    global_density=r.measurement('full').value[0]
+    local_density=r.measurement('A0').value[0]
+    global_purity=torch.trace(global_density@global_density).real.item()
+    local_purity=torch.trace(local_density@local_density).real.item()
+    e.close(global_purity,1);e.close(local_purity,data[1].pow(4).sum())
+    print(label+':global purity=%.6f,local purity=%.6f'%(global_purity,local_purity))
+```
+
+```text
+product:global purity=1.000000,local purity=1.000000
+Bell:global purity=1.000000,local purity=0.500000
+```
+
+### 8.5.4 Keep small Schmidt weights and numerical resolution distinct
+
+For the exact family
+
+$$
+|\psi_\varepsilon\rangle
+ =\sqrt{1-\varepsilon^2}|00\rangle
+  +e^{i\phi}\varepsilon|11\rangle,
+ \qquad0<\varepsilon<1,
+$$
+
+the joint state is entangled and both local spectra are (1−ε²,ε²). Their purity is
+
+$$
+(1-\varepsilon^2)^2+\varepsilon^4
+ =1-2\varepsilon^2+2\varepsilon^4<1.
+$$
+
+The phase does not enter either local spectrum. At ε=10⁻¹⁰ the small singular value is 10⁻¹⁰, while its local weight is 10⁻²⁰. A threshold on singular values and a threshold on density eigenvalues have different scales: an exact comparison s>τ corresponds to s²>τ², not s²>τ. Generic floating-point perturbations can further obscure a small eigenvalue in a rotated matrix.
+
+The example retains the small value and reports how a declared singular-value resolution changes the count. It does not equate that count with exact Schmidt rank. A purity rounded to one cannot establish that the state is a product. Nor does a numerical PSD check provide an interval enclosure of all physical eigenvalues. The particular near-product native gate is verified at ε=10⁻¹⁰ in both tested modes; no inference about arbitrarily smaller rotation angles follows from it.
+
+```python
+epsilon=1e-10
+near,near_C,near_data=g.pair(2*math.asin(epsilon),.37,mode='density_matrix')
+near_s=near_data[1]
+tiny=near.measurement('A0').value[0,1,1].real.item()
+assert tiny>0 and abs(tiny-epsilon**2)<1e-30
+print('Small Schmidt coefficient=%.3e;native local weight=%.3e'%(near_s[1].item(),tiny))
+print('Resolved singular values:tau1e-9=%d,tau1e-12=%d'%(g.resolved(near_s,1e-9),g.resolved(near_s,1e-12)))
+print('Rounded local purity=%.12f;no exact product claim follows'%torch.trace(near.measurement('A0').value[0]@near.measurement('A0').value[0]).real.item())
+```
+
+```text
+Small Schmidt coefficient=1.000e-10;native local weight=1.000e-20
+Resolved singular values:tau1e-9=1,tau1e-12=2
+Rounded local purity=1.000000000000;no exact product claim follows
+```
+
+### 8.5.5 Equal eigenvalues do not select unique Schmidt vectors
+
+A reduced density determines its eigenspaces, but eigenvectors can acquire arbitrary phases. For a nondegenerate Schmidt pair, replacing a_k by e^{iχ_k}a_k and b_k by e^{−iχ_k}b_k preserves the joint term and both outer products. Independent arbitrary phases on the two vectors would generally change their joint product.
+
+Within a block of m equal positive coefficients s, let W be an m×m unitary. Define a′_j=Σka_kW_kj and b′_j=Σlb_lW*_lj. Then
+
+$$
+\begin{aligned}
+\sum_j s\,|a'_j\rangle|b'_j\rangle
+ &=s\sum_{k,l}\left(\sum_jW_{kj}W_{lj}^*\right)
+ |a_k\rangle|b_l\rangle\\
+ &=s\sum_k|a_k\rangle|b_k\rangle.
+\end{aligned}
+$$
+
+The conjugate paired rotation is what cancels the mixing. Both reduced operators remain s² times the corresponding occupied-space projector on that block. Hence two correct SVD implementations need not return the same individual vectors or column phases. Compare the reconstructed full vector, the reduced operators, eigenpair residuals and occupied subspaces as appropriate, rather than rejecting a solution because arbitrary basis columns differ.
+
+The Bell-weight example deliberately changes its Schmidt columns while preserving the joint vector and both native marginal matrices. This is a check of basis freedom, not an assertion that every spectrum is degenerate.
+
+```python
+degenerate,deg_C,deg_data=g.pair(math.pi/2,.47,.63,-.82)
+DU,ds,DB=deg_data[:3];W=e.prepare(e.qubit(.71,.33))
+changed_U=DU@W;changed_B=DB@W.conj()
+e.close((changed_U*ds)@changed_B.T,deg_C)
+e.close((changed_U*ds.square())@changed_U.mH,degenerate.measurement('A0').value[0])
+e.close((changed_B*ds.square())@changed_B.mH,degenerate.measurement('B0').value[0])
+assert torch.linalg.matrix_norm(changed_U-DU).item()>.1
+print('Degenerate weights:',[round(x,6) for x in ds.square().tolist()])
+print('Paired conjugate basis rotation preserves global vector and both reduced operators')
+```
+
+```text
+Degenerate weights: [0.5, 0.5]
+Paired conjugate basis rotation preserves global vector and both reduced operators
+```
+
+### 8.5.6 Declare the partition before comparing spectra
+
+Local unitaries L on A and R on B transform a coefficient matrix as C′=LCRᵀ. The transpose, rather than the adjoint, follows by expanding the two ket factors. Consequently
+
+$$
+\begin{aligned}
+\rho'_A&=L\rho_AL^\dagger,\\
+\rho'_B&=R\rho_BR^\dagger.
+\end{aligned}
+$$
+
+A unitary conjugation preserves each full spectrum: an eigenvector x with eigenvalue λ maps to Lx or Rx with the same eigenvalue, including its multiplicity. Internal reordering of the qubits within a factor also acts by a unitary permutation of its coordinates, as established in 8.4, and preserves these spectra.
+
+Changing **which qubits belong to the factor** is a different bipartition. For a Bell pair on q0,q2 and an independent pure q1, the cut (q2,q0)|(q1) has Schmidt rank one: it separates two pure factors. The cut (q0)|(q1,q2) cuts the Bell pair and has weights (.5,.5). Both statements describe the same global vector. There is no partition-free local-mixedness number for an arbitrary composite register.
+
+The companion also checks rotated pairs against their analytic weights. The code below uses one three-qubit native preparation to verify the two different cuts and confirms invariance under reversing the internal order of the Bell-pair factor.
+
+```python
+spectator,spectator_data=g.spectator(.43)
+for label,data in zip(('A=(q2,q0),B=(q1)','A=(q0),B=(q1,q2)'),spectator_data):
+    print(label+':Schmidt squares='+str([round(x,6) for x in data[1].square().tolist()]))
+full3=spectator.measurement('full').value[0]
+e.close(torch.linalg.eigvalsh(t.indexed(full3,3,(2,0))),torch.linalg.eigvalsh(t.indexed(full3,3,(0,2))))
+print('Internal tuple reversal leaves eigenvalues unchanged;changing the partition need not')
+```
+
+```text
+A=(q2,q0),B=(q1):Schmidt squares=[1.0, 0.0]
+A=(q0),B=(q1,q2):Schmidt squares=[0.5, 0.5]
+Internal tuple reversal leaves eigenvalues unchanged;changing the partition need not
+```
+
+### 8.5.7 State what the pure-global theorem does not establish
+
+The local spectra do not reconstruct the global phase correlations, even when global purity is known. The orthogonal pure states Φ⁺=(|00⟩+|11⟩)/√2 and Φ⁻=(|00⟩−|11⟩)/√2 both have local densities I/2. Their global XX expectations are +1 and −1, respectively. Thus even both complete marginals can leave distinct pure joint states unresolved.
+
+More importantly, the pure-global assumption cannot be dropped. The classical product ensemble
+
+$$
+\rho_{\mathrm{classical}}
+ =\tfrac12|00\rangle\langle00|
+  +\tfrac12|11\rangle\langle11|
+$$
+
+also has both marginals I/2, but global purity .5. It is an explicit mixture of product preparations; mixed local states alone do not certify entanglement of an arbitrary joint density. There is no single Schmidt vector decomposition of this global mixture to insert into the pure-state proof.
+
+Conversely, the mixed product density
+
+$$
+\rho_{\mathrm{product}}
+ =\frac{I_A}{2}\otimes|0\rangle\langle0|_B
+$$
+
+has A spectrum (.5,.5) and B spectrum (1,0). The nonzero spectra need not agree for a mixed joint input. One pure marginal in this example does not make the global state pure. These examples delimit the theorem rather than contradict it.
+
+Three actual native product preparations supply the two host mixtures. A further native Φ⁻ preparation is compared with the earlier Φ⁺ result. The code compares full local matrices and global correlations, not merely one local measurement distribution.
+
+```python
+basis_results=[g.basis(bits) for bits in ((0,0),(1,1),(1,0))]
+r00,r11,r10=[r.measurement('full').value[0] for r in basis_results]
+classical=(r00+r11)/2
+independent=(r00+r10)/2
+for q in (0,1):e.close(t.indexed(classical,2,(q,)),e.I/2)
+e.close(torch.trace(classical@classical),.5)
+minus,minus_C,minus_data=g.pair(math.pi/2,math.pi)
+for name in ('A0','B0'):e.close(minus.measurement(name).value,bell.measurement(name).value)
+print('Bell plus/minus:same local states,global XX=%.6f/%.6f'%(bell.expectation('xx')[0].item(),minus.expectation('xx')[0].item()))
+print('Classical product mixture:global purity=%.6f,local purities=.5/.5'%torch.trace(classical@classical).real.item())
+print('Mixed product example A spectrum:',[round(x,6) for x in torch.linalg.eigvalsh(t.indexed(independent,2,(0,))).flip(0).tolist()])
+print('Mixed product example B spectrum:',[round(x,6) for x in torch.linalg.eigvalsh(t.indexed(independent,2,(1,))).flip(0).tolist()])
+```
+
+```text
+Bell plus/minus:same local states,global XX=1.000000/-1.000000
+Classical product mixture:global purity=0.500000,local purities=.5/.5
+Mixed product example A spectrum: [0.5, 0.5]
+Mixed product example B spectrum: [1.0, 0.0]
+```
+
+### 8.5.8 Preserve complete spectra and the scope of the implementation
+
+The mathematical proof handles different factor dimensions and their zero complements. A one-dimensional factor has the single density eigenvalue one for a normalized pure joint input, and the other factor is pure. The host SVD and matrix references check 1×4 and 4×1 coefficient matrices; they do not issue an empty native qubit selection. In the tested 0.3.1 interface an empty density tuple requests the full register, as documented in 8.4, so it must not stand for a one-dimensional factor in these experiments.
+
+A uniform Schmidt distribution on r terms has local density Π/r on each occupied support, where Π projects onto its Schmidt span. Its purity is 1/r. It is maximally mixed on the whole factor only if r equals that factor's full dimension. For a 4×2 coefficient matrix with two equal coefficients, B can be I₂/2 while A has spectrum (.5,.5,0,0), not I₄/4.
+
+Purity is also only one scalar function of the spectrum. For example, the nonnegative normalized weight lists (.5,.5,0) and (2/3,1/6,1/6) have the same sum of squares .5 but different spectra and ranks. Both can occur as the local spectra of pure joint vectors by taking a diagonal coefficient matrix with entries √λ_i. The host checks below verify this finite-matrix example; they do not claim a native qutrit experiment or a complete ordering of entanglement resources by purity.
+
+Malformed coefficient arrays, overlapping or incomplete partitions, nonfinite values, invalid factor dimensions and undeclared thresholds are rejected by the teaching contracts. Their factor-dimension≤4 bound limits dense independent references, not FlagQuantum itself. All computed singular values are kept, and numerical local eigenvalues are not clipped. Padding the predicted spectrum with exact mathematical zero complements is a comparison target, not a repair to the actual output.
+
+```python
+flat=torch.zeros((4,2),dtype=g.D);flat[0,0]=flat[1,1]=1/math.sqrt(2)
+g.inspect_reductions(flat,flat@flat.mH,flat.T@flat.conj())
+for weights in ((.5,.5,0.),(2/3,1/6,1/6)):
+    coeff=torch.diag(torch.tensor(weights,dtype=g.D).sqrt())
+    data=g.inspect_reductions(coeff,coeff@coeff.mH,coeff.T@coeff.conj())
+    e.close(data[1].pow(4).sum(),.5)
+print('%d malformed contracts rejected;dimension-one host factors checked'%g.invalid_checks())
+print('All computed singular values and native eigenvalues retained;zero padding is not clipping')
+print('%d actual native body circuits;SVD and spectra are host calculations'%g.RUNS)
+```
+
+```text
+12 malformed contracts rejected;dimension-one host factors checked
+All computed singular values and native eigenvalues retained;zero padding is not clipping
+11 actual native body circuits;SVD and spectra are host calculations
+```
+
+**Actual API support and limits.** The real native requests here are `fq.density_matrix(qubits=..., name=...)` and Pauli-based `fq.expectation`; they run in both `statevector` and `density_matrix` modes. Full and selected matrices have a leading batch axis, explicitly indexed by zero. These native reductions are compared with a separately derived normalized vector for the known preparation circuit, and the native full matrix is first checked against that vector's outer product. Using an analytic vector in the density-matrix mode is an independent preparation reference, not a claimed statevector output for a generic mixed state.
+
+Schmidt decomposition, `torch.linalg.svd`, `torch.linalg.eigvalsh`, rank-resolution counts and trace-square purities are host calculations. They are not presented as native Schmidt measurements or hardware tomography. Local unitaries are square preparation/gate matrices; thin rectangular SVD factors are never submitted as unitary gates. No noise, arbitrary mixed-state initializer, sampled collapse or reset interface is inferred or invoked. Host mixtures of native pure components remain explicitly labelled.
+
+As in 8.4, a small selected density does not imply a cheap simulation: the inspected statevector density-output route builds a full density first and has its documented source guard, while density-matrix mode already stores the joint matrix. This section is a correctness laboratory, not a scaling or performance benchmark. Conditional-state protocols, purification nonuniqueness and entropic measures have their own later sections; the proof here concerns the specified pure input and bipartition.
+
+Expected output of the complete program:
+
+```text
+24 native rotated/unrotated pairs:Schmidt squares,eigenpair residuals,full marginal spectra and purities passed.
+4 native complex three-qubit circuits:4x2and2x4coefficient matrices retain unequal zero complements.
+6 native spectator-pair circuits:partition changes spectra;internal tuple reordering only changes coordinates.
+4 native near-product cases:positive1e-20weight retained;singular-value threshold is a resolution diagnostic.
+6 native product components:host mixed counterexamples show why global purity is an essential hypothesis.
+12 malformed contracts rejected;host dimension-one spectra and all computed singular values retained.
+44 actual native circuits;SVD,eigenspectra,purities and mixed ensemble sums are explicit host calculations.
+```
+
+The complete program executes 44 native circuits: 24 rotated/unrotated pairs, four rectangular-cut preparations, six spectator-pair preparations, four near-product cases and six product components for mixed counterexamples. The body executes 11 additional circuits. SVDs, eigenvalue comparisons and host mixtures are not additional quantum executions. The execution ledger separately records the body/complete checker, fresh transfer cases and previous-section regressions. Independent mathematical review, implementation review and reader trial remain pending.
+
+### Understanding checks and transfer exercises
+
+**8.5-A — Prove the spectral statement with multiplicities.** Insert a normalized Schmidt form into ρ_AB and perform both partial traces. Explain why orthonormality removes k≠l terms and why completing the Schmidt vectors with orthogonal vectors supplies only zero eigenvalues. For d_A=4,d_B=2 and r=2, how many zero eigenvalues occur on each side? Why can the full density have rank one when both reduced ranks are two?
+
+**8.5-B — Fresh complex rotations and conjugation.** Use θ=1.17, φ=.62 and local gates L=prepare(qubit(−.53,.31)), R=prepare(qubit(.91,−.47)) in the pair construction. Derive both reduced matrices, their full spectra and common purity. Compare native reductions, scalar partial traces, eigenpair residuals and SVD reconstruction. Deliberately use C†C for B and find a native observable that rejects it despite matching eigenvalues.
+
+**8.5-C — Fresh four-qubit cuts.** Use the chain preparation of 8.4 with θ=−.67, φ=.39. Compare A=(q3,q1), B=(q0,q2) with the reversed internal orders. Then compare A=(q0), B=(q1,q2) for a fresh three-qubit chain preparation with θ=1.23, φ=−.64. Verify full reduced spectra with correct zero complements in both modes. Why must a numerical zero or unresolved coefficient not be treated as an exact physical rank statement? Add a biased Bell pair with θ=.93 and φ=−.72 to check the analytic local purity.
+
+**8.5-D — Equal marginals, equal purity, different conclusions.** Compare the biased pure pair √p|00⟩+e^{iφ}√(1−p)|11⟩ with the classical mixture p|00⟩⟨00|+(1−p)|11⟩⟨11| for p=.68, φ=−.57. Which complete local matrices agree, and which full-state purity or correlation separates them? Then construct the two diagonal 3×3 coefficient examples in 8.5.8 with identical local purity .5 but different spectra. State the global-purity assumption needed before inferring entanglement from a mixed marginal.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 8.5-A–D</summary>
+
+**A.** Each discarded outer product has trace equal to the inner product of its bra and ket vectors, hence δlk. The surviving terms have weights s_k². The Schmidt span contains every nonzero action of the reduction; the perpendicular space is its kernel. A has two zero eigenvalues and B none. The full operator is a single projector |ψ⟩⟨ψ| irrespective of how many product terms its vector needs.
+
+**B.** With D=diag(cos(θ/2),e^{iφ}sin(θ/2)), C=LDRᵀ. Therefore
+
+$$
+\begin{aligned}
+\rho_A&=L\operatorname{diag}(c^2,s^2)L^\dagger,\\
+\rho_B&=R\operatorname{diag}(c^2,s^2)R^\dagger,\\
+c&=\cos(1.17/2),\qquad s=\sin(1.17/2).
+\end{aligned}
+$$
+
+The spectra are {c²,s²} and purity c⁴+s⁴. The phase φ enters the joint vector but cancels from these local matrices. Here the correct B Y mean is cos(1.17)sin(.91)sin(−.47), which is nonzero; the wrong transposed B matrix has its opposite sign. The fresh transfer checks this against the native Y query, as well as the complete matrices.
+
+**C.** The 4×4 cut compares four Schmidt squares on each factor. Internal reversals are unitary coordinate permutations and keep those lists unchanged. The fresh 2×4 cut has at most two nonzero weights, with a two-dimensional zero complement on B if its rank is two. The transfer program compares this larger local matrix without submitting thin factors as gates. It compares full native spectra and analytic coefficient contractions without deleting tiny values. The two-qubit analytic check gives local purity cos⁴(.93/2)+sin⁴(.93/2). Resolution thresholds describe what the computation distinguishes at a declared scale; finite precision does not prove exact rank of a physical preparation.
+
+**D.** Both local matrices equal diag(.68,.32). The pure global density has purity one, whereas the classical mixture has purity .68²+.32²=.5648. Their global XY means are 2√(.68·.32)sin(−.57) and zero, so an appropriate joint experiment distinguishes them. For the host 3×3 examples, diagonal C with entries √(.5),√(.5),0 gives local spectrum (.5,.5,0); diagonal entries √(2/3),√(1/6),√(1/6) give (2/3,1/6,1/6). Both yield purity .5. A mixed marginal witnesses pure-state bipartite entanglement only when the specified joint state is known to be pure; it is not a general test for an arbitrary mixed joint state.
+
+</details>
+
+**Sources and proof scope.** The frozen source locator is NC §2.5, printed page 109 (contents locator checked; no new full-text NC review claimed). We also inspected [Watrous, author-hosted manuscript, Eq. (5.112), printed page 271](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=279) for the two reduced Schmidt-form expressions, without importing the surrounding entropy results as prerequisites. The full partial-trace, eigenvalue, zero-complement and pure/mixed derivations are supplied here. This is an author-verified draft, not formal acceptance.
+
+<!-- end-section-8.5 -->

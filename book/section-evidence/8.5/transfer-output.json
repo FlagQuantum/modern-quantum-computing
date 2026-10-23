@@ -1,0 +1,11 @@
+{
+  "native_circuits": 14,
+  "printed_exercises": [
+    "8.5B",
+    "8.5C",
+    "8.5D"
+  ],
+  "mixed_purity": 0.5648000000000001,
+  "retained_small_weight": "native complete/body epsilon1e-10 checks retained1e-20",
+  "status": "passed"
+}

@@ -1,0 +1,31 @@
+Schmidt squares: [0.83743788, 0.16256212]
+Native B Y=0.223468856;wrong C-dagger-C predicts Y=-0.223468856
+
+A dimension4,B dimension2;thin coefficient shape4x2
+A spectrum: [0.789186398, 0.210813602, 0.0, -0.0]
+B spectrum: [0.789186398, 0.210813602]
+Complete spectra match Schmidt squares with their own zero complements
+
+product:global purity=1.000000,local purity=1.000000
+Bell:global purity=1.000000,local purity=0.500000
+
+Small Schmidt coefficient=1.000e-10;native local weight=1.000e-20
+Resolved singular values:tau1e-9=1,tau1e-12=2
+Rounded local purity=1.000000000000;no exact product claim follows
+
+Degenerate weights: [0.5, 0.5]
+Paired conjugate basis rotation preserves global vector and both reduced operators
+
+A=(q2,q0),B=(q1):Schmidt squares=[1.0, 0.0]
+A=(q0),B=(q1,q2):Schmidt squares=[0.5, 0.5]
+Internal tuple reversal leaves eigenvalues unchanged;changing the partition need not
+
+Bell plus/minus:same local states,global XX=1.000000/-1.000000
+Classical product mixture:global purity=0.500000,local purities=.5/.5
+Mixed product example A spectrum: [0.5, 0.5]
+Mixed product example B spectrum: [1.0, 0.0]
+
+12 malformed contracts rejected;dimension-one host factors checked
+All computed singular values and native eigenvalues retained;zero padding is not clipping
+11 actual native body circuits;SVD and spectra are host calculations
+

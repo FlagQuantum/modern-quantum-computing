@@ -1,0 +1,2 @@
+/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/reduced_spectra.py:171: SyntaxWarning: invalid decimal literal
+  assert resolved(s,1e-9)==1and resolved(s,1e-12)==2

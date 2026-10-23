@@ -1,0 +1,7 @@
+24 native rotated/unrotated pairs:Schmidt squares,eigenpair residuals,full marginal spectra and purities passed.
+4 native complex three-qubit circuits:4x2and2x4coefficient matrices retain unequal zero complements.
+6 native spectator-pair circuits:partition changes spectra;internal tuple reordering only changes coordinates.
+4 native near-product cases:positive1e-20weight retained;singular-value threshold is a resolution diagnostic.
+6 native product components:host mixed counterexamples show why global purity is an essential hypothesis.
+12 malformed contracts rejected;host dimension-one spectra and all computed singular values retained.
+44 actual native circuits;SVD,eigenspectra,purities and mixed ensemble sums are explicit host calculations.

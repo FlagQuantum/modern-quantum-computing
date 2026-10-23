@@ -1,0 +1,34 @@
+[
+  {
+    "code": "import math\nimport torch\nimport flagquantum as fq\nfrom examples.foundations import reduced_spectra as g\nfrom examples.foundations import statistical_ensembles as e\nfrom examples.foundations import partial_trace as t\ntheta=.83;phi=-.49\nL=e.prepare(e.qubit(.63,.31));R=e.prepare(e.qubit(-.82,-.47))\nC=L@torch.diag(e.qubit(theta,phi))@R.T\nc=fq.Circuit(2,dtype=g.D).RY(0,theta=theta).P(0,theta=phi).CX(0,1)\nc.unitary(0,unitary=L).unitary(1,unitary=R)\nresult=fq.run(c,outputs=[fq.density_matrix(name='full'),\n    fq.density_matrix(qubits=(0,),name='A'),fq.density_matrix(qubits=(1,),name='B'),\n    fq.expectation(fq.Y(1),name='yB')],options=e.OPTIONS)\ng.RUNS+=1\nfull=result.measurement('full').value[0]\nRA=result.measurement('A').value[0];RB=result.measurement('B').value[0]\ne.close(full,torch.outer(C.reshape(-1),C.reshape(-1).conj()))\nU,s,B,la,lb=g.inspect_reductions(C,RA,RB)\ne.close(RA,C@C.mH);e.close(RB,C.T@C.conj())\nwrong=C.mH@C\ne.close(torch.linalg.eigvalsh(wrong),torch.linalg.eigvalsh(RB))\ncorrect_y=result.expectation('yB')[0].item();wrong_y=torch.trace(wrong@e.Y).real.item()\nassert abs(correct_y-wrong_y)>.1\nprint('Schmidt squares:',[round(x,9) for x in s.square().tolist()])\nprint('Native B Y=%.9f;wrong C-dagger-C predicts Y=%.9f'%(correct_y,wrong_y))\n",
+    "output": "Schmidt squares: [0.83743788, 0.16256212]\nNative B Y=0.223468856;wrong C-dagger-C predicts Y=-0.223468856\n"
+  },
+  {
+    "code": "rect_result,rect_data=g.rectangular(.76,-.58)\nrect=rect_data[0]\nprint('A dimension4,B dimension2;thin coefficient shape4x2')\nprint('A spectrum:',[round(x,9) for x in rect[3].tolist()])\nprint('B spectrum:',[round(x,9) for x in rect[4].tolist()])\ne.close(rect[3],g.full_spectrum(rect[1],4));e.close(rect[4],g.full_spectrum(rect[1],2))\nprint('Complete spectra match Schmidt squares with their own zero complements')\n",
+    "output": "A dimension4,B dimension2;thin coefficient shape4x2\nA spectrum: [0.789186398, 0.210813602, 0.0, -0.0]\nB spectrum: [0.789186398, 0.210813602]\nComplete spectra match Schmidt squares with their own zero complements\n"
+  },
+  {
+    "code": "cp,vp=t.preparation(2,.61,-.34,kind='product')\nproduct,product_data=g.query(cp,vp,(((0,),(1,)),))\nbell,bell_C,bell_data=g.pair(math.pi/2,0.)\nfor label,r,data in (('product',product,product_data[0]),('Bell',bell,bell_data)):\n    global_density=r.measurement('full').value[0]\n    local_density=r.measurement('A0').value[0]\n    global_purity=torch.trace(global_density@global_density).real.item()\n    local_purity=torch.trace(local_density@local_density).real.item()\n    e.close(global_purity,1);e.close(local_purity,data[1].pow(4).sum())\n    print(label+':global purity=%.6f,local purity=%.6f'%(global_purity,local_purity))\n",
+    "output": "product:global purity=1.000000,local purity=1.000000\nBell:global purity=1.000000,local purity=0.500000\n"
+  },
+  {
+    "code": "epsilon=1e-10\nnear,near_C,near_data=g.pair(2*math.asin(epsilon),.37,mode='density_matrix')\nnear_s=near_data[1]\ntiny=near.measurement('A0').value[0,1,1].real.item()\nassert tiny>0 and abs(tiny-epsilon**2)<1e-30\nprint('Small Schmidt coefficient=%.3e;native local weight=%.3e'%(near_s[1].item(),tiny))\nprint('Resolved singular values:tau1e-9=%d,tau1e-12=%d'%(g.resolved(near_s,1e-9),g.resolved(near_s,1e-12)))\nprint('Rounded local purity=%.12f;no exact product claim follows'%torch.trace(near.measurement('A0').value[0]@near.measurement('A0').value[0]).real.item())\n",
+    "output": "Small Schmidt coefficient=1.000e-10;native local weight=1.000e-20\nResolved singular values:tau1e-9=1,tau1e-12=2\nRounded local purity=1.000000000000;no exact product claim follows\n"
+  },
+  {
+    "code": "degenerate,deg_C,deg_data=g.pair(math.pi/2,.47,.63,-.82)\nDU,ds,DB=deg_data[:3];W=e.prepare(e.qubit(.71,.33))\nchanged_U=DU@W;changed_B=DB@W.conj()\ne.close((changed_U*ds)@changed_B.T,deg_C)\ne.close((changed_U*ds.square())@changed_U.mH,degenerate.measurement('A0').value[0])\ne.close((changed_B*ds.square())@changed_B.mH,degenerate.measurement('B0').value[0])\nassert torch.linalg.matrix_norm(changed_U-DU).item()>.1\nprint('Degenerate weights:',[round(x,6) for x in ds.square().tolist()])\nprint('Paired conjugate basis rotation preserves global vector and both reduced operators')\n",
+    "output": "Degenerate weights: [0.5, 0.5]\nPaired conjugate basis rotation preserves global vector and both reduced operators\n"
+  },
+  {
+    "code": "spectator,spectator_data=g.spectator(.43)\nfor label,data in zip(('A=(q2,q0),B=(q1)','A=(q0),B=(q1,q2)'),spectator_data):\n    print(label+':Schmidt squares='+str([round(x,6) for x in data[1].square().tolist()]))\nfull3=spectator.measurement('full').value[0]\ne.close(torch.linalg.eigvalsh(t.indexed(full3,3,(2,0))),torch.linalg.eigvalsh(t.indexed(full3,3,(0,2))))\nprint('Internal tuple reversal leaves eigenvalues unchanged;changing the partition need not')\n",
+    "output": "A=(q2,q0),B=(q1):Schmidt squares=[1.0, 0.0]\nA=(q0),B=(q1,q2):Schmidt squares=[0.5, 0.5]\nInternal tuple reversal leaves eigenvalues unchanged;changing the partition need not\n"
+  },
+  {
+    "code": "basis_results=[g.basis(bits) for bits in ((0,0),(1,1),(1,0))]\nr00,r11,r10=[r.measurement('full').value[0] for r in basis_results]\nclassical=(r00+r11)/2\nindependent=(r00+r10)/2\nfor q in (0,1):e.close(t.indexed(classical,2,(q,)),e.I/2)\ne.close(torch.trace(classical@classical),.5)\nminus,minus_C,minus_data=g.pair(math.pi/2,math.pi)\nfor name in ('A0','B0'):e.close(minus.measurement(name).value,bell.measurement(name).value)\nprint('Bell plus/minus:same local states,global XX=%.6f/%.6f'%(bell.expectation('xx')[0].item(),minus.expectation('xx')[0].item()))\nprint('Classical product mixture:global purity=%.6f,local purities=.5/.5'%torch.trace(classical@classical).real.item())\nprint('Mixed product example A spectrum:',[round(x,6) for x in torch.linalg.eigvalsh(t.indexed(independent,2,(0,))).flip(0).tolist()])\nprint('Mixed product example B spectrum:',[round(x,6) for x in torch.linalg.eigvalsh(t.indexed(independent,2,(1,))).flip(0).tolist()])\n",
+    "output": "Bell plus/minus:same local states,global XX=1.000000/-1.000000\nClassical product mixture:global purity=0.500000,local purities=.5/.5\nMixed product example A spectrum: [0.5, 0.5]\nMixed product example B spectrum: [1.0, 0.0]\n"
+  },
+  {
+    "code": "print('%d malformed contracts rejected;dimension-one host factors checked'%g.invalid_checks())\nprint('All computed singular values and native eigenvalues retained;zero padding is not clipping')\nprint('%d actual native body circuits;SVD and spectra are host calculations'%g.RUNS)\n",
+    "output": "12 malformed contracts rejected;dimension-one host factors checked\nAll computed singular values and native eigenvalues retained;zero padding is not clipping\n11 actual native body circuits;SVD and spectra are host calculations\n"
+  }
+]
