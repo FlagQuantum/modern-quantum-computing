@@ -65,7 +65,7 @@
       "final_explicit_native_body_plus_complete": 29
     },
     "malformed_contracts": 2,
-    "tolerance": "Absolute1e-12,relative0;no normalization repair,clipping or phase alignment. Host1e-20weight retained;completion pivot1e-10 is not an eigenvalue rank cutoff. Numerical equality is not an interval or hardware certificate.",
+    "tolerance": "Absolute1e-12,relative0;no input normalization repair,clipping or phase alignment. Finite implementation checks do not replace the all-effect proof.",
     "native_boundary": "Pure square-unitary circuit preparation and selected densities via8.6helper;classical mixed extensions,joint effects and conditioning are host-only.",
     "script_sha256": "fd81d870f29b6833b326688699d53cd1456580cbb526c6153d38ff3311207902"
   },
