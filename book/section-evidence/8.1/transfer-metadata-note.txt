@@ -1,0 +1,1 @@
+Fresh12native executions passed with U=P(.33)Ry(-.94). Final metadata reused loop variables a,b after they had become computational bits1,1,misrecording only the angle fields. Corrected those metadata constants and the writer;preserved initial metadata. Scientific source calculations,all matrices and captured stdout unchanged;no circuit rerun for a metadata correction.

@@ -1,0 +1,24 @@
+Unit1
+Two native pure density outputs;their classical half/half sum is I/2.
+Unit2
+Complex ensemble:trace probabilities match scalar Born sums and native analyzer outcomes.
+Trace expectation matches the weighted native X/Y/Z observable mean.
+Unit3
+Z,X,Y equal mixtures all give I/2.
+Nonorthogonal half/half mixture gives diag(0.73,0.27);component overlap=0.46.
+Unit4
+Classical Z mixture:X mean0;coherent plus superposition:X mean1.
+Changing a component's global phase leaves the mixture fixed but changes a vector-average prediction.
+Unit5
+Joint label0/systemZ0:Z preparation0.5,X preparation0.25.
+Ignoring the label gives system Z0 probability0.5 in both cases.
+Unit6
+Computational and Bell equal mixtures:I4/4;all16separating probes agree.
+Same Z diagonal is insufficient:the plus-plus event distinguishes0.25from0.5.
+Unit7
+Fixed Ry/P operation preserves the nonorthogonal/spectral equivalence.
+Label-dependent X changes the inputs:Z ensemble becomes pure0;X ensemble stays I/2.
+Unit8
+Same one-trial density,distinct joint models:P(equal)=0.5or1.
+Native density_matrix mode returned the correct pure density and probabilities.
+Literal body native executions: 34

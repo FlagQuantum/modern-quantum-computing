@@ -1,0 +1,33 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "scope": "Chapter8frozen queue;author checks separate from acceptance",
+  "sections": [
+    {
+      "sequence": 56,
+      "batch": "B02",
+      "section_id": "sec-density-matrices-reduced-states-and-purification-1",
+      "ref": "8.1",
+      "title": "Statistical ensembles and density operators",
+      "depth": "F",
+      "requires": [
+        "sec-complex-vectors-operators-and-numerical-reasoning-3",
+        "sec-measurement-expectation-values-and-statistical-estimation-6"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "status": "draft",
+      "question": "How does a statistical ensemble define an operator that captures all unlabelled measurement probabilities,and why is its ensemble representation nonunique?",
+      "entry": "2.3linear maps and basis-coordinate notation;6.6finite probabilities. Outer products,trace and the Born-rule use are defined locally.",
+      "exit": "F-depth density construction,trace probability/expectation identities and iff operational equivalence from all rank-one projectors,with explicit inequivalent preparations of the same operator.",
+      "worked_case": "Z/X/Y equal mixtures,nonorthogonal unequal-population example,coherent average failure,accessible records,fixed versus label-dependent gates and correlated repeated trials.",
+      "boundary": "Finite normalized pure components,classical normalized weights. Native full pure density outputs in both execution modes and host mixture sums;no arbitrary mixed initializer/noise/hardware API inferred.",
+      "code_plan": "Visible native unitary/H/P/CX/Ry/run and density_matrix/probability/expectation requests;independent scalar outer products and effect sums.",
+      "independent_check": "Indexed density entries,scalar Born quadratics,Pauli means,finite rank-one separating probes and multi-trial probability distributions.",
+      "transfer_task": "Fresh complex/nonorthogonal ensembles,mapped two-qubit representations and two-trial correlation checks.",
+      "source_locators": [
+        "NC:2.4.1"
+      ]
+    }
+  ]
+}

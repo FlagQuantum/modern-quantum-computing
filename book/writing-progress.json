@@ -551,6 +551,16 @@
       "body": "docs/chapters/ch-entanglement-and-quantum-information-protocols.md",
       "record": "book/section-records/7.9.json",
       "author_execution": "passed:Python3.12.14,releasedFlagQuantum0.3.1,PyTorch2.13.0,CPUcomplex128;51complete/28body/12transfer;scoped task counterexamples"
+    },
+    "sec-density-matrices-reduced-states-and-purification-1": {
+      "state": "draft",
+      "brief": "book/briefs/ch08.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+      "record": "book/section-records/8.1.json",
+      "author_execution": "passed:Python3.12.14,releasedFlagQuantum0.3.1,PyTorch2.13.0,CPUcomplex128;54complete/34body/12transfer;native density outputs in both modes"
     }
   },
   "existing_pilots": [

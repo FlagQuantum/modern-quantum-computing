@@ -1,0 +1,1 @@
+After narrow-screen multiline TeX edits,all8Python units and exact output blocks remain byte-for-byte equal to the executed fragments. No science rerun solely for formula formatting.

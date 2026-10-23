@@ -1,0 +1,103 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-density-matrices-reduced-states-and-purification-1",
+  "ref": "8.1",
+  "date": "2026-10-23",
+  "state": "draft",
+  "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
+  "depth": "F",
+  "result": "Ensemble density operator reproduces all measurement probabilities",
+  "requires": [
+    "sec-complex-vectors-operators-and-numerical-reasoning-3",
+    "sec-measurement-expectation-values-and-statistical-estimation-6"
+  ],
+  "assumptions": [
+    "Finite classical weights nonnegative and normalized;common finite space and normalized pure components.",
+    "Label inaccessible for system-only equivalence;accessible label/joint multi-trial models treated separately.",
+    "Born probabilities for projectors;effect extension explicitly assumes the pure-input effect model.",
+    "Fixed unitary identical on all components versus explicitly label-dependent host operations."
+  ],
+  "verification_obligations": [
+    "Outer-product construction with conjugate,positivity,Hermiticity and unit trace.",
+    "Full trace probability/expectation derivation and basis-invariant/cyclic trace finite sums.",
+    "Z/X/Y and nonorthogonal unequal-population equivalent ensembles.",
+    "Converse operational equivalence using d^2rank-one events with real/imaginary offdiagonal reconstruction.",
+    "Coherent-amplitude average counterexample,accessible record CQdensity and controlled-operation boundary.",
+    "Two-trial correlated versus IID models despite equal one-trial density.",
+    "Actual native full/reversed density outputs and both execution modes;no unsupported mixed initializer or instrument claim."
+  ],
+  "formula_code_units": [
+    "construction",
+    "trace rule",
+    "nonunique ensembles",
+    "coherence",
+    "label accessibility",
+    "converse",
+    "fixed/labelled operations",
+    "joint trials and native modes"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.4.1",
+      "scope": "Frozen printed99contents locator;no new full-text NC review."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=70",
+      "scope": "Author-hosted manuscript2.1.2printed62-64/PDF70-72 inspected for density and convex-mixture conventions. Original local finite derivations;no redistribution."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/statistical_ensembles.py",
+    "prose_checker": "scripts/check_statistical_ensembles_prose.py",
+    "evidence": "book/section-evidence/8.1",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 54,
+    "additional_complete_classical_effect_cases": 36,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 34,
+    "separate_transfer_circuits": 12,
+    "execution_ledger": {
+      "native_API_probe": 2,
+      "complete_program": 54,
+      "literal_body_assembly": 34,
+      "body_plus_complete_checker": 88,
+      "transfer": 12,
+      "total_author_section_native_runs": 190,
+      "separate_7_9_regression": 79,
+      "note": "All scientific executions passed. Transfer metadata angle fields were shadowed by later basis-loop variables;initial metadata retained,writer/constants corrected without changing source calculations or rerunning circuits. Future CI and prior-section regression separate."
+    },
+    "malformed_contracts": 14,
+    "tolerance": "Absolute1e-12,relative0 for deterministic matrices/probabilities/expectations. No eigenvalue clipping,symmetrization,weight/vector repair or phase alignment. PSDguard numerical not interval certificate;ensemble global phases cancel mathematically. Zero weights retained with normalized components.",
+    "native_boundary": "Released fq.density_matrix native output in statevector and density_matrix modes on pure preparations;native probabilities and Pauli expectations. Full and reversed-full qubit selection exercised. Mixed ensemble matrices are explicit host weighted sums,not arbitrary mixed-state initialization. No general POVM/collapse/feedback/noise/hardware claim;subset reduction formal validation remains8.3.",
+    "script_sha256": "33fb9a2c294cbc43de9c53f8fd8d567d0e051d721e884f2ef3bbd5d3a899d90c"
+  },
+  "assessment": {
+    "tasks": [
+      "8.1-A conjugation and global phase",
+      "8.1-B fresh nonorthogonal ensemble",
+      "8.1-C accessible records and correlated trials",
+      "8.1-D transformed two-qubit ensembles"
+    ],
+    "answers": "Accessible answers supplied;exact printed8.1B-D included in12fresh native executions. Independent reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author-run passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "54complete/34literalbody/12freshtransfer and88body+complete checker passed;79previous7.9regression separate. Strict fresh build and74page links passed. Actual IAB trace/nonunique matrices/converse real-imaginary probes and final expanded answers passed;independent review pending."
+  },
+  "production": {
+    "next_draft": "8.2 Pure states,mixed states,and purity",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual default narrow IAB final local build:trace Born expansion,boxed probability rule,equal and nonorthogonal ensemble matrices,converse separating probes and Re/-Im signs visually inspected. Parallel equations split into multiline TeX. Expanded8.1A-D answers4MathJax containers including2display;raw$$absent,globalMathJaxerror count0. API table6rowsx3cells. Remaining wide expressions/table use horizontal scrolling;no universal no-overflow claim.",
+    "website": "Strict fresh build and74page links passed;publish exact checked HTML and confirm online HTTP200/byte equality.",
+    "html_sha256": "d88fc47bb3bffd6d2d5c2647b117da2248dc2abe9782c9ca9aa497eda69a5226"
+  }
+}

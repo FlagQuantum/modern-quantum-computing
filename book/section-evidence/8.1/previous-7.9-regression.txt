@@ -1,0 +1,2 @@
+Eight literal7.9units:28native circuits,all assertions and exact outputs passed.
+Complete7.9program:51native circuits,12malformed-contract rejections and exact output passed.

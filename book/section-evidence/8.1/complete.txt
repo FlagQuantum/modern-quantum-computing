@@ -1,0 +1,8 @@
+12native pure preparations:both modes return correct density matrices,probabilities and X/Y/Z expectations.
+20native complex analyzers and20classical effect checks match scalar Born sums and trace probabilities.
+2native nonorthogonal components reproduce the unequal-population spectral ensemble;offdiagonal phases cancel.
+8native two-qubit preparations:computational/Bell ensembles and reversed density-axis order verified;16classical separating probes passed.
+4native classical-label product preparations:equal unlabelled system states can have different labelled joint predictions.
+8native fixed/label-dependent operations:fixed U preserves equivalence;accessible labels change the operational input.
+14malformed contracts rejected before execution;zero weight retained;54CPUcomplex128native circuits passed.
+Classical ensemble sums are not an arbitrary mixed-state initializer or a finite-data certificate of exact equality.

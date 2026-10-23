@@ -1,0 +1,13 @@
+{
+  "native_runs": 12,
+  "printed8.1B": {
+    "r": 0.61,
+    "phi": -0.72,
+    "theta_U": -0.94,
+    "phase_U": 0.33,
+    "expected_Z": 0.1297533655068416
+  },
+  "printed8.1D": "W=Ry(.47)q1,CXq1q0,P(-.31)q0;all8transformed basis/Bell components;full/reversed outputs",
+  "reference": "scalar gate expansion,not native gate matrices",
+  "phase_alignment": false
+}

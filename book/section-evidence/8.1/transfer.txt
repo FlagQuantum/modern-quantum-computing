@@ -1,0 +1,2 @@
+12fresh CPUcomplex128native circuits:4density-mode transformed nonorthogonal/spectral components;8mapped two-qubit components passed.
+Exact printed8.1B-D,scalar W amplitudes and full/reversed density outputs passed.

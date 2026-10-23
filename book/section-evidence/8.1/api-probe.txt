@@ -1,0 +1,4 @@
+statevector-mode native execution1 density shape (1, 2, 2)
+tensor([[[0.5000+0.0000e+00j, 0.4662-1.8081e-01j],
+         [0.4662+1.8081e-01j, 0.5000+6.2796e-18j]]], dtype=torch.complex128)
+density_matrix-mode native execution2 (1, 2, 2)

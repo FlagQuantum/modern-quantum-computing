@@ -1,0 +1,22 @@
+{
+  "target": "final local build,default narrow IAB",
+  "formulas": [
+    "trace Born identity",
+    "equal/nonorthogonal ensemble matrices",
+    "converse probe vectors",
+    "Re and negative Im extraction",
+    "expanded answer conjugation matrix"
+  ],
+  "expanded_answers": {
+    "MathJax_containers": 4,
+    "display": 2,
+    "raw_dollar_delimiters": false
+  },
+  "MathJax_errors": 0,
+  "API_table": {
+    "rows": 6,
+    "cells_per_row": 3
+  },
+  "html_sha256": "d88fc47bb3bffd6d2d5c2647b117da2248dc2abe9782c9ca9aa497eda69a5226",
+  "note": "Wide expressions/table retain horizontal scrolling;no universal viewport claim."
+}
