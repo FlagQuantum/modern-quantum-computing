@@ -1,0 +1,34 @@
+[
+  {
+    "code": "import torch,flagquantum as fq\nfrom examples.foundations import uniform_reversible as u,statistical_ensembles as e\nnodes=(('AND',(0,1)),('NOT',(2,)))\noutputs=(3,)\nf,work=u.evaluate((1,0),nodes,outputs)\nassert f==(1,) and work==(0,1)\nprint('Classical NAND:input10,gates(AND,NOT),stored intermediates01,output1')\n",
+    "output": "Classical NAND:input10,gates(AND,NOT),stored intermediates01,output1\n"
+  },
+  {
+    "code": "net,cost=u.translate(2,nodes,outputs)\nassert cost['compute_gates']==3 and cost['network_gates']==7\nassert cost['qubits']==5 and cost['workspace']==2\nprint('Compute3gates+copy1+inverse3=7gates;2data+2workspace+1output=5qubits')\n",
+    "output": "Compute3gates+copy1+inverse3=7gates;2data+2workspace+1output=5qubits\n"
+  },
+  {
+    "code": "# Direct actual gate calls for the translated NAND network;target starts0.\nc=fq.Circuit(5,dtype=u.D).X(0)\nc.CCX(0,1,2).X(3).CX(2,3).CX(3,4)\nc.CX(2,3).X(3).CCX(0,1,2)\nr=fq.run(c,outputs=[fq.probabilities(name='full')],options=e.OPTIONS)\nexpected=torch.zeros(32,dtype=torch.float64);expected[17]=1\n# Output basis string10001:data10,workspace00,output1.\ne.close(r.measurement('full').value[0],expected)\nprint('Explicit native NAND:all probability on10001;workspace00anddata10retained')\n",
+    "output": "Explicit native NAND:all probability on10001;workspace00anddata10retained\n"
+  },
+  {
+    "code": "coherent,cc,leak=u.execute(2,nodes,outputs,coherent=True)\nassert abs(leak)<1e-12\nprint('Complex correlated data/output input:full amplitudes and joint density match the clean XOR embedding')\n",
+    "output": "Complex correlated data/output input:full amplitudes and joint density match the clean XOR embedding\n"
+  },
+  {
+    "code": "adder=(('XOR',(0,1)),('AND',(0,1)))\nhr,hc,hl=u.execute(2,adder,(2,3),x=(1,1),y=(1,0),mode='density_matrix')\nassert hc['network_gates']==8 and hr.measurement('p').value[0,51].item()==1\nprint('Half-adder:input11,oldoutput10,newoutput11,workspace00;8network gates')\n",
+    "output": "Half-adder:input11,oldoutput10,newoutput11,workspace00;8network gates\n"
+  },
+  {
+    "code": "alias=(('XOR',(0,0)),('AND',(0,0)))\nar,ac,al=u.execute(1,alias,(1,2),x=(1,),y=(1,0))\nassert ac['compute_gates']==1 and ac['network_gates']==4\nassert all(len(set(q))==len(q)for _,q in u.translate(1,alias,(1,2))[0])\nprint('Repeated XOR cancels;repeated AND becomes COPY;no duplicate CCXcontrol submitted')\n",
+    "output": "Repeated XOR cancels;repeated AND becomes COPY;no duplicate CCXcontrol submitted\n"
+  },
+  {
+    "code": "reuse,rc,rl=u.execute(2,nodes,outputs,coherent=True,cycles=2)\nassert abs(rl)<1e-12\nfor n in (0,1,5,17):\n graph,taps=u.parity_family(n)\n assert u.evaluate((1,)*n,graph,taps)[0]==(n%2,)\nprint('Two clean calls cancel their output XOR while restoring workspace each time')\nprint('One host algorithm generates parity graphs including lengths0and1;large graphs not executed')\n",
+    "output": "Two clean calls cancel their output XOR while restoring workspace each time\nOne host algorithm generates parity graphs including lengths0and1;large graphs not executed\n"
+  },
+  {
+    "code": "bad=u.fault()\nassert bad.probabilities[0,15].item()==1\nassert u.invalid_checks()==10 and u.RUNS==5\nprint('Missing inverse on input11leaves1111:answer correct but workspace dirty;candidate rejected')\nprint('10malformed contracts rejected;body uses5helper-native calls plus1explicit fq.run')\n",
+    "output": "Missing inverse on input11leaves1111:answer correct but workspace dirty;candidate rejected\n10malformed contracts rejected;body uses5helper-native calls plus1explicit fq.run\n"
+  }
+]

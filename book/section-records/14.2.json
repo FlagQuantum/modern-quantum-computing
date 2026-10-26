@@ -1,0 +1,94 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-computational-models-complexity-and-quantum-advantage-2",
+  "ref": "14.2",
+  "date": "2026-10-26",
+  "state": "draft",
+  "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+  "depth": "F",
+  "requires": [
+    "sec-gates-reversible-computation-and-circuit-synthesis-4",
+    "sec-computational-models-complexity-and-quantum-advantage-1"
+  ],
+  "result": "Uniform reversible circuit simulation",
+  "assumptions": [
+    "Finite topological Boolean circuit and declared zero workspace.",
+    "Fixed bounded-fan-in alphabet;uniform source generator for uniformity conclusion."
+  ],
+  "verification_obligations": [
+    "Per-node fresh-write and compute prefix invariant",
+    "Copy arbitrary output and reverse full compute primitive order",
+    "Complex joint-input linear extension and clean workspace factorization",
+    "2G+m<=4L+m gates,n+L+m qubits",
+    "Polynomial description translation and uniform generator composition"
+  ],
+  "formula_code_units": [
+    "graph",
+    "translation",
+    "native clean NAND",
+    "coherent contract",
+    "cost",
+    "alias/uniformity",
+    "reuse",
+    "failed cleanup"
+  ],
+  "sources": [
+    {
+      "locator": "NC:3.1.2/3.2.5",
+      "scope": "Contents starts129/153;energy locator not a clean-simulation proof or thermodynamic claim;no full-text review."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf#page=12",
+      "scope": "IV.1/IV.3model/classicalsimulationcontext inspected;full local proof supplied."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/uniform_reversible.py",
+    "prose_checker": "scripts/check_uniform_reversible_prose.py",
+    "evidence": "book/section-evidence/14.2",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 118,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 6,
+    "separate_transfer_circuits": 10,
+    "execution_ledger": {
+      "complete": 118,
+      "body_assembly": 6,
+      "body_plus_complete": 124,
+      "transfer": 10,
+      "total_author_section_native_runs": 258,
+      "initial_assembly_guard_failure": 0,
+      "separate_prerequisite_regressions": "5.4and14.1literal/completechecks passed;logs separate from258author section runs"
+    },
+    "malformed_contracts": 10,
+    "tolerance": "Absolute1e-12,relative0 for probabilities;exact integer/model checks. No timing/advantage certificate.",
+    "native_boundary": "Native X/CX/CCX/RY/P/run/full densities/probabilities and statevector retrieval. Translation/graph evaluation/costs are host book code. No native compiler/uniformity/reset/hardware/optimality claim;inverse by primitive list reversal,not Circuit.adjoint.",
+    "script_sha256": "1666d03788931496eba24ddc1b2dcbceb33d7e28adda668f932825e7f40f72f7"
+  },
+  "assessment": {
+    "tasks": [
+      "14.2A-D"
+    ],
+    "answers": "Accessible solutions;fresh graph basis/coherent cases in10native executions;reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "118complete/6body/124checker/10transfer;prior regressions separate. Initial assembly placeholder guard failed before science execution;repaired with original unit bytes. Strict build/75page links and actual browser proof/table/formulas/expandedanswers passed."
+  },
+  "production": {
+    "next_draft": "14.3 Complexity classes and bounded error",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual IAB compute-prefix/clean-map and gate/qubit-overhead equations visually checked;expandedA-Danswers open/no raw$$,globalMathJaxerrors0. Native-call program displayed. Gate table7rows each3cells. Final joint-workspace-leakage sum also visually checked;prose-only edits kept Python/outputs byte-identical.",
+    "website": "Fresh strict build and75page local links passed;exact-head deployment receipt checked separately.",
+    "html_sha256": "8aff600f92ba429783e5b6a150f6806696119e311f85aedc2ce46db01eec150f"
+  }
+}

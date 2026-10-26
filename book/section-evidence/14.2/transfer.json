@@ -1,0 +1,216 @@
+{
+  "status": "passed",
+  "native_circuits": 10,
+  "cases": [
+    {
+      "mode": "statevector",
+      "input": [
+        1,
+        0,
+        1
+      ],
+      "old_output": [
+        0
+      ],
+      "function": [
+        1
+      ],
+      "cost": {
+        "inputs": 3,
+        "workspace": 2,
+        "outputs": 1,
+        "qubits": 6,
+        "compute_gates": 3,
+        "network_gates": 7
+      },
+      "workspace_leak": 0.0
+    },
+    {
+      "mode": "statevector",
+      "input": [
+        1,
+        0,
+        1
+      ],
+      "old_output": [
+        1
+      ],
+      "function": [
+        1
+      ],
+      "cost": {
+        "inputs": 3,
+        "workspace": 2,
+        "outputs": 1,
+        "qubits": 6,
+        "compute_gates": 3,
+        "network_gates": 7
+      },
+      "workspace_leak": 0.0
+    },
+    {
+      "mode": "statevector",
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "old_output": [
+        0
+      ],
+      "function": [
+        0
+      ],
+      "cost": {
+        "inputs": 3,
+        "workspace": 2,
+        "outputs": 1,
+        "qubits": 6,
+        "compute_gates": 3,
+        "network_gates": 7
+      },
+      "workspace_leak": 0.0
+    },
+    {
+      "mode": "statevector",
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "old_output": [
+        1
+      ],
+      "function": [
+        0
+      ],
+      "cost": {
+        "inputs": 3,
+        "workspace": 2,
+        "outputs": 1,
+        "qubits": 6,
+        "compute_gates": 3,
+        "network_gates": 7
+      },
+      "workspace_leak": 0.0
+    },
+    {
+      "mode": "statevector",
+      "complex_joint_input": true,
+      "cost": {
+        "inputs": 3,
+        "workspace": 2,
+        "outputs": 1,
+        "qubits": 6,
+        "compute_gates": 3,
+        "network_gates": 7
+      },
+      "workspace_leak": 0.0
+    },
+    {
+      "mode": "density_matrix",
+      "input": [
+        1,
+        0,
+        1
+      ],
+      "old_output": [
+        0
+      ],
+      "function": [
+        1
+      ],
+      "cost": {
+        "inputs": 3,
+        "workspace": 2,
+        "outputs": 1,
+        "qubits": 6,
+        "compute_gates": 3,
+        "network_gates": 7
+      },
+      "workspace_leak": 0.0
+    },
+    {
+      "mode": "density_matrix",
+      "input": [
+        1,
+        0,
+        1
+      ],
+      "old_output": [
+        1
+      ],
+      "function": [
+        1
+      ],
+      "cost": {
+        "inputs": 3,
+        "workspace": 2,
+        "outputs": 1,
+        "qubits": 6,
+        "compute_gates": 3,
+        "network_gates": 7
+      },
+      "workspace_leak": 0.0
+    },
+    {
+      "mode": "density_matrix",
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "old_output": [
+        0
+      ],
+      "function": [
+        0
+      ],
+      "cost": {
+        "inputs": 3,
+        "workspace": 2,
+        "outputs": 1,
+        "qubits": 6,
+        "compute_gates": 3,
+        "network_gates": 7
+      },
+      "workspace_leak": 0.0
+    },
+    {
+      "mode": "density_matrix",
+      "input": [
+        1,
+        1,
+        1
+      ],
+      "old_output": [
+        1
+      ],
+      "function": [
+        0
+      ],
+      "cost": {
+        "inputs": 3,
+        "workspace": 2,
+        "outputs": 1,
+        "qubits": 6,
+        "compute_gates": 3,
+        "network_gates": 7
+      },
+      "workspace_leak": 0.0
+    },
+    {
+      "mode": "density_matrix",
+      "complex_joint_input": true,
+      "cost": {
+        "inputs": 3,
+        "workspace": 2,
+        "outputs": 1,
+        "qubits": 6,
+        "compute_gates": 3,
+        "network_gates": 7
+      },
+      "workspace_leak": 0.0
+    }
+  ]
+}

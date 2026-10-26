@@ -1,6 +1,6 @@
 # 14. Computational Models, Complexity, and Quantum Advantage
 
-**Working draft: section 14.1 · Writing Baseline 1.0 · October 26, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
+**Working drafts: sections 14.1–14.2 · Writing Baseline 1.0 · October 26, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
 
 <span id="sec-computational-models-complexity-and-quantum-advantage-1"></span>
 ## 14.1 Problems, input length, and computational models
@@ -227,3 +227,261 @@ Parity kernel uses n CX gates and n+1qubits;input loading and simulator arrays a
 Frozen source targets are NC §§3.1.1 and 3.2.1 (contents locators printed 122 and 136; no new full-text review claimed). The uniform circuit-description convention was checked against [Watrous, *Quantum Computational Complexity*, §IV.1, Definition 2, printed 12](https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf#page=12). The parity derivation and resource accounting are supplied here; no theorem asserting a complexity separation is imported. This is an author-verified working draft; independent mathematical/implementation review, reader trial and formal acceptance remain pending.
 
 <!-- end-section-14.1 -->
+
+<span id="sec-computational-models-complexity-and-quantum-advantage-2"></span>
+## 14.2 Reversible computation and uniform circuit families
+
+**Question.** Given an explicitly described classical Boolean circuit, can we construct a reversible circuit that computes its outputs, preserves its inputs and returns all temporary qubits to zero? If a single algorithm generates the classical circuit family, does the construction preserve that uniformity?
+
+The prerequisites are [5.4, uncomputation and reusable workspace](ch-gates-reversible-computation-and-circuit-synthesis.md#sec-gates-reversible-computation-and-circuit-synthesis-4), and [14.1, encoded inputs and uniform circuit families](#sec-computational-models-complexity-and-quantum-advantage-1). This section has depth **F**: we give the construction, its input-subspace proof and the gate/space and uniformity bounds. We simulate a declared finite classical circuit, not an arbitrary classical machine without a circuit-generation theorem. All counts below are logical counts, not energy or hardware timing predictions.
+
+### 14.2.1 Specify the classical circuit and its dependency order
+
+There are n classical input bits x=(x₀, …, xₙ₋₁), L internal nodes and m output taps. We take n and L to be nonnegative integers and m to be a positive integer. Each internal node has one output bit and one of the operations NOT, AND, XOR, COPY, ZERO or ONE. The last two generate constant bits. We assume the nodes are listed in a topological order: node j has output label n+j, and may read only input labels or node labels strictly earlier than n+j. An output tap selects any available input or node label; the same label may be selected more than once.
+
+This is a bounded-fan-in Boolean circuit representation, not a truth table of the whole function. Repeated use of a source is allowed. If another fixed finite bounded-fan-in Boolean gate alphabet is supplied, each gate can be expanded into a constant-size AND/NOT network by its fixed truth table and De Morgan's law; the constant may depend on the chosen gate alphabet. No constant overhead is asserted for gates with unbounded fan-in. We henceforth count L after this declared normalization.
+
+Let z_j(x) be node j's value and z(x) their L-bit list. The m selected values define f(x). A scalar evaluator processes the list from left to right. For example, two nodes implement NAND: node 2=x₀ AND x₁ and node 3=NOT node 2. The output tap is label 3.
+
+```python
+import torch,flagquantum as fq
+from examples.foundations import uniform_reversible as u,statistical_ensembles as e
+nodes=(('AND',(0,1)),('NOT',(2,)))
+outputs=(3,)
+f,work=u.evaluate((1,0),nodes,outputs)
+assert f==(1,) and work==(0,1)
+print('Classical NAND:input10,gates(AND,NOT),stored intermediates01,output1')
+```
+
+```text
+Classical NAND:input10,gates(AND,NOT),stored intermediates01,output1
+```
+
+A future-reference, wrong arity or nonexistent output tap is a malformed circuit description. Uniform generation cannot be assessed until this representation is fixed. The code's finite size guards are stated below; the theorem itself applies to any finite n, L and m with valid labels.
+
+### 14.2.2 Translate each classical node into a reversible write
+
+Allocate data X with n qubits, workspace W with one initially zero qubit per node, and output Y with m qubits. These register names denote roles, not extra operations. Node j writes to fresh target t=n+j. On basis states, its small reversible block changes t to t XOR g_j while preserving all source bits:
+
+| Classical operation | Actual compute calls on fresh t | Logical cost |
+| --- | --- | --- |
+| NOT(a) | X(t), then CX(a, t) | 2 |
+| AND(a, b), distinct labels | CCX(a, b, t) | 1 |
+| XOR(a, b), distinct labels | CX(a, t), then CX(b, t) | 2 |
+| COPY(a) | CX(a, t) | 1 |
+| ZERO | no call | 0 |
+| ONE | X(t) | 1 |
+
+If AND reads the same source twice, a AND a=a, so use CX rather than a CCX with duplicate controls. If XOR reads the same source twice, its value is zero, so emit no call. These simplifications preserve the classical semantics and the distinct-qubit contract of native gates.
+
+For each listed block, substituting t=0 gives the intended classical node bit. The block is nevertheless a permutation for arbitrary t; it is not an irreversible assignment. Let G be the number of emitted compute gates, counted in the declared {X, CX, CCX} alphabet. Every node costs at most two, hence G≤2 L. The gate alphabet is fixed and exact for this construction; counting a CCX as one is part of this logical model, not a hardware CNOT-cost estimate.
+
+```python
+net,cost=u.translate(2,nodes,outputs)
+assert cost['compute_gates']==3 and cost['network_gates']==7
+assert cost['qubits']==5 and cost['workspace']==2
+print('Compute3gates+copy1+inverse3=7gates;2data+2workspace+1output=5qubits')
+```
+
+```text
+Compute3gates+copy1+inverse3=7gates;2data+2workspace+1output=5qubits
+```
+
+**Check.** Why is NOT emitted as X(t) followed by CX(a, t), rather than NOT on the original source? The latter would change data used by later nodes. The fresh-target write preserves both the input and the previously stored intermediate values.
+
+### 14.2.3 Prove the compute invariant and the clean result
+
+Let C_j be the reversible compute prefix for the first j classical nodes. We claim
+
+$$
+C_j|x,0^L\rangle
+=|x,z_0(x),\ldots,z_{j-1}(x),0^{L-j}\rangle.
+$$
+
+For j=0 this is initialization. Assume it for j. The next node's sources are among the unchanged input bits and the first j stored workspace values, so the induction hypothesis supplies exactly its classical arguments. Its fresh target is still zero, and the preceding table writes z_j(x) without changing those sources. This establishes the invariant for j+1. At j=L, C=C_L stores the full intermediate list z(x).
+
+Next apply m CX gates, one from each output tap to its distinct output qubit. Call this block B. With arbitrary initial output string y, it maps y to y XOR f(x), while leaving X and W unchanged. Finally apply C† to XW, in reverse primitive-call order. X, CX and CCX are each their own adjoint, so reversing the emitted compute list implements the inverse exactly. For example, the inverse of the NOT-write block has CX before X; reversing node order alone while retaining every node's original internal order would not in general suffice.
+
+The full circuit U=C†BC, in right-to-left matrix order, therefore satisfies
+
+$$
+\begin{aligned}
+U|x,0^L,y\rangle
+&=C^\dagger|x,z(x),y\mathbin{\mathrm{XOR}}f(x)\rangle\\
+&=|x,0^L,y\mathbin{\mathrm{XOR}}f(x)\rangle.
+\end{aligned}
+$$
+
+The inverse works because the copy block does not alter any input to C†. We inverse **only compute**, not the whole used computation: inverting B as well would erase the wanted output. This proves the claimed clean embedding for every basis x and y. Here is the NAND network expanded into actual native calls, including its inverse and named output request.
+
+```python
+# Direct actual gate calls for the translated NAND network;target starts0.
+c=fq.Circuit(5,dtype=u.D).X(0)
+c.CCX(0,1,2).X(3).CX(2,3).CX(3,4)
+c.CX(2,3).X(3).CCX(0,1,2)
+r=fq.run(c,outputs=[fq.probabilities(name='full')],options=e.OPTIONS)
+expected=torch.zeros(32,dtype=torch.float64);expected[17]=1
+# Output basis string10001:data10,workspace00,output1.
+e.close(r.measurement('full').value[0],expected)
+print('Explicit native NAND:all probability on10001;workspace00anddata10retained')
+```
+
+```text
+Explicit native NAND:all probability on10001;workspace00anddata10retained
+```
+
+### 14.2.4 Extend the result to correlated quantum inputs
+
+Because every primitive is a linear unitary and the basis equality has exact coefficient +1, the same U acts on an arbitrary normalized joint input as
+
+$$
+\sum_{x,y}\alpha_{xy}|x,0^L,y\rangle
+\quad\longmapsto\quad
+\sum_{x,y}\alpha_{xy}|x,0^L,y\mathbin{\mathrm{XOR}}f(x)\rangle.
+$$
+
+No amplitude is conjugated or given a branch-dependent phase. If a further reference register is present, expand its basis too and apply the same identity to each reference coefficient; U acts as the identity on that register. Since W is exactly zero in every term on the right, it factors as a clean zero state even if the retained data and output remain correlated. This is the zero-input workspace contract of 5.4, now proved for the whole translated family.
+
+```python
+coherent,cc,leak=u.execute(2,nodes,outputs,coherent=True)
+assert abs(leak)<1e-12
+print('Complex correlated data/output input:full amplitudes and joint density match the clean XOR embedding')
+```
+
+```text
+Complex correlated data/output input:full amplitudes and joint density match the clean XOR embedding
+```
+
+The example prepares complex correlated data/output amplitudes using RY, P and CX, then compares the full native density to an independent amplitude permutation. In statevector mode it also compares the complete statevector without phase alignment. In density-matrix mode, the full projector tests all relative coherences but cannot distinguish a global phase. The phase-sensitive claim for the theorem comes from the basis-level permutation proof, not from a density comparison alone.
+
+“Copy output” means XORing computational-basis values into Y. It does not clone an arbitrary unknown quantum vector: for a superposition of distinct classical outputs it can create correlations. It also does not require y=0; preserving a nonzero output string by XOR is essential to a reversible function embedding.
+
+### 14.2.5 Track the exact logical overhead
+
+The compute list has G gates, the copy block m, and the reverse list G again. With n data qubits, L work qubits and m output qubits,
+
+$$
+\begin{gathered}
+N_{\mathrm{qubits}}=n+L+m,\\
+N_{\mathrm{network}}=2G+m\leq4L+m.
+\end{gathered}
+$$
+
+These counts exclude preparation of x and y, readout and any hardware routing or decomposition. Basis loading from all zeros adds wt(x)+wt(y) X gates. A specified decomposition of CCX into another fixed finite gate alphabet would multiply its logical contribution by a constant, but that cost must be stated for that different model. We make no minimal-gate or minimal-space claim. One qubit per node stores the entire classical computation history, including constants and outputs already tapped from input; it is a simple sufficient construction.
+
+```python
+adder=(('XOR',(0,1)),('AND',(0,1)))
+hr,hc,hl=u.execute(2,adder,(2,3),x=(1,1),y=(1,0),mode='density_matrix')
+assert hc['network_gates']==8 and hr.measurement('p').value[0,51].item()==1
+print('Half-adder:input11,oldoutput10,newoutput11,workspace00;8network gates')
+```
+
+```text
+Half-adder:input11,oldoutput10,newoutput11,workspace00;8network gates
+```
+
+This two-output half-adder shows why output width m belongs in both resource formulas. Repeated output taps also work: they control different fresh Y qubits, so each is a separately counted CX. An output copied directly from X needs no new internal node; the complete program includes an L=0 direct-tap case. Such cases are not reasons to drop the initialization contract for the workspace that is actually used.
+
+### 14.2.6 Prove that the compiler preserves uniformity
+
+Suppose a single deterministic classical generator, on unary input 1ⁿ, produces an explicit topologically ordered classical description D_n in time polynomial in n. Because writing the output takes time, L(n) and m(n) are polynomially bounded for an explicit, uncompressed description. Our reversible translator makes a finite scan of the nodes and output taps, chooses one of the fixed table entries, assigns fresh labels n+j, and emits compute, copy and reversed compute lists. It never evaluates a truth table over all 2ⁿinputs and never queries f(x) to decide the topology.
+
+All emitted qubit labels lie below n+L+m. Binary labels therefore require O(log(n+L+m+1)) bits each. There are at most 4 L+m constant-arity gate records. Storing, reversing and printing these records, and checking valid labels, require polynomial bit-operation time in n plus the length of D_n. Composing the classical family generator with this fixed translator is thus polynomial time in n. This supplies one uniform reversible family with polynomial gate and qubit overhead. If the original classical family is merely specified separately at each length with no uniform generator, the translation does **not** create uniformity from nothing.
+
+```python
+alias=(('XOR',(0,0)),('AND',(0,0)))
+ar,ac,al=u.execute(1,alias,(1,2),x=(1,),y=(1,0))
+assert ac['compute_gates']==1 and ac['network_gates']==4
+assert all(len(set(q))==len(q)for _,q in u.translate(1,alias,(1,2))[0])
+print('Repeated XOR cancels;repeated AND becomes COPY;no duplicate CCXcontrol submitted')
+```
+
+```text
+Repeated XOR cancels;repeated AND becomes COPY;no duplicate CCXcontrol submitted
+```
+
+The repeated-input case above tests the table's alias handling. A separate host generator constructs a running-XOR classical graph for each n; translation then produces its clean reversible network. This is a family-generation example, not an enumeration of every Boolean function. The n=0 family has a ZERO node and the n=1 family taps its input directly, so their finite edge cases remain within the same contract.
+
+### 14.2.7 Verify reusable workspace and identify failed cleanups
+
+The clean map preserves x, so applying the same U a second time toggles its output by the same f(x) again. Since f XOR f=0, the second call returns the original joint XY vector and again leaves W=0. This follows for arbitrary correlated XY input by the linear identity already proved. Returning W to a product zero state also supplies the input condition needed by any subsequent correctly specified computation on the same workspace; there is no need to discard or physically reset W between clean calls.
+
+```python
+reuse,rc,rl=u.execute(2,nodes,outputs,coherent=True,cycles=2)
+assert abs(rl)<1e-12
+for n in (0,1,5,17):
+ graph,taps=u.parity_family(n)
+ assert u.evaluate((1,)*n,graph,taps)[0]==(n%2,)
+print('Two clean calls cancel their output XOR while restoring workspace each time')
+print('One host algorithm generates parity graphs including lengths0and1;large graphs not executed')
+```
+
+```text
+Two clean calls cancel their output XOR while restoring workspace each time
+One host algorithm generates parity graphs including lengths0and1;large graphs not executed
+```
+
+If the inverse compute is omitted, the answer bits may still be correct while the workspace is not reusable. For x=11 in a one-node AND computation, compute-copy leaves the full basis string 1111: data 11, workspace 1 and output 1. It must fail the zero-workspace contract even though the function output is correct. The helper below runs that deliberate counterexample; it does not count its expected rejection as an unexpected runtime failure.
+
+```python
+bad=u.fault()
+assert bad.probabilities[0,15].item()==1
+assert u.invalid_checks()==10 and u.RUNS==5
+print('Missing inverse on input11leaves1111:answer correct but workspace dirty;candidate rejected')
+print('10malformed contracts rejected;body uses5helper-native calls plus1explicit fq.run')
+```
+
+```text
+Missing inverse on input11leaves1111:answer correct but workspace dirty;candidate rejected
+10malformed contracts rejected;body uses5helper-native calls plus1explicit fq.run
+```
+
+Other invalid transformations include changing X before the inverse, using unknown nonzero workspace as if it were clean, or reversing only a convenient part of compute. The proof's invariant names the exact sources and initial zeros; it makes no promise for such changed preconditions. Checking output probabilities alone is insufficient. We check the full joint density and the probability of the **joint** event that any workspace bit is 1, rather than multiplying separate marginal zero probabilities.
+
+For full-register basis probabilities p(x,w,y), the reported workspace leakage is the single event
+
+$$
+\ell=\sum_{x,y}\sum_{w\neq0^L}p(x,w,y).
+$$
+
+The helper sums those full-register entries directly; no independence of workspace bits is assumed. An empty workspace has leakage zero by the empty-event convention.
+
+### 14.2.8 Preserve the execution and modeling boundaries
+
+The companion [uniform_reversible.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/uniform_reversible.py) executes 118 actual CPU complex128 circuits:104 basis cases covering arbitrary output bits, 10 complex joint-input cases, 2 clean reuse cases and 2 deliberately omitted inverse cases. Both statevector and density-matrix modes are used. The eight body units execute 6 circuits, including the explicit NAND program. The scalar classical evaluator supplies f and intermediate values independently of native IR or returned probabilities; the coherent reference applies the declared XY permutation to separately calculated complex amplitudes.
+
+Tested versions are Python 3.12.14, released FlagQuantum 0.3.1 and Torch 2.13.0. Actual native APIs used are X, CX, CCX, RY, P, `run`, named full `density_matrix` and `probabilities`, plus statevector retrieval in its supported execution mode. The gate-list translator, graph validator, cost accounting and reference evaluator are book code, not a native Boolean compiler, uniformity prover or hardware estimator. The inverse is built by reversing a list of self-adjoint primitive gates; this example does not rely on or assert a fix to any separate `Circuit.adjoint` admission issue.
+
+Host guards are n≤32, L≤64 and m≤16; native examples additionally require total qubits≤8. They are teaching memory/description bounds, not FlagQuantum capacity limits. Host-generated longer graphs are not large-system execution evidence. Deterministic implementation comparisons use absolute tolerance 10⁻¹² and relative tolerance 0, with no clipping, normalization repair or phase alignment. No hardware execution, reset, energy-dissipation bound, optimal reversible simulation or quantum speedup is claimed. A theoretical reversible map does not by itself specify the thermodynamic cost of a physical implementation.
+
+Expected output of the complete program:
+
+```text
+118actual native circuits:104basis cases,10complex joint-input cases,2workspace reuse cases and2deliberate missing-uncompute cases passed.
+Host parity-family generation/evaluation for lengths0..32passed;no large native execution claimed.
+10 malformed graph/input contracts rejected;gate bound2G+m<=4L+m checked.
+```
+
+**Problems and transfer.**
+
+- **14.2-A — invariant.** State the compute invariant for a circuit with three nodes. Why does using a future node label make both classical evaluation and the induction invalid? Derive the clean embedding for an arbitrary old output y rather than only y=0.
+- **14.2-B — cost.** Suppose a normalized Boolean circuit has L=100 nodes and m=3 outputs. Give the construction's workspace, total qubits in terms of n, and gate upper bound. Which costs are absent from that bound? Does it establish an optimal-space reversible simulation?
+- **14.2-C — fresh implementation.** Use three input bits and the graph node 3=x₀ XOR x₁, node 4=node 3 AND x₂, with output tap 4. Test x=101 and 111, both old output bits and both execution modes. Then test a complex correlated input on the data and output. Verify the full state and joint workspace-zero event.
+- **14.2-D — failure and uniformity.** Explain the dirty workspace in the omitted-inverse AND example. Can a translator that receives an arbitrary nonuniform family claim a uniform family merely because its own per-circuit translation is efficient? Identify the required generator assumption.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 14.2-A–D</summary>
+
+**A.** After j nodes, the data remain x, the first j work bits equal their classical values, and the remaining work bits are zero. A future label has no defined earlier value and violates the fresh-write/topological premise. Copy XORs f(x) into y; reversing compute leaves the selected output untouched because compute acts only on XW.
+
+**B.** Workspace is 100 qubits; total is n+103. Since G≤200, the network has at most 403 logical gates in the declared X/CX/CCX alphabet. Input/output loading, readout, decomposition, routing and physical timing are excluded. Retaining one bit for every node is a sufficient construction, not a space-optimal one.
+
+**C.** The function is (x₀ XOR x₁) AND x₂. It gives 1 on 101 and 0 on 111; a target initially 1 receives the complementary answers. There are 3 data, 2 work and 1 output qubits. Compute uses 2 CX for XOR and 1 CCX for AND, so G=3 and the clean network uses 7 gates. Every basis result retains the data and returns work 00. The fresh transfer also compares full complex joint amplitudes/densities in both modes, rather than only these classical outputs.
+
+**D.** Without inverse compute, the stored AND bit remains 1 and may carry correlations on a superposition. Correct output alone is insufficient. Uniformity requires one efficient generator for the source classical family on 1ⁿ; composing it with the translator yields the uniform reversible generator. Efficient translation of each already supplied circuit does not supply a missing source generator.
+
+</details>
+
+The frozen locators are NC §§3.1.2 and 3.2.5 (contents starts printed 129 and 153). The latter concerns energy and computation; no thermodynamic theorem is assumed here and no new full-text review is claimed. For circuit-family conventions and classical simulation context, [Watrous, *Quantum Computational Complexity*, §§IV.1 andIV.3](https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf#page=12) was inspected. The clean finite-circuit construction and its uniformity/overhead proof are supplied above, rather than inferred from a complexity-class containment. This is an author-verified draft; independent mathematical/implementation review, reader trial and formal acceptance remain pending.
+
+<!-- end-section-14.2 -->

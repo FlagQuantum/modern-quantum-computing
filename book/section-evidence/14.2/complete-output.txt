@@ -1,0 +1,3 @@
+118actual native circuits:104basis cases,10complex joint-input cases,2workspace reuse cases and2deliberate missing-uncompute cases passed.
+Host parity-family generation/evaluation for lengths0..32passed;no large native execution claimed.
+10 malformed graph/input contracts rejected;gate bound2G+m<=4L+m checked.

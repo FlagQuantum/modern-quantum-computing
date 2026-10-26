@@ -59,3 +59,5 @@ A batch first produces a coherent working route, then passes its acceptance chec
 Use [book/writing-progress.json](book/writing-progress.json) for actual work states and review evidence. Do not advance a state by counting planned headings, source links or synthetic checks as finished prose or independent review.
 
 Section14.1now has an author-verified P-depth working draft:encoded input length,uniform family definitions and reversible parity examples. Next frozen target: 14.2 Reversible computation and uniform circuit families.
+
+Section14.2now has a full author-verified clean reversible simulation/uniformity proof,eight units and118complete-program circuits. Next frozen target: 14.3 Complexity classes and bounded error.

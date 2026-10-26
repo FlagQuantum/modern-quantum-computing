@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/scripts/check_uniform_reversible_prose.py", line 8, in <module>
+    assert len(blocks)==8 and body.count(f+'python\n')==8
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

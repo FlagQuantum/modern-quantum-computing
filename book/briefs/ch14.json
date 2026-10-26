@@ -27,6 +27,33 @@
         "NC:3.1.1",
         "NC:3.2.1"
       ]
+    },
+    {
+      "sequence": 65,
+      "batch": "B02",
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-2",
+      "ref": "14.2",
+      "title": "Reversible computation and uniform circuit families",
+      "depth": "F",
+      "requires": [
+        "sec-gates-reversible-computation-and-circuit-synthesis-4",
+        "sec-computational-models-complexity-and-quantum-advantage-1"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "question": "How does an explicit classical uniform circuit family become a clean reversible family?",
+      "entry": "5.4clean workspace contract and14.1uniform family/input model.",
+      "exit": "Gate-list translation,compute invariant,copy/uncompute and polynomial uniformity/cost proof.",
+      "worked_case": "NAND,half-adder,aliased controls,constants and direct taps with arbitrary output bits.",
+      "boundary": "Topologically ordered finite Boolean circuit;zero initialized workspace;bounded host/native guards;not a Turing/optimal compiler theorem.",
+      "code_plan": "Actual X/CX/CCX net and full density/probability/statevector checks;no adjoint API needed.",
+      "independent_check": "Classical gate evaluator and coherent joint amplitude permutation,not native IR.",
+      "transfer_task": "Fresh three-input XOR-AND graph,both modes,nonzero outputs and complex joint input.",
+      "source_locators": [
+        "NC:3.1.2",
+        "NC:3.2.5"
+      ]
     }
   ]
 }

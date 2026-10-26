@@ -1,0 +1,1 @@
+Prose spacing formatter inserted spaces inside CODE placeholders before assembly. Initial checker rejected missing8literal blocks before any native run. Inserted already-executed body units;no science source/expected output changed. Initial stderr retained.
