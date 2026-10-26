@@ -1,0 +1,107 @@
+{
+  "native_runs": 50,
+  "structured_gray_basis_runs": 32,
+  "fresh_lookup_basis_runs": 8,
+  "fresh_lookup_complex_runs": 2,
+  "fresh_amplitude_runs": 2,
+  "zero_oracle_identity_runs": 2,
+  "constant_phase_runs": 4,
+  "cases": [
+    {
+      "table": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "address": 0,
+      "target": 0,
+      "mode": "statevector",
+      "expected_value": 3
+    },
+    {
+      "table": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "address": 0,
+      "target": 2,
+      "mode": "statevector",
+      "expected_value": 1
+    },
+    {
+      "table": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "address": 3,
+      "target": 0,
+      "mode": "statevector",
+      "expected_value": 0
+    },
+    {
+      "table": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "address": 3,
+      "target": 2,
+      "mode": "statevector",
+      "expected_value": 2
+    },
+    {
+      "table": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "address": 0,
+      "target": 0,
+      "mode": "density_matrix",
+      "expected_value": 3
+    },
+    {
+      "table": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "address": 0,
+      "target": 2,
+      "mode": "density_matrix",
+      "expected_value": 1
+    },
+    {
+      "table": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "address": 3,
+      "target": 0,
+      "mode": "density_matrix",
+      "expected_value": 0
+    },
+    {
+      "table": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "address": 3,
+      "target": 2,
+      "mode": "density_matrix",
+      "expected_value": 2
+    }
+  ]
+}

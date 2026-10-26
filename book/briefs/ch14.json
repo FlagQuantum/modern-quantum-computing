@@ -81,6 +81,32 @@
       "source_locators": [
         "COMPLEX:BQP"
       ]
+    },
+    {
+      "sequence": 67,
+      "batch": "B02",
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-4",
+      "ref": "14.4",
+      "title": "Oracle and data-access models",
+      "depth": "P",
+      "requires": [
+        "sec-computational-models-complexity-and-quantum-advantage-1",
+        "sec-gates-reversible-computation-and-circuit-synthesis-3"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "question": "What operation is assumed by one oracle query,and which costs and information are outside that assumption?",
+      "entry": "14.1input/access models;5.3full Boolean XOR embedding and exact basis/linear action.",
+      "exit": "Separate classical/value/phase/state access;declare controls/inverses/workspace;distinguish query,payload,logical-gate and preparation costs.",
+      "worked_case": "Gray table with minterm/structured native realizations,phase-target comparison,dense normalized preparation and d-versus2d counterexample.",
+      "boundary": "Pdepth access definitions and bounded local derivations;no search/lower-bound/QRAM hardware or free generic loading theorem.",
+      "code_plan": "Actual native named gates,unitary matrix calls and terminal queries;classical table generation/cost ledger/fingerprint explicit.",
+      "independent_check": "Inverse-index scalar amplitudes,Walsh sign sum,dense output density and normalized explicit coordinates.",
+      "transfer_task": "Fresh table and amplitude data,all structured Gray basis pairs,zero oracle and constant phase boundaries.",
+      "source_locators": [
+        "NC:6.1.1"
+      ]
     }
   ]
 }

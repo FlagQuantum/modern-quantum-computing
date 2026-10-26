@@ -1,0 +1,11 @@
+Four2-bit words;8serialized classical bits;one toy lookup expands to4X+4CCX.
+Address10,target01 -> address10,target10;structured oracle uses3CX;7native records checked.
+Complex joint address/value input checked;two XOR-oracle calls restore the full input.
+Minus-target parity query gives address11 after H readout;plus-target gives00 and carries no table phase.
+One supplied4x4unitary prepares probabilities[.1,.4,.4,.1];host reads4entries and constructs16matrix entries.
+Data sums6and12 yield the same normalized state;state-only access does not specify the scale.
+Known A followed by its supplied matrix adjoint returns|00>;2custom-unitary calls counted.
+Five trials,two queries each:10abstract calls;80minterm gates or30structured gates;8setup bits remain a separate unit.
+Padding defines a unitary on address11 but does not make it a valid three-entry problem address.
+Changed data invalidate the snapshot fingerprint;14malformed access contracts rejected.
+9native body runs:6helper and3explicit native calls.

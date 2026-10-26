@@ -1,6 +1,6 @@
 # 14. Computational Models, Complexity, and Quantum Advantage
 
-**Working drafts: sections 14.1–14.3 · Writing Baseline 1.0 · October 26, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
+**Working drafts: sections 14.1–14.4 · Writing Baseline 1.0 · October 26, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
 
 <span id="sec-computational-models-complexity-and-quantum-advantage-1"></span>
 ## 14.1 Problems, input length, and computational models
@@ -854,3 +854,362 @@ The frozen source `COMPLEX:BQP` is Watrous, [*Quantum Computational Complexity*,
 The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.3.json) separates author execution from independent mathematical/implementation review and reader trial. It remains a working draft. Continue, when drafted, with [14.4 Oracle and data-access models](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4).
 
 <!-- end-section-14.3 -->
+
+<span id="sec-computational-models-complexity-and-quantum-advantage-4"></span>
+## 14.4 Oracle and data-access models
+
+**Question.** When an algorithm says “query the data once,” what operation has actually been supplied, and which costs did that sentence leave outside the query count?
+
+The prerequisites are [14.1, input length and computational models](#sec-computational-models-complexity-and-quantum-advantage-1) and [5.3, classical logic embedded reversibly](ch-gates-reversible-computation-and-circuit-synthesis.md#sec-gates-reversible-computation-and-circuit-synthesis-3). This **P-depth** section specifies access contracts and then derives small checks under those contracts. Supplying an oracle is an additional computational assumption, not a consequence of storing data in a Python array or preparing a superposition. We do not prove a search algorithm or a query lower bound here; those arguments belong to Chapters 15–16.
+
+### 14.4.1 State the interface before counting a query
+
+Let D=(D₀,…,D_N₋₁) be a classical table of N words, each an unsigned b-bit integer. For now N=2ᵃ, so an a-qubit address register I represents every table position. The first listed address qubit is the most significant bit; the first listed value qubit is the most significant value bit, as in Chapter 4. Address and value registers have disjoint supports.
+
+Here are four different access contracts. An algorithm must say which one it assumes.
+
+| Contract | Declared action | Information supplied or still missing |
+|---|---|---|
+| Classical word access | A classical address i returns D_i | Memory organization, word width, read/update costs and input-loading costs remain model choices. |
+| Coherent value access | O_D sends address i and value z to i and z XOR D_i | A unitary action on every basis input, including nonzero z, with declared workspace behavior. |
+| Binary phase access | P_f multiplies address i by (−1)^f(i) | A one-bit predicate f; inverse/controlled variants are separate interface questions. |
+| Normalized-state access | A preparation supplies the state with amplitudes d_i divided by the Euclidean norm of d | This does not by itself supply d's norm, value access, all other columns of a preparation unitary, or its inverse. |
+
+The conventional **XOR value oracle** is
+
+$$
+O_D|i,z\rangle=|i,z\mathbin{\oplus}D_i\rangle,
+\qquad 0\leq i<N,\quad 0\leq z<2^b.
+$$
+
+The XOR is bitwise on exactly b bits; it is not integer addition modulo 2ᵇ. The map applied twice returns (i,z), so it is a permutation of the entire computational basis and hence unitary, as established generally in 5.3. This also fixes O_D†=O_D for this particular convention. The action on z≠0 matters: a black box specified only on zero targets would leave too much of the unitary undefined.
+
+An implementation with workspace W must additionally state whether it returns W to its initial blank state. The clean convention is
+
+$$
+|i,z,0_W\rangle\longmapsto|i,z\mathbin{\oplus}D_i,0_W\rangle.
+$$
+
+An unknown address-dependent garbage register is not interchangeable with clean access in interference experiments. The bounded examples below use no workspace at all.
+
+```python
+import math,torch,flagquantum as fq
+from dataclasses import replace
+from examples.foundations import oracle_access as q,statistical_ensembles as e,uniform_reversible as u
+table=(0,1,3,2);a=b=2
+ops,cost=q.build(table,a,b)
+assert cost['serialized_bits']==8 and cost['gates']==8
+assert table[2]==3
+print('Four 2-bit words; 8 serialized classical bits; one toy lookup expands to 4 X + 4 CCX.')
+```
+
+```text
+Four 2-bit words; 8 serialized classical bits; one toy lookup expands to 4 X + 4 CCX.
+```
+
+The helper scans a complete immutable tuple on the host and constructs a short gate list. Its eight-bit payload count uses an ideal fixed-width format; it is not the storage size of a Python tuple or the length of the JSON used for fingerprinting. It is book code, not a native database or QRAM endpoint. Its serialization count is in **classical bits**; its gate count is in the declared logical X/CX/CCX alphabet. Adding those numbers as if they were one physical runtime would mix units.
+
+### 14.4.2 Implement one oracle and expose its gates
+
+Take a=2, b=2 and D=(0,1,3,2). Write the address as (i₀,i₁), most significant bit first. The table is the two-bit Gray map
+
+$$
+D_{i_0i_1}=(i_0,\ i_0\mathbin{\oplus}i_1).
+$$
+
+The high value bit receives i₀ and the low value bit receives i₀ XOR i₁. Thus three CX gates implement the entire XOR oracle on arbitrary initial value bits:
+
+$$
+(i_0,i_1,z_0,z_1)\longmapsto
+(i_0,i_1,z_0\mathbin{\oplus}i_0,
+ z_1\mathbin{\oplus}i_1\mathbin{\oplus}i_0).
+$$
+
+The first two X gates in the following program load address 10 and initial value 01. They are preparation, outside the three-gate oracle block.
+
+```python
+# Same table, exploiting its Gray-code structure instead of minterm synthesis.
+c=fq.Circuit(4,dtype=torch.complex128).X(0).X(3)
+c.CX(0,2).CX(1,3).CX(0,3)
+r=fq.run(c,outputs=[fq.probabilities(name='full'),fq.samples(qubits=(2,3),name='data')],
+    shots=7,options=replace(e.OPTIONS,seed=59))
+expected=torch.zeros(16,dtype=torch.float64);expected[10]=1
+e.close(r.measurement('full').value[0],expected)
+assert bool((r.measurement('data').value==torch.tensor([1,0])).all())
+print('Address 10, target 01 -> address 10, target 10; structured oracle uses 3 CX; 7 native records checked.')
+```
+
+```text
+Address 10, target 01 -> address 10, target 10; structured oracle uses 3 CX; 7 native records checked.
+```
+
+The generic helper implements the same table without exploiting its Gray structure. For each address with a nonzero word, it temporarily flips the zero address bits, writes each 1 digit with a controlled X, then restores those address flips. For a≤2, a write is respectively CX or CCX, with no ancillary qubit. Distinct address minterms are mutually exclusive, so the target receives exactly the selected word. Its logical counts are
+
+$$
+G_X=2\sum_{i:D_i\ne0}\bigl(a-\operatorname{wt}(i)\bigr),
+\qquad
+G_{\mathrm{write}}=\sum_i\operatorname{wt}(D_i),
+$$
+
+where wt counts 1 digits in the declared fixed-width bit string. Here G_X=4 and G_write=4, giving eight gates. At larger address width the corresponding multiple-control writes would themselves require synthesis; this small helper does not pretend that every such write is one elementary gate.
+
+Both the eight-gate implementation and the three-gate structured implementation are **one abstract query** when placed behind the same O_D interface. This is exactly why an oracle-call count and a gate count answer different questions. Logical gate counts also do not imply physical speed: X, CX and CCX have different decompositions and target costs.
+
+### 14.4.3 Preserve superpositions without promising all the data as output
+
+For arbitrary complex amplitudes α_i,z, linearity gives
+
+$$
+O_D\sum_{i,z}\alpha_{i,z}|i,z\rangle
+=\sum_{i,z}\alpha_{i,z}|i,z\mathbin{\oplus}D_i\rangle.
+$$
+
+A classical call `table[i]` with a sampled i does not implement this transformation on a coherent address register. The query must preserve the specified relative phases. Address order, value-bit order, phase conventions, blank-workspace assumptions and output correlations are all part of a reproducible interface.
+
+The independent reference pulls each output amplitude from its unique inverse input:
+
+$$
+\beta_{i,z}=\alpha_{i,z\oplus D_i}.
+$$
+
+This reference uses neither the native gate list nor its intermediate states. Applying O_D twice gives β=α, including correlated address/value input and a nonzero initial value.
+
+```python
+q.execute(table,2,2,coherent=True)
+q.execute(table,2,2,coherent=True,repeats=2,mode='density_matrix')
+print('Complex joint address/value input checked; two XOR-oracle calls restore the full input.')
+```
+
+```text
+Complex joint address/value input checked; two XOR-oracle calls restore the full input.
+```
+
+For a uniform address and a zero value register, the returned state is N⁻¹ᐟ²∑_i|i,D_i⟩. Measuring both registers returns **one** address/value pair. A single terminal record is not a classical listing of all N words. The simulator's full-state accessor and full-density output are diagnostic classical arrays in this laboratory; they are not extra hardware outputs that a query algorithm may read for free.
+
+### 14.4.4 Distinguish a phase query from a value query
+
+For a binary table f:{0,…,N−1}→{0,1}, define
+
+$$
+P_f|i\rangle=(-1)^{f(i)}|i\rangle.
+$$
+
+With the XOR oracle and a target prepared as |−⟩=(|0⟩−|1⟩)/√2, the target's X eigenvalue is −1, so
+
+$$
+O_f(|i\rangle|{-}\rangle)
+=|i\rangle X^{f(i)}|{-}\rangle
+=(-1)^{f(i)}|i\rangle|{-}\rangle.
+$$
+
+This local calculation is sufficient to check this interface conversion. The target preparation has a cost, and the clean action is still required. With |+⟩ instead, X|+⟩=|+⟩ and no f-dependent phase appears. A target initialized to zero instead produces a value bit correlated with the address; it is a different experiment.
+
+For f=(0,1,1,0), the predicate is address parity. After preparing a uniform two-qubit address, querying with |−⟩, and applying H to both address qubits for readout, the amplitude of address k is
+
+$$
+\frac14\sum_{i\in\{0,1\}^2}(-1)^{f(i)+i\cdot k},
+$$
+
+where i·k means i₀k₀+i₁k₁ modulo 2. This follows by inserting ⟨k|H⊗H|i⟩=(−1)^(i·k)/2 into the phase-weighted input sum. For k=11 every term is +1; for any other k the signs cancel in pairs. The |+⟩ target instead leaves address 00 after the same readout.
+
+```python
+# Binary parity table f=(0,1,1,0); the target is |->, not |0>.
+c=fq.Circuit(3,dtype=torch.complex128).H(0).H(1).X(2).H(2)
+c.CX(0,2).CX(1,2)
+c.H(0).H(1)
+r_phase=fq.run(c,outputs=[fq.probabilities(qubits=(0,1),name='address')],options=e.OPTIONS)
+e.close(r_phase.measurement('address').value[0],torch.tensor([0.,0.,0.,1.],dtype=torch.float64))
+v_phase=torch.zeros(8,dtype=torch.complex128);v_phase[6]=1/math.sqrt(2);v_phase[7]=-1/math.sqrt(2)
+e.close(r_phase.statevector()[0],v_phase)
+r_plus=q.phase((0,1,1,0),2,minus=False)
+e.close(r_plus.measurement('address').value[0],torch.tensor([1.,0.,0.,0.],dtype=torch.float64))
+print('Minus-target parity query gives address 11 after H readout; plus-target gives 00 and carries no table phase.')
+```
+
+```text
+Minus-target parity query gives address 11 after H readout; plus-target gives 00 and carries no table phase.
+```
+
+This verifies a particular conversion, not free equivalence of all oracle interfaces. In particular, a phase-oracle contract need not include a controlled version. For the constant predicates 0 and 1, their phase oracles are I and −I. In a circuit with a fixed number Q of uncontrolled calls they differ only by the overall phase (−1)^Q, so they yield the same measurement probabilities. A value query on a zero target distinguishes their values immediately. Adding controlled access changes the available operation and must be stated; it cannot be silently inferred from the word “oracle.”
+
+### 14.4.5 Separate amplitude preparation from numerical data lookup
+
+For a nonzero vector d=(d₀,…,d_N₋₁), a normalized-state input contract may supply
+
+$$
+|d\rangle=\frac1{\|d\|_2}\sum_i d_i|i\rangle,
+\qquad
+\|d\|_2=\sqrt{\sum_i|d_i|^2}.
+$$
+
+This contract supplies a quantum state, not a coherent XOR read of b-bit values. It has to specify a preparation mechanism, numerical precision, repeated-use cost and whether the norm or other metadata is provided. Measuring the state gives i with probability |d_i|²/∥d∥₂², not a numerical value d_i. For complex d, probabilities alone also omit relative phases.
+
+**Input-model counterexample.** Let d=(1,2,2,1), so ∥d∥₂=√10 and its entry sum is 6. The vector 2d has norm 2√10 and sum 12, yet
+
+$$
+|2d\rangle=|d\rangle.
+$$
+
+No measurement on this state-only input can reveal which sum was intended: identical density operators give identical probabilities for every measurement effect. Repeated copies are also identical. An algorithm for exact numerical sum therefore cannot assume that this normalized state by itself specifies the original unnormalized data. Supplying the norm or a value oracle changes the input model. If access is instead to an entire preparation unitary, the promise on its zero-input column alone still does not guarantee extra scale information in its other columns; a legal implementation may choose the very same unitary for d and 2d.
+
+For the small nonnegative real vectors in the companion, we explicitly construct one such preparation unitary. Let v=d/∥d∥₂, e₀=(1,0,…,0), and w=e₀−v. If w=0 use A=I. Otherwise set
+
+$$
+A=I-2\frac{ww^\dagger}{w^\dagger w}.
+$$
+
+The rank-one factor ww†/(w†w) is a projector, so squaring I−2 times that projector gives I. Thus A is unitary and Hermitian. For real normalized v with w≠0, w†e₀=1−v₀ and w†w=2(1−v₀), so Ae₀=e₀−w=v. The helper checks both identities numerically before requesting native execution. This construction is deliberately dense: it first reads the explicit entries and builds N² matrix entries. One simulator call containing that matrix is not a proof of an efficient generic data loader.
+
+```python
+data=torch.tensor([1,2,2,1],dtype=torch.complex128)
+v=data/math.sqrt(10);e0=torch.zeros(4,dtype=torch.complex128);e0[0]=1
+w=e0-v;A=torch.eye(4,dtype=torch.complex128)-2*torch.outer(w,w.conj())/torch.vdot(w,w)
+e.close(A.mH@A,torch.eye(4,dtype=torch.complex128))
+c=fq.Circuit(2,dtype=torch.complex128).unitary(0,1,unitary=A)
+r_amp=fq.run(c,outputs=[fq.density_matrix(name='rho'),fq.probabilities(name='p')],options=e.OPTIONS)
+e.close(r_amp.measurement('rho').value[0],torch.outer(v,v.conj()))
+e.close(r_amp.measurement('p').value[0],torch.tensor([.1,.4,.4,.1],dtype=torch.float64))
+r_scaled,_=q.amplitude((2,4,4,2),mode='density_matrix')
+e.close(r_scaled.measurement('rho').value[0],r_amp.measurement('rho').value[0])
+assert sum((1,2,2,1))==6 and sum((2,4,4,2))==12
+print('One supplied 4x4 unitary prepares probabilities [.1,.4,.4,.1]; host reads 4 entries and constructs 16 matrix entries.')
+print('Data sums 6 and 12 yield the same normalized state; state-only access does not specify the scale.')
+```
+
+```text
+One supplied 4x4 unitary prepares probabilities [.1,.4,.4,.1]; host reads 4 entries and constructs 16 matrix entries.
+Data sums 6 and 12 yield the same normalized state; state-only access does not specify the scale.
+```
+
+The native custom-unitary request receives the entire 4×4 matrix. Its physical gate synthesis, rotation accuracy, loading latency, device connectivity and hardware calibration have not thereby been priced as one elementary operation. Our two-qubit example is an executed modeling illustration, not a QRAM architecture or a universal state-preparation compiler.
+
+### 14.4.6 Specify inverse, controlled and workspace access separately
+
+In an oracle algorithm, expressions such as A†, controlled-A or a clean query have content only after their interfaces are supplied or constructed. A promise A|0⟩=|d⟩ leaves A's action on all other inputs unspecified. Different unitary extensions may agree on this state but differ elsewhere. A black box that merely delivers copies of |d⟩ is weaker still; it has not supplied an operation A†.
+
+In this laboratory the matrix A is known, so we can explicitly pass its conjugate transpose as a second custom unitary. This does not require or claim anything about a generic inverse-oracle service, `Circuit.adjoint`, or a released upstream fix. It verifies a known matrix and accounts for two calls.
+
+```python
+_,preparation=q.amplitude((1,2,2,1),twice=True)
+assert preparation['custom_unitary_calls']==2 and preparation['dense_matrix_entries']==16
+print('Known A followed by its supplied matrix adjoint returns |00>; 2 custom-unitary calls counted.')
+```
+
+```text
+Known A followed by its supplied matrix adjoint returns |00>; 2 custom-unitary calls counted.
+```
+
+For the XOR oracle specifically, a second identical query is its inverse, as proved in 14.4.1. For a general preparation unitary A, the inverse is not obtained by assuming A=A†; our Hermitian toy construction is a special case. If a larger algorithm needs query, inverse-query and controlled-query access, list each assumed service and its workspace convention explicitly.
+
+### 14.4.7 Build a cost ledger with consistent units
+
+An abstract query algorithm with Q calls may be written
+
+$$
+V_Q O_D V_{Q-1} O_D\cdots O_D V_0,
+$$
+
+with the V_j representing the allowed non-oracle operations. In a black-box comparison, these operations and the initial state cannot secretly depend on the unknown D. They may use declared public parameters and, where the model allows adaptive execution, earlier measurement records. A provider that reads the full known table to construct or optimize O_D is performing implementation/setup work; this is not uncounted access that the query algorithm may hide inside a V_j. Counting Q deliberately suppresses the implementation of O_D. It does not say that generating D, building the oracle, generating the V_j, loading the input or reporting the output is free in a complete implementation. In particular, D may be an explicitly stored table of N=2ᵃ words, or it may be generated by a short formula; these are different data descriptions even when a few observed outputs coincide.
+
+A sequential time model for R repeated trials could declare
+
+$$
+\begin{aligned}
+T_{\mathrm{total}}&=T_{\mathrm{read}}+T_{\mathrm{build}}
++K\,T_{\mathrm{update}}+T_{\mathrm{post}}\\
+&\quad+R\Bigl(T_{\mathrm{prepare}}+Q\,T_O
++Q_{\mathrm{inv}}\,T_{O^\dagger}\\
+&\hspace{5.7em}+T_{\mathrm{other}}+T_{\mathrm{measure}}\Bigr).
+\end{aligned}
+$$
+
+All T terms must use the same time unit and the same machine/access assumptions. K counts data updates; Q and Q_inv are forward/inverse calls **per trial**, and R is the number of trials. Setup is amortized here only when the same data structure is actually reusable. Parallel or overlapping execution needs a different timing model. A query theorem alone supplies none of these time constants.
+
+The following exact ledger instead keeps classical bit counts and logical gate counts as separate fields. For five trials of two queries each, it records ten oracle calls. With the minterm realization, that is 80 implementation gates; with this table's structured realization, 30 CX gates. Neither includes preparation/readout, and neither turns eight serialized classical bits into eight gates or seconds. This is an analytic bill for a reusable compiled snapshot, not a measured timing or a claim that the validation loop caches its repeated Python construction.
+
+```python
+bill=q.ledger(table,2,2,calls_per_trial=2,trials=5)
+assert bill['oracle_calls']==10 and bill['oracle_implementation_gates']==80
+assert bill['classical_serialized_bits']==8 and bill['setup_builds']==1
+assert 3*10==30
+print('Five trials, two queries each: 10 abstract calls; 80 minterm gates or 30 structured gates; 8 setup bits remain a separate unit.')
+```
+
+```text
+Five trials, two queries each: 10 abstract calls; 80 minterm gates or 30 structured gates; 8 setup bits remain a separate unit.
+```
+
+Reading this explicit table once and representing each fixed-width entry requires Nb serialized bits under the chosen format. Since N=2ᵃ, a cost linear in the number of entries is exponential in address width. That is a comparison of representation sizes, not a lower bound on every possible oracle architecture. A short formula or a pre-existing reusable memory service may change setup assumptions, which must then be included in the comparison.
+
+For a simple classical illustration, any deterministic procedure computing the exact sum of an arbitrary explicit table through entry reads must inspect every entry in the worst case: if one entry is unread, two tables differing only there produce the same observed reads but different sums. This argument concerns that exact classical input task. It is not a quantum state-preparation lower bound or a search lower-bound theorem.
+
+The simulator has additional classical state/density arrays and contractions. Their memory or runtime is a simulation resource, not the hardware resource of the abstract query algorithm. Retrieving a full simulator density matrix during verification does not grant the algorithm free access to it.
+
+### 14.4.8 Handle padding, data versions and the API boundary
+
+If the actual table has M entries with M not a power of two, choose a=ceil(log₂M), declare which addresses are valid, and define the oracle on the remaining computational basis states. Zero padding is one possible unitary extension. It must not silently turn an invalid problem address into a valid one. Likewise, a compiled table is a snapshot: changing D requires a matching rebuild/update or a versioned cache contract.
+
+```python
+padded=(0,1,1,0)
+q.execute(padded,2,1,i=3)
+assert not 3<3  # Physical address11 is outside the declared three-entry task domain.
+assert q.fingerprint(table,2,2)!=q.fingerprint((0,1,2,2),2,2)
+assert q.invalid_checks()==14
+print('Padding defines a unitary on address 11 but does not make it a valid three-entry problem address.')
+print('Changed data invalidate the snapshot fingerprint; 14 malformed access contracts rejected.')
+```
+
+```text
+Padding defines a unitary on address 11 but does not make it a valid three-entry problem address.
+Changed data invalidate the snapshot fingerprint; 14 malformed access contracts rejected.
+```
+
+The fingerprint is a host consistency check on an immutable toy snapshot. It is not authentication, hardware provenance, or proof that a remote memory holds the desired data. The padded three-entry example defines a value at physical address 11, while the problem promise still excludes that address.
+
+The complete companion is [oracle_access.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/oracle_access.py). Run from the repository root with its pinned example environment:
+
+```bash
+python examples/foundations/oracle_access.py
+python scripts/check_oracle_access_prose.py
+```
+
+Expected output of the complete program:
+
+```text
+108 actual native circuits: 72 basis, 8 complex lookup, 8 two-query cancellation, 8 phase-interface and 12 amplitude preparation/inverse cases passed.
+Both CPU complex128 modes checked against full scalar amplitude/density references; terminal lookup records validated.
+Gray lookup: one abstract query expands to 4 X + 4 CCX; five two-query trials use 10 calls/80 implementation gates; 8 classical data bits separate.
+14 malformed access contracts rejected; no QRAM, free generic loading or query-to-runtime equivalence claimed.
+```
+
+The tested runtime is FlagQuantum 0.3.1, PyTorch 2.13.0 and Python 3.12.14, CPU complex128, in both statevector and density-matrix modes. Full complex states in statevector mode and full density matrices in both modes are compared with independent inverse-index/finite-sum references. Native terminal probabilities and raw records are checked separately. Absolute tolerance is 10⁻¹², relative tolerance zero; there is no phase alignment, probability clipping or normalization repair. The division by ∥d∥₂ is the **declared amplitude encoding**, not a repair of a supposedly already normalized state. The zero vector is rejected. Floating-point checks are not interval certificates.
+
+Native execution here uses H/X/CX/CCX, RY/P for complex input tests, `Circuit.unitary` with a supplied dense matrix, `fq.run`, density/probability requests and terminal samples. Inspection of the installed public root/Circuit API did not find a dedicated `oracle`, `qram` or `qrom` service under those names. This does not deny that gates can implement a lookup: the examples execute exactly such implementations. Table validation, minterm synthesis, normalization, dense matrix construction, fingerprints and cost ledgers are book-side classical code. No live coherent database, hardware QRAM, device transport, free generic loading, automatic complexity proof or calibrated physical timing is established.
+
+The helper deliberately restricts a and b to 1 or 2, and amplitude data to nonzero tuples of 2 or 4 nonnegative integers at most 16. These are teaching guards, not claims about maximum FlagQuantum circuit size or all possible encodings. The structured Gray implementation is independently checked on all basis address/value pairs in both modes by the fresh transfer. Larger controlled writes, sparse data access, general state-preparation synthesis and asymptotic query algorithms require their own declared constructions and costs.
+
+**Understanding and transfer tasks**
+
+- **14.4-A — interface.** Why must the XOR oracle work on nonzero z? Why does ordinary classical `table[i]` not specify its coherent action, phases or clean workspace?
+- **14.4-B — cost.** For the displayed Gray table, count setup bits and logical gates for seven trials of three queries. State separately which costs are absent. Would replacing the table by a short formula automatically prove a hardware speedup?
+- **14.4-C — fresh execution.** Use D=(3,1,2,0), validate addresses 00 and 11 with target values 00 and 10 in both modes, and check a fresh complex joint input. Prepare normalized d=(1,3,2,0) by the supplied dense construction and predict its probability vector before running. Keep state preparation and queries as separate access contracts.
+- **14.4-D — failure analysis.** Can a state-only algorithm distinguish d from 2d to report their different exact sums? Can uncontrolled phase queries distinguish the constant predicates 0 and 1? What additional access would change each question?
+
+<details markdown="1">
+<summary>Answers and verification guidance for 14.4-A–D</summary>
+
+**A.** The full reversible contract includes z XOR D_i for every b-bit target. Its permutation and self-inverse properties then determine the unitary action on superpositions by linearity. Classical entry reads give values on classical addresses; they do not specify a coherent physical operation or guarantee restored workspace. Phases and residual garbage can change interference even if basis output values look right.
+
+**B.** The explicit data format has 4×2=8 bits. There are 7×3=21 abstract calls: 168 minterm implementation gates or 63 structured CX gates, excluding preparation, readout, host generation, synthesis, routing, updates and postprocessing. Bits, gates and seconds remain separate units. A short formula changes an implementation possibility, not by itself the speed of an actual device or the fairness of a baseline.
+
+**C.** On address 00 the word is 11, so targets 00 and 10 become 11 and 01. On address 11 the word is 00 and targets are unchanged. The amplitude-data squared norm is 14; predicted probabilities are (1/14,9/14,4/14,0). The transfer compares full complex states/densities with the independent scalar map in both modes, as well as the marginal probabilities. The known structured Gray circuit is separately regressed on every basis pair.
+
+**D.** State-only d and 2d are identical after normalization, so the specified input does not determine the original sum. Providing a norm, unnormalized numerical data or a value oracle changes that input model. Uncontrolled I and −I differ only by global phase for a fixed number of queries and give the same probabilities; explicitly supplied controlled access changes that interface. Neither extra resource follows automatically from the original weaker contract.
+
+</details>
+
+The frozen source target is Nielsen and Chuang, [*Quantum Computation and Quantum Information*, §6.1.1 “The oracle,” beginning on printed page 248](https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE). The existing record is a contents locator, not a full-text review. Its publisher edition page was checked; no full chapter inspection is claimed. For the actual basis-action/query convention, the primary accessible source [Watrous, *Quantum Computational Complexity*, §III.4, PDF pages 10–11](https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf#page=10) was inspected. The input-model distinctions, dense preparation, concrete cost ledger and counterexamples above are stated and derived locally. They do not import an unproved quantum-search theorem.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.4.json) separates author execution from independent mathematical/implementation review and reader trial. This remains a working draft. Continue, when drafted, with [14.5 Accuracy, repetition, and success probability](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-5).
+
+<!-- end-section-14.4 -->

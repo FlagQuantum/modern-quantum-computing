@@ -1,0 +1,34 @@
+[
+  {
+    "code": "import math,torch,flagquantum as fq\nfrom dataclasses import replace\nfrom examples.foundations import oracle_access as q,statistical_ensembles as e,uniform_reversible as u\ntable=(0,1,3,2);a=b=2\nops,cost=q.build(table,a,b)\nassert cost['serialized_bits']==8 and cost['gates']==8\nassert table[2]==3\nprint('Four2-bit words;8serialized classical bits;one toy lookup expands to4X+4CCX.')\n",
+    "output": "Four2-bit words;8serialized classical bits;one toy lookup expands to4X+4CCX.\n"
+  },
+  {
+    "code": "# Same table, exploiting its Gray-code structure instead of minterm synthesis.\nc=fq.Circuit(4,dtype=torch.complex128).X(0).X(3)\nc.CX(0,2).CX(1,3).CX(0,3)\nr=fq.run(c,outputs=[fq.probabilities(name='full'),fq.samples(qubits=(2,3),name='data')],\n    shots=7,options=replace(e.OPTIONS,seed=59))\nexpected=torch.zeros(16,dtype=torch.float64);expected[10]=1\ne.close(r.measurement('full').value[0],expected)\nassert bool((r.measurement('data').value==torch.tensor([1,0])).all())\nprint('Address10,target01 -> address10,target10;structured oracle uses3CX;7native records checked.')\n",
+    "output": "Address10,target01 -> address10,target10;structured oracle uses3CX;7native records checked.\n"
+  },
+  {
+    "code": "q.execute(table,2,2,coherent=True)\nq.execute(table,2,2,coherent=True,repeats=2,mode='density_matrix')\nprint('Complex joint address/value input checked;two XOR-oracle calls restore the full input.')\n",
+    "output": "Complex joint address/value input checked;two XOR-oracle calls restore the full input.\n"
+  },
+  {
+    "code": "# Binary parity table f=(0,1,1,0); the target is |->, not |0>.\nc=fq.Circuit(3,dtype=torch.complex128).H(0).H(1).X(2).H(2)\nc.CX(0,2).CX(1,2)\nc.H(0).H(1)\nr_phase=fq.run(c,outputs=[fq.probabilities(qubits=(0,1),name='address')],options=e.OPTIONS)\ne.close(r_phase.measurement('address').value[0],torch.tensor([0.,0.,0.,1.],dtype=torch.float64))\nv_phase=torch.zeros(8,dtype=torch.complex128);v_phase[6]=1/math.sqrt(2);v_phase[7]=-1/math.sqrt(2)\ne.close(r_phase.statevector()[0],v_phase)\nr_plus=q.phase((0,1,1,0),2,minus=False)\ne.close(r_plus.measurement('address').value[0],torch.tensor([1.,0.,0.,0.],dtype=torch.float64))\nprint('Minus-target parity query gives address11 after H readout;plus-target gives00 and carries no table phase.')\n",
+    "output": "Minus-target parity query gives address11 after H readout;plus-target gives00 and carries no table phase.\n"
+  },
+  {
+    "code": "data=torch.tensor([1,2,2,1],dtype=torch.complex128)\nv=data/math.sqrt(10);e0=torch.zeros(4,dtype=torch.complex128);e0[0]=1\nw=e0-v;A=torch.eye(4,dtype=torch.complex128)-2*torch.outer(w,w.conj())/torch.vdot(w,w)\ne.close(A.mH@A,torch.eye(4,dtype=torch.complex128))\nc=fq.Circuit(2,dtype=torch.complex128).unitary(0,1,unitary=A)\nr_amp=fq.run(c,outputs=[fq.density_matrix(name='rho'),fq.probabilities(name='p')],options=e.OPTIONS)\ne.close(r_amp.measurement('rho').value[0],torch.outer(v,v.conj()))\ne.close(r_amp.measurement('p').value[0],torch.tensor([.1,.4,.4,.1],dtype=torch.float64))\nr_scaled,_=q.amplitude((2,4,4,2),mode='density_matrix')\ne.close(r_scaled.measurement('rho').value[0],r_amp.measurement('rho').value[0])\nassert sum((1,2,2,1))==6 and sum((2,4,4,2))==12\nprint('One supplied4x4unitary prepares probabilities[.1,.4,.4,.1];host reads4entries and constructs16matrix entries.')\nprint('Data sums6and12 yield the same normalized state;state-only access does not specify the scale.')\n",
+    "output": "One supplied4x4unitary prepares probabilities[.1,.4,.4,.1];host reads4entries and constructs16matrix entries.\nData sums6and12 yield the same normalized state;state-only access does not specify the scale.\n"
+  },
+  {
+    "code": "_,preparation=q.amplitude((1,2,2,1),twice=True)\nassert preparation['custom_unitary_calls']==2 and preparation['dense_matrix_entries']==16\nprint('Known A followed by its supplied matrix adjoint returns|00>;2custom-unitary calls counted.')\n",
+    "output": "Known A followed by its supplied matrix adjoint returns|00>;2custom-unitary calls counted.\n"
+  },
+  {
+    "code": "bill=q.ledger(table,2,2,calls_per_trial=2,trials=5)\nassert bill['oracle_calls']==10 and bill['oracle_implementation_gates']==80\nassert bill['classical_serialized_bits']==8 and bill['setup_builds']==1\nassert 3*10==30\nprint('Five trials,two queries each:10abstract calls;80minterm gates or30structured gates;8setup bits remain a separate unit.')\n",
+    "output": "Five trials,two queries each:10abstract calls;80minterm gates or30structured gates;8setup bits remain a separate unit.\n"
+  },
+  {
+    "code": "padded=(0,1,1,0)\nq.execute(padded,2,1,i=3)\nassert not 3<3  # Physical address11 is outside the declared three-entry task domain.\nassert q.fingerprint(table,2,2)!=q.fingerprint((0,1,2,2),2,2)\nassert q.invalid_checks()==14\nprint('Padding defines a unitary on address11 but does not make it a valid three-entry problem address.')\nprint('Changed data invalidate the snapshot fingerprint;14malformed access contracts rejected.')\n",
+    "output": "Padding defines a unitary on address11 but does not make it a valid three-entry problem address.\nChanged data invalidate the snapshot fingerprint;14malformed access contracts rejected.\n"
+  }
+]

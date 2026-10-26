@@ -1,0 +1,99 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-computational-models-complexity-and-quantum-advantage-4",
+  "ref": "14.4",
+  "date": "2026-10-26",
+  "state": "draft",
+  "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+  "depth": "P",
+  "requires": [
+    "sec-computational-models-complexity-and-quantum-advantage-1",
+    "sec-gates-reversible-computation-and-circuit-synthesis-3"
+  ],
+  "result": "Oracle access is an additional assumption",
+  "assumptions": [
+    "Declared query unitary,workspace convention,data structure and preparation mechanism.",
+    "Address/value ordering and unsigned XOR word width;full power-of-two extension or explicit padding promise.",
+    "Abstract query count distinct from classical payload,logical implementation gates and physical timing."
+  ],
+  "verification_obligations": [
+    "Define classical/value/phase/state input interfaces and specify controlled/inverse access separately.",
+    "Recall full XOR basis map and derive linear amplitude pull and two-query cancellation.",
+    "Compare structured Gray3CX with minterm4X+4CCX under one logical query.",
+    "Derive phase conversion with minus target and demonstrate uninformative plus target.",
+    "State-only d/2d counterexample and constant phaseI/-I boundary.",
+    "Explicit dense real preparation consistency checks;keep normalization/preprocessing costs.",
+    "Separate setup,updates,repeated forward/inverse calls,readout/postprocessing and simulation resources."
+  ],
+  "formula_code_units": [
+    "model declaration",
+    "explicit structured native lookup",
+    "complex input/query cancellation",
+    "explicit phase query/readout",
+    "explicit dense native preparation/input-model counterexample",
+    "supplied inverse",
+    "cost ledger",
+    "padding/version/failed contracts"
+  ],
+  "sources": [
+    {
+      "locator": "NC:6.1.1",
+      "scope": "Contents locatorThe oracle printed248;publisher2010edition page checked;no full chapter review claimed;old author contentsURL404 recorded."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf#page=10",
+      "scope": "III.4PDF10-11basis-action and query convention inspected.Primary source;no external text uploaded."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/oracle_access.py",
+    "prose_checker": "scripts/check_oracle_access_prose.py",
+    "evidence": "book/section-evidence/14.4",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 108,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 9,
+    "separate_transfer_circuits": 50,
+    "execution_ledger": {
+      "initial_complete_prototype": 108,
+      "initial_literal_assembly": 9,
+      "final_body_plus_complete": 117,
+      "fresh_transfer": 50,
+      "total_author_section_native_runs": 284,
+      "source_api_inspection": 0,
+      "prior_regressions": "14.1and5.3scope checks recorded separately"
+    },
+    "malformed_contracts": 14,
+    "tolerance": "Absolute1e-12,relative0;full phase-fixed vectors when available,full density and scalar references;no clipping/phase alignment/input-state repair/interval certificate. Amplitude normalization is an explicit encoding contract.",
+    "native_boundary": "Actual H/X/CX/CCX/RY/P/Circuit.unitary/fq.run/full densities/probabilities/terminal samples.Cost/lookup synthesis/matrix preparation/fingerprint are host code.Dedicated oracle/qram/qrom names absent from inspected public root/Circuit;does not deny implementability by gates. No hardware QRAM/free generic loading/automatic complexity classifier/physical timing claim.",
+    "script_sha256": "370162a33a3756f78980a3ca02c02f0348fc7b6ea6b7fa50a288ed094517bf82"
+  },
+  "assessment": {
+    "tasks": [
+      "14.4A-D"
+    ],
+    "answers": "Accessible solutions;50native fresh transfer including32structured basis,8newtable basis,2newcomplex lookup,2newamplitude,2zero-oracle,4constantphase cases.Reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "108initial/9literal/117final checker/50transfer passed.No unexpected scientific failure.Output spacing changed only;original successful evidence retained.",
+    "production_failure": "Browser caught overwide total-cost formula cropping finalT_post;initial TeX/PNG retained;multiline repair and fresh browser check required.Python/text blocks unchanged. Final repair visually confirmed;no scientific reexecution for TeX-only correction."
+  },
+  "production": {
+    "next_draft": "14.5 Accuracy,repetition,and success probability",
+    "pdf": "Existing PDF edition unchanged",
+    "prerequisite_ci": "64ec843 Verify40280440878 completed success,all3jobs;archived before new body integration.",
+    "formula_display": "Actual IAB value/workspace equations,Gray map,superposition/inverse-index,minus-target/phase transform,normalized data/scaling and dense preparation visually checked.Table5rowsx3cells;expandedA-Danswers read,no raw$$;globalMathJaxerrors0.Long total-cost equation originally croppedT_post;aligned3line repair visually verified fully visible.Native program blocks visible.",
+    "website": "Fresh strict build and75rendered-page local links passed;exact-head deployment receipt checked separately.",
+    "html_sha256": "cebf3f8cefbada13a1fe46d38f8c57f1c3173266fa71cc27e11d1ee4871aec3b"
+  }
+}

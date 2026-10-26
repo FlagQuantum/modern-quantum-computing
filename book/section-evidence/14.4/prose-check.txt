@@ -1,0 +1,7 @@
+Eight literal14.4units:9native circuits,all assertions and exact outputs passed.
+Complete14.4program:108native circuits,access-model checks and exact output passed.
+Actual complete-program stdout follows:
+108 actual native circuits: 72 basis, 8 complex lookup, 8 two-query cancellation, 8 phase-interface and 12 amplitude preparation/inverse cases passed.
+Both CPU complex128 modes checked against full scalar amplitude/density references; terminal lookup records validated.
+Gray lookup: one abstract query expands to 4 X + 4 CCX; five two-query trials use 10 calls/80 implementation gates; 8 classical data bits separate.
+14 malformed access contracts rejected; no QRAM, free generic loading or query-to-runtime equivalence claimed.

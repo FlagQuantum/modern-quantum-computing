@@ -1,0 +1,4 @@
+108 actual native circuits:72basis,8complex lookup,8two-query cancellation,8phase-interface and12amplitude preparation/inverse cases passed.
+Both CPUcomplex128 modes checked against full scalar amplitude/density references;terminal lookup records validated.
+Gray lookup:one abstract query expands to4X+4CCX;five two-query trials use10calls/80implementation gates;8classical data bits separate.
+14 malformed access contracts rejected;no QRAM,free generic loading or query-to-runtime equivalence claimed.
