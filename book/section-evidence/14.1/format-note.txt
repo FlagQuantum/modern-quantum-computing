@@ -1,0 +1,1 @@
+Browser QA exposed compressed prose spacing around numbers and punctuation. Improved prose only;all Python/text units byte-identical to executed version. Final rebuilt page checked again;no extra circuit run.

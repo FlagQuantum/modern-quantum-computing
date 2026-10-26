@@ -57,3 +57,5 @@ Keep the existing nine-part curriculum and seven-volume chapter allocation. Any 
 A batch first produces a coherent working route, then passes its acceptance checks. Volume publication follows accepted content and accepted prerequisite imports, not the completion of every unrelated specialization. Website and PDF must tell the same scientific argument; the current 16-page sample keeps its existing draft version until an explicit publication build.
 
 Use [book/writing-progress.json](book/writing-progress.json) for actual work states and review evidence. Do not advance a state by counting planned headings, source links or synthetic checks as finished prose or independent review.
+
+Section14.1now has an author-verified P-depth working draft:encoded input length,uniform family definitions and reversible parity examples. Next frozen target: 14.2 Reversible computation and uniform circuit families.

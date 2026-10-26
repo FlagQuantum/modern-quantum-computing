@@ -631,6 +631,16 @@
       "body": "docs/chapters/ch-density-matrices-reduced-states-and-purification.md",
       "record": "book/section-records/8.8.json",
       "author_execution": "10complete/3body/13checker/4freshtransfer=30author native runs;independent acceptance pending"
+    },
+    "sec-computational-models-complexity-and-quantum-advantage-1": {
+      "state": "draft",
+      "brief": "book/briefs/ch14.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "record": "book/section-records/14.1.json",
+      "author_execution": "124complete/3body/127checker/8freshtransfer=262author native runs;CPUcomplex128;independent acceptance pending"
     }
   },
   "existing_pilots": [

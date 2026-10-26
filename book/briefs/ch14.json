@@ -1,0 +1,32 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "sections": [
+    {
+      "sequence": 64,
+      "batch": "B02",
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-1",
+      "ref": "14.1",
+      "title": "Problems, input length, and computational models",
+      "depth": "P",
+      "requires": [
+        "sec-gates-reversible-computation-and-circuit-synthesis-3",
+        "sec-measurement-expectation-values-and-statistical-estimation-6"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "question": "What does a computation solve,and what parameter measures its input size?",
+      "entry": "5.3reversibleBoolean embedding;6.6exact probabilities and terminalsamples.",
+      "exit": "Explicit encoded problem family,length/model/uniformity/resource contracts.",
+      "worked_case": "Uniform reversible parity family on all short binary strings,including empty.",
+      "boundary": "Pdepthdefinitions/conventions;no complexity separation or physical speedup claim.",
+      "code_plan": "Actual X/CX calls and probabilities/samples;classical length/generator/resource checks separate.",
+      "independent_check": "Scalar XOR reference,full-register basis index,all short inputs/two targetbits/two modes.",
+      "transfer_task": "Fresh padded numeral and untested generator lengths;native n4newstrings with resource/output diagnostics.",
+      "source_locators": [
+        "NC:3.1.1",
+        "NC:3.2.1"
+      ]
+    }
+  ]
+}

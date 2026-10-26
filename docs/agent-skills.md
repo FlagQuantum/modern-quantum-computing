@@ -19,7 +19,7 @@ Levels describe increasing task composition and evaluation scope. They do not re
 
 ## Complete chapter-to-skill mapping
 
-All **50 chapters and 435 sections** have one primary task-family assignment in the JSON catalog. Current source states: 63 drafts, 372 not started, 0 accepted. A draft with checked examples is useful prototype evidence, not a released skill.
+All **50 chapters and 435 sections** have one primary task-family assignment in the JSON catalog. Current source states: 64 drafts, 371 not started, 0 accepted. A draft with checked examples is useful prototype evidence, not a released skill.
 
 The primary owner is an editorial responsibility, not exclusive use or a claim that every section already implements the task. Support references and selected domain workflows create many-to-many reuse. Source links below lead to stable planning anchors; a planned section must not be presented as completed prose.
 
@@ -38,7 +38,7 @@ The primary owner is an editorial responsibility, not exclusive use or a claim t
 | [11. Entropy, Relative Entropy, and Information Processing](section-plans/02-information.md#ch-entropy-relative-entropy-and-information-processing) (11.1–11.8) | [audit-information-and-security-claims](#audit-information-and-security-claims) | 0 / 8 |
 | [12. Compression, Entanglement, and Communication Limits](section-plans/02-information.md#ch-compression-entanglement-and-communication-limits) (12.1–12.9) | [audit-information-and-security-claims](#audit-information-and-security-claims) | 0 / 9 |
 | [13. Quantum Cryptography and Security Reasoning](section-plans/02-information.md#ch-quantum-cryptography-and-security-reasoning) (13.1–13.9) | [audit-information-and-security-claims](#audit-information-and-security-claims) | 0 / 9 |
-| [14. Computational Models, Complexity, and Quantum Advantage](section-plans/03-algorithms.md#ch-computational-models-complexity-and-quantum-advantage) (14.1–14.9) | [audit-algorithmic-resource-claims](#audit-algorithmic-resource-claims) | 0 / 9 |
+| [14. Computational Models, Complexity, and Quantum Advantage](section-plans/03-algorithms.md#ch-computational-models-complexity-and-quantum-advantage) (14.1–14.9) | [audit-algorithmic-resource-claims](#audit-algorithmic-resource-claims) | 1 / 9 |
 | [15. Interference, Oracles, and Phase Kickback](section-plans/03-algorithms.md#ch-interference-oracles-and-phase-kickback) (15.1–15.8) | [implement-oracle-and-spectral-algorithms](#implement-oracle-and-spectral-algorithms) | 0 / 8 |
 | [16. Grover Search, Amplitude Amplification, and Estimation](section-plans/03-algorithms.md#ch-grover-search-amplitude-amplification-and-estimation) (16.1–16.8) | [implement-oracle-and-spectral-algorithms](#implement-oracle-and-spectral-algorithms) | 0 / 8 |
 | [17. Fourier Transforms and Quantum Phase Estimation](section-plans/03-algorithms.md#ch-fourier-transforms-and-quantum-phase-estimation) (17.1–17.9) | [implement-oracle-and-spectral-algorithms](#implement-oracle-and-spectral-algorithms) | 0 / 9 |

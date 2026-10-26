@@ -1,0 +1,4 @@
+124 actual native circuits:all31binary inputs of lengths0..4,two target bits,two execution modes passed.
+Exact integer bitlength/padding and bounded uniform gate-list construction passed;no large circuit executed.
+9 malformed input/model contracts rejected before native execution.
+Parity kernel uses n CX gates and n+1qubits;input loading and simulator arrays are recorded separately.

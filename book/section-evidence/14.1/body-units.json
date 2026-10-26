@@ -1,0 +1,34 @@
+[
+  {
+    "code": "import torch,flagquantum as fq\nfrom examples.foundations import input_models as m,statistical_ensembles as e\nvalue,length=m.binary('10000000000')\nassert value==1024 and length==11\nassert m.binary('0001')==(1,4)\nprint('10000000000:value1024,length11;0001:value1,length4')\n",
+    "output": "10000000000:value1024,length11;0001:value1,length4\n"
+  },
+  {
+    "code": "x='11';bits=m.word_bits(x)\nassert sum(bits)%2==0 and int(x,2)%2==1\nprint('Parity of the input digits is0;oddness of the encoded integer is1')\n",
+    "output": "Parity of the input digits is0;oddness of the encoded integer is1\n"
+  },
+  {
+    "code": "assert m.family(3)==((0,3),(1,3),(2,3))\nassert m.family(0)==()\nprint('One length3kernel:CX(0,3),CX(1,3),CX(2,3);length0kernel has no gates')\n",
+    "output": "One length3kernel:CX(0,3),CX(1,3),CX(2,3);length0kernel has no gates\n"
+  },
+  {
+    "code": "x='101';n=len(x)\nc=fq.Circuit(n+1,dtype=m.D).X(0).X(2)\nfor control,target in m.family(n):c.CX(control,target)\nr=fq.run(c,outputs=[fq.probabilities(qubits=(n,),name='answer'),\n fq.samples(qubits=(n,),name='record')],shots=7,options=e.OPTIONS)\ne.close(r.measurement('answer').value[0],torch.tensor([1.,0.],dtype=torch.float64))\nassert bool((r.measurement('record').value==0).all())\nprint('Input101:exact answer probabilities[1,0];seven terminal records all0')\n",
+    "output": "Input101:exact answer probabilities[1,0];seven terminal records all0\n"
+  },
+  {
+    "code": "reverse,counts=m.execute('101',1,mode='density_matrix')\ne.close(reverse.measurement('answer').value[0],torch.tensor([0.,1.],dtype=torch.float64))\nprint('Same kernel with target1returns1;data bits are unchanged in the full probability check')\n",
+    "output": "Same kernel with target1returns1;data bits are unchanged in the full probability check\n"
+  },
+  {
+    "code": "cost=m.resources('101')\nassert (cost['CX_kernel'],cost['X_loading'],cost['gates_with_loading'])==(3,2,5)\nassert cost['data_qubits']+cost['target_qubits']==4\nprint('Input101:3kernelCX+2loadingX=5gates;4qubits')\n",
+    "output": "Input101:3kernelCX+2loadingX=5gates;4qubits\n"
+  },
+  {
+    "code": "cost=m.resources('101')\nassert cost['statevector_entries']==16 and cost['density_entries']==256\nassert len(m.family(257))==257\nprint('Four-qubit host representations:16complex amplitudes or256density entries')\nprint('Length257gate list generated on host only;no257qubit experiment claimed')\n",
+    "output": "Four-qubit host representations:16complex amplitudes or256density entries\nLength257gate list generated on host only;no257qubit experiment claimed\n"
+  },
+  {
+    "code": "empty,_=m.execute('',0)\ne.close(empty.measurement('answer').value[0],torch.tensor([1.,0.],dtype=torch.float64))\nassert m.invalid_checks()==9\nassert m.RUNS==2\nprint('Empty parity input returns0on one target qubit;9malformed contracts rejected')\nprint('Body executed2helper-native calls plus1explicit fq.run')\n",
+    "output": "Empty parity input returns0on one target qubit;9malformed contracts rejected\nBody executed2helper-native calls plus1explicit fq.run\n"
+  }
+]

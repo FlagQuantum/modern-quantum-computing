@@ -952,7 +952,7 @@
         "sec-measurement-expectation-values-and-statistical-estimation-6"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md"
     },
     {

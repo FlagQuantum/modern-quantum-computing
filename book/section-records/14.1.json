@@ -1,0 +1,91 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-computational-models-complexity-and-quantum-advantage-1",
+  "ref": "14.1",
+  "date": "2026-10-26",
+  "state": "draft",
+  "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+  "depth": "P",
+  "requires": [
+    "sec-gates-reversible-computation-and-circuit-synthesis-3",
+    "sec-measurement-expectation-values-and-statistical-estimation-6"
+  ],
+  "result": "Uniform computation and input-size definitions",
+  "assumptions": [
+    "Finite encoded input and declared computational model."
+  ],
+  "verification_obligations": [
+    "Value/bitlength distinction",
+    "Problem family and unary-index uniformity definitions",
+    "Parity reversible identity and resource accounting",
+    "Loading/kernel/simulation/access distinctions"
+  ],
+  "formula_code_units": [
+    "encoding",
+    "problem",
+    "uniformity",
+    "nativeparity",
+    "targetcontract",
+    "resources",
+    "simulation",
+    "boundaries"
+  ],
+  "sources": [
+    {
+      "locator": "NC:3.1.1/3.2.1",
+      "scope": "Contents locators122/136;no full-text review."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf#page=12",
+      "scope": "IV.1Definition2and unary index convention inspected;no separation theorem imported."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/input_models.py",
+    "prose_checker": "scripts/check_input_models_prose.py",
+    "evidence": "book/section-evidence/14.1",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 124,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 3,
+    "separate_transfer_circuits": 8,
+    "execution_ledger": {
+      "complete": 124,
+      "body_assembly": 3,
+      "body_plus_complete": 127,
+      "transfer": 8,
+      "total_author_section_native_runs": 262,
+      "separate_prerequisite_regressions": "5.3and6.6literal/completechecks passed;logs separate from262author section executions"
+    },
+    "malformed_contracts": 9,
+    "tolerance": "Absolute1e-12,relative0 for probabilities;exact integer/model checks. No timing/advantage certificate.",
+    "native_boundary": "Native X/CX/run/probabilities/terminal samples in two modes;uniform generator/resource accounting are host book code. n<=4native/n<=10000host guards are notFQlimits;no hardware or nativecomplexityprover claim.",
+    "script_sha256": "1a3dd4ea24ee03d457f37b6ef66abba301438d01cadbc5402fbb066f3f8562d7"
+  },
+  "assessment": {
+    "tasks": [
+      "14.1A-D"
+    ],
+    "answers": "Accessible solutions;8fresh C executions and host A/B/D checks;reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "124complete/3body/127checker/8transfer;production QA below. Strict build/local links and actual browser key formulas/expanded answers passed."
+  },
+  "production": {
+    "next_draft": "14.2 Reversible computation and uniform circuit families",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual IAB encoding sum/parity reversible map/gate-count equations and expandedA-D answers visually checked. No MathJaxerrors,answer open with no raw$$. Prose spacing repaired with all Python/text blocks unchanged.",
+    "website": "Fresh strict build and75page local links passed;deployment receipt checked separately.",
+    "html_sha256": "e51c3d0eb902dae228a5348cc5688fe4a4c2de6ede55ba253de1bbc35688bf3c"
+  }
+}

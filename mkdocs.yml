@@ -71,6 +71,7 @@ nav:
       - "Chapter 6: Measurement, Expectation Values, and Statistical Estimation": chapters/ch-measurement-expectation-values-and-statistical-estimation.md
       - "Chapter 7: Entanglement and Quantum Information Protocols": chapters/ch-entanglement-and-quantum-information-protocols.md
       - "Chapter 8: Density Matrices, Reduced States, and Purification": chapters/ch-density-matrices-reduced-states-and-purification.md
+      - "Chapter 14: Computational Models, Complexity, and Quantum Advantage": chapters/ch-computational-models-complexity-and-quantum-advantage.md
   - Starter chapters:
       - Measurement and expectations: chapters/measurement.md
       - Circuits and gradients: chapters/gradients.md

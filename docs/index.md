@@ -141,3 +141,5 @@ Section [8.6 Purification and nonuniqueness](chapters/ch-density-matrices-reduce
 Section [8.7 Proper and improper mixtures](chapters/ch-density-matrices-reduced-states-and-purification.md#sec-density-matrices-reduced-states-and-purification-7) now proves local indistinguishability with joint-access and conditional-record boundaries,eight checked units and25complete-program circuits;independent acceptance pending.
 
 Section [8.8 Density-operator verification laboratory](chapters/ch-density-matrices-reduced-states-and-purification.md#sec-density-matrices-reduced-states-and-purification-8) now provides scoped acceptance and retained failure cases,eight checked units and10complete-program circuits. Chapter8has eight drafts;independent acceptance pending.
+
+Section [14.1 Problems, input length, and computational models](chapters/ch-computational-models-complexity-and-quantum-advantage.md#sec-computational-models-complexity-and-quantum-advantage-1) opens the next B02chapter with eight checked units and124complete-program native circuits. Encoding,uniformity,loading and simulator resources are separated;independent acceptance pending.
