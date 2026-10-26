@@ -61,3 +61,5 @@ Use [book/writing-progress.json](book/writing-progress.json) for actual work sta
 Section14.1now has an author-verified P-depth working draft:encoded input length,uniform family definitions and reversible parity examples. Next frozen target: 14.2 Reversible computation and uniform circuit families.
 
 Section14.2now has a full author-verified clean reversible simulation/uniformity proof,eight units and118complete-program circuits. Next frozen target: 14.3 Complexity classes and bounded error.
+
+Section14.3now has an author-verified F-depth draft:precise promise/error definitions,elementary containments,complement and constant-gap normalization proofs,eight formula/code units and82complete-program native circuits. Next frozen target:14.4 Oracle and data-access models. Independent review remains pending.

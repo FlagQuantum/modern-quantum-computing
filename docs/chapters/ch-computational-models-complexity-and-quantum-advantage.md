@@ -1,6 +1,6 @@
 # 14. Computational Models, Complexity, and Quantum Advantage
 
-**Working drafts: sections 14.1–14.2 · Writing Baseline 1.0 · October 26, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
+**Working drafts: sections 14.1–14.3 · Writing Baseline 1.0 · October 26, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
 
 <span id="sec-computational-models-complexity-and-quantum-advantage-1"></span>
 ## 14.1 Problems, input length, and computational models
@@ -485,3 +485,372 @@ Host parity-family generation/evaluation for lengths0..32passed;no large native 
 The frozen locators are NC §§3.1.2 and 3.2.5 (contents starts printed 129 and 153). The latter concerns energy and computation; no thermodynamic theorem is assumed here and no new full-text review is claimed. For circuit-family conventions and classical simulation context, [Watrous, *Quantum Computational Complexity*, §§IV.1 andIV.3](https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf#page=12) was inspected. The clean finite-circuit construction and its uniformity/overhead proof are supplied above, rather than inferred from a complexity-class containment. This is an author-verified draft; independent mathematical/implementation review, reader trial and formal acceptance remain pending.
 
 <!-- end-section-14.2 -->
+
+<span id="sec-computational-models-complexity-and-quantum-advantage-3"></span>
+## 14.3 Complexity classes and bounded error
+
+**Question.** What must a quantum algorithm guarantee on every allowed input before we call its decision problem efficiently solvable with bounded error?
+
+The prerequisites are [14.1, input length and uniform circuit families](#sec-computational-models-complexity-and-quantum-advantage-1), [14.2, clean reversible simulation](#sec-computational-models-complexity-and-quantum-advantage-2), and [6.8, fixed-design probability bounds](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-8). This **F-depth** section defines its models, proves selected elementary containments and complement closure, and proves a constant-gap normalization statement. Numerical examples check those constructions; they do not decide an unknown complexity-class relationship. All probabilities, bit counts and logical gate counts below are dimensionless.
+
+### 14.3.1 Put the quantifiers and the promise into the definition
+
+Write Σ={0,1}, and let A=(A_yes,A_no) consist of disjoint sets of finite binary strings. Its **promise** is their union. On x∈A_yes the answer is 1; on x∈A_no it is 0. Outside the promise there is no required answer. A language is the special case in which the union is Σ*. We use promise-problem versions of the classes below, as in the frozen source; restricting to languages gives the corresponding language versions.
+
+For this section, use the following uniform circuit formulations. “Polynomial” means bounded by a fixed polynomial in n=|x|, not in the numerical value encoded by x. Every family has one deterministic classical generator that, given 1ⁿ, prints an explicit uncompressed gate list in polynomial time. Its topology is generated from the length, not separately designed after seeing each x.
+
+- **P:** a uniform family of polynomial-size bounded-fan-in Boolean circuits C_n computes the correct bit on every promised x. Constants and explicit copies are allowed. This is the circuit formulation of deterministic polynomial computation used here.
+- **BPP:** C_n also receives r(n) independent uniform random bits, where r is polynomially bounded and efficiently generated. Define its acceptance probability by the finite random-bit count below.
+- **BQP:** a uniform family Q_n uses polynomially many qubits and gates, classical basis input x, zero ancillary qubits, and one terminal computational-basis answer qubit. Fix a finite efficiently specified universal gate alphabet. One convenient choice is {H,T,T†,X,CX,CCX}; including the reversible gates makes the construction below explicit. Gate entries do not carry arbitrary real advice. The finite-alphabet and approximation issues introduced in 5.5–5.7 are different from counting an arbitrary floating-point rotation as a free elementary operation.
+
+Let a(n) be the number of zero ancillas in Q_n, and let Π₁ project onto answer 1 while acting as identity on every other qubit. **We consistently call 1 acceptance.** Then the two probabilistic models define
+
+$$
+p_C(x)=2^{-r(n)}\sum_{s\in\{0,1\}^{r(n)}} C_n(x,s),
+\qquad
+p_Q(x)=\left\|\Pi_1 Q_n|x,0^{a(n)}\rangle\right\|^2.
+$$
+
+For either model, the bounded-error conditions are
+
+$$
+\forall x\in A_{\mathrm{yes}}:\ p(x)\geq\frac23,
+\qquad
+\forall x\in A_{\mathrm{no}}:\ p(x)\leq\frac13.
+$$
+
+The yes/no acceptance gap is 1/3. Equivalently, each promised input is answered correctly with probability at least 2/3. This is a statement about a single algorithm family on **all** promised inputs, not average correctness over a chosen input distribution. It is not a confidence interval inferred from a finite record of answers. Exact acceptance probabilities 2/3 and 1/3 satisfy the endpoints; 1/2 satisfies neither label.
+
+```python
+from fractions import Fraction as F
+import torch,flagquantum as fq
+from dataclasses import replace
+from examples.foundations import bounded_error as b,statistical_ensembles as e,uniform_reversible as u
+assert b.contract(F(2,3),1) and b.contract(F(1,3),0)
+assert not b.contract(F(1,2),1) and not b.contract(F(1,2),0)
+assert b.contract(F(1,2),None) is None
+print('Boundary2/3 and1/3 accepted;1/2 fails both labels;outside-promise has no required label.')
+```
+
+```text
+Boundary2/3 and1/3 accepted;1/2 fails both labels;outside-promise has no required label.
+```
+
+The helper uses exact rational numbers for these logical boundary checks. Floating-point comparison with an analytic probability is a separate implementation check. A `None` label explicitly records an input outside the promise; it is not a third measurement result.
+
+### 14.3.2 Prove the deterministic elementary containment
+
+**Claim: P⊆BPP.** Take the uniform Boolean family defining a problem in P and give it zero random bits. The sum defining p_C then has exactly one term, so p_C(x)=C_n(x)∈{0,1}. Every promised yes-input has probability 1 and every promised no-input probability 0. The same generator and polynomial resource bound still work. This proves the containment; it does not prove that the two classes differ.
+
+For a concrete language, define f(x)=⊕_j x_j, with f(ε)=0. A chain of XOR gates has linear size and a loop over j generates it uniformly. Hence odd digit parity is in P. In a reversible implementation with answer initialized to zero, CX(j,answer) for j=0,…,n−1 gives
+
+$$
+|x,0\rangle\longmapsto|x,f(x)\rangle,
+\qquad p(x)=f(x).
+$$
+
+The data remain unchanged and the answer is deterministic. The companion retains the same declared four ancillary positions as the noisy example below; its deterministic branch leaves the coin/workspace positions zero. They are extra declared space, not a minimal implementation claim.
+
+```python
+_,p,cost=b.execute('101',deterministic=True)
+assert p==0 and cost['kernel']==3 and cost['qubits']==7
+assert len(b.family(1000))==1005
+print('101 has even parity:p_accept=0;3 deterministic CX gates,7 declared qubits.')
+print('Host generator length1000:1005 noisy-kernel gates;no length1000 native execution.')
+```
+
+```text
+101 has even parity:p_accept=0;3 deterministic CX gates,7 declared qubits.
+Host generator length1000:1005 noisy-kernel gates;no length1000 native execution.
+```
+
+The n=1000 assertion checks a host-generated gate list only. Executing a small simulator instance and generating a longer list are different evidence. Membership for every n follows from the loop, the parity argument and its resource bound, not from the largest tested length.
+
+### 14.3.3 Prepare classical random bits coherently
+
+H|0⟩=(|0⟩+|1⟩)/√2. Applying H to r distinct initialized qubits gives
+
+$$
+H^{\otimes r}|0^r\rangle
+=2^{-r/2}\sum_{s\in\{0,1\}^r}|s\rangle.
+$$
+
+This follows by distributing the tensor product of the r two-term sums: each bit string selects exactly one term and has amplitude 2⁻ʳᐟ². Distinct strings are orthogonal, so terminal measurement gives each string probability 2⁻ʳ. For any assignment to any subset of the bits, exactly 2^(r−subset size) strings extend it. Its probability is therefore the product of the corresponding factors 1/2. Thus the measured bits have the independent fair-bit distribution.
+
+The state is initially a coherent superposition, rather than a classical record already sampled inside the program. In the containment proof we will keep the coin labels until the terminal marginal is formed.
+
+```python
+coins=fq.Circuit(2,dtype=torch.complex128).H(0).H(1)
+coin_result=fq.run(coins,outputs=[fq.probabilities(name='joint'),fq.samples(qubits=(0,1),name='coins')],
+    shots=13,options=replace(e.OPTIONS,seed=47))
+e.close(coin_result.measurement('joint').value[0],torch.full((4,),.25,dtype=torch.float64))
+raw=coin_result.measurement('coins').value
+assert raw.shape==(1,13,2) and bool(((raw==0)|(raw==1)).all())
+print('Two H-prepared coins:joint probabilities[1/4,1/4,1/4,1/4];13 raw two-bit records checked.')
+```
+
+```text
+Two H-prepared coins:joint probabilities[1/4,1/4,1/4,1/4];13 raw two-bit records checked.
+```
+
+The thirteen raw records check the native two-column output contract and valid bit values. They do not empirically prove independence or require exactly equal observed frequencies. Independence in the ideal model came from the product preparation and the calculation above.
+
+### 14.3.4 Prove BPP⊆BQP without erasing the coin labels
+
+Let C_n(x,s) be the one-bit Boolean result of a BPP circuit. Treat its n+r(n) input bits as data for the construction in 14.2. That result supplies a uniform reversible circuit U_n and zero workspace W of L(n) qubits with the exact clean action
+
+$$
+U_n|x,s,0^{L(n)},0\rangle
+=|x,s,0^{L(n)},C_n(x,s)\rangle.
+$$
+
+Initialize the coin register with r(n) Hadamards, then apply U_n. The resulting pure state is
+
+$$
+|\Psi_x\rangle
+=2^{-r(n)/2}\sum_s|x,s,0^{L(n)},C_n(x,s)\rangle.
+$$
+
+**Probability proof.** Project the last qubit onto 1. Only strings with C_n(x,s)=1 survive. When taking the squared norm, every cross term with s≠t vanishes because ⟨s|t⟩=0. Terms with s=t each contribute 2⁻ʳ. Consequently,
+
+$$
+\begin{aligned}
+\Pr_Q[1\mid x]
+&=2^{-r(n)}\sum_{s,t:C_n(x,s)=C_n(x,t)=1}\langle t|s\rangle\\
+&=2^{-r(n)}\sum_s C_n(x,s)=p_C(x).
+\end{aligned}
+$$
+
+The input x is fixed in this expression; there is no averaging over inputs. We neither add conditional coin-state vectors as if their labels were absent nor measure an undocumented intermediate collapse. The equality preserves the two error bounds on every promised x.
+
+**Resource and uniformity proof.** If the Boolean circuit has L nodes, 14.2 implements its one-bit result with at most 4L+1 reversible gates and L work qubits. Adding r Hadamards costs r gates and r coin qubits. Including input and answer, the sufficient totals are n+r+L+1 qubits and at most r+4L+1 kernel gates. All are polynomial because r and L are polynomial. Compose the given uniform classical generator with the explicit polynomial-time translator, then prefix the r Hadamards. This is one uniform quantum generator. No truth table of size 2ʳ is constructed by the implementation; the sum above is for proof. The chosen alphabet contains all gates used. These facts prove **BPP⊆BQP**, and transitivity gives **P⊆BPP⊆BQP**.
+
+For an executable example valid at every length, set
+
+$$
+C_n(x,s_0,s_1)=f(x)\mathbin{\oplus}(s_0\mathbin{\land}s_1).
+$$
+
+Exactly one of the four fair coin strings flips f(x). Thus
+
+$$
+p_C(x)=\begin{cases}1/4,&f(x)=0,\\3/4,&f(x)=1.\end{cases}
+$$
+
+Our specialized clean kernel computes the AND into a zero work qubit, XORs the data parity and work into the answer, and applies the same CCX again to clear work. Its cost is n+5 gates: two H, two CCX, n data-to-answer CX and one work-to-answer CX. It uses n+4 qubits. Basis input loading costs wt(x) additional X gates, where wt counts the 1 digits. These logical costs exclude target decomposition, routing and physical runtime.
+
+```python
+# Layout q0,q1=data; q2,q3=coins; q4=workspace; q5=answer.
+c=fq.Circuit(6,dtype=torch.complex128).X(1).H(2).H(3)
+c.CCX(2,3,4)
+c.CX(0,5).CX(1,5).CX(4,5)
+c.CCX(2,3,4)
+r=fq.run(c,outputs=[fq.density_matrix(name='rho'),fq.probabilities(qubits=(5,),name='answer'),
+    fq.samples(qubits=(5,),name='record')],shots=19,options=replace(e.OPTIONS,seed=47))
+v=torch.zeros(64,dtype=torch.complex128)
+for a,d in ((0,0),(0,1),(1,0),(1,1)):
+    v[u.index((0,1,a,d,0,1^(a*d)))]=.5
+e.close(r.measurement('rho').value[0],torch.outer(v,v.conj()))
+e.close(r.measurement('answer').value[0],torch.tensor([.25,.75],dtype=torch.float64))
+assert r.measurement('record').value.shape==(1,19,1)
+print('Native clean randomized parity on01:p_accept=3/4;full density and terminal record shape checked.')
+```
+
+```text
+Native clean randomized parity on01:p_accept=3/4;full density and terminal record shape checked.
+```
+
+Here 01 has f(x)=1. The full density check includes the retained coherent coin labels and exactly zero work, so matching the answer probability alone cannot hide incorrect cleanup. The use of H and reversible gates is a classical randomized algorithm embedded in a quantum model; the example makes no quantum speedup claim.
+
+The companion also exercises a genuine **promise** example. Given x₀,x₁ and one fair selector bit s, return x_s. A Boolean implementation is x₀ XOR [s AND (x₀ XOR x₁)]. On promised inputs x₀=x₁, it is exactly correct. On 01 or 10 its acceptance probability is 1/2, which causes no violation because those inputs were excluded from this particular promise. The graph translator of 14.2 is actually called here; the independent reference directly indexes x_s.
+
+```python
+_,p_out,label_out=b.selector('01')
+_,p_yes,label_yes=b.selector('11',mode='density_matrix')
+assert p_out==F(1,2) and b.contract(p_out,label_out) is None
+assert p_yes==1 and b.contract(p_yes,label_yes)
+print('Selector promise x0=x1:11 accepts with1;01 gives1/2 outside the promise.')
+```
+
+```text
+Selector promise x0=x1:11 accepts with1;01 gives1/2 outside the promise.
+```
+
+**Checkpoint.** Can the selector family solve the total language “the first bit is one” with the same error bound? No: the outside-promise inputs become required inputs of that total problem, and on them this family has probability 1/2. This says the displayed family fails that contract, not that the total language is hard.
+
+### 14.3.5 Prove closure under exchanging yes and no
+
+For a promise problem A, let its complement be coA=(A_no,A_yes), retaining the same promise. In a classical circuit, append NOT to the answer. In a quantum circuit, append X to the answer immediately before terminal readout. X swaps its 0 and 1 subspaces while leaving every other register alone. Since the two terminal answer probabilities sum to one,
+
+$$
+p_{\mathrm{new}}(x)=1-p_{\mathrm{old}}(x).
+$$
+
+On an old no-input, p_old≤1/3 implies p_new≥2/3. On an old yes-input, p_old≥2/3 implies p_new≤1/3. Appending one fixed gate preserves polynomial size and uniformity. This proves that BPP and BQP are each closed under complementation, often written coBPP=BPP and coBQP=BQP. The same NOT argument also applies to P. It is an explicit construction, not a numerical symmetry inferred from a few test pairs.
+
+```python
+_,p_no,_=b.execute('01',complement=True)
+_,p_yes,_=b.execute('00',complement=True,mode='density_matrix')
+assert p_no==F(1,4) and p_yes==F(3,4)
+assert b.contract(p_no,0) and b.contract(p_yes,1)
+print('One output X complements acceptance:01->1/4;00->3/4;both new labels satisfy the contract.')
+```
+
+```text
+One output X complements acceptance:01->1/4;00->3/4;both new labels satisfy the contract.
+```
+
+No phase alignment is involved. An X on the designated answer exchanges acceptance probabilities exactly even if that answer is entangled with retained registers.
+
+### 14.3.6 Explain why a fixed gap matters, and prove a normalization
+
+Suppose instead of the constants above a uniform algorithm has, for a fixed 0<γ≤1/2,
+
+$$
+x\in A_{\mathrm{yes}}\Rightarrow p(x)\geq\frac12+\gamma,
+\qquad
+x\in A_{\mathrm{no}}\Rightarrow p(x)\leq\frac12-\gamma.
+$$
+
+Run k independent fresh copies on the same classical input x, with k odd, and accept when a strict majority of their answer bits is 1. Let B_i be the ith terminal bit and \(\overline B=k^{-1}\sum_iB_i\). Independent copies have
+
+$$
+\mathbb E[\overline B]=p,
+\qquad
+\operatorname{Var}(\overline B)=\frac{p(1-p)}k\leq\frac1{4k}.
+$$
+
+For a yes-input, a wrong majority implies \(\overline B<1/2\), hence \(|\overline B-p|\geq\gamma\). For a no-input a wrong majority implies \(\overline B>1/2\) and the same deviation bound. Applying the Chebyshev result from 6.8 gives
+
+$$
+\Pr[\text{wrong majority}\mid x]\leq\frac1{4k\gamma^2}.
+$$
+
+Choose any odd integer k≥3/(4γ²); then the error is at most 1/3. Because γ is fixed, k is constant as a function of n. We have proved that **any fixed symmetric gap about 1/2 can be converted to the 2/3 versus 1/3 convention**. Conversely those standard bounds already have γ=1/6. This proves equivalence of these constant-gap conventions, without claiming a tight repetition budget. Inverse-polynomial gaps, very small target failure probabilities and accumulated implementation error will be treated with the accuracy budget in 14.5.
+
+We must still justify that majority is available efficiently inside the circuit model. Here is a construction rather than a free majority oracle. For answer bits b₁,…,b_k, let D_j,t mean “at least t of the first j bits are one.” Set D_j,0=1 and D_0,t=0 for t>0. For j≥1 and t≥1, use
+
+$$
+D_{j,t}=(\neg b_j\land D_{j-1,t})
+\lor(b_j\land D_{j-1,t-1}).
+$$
+
+If b_j=0, reaching t requires t among the previous bits. If b_j=1, it requires t−1 among them. These two cases prove the recurrence by induction on j. Compute it row by row up to t=(k+1)/2 using O(k²) constant-size Boolean gates; D_k,(k+1)/2 is the majority. OR can itself be written NOT(AND(NOT a,NOT b)). The nested loops are a uniform generator. Section 14.2 turns this graph into a clean reversible majority using O(k²) additional gates and work qubits.
+
+In the quantum model prepare k disjoint copies of the original circuit. Before any copy runs, use n(k−1) CX gates to copy the computational-basis input x into k−1 fresh zero input registers. The same fixed fanout pattern works for every x; no generator is allowed to hard-code that x. This does not clone an unknown quantum input. With no coupling between copies before voting, their state is a tensor product; the joint output probabilities multiply. Apply the reversible majority to their answer registers and measure its output. On each computational answer string its projector selects exactly the majority event, so even if the copies' answers are entangled with their own work, the vote probability equals the classical majority probability. For a base circuit with T(n) gates and q(n) qubits, sufficient resources are kT(n)+n(k−1)+O(k²) gates and kq(n)+O(k²) qubits, including this basis-input fanout; any external basis preparation is recorded separately. All generators compose in polynomial time.
+
+For three bits specifically, majority(a,b,c)=ab XOR ac XOR bc: for 0,1,2,3 ones the number of true pairs is respectively 0,0,1,3, giving the right bit. Three CCX gates into a zero answer implement it. Our example's single-trial error is 1/4. Independent three-trial majority has exact error
+
+$$
+3(1/4)^2(3/4)+(1/4)^3=\frac5{32}.
+$$
+
+If all three answers reuse the same underlying two coin bits, they agree on every trial and the error remains 1/4. Their individual marginals are unchanged; the product-law and variance reduction are lost.
+
+```python
+_,independent_error=b.majority(0,independent=True)
+_,shared_error=b.majority(0,independent=False)
+assert independent_error==F(5,32) and shared_error==F(1,4)
+gamma=F(1,4);k=b.repetition_budget(gamma)
+assert k==13 and F(1,4)/(k*gamma**2)==F(4,13)<=F(1,3)
+assert b.tail(F(1,4),k)<=F(4,13)
+def threshold(bits):
+    h=len(bits)//2+1
+    previous=[1]+[0]*h
+    for bit in bits:
+        current=[1]+[0]*h
+        for t in range(1,h+1):
+            current[t]=((1-bit)&previous[t]) | (bit&previous[t-1])
+        previous=current
+    return previous[h]
+for length in (1,3,5):
+    for j in range(2**length):
+        bits=u.bits(j,length)
+        assert threshold(bits)==int(sum(bits)>length//2)
+print('Three votes:independent error5/32;shared-coin error1/4.')
+print('Chebyshev design:gamma1/4,k13,error bound4/13<=1/3;exact binomial tail checked.')
+```
+
+```text
+Three votes:independent error5/32;shared-coin error1/4.
+Chebyshev design:gamma1/4,k13,error bound4/13<=1/3;exact binomial tail checked.
+```
+
+The `threshold` loop is the displayed D recurrence with only its previous row retained; it is exhaustively compared with direct bit counting at lengths 1, 3 and 5. This host calculation validates the recurrence implementation, not the general proof. The thirteen-trial budget is a host exact-rational calculation; no thirteen-copy native circuit is claimed. The two native three-trial cases check the independent and shared-coin constructions, including their entire classical output distributions. The independent case occupies ten qubits and uses only the statevector execution mode in this companion.
+
+### 14.3.7 Diagnose a missing gap and a misleading average
+
+Using the same coin for both arguments of AND replaces s₀ AND s₁ by s₀ AND s₀=s₀. The error bit is now fair: p(x)=1/2 for both parities. This particular circuit no longer meets either promised label's bounded-error contract. It does not imply the parity problem left P; its deterministic algorithm still exists.
+
+A second mistake is replacing “for every x” with a favorable input average. Consider eight length-three strings and a hypothetical deterministic answer table correct on seven strings but wrong on 111. Uniform-input average correctness is 7/8, above 2/3; its success probability on 111 is zero. The table fails the universal requirement. Membership means the existence of some qualifying uniform family, not that every proposed algorithm for the problem is correct.
+
+```python
+_,p_bad,_=b.execute('00',coins='reused')
+assert p_bad==F(1,2) and not b.contract(p_bad,0)
+labels=[sum(u.bits(j,3))%2 for j in range(8)]
+probabilities=[F(y) for y in labels];probabilities[7]=F(0)
+correct=[p if y else 1-p for p,y in zip(probabilities,labels)]
+assert sum(correct)/8==F(7,8) and not all(b.contract(p,y) for p,y in zip(probabilities,labels))
+assert b.invalid_checks()==14
+print('Reusing a coin inside AND destroys the gap:p_accept=1/2.')
+print('Average correctness7/8 can hide a failing input;14 malformed contracts rejected.')
+```
+
+```text
+Reusing a coin inside AND destroys the gap:p_accept=1/2.
+Average correctness7/8 can hide a failing input;14 malformed contracts rejected.
+```
+
+No assertion here requires sampled frequency to be numerically close to p. The native exact probability, the analytic rational probability, and the finite random record have separate roles. A small record that happens to be correct on every trial proves neither a universal error bound nor a complexity-class separation. Replaying a fixed seed is useful for debugging and supplies no new independent statistical evidence.
+
+### 14.3.8 Keep the API and the conclusion within their evidence
+
+The complete companion is [bounded_error.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/bounded_error.py). Run from the repository root with its pinned example environment:
+
+```bash
+python examples/foundations/bounded_error.py
+python scripts/check_bounded_error_prose.py
+```
+
+Expected output of the complete program:
+
+```text
+82 actual native circuits:14 deterministic,28 fair-coin,28 reused-coin,8 promise-selector and4 majority cases passed.
+Full clean states/probabilities checked in both modes for78 circuits;4 majority cases use native statevector probabilities.
+Independent majority error5/32;shared-coin error1/4. Fixed-gap budget13;exact rational boundary/tail checks passed.
+14 malformed contracts rejected before execution;finite checks are not complexity-class certificates.
+```
+
+The tested runtime is released FlagQuantum 0.3.1, PyTorch 2.13.0 and Python 3.12.14 on CPU. The first 78 circuits use complex128 and exercise both statevector and density-matrix modes. They compare complete density operators and probabilities against explicit scalar coin enumeration; statevector mode also compares full complex amplitudes. The last four majority cases use statevector mode, native vote-qubit probabilities and full simulator-vector squared moduli against an independently enumerated classical histogram. Probabilities/densities use absolute tolerance 10⁻¹² and relative tolerance zero. No phase alignment, clipping or normalization repair is performed. Exact boundary decisions and binomial sums use `Fraction`; floating-point tests are not interval certificates.
+
+The literal API calls are `Circuit.H/X/CX/CCX`, `fq.run`, `fq.probabilities`, `fq.samples` and `fq.density_matrix`. The first complete attempt reached 79 actual executions, then its ten-qubit *full* probability request was rejected before that circuit ran: this release's default marginal-probability request limit is eight qubits. The corrected version queries only the one vote qubit and uses the statevector accessor for the independent full-distribution check. The original source and failure log remain in the evidence. This is a request guard, not a claim that the simulator cannot execute ten-qubit circuits.
+
+The parity helper's n≤3 native guard, length≤10000 host-generation guard, exact-tail k≤101 guard and shots≤1000 are bounded teaching contracts, not framework scalability limits. Bit loading uses actual X gates; output requests are ideal terminal simulator queries. No native complexity-class recognizer, proof checker, BPP compiler, runtime advantage test, hardware random-source certification, mid-circuit collapse or dynamic-controller capability is established by this section. Reversible graph translation, rational analysis and resource accounting are book code.
+
+The selected containments and complement statements have full proofs above. There is no proof here that P, BPP or BQP are distinct. We do not infer NP relations from superposition, from a simulator runtime or from the success of one problem. More advanced upper bounds are outside this section's selected elementary claims. A quantum computer's ability to represent the constructed circuit is separate from the classical cost of simulating its full state.
+
+**Understanding and transfer tasks**
+
+- **14.3-A — quantifiers.** A test reports average correctness 99% on its chosen inputs. Which missing statements prevent it from proving a problem is in BQP? What changes outside a promise?
+- **14.3-B — derivation.** Replace two coins by r coins in the containment proof. Identify the inner product that removes cross terms, derive the acceptance sum, and explain why deleting the coin labels before squaring is wrong.
+- **14.3-C — fresh implementation.** For data x of length three, use one coin r and output majority(x₀,x₁,x₂) XOR r. Construct majority as the XOR of its three pairwise ANDs and translate the graph with 14.2 to inspect its resource count. Then implement the equivalent smaller circuit described in the answer, prepare r with H and validate full state/density in both modes on x=101 and 010. Does this circuit have a bounded-error gap for majority? Also run fresh noisy-parity inputs 110 and 111 with complement both off and on.
+- **14.3-D — amplification.** For γ=1/10, find the smallest odd k meeting this section's Chebyshev sufficient bound. Explain why identical marginal answer laws are insufficient to use it, and why the bound need not equal the exact binomial failure probability.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 14.3-A–D</summary>
+
+**A.** One needs a declared input encoding and promise, one uniform generator, polynomial resources and a correctness bound on every promised input at every length. A finite test distribution supplies none of the missing universal claims by itself. Outside the promise no answer is required, but it cannot be silently enlarged after testing.
+
+**B.** The projected norm contains ⟨t|s⟩=δ_ts in the retained coin register. Therefore it is 2⁻ʳ times the number of accepting coin strings. Replacing the distinguishable branches by a vector sum on only the answer register changes both normalization and interference; it is not the marginal measurement operation.
+
+**C.** Three AND nodes followed by two XOR nodes form majority, and a final XOR with r forms the output. With three data bits and one coin, six work qubits and one answer, the direct 14.2 construction uses eleven qubits, which is larger than needed for this exercise. A bounded implementation can avoid the intermediate XOR storage: use three CCX gates into a zero answer, then CX from the fair coin into the answer. This three-data-plus-coin-plus-answer construction uses five qubits, retains the coin and needs no additional workspace. For either x the output is fair, so the candidate fails both bounded-error labels. The independent transfer deliberately validates this smaller explicit native construction rather than invoking the helper beyond its bounded graph/native guard. The separate noisy-parity cases have probabilities 1/4 on 110 and 3/4 on 111, exchanged by complement. Exact states/densities and terminal probabilities must agree, not only one sampled record.
+
+**D.** k≥3/[4(1/10)²]=75 and 75 is odd. Independence is used in Var(average)=p(1−p)/k; perfectly correlated copies retain the original variance. Chebyshev bounds a larger deviation event and need not be tight for the discrete majority event. Repetition-resource counts include fresh copies, majority work and input loading.
+
+</details>
+
+The frozen source `COMPLEX:BQP` is Watrous, [*Quantum Computational Complexity*, §§IV.1–IV.3, PDF pages 12–14](https://arxiv.org/pdf/0804.3401v1#page=12). Those pages were inspected for uniform circuit definitions, bounded-error conventions and classical simulation; the author-hosted copy was also checked. Our explicit clean-workspace proof, examples and conservative Chebyshev normalization are supplied locally. Watrous labels acceptance by the opposite terminal bit in his setup; this section fixes acceptance to 1 throughout. The source's more general error-reduction and quantum-subroutine results are not being claimed as proved here.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.3.json) separates author execution from independent mathematical/implementation review and reader trial. It remains a working draft. Continue, when drafted, with [14.4 Oracle and data-access models](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-4).
+
+<!-- end-section-14.3 -->

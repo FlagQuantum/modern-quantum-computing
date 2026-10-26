@@ -1,0 +1,97 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-computational-models-complexity-and-quantum-advantage-3",
+  "ref": "14.3",
+  "date": "2026-10-26",
+  "state": "draft",
+  "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+  "depth": "F",
+  "requires": [
+    "sec-computational-models-complexity-and-quantum-advantage-1",
+    "sec-computational-models-complexity-and-quantum-advantage-2",
+    "sec-measurement-expectation-values-and-statistical-estimation-8"
+  ],
+  "result": "BQP definitions,bounded error and elementary containments",
+  "assumptions": [
+    "Uniform polynomial-size circuits;fixed finite efficiently specified gate alphabet;classical basis input and zero ancillas.",
+    "Per-instance promise correctness;acceptance label1.",
+    "Fresh independent copies for repetition;fixed positive half-gap gamma."
+  ],
+  "verification_obligations": [
+    "Define promise P/BPP/BQP,uniformity and bounded-error quantifiers.",
+    "Prove P subset BPP by zero coins.",
+    "Prove fair coin product preparation and BPP subset BQP by clean embedding and orthogonal retained coin labels.",
+    "Prove complement closure with one answer NOT/X.",
+    "Prove constant symmetric-gap normalization via Chebyshev;construct polynomial-size uniform Boolean majority and reversible realization.",
+    "State no separation/NP relation/class membership inference from finite tests."
+  ],
+  "formula_code_units": [
+    "probability contract",
+    "deterministic parity",
+    "native fair coins",
+    "explicit clean randomized parity",
+    "promise selector",
+    "complement",
+    "independent/shared majority and gap budget",
+    "failed gap/per-input quantifier"
+  ],
+  "sources": [
+    {
+      "locator": "COMPLEX:BQP",
+      "url": "https://arxiv.org/pdf/0804.3401v1#page=12",
+      "inspection": "IV.1-IV.3 PDF12-14 inspected via primary paper;author-hosted copy also read. Local clean simulation/probability/complement/Chebyshev/majority proofs supplied;opposite source acceptance label explicitly reconciled. No full general error-reduction or subroutine theorem claimed."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/bounded_error.py",
+    "prose_checker": "scripts/check_bounded_error_prose.py",
+    "evidence": "book/section-evidence/14.3",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 82,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 10,
+    "separate_transfer_circuits": 12,
+    "execution_ledger": {
+      "initial_guard_failure_completed_circuits": 79,
+      "complete": 82,
+      "body_assembly": 10,
+      "body_plus_complete": 92,
+      "transfer": 12,
+      "total_author_section_native_runs": 367,
+      "prerequisite_regressions": "14.2and6.8separate;not included",
+      "final_body_plus_complete_after_threshold_code": 92
+    },
+    "malformed_contracts": 14,
+    "tolerance": "Absolute1e-12/relative0;Fraction boundaries and binomial tails exact;no clipping/phase alignment/norm repair/interval certificate.",
+    "native_boundary": "Native H/X/CX/CCX/run/full densities/small probabilities/terminal samples;10qubit majority statevector mode with single vote-qubit query and simulator vector reference. Default full probabilities8qubit guard encountered and retained. Class definitions,uniform generators,Boolean translation,resource/rational calculations are book code;no native class classifier or hardware claim.",
+    "script_sha256": "35da303b83b952d7ac1e7a8fe15a7863e88643560f8cf22cc43056e9d047bda0"
+  },
+  "assessment": {
+    "tasks": [
+      "14.3A-D"
+    ],
+    "answers": "Accessible expanded answers;12fresh native transfer executions and16host graph truth checks;reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "82complete/10initial literal/92initial checker/12transfer/92final literal+complete after threshold loop passed;79completed circuits before initial request guard retained. Prior regressions separate.",
+    "production_failure": "Initial local link check caught future14.4plan link in wrong foundation file;corrected to its actual03-algorithms stable anchor. Failure retained;no science reexecution needed for link-only repair."
+  },
+  "production": {
+    "next_draft": "14.4 Oracle and data-access models",
+    "pdf": "Existing PDF edition unchanged",
+    "formula_display": "Actual IAB probability definitions/thresholds,clean embedding/projected norm,piecewise probabilities/native call block,gap/variance/Chebyshev and majority recurrence visually checked;expandedA-Danswers checked;globalMathJaxerrors0/no raw$$in expanded answers.",
+    "website": "Fresh strict build and75page local links passed;exact-head deployment receipt checked separately.",
+    "prerequisite_ci": "70c7e66 Verify40277355732 completed success,all3jobs;archived before14.3drafting.",
+    "html_sha256": "8e409223bf4b7c097ee3b490869853f7baed389e2ce305f1774606c759dba1e4"
+  }
+}

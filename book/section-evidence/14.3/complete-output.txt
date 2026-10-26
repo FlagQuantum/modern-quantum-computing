@@ -1,0 +1,4 @@
+82 actual native circuits:14 deterministic,28 fair-coin,28 reused-coin,8 promise-selector and4 majority cases passed.
+Full clean states/probabilities checked in both modes for78 circuits;4 majority cases use native statevector probabilities.
+Independent majority error5/32;shared-coin error1/4. Fixed-gap budget13;exact rational boundary/tail checks passed.
+14 malformed contracts rejected before execution;finite checks are not complexity-class certificates.

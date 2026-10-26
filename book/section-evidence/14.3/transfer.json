@@ -1,0 +1,81 @@
+{
+  "native_runs": 12,
+  "graph_host_truth_cases": 16,
+  "graph_qubits": 11,
+  "graph_network_gates": 19,
+  "native_equivalent_qubits": 5,
+  "cases": [
+    {
+      "word": "101",
+      "mode": "statevector",
+      "probability": "1/2",
+      "class_contract": false
+    },
+    {
+      "word": "010",
+      "mode": "statevector",
+      "probability": "1/2",
+      "class_contract": false
+    },
+    {
+      "word": "110",
+      "mode": "statevector",
+      "complement": false,
+      "probability": "1/4"
+    },
+    {
+      "word": "110",
+      "mode": "statevector",
+      "complement": true,
+      "probability": "3/4"
+    },
+    {
+      "word": "111",
+      "mode": "statevector",
+      "complement": false,
+      "probability": "3/4"
+    },
+    {
+      "word": "111",
+      "mode": "statevector",
+      "complement": true,
+      "probability": "1/4"
+    },
+    {
+      "word": "101",
+      "mode": "density_matrix",
+      "probability": "1/2",
+      "class_contract": false
+    },
+    {
+      "word": "010",
+      "mode": "density_matrix",
+      "probability": "1/2",
+      "class_contract": false
+    },
+    {
+      "word": "110",
+      "mode": "density_matrix",
+      "complement": false,
+      "probability": "1/4"
+    },
+    {
+      "word": "110",
+      "mode": "density_matrix",
+      "complement": true,
+      "probability": "3/4"
+    },
+    {
+      "word": "111",
+      "mode": "density_matrix",
+      "complement": false,
+      "probability": "3/4"
+    },
+    {
+      "word": "111",
+      "mode": "density_matrix",
+      "complement": true,
+      "probability": "1/4"
+    }
+  ]
+}

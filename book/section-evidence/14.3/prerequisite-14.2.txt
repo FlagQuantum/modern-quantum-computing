@@ -1,0 +1,2 @@
+Eight literal14.2units:6native circuits,all assertions and exact outputs passed.
+Complete14.2program:118native circuits,uniform reversible/workspace checks and exact output passed.

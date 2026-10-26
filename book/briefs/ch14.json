@@ -54,6 +54,33 @@
         "NC:3.1.2",
         "NC:3.2.5"
       ]
+    },
+    {
+      "sequence": 66,
+      "batch": "B02",
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-3",
+      "ref": "14.3",
+      "title": "Complexity classes and bounded error",
+      "depth": "F",
+      "requires": [
+        "sec-computational-models-complexity-and-quantum-advantage-1",
+        "sec-computational-models-complexity-and-quantum-advantage-2",
+        "sec-measurement-expectation-values-and-statistical-estimation-8"
+      ],
+      "role": "batch target",
+      "state": "not_started",
+      "planned_body_path": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "question": "What does bounded-error polynomial quantum computation guarantee on every allowed input?",
+      "entry": "14.1 uniform input/model definitions;14.2 clean reversible simulation;6.8 fixed-design probability bounds.",
+      "exit": "Precise P/BPP/BQP contracts,elementary containments,complement closure and fixed-gap normalization proof.",
+      "worked_case": "Uniform parity with two fair random bits and a reversible error bit;promise selector;independent/shared majority.",
+      "boundary": "Finite uniform gate alphabet,per-instance promise gap;no unproved separation or finite-test class inference.",
+      "code_plan": "Native H/X/CX/CCX/run/probabilities/samples;host Fraction acceptance/gap/tail checks.",
+      "independent_check": "Scalar fair-coin enumeration,full complex state/density and classical majority histograms.",
+      "transfer_task": "Fresh length3 noisy-parity strings plus majority-of-three XOR one coin:host graph resource count and smaller explicit native equivalent.",
+      "source_locators": [
+        "COMPLEX:BQP"
+      ]
     }
   ]
 }

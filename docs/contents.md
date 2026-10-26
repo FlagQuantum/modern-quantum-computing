@@ -31,7 +31,7 @@ The [numbered section specification](section-plan.md) gives learning, derivation
 
 | Chapter | Title | Reading level | Status |
 |---|---|---|---|
-| 14 | [Computational Models, Complexity, and Quantum Advantage](section-plans/03-algorithms.md#ch-computational-models-complexity-and-quantum-advantage) | Core | Sections: [1 draft](chapters/ch-computational-models-complexity-and-quantum-advantage.md#sec-computational-models-complexity-and-quantum-advantage-1), [2 draft](chapters/ch-computational-models-complexity-and-quantum-advantage.md#sec-computational-models-complexity-and-quantum-advantage-2); independent acceptance pending |
+| 14 | [Computational Models, Complexity, and Quantum Advantage](section-plans/03-algorithms.md#ch-computational-models-complexity-and-quantum-advantage) | Core | Sections: [1 draft](chapters/ch-computational-models-complexity-and-quantum-advantage.md#sec-computational-models-complexity-and-quantum-advantage-1), [2 draft](chapters/ch-computational-models-complexity-and-quantum-advantage.md#sec-computational-models-complexity-and-quantum-advantage-2), [3 draft](chapters/ch-computational-models-complexity-and-quantum-advantage.md#sec-computational-models-complexity-and-quantum-advantage-3); independent acceptance pending |
 | 15 | [Interference, Oracles, and Phase Kickback](section-plans/03-algorithms.md#ch-interference-oracles-and-phase-kickback) | Core | Planned |
 | 16 | [Grover Search, Amplitude Amplification, and Estimation](section-plans/03-algorithms.md#ch-grover-search-amplitude-amplification-and-estimation) | Core with advanced extensions | Planned |
 | 17 | [Fourier Transforms and Quantum Phase Estimation](section-plans/03-algorithms.md#ch-fourier-transforms-and-quantum-phase-estimation) | Core | Planned |

@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/bounded_error.py", line 173, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/bounded_error.py", line 158, in main
+    for independent in (False,True):majority(bit,independent)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/baai/Documents/liuwei/modern-quantum-computing/examples/foundations/bounded_error.py", line 122, in majority
+    result=fq.run(c,outputs=[fq.probabilities(name='full'),fq.probabilities(qubits=(out,),name='vote')],
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/_api.py", line 134, in run
+    import_module(".runtime.measurements", __package__).validate_measurements(
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/runtime/measurements.py", line 409, in validate_measurements
+    _validate_sampling_request(kind, wires, request.shots, metadata, n_qubits)
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/runtime/measurements.py", line 360, in _validate_sampling_request
+    raise ValueError(
+ValueError: marginal probabilities over 10 qubits exceed the supported limit of 8; increase max_marginal_wires explicitly to raise it

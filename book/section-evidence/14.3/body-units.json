@@ -1,0 +1,34 @@
+[
+  {
+    "code": "from fractions import Fraction as F\nimport torch,flagquantum as fq\nfrom dataclasses import replace\nfrom examples.foundations import bounded_error as b,statistical_ensembles as e,uniform_reversible as u\nassert b.contract(F(2,3),1) and b.contract(F(1,3),0)\nassert not b.contract(F(1,2),1) and not b.contract(F(1,2),0)\nassert b.contract(F(1,2),None) is None\nprint('Boundary2/3 and1/3 accepted;1/2 fails both labels;outside-promise has no required label.')\n",
+    "output": "Boundary2/3 and1/3 accepted;1/2 fails both labels;outside-promise has no required label.\n"
+  },
+  {
+    "code": "_,p,cost=b.execute('101',deterministic=True)\nassert p==0 and cost['kernel']==3 and cost['qubits']==7\nassert len(b.family(1000))==1005\nprint('101 has even parity:p_accept=0;3 deterministic CX gates,7 declared qubits.')\nprint('Host generator length1000:1005 noisy-kernel gates;no length1000 native execution.')\n",
+    "output": "101 has even parity:p_accept=0;3 deterministic CX gates,7 declared qubits.\nHost generator length1000:1005 noisy-kernel gates;no length1000 native execution.\n"
+  },
+  {
+    "code": "coins=fq.Circuit(2,dtype=torch.complex128).H(0).H(1)\ncoin_result=fq.run(coins,outputs=[fq.probabilities(name='joint'),fq.samples(qubits=(0,1),name='coins')],\n    shots=13,options=replace(e.OPTIONS,seed=47))\ne.close(coin_result.measurement('joint').value[0],torch.full((4,),.25,dtype=torch.float64))\nraw=coin_result.measurement('coins').value\nassert raw.shape==(1,13,2) and bool(((raw==0)|(raw==1)).all())\nprint('Two H-prepared coins:joint probabilities[1/4,1/4,1/4,1/4];13 raw two-bit records checked.')\n",
+    "output": "Two H-prepared coins:joint probabilities[1/4,1/4,1/4,1/4];13 raw two-bit records checked.\n"
+  },
+  {
+    "code": "# Layout q0,q1=data; q2,q3=coins; q4=workspace; q5=answer.\nc=fq.Circuit(6,dtype=torch.complex128).X(1).H(2).H(3)\nc.CCX(2,3,4)\nc.CX(0,5).CX(1,5).CX(4,5)\nc.CCX(2,3,4)\nr=fq.run(c,outputs=[fq.density_matrix(name='rho'),fq.probabilities(qubits=(5,),name='answer'),\n    fq.samples(qubits=(5,),name='record')],shots=19,options=replace(e.OPTIONS,seed=47))\nv=torch.zeros(64,dtype=torch.complex128)\nfor a,d in ((0,0),(0,1),(1,0),(1,1)):\n    v[u.index((0,1,a,d,0,1^(a*d)))]=.5\ne.close(r.measurement('rho').value[0],torch.outer(v,v.conj()))\ne.close(r.measurement('answer').value[0],torch.tensor([.25,.75],dtype=torch.float64))\nassert r.measurement('record').value.shape==(1,19,1)\nprint('Native clean randomized parity on01:p_accept=3/4;full density and terminal record shape checked.')\n",
+    "output": "Native clean randomized parity on01:p_accept=3/4;full density and terminal record shape checked.\n"
+  },
+  {
+    "code": "_,p_out,label_out=b.selector('01')\n_,p_yes,label_yes=b.selector('11',mode='density_matrix')\nassert p_out==F(1,2) and b.contract(p_out,label_out) is None\nassert p_yes==1 and b.contract(p_yes,label_yes)\nprint('Selector promise x0=x1:11 accepts with1;01 gives1/2 outside the promise.')\n",
+    "output": "Selector promise x0=x1:11 accepts with1;01 gives1/2 outside the promise.\n"
+  },
+  {
+    "code": "_,p_no,_=b.execute('01',complement=True)\n_,p_yes,_=b.execute('00',complement=True,mode='density_matrix')\nassert p_no==F(1,4) and p_yes==F(3,4)\nassert b.contract(p_no,0) and b.contract(p_yes,1)\nprint('One output X complements acceptance:01->1/4;00->3/4;both new labels satisfy the contract.')\n",
+    "output": "One output X complements acceptance:01->1/4;00->3/4;both new labels satisfy the contract.\n"
+  },
+  {
+    "code": "_,independent_error=b.majority(0,independent=True)\n_,shared_error=b.majority(0,independent=False)\nassert independent_error==F(5,32) and shared_error==F(1,4)\ngamma=F(1,4);k=b.repetition_budget(gamma)\nassert k==13 and F(1,4)/(k*gamma**2)==F(4,13)<=F(1,3)\nassert b.tail(F(1,4),k)<=F(4,13)\ndef threshold(bits):\n    h=len(bits)//2+1\n    previous=[1]+[0]*h\n    for bit in bits:\n        current=[1]+[0]*h\n        for t in range(1,h+1):\n            current[t]=((1-bit)&previous[t]) | (bit&previous[t-1])\n        previous=current\n    return previous[h]\nfor length in (1,3,5):\n    for j in range(2**length):\n        bits=u.bits(j,length)\n        assert threshold(bits)==int(sum(bits)>length//2)\nprint('Three votes:independent error5/32;shared-coin error1/4.')\nprint('Chebyshev design:gamma1/4,k13,error bound4/13<=1/3;exact binomial tail checked.')\n",
+    "output": "Three votes:independent error5/32;shared-coin error1/4.\nChebyshev design:gamma1/4,k13,error bound4/13<=1/3;exact binomial tail checked.\n"
+  },
+  {
+    "code": "_,p_bad,_=b.execute('00',coins='reused')\nassert p_bad==F(1,2) and not b.contract(p_bad,0)\nlabels=[sum(u.bits(j,3))%2 for j in range(8)]\nprobabilities=[F(y) for y in labels];probabilities[7]=F(0)\ncorrect=[p if y else 1-p for p,y in zip(probabilities,labels)]\nassert sum(correct)/8==F(7,8) and not all(b.contract(p,y) for p,y in zip(probabilities,labels))\nassert b.invalid_checks()==14\nprint('Reusing a coin inside AND destroys the gap:p_accept=1/2.')\nprint('Average correctness7/8 can hide a failing input;14 malformed contracts rejected.')\n",
+    "output": "Reusing a coin inside AND destroys the gap:p_accept=1/2.\nAverage correctness7/8 can hide a failing input;14 malformed contracts rejected.\n"
+  }
+]

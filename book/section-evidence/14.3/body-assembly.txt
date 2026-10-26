@@ -1,0 +1,12 @@
+Boundary2/3 and1/3 accepted;1/2 fails both labels;outside-promise has no required label.
+101 has even parity:p_accept=0;3 deterministic CX gates,7 declared qubits.
+Host generator length1000:1005 noisy-kernel gates;no length1000 native execution.
+Two H-prepared coins:joint probabilities[1/4,1/4,1/4,1/4];13 raw two-bit records checked.
+Native clean randomized parity on01:p_accept=3/4;full density and terminal record shape checked.
+Selector promise x0=x1:11 accepts with1;01 gives1/2 outside the promise.
+One output X complements acceptance:01->1/4;00->3/4;both new labels satisfy the contract.
+Three votes:independent error5/32;shared-coin error1/4.
+Chebyshev design:gamma1/4,k13,error bound4/13<=1/3;exact binomial tail checked.
+Reusing a coin inside AND destroys the gap:p_accept=1/2.
+Average correctness7/8 can hide a failing input;14 malformed contracts rejected.
+10native body executions:8helper and2explicit native calls.
