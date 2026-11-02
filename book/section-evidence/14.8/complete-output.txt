@@ -1,0 +1,5 @@
+52 native CPU complex128 circuits: 13 explicit rational-input cases, two modes and two record lengths passed.
+Exact integer-product, exhaustive finite-law and scalar amplitude/density references agree; classical coin and product samplers return the requested records.
+Exact-mean baseline meets any looser mean accuracy contract; 80-shot ideal estimation budget is separate from implementation-bias certification.
+Kernel-only ratio 2 becomes end-to-end ratio 12/101 in declared synthetic work units; finite data do not decide asymptotic behavior.
+20 invalid task/access/precision/cost/claim/record contracts rejected before further execution; no quantum advantage claimed.

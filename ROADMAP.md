@@ -71,3 +71,5 @@ Section14.5now has an author-verified F-depth draft:complete variance/exponentia
 Section14.6now supplies full typed cost,dependency-depth and conditional-history error composition proofs,eight checked units and52complete-program circuits. Next frozen target:14.7 Quantum-classical interaction patterns. Independent review remains pending.
 
 Section14.7now has an author-verified P-depth draft preserving all8editorial patterns,typed data/control and state-lifetime boundaries,with90complete-program native calls and38fresh transfer calls. Next frozen target:14.8 Classical baselines and advantage claims. Independent review remains pending.
+
+Section14.8now has an author-verified V-depth draft:matched contracts,exact classical parity baselines,complete-cost counterexamples and scoped finite/CPU timing evidence,eight checked units and52complete-program native calls. Next frozen target:14.9 Resource-audit laboratory. Independent review remains pending.

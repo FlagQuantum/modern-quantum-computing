@@ -1,0 +1,40 @@
+{
+  "native_runs": 10,
+  "rational_lists": [
+    [
+      "2/7",
+      "3/8",
+      "4/11"
+    ],
+    [
+      "1/5",
+      "2/9",
+      "3/10",
+      "4/13"
+    ],
+    [
+      "1/6",
+      "2/7",
+      "3/11",
+      "4/15",
+      "5/17"
+    ],
+    [
+      "1",
+      "0"
+    ],
+    [
+      "0",
+      "1",
+      "0"
+    ]
+  ],
+  "modes": [
+    "statevector",
+    "density_matrix"
+  ],
+  "shots": 37,
+  "exact_product_and_enumeration": "passed",
+  "classical_sampler_records": "passed",
+  "malformed_comparison_cases": 20
+}

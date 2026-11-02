@@ -1,0 +1,34 @@
+[
+  {
+    "code": "from dataclasses import replace\nfrom fractions import Fraction as F\nfrom pathlib import Path\nimport math,json,hashlib,torch,flagquantum as fq\nfrom examples.foundations import classical_baselines as b,statistical_ensembles as e,accuracy_repetition as a\nps=(F(1,3),F(2,5));task=b.Contract((ps,))\nexact_contract=replace(task,epsilon=F(0),delta=F(0))\nassert b.fulfills(exact_contract,task)\nprint('Same explicit inputs and probability-mean output: an exact classical answer is eligible for a looser accuracy/failure task.')\n",
+    "output": "Same explicit inputs and probability-mean output: an exact classical answer is eligible for a looser accuracy/failure task.\n"
+  },
+  {
+    "code": "num,den=b.integer_pair(ps)\nassert (num,den)==(14,30) and b.exact_mean(ps)==b.enumerate_law(ps)==F(7,15)\nc=fq.Circuit(3,dtype=torch.complex128)\nfor j,p in enumerate(ps):c.RY(j,theta=2*math.asin(math.sqrt(float(p))))\nc.CX(0,2).CX(1,2)\nout=fq.run(c,outputs=[fq.probabilities(qubits=(2,),name='parity')],options=e.OPTIONS)\ne.close(out.measurement('parity').value[0],torch.tensor([8/15,7/15],dtype=torch.float64))\nprint('Integer-product pair 14/30, exhaustive classical law and explicit native RY/CX probability all agree with 7/15.')\n",
+    "output": "Integer-product pair 14/30, exhaustive classical law and explicit native RY/CX probability all agree with 7/15.\n"
+  },
+  {
+    "code": "more=(F(1,3),F(2,5),F(3,7));q=b.exact_mean(more)\nclassical_coins=b.records(more,31,method='coins')\nclassical_product=b.records(more,31,method='product')\nquantum_records,checked_q=b.validate_native(more,31)\nassert q==checked_q==b.enumerate_law(more)\nfor bits in (classical_coins,classical_product,quantum_records):assert 0<=b.check_bits(bits,31)<=1\nprint('Matched 31-bit record task: coin-parity, optimized classical Bernoulli and native terminal records pass schemas; random frequencies need not coincide.')\n",
+    "output": "Matched 31-bit record task: coin-parity, optimized classical Bernoulli and native terminal records pass schemas; random frequencies need not coincide.\n"
+  },
+  {
+    "code": "shots=a.mean_budget(F(1,4),F(1,20));assert shots==80\nraw,q=b.validate_native((F(3,4),),shots,mode='density_matrix')\nassert q==F(3,4) and b.exact_mean((F(3,4),))==q\ncoverage=a.target_coverage(q,q,shots,F(1,4));assert coverage>=F(19,20)\nassert 0<=b.check_bits(raw,shots)<=1\nprint('Ideal-model mean task: 80-shot variance budget and exact binomial coverage checked; classical exact mean needs no imposed sampling budget.')\nprint('Floating-point native residual checks are numerical validation, not a rigorous hardware/angle-bias certificate.')\n",
+    "output": "Ideal-model mean task: 80-shot variance budget and exact binomial coverage checked; classical exact mean needs no imposed sampling budget.\nFloating-point native residual checks are numerical validation, not a rigorous hardware/angle-bias certificate.\n"
+  },
+  {
+    "code": "kernel=b.cost_ratio(2,1)\ncold=b.cost_ratio(b.end_cost(0,2,1,10),b.end_cost(100,1,1,0))\nassert kernel==2 and cold==F(12,101)\nassert b.cost_ratio(12*9,100+9)<1 and b.cost_ratio(12*10,100+10)>1\nprint('Synthetic common-unit costs: kernel ratio 2, complete cold-task ratio 12/101; shared-setup model crosses at 10 tasks.')\nprint('These are declared arithmetic fixtures, not measured device timings or quantum-advantage data.')\n",
+    "output": "Synthetic common-unit costs: kernel ratio 2, complete cold-task ratio 12/101; shared-setup model crosses at 10 tasks.\nThese are declared arithmetic fixtures, not measured device timings or quantum-advantage data.\n"
+  },
+  {
+    "code": "receipt=json.loads((Path(b.__file__).resolve().parents[2]/'book/section-evidence/14.8/cpu-timing.json').read_text())\nassert receipt['native_calls']==12 and receipt['classical_calls']==12\nassert receipt['implementation_sha256']==hashlib.sha256(Path(b.__file__).read_bytes()).hexdigest()\nassert len(receipt['cases'])==3\nsaved_table=(Path(b.__file__).resolve().parents[2]/'book/section-evidence/14.8/cpu-timing-table.md').read_text()\nfor row in receipt['cases']:\n c=row['median_ns']['classical-product-sampler'];q=row['median_ns']['FlagQuantum-CPU-terminal']\n ratio=f'{c/q:.6f}'if q else 'undefined'\n expected_line=f\"| {row['n']} | 43 | {c/1000:.3f} | {q/1000:.3f} | {ratio} |\"\n assert expected_line in saved_table\nfor row in receipt['cases']:\n for values in row['times_ns'].values():assert len(values)==3 and all(v>=0 for v in values)\nassert len(b.native_records(ps,17))==17\nprint('Dated CPU timing receipt: three cases, one warmup and three retained repetitions per arm; 12 native calls recorded separately.')\nprint('Timed path returns only requested raw records; no ratio threshold, QPU timing or best-classical claim is inferred.')\n",
+    "output": "Dated CPU timing receipt: three cases, one warmup and three retained repetitions per arm; 12 native calls recorded separately.\nTimed path returns only requested raw records; no ratio threshold, QPU timing or best-classical claim is inferred.\n"
+  },
+  {
+    "code": "for n in range(1,9):\n f=b.finite_curves(n,8);assert f['quantum_model']==f['classical_A']==f['classical_B']\nf=b.finite_curves(9,8);assert f['classical_A']==9 and f['classical_B']==81\nassert 'not QPU' in b.claim_scope('CPU-timing-over-named-code','CPU-simulator')\ntry:b.claim_scope('asymptotic-quantum-advantage','CPU-simulator')\nexcept ValueError:pass\nelse:raise AssertionError('Finite toy data certified an asymptotic claim')\nprint('Two synthetic classical families agree at every tested size 1..8 but diverge at 9; finite agreement cannot determine their asymptotic relation.')\n",
+    "output": "Two synthetic classical families agree at every tested size 1..8 but diverge at 9; finite agreement cannot determine their asymptotic relation.\n"
+  },
+  {
+    "code": "assert b.invalid_checks()==20 and b.RUNS==3\nsizes=[len(x)for x in task.instances];assert sizes==[2]\nassert b.claim_scope('software-correctness','CPU-simulator')=='Bounded implementation evidence only'\nprint('20 malformed task/access/precision/metric/claim/record contracts rejected before further native execution.')\nprint('Body: three companion-native calls plus one explicit fq.run; scope remains CPU software correctness/comparison protocol, not quantum advantage.')\n",
+    "output": "20 malformed task/access/precision/metric/claim/record contracts rejected before further native execution.\nBody: three companion-native calls plus one explicit fq.run; scope remains CPU software correctness/comparison protocol, not quantum advantage.\n"
+  }
+]

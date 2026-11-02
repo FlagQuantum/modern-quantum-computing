@@ -1,0 +1,103 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-computational-models-complexity-and-quantum-advantage-7",
+  "ref": "14.8",
+  "date": "2026-11-02",
+  "state": "draft",
+  "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+  "depth": "V",
+  "requires": [
+    "sec-computational-models-complexity-and-quantum-advantage-4",
+    "sec-computational-models-complexity-and-quantum-advantage-6"
+  ],
+  "result": "Advantage claims require matched classical baselines",
+  "assumptions": [
+    "Same task/input-access/output/accuracy/failure criterion;dated implementations and declared resource boundary.",
+    "Ideal independent rational-input parity law;native floating-point validation is not a rigorous bias certificate.",
+    "CPU timing is a warmed named-software comparison with retained repetitions;no QPU/asymptotic/optimal-classical claim."
+  ],
+  "verification_obligations": [
+    "Task eligibility permits stronger exact classical solution;reject changed access/output/instance sets,weaker precision and mismatched record lengths.",
+    "Derive exact rational product versus exhaustive finite law;include bitlength/arithmetic costs.",
+    "Distinguish mean tasks,raw-record tasks and full-state diagnostic outputs.",
+    "Validate native full-state/probabilities against independent references and ideal mean coverage separately.",
+    "Expose kernel-only/end-to-end and cold/amortized comparison counterexamples in labeled synthetic units.",
+    "Run and retain fixed dated CPU timing protocol with same declared record output;no speed threshold.",
+    "Construct finite-curve counterexample and qualify all advantage claim levels.",
+    "Provide invalid-contract cases and accessible review/transfer answers."
+  ],
+  "formula_code_units": [
+    "matched task/stronger exact answer",
+    "integer-product baseline and explicit native circuit",
+    "classical/native record task",
+    "accuracy/success contract",
+    "complete cost and amortization",
+    "actual CPU timing receipt",
+    "finite/asymptotic evidence boundary",
+    "negative comparison acceptance"
+  ],
+  "sources": [
+    {
+      "locator": "NC:3.2.1",
+      "url": "https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf",
+      "scope": "Publisher contents page2 locator printed136 inspected,not full chapter access."
+    },
+    {
+      "locator": "ED:protocol",
+      "path": "docs/reader-continuity.md",
+      "scope": "Complete original reader review/acceptance specification read.No independent signoff claimed."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/classical_baselines.py",
+    "prose_checker": "scripts/check_classical_baselines_prose.py",
+    "evidence": "book/section-evidence/14.8",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 52,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 4,
+    "separate_transfer_circuits": 10,
+    "execution_ledger": {
+      "initial_complete": 52,
+      "CPU_record_timing_including_warmups": 12,
+      "body_assembly": 4,
+      "body_plus_complete_checker": 56,
+      "fresh_transfer": 10,
+      "total_author_section_native_runs": 134,
+      "source_api_probes": 0,
+      "prior_regressions": "14.4and14.6prose/full checks separate"
+    },
+    "malformed_contracts": 20,
+    "tolerance": "Absolute1e-12,relative0;exact Fraction products/exhaustive laws/ideal binomial coverage;full vector/density native references;no clipping,phase alignment or normalization repair.No required frequency agreement/confidence hit/speed ratio.",
+    "native_boundary": "Actual RY/CX/analysis/run/probabilities/density/terminal samples on CPU,both modes;timing raw-record path statevector only.No QPU/hardware bias certificate,optimal-classical search,asymptotic separation or native advantage verifier.",
+    "script_sha256": "fbf8d45394285965c05e97547dd2ad24edb8161c9942551a200a7e8e502e32b3",
+    "timing_protocol": "3preselected cases,43records each,1warmup+3retained measurements perarm,alternating order;12actual native calls and12classical calls;all raw ns and source/environment retained."
+  },
+  "assessment": {
+    "tasks": [
+      "14.8A-D"
+    ],
+    "answers": "Accessible answers;10fresh native calls and exact classical references in transfer artifact.Reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Initial52passed18guards.Final fixture uses non-half rational probabilities and20guards including explicit raw-record-count mismatch;original initial source/output retained.Final checker56and freshtransfer10passed.No unexpected scientific execution failure."
+  },
+  "production": {
+    "next_draft": "14.9 Resource-audit laboratory",
+    "pdf": "Existing PDF edition unchanged",
+    "prerequisite_ci": "e373a23 Verify41408799915completed success,all3jobs;archived before repository integration.",
+    "formula_display": "Actual local IAB rational parity/product formula,finite asymptotic cases,CPU timing table4rowsx5cells and expandedA-Danswers checked;zeroMathJaxerrors.No formula rendering failure. Final scope clarification prose-only,allcode/outputblocks unchanged.",
+    "website": "Fresh strict build and75page rendered links/fragments/duplicateIDs passed;exact-head deployment receipt checked separately.",
+    "local_chapter_html_sha256": "1140ee7925f0fae01ae63389293564dc09b543fe852e9957c7f5d57f039a4a55"
+  }
+}

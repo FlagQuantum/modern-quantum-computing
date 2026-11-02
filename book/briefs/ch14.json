@@ -188,6 +188,33 @@
         "OQ3:2.4",
         "ED:hybrid"
       ]
+    },
+    {
+      "sequence": 71,
+      "batch": "B02",
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-7",
+      "ref": "14.8",
+      "title": "Classical baselines and advantage claims",
+      "depth": "V",
+      "requires": [
+        "sec-computational-models-complexity-and-quantum-advantage-4",
+        "sec-computational-models-complexity-and-quantum-advantage-6"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "question": "What classical baseline and evidence scope make an advantage comparison meaningful?",
+      "entry": "14.4access/input models;14.6complete resource/error accounting.",
+      "exit": "Match task/access/output/quality and dated implementations;derive independent exact/sample baselines and reject overbroad advantage conclusions.",
+      "worked_case": "Explicit rational parity probabilities,exact integer product,coin/product samplers,native RY/CX and dated CPU record-path timings.",
+      "boundary": "Vdepth acceptance protocol;no QPU execution,optimal classical search or asymptotic separation inferred from finite toy data.",
+      "code_plan": "Actual RY/CX/run/probabilities/density/samples/analysis plus exact Fraction references and task/cost/claim guards.",
+      "independent_check": "Integer product versus exhaustive finite law;full amplitudes/density;ideal exact binomial coverage;all raw CPU timing repetitions retained.",
+      "transfer_task": "Three new rational lists through5data qubits and mixed deterministic inputs,both modes,matched record/schema and negative contracts.",
+      "source_locators": [
+        "NC:3.2.1",
+        "ED:protocol"
+      ]
     }
   ]
 }

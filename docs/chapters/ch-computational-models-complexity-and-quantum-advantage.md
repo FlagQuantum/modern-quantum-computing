@@ -1,6 +1,6 @@
 # 14. Computational Models, Complexity, and Quantum Advantage
 
-**Working drafts: sections 14.1–14.7 · Writing Baseline 1.0 · November 2, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
+**Working drafts: sections 14.1–14.8 · Writing Baseline 1.0 · November 2, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
 
 <span id="sec-computational-models-complexity-and-quantum-advantage-1"></span>
 ## 14.1 Problems, input length, and computational models
@@ -2346,3 +2346,312 @@ No retained measured-state handle, dynamic feedback, GPU/QPU run, general cuttin
 **Source and review status.** The eight patterns are the book's [original editorial specification](../hybrid-computing.md), preserved here rather than attributed to an external universal taxonomy. The frozen execution-model source is Cross et al., [*OpenQASM 3*, arXiv:2104.14722v1 §2.4, PDF page 6 and Figure 1 on PDF page 7](https://arxiv.org/pdf/2104.14722v1#page=6). Those exact pages were inspected, with the real-time/near-time distinction on PDF page 3 for context. They motivate separating program, compilation and controllers; they do not establish FlagQuantum feature support. Our local algebra and execution receipts support only the examples stated above. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.7.json) keeps author checks separate from independent mathematical/implementation review and reader trial. This remains a working draft. Continue, when drafted, with [14.8 Classical baselines and advantage claims](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-7).
 
 <!-- end-section-14.7 -->
+
+<span id="sec-computational-models-complexity-and-quantum-advantage-7"></span>
+## 14.8 Classical baselines and advantage claims
+
+**Question.** Which classical algorithm should a quantum method be compared with, and what conclusion can a finite comparison actually support?
+
+The prerequisites are [14.4, oracle and data-access models](#sec-computational-models-complexity-and-quantum-advantage-4) and [14.6, complete resource accounting](#sec-computational-models-complexity-and-quantum-advantage-6). This **V-depth** section supplies an executable comparison protocol, independent classical references and deliberately invalid comparison cases. It does not turn a small circuit simulation into evidence of an asymptotic separation or a physical quantum speedup. “Advantage” needs a named task, a comparison class/model and an evidence level; the word by itself supplies none of those.
+
+Our recurring task makes a common mistake visible. The input is an explicit finite list of rational probabilities pⱼ∈[0,1]. Independently prepared bits Xⱼ have Pr(Xⱼ=1)=pⱼ, and Z=⊕ⱼXⱼ is their parity. Depending on the declared output contract, we may request its mean q=Pr(Z=1), an estimate with absolute accuracy ε and failure allowance δ, or S raw parity records. These are different tasks. Returning all amplitudes of a simulated register is a further, much larger output request, not the default classical obligation.
+
+### 14.8.1 Match the task before comparing costs
+
+A comparison contract records the allowed instance family or finite fixture, input representation and access, required output, accuracy/failure criterion, and resource metric. An algorithm is **eligible** if its actual guarantees meet that task. This does not require identical internal computations, identical precision or identical numbers of samples. A stronger solution is eligible if its additional work is counted.
+
+For a requested probability mean with tolerance ε and failure at most δ, an exact classical answer has error zero and failure zero, hence meets any nonnegative looser requirement. In contrast, a method returning only unrelated samples or assuming an oracle instead of reading the specified data needs a justified adapter/model change before it can be compared.
+
+| Item to match | What must be stated | A misleading substitution |
+| --- | --- | --- |
+| Task and instances | Same requested property and allowed inputs | Full classical vector versus one quantum scalar |
+| Access and representation | Explicit list, samples, oracle, preparation; bitlength | Free coherent access versus charged classical loading |
+| Accuracy and success | Error metric, ε, δ and any implementation bias | Exact classical output versus an unqualified noisy estimate |
+| Resource boundary | Common unit; setup, repetitions, output and host work | Classical end-to-end time versus quantum kernel gates |
+| Implementations | Dated code/version, configuration, hardware and baseline search scope | An obsolete/naive method labeled “the classical cost” |
+
+```python
+from dataclasses import replace
+from fractions import Fraction as F
+from pathlib import Path
+import math,json,hashlib,torch,flagquantum as fq
+from examples.foundations import classical_baselines as b,statistical_ensembles as e,accuracy_repetition as a
+ps=(F(1,3),F(2,5));task=b.Contract((ps,))
+exact_contract=replace(task,epsilon=F(0),delta=F(0))
+assert b.fulfills(exact_contract,task)
+print('Same explicit inputs and probability-mean output: an exact classical answer is eligible for a looser accuracy/failure task.')
+```
+
+```text
+Same explicit inputs and probability-mean output: an exact classical answer is eligible for a looser accuracy/failure task.
+```
+
+The `fulfills` helper checks declarations and rejects mismatches. Its raw-record contract also fixes the record count and declares the exact ideal target law; approximate-law sampling would need an explicit distance metric and is not certified by this helper. It does not prove that a producer satisfies those declarations. The exact classical guarantee below comes from a finite algebraic identity; the ideal sampling budget comes from a probability argument; numerical native agreement has its separately stated tolerance. A schema check cannot replace any of them.
+
+### 14.8.2 Derive a classical baseline that uses the task structure
+
+Parity satisfies (−1)ᶻ=∏ⱼ(−1)ˣʲ. Independence factors its finite expectation, and E[(−1)ˣʲ]=1−2pⱼ. Since E[(−1)ᶻ]=1−2q, solving gives
+
+$$
+q=\frac{1-\prod_{j=0}^{n-1}(1-2p_j)}2.
+$$
+
+Thus computing the requested scalar does not require enumerating 2ⁿ basis strings. Enumeration is useful as a small independent reference, but making it the only classical baseline would ignore a better algorithm for this task. For n=0, the empty product is one and q=0.
+
+The rational input also makes precision visible. Write pⱼ=aⱼ/dⱼ with integers 0≤aⱼ≤dⱼ and dⱼ>0. Let
+
+$$
+A=\prod_j(d_j-2a_j),\qquad D=\prod_jd_j,
+\qquad q=\frac{D-A}{2D}.
+$$
+
+The code accumulates two integer products and then forms this rational answer. Because |dⱼ−2aⱼ|≤dⱼ, we have |A|≤D and 0≤D−A≤2D. If B is the sum of the denominators' binary bitlengths, the stored numerator/denominator need at most B+2 bits, including the empty-list boundary. For nonempty input, multiplying the denominator bounds gives D<2ᴮ; doubling and forming D−A establish the stated bit bound. This is an exact finite representation, not a unit-cost arbitrary real.
+
+There are two integer multiplications per input entry in the unreduced-product algorithm. Schoolbook multiplication of numbers with at most B+O(1) bits uses O((B+1)²) bit operations by summing at most that many single-bit partial products. A sufficient bound for that particular algorithm is O(1+n(B+1)²), with O(B+1) accumulator storage in addition to input. Optional fraction reduction has its own arithmetic cost; Python's `Fraction` performs it, and the actual timing below includes the implementation used. This arithmetic upper bound is not a CPU-time measurement or a lower bound on all classical algorithms.
+
+For the quantum encoding, prepare RY(2 arcsin√pⱼ)|0⟩ for each data qubit and accumulate parity into a zero output qubit with CX gates. Each data bit has the requested ideal probability pⱼ, so the same finite parity argument supplies the output law. At p=(1/3,2/5), A=1,D=15 and q=7/15:
+
+```python
+num,den=b.integer_pair(ps)
+assert (num,den)==(14,30) and b.exact_mean(ps)==b.enumerate_law(ps)==F(7,15)
+c=fq.Circuit(3,dtype=torch.complex128)
+for j,p in enumerate(ps):c.RY(j,theta=2*math.asin(math.sqrt(float(p))))
+c.CX(0,2).CX(1,2)
+out=fq.run(c,outputs=[fq.probabilities(qubits=(2,),name='parity')],options=e.OPTIONS)
+e.close(out.measurement('parity').value[0],torch.tensor([8/15,7/15],dtype=torch.float64))
+print('Integer-product pair 14/30, exhaustive classical law and explicit native RY/CX probability all agree with 7/15.')
+```
+
+```text
+Integer-product pair 14/30, exhaustive classical law and explicit native RY/CX probability all agree with 7/15.
+```
+
+The full companion independently enumerates classical bit strings and compares the complete positive-amplitude quantum vector and density, as well as the output probability. Its tested basis convention is q₀ most significant, with the parity output last. The zero/one probability endpoints and empty list are included. These finite tests validate the chosen implementation; the product identity gives the mathematical result under the independence/input assumptions.
+
+### 14.8.3 Give a sampling task a sampling baseline
+
+If the task requests S raw parity bits rather than q, a classical baseline must return records. One implementation draws each Xⱼ with rational probability pⱼ and XORs them for every record. Another first computes q from the product, then draws one Bernoulli(q) bit for each record. Both produce the same single-record law under the ideal uniform-random-source model. Fresh independent random draws give the corresponding product law for the S records.
+
+The second sampler is a legitimate baseline: its setup cost is charged, not forbidden. It avoids rebuilding every underlying bit when only their parity is requested. The Python implementation draws a uniform integer in {0,…,d−1} and returns one if it is below a for a/d; exactly a of the d integers give one. It uses a seeded pseudorandom generator for reproducible validation, not a hardware randomness or independence certificate. The two sampling implementations are different algorithms, even when their target output laws agree.
+
+```python
+more=(F(1,3),F(2,5),F(3,7));q=b.exact_mean(more)
+classical_coins=b.records(more,31,method='coins')
+classical_product=b.records(more,31,method='product')
+quantum_records,checked_q=b.validate_native(more,31)
+assert q==checked_q==b.enumerate_law(more)
+for bits in (classical_coins,classical_product,quantum_records):assert 0<=b.check_bits(bits,31)<=1
+print('Matched 31-bit record task: coin-parity, optimized classical Bernoulli and native terminal records pass schemas; random frequencies need not coincide.')
+```
+
+```text
+Matched 31-bit record task: coin-parity, optimized classical Bernoulli and native terminal records pass schemas; random frequencies need not coincide.
+```
+
+A fair correctness check does not demand identical random bit lists or an empirical frequency exactly equal to q. Here it checks output schemas and exact reference laws; the native probabilities/full state are checked independently at numerical tolerance. An experiment that returns only the parity bits cannot be charged as though it had returned every data bit or an entire simulated wavefunction. If those additional outputs are required, change the task and account for their storage, readout and processing on both sides.
+
+### 14.8.4 Match accuracy without handicapping an exact method
+
+For a mean estimate from ideal IID parity records, the variance bound recalled in 14.5 gives
+
+$$
+\Pr\{|\widehat q-q|>\epsilon\}
+\le\frac1{4S\epsilon^2},\qquad
+S\ge\left\lceil\frac1{4\delta\epsilon^2}\right\rceil.
+$$
+
+This is a sufficient budget, not the optimal number of samples for every q. At ε=1/4, δ=1/20 it gives S=80. The companion checks a fixed q=3/4 case against its exact binomial coverage as an independent finite reference. No particular random record is required to succeed as a deterministic test.
+
+If an implemented distribution has a certified bias at most β<ε from the target, the available statistical radius is ε−β and the sufficient denominator uses (ε−β)² instead. As 14.5 explains, implementation precision, model bias and statistical uncertainty are separate. A small observed floating-point residual against the reference is numerical validation; it is not an interval proof of β or a hardware calibration certificate.
+
+```python
+shots=a.mean_budget(F(1,4),F(1,20));assert shots==80
+raw,q=b.validate_native((F(3,4),),shots,mode='density_matrix')
+assert q==F(3,4) and b.exact_mean((F(3,4),))==q
+coverage=a.target_coverage(q,q,shots,F(1,4));assert coverage>=F(19,20)
+assert 0<=b.check_bits(raw,shots)<=1
+print('Ideal-model mean task: 80-shot variance budget and exact binomial coverage checked; classical exact mean needs no imposed sampling budget.')
+print('Floating-point native residual checks are numerical validation, not a rigorous hardware/angle-bias certificate.')
+```
+
+```text
+Ideal-model mean task: 80-shot variance budget and exact binomial coverage checked; classical exact mean needs no imposed sampling budget.
+Floating-point native residual checks are numerical validation, not a rigorous hardware/angle-bias certificate.
+```
+
+The exact classical mean needs no imposed 80-shot loop to meet the same requested mean accuracy. Forcing that loop would handicap an eligible baseline. Conversely, exact evaluation of q does not by itself emit S random records when that is the output requested; the sampler and its output costs still belong in that separate task. A comparison must say which of these contracts it evaluates.
+
+### 14.8.5 Use the same resource boundary and unit
+
+With a fully specified implementation, a common resource unit and positive candidate cost, a named ratio can be written
+
+$$
+R_{\rm named}=\frac{C_{\rm classical,named}}{C_{\rm candidate}}.
+$$
+
+A value above one favors the candidate only for those costs, that named baseline and that scope. Gates, arithmetic operations, seconds, energy and memory are different metrics; a ratio between unlike units is not a speedup. Physical gate durations, routing, reset, loading and readout cannot be supplied by CPU simulator gate counts.
+
+For a serial repeated task, charge setup plus repeated trials plus postprocessing, as in 14.6. The following **synthetic arithmetic fixture** uses one explicitly common “declared work” unit: classical kernel cost 2 and candidate kernel cost 1 appear to give ratio 2. Adding classical postprocessing 10 and candidate setup 100 instead yields complete costs 12 and 101, so the ratio is 12/101. These numbers are invented model inputs for diagnosing a faulty comparison, not timing observations.
+
+```python
+kernel=b.cost_ratio(2,1)
+cold=b.cost_ratio(b.end_cost(0,2,1,10),b.end_cost(100,1,1,0))
+assert kernel==2 and cold==F(12,101)
+assert b.cost_ratio(12*9,100+9)<1 and b.cost_ratio(12*10,100+10)>1
+print('Synthetic common-unit costs: kernel ratio 2, complete cold-task ratio 12/101; shared-setup model crosses at 10 tasks.')
+print('These are declared arithmetic fixtures, not measured device timings or quantum-advantage data.')
+```
+
+```text
+Synthetic common-unit costs: kernel ratio 2, complete cold-task ratio 12/101; shared-setup model crosses at 10 tasks.
+These are declared arithmetic fixtures, not measured device timings or quantum-advantage data.
+```
+
+If the candidate setup is legally shared across K tasks in a different amortized-work contract, the same fixture has costs 12K and 100+K. The candidate becomes cheaper when 12K>100+K, first at integer K=10. This change in conclusion comes from the declared reuse contract; a cold single-task result and an amortized batch result answer different questions. Data changes that invalidate setup, retries, success repetitions and unsuccessful candidates must be charged under the actual workflow. Do not report only the successful run or omit a failed attempt's work.
+
+### 14.8.6 Record an actual dated software experiment without relabeling it
+
+The repository includes a small CPU timing receipt for three preselected explicit inputs of sizes n=2,3,4, requesting 43 raw parity records each. The two arms are the product-based classical sampler and `native_records`, which builds and runs the FlagQuantum parity circuit with **only the requested sample output**. Full density/probability diagnostics are outside this timed path and were validated separately. Comparing a reference path that requests a dense density matrix with a task path that requests one bit would measure a changed output request.
+
+The protocol uses one warmup per arm and three measured repetitions per case, alternates arm order, retains every measured duration, and records seeds, source hash, software versions, CPU platform and clock. The timed region includes input validation, product setup or circuit construction, sampling/execution and conversion to the returned tuple. The common fixtures are already parsed `Fraction` objects; file I/O and creating those shared inputs are outside both timed arms. Imports/process startup, physical-QPU loading, network and queueing are not measured; this is a warmed single-process software experiment. No physical device execution occurred.
+
+```python
+receipt=json.loads((Path(b.__file__).resolve().parents[2]/'book/section-evidence/14.8/cpu-timing.json').read_text())
+assert receipt['native_calls']==12 and receipt['classical_calls']==12
+assert receipt['implementation_sha256']==hashlib.sha256(Path(b.__file__).read_bytes()).hexdigest()
+assert len(receipt['cases'])==3
+saved_table=(Path(b.__file__).resolve().parents[2]/'book/section-evidence/14.8/cpu-timing-table.md').read_text()
+for row in receipt['cases']:
+ c=row['median_ns']['classical-product-sampler'];q=row['median_ns']['FlagQuantum-CPU-terminal']
+ ratio=f'{c/q:.6f}'if q else 'undefined'
+ expected_line=f"| {row['n']} | 43 | {c/1000:.3f} | {q/1000:.3f} | {ratio} |"
+ assert expected_line in saved_table
+for row in receipt['cases']:
+ for values in row['times_ns'].values():assert len(values)==3 and all(v>=0 for v in values)
+assert len(b.native_records(ps,17))==17
+print('Dated CPU timing receipt: three cases, one warmup and three retained repetitions per arm; 12 native calls recorded separately.')
+print('Timed path returns only requested raw records; no ratio threshold, QPU timing or best-classical claim is inferred.')
+```
+
+```text
+Dated CPU timing receipt: three cases, one warmup and three retained repetitions per arm; 12 native calls recorded separately.
+Timed path returns only requested raw records; no ratio threshold, QPU timing or best-classical claim is inferred.
+```
+
+Observed medians from the three measured CPU repetitions, rounded for display (both time columns are in microseconds):
+
+| n | Requested bits | Classical median (µs) | FlagQuantum CPU median (µs) | Median ratio C/FQ |
+| --- | ---: | ---: | ---: | ---: |
+| 2 | 43 | 17.625 | 1002.750 | 0.017577 |
+| 3 | 43 | 17.500 | 1033.459 | 0.016933 |
+| 4 | 43 | 19.041 | 1190.208 | 0.015998 |
+
+
+The last column is only the ratio of those named software medians, not a speedup confidence interval. The [raw CPU timing receipt](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-evidence/14.8/cpu-timing.json) and [benchmark program](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-evidence/14.8/benchmark.py) are the numerical results, with all values and exclusions retained. They are descriptive software timings over these named implementations. Three repetitions do not establish a runtime distribution, a statistically reliable speed advantage, the best classical algorithm or a physical quantum advantage. Seed replay is not extra independent evidence. Numerical agreement with the ideal target is scoped to the stated tolerance, not a rigorous implementation-error certificate. The validation never requires a timing ratio to exceed one.
+
+A serious empirical comparison would need an appropriate baseline search, controlled settings, representative instances, a predeclared aggregation/error analysis, complete preprocessing/output costs, robustness to implementations/hardware, and matching validated answer quality. A faster result over one named code version should be reported with that qualification, not silently promoted to a claim against every classical method.
+
+### 14.8.7 Separate finite implementation evidence from an asymptotic claim
+
+Different conclusions require different evidence:
+
+| Claim | Necessary evidence boundary |
+| --- | --- |
+| This small program implements the specified model | Independent references, complete code, tolerances and failure cases |
+| This implementation used fewer declared logical resources | Same task, access, units, alphabet/precision and complete ledgers |
+| This implementation ran faster than a named baseline here | Matched validated quality, dated implementations/hardware and sound timing protocol |
+| This algorithm has a proved asymptotic advantage in a stated model | A mathematical upper/lower-bound or conditional result with its assumptions |
+| This task exceeds the relevant classical comparison class | A justified statement about that class; testing one weak implementation is insufficient |
+
+Finite timing data alone cannot determine an arbitrary algorithm family's asymptotic behavior. For a concrete logical counterexample, fix a largest tested size N and define **synthetic cost functions**
+
+$$
+\begin{aligned}
+T_Q(n)&=n,\qquad T_{C,A}(n)=n,\\
+T_{C,B}(n)&=
+\begin{cases}n,&n\le N,\\n^2,&n>N.\end{cases}
+\end{aligned}
+$$
+
+All three agree at every tested positive size through N. Beyond that range one classical function remains linear while the other is quadratic. Thus the finite values are compatible with different asymptotic relations. These are constructed functions illustrating logical insufficiency, not measured algorithm runtimes or a classical lower-bound proof. Mathematical analysis of known code may establish more; the finite measurements alone do not supply it.
+
+```python
+for n in range(1,9):
+ f=b.finite_curves(n,8);assert f['quantum_model']==f['classical_A']==f['classical_B']
+f=b.finite_curves(9,8);assert f['classical_A']==9 and f['classical_B']==81
+assert 'not QPU' in b.claim_scope('CPU-timing-over-named-code','CPU-simulator')
+try:b.claim_scope('asymptotic-quantum-advantage','CPU-simulator')
+except ValueError:pass
+else:raise AssertionError('Finite toy data certified an asymptotic claim')
+print('Two synthetic classical families agree at every tested size 1..8 but diverge at 9; finite agreement cannot determine their asymptotic relation.')
+```
+
+```text
+Two synthetic classical families agree at every tested size 1..8 but diverge at 9; finite agreement cannot determine their asymptotic relation.
+```
+
+Likewise a large dense statevector contains 2ᵂ amplitudes, but that representation's size is not a lower bound for the scalar parity task solved above. Neither the number of simulated qubits, entanglement by itself, nor the cost of a naive classical enumeration establishes quantum advantage. A conditional complexity result must name its model/conjecture; an oracle-query comparison must retain its oracle assumptions; an empirical hardware statement must remain tied to its measured task, quality and dated baseline scope.
+
+### 14.8.8 Make acceptance and rejection reviewable
+
+The operational checklist is: state the task/access/instances; specify output and acceptable error/success; explain the selected classical algorithms and their search scope; freeze code/versions and numerical/resource units; validate each output independently; account for all relevant work; retain unsuccessful/mismatched cases; report only the conclusion warranted by that evidence. An implementation receipt is not independent mathematical review or a lower-bound theorem. The helper's claim-scope check is an editorial guard, not an automated scientific certifier.
+
+```python
+assert b.invalid_checks()==20 and b.RUNS==3
+sizes=[len(x)for x in task.instances];assert sizes==[2]
+assert b.claim_scope('software-correctness','CPU-simulator')=='Bounded implementation evidence only'
+print('20 malformed task/access/precision/metric/claim/record contracts rejected before further native execution.')
+print('Body: three companion-native calls plus one explicit fq.run; scope remains CPU software correctness/comparison protocol, not quantum advantage.')
+```
+
+```text
+20 malformed task/access/precision/metric/claim/record contracts rejected before further native execution.
+Body: three companion-native calls plus one explicit fq.run; scope remains CPU software correctness/comparison protocol, not quantum advantage.
+```
+
+The actual APIs used here are released FlagQuantum 0.3.1 `Circuit.RY`, `CX`, structural `analysis()`, `run`, exact `probabilities`/`density_matrix` and terminal `samples` on CPU complex128. Python is 3.12.14 and Torch 2.13.0. The full-vector/density/scalar checks use atol=10⁻¹² and rtol=0, with no phase alignment, clipping or input normalization repair. `Fraction` product and finite-enumeration references are exact; native angle preparation is floating-point and separately validated. The native sample records and classical pseudorandom samples are checked for shape/bits and counted, not forced to have matching frequencies.
+
+The complete program [classical_baselines.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/classical_baselines.py) executes 52 native circuits: 13 input cases including empty, deterministic endpoints and nontrivial rational probabilities, both statevector/density-matrix modes and record lengths 1 and 31. Its local guards limit lists to five probabilities and sampling to 1000 records; they are teaching/reference limits, not framework limits. Exact scalar product, exhaustive finite law, full amplitudes/densities, task eligibility, complete-cost fixtures, finite-claim counterexamples and 20 malformed contracts are checked. The 12 timing-path native calls are recorded separately, as are the four body calls. No native “quantum advantage verifier,” hardware run, optimal-classical search, general complexity classifier or interval calibration theorem is claimed.
+
+From the repository root, run:
+
+```bash
+python examples/foundations/classical_baselines.py
+python scripts/check_classical_baselines_prose.py
+```
+
+Expected output of the complete program:
+
+```text
+52 native CPU complex128 circuits: 13 explicit rational-input cases, two modes and two record lengths passed.
+Exact integer-product, exhaustive finite-law and scalar amplitude/density references agree; classical coin and product samplers return the requested records.
+Exact-mean baseline meets any looser mean accuracy contract; 80-shot ideal estimation budget is separate from implementation-bias certification.
+Kernel-only ratio 2 becomes end-to-end ratio 12/101 in declared synthetic work units; finite data do not decide asymptotic behavior.
+20 invalid task/access/precision/cost/claim/record contracts rejected before further execution; no quantum advantage claimed.
+```
+
+**Check your understanding.** Why may a classical exact formula be an eligible baseline for a noisy estimation task? When would it fail to fulfill a raw-record task? Which boundary changes when a benchmark requests a full density matrix only from one arm? What can a named timing ratio say, and what can it not say?
+
+**Problems and transfer.**
+
+- **14.8-A — independent baseline.** For p=(1/3,2/5), derive the integer pair and q by both the product and explicit enumeration. Show that at least one observed quantum frequency differing from q is compatible with a correct sampler; identical record lists are not the criterion.
+- **14.8-B — complete cost.** In the synthetic common-unit fixture, derive the cold-task ratio and the first integer K at which setup sharing changes the ordering. What task/data-reuse assumption would be violated if every new input required paying setup again?
+- **14.8-C — fresh execution.** Test p=(2/7,3/8,4/11), (1/5,2/9,3/10,4/13) and (1/6,2/7,3/11,4/15,5/17), S=37, both modes. Add the mixed deterministic inputs (1,0) and (0,1,0). Compare exact product/enumeration and full native references, validate both classical samplers' record schemas and reject a stale instance/output/accuracy contract.
+- **14.8-D — audit a claim.** A report times classical full-state enumeration against a quantum scalar kernel, omits loading and repetitions, then fits an exponential separation to n≤8 CPU simulations. Identify four distinct unsupported steps and specify the evidence needed for a narrower defensible claim. Can replacing the named baseline by a better classical method change the observed ratio without changing the task?
+
+<details markdown="1">
+<summary>Answers and verification guidance for 14.8-A–D</summary>
+
+**A.** D=15,A=1 gives (D−A)/(2D)=14/30=7/15. The two odd strings 01 and 10 have probabilities (2/3)(2/5)=4/15 and (1/3)(3/5)=3/15, which sum to 7/15. A single record is either 0 or 1, so its frequency differs from 7/15 even when drawn from the correct distribution. Correct output laws do not require identical random realizations.
+
+**B.** The cold complete costs are 12 and 101, giving 12/101 despite kernel ratio 2. Sharing setup over K tasks gives 12K/(100+K); this exceeds one when 11K>100, first at K=10. If setup is invalidated for every input, the candidate instead pays 101K and there is no such crossover in this fixture. These remain hypothetical costs in declared units, not measured quantum speedups.
+
+**C.** There are ten new native calls: three rational lists plus two mixed deterministic lists, each in two modes. Both mixed deterministic inputs have odd parity with probability one. Exact products and exhaustive laws agree, full native vectors/densities and probabilities match within the stated numerical tolerance, and every requested record has valid shape/bits. No record-frequency confidence test or hardware certificate is inferred. Stronger accuracy is eligible; weaker quality or changed access/output/instances is not the same comparison.
+
+**D.** The report changes the output task, changes the resource boundary, conflates CPU simulation with physical quantum execution, and infers asymptotic separation from finite data without a mathematical bound. A narrower report would name both implementations and matched requested outputs/quality, charge their full costs, record versions/hardware and timing uncertainty, and call the result a scoped software comparison. A better classical algorithm can change the named ratio; the task did not change. One code's failure to compete is not a lower bound on every classical method.
+
+</details>
+
+**Source and review status.** The frozen NC §3.2.1 locator, beginning on printed page 136, was checked against the [publisher's contents](https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf), not treated as access to the full chapter. The book's [reader-review/acceptance protocol](../reader-continuity.md) supplies the original editorial evidence obligations. The product, bitlength, task-eligibility examples and finite-function counterexample are given locally; no unproved separation or new standalone paper reproduction is imported. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.8.json) distinguishes author validation from independent mathematical/implementation review and reader trial. This remains a working draft. Continue, when drafted, with [14.9 Resource-audit laboratory](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-8).
+
+<!-- end-section-14.8 -->

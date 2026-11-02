@@ -1,0 +1,101 @@
+{
+  "date_utc": "2026-11-02T08:08:42.955119+00:00",
+  "purpose": "Dated CPU software-overhead illustration,not hardware or asymptotic advantage",
+  "output": "43 raw parity bits",
+  "timed_boundary": "input validation,product setup or circuit construction,execution/sampling,result tuple conversion;reference diagnostics outside timing",
+  "excluded": "hardware queue,physical loading/reset,network,QPU execution;none occurred",
+  "warmups_per_arm_per_case": 1,
+  "measured_repetitions_per_arm_per_case": 3,
+  "all_times_retained": true,
+  "seeds": "200warmup;201..203measured,paired deterministic validation not independent statistical evidence",
+  "native_calls": 12,
+  "classical_calls": 12,
+  "environment": {
+    "python": "3.12.14",
+    "flagquantum": "0.3.1",
+    "torch": "2.13.0",
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "machine": "arm64",
+    "device": "CPU",
+    "clock": "namespace(implementation='mach_absolute_time()', monotonic=True, adjustable=False, resolution=4.166666666666667e-08)"
+  },
+  "implementation_sha256": "fbf8d45394285965c05e97547dd2ad24edb8161c9942551a200a7e8e502e32b3",
+  "cases": [
+    {
+      "probabilities": [
+        "1/3",
+        "2/5"
+      ],
+      "n": 2,
+      "shots": 43,
+      "times_ns": {
+        "classical-product-sampler": [
+          40292,
+          17625,
+          13750
+        ],
+        "FlagQuantum-CPU-terminal": [
+          1322791,
+          1002750,
+          943000
+        ]
+      },
+      "median_ns": {
+        "classical-product-sampler": 17625,
+        "FlagQuantum-CPU-terminal": 1002750
+      }
+    },
+    {
+      "probabilities": [
+        "1/3",
+        "2/5",
+        "3/7"
+      ],
+      "n": 3,
+      "shots": 43,
+      "times_ns": {
+        "classical-product-sampler": [
+          17833,
+          17500,
+          14625
+        ],
+        "FlagQuantum-CPU-terminal": [
+          1060041,
+          1026959,
+          1033459
+        ]
+      },
+      "median_ns": {
+        "classical-product-sampler": 17500,
+        "FlagQuantum-CPU-terminal": 1033459
+      }
+    },
+    {
+      "probabilities": [
+        "1/3",
+        "2/5",
+        "3/7",
+        "4/9"
+      ],
+      "n": 4,
+      "shots": 43,
+      "times_ns": {
+        "classical-product-sampler": [
+          20583,
+          19041,
+          15417
+        ],
+        "FlagQuantum-CPU-terminal": [
+          1302083,
+          1190208,
+          1165459
+        ]
+      },
+      "median_ns": {
+        "classical-product-sampler": 19041,
+        "FlagQuantum-CPU-terminal": 1190208
+      }
+    }
+  ],
+  "interpretation": "No threshold requires a speed ratio above1;three repetitions do not certify a runtime distribution or the best classical baseline. Ideal target marginal checked separately within numerical tolerance,not an interval/hardware-error certificate."
+}
