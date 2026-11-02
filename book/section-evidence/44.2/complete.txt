@@ -1,0 +1,5 @@
+58 native CPU complex128 circuits: 48 three-gate chains, four shorter prefixes and six basis-input chains; both statevector and density-matrix modes.
+48 classical linear-map cases include empty/full supports, n=0..3 and nonunitary maps; tensor, scalar gather, entry matrix and permutation-Kronecker references agree.
+Chronological products and reversed adjoints agree; complex correlated inputs, nonadjacent/reversed supports, zero/identity and strided layouts passed.
+14 malformed/native-boundary contracts rejected; no sorting, conjugating, clipping or normalization repair in the local kernel.
+Book kernel forms no full-register operator; dense validation and native full-density requests are separate small-system diagnostics, not a memory benchmark.

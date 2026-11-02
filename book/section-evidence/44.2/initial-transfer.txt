@@ -1,0 +1,2 @@
+Eight fresh native calls passed: three changed five-qubit chains,both modes,and two full reversed-support Fourier prefixes.
+Fresh nonunitary/arbitrary-vector,complex controlled-X exercise and support-covariance references passed classically; no phase alignment or normalization repair.

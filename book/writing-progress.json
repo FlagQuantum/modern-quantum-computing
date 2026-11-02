@@ -731,6 +731,16 @@
       "body": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md",
       "record": "book/section-records/44.1.json",
       "author_execution": "passed: FQ0.3.1/Torch2.13.0/Python3.12.14CPUcomplex128;56complete/3body/9freshtransfer;explicitoutput/storagebounds distinctfromuniversalcomplexity"
+    },
+    "sec-exact-simulation-tensor-execution-and-numerical-reliability-2": {
+      "state": "draft",
+      "brief": "book/briefs/ch44.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md",
+      "record": "book/section-records/44.2.json",
+      "author_execution": "passed: FQ0.3.1/Torch2.13.0/Python3.12.14CPUcomplex128;58complete/4body/8freshtransfer;all-inputtensor/embedding proofseparatefromnumericalvalidation"
     }
   },
   "existing_pilots": [

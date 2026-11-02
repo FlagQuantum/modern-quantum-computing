@@ -1,0 +1,30 @@
+[
+  {
+    "run": 1,
+    "n": 3,
+    "support": [
+      2,
+      0
+    ],
+    "mode": "statevector",
+    "prefix": 3,
+    "basis": null,
+    "gates": 10,
+    "state_norm": 0.9999999999999999,
+    "max_probability_residual": 2.7755575615628914e-17
+  },
+  {
+    "run": 2,
+    "n": 3,
+    "support": [
+      2,
+      0
+    ],
+    "mode": "density_matrix",
+    "prefix": 3,
+    "basis": null,
+    "gates": 10,
+    "state_norm": 0.9999999999999999,
+    "max_probability_residual": 5.551115123125783e-17
+  }
+]

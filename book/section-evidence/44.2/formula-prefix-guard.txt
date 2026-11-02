@@ -1,0 +1,1 @@
+Finalsource/prefixguardpassed:protectedconjugation andnonbracket-leadingalignedentry;zero nativecalls.AllPython/textblocks unchanged fromexecuted62-call checker.

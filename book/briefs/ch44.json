@@ -26,6 +26,33 @@
       "source_locators": [
         "QUEST:representation"
       ]
+    },
+    {
+      "sequence": 74,
+      "batch": "B03",
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-2",
+      "ref": "44.2",
+      "title": "Applying local gates by tensor indices",
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-6",
+        "sec-gates-reversible-computation-and-circuit-synthesis-1"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md",
+      "question": "Why does a local reshape/permute/contraction kernel equal the ordered Kronecker-embedded operator?",
+      "entry": "4.6logical axis conventions and5.1chronological composition.",
+      "exit": "Complete finite coefficient proof and a minimal independently checked vector executor.",
+      "worked_case": "CXon(2,0),general phasedFourier conjugation chains and complex correlated inputs.",
+      "boundary": "All-input algebra for general square linear maps;native tests only finite CPUunitaries.Purevector executor,not generalchannel/batch/distributed execution.",
+      "code_plan": "Bookvector kernel+scalar+entry/P-Kronecker references;actual native RY/P/CX/X/unitary/run/probabilities/density.",
+      "independent_check": "Different address calculations and explicit P-dagger(UkronI)P versus row/col delta entries,then native fullvector/density.",
+      "transfer_task": "Changedfive-qubit supports/rowphases/RX,fullreversed-supportprefix,nonunitary andcomplexsortingcounterexamples.",
+      "source_locators": [
+        "NC:2.1.7",
+        "QUEST:representation"
+      ]
     }
   ]
 }

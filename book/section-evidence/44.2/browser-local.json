@@ -1,0 +1,12 @@
+{
+  "answers": [
+    {
+      "math": 4,
+      "open": true
+    }
+  ],
+  "mathContainers": 42,
+  "mathErrors": 0,
+  "unexpectedEmphasis": 0,
+  "url": "http://127.0.0.1:8753/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability/#4424-work-one-ordered-gate-through-the-indices"
+}

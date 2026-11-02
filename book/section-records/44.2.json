@@ -1,0 +1,102 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-2",
+  "ref": "44.2",
+  "date": "2026-11-02",
+  "state": "draft",
+  "body": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md",
+  "depth": "F",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-6",
+    "sec-gates-reversible-computation-and-circuit-synthesis-1"
+  ],
+  "result": "Local tensor gate kernel is dense operator action",
+  "assumptions": [
+    "Fixed q0-first basis;ordered distinct support and increasing spectator order.",
+    "Any finite complex square local matrix and vector for algebra;unitary and normalized preparations for native gate tests.",
+    "Explicit book statevector kernel and bounded dense references;no internalnativekernel/performance guarantee."
+  ],
+  "verification_obligations": [
+    "Bijection x<->selected/spectator coordinates and permutationunitarity.",
+    "Fully expand Pdagger(UkronI)P entries and spectator deltas.",
+    "Expand local input-bit contraction and prove reshape/permute/multiply/inverse restoration equality coordinatebycoordinate.",
+    "Prove chronological executor composition and reverse-adjoint inverse when unitary.",
+    "Check generalmaps,empty/full supports,n0,stridedlayout,zero/identity,orderingcovariance andmalformedcontracts.",
+    "Validate actualnativecompositions oncomplexcorrelatedstates,basisinputs,bothmodes andnewfive-qubitparameters."
+  ],
+  "formula_code_units": [
+    "ordered packing",
+    "permutationKroneckerembedding",
+    "literal tensor kernel",
+    "explicit native orderedCXcounterexample",
+    "complex native chain",
+    "composition/inverse proof",
+    "layout/linear-map/covariance boundaries",
+    "resources/nativeguards"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.1.7",
+      "url": "https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf",
+      "scope": "Publishercontents page2confirmsprinted71;notfulltextbookaccess."
+    },
+    {
+      "locator": "QUEST:representation",
+      "url": "https://arxiv.org/pdf/1802.08032v1#page=2",
+      "scope": "Cachedv1PDFpage2representationpassage re-read;nohardware/performanceclaims imported."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/tensor_gate_executor.py",
+    "prose_checker": "scripts/check_tensor_gate_executor_prose.py",
+    "evidence": "book/section-evidence/44.2",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128native;complex64/128arraychecks"
+    },
+    "complete_program_circuits_per_invocation": 58,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 4,
+    "separate_transfer_circuits": 8,
+    "execution_ledger": {
+      "initial_complete": 58,
+      "body_assembly": 4,
+      "body_plus_complete_checker": 62,
+      "initial_transfer_using_temporary_import_route": 8,
+      "final_portable_transfer_entry": 8,
+      "total_author_section_native_runs": 140,
+      "zero_native_support_covariance_check": 1,
+      "source_api_probes": 0,
+      "prior_regressions": "4.6and44.1prose/completechecks separate"
+    },
+    "malformed_contracts": 14,
+    "tolerance": "Absolute1e-12,relative0;fullcomplexvector/density/probabilityagainstscalar,entrymatrix andP-Kroneckerreferences.No phasealignment/clipping/normalizationrepair.",
+    "native_boundary": "Released0.3.1CPUcomplex128RY/P/CX/X/unitary/analysis/run/probabilities/density;statevectoraccessoronlySVmode.Purepreparations testedbothmodes.Bookkernelvectoronly;empty-support/generalnonunitarymathnotnativegatecalls.Nohardware,batch,gradient,noise,distributed orinternalnativekernelperformanceclaim.",
+    "script_sha256": "9546b37de836318f59160fd5e60d21cce544afb2ceb594965e01fd26e459861b"
+  },
+  "assessment": {
+    "tasks": [
+      "44.2A-D"
+    ],
+    "answers": "Accessible answers;freshfive-qubitparameters/supports andfullreversedprefixeightcases;classicalcomplexCXandcovarianceexampleschecked.Readertrialpending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Initial58and body4passed;all-inputFproof supplied.finalbody/fullchecker62andfreshportabletransfer8are recorded separately.Initialtemporarytransfer8retained;portableimportadaptationrechecked,notsixteen distincttransfercases.No unexpectedscientificfailure;wrongsortedCXis intentionalcounterexample.Nativecodeunchangedafterinitialcomplete. ActualIABdiscovered aligned-leadingbracket consumedmatrixLHSwithoutMathJaxerror;originalsource/screenshot retained and explicitdelimiters fixed.AllPython/textblocks unchanged.Finalsourceguardscheckedwithzeroextra nativecalls."
+  },
+  "production": {
+    "next_draft": "44.3 Observables and measurement execution",
+    "pdf": "Existing PDF edition unchanged",
+    "prerequisite_ci": "2590d66 Verify41421244213completed success,all3jobs;archived before repository integration.",
+    "formula_display": "Actual localIAB matrixLHS,allindexedcontraction,CXmatrix/packedvector,expandedA-Danswers verified;42MathJaxcontainers acrosschapter,4in44.2answers;zeroMathJaxerrors/unintendedemphasis afterrepair.",
+    "website": "Freshstrictbuild and76page renderedlinks/fragments/duplicateIDs passed;exacthead deploymentcheckedseparately.",
+    "prior_section_note": "44.1now links to the new44.2kernelproof rather than callingitundrafted.All44.1Python/textblocks preserved.",
+    "local_chapter_html_sha256": "ce04f976082c3b07e96277bb51460c469dbfad4577261f2592639d22ca37ae79"
+  }
+}

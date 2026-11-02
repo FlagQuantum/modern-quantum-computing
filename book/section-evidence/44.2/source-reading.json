@@ -1,0 +1,16 @@
+{
+  "locators": [
+    {
+      "locator": "NC:2.1.7",
+      "url": "https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf",
+      "scope": "Publishercontents page2confirmsprinted71;notfulltextbookaccess."
+    },
+    {
+      "locator": "QUEST:representation",
+      "url": "https://arxiv.org/pdf/1802.08032v1#page=2",
+      "scope": "Cachedv1PDFpage2representationpassage re-read;nohardware/performanceclaims imported."
+    }
+  ],
+  "quest_pdf_sha256": "58076dec8f4cb64ea658eee88e9b58d02c43b9d81a26bd1eb81af30b7e88d71e",
+  "note": "Only narrowrepresentationdiscussionandpublisherlocatorconsulted.All centralproofslocal.No thirdpartyPDF/text uploaded."
+}

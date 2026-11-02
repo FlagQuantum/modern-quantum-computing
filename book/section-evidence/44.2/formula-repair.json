@@ -1,0 +1,7 @@
+{
+  "failure": "Actual browser:aligned opening bracket consumed as optional alignment argument;matrixLHSlabel absent despitezeroMathJaxerrors.",
+  "repair": "Use explicit bigl/bigr delimiters at first aligned entry.",
+  "code_output_blocks_unchanged": true,
+  "blocks_sha256": "d0e618e7a33896e2acba11b29204691890579abeab7db27a9c3cd0caf3b63a62",
+  "extra_native_reruns_for_typesetting": 0
+}
