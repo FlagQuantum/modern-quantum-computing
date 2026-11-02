@@ -67,3 +67,5 @@ Section14.3now has an author-verified F-depth draft:precise promise/error defini
 Section14.4now has an author-verified P-depth access-model draft:eight checked formula/code units,108complete-program native circuits,separate query/payload/gate/preparation costs,and explicit input-model counterexamples. Next frozen target:14.5 Accuracy,repetition,and success probability. Independent reviews remain pending.
 
 Section14.5now has an author-verified F-depth draft:complete variance/exponential majority,bias-aware precision and independent-block median proofs,eight checked units and84complete-program circuits. Next frozen target:14.6 Complete resource accounting. Independent review remains pending.
+
+Section14.6now supplies full typed cost,dependency-depth and conditional-history error composition proofs,eight checked units and52complete-program circuits. Next frozen target:14.7 Quantum-classical interaction patterns. Independent review remains pending.

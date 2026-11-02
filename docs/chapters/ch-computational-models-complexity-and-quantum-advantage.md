@@ -1,6 +1,6 @@
 # 14. Computational Models, Complexity, and Quantum Advantage
 
-**Working drafts: sections 14.1–14.5 · Writing Baseline 1.0 · November 2, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
+**Working drafts: sections 14.1–14.6 · Writing Baseline 1.0 · November 2, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
 
 <span id="sec-computational-models-complexity-and-quantum-advantage-1"></span>
 ## 14.1 Problems, input length, and computational models
@@ -1648,3 +1648,340 @@ The frozen source is Boyd and Vandenberghe, [*Convex Optimization*, §7.4](https
 The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.5.json) distinguishes author execution from independent mathematical/implementation review and reader trial. It remains a working draft. Continue, when drafted, with [14.6 Complete resource accounting](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
 
 <!-- end-section-14.5 -->
+
+<span id="sec-computational-models-complexity-and-quantum-advantage-6"></span>
+## 14.6 Complete resource accounting
+
+**Question.** What must be counted before a small quantum kernel becomes a resource claim for a complete task?
+
+The prerequisites are [14.1, input and computational models](#sec-computational-models-complexity-and-quantum-advantage-1), [14.4, access models](#sec-computational-models-complexity-and-quantum-advantage-4) and [14.5, accuracy and repetition](#sec-computational-models-complexity-and-quantum-advantage-5). This F-depth section proves compositional cost and error rules. The rules hold in a **declared model**; they cannot supply missing gate durations, connectivity, a loading mechanism or calibrated error bounds.
+
+Our worked task estimates the odd-parity probability of n independently prepared qubits. The classical input is a list of n finite angles θⱼ in radians, with a specified representation; the answer is a rational frequency from R terminal records. R is fixed before sampling. We count continuous RY and CX as named logical gates, with unit logical duration and all-to-all availability. Initialization and terminal measurement are counted separately. These conventions are adequate for this model calculation, not a finite-alphabet synthesis or physical implementation estimate.
+
+### 14.6.1 Compose costs with matching units
+
+A resource is defined by its unit and its boundary. Let a **work vector** be
+
+$$
+\mathbf c=(G,Q,I,M,B_{\rm in},B_{\rm out}),
+$$
+
+where G counts logical gates, Q abstract oracle calls, I individual qubit initializations, M measured qubits, and the last two coordinates count classical payload bits read and written. G and Q are separate coordinates: an oracle call is not silently identified with a single elementary gate. A measurement on k qubits contributes k to M under this convention, even if one runtime request returns them together. Here input/output payload bits cross the declared task interface; they are not a count of all internal memory or controller traffic. Payload bits exclude framing and object overhead, which require their own record if relevant.
+
+For serial stages A then B, define c(A;B)=c(A)+c(B), component by component, provided B's input contract is met by A's output. To prove additivity, label every primitive counted event by its stage. The two labeled sets are disjoint, so each coordinate's event count is the sum of the two cardinalities. Applying this argument to the first k stages and then stage k+1 proves the rule for any finite list by induction. The empty list has zero work, and addition is associative because integer addition is associative. A declared setup stage used once and a trial repeated R times therefore give
+
+$$
+\mathbf c_{\rm task}=\mathbf c_{\rm setup}+R\mathbf c_{\rm trial}+\mathbf c_{\rm post}.
+$$
+
+This equality counts the specified implementation. Recompiling, caching, algebraic cancellation or changing the task boundary can change the implementation and must produce a new ledger. Shared data read only once belongs to setup, not automatically to every trial. Conversely, preparing the quantum input again for each independent trial belongs to every trial.
+
+```python
+from fractions import Fraction as F
+from dataclasses import replace
+import math,torch,flagquantum as fq
+from examples.foundations import resource_accounting as r
+from examples.foundations import statistical_ensembles as e,oracle_access as q
+setup=r.Work(read_bits=192);trial=r.Work(gates=6,prepared=4,measured=1,write_bits=1)
+total=setup+trial.scale(80)
+assert total==r.Work(gates=480,prepared=320,measured=80,read_bits=192,write_bits=80)
+assert (setup+trial)+trial==setup+(trial+trial)
+print('Typed serial work: 480 gates, 320 initialized qubits across preparations, 80 measured bits, 192 input bits and 80 record bits.')
+```
+
+```text
+Typed serial work: 480 gates, 320 initialized qubits across preparations, 80 measured bits, 192 input bits and 80 record bits.
+```
+
+Peak space does **not** follow this sum rule. If A and B reuse an allocation after A has released its temporary qubits and B's initialization contract has been restored, peak space is at most max(W_A,W_B), including any persistent registers in both widths. Simultaneous disjoint allocations instead require their sum. An unknown entangled workspace cannot be declared released and replaced by zero for free; the cleanup proof in 5.4 or an explicitly charged physical preparation/reset mechanism is needed.
+
+### 14.6.2 Derive depth from dependencies rather than gate count
+
+For the following gate-list model, gates take one time slot, gates sharing a qubit keep their listed order, and gates on disjoint qubits may overlap. There are no other constraints. Let P(j) contain the immediately preceding gate on each qubit used by gate j. Set the finish layer of an absent predecessor to zero and define
+
+$$
+\ell_j=1+\max_{i\in P(j)}\ell_i,\qquad
+D=\max_j\ell_j,
+$$
+
+using max(empty)=0 and D=0 for an empty circuit. Every legal schedule must finish j at least one layer after every predecessor; induction on the gate list proves its finish time is at least ℓⱼ. Conversely place j in layer ℓⱼ. Two gates sharing a qubit have a predecessor chain between them and hence strictly increasing layers, so this placement has no shared-qubit collision and respects every constraint. It attains the lower bound D. This is a proof of optimal depth **for this fixed dependency graph**, not over all equivalent circuits or hardware schedules.
+
+The helper implements the recurrence by keeping the latest finish layer for each qubit. The independent native structural analysis agrees on this circuit:
+
+```python
+supports=((0,),(1,),(2,),(0,3),(1,3),(2,3))
+finish,depth=r.layers(supports,4)
+c=fq.Circuit(4,dtype=torch.complex128)
+for j,t in enumerate((.2,.4,.6)):c.RY(j,theta=t)
+for j in range(3):c.CX(j,3)
+analysis=c.analysis()
+assert finish==(1,1,1,2,3,4) and depth==analysis.depth==4
+assert analysis.n_instructions==6 and analysis.gate_counts=={'ry':3,'cx':3}
+assert tuple(tuple(op.wires)for op in c.to_ir().instructions)==supports
+print('Native IR: three RY plus three CX; independent finish layers (1,1,1,2,3,4), depth 4.')
+```
+
+```text
+Native IR: three RY plus three CX; independent finish layers (1,1,1,2,3,4), depth 4.
+```
+
+For serial stages separated by a barrier, their depths add. Without a barrier the concatenated graph may permit overlap: two one-gate stages on disjoint qubits have depths one and one but combined depth one. Thus the sum of depths is a valid sequential schedule bound, not an unconditional minimum. Gate commutation does not automatically remove a shared-qubit scheduling constraint in this declared model. Physical durations or limited connectivity would change the graph or the recurrence.
+
+### 14.6.3 Include preparation and readout in a complete small task
+
+Start n data qubits and output qubit qₙ at zero. Prepare each data qubit with RY(θⱼ), then call CX(j,n) for j=0,…,n−1. On a computational basis component x=(x₀,…,xₙ₋₁), the CX sequence writes z=⊕ⱼxⱼ. Therefore the full final pure state is
+
+$$
+|\Psi\rangle=
+\sum_{x\in\{0,1\}^n}
+\left[\prod_{j=0}^{n-1}
+\bigl(\cos(\theta_j/2)\bigr)^{1-x_j}
+\bigl(\sin(\theta_j/2)\bigr)^{x_j}\right]
+|x\rangle|\mathop{\oplus}_j x_j\rangle.
+$$
+
+A scalar reference for the output is obtained without executing the gate list. For independent bits Xⱼ with Pr(Xⱼ=1)=sin²(θⱼ/2), the sign of parity is the product of the signs of the bits. Factor the finite sum over x to get
+
+$$
+\begin{aligned}
+\mathbb E[(-1)^z]
+ &=\prod_j\mathbb E[(-1)^{X_j}]
+ =\prod_j\cos\theta_j,\\
+p_{\rm odd}
+ &=\frac{1-\prod_j\cos\theta_j}{2}.
+\end{aligned}
+$$
+
+This task is chosen to expose costs, not to claim quantum advantage: the displayed product also gives a direct classical reference using n cosine factors. A fair performance comparison would charge its numerical evaluation and accuracy too.
+
+The first equality uses the product preparation; it would not hold for an arbitrary correlated input. The second uses E[(-1)ᶻ]=Pr(z=0)−Pr(z=1)=1−2p_odd. The companion checks the complete amplitude vector, density and this scalar probability, not only one sampled frequency. Here are actual native execution and terminal requests on the circuit just built:
+
+```python
+native=fq.run(c,outputs=[fq.probabilities(qubits=(3,),name='out'),
+    fq.samples(qubits=(3,),name='raw')],shots=80,options=e.OPTIONS)
+expected=(1-math.prod(math.cos(t)for t in (.2,.4,.6)))/2
+e.close(native.measurement('out').value[0],torch.tensor([1-expected,expected],dtype=torch.float64))
+raw=native.measurement('raw').value
+assert raw.shape==(1,80,1) and bool(((raw==0)|(raw==1)).all())
+print('Explicit native RY/CX preparation: analytic parity probability and 80 terminal one-bit records checked.')
+```
+
+```text
+Explicit native RY/CX preparation: analytic parity probability and 80 terminal one-bit records checked.
+```
+
+One trial uses n RY plus n CX, W=n+1 qubits, I=n+1 initializations and one selected measured qubit. All RY gates can occupy the first layer; the n CX gates form a chain through the output qubit. For n≥1, G=2n and D=n+1. For n=0 the empty parity is zero, G=D=0, but requesting records still uses the one output qubit. The output qubit is measured, not cleaned for coherent reuse. The initialization assumption is explicit; this code does not demonstrate a reset operation on hardware.
+
+### 14.6.4 Charge repetitions and state a concurrency contract
+
+For a zero-bias estimate with ε=1/4 and δ=1/20, the sufficient variance budget from 14.5 is R=80. At n=3 a serial implementation consequently has 480 gate applications, 320 individual qubit initializations, 80 selected measured bits and peak width four. The same four qubits may be reused between properly initialized trials; 320 initializations does not mean 320 simultaneous qubits.
+
+Suppose P disjoint copies are available, with no shared control, loading or readout bottleneck. Assign trials to successive batches of at most P. The number of batches is ⌈R/P⌉: fewer batches have capacity less than R, while filling all but the final batch attains this number. A schedule using P copies thus obeys
+
+$$
+G_{\rm total}=RG,\qquad
+W_{\rm peak}=PW,\qquad
+D_{\rm schedule}\le\lceil R/P\rceil D.
+$$
+
+Here P≤R and the width counts allocated copies. The depth bound is achievable in the stipulated unit-duration model; it excludes initialization/readout latency, which have separate counts. If they had known durations, each batch would include those durations too. This construction proves a work/space/schedule tradeoff, not a speedup measured on the present CPU.
+
+```python
+serial=r.repeat_plan(3,80,bits=64);parallel=r.repeat_plan(3,80,parallel=4,bits=64)
+assert serial['total'].gates==parallel['total'].gates==480
+assert (serial['peak_qubits'],serial['depth_bound'])==(4,320)
+assert (parallel['peak_qubits'],parallel['depth_bound'])==(16,80)
+assert serial['native_invocations']==1 and serial['total'].prepared==320
+r.simulate((.2,.4,.6),80);r.simulate((.2,.4,.6),80,mode='density_matrix')
+print('80 ideal trials: serial peak 4/depth 320; four-way peak 16/depth 80; both have 480 logical gates.')
+print('One simulator run per record batch is distinct from 80 conceptual fresh preparations.')
+```
+
+```text
+80 ideal trials: serial peak 4/depth 320; four-way peak 16/depth 80; both have 480 logical gates.
+One simulator run per record batch is distinct from 80 conceptual fresh preparations.
+```
+
+The auditable n=3, R=80 ledger is:
+
+| Quantity and unit | One trial | Serial trials | Four allocated copies |
+| --- | ---: | ---: | ---: |
+| RY logical gates | 3 | 240 | 240 |
+| CX logical gates | 3 | 240 | 240 |
+| Individual qubit initializations | 4 | 320 | 320 |
+| Selected measured qubits | 1 | 80 | 80 |
+| Raw selected payload bits | 1 | 80 | 80 |
+| Peak allocated qubits | 4 | 4 | 16 |
+| Scheduled gate layers | 4 | 320 | 80 |
+| Physical elapsed time | unspecified | unspecified | unspecified |
+
+The angle payload is 192 bits read once and the circuit is built once in this reuse contract. The parallel column is a model schedule, not an executed parallel hardware benchmark.
+
+**A simulator invocation is another unit.** In these ideal terminal-sampling examples one `fq.run(...,shots=R)` prepares a simulated state and produces R records. It need not apply every simulated gate R times. The logical experiment model counts R fresh preparations; the author execution ledger counts actual calls to `fq.run`. Neither number should be substituted for the other. Batch size, shots, logical trials and independent hardware runs are different declarations. Reusing a seed is reproducibility, not additional statistical evidence.
+
+### 14.6.5 Replace a query by its implementation exactly once
+
+Let an outer circuit use G₀ non-oracle gates and Q queries per trial. Suppose a chosen oracle implementation has g gates per call, with setup payload B. Concatenating Q copies of its gate list with the outer list gives
+
+$$
+G_{\rm task}=R(G_0+Qg),\qquad
+Q_{\rm task}=RQ,\qquad B_{\rm setup}=B.
+$$
+
+The gate equality follows by counting outer and substituted gates separately. It assumes the same implementation and no cross-boundary optimization; with such optimization it is an upper bound for the unoptimized construction. Counting Q again as elementary gates would double-count the same implementation. Leaving Q unexpanded is legitimate only as an **oracle-model** report, with the omitted implementation cost visibly named.
+
+For the Gray table from 14.4, a structured oracle uses three CX gates. Its minterm realization uses four X and four CCX calls, hence eight named gates in that different logical alphabet. With G₀=4, Q=2 and R=80, the two gate totals are 800 and 1600 although both reports have 160 queries. This comparison does not assign equal physical duration or synthesis cost to CX and CCX.
+
+```python
+cost=r.substitute(4,2,3,80,8)
+assert cost=={'queries':160,'logical_gates':800,'setup_bits':8}
+_,gray=q.execute((0,1,3,2),2,2,i=2,y=1)
+assert gray['gates']==8
+# The same Gray oracle has a structured implementation with just three CX gates.
+assert 80*(4+2*8)==1600 and cost['logical_gates']==800
+print('160 abstract queries: structured implementation gives 800 task gates; minterm implementation gives 1600, with the same query count.')
+```
+
+```text
+160 abstract queries: structured implementation gives 800 task gates; minterm implementation gives 1600, with the same query count.
+```
+
+An inverse or controlled oracle requires its own stated implementation and cost. A data update may invalidate setup and require rebuilding it. If U updates each cost S_update in some declared common unit, that unit's deterministic ledger becomes S_setup+U S_update+R C_trial+C_post. No assumption about free coherent memory access is hidden in that equality.
+
+### 14.6.6 Prove a compositional failure budget, including adaptive calls
+
+Let Fⱼ be a bad event at stage j in a fixed finite list of K calls. For any outcome ω, the indicator of the union is at most the sum of the indicators. Taking expectations proves
+
+$$
+\Pr\!\left(\bigcup_{j=1}^K F_j\right)
+\le\sum_{j=1}^K\Pr(F_j)
+\le\sum_{j=1}^K\delta_j.
+$$
+
+No independence between the bad events is used. This composition rule requires a correctness implication: if no named bad event occurs, the complete task satisfies its declared output/accuracy contract. Otherwise an omitted failure mechanism remains outside the guarantee.
+
+Adaptive stages need care because a later call may receive a different input after an earlier failure. Let Hⱼ₋₁ denote the previous classical history and Gⱼ₋₁ the event of no earlier failure. Failures need not be observable, so Gⱼ₋₁ is an additional mathematical condition, not necessarily a field in the history. Assume that for **every history with positive probability together with Gⱼ₋₁**, the conditional chance of failure at call j is at most δⱼ. Define Eⱼ=Gⱼ₋₁∩Fⱼ as the event that j is the first failure. Summing over histories gives
+
+$$
+\begin{aligned}
+\Pr(E_j)
+ &=\sum_h
+ \Pr(G_{j-1},H_{j-1}=h)
+\Pr(F_j\mid G_{j-1},H_{j-1}=h)\\
+ &\le\delta_j\Pr(G_{j-1})\le\delta_j.
+\end{aligned}
+$$
+
+The Eⱼ are disjoint and their union is the event of any failure, so their probabilities sum and give the same budget. Zero-probability histories contribute zero and require no conditional distribution. For a bounded adaptive algorithm with at most K calls, pad unused positions with zero-cost, zero-failure stages and apply this proof. A guarantee only on one convenient input, or only averaged over a different history distribution, does not meet the premise. A cap is necessary for a deterministic worst-case ledger; an unbounded repeat-until-success process needs a separately stated tail or expected-cost analysis.
+
+```python
+bad=r.adaptive_first_failure((F(1,10),F(1),F(1,5)))
+assert bad==F(7,25) and r.failure_total((F(1,10),F(1,5)))==F(3,10)
+per_call=F(1,20)/160
+assert r.failure_total((per_call,)*160)==F(1,20)
+assert r.failure_total((F(1,20),F(1,20)))==F(1,10)
+print('Adaptive first-failure probability 7/25 is bounded by 3/10; 160 per-call allowances of 1/3200 sum to 1/20.')
+```
+
+```text
+Adaptive first-failure probability 7/25 is bounded by 3/10; 160 per-call allowances of 1/3200 sum to 1/20.
+```
+
+For 160 calls and an implementation-failure allocation 1/20, a uniform allowance 1/3200 per call suffices. Combining that allocation with statistical failure at most 1/20 gives total failure at most 1/10, assuming the statistical bound holds uniformly when implementation has not failed. This is different from summing deterministic probability biases: biases consume an accuracy or success-gap budget as in 14.5, while probabilities δⱼ bound bad events. The helper checks exact arithmetic, not the truth of a device's supplied δⱼ.
+
+### 14.6.7 Count classical input, records and the reported answer
+
+Fix a parameter payload of b bits per angle, excluding common metadata. Reading all n parameters costs nb payload bits. In this Python example b=64 describes the binary64 values handed to the runtime; it is a storage convention, not a claim of 64 accurate physical control bits. A smaller fixed-point encoding needs an explicit quantization and probability-bias analysis from 14.5. Parsing, circuit construction and parameter transfer do not disappear because they run on the host.
+
+For a concrete instruction-payload encoding, use one opcode bit to distinguish RY from CX and a=max(1,⌈log₂(n+1)⌉) bits for each qubit label. The n RY records contain one label and b angle bits each; the n CX records contain two labels each. Counting these fields gives
+
+$$
+B_{\rm circuit}=2n+3na+nb.
+$$
+
+This excludes common width/count/framing metadata and is a specified compact format, not a claim about the runtime's JSON or Python object layout. For n=3 and b=64 it is 216 bits. The simple builder emits 2n instruction records once, so its append count is linear in n in a unit-cost host model; bit-cost construction must additionally account for writing these descriptor fields. The initial classical angle payload and the stored circuit description are two representations of related data, not two unrelated input requirements. If both are retained, both allocations matter.
+
+If k selected qubits are recorded on each of R trials, the raw logical record payload is Rk bits. Changing the request from the parity output alone to all n+1 qubits multiplies that payload by n+1. These records permit the stronger check z=⊕x on every sampled row, but the additional output is a diagnostic choice, not required by the estimation task.
+
+The count C=∑zᵣ lies in {0,…,R} and fits in ⌈log₂(R+1)⌉ bits. The implementation uses `R.bit_length()`, which equals that ceiling for every positive integer R: if 2ᵃ≤R<2ᵃ⁺¹, then a<log₂(R+1)≤a+1. The rational report C/R can be encoded as two unsigned integers of that width, using at most twice as many payload bits; common framing or printing digits is additional. A streaming counter reads R bits and uses R additions on O(log(R+1))-bit integers. Each binary addition scans at most that many bit positions, giving an O(R log(R+1)) bit-operation upper bound and O(log(R+1)) counter space. Retaining the raw record tensor instead uses its full output storage. These are different postprocessing choices, not incompatible estimates.
+
+```python
+_,full,info=r.simulate((.2,.4,.6),80,full=True)
+assert full['input_bits']==192 and full['record_payload_bits']==320
+assert serial['record_payload_bits']==80 and full['counter_bits']==7
+descriptor_bits=2*3+3*3*2+3*64
+assert descriptor_bits==216 and 2*3==6
+assert full['exact_report_bits']==14 and info['record_tensor_bytes']>=40
+print('Input payload 192 bits; selected output 80 bits versus full records 320 bits; count storage 7 bits and numerator/denominator report at most 14 bits.')
+print('Native tensor byte storage is measured separately from packed logical payload.')
+print('Declared compact circuit payload 216 bits; builder emits six instructions once, while streaming postprocessing uses 80 additions.')
+```
+
+```text
+Input payload 192 bits; selected output 80 bits versus full records 320 bits; count storage 7 bits and numerator/denominator report at most 14 bits.
+Native tensor byte storage is measured separately from packed logical payload.
+Declared compact circuit payload 216 bits; builder emits six instructions once, while streaming postprocessing uses 80 additions.
+```
+
+The code measures tensor storage with `numel()*element_size()` and reports it separately: a tensor normally does not pack one bit per logical binary outcome. Object headers, allocator overhead and copies are additional. Likewise reading a claimed L-bit input or emitting an L-bit output takes at least L bit transfers in the declared serial bit-I/O model. This elementary boundary can dominate a cheap kernel; it is not a theorem about an unspecified parallel interface. A function returning an entire statevector and a task returning one probability estimate have different output contracts.
+
+### 14.6.8 Keep logical, simulator and physical ledgers separate
+
+A dense statevector on W qubits has 2ᵂ complex entries; a dense density matrix has 4ᵂ. One complex128 entry has 16 bytes. Multiplying dimensions by this element size gives payload storage of one such tensor, not peak process memory. Temporaries, measurement results, autograd state and other tensors may coexist. The companion requests dense reference outputs only for small validation cases; they are not charged as operational answers to the parity-estimation task.
+
+```python
+storage=r.simulator_storage(4)
+assert storage=={'statevector_bytes':256,'density_bytes':4096}
+_,empty,_=r.simulate((),7)
+assert empty['total'].gates==0 and empty['peak_qubits']==1 and empty['record_payload_bits']==7
+assert r.invalid_checks()==14
+print('One four-qubit complex128 vector payload is 256 bytes; one dense density payload is 4096 bytes, excluding temporaries.')
+print('Empty parity: zero gates still needs one output qubit and seven requested records; 14 malformed contracts rejected.')
+```
+
+```text
+One four-qubit complex128 vector payload is 256 bytes; one dense density payload is 4096 bytes, excluding temporaries.
+Empty parity: zero gates still needs one output qubit and seven requested records; 14 malformed contracts rejected.
+```
+
+A complete report must identify setup/loading and updates, gate alphabet and precision, preparation, workspace lifetime and cleanup, queries and their implementations, measurements/records, repetition and concurrency, classical postprocessing, the final answer representation and the accuracy/failure contract. If durations τⱼ in one common unit are supplied, a fully serial time model may sum them. A weighted total is meaningless until its weights and unit are given; adding “six gates plus four qubits plus eighty bits” does not produce time. With overlapping activities use a schedule and dependencies instead of summing all times or assuming perfect overlap. No physical durations, connectivity, calibration or energy data are supplied here, so the ledger leaves those fields unspecified rather than estimating them from CPU runtime.
+
+**Implementation support and verification.** The released FlagQuantum 0.3.1 API actually used here supplies `Circuit.RY`, `CX`, `to_ir()`, `analysis()`, `run`, exact probabilities/densities and terminal samples in both statevector and density-matrix modes. Its structural analysis provides instruction counts, named-gate counts and a support-based depth; the chapter independently checks those fields against the declared gate graph. Neither this API use nor our host helper establishes a complete hardware cost estimator, routing/synthesis optimum, calibrated failure probability, physical reset protocol or measured parallel speedup. Field names in inspected IR may use a different legacy naming convention; the textbook consistently calls the physical/logical systems qubits.
+
+The complete program is [resource_accounting.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/resource_accounting.py). Its 52 actual CPU complex128 executions cover empty input, basis endpoints and nontrivial angle lists through n=4, both modes and selected/full terminal records. Deterministic references use atol=10⁻¹² and rtol=0. Raw samples are checked for valid shape, bits, count accounting and exact parity relations when available; a random estimate is not required to hit its confidence interval. Host cost guards and exact adaptive error trees are separate from quantum executions. The n≤4 native bound is a dense teaching/reference guard, not a FlagQuantum qubit limit. The host planner limits n to 100 and R to 10,000, requires 1≤P≤R, and the tensor-size arithmetic helper limits W to 20; these are explicit local guards, not asymptotic theorems or framework capacity limits. No phase alignment, probability clipping, input normalization repair or interval error certificate is used.
+
+Expected output of the complete program:
+
+```text
+52 native CPU complex128 circuits: 13 angle cases, two modes and selected/full terminal records passed.
+Native IR gate counts/depth match independent support scheduling; full vectors/densities, scalar parity probabilities and raw-record relations checked.
+At n=3 and 80 preparations: 480 logical gates, serial depth 320, peak 4 qubits, 80 selected record bits; four-way schedule depth 80 and peak 16.
+Three adaptive error-tree cases and exact additive/query/repetition/host-payload ledgers passed; diagnostic tensors are separate from task output.
+14 malformed contracts rejected before execution; no hardware timing, calibrated errors or automatic end-to-end estimator claimed.
+```
+
+**Check your understanding.** Which ledger changes if the identical logical circuit returns all qubit records rather than only the parity bit? Does one batched simulator invocation mean the task requires only one preparation? Why can two depth-one stages have combined depth one?
+
+**Problems and transfer.**
+
+- **14.6-A — compose contracts.** A setup reads 96 bits. A trial uses 10 gates, initializes five qubits and returns two measured bits. For 31 sequential trials, give total work and peak width when reuse is valid. What changes with three allocated copies? Explain why a retained output register must be included in the peak-space argument.
+- **14.6-B — propagate failures.** A two-stage process has first-stage failure 1/10. Given a good first stage, the second fails with probability at most 1/5; given a bad first stage it may fail with probability one. Derive the exact “any failure” probability for those values and the union budget. Then give a per-call allocation for 12 calls and total failure at most 3/100. State the conditional premise needed for adaptive inputs.
+- **14.6-C — fresh execution.** Use angles (−.3,.9), (.13,−.7,1.2) and (.4,.2,−.8,.6), each with 31 samples, both modes and selected/full records. Check scalar probabilities and full amplitudes/densities, payloads and parity relations. Independently enumerate dependency paths for the six-gate n=3 circuit and compare its longest path with the recurrence/native depth.
+- **14.6-D — audit an incomplete claim.** A claim reports Q=3 queries, G₀=2 other gates and 50 trials. The supplied implementation costs 7 gates/query; setup reads 120 bits. Compute the gate/query ledger. If one call emits all amplitudes of a 20-qubit state in complex128, what output tensor payload is requested? Explain why neither number is a hardware duration and why an expected number of trials cannot silently replace a hard cap.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 14.6-A–D</summary>
+
+**A.** Work totals are 310 gates, 155 individual initializations, 62 measured bits, 96 input payload bits and 62 record payload bits. Reusing a five-qubit allocation gives peak five, not 155. Three allocated copies give peak 15 and ⌈31/3⌉=11 batches; total work is unchanged. A persistent output remains live across calls, so include it as persistent space plus the active temporary allocation. A reuse or zero-initialization precondition must be justified.
+
+**B.** The first-failure events have probabilities 1/10 and (9/10)(1/5), yielding 7/25, bounded by 1/10+1/5=3/10. Later behavior after an earlier failure is irrelevant to “any failure.” Uniform allowances of (3/100)/12=1/400 sum to 3/100. Each call's bound must hold on every reachable no-earlier-failure history, rather than on a single test input.
+
+**C.** These are 12 new native executions, not twelve confidence certificates. Widths are 3,4,5; per-trial gates are 4,6,8 and depth 3,4,5. Selected payload is 31 bits in each case; full payloads are 93,124,155 bits. The n=3 dependency path RY(0)→CX(0,3)→CX(1,3)→CX(2,3) has four gates; no path is longer. The transfer reference enumerates all increasing intersecting-support paths rather than calling the scheduling helper.
+
+**D.** There are 150 queries and 50(2+3·7)=1150 logical gates, with 120 setup bits. One requested vector payload is 16·2²⁰=16,777,216 bytes, excluding all additional storage. The final output contract must say whether it requests that vector or a small estimate. No gate durations or interface bandwidths are given. A process with finite expected work may still have arbitrarily long executions, whereas a hard resource bound must cover every allowed execution or explicitly budget an abort tail.
+
+</details>
+
+**Source and review status.** The frozen locator is Nielsen and Chuang, [§3.2.1, beginning on printed page 136](https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf); the publisher's contents was checked, not treated as access to the full chapter. As a directly inspected primary model reference, Watrous, [*Quantum Computational Complexity*, §III.1–III.2, PDF pages 7–8](https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf#page=7), defines a circuit-size convention and explains why a gate-cost model must constrain its allowed gates. Its combined size convention differs from our separate gate/width ledger; conventions must be declared rather than interchanged. All central additive, scheduling and error-composition proofs needed here are supplied locally. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.6.json) distinguishes author verification from independent mathematical/implementation review and reader trial. This remains a working draft. Continue, when drafted, with [14.7 Quantum-classical interaction patterns](../section-plans/03-algorithms.md#sec-hybrid-interaction-map).
+
+<!-- end-section-14.6 -->

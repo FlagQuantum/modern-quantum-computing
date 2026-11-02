@@ -1,0 +1,102 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-computational-models-complexity-and-quantum-advantage-6",
+  "ref": "14.6",
+  "date": "2026-11-02",
+  "state": "draft",
+  "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+  "depth": "F",
+  "requires": [
+    "sec-computational-models-complexity-and-quantum-advantage-1",
+    "sec-computational-models-complexity-and-quantum-advantage-4",
+    "sec-computational-models-complexity-and-quantum-advantage-5"
+  ],
+  "result": "Compositional resource and error accounting",
+  "assumptions": [
+    "Specified cost units,task boundary,gate alphabet and subroutine failure bounds.",
+    "Support-order graph,unit logical durations,disjoint concurrency;initialization and readout separate.",
+    "Uniform conditional failure bounds for every reachable no-earlier-failure history;bounded call cap."
+  ],
+  "verification_obligations": [
+    "Complete additive deterministic work induction;space reuse and overlap boundaries.",
+    "Longest-path recurrence lower/upper schedule proof;serial barrier versus overlap.",
+    "Full parity amplitudes/scalar marginal and preparation/kernel/readout ledger.",
+    "Serial/parallel repetition work,peak width and batch bound;simulator invocation separate.",
+    "Oracle substitution cost,no double-counting and setup/update boundaries.",
+    "Indicator union bound and conditional-history first-failure proof including adaptive/padded calls.",
+    "Classical input/record/report bit counts and counter bit-operation upper bound.",
+    "Logical versus tensor payload versus physical estimate boundaries."
+  ],
+  "formula_code_units": [
+    "typed additive work",
+    "native structural metrics/support schedule",
+    "explicit native parity task",
+    "repetition/concurrency",
+    "oracle substitution",
+    "adaptive failure budget",
+    "classical I/O and report",
+    "simulator payload and edge contracts"
+  ],
+  "sources": [
+    {
+      "locator": "NC:3.2.1",
+      "scope": "Official contents locator only,printed136;not full chapter access."
+    },
+    {
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf#page=7",
+      "scope": "III.1-III.2 PDF7-8,circuit size/gate model;different convention explicitly distinguished."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/resource_accounting.py",
+    "prose_checker": "scripts/check_resource_accounting_prose.py",
+    "evidence": "book/section-evidence/14.6",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 52,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 6,
+    "separate_transfer_circuits": 12,
+    "execution_ledger": {
+      "initial_complete": 52,
+      "initial_body": 6,
+      "binary64_payload_refinement_body": 6,
+      "final_body_plus_complete": 58,
+      "fresh_transfer": 12,
+      "total_author_section_native_runs": 146,
+      "source_api_probes": 0,
+      "prior_regressions": "14.4and14.5checks separate",
+      "archived_transfer_entrypoint_check": 12
+    },
+    "malformed_contracts": 14,
+    "tolerance": "Absolute1e-12,relative0;full phase-fixed vectors/densities,scalar product and exact resource/Fraction references.No sample-confidence must-pass,no normalization/clipping/phase alignment/error certificate.",
+    "native_boundary": "RY/CX/to_ir/analysis/run/probabilities/densities/terminal samples;host ledger not automatic end-to-end/hardware estimator.No physical reset,calibrated failure,optimal synthesis/routing/parallel timing claim.",
+    "script_sha256": "2538f98c58064a6dd99a00a09ab4918e54426520ec9b61b359adfa8a18f530ed"
+  },
+  "assessment": {
+    "tasks": [
+      "14.6A-D"
+    ],
+    "answers": "Accessible solutions;12fresh native executions and independent17dependency-path enumeration.Reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Initial52and both6body stages passed;finalchecker58and transfer12 evidence recorded.No unexpected scientific failure;binary64 ledger clarification retained separately. Archived transfer received a standalone repository-root import shim and12actual rerun calls;initial12case evidence retained,not24distinct cases."
+  },
+  "production": {
+    "next_draft": "14.7 Quantum-classical interaction patterns",
+    "pdf": "Existing PDF edition unchanged",
+    "prerequisite_ci": "6db474c Verify41398977205completed success,all3jobs;archived before repository integration.",
+    "formula_display": "Actual local IAB depth recurrence,full parity vector/product,union/conditional-history first-failure formulas and expandedA-Danswers checked;zero MathJax errors.Table9rowsx4cells visibly correct.No formula repair required.",
+    "website": "Fresh strict build and75-page rendered link/fragment/duplicate-ID checks passed;exact-head publication receipt to be checked separately.",
+    "local_chapter_html_sha256": "b3832decdc4f5f03161905d671d02e1ddd6035bdafe2124693c39a057068223c"
+  }
+}

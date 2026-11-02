@@ -1,0 +1,28 @@
+{
+  "native_runs": 12,
+  "angle_lists": [
+    [
+      -0.3,
+      0.9
+    ],
+    [
+      0.13,
+      -0.7,
+      1.2
+    ],
+    [
+      0.4,
+      0.2,
+      -0.8,
+      0.6
+    ]
+  ],
+  "modes": [
+    "statevector",
+    "density_matrix"
+  ],
+  "selected_and_full": true,
+  "independent_path_count": 17,
+  "longest_path": 4,
+  "resource_and_vector_output_exercise": "passed"
+}

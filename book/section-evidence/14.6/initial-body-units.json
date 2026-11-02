@@ -1,0 +1,34 @@
+[
+  {
+    "code": "from fractions import Fraction as F\nfrom dataclasses import replace\nimport math,torch,flagquantum as fq\nimport resource_accounting as r\nfrom examples.foundations import statistical_ensembles as e,oracle_access as q\nsetup=r.Work(read_bits=48);trial=r.Work(gates=6,prepared=4,measured=1,write_bits=1)\ntotal=setup+trial.scale(80)\nassert total==r.Work(gates=480,prepared=320,measured=80,read_bits=48,write_bits=80)\nassert (setup+trial)+trial==setup+(trial+trial)\nprint('Typed serial work: 480 gates, 320 initialized qubits across preparations, 80 measured bits, 48 input bits and 80 record bits.')\n",
+    "output": "Typed serial work: 480 gates, 320 initialized qubits across preparations, 80 measured bits, 48 input bits and 80 record bits.\n"
+  },
+  {
+    "code": "supports=((0,),(1,),(2,),(0,3),(1,3),(2,3))\nfinish,depth=r.layers(supports,4)\nc=fq.Circuit(4,dtype=torch.complex128)\nfor j,t in enumerate((.2,.4,.6)):c.RY(j,theta=t)\nfor j in range(3):c.CX(j,3)\nanalysis=c.analysis()\nassert finish==(1,1,1,2,3,4) and depth==analysis.depth==4\nassert analysis.n_instructions==6 and analysis.gate_counts=={'ry':3,'cx':3}\nassert tuple(tuple(op.wires)for op in c.to_ir().instructions)==supports\nprint('Native IR: three RY plus three CX; independent finish layers (1,1,1,2,3,4), depth 4.')\n",
+    "output": "Native IR: three RY plus three CX; independent finish layers (1,1,1,2,3,4), depth 4.\n"
+  },
+  {
+    "code": "native=fq.run(c,outputs=[fq.probabilities(qubits=(3,),name='out'),\n    fq.samples(qubits=(3,),name='raw')],shots=80,options=e.OPTIONS)\nexpected=(1-math.prod(math.cos(t)for t in (.2,.4,.6)))/2\ne.close(native.measurement('out').value[0],torch.tensor([1-expected,expected],dtype=torch.float64))\nraw=native.measurement('raw').value\nassert raw.shape==(1,80,1) and bool(((raw==0)|(raw==1)).all())\nprint('Explicit native RY/CX preparation: analytic parity probability and 80 terminal one-bit records checked.')\n",
+    "output": "Explicit native RY/CX preparation: analytic parity probability and 80 terminal one-bit records checked.\n"
+  },
+  {
+    "code": "serial=r.repeat_plan(3,80,bits=16);parallel=r.repeat_plan(3,80,parallel=4,bits=16)\nassert serial['total'].gates==parallel['total'].gates==480\nassert (serial['peak_qubits'],serial['depth_bound'])==(4,320)\nassert (parallel['peak_qubits'],parallel['depth_bound'])==(16,80)\nassert serial['native_invocations']==1 and serial['total'].prepared==320\nr.simulate((.2,.4,.6),80);r.simulate((.2,.4,.6),80,mode='density_matrix')\nprint('80 ideal trials: serial peak 4/depth 320; four-way peak 16/depth 80; both have 480 logical gates.')\nprint('One simulator run per record batch is distinct from 80 conceptual fresh preparations.')\n",
+    "output": "80 ideal trials: serial peak 4/depth 320; four-way peak 16/depth 80; both have 480 logical gates.\nOne simulator run per record batch is distinct from 80 conceptual fresh preparations.\n"
+  },
+  {
+    "code": "cost=r.substitute(4,2,3,80,8)\nassert cost=={'queries':160,'logical_gates':800,'setup_bits':8}\n_,gray=q.execute((0,1,3,2),2,2,i=2,y=1)\nassert gray['gates']==8\n# The same Gray oracle has a structured implementation with just three CX gates.\nassert 80*(4+2*8)==1600 and cost['logical_gates']==800\nprint('160 abstract queries: structured implementation gives 800 task gates; minterm implementation gives 1600, with the same query count.')\n",
+    "output": "160 abstract queries: structured implementation gives 800 task gates; minterm implementation gives 1600, with the same query count.\n"
+  },
+  {
+    "code": "bad=r.adaptive_first_failure((F(1,10),F(1),F(1,5)))\nassert bad==F(7,25) and r.failure_total((F(1,10),F(1,5)))==F(3,10)\nper_call=F(1,20)/160\nassert r.failure_total((per_call,)*160)==F(1,20)\nassert r.failure_total((F(1,20),F(1,20)))==F(1,10)\nprint('Adaptive first-failure probability 7/25 is bounded by 3/10; 160 per-call allowances of 1/3200 sum to 1/20.')\n",
+    "output": "Adaptive first-failure probability 7/25 is bounded by 3/10; 160 per-call allowances of 1/3200 sum to 1/20.\n"
+  },
+  {
+    "code": "_,full,info=r.simulate((.2,.4,.6),80,full=True)\nassert full['input_bits']==48 and full['record_payload_bits']==320\nassert serial['record_payload_bits']==80 and full['counter_bits']==7\nassert full['exact_report_bits']==14 and info['record_tensor_bytes']>=40\nprint('Input payload 48 bits; selected output 80 bits versus full records 320 bits; count storage 7 bits and numerator/denominator report at most 14 bits.')\nprint('Native tensor byte storage is measured separately from packed logical payload.')\n",
+    "output": "Input payload 48 bits; selected output 80 bits versus full records 320 bits; count storage 7 bits and numerator/denominator report at most 14 bits.\nNative tensor byte storage is measured separately from packed logical payload.\n"
+  },
+  {
+    "code": "storage=r.simulator_storage(4)\nassert storage=={'statevector_bytes':256,'density_bytes':4096}\n_,empty,_=r.simulate((),7)\nassert empty['total'].gates==0 and empty['peak_qubits']==1 and empty['record_payload_bits']==7\nassert r.invalid_checks()==14\nprint('One four-qubit complex128 vector payload is 256 bytes; one dense density payload is 4096 bytes, excluding temporaries.')\nprint('Empty parity: zero gates still needs one output qubit and seven requested records; 14 malformed contracts rejected.')\n",
+    "output": "One four-qubit complex128 vector payload is 256 bytes; one dense density payload is 4096 bytes, excluding temporaries.\nEmpty parity: zero gates still needs one output qubit and seven requested records; 14 malformed contracts rejected.\n"
+  }
+]

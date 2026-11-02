@@ -1,0 +1,5 @@
+52 native CPU complex128 circuits: 13 angle cases, two modes and selected/full terminal records passed.
+Native IR gate counts/depth match independent support scheduling; full vectors/densities, scalar parity probabilities and raw-record relations checked.
+At n=3 and 80 preparations: 480 logical gates, serial depth 320, peak 4 qubits, 80 selected record bits; four-way schedule depth 80 and peak 16.
+Three adaptive error-tree cases and exact additive/query/repetition/host-payload ledgers passed; diagnostic tensors are separate from task output.
+14 malformed contracts rejected before execution; no hardware timing, calibrated errors or automatic end-to-end estimator claimed.

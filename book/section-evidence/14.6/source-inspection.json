@@ -1,0 +1,8 @@
+{
+  "frozen": "NC:3.2.1",
+  "official_contents": "https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf",
+  "scope": "Publisher PDF page2,printedx lists3.2.1 beginning136.Contents-only;full chapter not claimed.",
+  "primary_model": "https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf",
+  "inspected": "III.1-III.2 PDF7-8:acyclic circuit,size convention,restricted gate alphabet.",
+  "proof": "All additive/depth/error/bit-I/O arguments local;no third-party text uploaded."
+}

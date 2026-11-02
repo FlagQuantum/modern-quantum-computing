@@ -133,6 +133,33 @@
       "source_locators": [
         "CVX:7.4"
       ]
+    },
+    {
+      "sequence": 69,
+      "batch": "B02",
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-6",
+      "ref": "14.6",
+      "title": "Complete resource accounting",
+      "depth": "F",
+      "requires": [
+        "sec-computational-models-complexity-and-quantum-advantage-1",
+        "sec-computational-models-complexity-and-quantum-advantage-4",
+        "sec-computational-models-complexity-and-quantum-advantage-5"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "question": "What must be counted from classical input to a reliable reported answer?",
+      "entry": "14.1input/model;14.4access;14.5precision/repetition.",
+      "exit": "Prove typed additive work,support depth and conditional-history union error budget;include classical I/O and peak space.",
+      "worked_case": "Prepared parity probability with serial/parallel trial and selected/full record ledgers.",
+      "boundary": "Declared named logical RY/CX unit-layer model;no physical timing/routing/calibration or speedup claim.",
+      "code_plan": "Native RY/CX/to_ir/analysis/run/probabilities/density/samples;host typed ledgers separate.",
+      "independent_check": "Explicit tensor amplitudes,scalar parity product,independent support-path enumeration and exact Fraction error trees.",
+      "transfer_task": "Three fresh signed-angle inputs,two modes,both record scopes and longest dependency path.",
+      "source_locators": [
+        "NC:3.2.1"
+      ]
     }
   ]
 }
