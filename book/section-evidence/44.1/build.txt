@@ -31,4 +31,4 @@ INFO    -  Doc file 'chapters/ch-computational-models-complexity-and-quantum-adv
 INFO    -  Doc file 'chapters/ch-computational-models-complexity-and-quantum-advantage.md' contains a link '#sec-hybrid-interaction-map', but there is no such anchor on this page.
 INFO    -  Doc file 'chapters/ch-computational-models-complexity-and-quantum-advantage.md' contains a link '#sec-computational-models-complexity-and-quantum-advantage-7', but there is no such anchor on this page.
 INFO    -  Doc file 'chapters/ch-density-matrices-reduced-states-and-purification.md' contains a link '#sec-density-matrices-reduced-states-and-purification-6', but there is no such anchor on this page.
-INFO    -  Documentation built in 2.39 seconds
+INFO    -  Documentation built in 2.49 seconds
