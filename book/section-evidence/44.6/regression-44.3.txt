@@ -1,0 +1,8 @@
+Eight literal 44.3 units: 5 native circuits, all assertions and exact outputs passed.
+Complete 44.3 program: 48 native circuits, observable/probability/prefix/sampler checks and exact output passed.
+Actual complete-program stdout follows:
+48 native CPU complex128 circuits: three- and four-qubit preparations,two ordered masks,both execution modes and computational/Y-X analyzer profiles.
+Exact Pauli/local contractions,marginals and every prefix branch agree with scalar/dense references; native terminal samples checked for schema,not frequency hits.
+Five exact rational laws,27 integer ranks: CDF and cached-prefix samplers reproduce every outcome mass,including zero leaves and boundary ranks.
+15 malformed contracts rejected; positive1e-20 branch retained and two squared-norm underflow routes explicitly rejected.
+Book conditional states and exact-rational samplers are separate from native terminal requests; no collapse/reset,hardware IID certificate or shared random-stream claim.

@@ -1,0 +1,1 @@
+76 fresh rendered HTML pages: 19374 local links/fragments resolved; all IDs unique.

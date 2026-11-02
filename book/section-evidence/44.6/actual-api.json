@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Circuit",
+    "signature": "(n_qubits: 'int | None' = None, *, n_wires: 'int | None' = None, nqubits: 'int | None' = None, bsz: 'int' = 1, device: 'torch.device | str | None' = None, dtype: 'torch.dtype | None' = None, inputs: 'torch.Tensor | None' = None, config: 'RuntimeConfig | None' = None) -> 'None'",
+    "path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py",
+    "sha256": "beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b"
+  },
+  {
+    "name": "run",
+    "signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+    "path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/_api.py",
+    "sha256": "6161a056b1de9b05b212df46c71fe4b1735bcc370f198b73f42e4500afc010b9"
+  },
+  {
+    "name": "ExecutionOptions",
+    "signature": "(mode: 'str | None' = None, backend: 'str | None' = None, device: 'str | None' = None, target: 'str | None' = None, batch_size: 'int | None' = None, precision: 'str | None' = None, shots: 'int | None' = None, seed: 'int | None' = None, memory_limit_bytes: 'int | None' = None, require_gradients: 'bool | None' = None, allow_approximate: 'bool | None' = None, allow_backend_fallback: 'bool | None' = None) -> None",
+    "path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/runtime/options.py",
+    "sha256": "1a988d8a67a9b6323d1cc7f8e118603da26b75d04a5a4b7d74985b0ee0a3902b"
+  },
+  {
+    "name": "ExecutionResult.statevector",
+    "signature": "(self) -> 'torch.Tensor'",
+    "path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/runtime/result.py",
+    "sha256": "15bc3ee6f3c7a7830d87f109b10724cd867f8f4060951dd673514729519e6c86"
+  },
+  {
+    "name": "ExecutionResult.measurement",
+    "signature": "(self, selector: 'int | str') -> 'MeasurementResult'",
+    "path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/runtime/result.py",
+    "sha256": "15bc3ee6f3c7a7830d87f109b10724cd867f8f4060951dd673514729519e6c86"
+  },
+  {
+    "name": "ExecutionResult.expectation",
+    "signature": "(self, selector: 'int | str | None' = None) -> 'torch.Tensor'",
+    "path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/runtime/result.py",
+    "sha256": "15bc3ee6f3c7a7830d87f109b10724cd867f8f4060951dd673514729519e6c86"
+  }
+]

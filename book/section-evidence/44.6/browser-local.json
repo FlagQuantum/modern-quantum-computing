@@ -1,0 +1,13 @@
+{
+  "browser": "Native Google Chrome via CUA",
+  "url": "http://127.0.0.1:8756/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability/",
+  "views_checked": [
+    "44.6.2 telescoping/drift",
+    "44.6.3 represented gate residual and wrapped unitarity defect",
+    "44.6.5 normalization and phase",
+    "44.6.7 output and rare-branch bounds after line wrap",
+    "expanded44.6 A-D answers with rendered formulas"
+  ],
+  "initial_failure": "IAB browser.user unavailable and attach timeouts;native Chrome fallback worked.",
+  "rendering_fix": "Clipped combined observable display split into aligned rows;similar unitarity defect display also split. Scientific Python and expected text unchanged."
+}

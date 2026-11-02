@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/private/tmp/precision_drift.py", line 139, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/private/tmp/precision_drift.py", line 129, in main
+    for theta,phi in((.017,.023),(-.031,.019),(.041,-.013)):native(L,theta,phi,dtype)
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/precision_drift.py", line 71, in native
+    m=metrics(w,v);p=r.probabilities('p')[0].to(torch.float64);xx=float(r.expectation('xx')[0])
+                     ^^^^^^^^^^^^^^^^^^^^
+TypeError: 'Tensor' object is not callable

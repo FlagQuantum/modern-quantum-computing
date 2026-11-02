@@ -1,0 +1,120 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-6",
+  "ref": "44.6",
+  "date": "2026-11-02",
+  "state": "draft",
+  "body": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md",
+  "depth": "M",
+  "requires": [
+    "sec-exact-simulation-tensor-execution-and-numerical-reliability-2",
+    "sec-complex-vectors-operators-and-numerical-reasoning-8"
+  ],
+  "result": "Rounding/normalization drift is an execution error budget",
+  "assumptions": [
+    "Exact unitary target and declared phase/ordering/radian angles.",
+    "Bounded local residuals required for the algebraic error budget;machine epsilon alone is not such a bound.",
+    "Finite CPU pure-state tests and explicit precision;no interval certificate."
+  ],
+  "verification_obligations": [
+    "Derive telescoping local residual recurrence and accumulated Euclidean bound.",
+    "Derive norm-drift and observable/event-weight bounds and represented gate/arithmetic split.",
+    "Prove radial normalization bound and counterexample for relative phase;rare conditional amplification.",
+    "Actually run raw native two-precision outputs and independent Decimal references;preserve initial accessor failure."
+  ],
+  "formula_code_units": [
+    "component precision and cancellation",
+    "exact dyadic radial residuals",
+    "local residual traces",
+    "explicit native precision/gate/run/output calls",
+    "radial versus phase normalization",
+    "scaled norm and zero boundary",
+    "rare conditional instability",
+    "new parameters and rejected contracts"
+  ],
+  "sources": {
+    "checked": "2026-11-02",
+    "locators": [
+      "TQI:1.1.3",
+      "QUEST:representation"
+    ],
+    "tqi": {
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf#page=40",
+      "scope": "Actual public PDF norm conventions/induced norm and submultiplicativity,printed32-33;not a floating arithmetic theorem.",
+      "registry_sha256": "c8f30116586435fc265273b09ca2d63f4912a5d4b8901db1ada84b03373c6325"
+    },
+    "quest": {
+      "url": "https://arxiv.org/pdf/1802.08032v1#page=2",
+      "sha256": "58076dec8f4cb64ea658eee88e9b58d02c43b9d81a26bd1eb81af30b7e88d71e",
+      "scope": "Actual local PDF page2 representation and precision paragraph extracted with pypdf;not FlagQuantum implementation evidence."
+    },
+    "originals_redistributed": false
+  },
+  "code": {
+    "script": "examples/foundations/precision_drift.py",
+    "prose_checker": "scripts/check_precision_drift_prose.py",
+    "script_sha256": "74397357d6d087d6826eac3d9d771192838f4fd50b5dd1cbda67e0a146d2ccd3",
+    "evidence": "book/section-evidence/44.6",
+    "complete_native_runs": 24,
+    "body_units": 8,
+    "body_native_runs": 4,
+    "transfer_native_runs": 6,
+    "malformed_contracts": 14,
+    "execution_ledger": {
+      "initial_accessor_failed": 1,
+      "initial_complete": 24,
+      "initial_body": 4,
+      "fresh_transfer": 6,
+      "final_body_plus_complete": 28,
+      "total_author_native_runs": 63,
+      "prior_regressions_and_future_ci": "separate"
+    },
+    "precision": {
+      "complex64": {
+        "atol": 0.0003,
+        "rtol": 0
+      },
+      "complex128": {
+        "atol": 1e-11,
+        "rtol": 0
+      }
+    },
+    "references": "Decimal 60/80 digits with exact float conversion and 180 Taylor terms,binary64 export;agreement diagnostic,not certified enclosure. Exact dyadic synthetic fixture independent of native runs.",
+    "boundary": "No native output normalization,phase alignment or clipping. Book residual tracing is not native instrumentation;no GPU,density,gradient,hardware or all-backend validation.",
+    "environment": {
+      "python": "3.12.14 (main, Sep  1 2026, 14:09:38) [Clang 22.1.3 ]",
+      "torch": "2.13.0",
+      "flagquantum": "0.3.1",
+      "device": "CPU",
+      "precision": [
+        "complex64",
+        "complex128"
+      ]
+    }
+  },
+  "assessment": {
+    "tasks": [
+      "44.6-A",
+      "44.6-B",
+      "44.6-C",
+      "44.6-D"
+    ],
+    "answers": "Expanded details contain derivations/formulas;fresh six-call transfer and new phase/rare cases executed."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author execution passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted"
+  },
+  "production": {
+    "prerequisite_ci": "44.3 exact head7de3c19,Verify41432033128 all jobs success;raw final archived before integration.",
+    "next_draft": "44.8 Exact-executor laboratory and benchmarks in frozen B03 queue",
+    "pdf": "Existing PDF edition unchanged",
+    "initial_failure": "One native run succeeded before calling a Tensor property as a method. Corrected to result.measurement(name).value. Original source/log retained;book API misuse,not a product numerical defect.",
+    "range_guard": "Separate zero-native overflow-normalization guard passed;normalization rejects an unrepresentable norm.",
+    "formula_display": "Native Chrome CUA fallback: actual local browser checked telescoping/drift, renormalization/relative-phase, output/rare-conditional bounds and expanded A-D answers. Initial long display clipped; repaired with aligned rows and refreshed. IAB attachment was unavailable;no IAB screenshots or DOM error-count claimed.",
+    "website": "Fresh strict build and 76-page rendered link/fragment check passed;exact-head publication verified separately.",
+    "local_chapter_html_sha256": "60df28068f1ccc7f10eefecf4e860a29b8d1ee67641d08aee6903aeb85efb6f5"
+  }
+}

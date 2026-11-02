@@ -81,3 +81,5 @@ Section44.1now has an author-verified F-depth draft:dense state/density payload 
 Section44.2now has an author-verified F-depth draft:coordinate/permutation/Kronecker equivalence,full local contraction proof and chronological minimalexecutor;eight units,58complete-native calls and8freshtransfer cases.Next frozen target44.3.Independent review remains pending.
 
 Section44.3now has an author-verified F-depth draft:exactobservable/marginal/prefixcontractions,CDF/treeproofs andterminalmeasurementexecution;eight units(5bodycalls),48complete-nativecalls,12freshtransfercalls and12separatebasislabelcalibrations.Next frozen target44.6;44.4-5retainlaterprerequisites.Independentreview remains pending.
+
+- 2026-11-02: 44.6 author-validated draft adds two-precision raw-output diagnostics, telescoping residual and normalization/phase limits; independent reviews pending. Next frozen B03 target: 44.8.

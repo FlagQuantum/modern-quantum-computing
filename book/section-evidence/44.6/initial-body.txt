@@ -1,0 +1,9 @@
+1 True True casting does not recover the increment
+2 0.0009765625 0.0019540786743164062 telescoping and drift bounds attained
+3 64 prefix residual inequalities passed; estimates are not certificates
+4 complex64 raw state, drift, probabilities and XX passed
+complex128 raw state, drift, probabilities and XX passed
+5 radial error removed; relative-phase error and opposite X predictions remain
+6 scaled norm retains nonzero direction; zero normalization rejected
+7 small global error, large conditional error; absolute event bound passed
+8 2 fresh native checks and 14 rejected contracts; raw reports kept before optional correction

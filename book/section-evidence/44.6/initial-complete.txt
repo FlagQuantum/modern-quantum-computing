@@ -1,0 +1,4 @@
+24 native CPU statevector runs: two precisions, four depths, three signed angle pairs passed.
+Decimal 60/80-digit references agree after binary64 export; raw state, norm, probabilities and XX checked.
+8 local residual traces; cancellation, radial drift, phase loss, rare conditioning and scaled-norm checks passed.
+14 malformed contracts rejected; no native output renormalization or phase alignment applied.

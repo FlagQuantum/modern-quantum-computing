@@ -81,6 +81,33 @@
         "NC:2.2.3",
         "QUEST:representation"
       ]
+    },
+    {
+      "sequence": 76,
+      "batch": "B03",
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-6",
+      "ref": "44.6",
+      "title": "Precision, stability, and normalization drift",
+      "depth": "M",
+      "requires": [
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-2",
+        "sec-complex-vectors-operators-and-numerical-reasoning-8"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md",
+      "question": "What does norm drift diagnose, and how do bounded local execution residuals control state and output errors?",
+      "entry": "44.2 local linear action;2.8 rounding and explicit numerical contracts;2.7 induced norm imported through2.8.",
+      "exit": "Derive the unitary telescoping residual bound, norm/output consequences and limits of renormalization;separate rounding,sensitivity and phase errors.",
+      "worked_case": "Repeated RY and P on q0 then CX(0,1), two CPU precisions, raw full-state/probability/XX diagnostics and 60/80-digit Decimal references.",
+      "boundary": "Finite pure-state CPU experiments, radians, raw outputs retained;observed residuals are not interval error certificates or evidence of native backward stability.",
+      "code_plan": "Actual Circuit dtype, ExecutionOptions precision, named RY/P/CX/run/statevector/probability/expectation requests;book-side residual trace and explicit optional normalization only.",
+      "independent_check": "Analytic two-coordinate final state,Decimal trig,exact dyadic radial-error fixture,phase-flip/rare-branch/cancellation counterexamples.",
+      "transfer_task": "New signed angles and depths in both precisions;new asymmetric phase and rare-branch cases;reject zero/nonfinite/shape/dtype contracts.",
+      "source_locators": [
+        "TQI:1.1.3",
+        "QUEST:representation"
+      ]
     }
   ]
 }
