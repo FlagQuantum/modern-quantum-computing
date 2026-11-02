@@ -19,7 +19,7 @@ Levels describe increasing task composition and evaluation scope. They do not re
 
 ## Complete chapter-to-skill mapping
 
-All **50 chapters and 435 sections** have one primary task-family assignment in the JSON catalog. Current source states: 72 drafts, 363 not started, 0 accepted. A draft with checked examples is useful prototype evidence, not a released skill.
+All **50 chapters and 435 sections** have one primary task-family assignment in the JSON catalog. Current source states: 73 drafts, 362 not started, 0 accepted. A draft with checked examples is useful prototype evidence, not a released skill.
 
 The primary owner is an editorial responsibility, not exclusive use or a claim that every section already implements the task. Support references and selected domain workflows create many-to-many reuse. Source links below lead to stable planning anchors; a planned section must not be presented as completed prose.
 
@@ -68,7 +68,7 @@ The primary owner is an editorial responsibility, not exclusive use or a claim t
 | [41. Quantum Programs, Intermediate Representations, and Verified Optimization](section-plans/quantum-compilation.md#ch-quantum-programs-intermediate-representations-and-verified-optimization) (41.1–41.9) | [compile-and-lower-quantum-programs](#compile-and-lower-quantum-programs) | 0 / 9 |
 | [42. Gate Synthesis, Qubit Mapping, Routing, and Scheduling](section-plans/quantum-compilation.md#ch-gate-synthesis-qubit-mapping-routing-and-scheduling) (42.1–42.10) | [compile-and-lower-quantum-programs](#compile-and-lower-quantum-programs) | 0 / 10 |
 | [43. Control-Level Lowering, Dynamic Execution, and Logical Compilation](section-plans/quantum-compilation.md#ch-control-level-lowering-dynamic-execution-and-logical-compilation) (43.1–43.10) | [compile-and-lower-quantum-programs](#compile-and-lower-quantum-programs) | 0 / 10 |
-| [44. Exact Simulation, Tensor Execution, and Numerical Reliability](section-plans/06-simulation.md#ch-exact-simulation-tensor-execution-and-numerical-reliability) (44.1–44.8) | [select-and-validate-classical-simulators](#select-and-validate-classical-simulators) | 0 / 8 |
+| [44. Exact Simulation, Tensor Execution, and Numerical Reliability](section-plans/06-simulation.md#ch-exact-simulation-tensor-execution-and-numerical-reliability) (44.1–44.8) | [select-and-validate-classical-simulators](#select-and-validate-classical-simulators) | 1 / 8 |
 | [45. Stabilizer Simulation, Magic, and Classical Simulability](section-plans/06-simulation.md#ch-stabilizer-simulation-magic-and-classical-simulability) (45.1–45.8) | [select-and-validate-classical-simulators](#select-and-validate-classical-simulators) | 0 / 8 |
 | [46. Matrix Product States, Entanglement, and Truncation](section-plans/06-simulation.md#ch-matrix-product-states-entanglement-and-truncation) (46.1–46.8) | [select-and-validate-classical-simulators](#select-and-validate-classical-simulators) | 0 / 8 |
 | [47. Tensor Networks, Contraction, and Hybrid Simulation Strategies](section-plans/06-simulation.md#ch-tensor-networks-contraction-and-hybrid-simulation-strategies) (47.1–47.10) | [select-and-validate-classical-simulators](#select-and-validate-classical-simulators) | 0 / 10 |

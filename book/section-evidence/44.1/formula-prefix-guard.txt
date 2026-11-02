@@ -1,0 +1,1 @@
+Final prosechecker prefix/source guard passed;zero native calls.Code/output blocks byte-identical to the executed59-call checker version.

@@ -75,3 +75,5 @@ Section14.7now has an author-verified P-depth draft preserving all8editorial pat
 Section14.8now has an author-verified V-depth draft:matched contracts,exact classical parity baselines,complete-cost counterexamples and scoped finite/CPU timing evidence,eight checked units and52complete-program native calls. Next frozen target:14.9 Resource-audit laboratory. Independent review remains pending.
 
 Section14.9now has an author-verified V-depth resource-audit laboratory:eight formula/code units,36complete-program native calls,14body calls and12fresh transfer calls;exact grid/bias/coverage,full logical and calibration ledgers,eligible exact classical baseline and layered failures.Next frozen target:44.1;not started here.Independent review remains pending.
+
+Section44.1now has an author-verified F-depth draft:dense state/density payload proofs,explicit-export bounds and scoped execution arithmetic;eight formula/code units,56complete-program calls and9freshtransfer calls.Next frozen target44.2.Independent review and readertrial remain pending.

@@ -1,0 +1,31 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "sections": [
+    {
+      "sequence": 73,
+      "batch": "B03",
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-1",
+      "ref": "44.1",
+      "title": "Requested outputs and exact-simulation cost",
+      "depth": "F",
+      "requires": [
+        "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+        "sec-complex-vectors-operators-and-numerical-reasoning-3"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md",
+      "question": "How does the requested output determine explicit storage and unavoidable output work?",
+      "entry": "4.2basis indexing;2.3linear maps and coordinate matrices;density and expectation notation bridged locally.",
+      "exit": "Prove dense state/density byte counts and explicit-output write bounds;separate output size,chosen execution strategy and physical complexity.",
+      "worked_case": "Phase-bearing flipped GHZ family;native state,probability,expectation,density and ordered sample outputs.",
+      "boundary": "Fixed dense complex dtype and explicit payload;bounded CPU validation,not universal simulation lower bound or exact symbolic arithmetic.",
+      "code_plan": "Actual RY/P/CX/X/run/terminal query APIs;statevector accessor and host coefficient indexing explicitly distinguished.",
+      "independent_check": "Closed scalar two-coordinate state,marginal index enumeration and outer product;dtype numel/element_size checks.",
+      "transfer_task": "Fresh angles,five-qubit selected masks,new storage/budget and malformed-output cases.",
+      "source_locators": [
+        "QUEST:representation"
+      ]
+    }
+  ]
+}

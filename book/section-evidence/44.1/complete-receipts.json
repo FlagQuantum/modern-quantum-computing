@@ -1,0 +1,4748 @@
+[
+  {
+    "run": 1,
+    "n": 1,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "retained_state_bytes": 32,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "run": 2,
+    "n": 1,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "retained_state_bytes": 32,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    "density_output_bytes": 64
+  },
+  {
+    "run": 3,
+    "n": 1,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "run": 4,
+    "n": 1,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    "density_output_bytes": 64
+  },
+  {
+    "run": 5,
+    "n": 1,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "retained_state_bytes": 32,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ]
+  },
+  {
+    "run": 6,
+    "n": 1,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "retained_state_bytes": 32,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "density_output_bytes": 64
+  },
+  {
+    "run": 7,
+    "n": 1,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ]
+  },
+  {
+    "run": 8,
+    "n": 1,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "density_output_bytes": 64
+  },
+  {
+    "run": 9,
+    "n": 1,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "retained_state_bytes": 32,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ]
+  },
+  {
+    "run": 10,
+    "n": 1,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "retained_state_bytes": 32,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ],
+    "density_output_bytes": 64
+  },
+  {
+    "run": 11,
+    "n": 1,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ]
+  },
+  {
+    "run": 12,
+    "n": 1,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 2,
+    "selected_probability_bytes": 16,
+    "raw_tensor_bytes": 152,
+    "raw_rows": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ],
+    "density_output_bytes": 64
+  },
+  {
+    "run": 13,
+    "n": 1,
+    "theta": 0.53,
+    "phi": 0.61,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "statevector",
+    "profile": "state",
+    "seed": 101,
+    "shots": null,
+    "native_gates": 2,
+    "retained_state_bytes": 32
+  },
+  {
+    "run": 14,
+    "n": 1,
+    "theta": -0.79,
+    "phi": 0.61,
+    "flips": [
+      0
+    ],
+    "mask": [
+      0
+    ],
+    "mode": "statevector",
+    "profile": "state",
+    "seed": 101,
+    "shots": null,
+    "native_gates": 2,
+    "retained_state_bytes": 32
+  },
+  {
+    "run": 15,
+    "n": 2,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "retained_state_bytes": 64,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "run": 16,
+    "n": 2,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "retained_state_bytes": 64,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "density_output_bytes": 256
+  },
+  {
+    "run": 17,
+    "n": 2,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "run": 18,
+    "n": 2,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "density_output_bytes": 256
+  },
+  {
+    "run": 19,
+    "n": 2,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "retained_state_bytes": 64,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 20,
+    "n": 2,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "retained_state_bytes": 64,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "density_output_bytes": 256
+  },
+  {
+    "run": 21,
+    "n": 2,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 22,
+    "n": 2,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "density_output_bytes": 256
+  },
+  {
+    "run": 23,
+    "n": 2,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "retained_state_bytes": 64,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 24,
+    "n": 2,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "retained_state_bytes": 64,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "density_output_bytes": 256
+  },
+  {
+    "run": 25,
+    "n": 2,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 26,
+    "n": 2,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 4,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "density_output_bytes": 256
+  },
+  {
+    "run": 27,
+    "n": 2,
+    "theta": 0.53,
+    "phi": 0.61,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "state",
+    "seed": 101,
+    "shots": null,
+    "native_gates": 4,
+    "retained_state_bytes": 64
+  },
+  {
+    "run": 28,
+    "n": 2,
+    "theta": -0.79,
+    "phi": 0.61,
+    "flips": [
+      0,
+      1
+    ],
+    "mask": [
+      1,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "state",
+    "seed": 101,
+    "shots": null,
+    "native_gates": 4,
+    "retained_state_bytes": 64
+  },
+  {
+    "run": 29,
+    "n": 3,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "retained_state_bytes": 128,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ]
+  },
+  {
+    "run": 30,
+    "n": 3,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "retained_state_bytes": 128,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "density_output_bytes": 1024
+  },
+  {
+    "run": 31,
+    "n": 3,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ]
+  },
+  {
+    "run": 32,
+    "n": 3,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "density_output_bytes": 1024
+  },
+  {
+    "run": 33,
+    "n": 3,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "retained_state_bytes": 128,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 34,
+    "n": 3,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "retained_state_bytes": 128,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "density_output_bytes": 1024
+  },
+  {
+    "run": 35,
+    "n": 3,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 36,
+    "n": 3,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "density_output_bytes": 1024
+  },
+  {
+    "run": 37,
+    "n": 3,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "retained_state_bytes": 128,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 38,
+    "n": 3,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "retained_state_bytes": 128,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "density_output_bytes": 1024
+  },
+  {
+    "run": 39,
+    "n": 3,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 40,
+    "n": 3,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 5,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "density_output_bytes": 1024
+  },
+  {
+    "run": 41,
+    "n": 3,
+    "theta": 0.53,
+    "phi": 0.61,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "state",
+    "seed": 101,
+    "shots": null,
+    "native_gates": 5,
+    "retained_state_bytes": 128
+  },
+  {
+    "run": 42,
+    "n": 3,
+    "theta": -0.79,
+    "phi": 0.61,
+    "flips": [
+      0,
+      1,
+      0
+    ],
+    "mask": [
+      2,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "state",
+    "seed": 101,
+    "shots": null,
+    "native_gates": 5,
+    "retained_state_bytes": 128
+  },
+  {
+    "run": 43,
+    "n": 4,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "retained_state_bytes": 256,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "run": 44,
+    "n": 4,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "retained_state_bytes": 256,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "density_output_bytes": 4096
+  },
+  {
+    "run": 45,
+    "n": 4,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "run": 46,
+    "n": 4,
+    "theta": 0.0,
+    "phi": 0.3,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "density_output_bytes": 4096
+  },
+  {
+    "run": 47,
+    "n": 4,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "retained_state_bytes": 256,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 48,
+    "n": 4,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "retained_state_bytes": 256,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "density_output_bytes": 4096
+  },
+  {
+    "run": 49,
+    "n": 4,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 50,
+    "n": 4,
+    "theta": 3.141592653589793,
+    "phi": -0.6,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "density_output_bytes": 4096
+  },
+  {
+    "run": 51,
+    "n": 4,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "retained_state_bytes": 256,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 52,
+    "n": 4,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "retained_state_bytes": 256,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "density_output_bytes": 4096
+  },
+  {
+    "run": 53,
+    "n": 4,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "queries",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "run": 54,
+    "n": 4,
+    "theta": 0.83,
+    "phi": -0.47,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "density_matrix",
+    "profile": "full",
+    "seed": 101,
+    "shots": 19,
+    "native_gates": 7,
+    "selected_probability_bytes": 32,
+    "raw_tensor_bytes": 304,
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "density_output_bytes": 4096
+  },
+  {
+    "run": 55,
+    "n": 4,
+    "theta": 0.53,
+    "phi": 0.61,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "state",
+    "seed": 101,
+    "shots": null,
+    "native_gates": 7,
+    "retained_state_bytes": 256
+  },
+  {
+    "run": 56,
+    "n": 4,
+    "theta": -0.79,
+    "phi": 0.61,
+    "flips": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "mask": [
+      3,
+      0
+    ],
+    "mode": "statevector",
+    "profile": "state",
+    "seed": 101,
+    "shots": null,
+    "native_gates": 7,
+    "retained_state_bytes": 256
+  }
+]

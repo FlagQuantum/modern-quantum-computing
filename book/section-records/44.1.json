@@ -1,0 +1,95 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-1",
+  "ref": "44.1",
+  "date": "2026-11-02",
+  "state": "draft",
+  "body": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md",
+  "depth": "F",
+  "requires": [
+    "sec-composite-systems-tensor-products-and-qubit-ordering-2",
+    "sec-complex-vectors-operators-and-numerical-reasoning-3"
+  ],
+  "result": "Exact state/density storage and output lower bounds",
+  "assumptions": [
+    "nqubits,explicit dense complex dtype and declared requested output.",
+    "Explicit export word-write model;handle/view cost separate.No universal arbitrary-strategy lower bound.",
+    "Bounded CPU fullstate/density numerical validation;exact means no intentional truncation,not symbolic exact arithmetic."
+  ],
+  "verification_obligations": [
+    "Inductive basis coordinate count2^n and full matrix ordered-pair count4^n.",
+    "Complex/real dtype sizes and large byte budget endpoints without allocating large arrays.",
+    "Differentiate complex amplitudes,probability tables,expectations,records and full density.",
+    "Independent scalar complex coordinates,full outer product,ordered marginals and Pauli sums.",
+    "Explicit-output write bounds scoped to freshmaterialization/export,notview/handleinterface.",
+    "Count chosen dense/local arithmetic;notnativeoperationtelemetry or hardwarecomplexity.",
+    "Fresh five-qubit/phase transfer,invalidcontracts and real browser expanded-answer QA."
+  ],
+  "formula_code_units": [
+    "coordinates/dtypes",
+    "virtual budgets/outputpayloads",
+    "explicit native state/hostamplitude",
+    "ordered native probabilities/records",
+    "native density/coherence",
+    "expectation scalar contraction",
+    "chosen arithmetic/export cost",
+    "malformed contracts and outputscope"
+  ],
+  "sources": [
+    {
+      "locator": "QUEST:representation",
+      "url": "https://arxiv.org/pdf/1802.08032v1#page=2",
+      "scope": "PDF1-3read,especiallyII.A.1page2;hash retained,nooriginaluploaded."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/requested_outputs.py",
+    "prose_checker": "scripts/check_requested_outputs_prose.py",
+    "evidence": "book/section-evidence/44.1",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128native;complex64/128arraychecks"
+    },
+    "complete_program_circuits_per_invocation": 56,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 3,
+    "separate_transfer_circuits": 9,
+    "execution_ledger": {
+      "initial_complete": 56,
+      "body_assembly": 3,
+      "body_plus_complete_checker": 59,
+      "fresh_transfer": 9,
+      "total_author_section_native_runs": 127,
+      "source_api_probes": 0,
+      "prior_regressions": "4.2and14.9literal/body/fullchecks separate"
+    },
+    "malformed_contracts": 13,
+    "tolerance": "Absolute1e-12,relative0;fullscalarstate/density/marginal/Paulisums.No normalizationrepair,clipping orphasealignment;no requiredfrequencyhit.",
+    "native_boundary": "Actual RY/P/CX/X/run;statevector accessor inSVmode;nativeprobabilities/expectation/density/terminal samples,bothmodes.Pureamplitude hostindexing is notnativeoutput-sensitiveexecution.Nohardware/distributed/gradient/channel orpeakmemoryclaim.",
+    "script_sha256": "b8eae5942851a59a0eeedaf1fc4fd13e43de64b48b97ca955cab6520cc6837b7"
+  },
+  "assessment": {
+    "tasks": [
+      "44.1A-D"
+    ],
+    "answers": "Accessible answers;ninefreshnativecalls,changedangles/masks/phase and storagechecks.Readertrialpending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "56complete,3body,59checker and9freshtransfer passed.No unexpectedscientificexecutionfailure.Zero-execution API-location probe importedExecutionResult fromwronginternalmodule andfailed beforeanyrun;rootfq.ExecutionResult/source location corrected.This isnotnativeproductfailure. Actualbrowser found plainconjugate stars triggeringMarkdownitalics;initialsource/screenshot retained,convertedtoinlineTeX.AllPython/textblocks unchanged byte-for-byte;finalprefixguardpassed withzero extra nativecalls."
+  },
+  "production": {
+    "next_draft": "44.2 Applying local gates by tensor indices",
+    "pdf": "Existing PDF edition unchanged",
+    "prerequisite_ci": "d86e1f2 Verify41414455944completed success,all3jobs;archived beforewriting.",
+    "formula_display": "Actual refreshed final localIAB:19mathcontainers,zeroMathJaxerrors,zero unintendedproseemphasis;expandedA-Danswers open withthree mathcontainers.State/density payloads,conjugate signs,expectationtrace/localHermitianbridge,localarithmetic checked.InitialMarkdownstarfailure/source/screenshot retained;finalsource guard passed;allPython/textblocks unchanged.",
+    "website": "Fresh strict build and76page rendered link/fragment/duplicateIDchecks passed;exact-head deployment checked separately.",
+    "local_chapter_html_sha256": "abd66f8dc282b0d8da4b0efb75287a9762aa88055e0e40cf4a0c3faf8f2b98e5"
+  }
+}

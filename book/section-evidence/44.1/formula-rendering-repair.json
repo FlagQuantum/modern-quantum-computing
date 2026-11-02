@@ -1,0 +1,7 @@
+{
+  "failure": "Actual IAB showed prose italicized by unescaped conjugation stars in normalMarkdown.",
+  "repair": "Converted all prose conjugate expressions to inlineTeX;scientific code/output blocks unchanged byte-for-byte.",
+  "code_output_blocks_unchanged": true,
+  "block_sha256": "2ac7a8d5018d0532754edb092ef4a07d2784ae0d9d50d19b4c8266e554ff7626",
+  "native_reruns_for_prose_only_fix": 0
+}

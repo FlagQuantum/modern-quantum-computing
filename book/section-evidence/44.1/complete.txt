@@ -1,0 +1,5 @@
+56 native CPU complex128 circuits: 48 terminal query/full-output runs and eight state-only runs, n=1..4, both tested execution modes.
+Scalar complex coordinates, full density, ordered marginals, Pauli expectations and terminal record schemas agree; no frequency-hit test.
+14 actual complex64/complex128 array checks for n=0..6 match dense payload formulas; virtual 30-qubit state and 15-qubit density each require16GiB.
+Selected requests retain the full statevector in this tested CPU profile; scalar output size does not certify scalar working memory.
+Dense/local arithmetic counts, explicit-output payloads, budget endpoints and 13 invalid contracts passed; no hardware or universal simulation lower bound claimed.

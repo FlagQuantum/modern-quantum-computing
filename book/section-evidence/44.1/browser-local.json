@@ -1,0 +1,12 @@
+{
+  "answers": [
+    {
+      "math": 3,
+      "open": true
+    }
+  ],
+  "mathContainers": 19,
+  "mathErrors": 0,
+  "unexpectedProseEmphasis": 0,
+  "url": "http://127.0.0.1:8752/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability/#4416-a-scalar-expectation-can-require-a-large-calculation"
+}

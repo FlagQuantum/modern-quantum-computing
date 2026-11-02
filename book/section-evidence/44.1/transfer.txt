@@ -1,0 +1,2 @@
+Nine fresh native calls passed: five-qubit query/full/state paths,two-qubit ordered masks and opposite single-qubit phases.
+Five-qubit selected table64 bytes; 69 record bits occupy552 int64 bytes; full vector512 and density16384 bytes; malformed masks rejected.

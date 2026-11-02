@@ -1,0 +1,12 @@
+{
+  "locator": "QUEST:representation",
+  "requested_url": "https://arxiv.org/pdf/1802.08032v1",
+  "sha256": "58076dec8f4cb64ea658eee88e9b58d02c43b9d81a26bd1eb81af30b7e88d71e",
+  "pages_read": [
+    1,
+    2,
+    3
+  ],
+  "scope": "Actual downloadedv1PDF read via pypdf;footer identifiesv1.Statevector2^ncomplex numbers and16x2^nbyte payload inII.A.1PDFpage2,overhead distinguished.No historicalhardware/benchmark/capacity claim imported.No paper bytes uploaded.",
+  "web_tool_note": "web PDF fetch failed;curl download succeeded,local text extraction inspected.Version6HTML also inspected only as fallback,not substituted for frozenv1."
+}
