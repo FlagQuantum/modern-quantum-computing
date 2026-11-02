@@ -1,0 +1,491 @@
+{
+  "receipts": [
+    {
+      "run": 1,
+      "mode": "statevector",
+      "fault": null,
+      "basis": null,
+      "reverse": false,
+      "identity": "e3afdf618b634f519d320c437f605cece958282ac9bf8a04e107a54a22709f66",
+      "shots": 209,
+      "gates": 2,
+      "depth": 2
+    },
+    {
+      "run": 2,
+      "mode": "statevector",
+      "fault": null,
+      "basis": null,
+      "reverse": true,
+      "identity": "e3afdf618b634f519d320c437f605cece958282ac9bf8a04e107a54a22709f66",
+      "shots": 209,
+      "gates": 2,
+      "depth": 2
+    },
+    {
+      "run": 3,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": null,
+      "reverse": false,
+      "identity": "e3afdf618b634f519d320c437f605cece958282ac9bf8a04e107a54a22709f66",
+      "shots": 209,
+      "gates": 2,
+      "depth": 2
+    },
+    {
+      "run": 4,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": null,
+      "reverse": true,
+      "identity": "e3afdf618b634f519d320c437f605cece958282ac9bf8a04e107a54a22709f66",
+      "shots": 209,
+      "gates": 2,
+      "depth": 2
+    },
+    {
+      "run": 5,
+      "mode": "statevector",
+      "fault": null,
+      "basis": null,
+      "reverse": false,
+      "identity": "a0756ec1cfdd480f967d27e63aa8c32e63fbce684a51a35770a34c864f1fbafe",
+      "shots": 209,
+      "gates": 4,
+      "depth": 3
+    },
+    {
+      "run": 6,
+      "mode": "statevector",
+      "fault": null,
+      "basis": null,
+      "reverse": true,
+      "identity": "a0756ec1cfdd480f967d27e63aa8c32e63fbce684a51a35770a34c864f1fbafe",
+      "shots": 209,
+      "gates": 4,
+      "depth": 3
+    },
+    {
+      "run": 7,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": null,
+      "reverse": false,
+      "identity": "a0756ec1cfdd480f967d27e63aa8c32e63fbce684a51a35770a34c864f1fbafe",
+      "shots": 209,
+      "gates": 4,
+      "depth": 3
+    },
+    {
+      "run": 8,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": null,
+      "reverse": true,
+      "identity": "a0756ec1cfdd480f967d27e63aa8c32e63fbce684a51a35770a34c864f1fbafe",
+      "shots": 209,
+      "gates": 4,
+      "depth": 3
+    },
+    {
+      "run": 9,
+      "mode": "statevector",
+      "fault": null,
+      "basis": null,
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 209,
+      "gates": 6,
+      "depth": 4
+    },
+    {
+      "run": 10,
+      "mode": "statevector",
+      "fault": null,
+      "basis": null,
+      "reverse": true,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 209,
+      "gates": 6,
+      "depth": 4
+    },
+    {
+      "run": 11,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": null,
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 209,
+      "gates": 6,
+      "depth": 4
+    },
+    {
+      "run": 12,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": null,
+      "reverse": true,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 209,
+      "gates": 6,
+      "depth": 4
+    },
+    {
+      "run": 13,
+      "mode": "statevector",
+      "fault": null,
+      "basis": null,
+      "reverse": false,
+      "identity": "dd5d722e1c78a511582dbf2924a21b75318bf9db99598bd24a322c77de663f70",
+      "shots": 209,
+      "gates": 8,
+      "depth": 5
+    },
+    {
+      "run": 14,
+      "mode": "statevector",
+      "fault": null,
+      "basis": null,
+      "reverse": true,
+      "identity": "dd5d722e1c78a511582dbf2924a21b75318bf9db99598bd24a322c77de663f70",
+      "shots": 209,
+      "gates": 8,
+      "depth": 5
+    },
+    {
+      "run": 15,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": null,
+      "reverse": false,
+      "identity": "dd5d722e1c78a511582dbf2924a21b75318bf9db99598bd24a322c77de663f70",
+      "shots": 209,
+      "gates": 8,
+      "depth": 5
+    },
+    {
+      "run": 16,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": null,
+      "reverse": true,
+      "identity": "dd5d722e1c78a511582dbf2924a21b75318bf9db99598bd24a322c77de663f70",
+      "shots": 209,
+      "gates": 8,
+      "depth": 5
+    },
+    {
+      "run": 17,
+      "mode": "statevector",
+      "fault": null,
+      "basis": [
+        0,
+        0,
+        0
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 3,
+      "depth": 3
+    },
+    {
+      "run": 18,
+      "mode": "statevector",
+      "fault": null,
+      "basis": [
+        0,
+        0,
+        1
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 4,
+      "depth": 3
+    },
+    {
+      "run": 19,
+      "mode": "statevector",
+      "fault": null,
+      "basis": [
+        0,
+        1,
+        0
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 4,
+      "depth": 3
+    },
+    {
+      "run": 20,
+      "mode": "statevector",
+      "fault": null,
+      "basis": [
+        0,
+        1,
+        1
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 5,
+      "depth": 3
+    },
+    {
+      "run": 21,
+      "mode": "statevector",
+      "fault": null,
+      "basis": [
+        1,
+        0,
+        0
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 4,
+      "depth": 4
+    },
+    {
+      "run": 22,
+      "mode": "statevector",
+      "fault": null,
+      "basis": [
+        1,
+        0,
+        1
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 5,
+      "depth": 4
+    },
+    {
+      "run": 23,
+      "mode": "statevector",
+      "fault": null,
+      "basis": [
+        1,
+        1,
+        0
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 5,
+      "depth": 4
+    },
+    {
+      "run": 24,
+      "mode": "statevector",
+      "fault": null,
+      "basis": [
+        1,
+        1,
+        1
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 6,
+      "depth": 4
+    },
+    {
+      "run": 25,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": [
+        0,
+        0,
+        0
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 3,
+      "depth": 3
+    },
+    {
+      "run": 26,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": [
+        0,
+        0,
+        1
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 4,
+      "depth": 3
+    },
+    {
+      "run": 27,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": [
+        0,
+        1,
+        0
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 4,
+      "depth": 3
+    },
+    {
+      "run": 28,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": [
+        0,
+        1,
+        1
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 5,
+      "depth": 3
+    },
+    {
+      "run": 29,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": [
+        1,
+        0,
+        0
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 4,
+      "depth": 4
+    },
+    {
+      "run": 30,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": [
+        1,
+        0,
+        1
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 5,
+      "depth": 4
+    },
+    {
+      "run": 31,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": [
+        1,
+        1,
+        0
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 5,
+      "depth": 4
+    },
+    {
+      "run": 32,
+      "mode": "density_matrix",
+      "fault": null,
+      "basis": [
+        1,
+        1,
+        1
+      ],
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 5,
+      "gates": 6,
+      "depth": 4
+    },
+    {
+      "run": 33,
+      "mode": "statevector",
+      "fault": "drop-CX",
+      "basis": null,
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 209,
+      "gates": 5,
+      "depth": 3
+    },
+    {
+      "run": 34,
+      "mode": "density_matrix",
+      "fault": "wrong-query",
+      "basis": null,
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 209,
+      "gates": 6,
+      "depth": 4
+    },
+    {
+      "run": 35,
+      "mode": "statevector",
+      "fault": "flip-output",
+      "basis": null,
+      "reverse": false,
+      "identity": "329682c5badf46180260e6f22866866bca56d89e60016ffc4dd130c1eb64cdff",
+      "shots": 209,
+      "gates": 5,
+      "depth": 4
+    },
+    {
+      "run": 36,
+      "mode": "statevector",
+      "fault": "reverse-mask",
+      "basis": null,
+      "reverse": false,
+      "identity": "bd3d26a12decbe38b75a45c8a4269f15a8c8e4dd996bab40b3fe3f9807f3e6b7",
+      "shots": 209,
+      "gates": 6,
+      "depth": 4
+    }
+  ],
+  "ledger": {
+    "main_preparations": 209,
+    "calibration_preparations": 40,
+    "total_preparations": 249,
+    "peak_qubits": 4,
+    "main_gates": 1254,
+    "calibration_gates": 180,
+    "total_gates": 1434,
+    "total_serial_gate_layers": 976,
+    "initializations": 996,
+    "record_bits": 996,
+    "native_calls": 9,
+    "row_parity_checks": 249,
+    "bit_checks": 996,
+    "counter_bits": 8,
+    "angle_payload_bits": 192,
+    "quantized_numerator_payload_bits": 24,
+    "statevector_array_bytes": 256,
+    "density_array_bytes": 4096
+  },
+  "fault_reports": [
+    "drop-CX",
+    "wrong-query",
+    "flip-output",
+    "reverse-mask"
+  ],
+  "raw_tensor_bytes": 7968
+}

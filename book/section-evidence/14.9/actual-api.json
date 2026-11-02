@@ -1,0 +1,56 @@
+[
+  {
+    "name": "_install_gate_method.<locals>.method",
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py",
+    "source_sha256": "beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b"
+  },
+  {
+    "name": "_install_gate_method.<locals>.method",
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py",
+    "source_sha256": "beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b"
+  },
+  {
+    "name": "_install_gate_method.<locals>.method",
+    "signature": "(self: 'Circuit', *args: 'Any', **kwargs: 'Any') -> 'Circuit'",
+    "source_path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py",
+    "source_sha256": "beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b"
+  },
+  {
+    "name": "Circuit.analysis",
+    "signature": "(self) -> 'CircuitAnalysis'",
+    "source_path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py",
+    "source_sha256": "beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b"
+  },
+  {
+    "name": "Circuit.to_ir",
+    "signature": "(self) -> 'CircuitIR'",
+    "source_path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/circuit.py",
+    "source_sha256": "beb6dcd146ab01aae4ad4bb3c5d61325894505ebc64f05d5627c463d5b96c94b"
+  },
+  {
+    "name": "run",
+    "signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+    "source_path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/_api.py",
+    "source_sha256": "6161a056b1de9b05b212df46c71fe4b1735bcc370f198b73f42e4500afc010b9"
+  },
+  {
+    "name": "probabilities",
+    "signature": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | None | Omitted' = OMITTED) -> 'OutputRequest'",
+    "source_path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/observables/__init__.py",
+    "source_sha256": "3747a3b7dbd8dc9546a53361c0aff6545b4d7c2d254fc08fc6d7475fe5e9e2fa"
+  },
+  {
+    "name": "samples",
+    "signature": "(qubits: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED) -> 'OutputRequest'",
+    "source_path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/observables/__init__.py",
+    "source_sha256": "3747a3b7dbd8dc9546a53361c0aff6545b4d7c2d254fc08fc6d7475fe5e9e2fa"
+  },
+  {
+    "name": "density_matrix",
+    "signature": "(qubits: 'Iterable[int] | int | None | Omitted' = OMITTED, *, name: 'str | None' = None) -> 'OutputRequest'",
+    "source_path": "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/observables/__init__.py",
+    "source_sha256": "3747a3b7dbd8dc9546a53361c0aff6545b4d7c2d254fc08fc6d7475fe5e9e2fa"
+  }
+]

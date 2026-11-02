@@ -1,0 +1,24 @@
+{
+  "answer": [
+    {
+      "math": 2,
+      "open": true,
+      "text": "\nAnswers and verification guidance for 14.9-A–D\nA. The least b satisfying 3/2ᵇ⁺¹≤1/128 is eight. The remaining statistical radius is 7/128, "
+    }
+  ],
+  "errors": 0,
+  "table": [
+    [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ]
+  ],
+  "url": "http://127.0.0.1:8751/chapters/ch-computational-models-complexity-and-quantum-advantage/#1495-audit-the-whole-declared-resource-boundary"
+}

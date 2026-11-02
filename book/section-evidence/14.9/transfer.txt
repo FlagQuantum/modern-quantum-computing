@@ -1,0 +1,2 @@
+12 fresh native calls passed: two new rational inputs,new quality,both modes/commuting orders and four basis calibrations.
+b=5/6,S=110; complete logical ledgers=(130,500,380,390)/(190,1360,910,950) for preparations,gates,layers,record bits; stale/underreported packets rejected.

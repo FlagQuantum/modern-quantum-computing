@@ -215,6 +215,33 @@
         "NC:3.2.1",
         "ED:protocol"
       ]
+    },
+    {
+      "sequence": 72,
+      "batch": "B02",
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-8",
+      "ref": "14.9",
+      "title": "Resource-audit laboratory",
+      "depth": "V",
+      "requires": [
+        "sec-computational-models-complexity-and-quantum-advantage-6",
+        "sec-hybrid-interaction-map",
+        "sec-computational-models-complexity-and-quantum-advantage-7"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "question": "Can task,precision,baseline,full logical cost and failed evidence be independently audited?",
+      "entry": "14.6 complete resource accounting;14.7data/control boundary;14.8matched classical baselines.",
+      "exit": "A layered acceptance protocol separates conditional ideal coverage,CPU implementation checks,records,costs and claim scope.",
+      "worked_case": "Rational parity input,nearest dyadic preparation,209shot main circuit,eight basis calibrations and scalar exact baseline.",
+      "boundary": "Vdepth bounded CPU experiment;no hardware confidence/time/authentication/advantage certificate.",
+      "code_plan": "Actual RY/X/CX/run/probabilities/density/samples/IR analysis;host exact grid,bias,coverage and packet audit.",
+      "independent_check": "Exact scalar product/enumeration,explicit tensor amplitudes/density,full joint row parity and exact binomial coverage.",
+      "transfer_task": "Fresh2/4data-qubit rational inputs,newquality,both modes/commuting orders and basis calibrations.",
+      "source_locators": [
+        "ED:protocol"
+      ]
     }
   ]
 }

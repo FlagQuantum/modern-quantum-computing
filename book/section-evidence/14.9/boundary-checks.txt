@@ -1,0 +1,1 @@
+Zero native calls: deterministic endpoints, exact ties-to-even (1/128,3/128)->(0,1/32), sharp grid bias sum and836shot reference guard passed.

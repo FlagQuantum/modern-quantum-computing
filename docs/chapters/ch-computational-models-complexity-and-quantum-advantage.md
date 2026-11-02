@@ -1,6 +1,6 @@
 # 14. Computational Models, Complexity, and Quantum Advantage
 
-**Working drafts: sections 14.1–14.8 · Writing Baseline 1.0 · November 2, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
+**Working drafts: sections 14.1–14.9 · Writing Baseline 1.0 · November 2, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
 
 <span id="sec-computational-models-complexity-and-quantum-advantage-1"></span>
 ## 14.1 Problems, input length, and computational models
@@ -2655,3 +2655,304 @@ Kernel-only ratio 2 becomes end-to-end ratio 12/101 in declared synthetic work u
 **Source and review status.** The frozen NC §3.2.1 locator, beginning on printed page 136, was checked against the [publisher's contents](https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf), not treated as access to the full chapter. The book's [reader-review/acceptance protocol](../reader-continuity.md) supplies the original editorial evidence obligations. The product, bitlength, task-eligibility examples and finite-function counterexample are given locally; no unproved separation or new standalone paper reproduction is imported. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.8.json) distinguishes author validation from independent mathematical/implementation review and reader trial. This remains a working draft. Continue, when drafted, with [14.9 Resource-audit laboratory](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-8).
 
 <!-- end-section-14.8 -->
+
+<span id="sec-computational-models-complexity-and-quantum-advantage-8"></span>
+## 14.9 Resource-audit laboratory
+
+**Question.** Can a small experiment make its input model, accuracy guarantee, classical competitor, complete cost boundary and failure diagnoses independently reconstructible?
+
+Use [14.6](#sec-computational-models-complexity-and-quantum-advantage-6) for typed resources, [14.7](#sec-hybrid-interaction-map) for data/control boundaries and [14.8](#sec-computational-models-complexity-and-quantum-advantage-7) for matched baselines. This V-depth laboratory combines those results in a bounded acceptance protocol. It supplies implementation evidence, not another complexity separation theorem or a hardware performance claim. We audit a scalar answer; the additional full-register records and density matrices are explicitly charged diagnostic outputs.
+
+### 14.9.1 Freeze a task that the classical arm can also solve
+
+The input is an explicit tuple of exact rational probabilities p=(p₀,…,pₙ₋₁), with 1≤n≤4 in this laboratory. Independently prepared data bits have probabilities Pr(Xⱼ=1)=pⱼ. The requested answer is their odd-parity probability q, within additive error ε with failure probability at most δ under the declared ideal independent-trial model. No oracle or hidden preparation service replaces the rational list.
+
+For Y=X₀ XOR ⋯ XOR Xₙ₋₁, the identity (−1)ʸ=∏ⱼ(−1)ˣʲ and independence give
+
+$$
+1-2q=\mathbb E[(-1)^Y]=\prod_{j=0}^{n-1}(1-2p_j),\qquad
+q=\frac{1-\prod_j(1-2p_j)}2.
+$$
+
+For p=(1/4,1/3,2/5), the product is (1/2)(1/3)(1/5)=1/30, so q=29/60. The exact classical product is an eligible, stronger solution of this scalar task: its model error and failure probability are zero. It need not simulate a quantum state or generate 209 samples. If the task instead requested a prescribed raw record, this exact scalar alone would not fulfill it. Declare ε=1/8, δ=1/10 and a preparation-model bias allowance β=1/64 before execution.
+
+```python
+from fractions import Fraction as F
+import math,torch,flagquantum as fq
+from dataclasses import replace
+from examples.foundations import resource_audit as r,statistical_ensembles as e
+plan=r.Plan((F(1,4),F(1,3),F(2,5)))
+assert r.b.exact_mean(plan.ps)==r.b.enumerate_law(plan.ps)==F(29,60)
+print('Explicit rational input; scalar mean task; q=29/60, epsilon=1/8, delta=1/10, bias budget=1/64.')
+```
+
+```text
+Explicit rational input; scalar mean task; q=29/60, epsilon=1/8, delta=1/10, bias budget=1/64.
+```
+
+
+### 14.9.2 Connect input precision to a fixed repetition budget
+
+Choose the least nonnegative integer b for which n·2⁻ᵇ⁻¹≤β. Replace each input by the nearest multiple of 2⁻ᵇ, with exact rational ties rounded to an even integer. Thus
+
+$$
+\widetilde p_j=2^{-b}\operatorname{round}_{\rm even}(2^bp_j),\qquad
+|\widetilde p_j-p_j|\le2^{-b-1}.
+$$
+
+This rounding stays in [0,1], including endpoints. To control its effect, set aⱼ=1−2pⱼ and cⱼ=1−2p̃ⱼ. Replacing one factor at a time gives
+
+$$
+\prod_ja_j-\prod_jc_j
+=\sum_{k=0}^{n-1}(a_k-c_k)
+ \left(\prod_{j<k}c_j\right)\left(\prod_{j>k}a_j\right).
+$$
+
+Every product on the right has magnitude at most one. The factor 1/2 in q cancels |aₖ−cₖ|=2|pₖ−p̃ₖ|, proving
+
+$$
+|q-\widetilde q|\le\sum_j|p_j-\widetilde p_j|
+\le\frac{n}{2^{b+1}}\le\beta.
+$$
+
+Here b=7, p̃=(32,43,51)/128, q̃=7919/16384 and |q̃−q|=1/245760. The conservative bound is 3/256≤1/64; its looseness is permitted. For S ideal IID Bernoulli(q̃) outcomes, the sample mean has variance q̃(1−q̃)/S≤1/(4S). The triangle inequality and Chebyshev bound from 14.5 yield
+
+$$
+\Pr(|\widehat q-q|>\varepsilon)
+\le\Pr(|\widehat q-\widetilde q|>\varepsilon-\beta)
+\le\frac1{4S(\varepsilon-\beta)^2}.
+$$
+
+Consequently S=⌈1/[4δ(ε−β)²]⌉=⌈10240/49⌉=209 suffices. This is a guarantee for the ideal quantized law. The rational rounding bound does **not** certify the binary64 angle calculation, floating-point simulation, device control, drift or hardware IID assumption. Those would require their own certified bias/failure allowances and possibly a larger S. The numerical checks below validate a bounded software implementation, without silently promoting their tolerance to such a certificate.
+
+```python
+assert plan.bits==7 and plan.quantized==(F(1,4),F(43,128),F(51,128))
+q=r.b.exact_mean(plan.ps);qt=r.b.exact_mean(plan.quantized)
+actual_bias=abs(qt-q);assert actual_bias==F(1,245760)
+assert actual_bias<=sum(abs(x-y)for x,y in zip(plan.ps,plan.quantized))<=plan.bound<=plan.beta
+assert plan.bound==F(3,256) and plan.shots==209
+print('b=7; grid probabilities=(32,43,51)/128; grid q=7919/16384; grid bias=1/245760; worst bound=3/256; S=209.')
+```
+
+```text
+b=7; grid probabilities=(32,43,51)/128; grid q=7919/16384; grid bias=1/245760; worst bound=3/256; S=209.
+```
+
+
+### 14.9.3 Execute a declared preparation and readout
+
+Allocate data qubits q₀,q₁,q₂ and parity qubit q₃, all initially zero. A rotation Rᵧ(θⱼ), with θⱼ=2 arcsin√p̃ⱼ in **radians**, prepares √(1−p̃ⱼ)|0⟩+√p̃ⱼ|1⟩. Apply CX(j,3) for j=0,1,2. The exact ideal final vector is
+
+$$
+|\Psi\rangle=\sum_{x\in\{0,1\}^3}
+\left[\prod_{j=0}^2\sqrt{\widetilde p_j^{x_j}(1-\widetilde p_j)^{1-x_j}}\right]
+|x_0,x_1,x_2,x_0\mathbin\oplus x_1\mathbin\oplus x_2\rangle.
+$$
+
+At p̃=0 or 1, read the factors as √p̃ for x=1 and √(1−p̃) for x=0, without an ambiguous 0⁰. FlagQuantum's computational index in this profile is 8x₀+4x₁+2x₂+y. The scalar product formula, explicit coordinate vector and its outer product are independent references for the queried probability, full statevector and density matrix.
+
+Request **one** joint sample tensor with columns (q₀,q₁,q₂,q₃). The reported parity estimate uses its last column; no second independently sampled request is assumed to align row by row. Full data-bit readout is an audit overhead, not a prerequisite of the scalar task. `density_matrix` is a simulator diagnostic, not a laboratory observable acquired for free.
+
+```python
+c=fq.Circuit(4,dtype=torch.complex128)
+for j,p in enumerate(plan.quantized):c.RY(j,theta=2*math.asin(math.sqrt(float(p))))
+for j in range(3):c.CX(j,3)
+result=fq.run(c,outputs=[fq.density_matrix(name='rho'),fq.probabilities(qubits=(3,),name='p'),fq.samples(qubits=(0,1,2,3),name='raw')],shots=plan.shots,options=replace(e.OPTIONS,mode='statevector',seed=101))
+raw=result.measurement('raw').value[0]
+ones=r.record_check(raw.tolist(),209,3);mean=F(ones,209)
+v=r.reference(plan.quantized);e.close(result.statevector()[0],v)
+e.close(result.measurement('rho').value[0],v[:,None]*v.conj()[None,:])
+e.close(result.measurement('p').value[0],torch.tensor([1-float(qt),float(qt)],dtype=torch.float64))
+assert c.analysis().n_instructions==6 and c.analysis().depth==4
+print('Native RY/CX, full joint records, scalar probability and full state/density references agree; six gates and depth four.')
+```
+
+```text
+Native RY/CX, full joint records, scalar probability and full state/density references agree; six gates and depth four.
+```
+
+
+### 14.9.4 Calibrate labels and preserve the evidence handoff
+
+Before trusting the main record's column meaning, run all eight basis inputs x with the parity target zero. Apply X to each data qubit whose input bit is one, then the three CX gates, and request five full-register samples. Every ideal row must equal (x, XOR(x)); deterministic label tests require no frequency confidence threshold. Numerical density/probability references are checked as well. These calibrations test this simulator recipe and convention; they do not calibrate a physical detector's error rate.
+
+A packet carries the input/quality fingerprint, radians convention, query qubit, ordered mask, fixed shot count, basis preparation if any, actual raw rows, reproduced count, native structural gate/depth analysis, storage bytes, exact classical answer and evidence scope. A SHA-256 fingerprint detects accidental instance changes; neither the hash nor a source string authenticates an execution. The auditor recomputes its references from the declared input, checks all rows and reproduces the count before interpreting the mean. It accepts reverse ordering of commuting RY preparations and of the common-target CX gates when their actual state and logical resources agree; literal source-text identity is not the scientific criterion.
+
+```python
+packet=r.execute(plan);report=r.audit(plan,packet)
+calibrations=[]
+for x in range(8):
+ bits=r.u.bits(x,3);p=r.execute(plan,basis=bits);r.audit(plan,p);calibrations.append(p)
+assert report['accepted'] and sum(p['gates']for p in calibrations)==36
+assert sum(p['depth']for p in calibrations)==28
+assert packet['raw_bytes']+sum(p['raw_bytes']for p in calibrations)==7968
+print('Eight five-shot basis calibrations and one 209-shot main receipt accepted; unweighted calibration gates=36, depths=28.')
+```
+
+```text
+Eight five-shot basis calibrations and one 209-shot main receipt accepted; unweighted calibration gates=36, depths=28.
+```
+
+
+### 14.9.5 Audit the whole declared resource boundary
+
+The named logical model assigns one gate unit to each RY, X or CX, allows gates on disjoint supports in a common unit layer and counts conceptual repeated preparations separately from simulator calls. The main circuit has n RY and n CX gates. The RY gates occupy one layer and the n CX gates share a target, giving depth n+1.
+
+For each basis calibration x, Gₓ=n+wt(x). Across K=2ⁿ inputs, each data bit is one K/2 times, so ΣₓGₓ=nK+nK/2. Its ASAP support depth is Dₓ=n+x₀: if the first control needs X, the first CX waits one layer; otherwise it starts in layer one, and the later X gates are ready before their respective CX. Hence ΣₓDₓ=nK+K/2. Five repetitions per input give
+
+$$
+\begin{aligned}
+N_{\rm prep}&=S+5K,\\
+G_{\rm total}&=2nS+5(nK+nK/2),\\
+D_{\rm serial}&=(n+1)S+5(nK+K/2),\\
+M_{\rm init}=M_{\rm read}=B_{\rm record}&=(n+1)(S+5K),\quad W=n+1.
+\end{aligned}
+$$
+
+For n=3 these are 249 preparations, 1434 gates, 976 serial gate layers, 996 initialized/read/measured record bits and peak width four. The main-only gate total is 1254; calibration contributes 180. The main-only record is 836 bits; calibration adds 160. These are aggregate **serial-trial logical** totals, not the depth of a new 249-copy coherent circuit. The CPU simulator makes nine calls for this audit, one per calibration plus one main call. Its terminal sampling implementation does not physically execute 209 state preparations merely because `shots=209`.
+
+Classical work and representation must also remain visible:
+
+| Stage | Charged representation or work in this experiment | Boundary |
+| --- | --- | --- |
+| Input and model | Three numerator/denominator pairs: 12 minimal unsigned payload bits; exact rounding of three rationals | Framing, signs, metadata and parser work are additional |
+| Preparation description | Three grid numerators at b+1 bits: 24 bits; common b/denominator metadata; three binary64 angles: 192 bits | Float payload length is not a control-error certificate |
+| Generation and calibration | Three square roots, three arcsines, three angle scalings; nine circuit builds, eight basis labels, structural IR analysis | Host transcendental and integer costs are separate from gates |
+| Record processing | 249 row parity checks, 996 bit checks, 747 data-bit contributions and 209 main count additions | Counts name operations; they are not elapsed seconds or equal-cost arithmetic |
+| Classical competitor | Products D=∏dⱼ and A=∏(dⱼ−2aⱼ), followed by (D−A)/(2D) and reduction | Six accumulator multiplications here, plus integer products' bitlength, subtraction, gcd and serialization |
+| Independent verification | Finite parity enumeration; 210 exact binomial terms; full vector/density comparisons | Author audit cost, outside an operational scalar-only output path |
+| Execution and reporting | Nine CPU invocations, full raw tensor storage, packet serialization and retained reports | Actual tensor payload measured; interpreter/library overhead and peak resident RAM not inferred |
+| Physical implementation | Initialization, control, routing, communication, readout and any reset/error mitigation | No device run or duration model supplied; physical latency/energy unknown |
+
+The minimal counter for S=209 needs eight bits. The observed raw tensors use int64 elements, so the 996 logical bits occupy **7968 tensor bytes**, before Python/JSON and library overhead. A complex128 four-qubit statevector array uses 256 bytes; a full density array uses 4096. Those are array sizes, not total peak process memory. The complete resource specification names all stages and what remains unmeasured; it does not add bits, gates, CPU seconds and unknown device durations into a fictitious speed ratio.
+
+```python
+L=r.resources(plan)
+assert (L['total_preparations'],L['total_gates'],L['total_serial_gate_layers'],L['record_bits'])==(249,1434,976,996)
+assert (L['native_calls'],L['counter_bits'],L['angle_payload_bits'],L['quantized_numerator_payload_bits'])==(9,8,192,24)
+assert (L['statevector_array_bytes'],L['density_array_bytes'])==(256,4096)
+print('Complete declared logical ledger: 249 preparations; 1434 gates; 976 serial layers; 996 initialization/readout/record bits; peak four qubits.')
+print('Nine native calls, 7968 raw tensor bytes; one statevector array 256 bytes, one density array 4096 bytes; no physical-time conversion.')
+```
+
+```text
+Complete declared logical ledger: 249 preparations; 1434 gates; 976 serial layers; 996 initialization/readout/record bits; peak four qubits.
+Nine native calls, 7968 raw tensor bytes; one statevector array 256 bytes, one density array 4096 bytes; no physical-time conversion.
+```
+
+
+### 14.9.6 Compare the same answer and check the success contract
+
+The classical product computes D=60,A=2 and (D−A)/(2D)=58/120=29/60 exactly. For arbitrary explicit rational input with total numerator/denominator bitlength B, multiplying these integers requires growing-operand arithmetic and output reduction; “O(n) product factors” does not mean O(n) bit operations. This is still a much more relevant baseline for the scalar task than full 2ⁿ-string enumeration. Enumeration is an independent small-system check, not an imposed handicap on the competing method.
+
+As another independent ideal-model check, sum the exact binomial law over k satisfying |k/S−q|≤ε:
+
+$$
+C=\sum_{\substack{0\le k\le S\\|k/S-q|\le\varepsilon}}
+ {S\choose k}\widetilde q^{\,k}(1-\widetilde q)^{S-k}.
+$$
+
+The summation includes the closed endpoints; Fraction arithmetic checks C≥9/10. It certifies this finite ideal law's coverage, not a device distribution. Neither this calculation nor `allclose` between native and ideal probabilities proves an IID hypothesis on hardware. The audit does not demand that a single empirical frequency equal q, or even that every legitimate execution land within ε. The guarantee is probabilistic across complete fixed-design repetitions.
+
+```python
+coverage=r.a.target_coverage(q,qt,209,plan.epsilon)
+assert coverage>=1-plan.delta
+assert r.b.fulfills(r.b.Contract((plan.ps,),epsilon=F(0),delta=F(0)),r.b.Contract((plan.ps,),epsilon=plan.epsilon,delta=plan.delta))
+assert r.b.integer_pair(plan.ps)==(58,120)
+print('Exact finite binomial coverage is at least 9/10 for the ideal grid law; exact classical mean uses no sampling repetitions.')
+```
+
+```text
+Exact finite binomial coverage is at least 9/10 for the ideal grid law; exact classical mean uses no sampling repetitions.
+```
+
+
+### 14.9.7 Diagnose failures without changing the question
+
+Run four deliberately wrong candidates, retain their actual packets, and explain their rejection. Dropping the final CX changes the Boolean map and logical count. Querying q₀ while advertising q₃ changes the output contract. Reversing the full sample mask changes its column semantics. Adding X to the output changes the joint parity law. In the last case use p=(1/2,1/4): both correct and flipped output marginals are exactly (1/2,1/2), yet every flipped full record violates y=XOR(x). A correct marginal alone cannot certify the promised joint-record experiment.
+
+The four wrong executions are intentionally constructed candidate defects, not failures of FlagQuantum's API. Separately mutate a correct packet's fingerprint, source, units, budget, count, logical gates, depth, classical answer and claim scope; also truncate a raw record and insert a nonbinary bit. Reject these eleven cases rather than repairing them or substituting a successful rerun. Nine malformed preflight plans fail before execution. Re-running a corrected candidate would produce new evidence, not make its original rejected record acceptable.
+
+```python
+faults=[(plan,'statevector','drop-CX'),(plan,'density_matrix','wrong-query'),(r.Plan((F(1,2),F(1,4))),'statevector','flip-output'),(plan,'statevector','reverse-mask')]
+for task,mode,fault in faults:
+ bad=r.execute(task,mode,fault=fault)
+ if fault=='flip-output':e.close(bad['prob'],torch.tensor([.5,.5],dtype=torch.float64))
+ r.rejection(task,bad,fault)
+assert r.mutations(plan,packet)==11 and r.invalid_checks()==9
+print('Four actual faulty executions rejected, including a wrong joint law with the correct 1/2 marginal; 11 packet mutations and nine preflight errors rejected.')
+```
+
+```text
+Four actual faulty executions rejected, including a wrong joint law with the correct 1/2 marginal; 11 packet mutations and nine preflight errors rejected.
+```
+
+
+### 14.9.8 Separate an observed miss from a broken contract
+
+The repeated row (1,0,0,1) satisfies the joint parity rule and has positive probability under this example's quantized input. A record of 209 such rows is therefore possible under the ideal law, although extraordinarily unlikely; its estimate is one, outside q±ε. That possibility is compatible with a failure bound δ=1/10. Constructing such a record illustrates the distinction without claiming to have observed it. Its origin is diagnostic-only; it is never presented as a native receipt or accepted execution evidence.
+
+The auditor validates source/schema, task identity, model bounds, fixed budget, joint law, exact count, declared costs and numerical references. It reports the observed accuracy hit or miss separately. It cannot establish authenticity, statistical independence, hardware calibration or quantum advantage from a packet. The exact classical arm already solves the requested scalar problem without the quantum sampling overhead; this laboratory offers no evidence for a speedup.
+
+```python
+possible=[[1,0,0,1]for _ in range(plan.shots)]
+assert r.record_check(possible,209,3)==209 and abs(F(1)-q)>plan.epsilon
+assert math.prod(float(p)if bit else 1-float(p)for p,bit in zip(plan.quantized,(1,0,0)))>0
+assert r.RUNS==13
+print('Constructed possible record: valid parity, estimate outside epsilon; diagnostic only, never represented as a native receipt.')
+print('Eight body units execute 14 native calls: one explicit fq.run plus 13 companion calls. No advantage or hardware confidence claim.')
+```
+
+```text
+Constructed possible record: valid parity, estimate outside epsilon; diagnostic only, never represented as a native receipt.
+Eight body units execute 14 native calls: one explicit fq.run plus 13 companion calls. No advantage or hardware confidence claim.
+```
+
+
+The actual released FlagQuantum 0.3.1 APIs executed here are `Circuit.RY`, `X`, `CX`, `to_ir`, `analysis`, `run`, exact simulator `probabilities`/`density_matrix` and terminal `samples`, on CPU complex128 in both statevector and density-matrix modes (Python 3.12.14, Torch 2.13.0). No native resource-audit endpoint is assumed: `Plan`, packet validation, exact rational arithmetic, coverage and resource formulas are book-side Python. No mid-circuit collapse, reset, hardware orchestration, device-control precision certificate or native confidence estimator is exercised. The helper guards n≤4 and S≤501 keep dense and exact-binomial references bounded; they are teaching limits, not framework capacity claims. Full-state/probability checks use absolute tolerance 10⁻¹², relative zero, without clipping, phase alignment or input normalization repair.
+
+The complete [resource_audit.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/resource_audit.py) runs 36 native calls: sixteen main cases (four rational inputs, both modes and both commuting call orders), sixteen basis calibrations and four deliberately faulty candidates. Raw candidate packets and separate failure reports are retained in the [section evidence](https://github.com/FlagQuantum/modern-quantum-computing/tree/main/book/section-evidence/14.9). Author diagnostics and future CI reruns are distinct executions, not additional independent reviewer signoffs.
+
+Run from the repository root:
+
+```bash
+python examples/foundations/resource_audit.py
+python scripts/check_resource_audit_prose.py
+```
+
+Expected output of the complete program:
+
+```text
+36 native CPU complex128 calls: 16 main experiments, 16 basis calibrations and four deliberately faulty executions audited.
+Exact input/grid/bias/binomial references passed; b=7, S=209, q=29/60, grid q=7919/16384, actual grid bias=1/245760.
+One base audit: 249 conceptual preparations, 1434 logical gates, 976 serial gate layers, 996 record bits, peak four qubits, nine native calls.
+Actual raw tensor storage for that audit: 7968 bytes; payload bits and simulator arrays are separate units.
+Four faulty executions, 11 mutated packets and nine preflight contracts rejected; a constructed possible confidence miss is diagnostic only.
+Exact classical scalar baseline remains eligible; no hardware confidence certificate, physical latency or quantum advantage claimed.
+```
+
+**Check your understanding.** Which bias is bounded exactly, and which implementation errors remain outside that bound? Why is one sample request essential to the row-by-row parity check? Why do nine simulator calls and 249 conceptual preparations coexist? Why can a confidence miss be possible while an incorrect column label must be rejected?
+
+**Problems and transfer.**
+
+- **14.9-A — changed quality.** Keep the three input probabilities but set ε=1/16, β=1/128, δ=1/10. Derive b and S without running a circuit. Does the exact-binomial teaching guard permit that design? Does a guard rejection prove the experiment impossible?
+- **14.9-B — record economy.** If only the target qubit is read in the main 209-shot experiment, but the eight full calibration records remain, recompute read/record bits. Which diagnostic can no longer be performed on a main row? Which costs are unchanged?
+- **14.9-C — fresh audit.** Use p=(2/9,3/7) and p=(2/9,3/7,4/11,5/13), ε=1/6, β=1/32, δ=1/8. Test both modes and both commuting call orders, plus all four basis calibrations of the two-data-qubit case. Recompute the grid, coverage and resource ledger; retain raw evidence and reject a stale plan identity and underreported preparation recipe.
+- **14.9-D — scope of a pass.** A report says that all packet checks passed, so its 0.01 native/reference probability residual certifies β=0.01 on an untested device and the experiment beats all classical algorithms. Identify the missing premises. Would accepting an extreme but possible record establish its authenticity?
+
+<details markdown="1">
+<summary>Answers and verification guidance for 14.9-A–D</summary>
+
+**A.** The least b satisfying 3/2ᵇ⁺¹≤1/128 is eight. The remaining statistical radius is 7/128, giving \(S=\lceil40960/49\rceil=836\). This exceeds the helper's S≤501 exact-enumeration guard; `Plan` rejects it before execution. It is a reference-cost boundary, not a mathematical obstruction or a native capacity limit. A reviewed wider reference design could support it.
+
+**B.** Main readout uses 209 bits and calibration 160, totaling 369 rather than 996. Width, state preparation, logical gates/layers and initialization remain unchanged in this model. The joint main-row invariant y=XOR(x) is unavailable when x is unrecorded. Scalar probability and calibration checks still have meaning; they certify a narrower output/evidence contract.
+
+**C.** The two-qubit list needs b=5; the four-qubit list needs b=6. Both use \(S=\lceil1/[4(1/8)(1/6-1/32)^2]\rceil=\lceil18432/169\rceil=110\), because the statistical radius is 13/96. For n=2, total preparations are 130, gates 500, serial layers 380 and full record bits 390. For n=4 they are 190, gates 1360, serial layers 910 and full record bits 950. These include five shots for every basis calibration. The transfer artifact checks eight main calls and four calibration calls, with exact coverage and full references. No stochastic hit is required.
+
+**D.** A sampled/software residual is not a certified supremum error on a device, hardware independence/calibration was not supplied, and no matched hardware timing or universal classical lower bound was established. The exact classical product remains an eligible competitor. Schema/model consistency does not authenticate a record: a deliberately constructed possible record is still only a labeled diagnostic.
+
+</details>
+
+**Source and review status.** This laboratory implements the book's original [reader review and acceptance protocol](../reader-continuity.md#reader-review-and-acceptance-evidence), the frozen ED:protocol source. The parity/grid and support-count derivations are local; confidence and complete-resource ingredients come from the linked prerequisites. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.9.json) separates author checks, independent mathematical/implementation review, reader trial and formal acceptance. This remains a working draft; Chapter 14's nine working sections are not a formally accepted chapter. The next section in the frozen writing queue is 44.1, to be drafted separately.
+
+<!-- end-section-14.9 -->

@@ -1,0 +1,6 @@
+36 native CPU complex128 calls: 16 main experiments, 16 basis calibrations and four deliberately faulty executions audited.
+Exact input/grid/bias/binomial references passed; b=7, S=209, q=29/60, grid q=7919/16384, actual grid bias=1/245760.
+One base audit: 249 conceptual preparations, 1434 logical gates, 976 serial gate layers, 996 record bits, peak four qubits, nine native calls.
+Actual raw tensor storage for that audit: 7968 bytes; payload bits and simulator arrays are separate units.
+Four faulty executions, 11 mutated packets and nine preflight contracts rejected; a constructed possible confidence miss is diagnostic only.
+Exact classical scalar baseline remains eligible; no hardware confidence certificate, physical latency or quantum advantage claimed.

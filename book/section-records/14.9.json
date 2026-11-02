@@ -1,0 +1,101 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-computational-models-complexity-and-quantum-advantage-8",
+  "ref": "14.9",
+  "date": "2026-11-02",
+  "state": "draft",
+  "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+  "depth": "V",
+  "requires": [
+    "sec-computational-models-complexity-and-quantum-advantage-6",
+    "sec-hybrid-interaction-map",
+    "sec-computational-models-complexity-and-quantum-advantage-7"
+  ],
+  "result": "Resource-audit acceptance protocol",
+  "assumptions": [
+    "Explicit rational input;scalar mean output;fixed epsilon/delta and positive quantization bias budget.",
+    "Ideal IID grid law for conditional coverage;floating-point reference agreement is bounded software evidence,not an error certificate.",
+    "Named unit logical gate/support-layer model;all calibration,records and classical stages disclosed;physical timing unknown."
+  ],
+  "verification_obligations": [
+    "Exact rational input and nearest-even grid bias telescoping bound.",
+    "Fixed Chebyshev budget and exact ideal-binomial coverage.",
+    "Full native density/state/probability and joint record references.",
+    "All basis calibration labels and complete logical/calibration/storage accounting.",
+    "Exact classical scalar baseline eligibility and honest bit-cost boundary.",
+    "Retain four actual defective candidates separately from eleven mutated packets and nine preflight rejections.",
+    "Possible confidence miss diagnostic must not be represented as native evidence.",
+    "Fresh inputs/quality/modes/order transfer and actual expanded-answer browser QA."
+  ],
+  "formula_code_units": [
+    "task/classical reference",
+    "grid/bias/repetition budget",
+    "explicit native preparation/readout",
+    "calibration and packet handoff",
+    "complete resource ledger",
+    "exact coverage/eligible baseline",
+    "fault execution/packet diagnostics",
+    "possible miss/evidence scope"
+  ],
+  "sources": [
+    {
+      "locator": "ED:protocol",
+      "path": "docs/reader-continuity.md",
+      "scope": "Original reader review/acceptance obligations read;no independent signoff claimed."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/resource_audit.py",
+    "prose_checker": "scripts/check_resource_audit_prose.py",
+    "evidence": "book/section-evidence/14.9",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 36,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 14,
+    "separate_transfer_circuits": 12,
+    "execution_ledger": {
+      "initial_complete_before_raw_archiving": 36,
+      "complete_with_raw_archiving": 36,
+      "body_assembly": 14,
+      "body_plus_complete_checker": 50,
+      "fresh_transfer": 12,
+      "total_author_section_native_runs": 148,
+      "source_api_probes": 0,
+      "prior_regressions": "14.6and14.8literal/body/full checks separate"
+    },
+    "malformed_contracts": 20,
+    "tolerance": "Full vector/density/probability absolute1e-12,relative0.Exact Fraction model/grid/bias/binomial checks.No clipping,phase alignment,normalization repair or forced frequency hit.Float residual is not certified device bias.",
+    "native_boundary": "Released0.3.1CPUcomplex128RY/X/CX/run/probabilities/density/terminal samples/to_ir/analysis,both modes.Book-side audit/coverage/ledger helpers.No hardware timing,collapse/reset,authentication,IIDcertificate or advantage claim.",
+    "script_sha256": "7072a600834472bba5e1a843145f526a02a91c5509f0c7c29792e126c501d366",
+    "deliberately_faulty_native_executions": 4,
+    "zero_execution_boundary_checks": "Exact ties-to-even,deterministic endpoints,sharp grid bound and836shot reference guard in boundary-checks.py"
+  },
+  "assessment": {
+    "tasks": [
+      "14.9A-D"
+    ],
+    "answers": "Accessible answers;12fresh native calls with new inputs/quality,exact ideal coverage and complete logical ledgers.Reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Initial36and body14passed;final36raw-packet archive,checker50and transfer12passed.No unexpected scientific execution failure.Deliberately wrong four native recipes are candidate rejection evidence,not FQ failures.Integration utility span guard initially matched a prerequisite link before body mutation;corrected to match actual span,not a scientific failure."
+  },
+  "production": {
+    "next_draft": "44.1 in frozen queue;not written in this task",
+    "pdf": "Existing PDF edition unchanged",
+    "prerequisite_ci": "fc5c22f Verify41411884151completed success,all3jobs;archived before repository body integration.",
+    "formula_display": "Actual IAB final local build: rounding/telescoping/bias,statevector,complete ledger and exact-binomial formulas checked;expandedA-Danswers with twoMathJax containers and 9x3resource table checked;zeroMathJaxerrors.No formula-rendering failure.",
+    "website": "Fresh strict build and75page rendered links/fragments/duplicateIDs passed;exact-head deployment to be checked separately.",
+    "local_chapter_html_sha256": "1bbfa799c92cabca9ede865fdc0bfa8ee1fb3fa627a5574b6c4fb14572c48b56",
+    "tooling_notes": "Progress-dependent curriculum/skills generated views initially stale,regenerated and finalcheckspassed.Scienceenv lacks pip;installed distribution metadata captured via importlib.metadata;no dependency mutation."
+  }
+}

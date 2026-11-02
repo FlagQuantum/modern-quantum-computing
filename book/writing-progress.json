@@ -711,6 +711,16 @@
       "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
       "record": "book/section-records/14.8.json",
       "author_execution": "52initial/12CPUtiming/4body/56checker/10transfer=134actual native author calls;matched task,exact classical baselines and scoped advantage evidence;independent review pending"
+    },
+    "sec-computational-models-complexity-and-quantum-advantage-8": {
+      "state": "draft",
+      "brief": "book/briefs/ch14.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "record": "book/section-records/14.9.json",
+      "author_execution": "passed: releasedFlagQuantum0.3.1/Torch2.13.0/Python3.12.14CPUcomplex128;36complete/14body/12freshtransfer;ideal model coverage separate from implementation and hardware guarantees"
     }
   },
   "existing_pilots": [
