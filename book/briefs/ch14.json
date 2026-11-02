@@ -107,6 +107,32 @@
       "source_locators": [
         "NC:6.1.1"
       ]
+    },
+    {
+      "sequence": 68,
+      "batch": "B02",
+      "section_id": "sec-computational-models-complexity-and-quantum-advantage-5",
+      "ref": "14.5",
+      "title": "Accuracy, repetition, and success probability",
+      "depth": "F",
+      "requires": [
+        "sec-measurement-expectation-values-and-statistical-estimation-8",
+        "sec-computational-models-complexity-and-quantum-advantage-3"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "question": "How do precision,bias and a positive success gap determine repetitions and confidence?",
+      "entry": "6.8fixed-design variance bounds;14.3bounded-error decisions and independent-copy majority.",
+      "exit": "Full variance and exponential majority proofs;bias-aware mean/vote design;precision-to-probability bounds and median-of-means amplification.",
+      "worked_case": "Native Bernoulli records,independent/shared3votes,RZphase perturbations and fixed median blocks.",
+      "boundary": "Fixed IID ideal simulator experiments,certified bias/gap assumptions;no hardware calibration,optional stopping or automatic error certificate.",
+      "code_plan": "Actual RY/H/RZ/CX/CCX/run/probabilities/density/samples plus exact Fraction budgets/binomial references.",
+      "independent_check": "Scalar tensor amplitudes/majority permutation,analytic RZ matrices and exact finite Bernoulli sums.",
+      "transfer_task": "Fresh7/10and9/10sources,4rotation chain,new exact median fixture and fresh confidence targets.",
+      "source_locators": [
+        "CVX:7.4"
+      ]
     }
   ]
 }

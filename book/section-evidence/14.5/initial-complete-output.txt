@@ -1,0 +1,5 @@
+84 native CPU complex128 circuits: 36 raw-mean, 24 independent/shared-vote, 12 phase-chain and 12 median-block cases passed.
+Both modes: full deterministic probabilities/densities and raw-record accounting checked; no one-record confidence or majority-success assertion.
+At half-gap 1/4 and failure 1/20: variance budget 81, exact moment-bound budget 21, fixed-p=3/4 exact binomial minimum 9.
+Bias-aware mean budget 160; 32-rotation grid needs 9 fractional bits for event budget 1/32; verified-success budget 11.
+16 malformed contracts rejected; calibration, independence and rigorous bias certificates are assumptions, not inferred from samples.

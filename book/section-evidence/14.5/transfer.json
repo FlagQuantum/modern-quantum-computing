@@ -1,0 +1,94 @@
+{
+  "native_runs": 16,
+  "cases": [
+    {
+      "kind": "mean",
+      "p": "7/10",
+      "n": 41,
+      "mode": "statevector"
+    },
+    {
+      "kind": "mean",
+      "p": "7/10",
+      "n": 127,
+      "mode": "statevector"
+    },
+    {
+      "kind": "mean",
+      "p": "9/10",
+      "n": 41,
+      "mode": "statevector"
+    },
+    {
+      "kind": "mean",
+      "p": "9/10",
+      "n": 127,
+      "mode": "statevector"
+    },
+    {
+      "kind": "vote",
+      "independent": false,
+      "error": "3/10",
+      "mode": "statevector"
+    },
+    {
+      "kind": "vote",
+      "independent": true,
+      "error": "27/125",
+      "mode": "statevector"
+    },
+    {
+      "kind": "median",
+      "block_size": 25,
+      "blocks": 29,
+      "total": 725,
+      "mode": "statevector"
+    },
+    {
+      "kind": "mean",
+      "p": "7/10",
+      "n": 41,
+      "mode": "density_matrix"
+    },
+    {
+      "kind": "mean",
+      "p": "7/10",
+      "n": 127,
+      "mode": "density_matrix"
+    },
+    {
+      "kind": "mean",
+      "p": "9/10",
+      "n": 41,
+      "mode": "density_matrix"
+    },
+    {
+      "kind": "mean",
+      "p": "9/10",
+      "n": 127,
+      "mode": "density_matrix"
+    },
+    {
+      "kind": "vote",
+      "independent": false,
+      "error": "3/10",
+      "mode": "density_matrix"
+    },
+    {
+      "kind": "vote",
+      "independent": true,
+      "error": "27/125",
+      "mode": "density_matrix"
+    },
+    {
+      "kind": "median",
+      "block_size": 25,
+      "blocks": 29,
+      "total": 725,
+      "mode": "density_matrix"
+    }
+  ],
+  "exact_seven_vote_failure": "31509/250000",
+  "exact_median_coverage": "208723556727/250000000000",
+  "fresh_moment_budget": 45
+}

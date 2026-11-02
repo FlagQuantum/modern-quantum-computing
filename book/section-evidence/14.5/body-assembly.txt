@@ -1,0 +1,13 @@
+Accuracy 1/4, failure 1/5, zero bias: 20 shots; native probabilities and raw counts checked.
+Bias 1/8 leaves statistical radius 1/8: 160-shot conservative design.
+At target 3/4 but actual 5/8, exact coverage at radius 1/32 drops from N=64 to N=256.
+Three independent votes: error 5/32; shared source: error 1/4; variance-bound budget: 81.
+Exact moment-bound budget: 21; fixed p=3/4 exact binomial minimum: 9; 7 fails the target.
+Native RZ chain obeys the analytic operator/event bound; 32-rotation grid budget: 9 fractional bits.
+A persistent angle error changes ideal success 3/4 to actual 1/4; more shots do not repair it.
+Bias halves the guaranteed gap: moment budget rises from 21 to 93.
+Actual base success 5/8 gives three-vote error 81/256; base success 1/4 gives error 27/32.
+Median of means: 21 independent blocks of 16 samples, 336 total; block accounting checked.
+Verified success needs 11 fixed attempts at p=1/4; a success flag is required to select a winner.
+Three failure budgets of 1/30 sum to 1/10; 17 malformed contracts rejected before execution.
+10 native body executions: 7 helper and 3 explicit native calls.

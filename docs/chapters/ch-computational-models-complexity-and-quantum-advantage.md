@@ -1,6 +1,6 @@
 # 14. Computational Models, Complexity, and Quantum Advantage
 
-**Working drafts: sections 14.1–14.4 · Writing Baseline 1.0 · October 26, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
+**Working drafts: sections 14.1–14.5 · Writing Baseline 1.0 · November 2, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
 
 <span id="sec-computational-models-complexity-and-quantum-advantage-1"></span>
 ## 14.1 Problems, input length, and computational models
@@ -1213,3 +1213,438 @@ The frozen source target is Nielsen and Chuang, [*Quantum Computation and Quantu
 The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.4.json) separates author execution from independent mathematical/implementation review and reader trial. This remains a working draft. Continue, when drafted, with [14.5 Accuracy, repetition, and success probability](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-5).
 
 <!-- end-section-14.4 -->
+
+<span id="sec-computational-models-complexity-and-quantum-advantage-5"></span>
+## 14.5 Accuracy, repetition, and success probability
+
+**Question.** How many repetitions are sufficient, and which implementation errors can repetition never remove?
+
+The prerequisites are [6.8, fixed-design confidence bounds](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-8) and [14.3, bounded-error computation](#sec-computational-models-complexity-and-quantum-advantage-3). This **F-depth** section extends the constant-confidence discussion to explicit accuracy and failure targets. It proves variance and exponential majority bounds, relates implementation precision to probability bias, and constructs an independent-block estimator. The assumptions matter as much as the resulting integer budgets.
+
+### 14.5.1 Name three different parameters
+
+We will use these dimensionless quantities for a Bernoulli output:
+
+- **Accuracy ε>0:** the allowed absolute error in a reported probability or mean.
+- **Failure target 0<δ<1:** an upper bound on the probability that the prescribed procedure exceeds its allowed error or returns the wrong decision.
+- **Success half-gap γ>0:** a lower bound on the base decision procedure's success probability above 1/2. Thus base success is at least 1/2+γ. The yes/no acceptance gap in a symmetric decision contract is 2γ.
+
+Numerical precision is a fourth, implementation-dependent quantity: for example, an angle grid spacing or an operator-norm approximation error. It is not automatically equal to ε, δ or γ. A change in any of these can change the required work.
+
+First distinguish an ideal target probability p from the actual fixed probability q sampled by the implemented circuit. Let B₁,…,B_N be independent identically distributed bits with mean q. Write
+
+$$
+\widehat q=\frac1N\sum_{i=1}^N B_i,
+\qquad
+\mathbb E[\widehat q]=q,
+\qquad
+\operatorname{Var}(\widehat q)=\frac{q(1-q)}N\leq\frac1{4N}.
+$$
+
+The variance identity follows by expanding the centered square: independence makes every cross covariance zero, and each Bernoulli variance is q−q². The inequality follows from q(1−q)=1/4−(q−1/2)²≤1/4. In the unbiased implementation q=p, Chebyshev from 6.8 gives
+
+$$
+\Pr\{ |\widehat q-p|>\epsilon\}
+\leq\frac1{4N\epsilon^2}.
+$$
+
+Thus N≥ceil[1/(4δε²)] is sufficient. This is a conservative guarantee, not an assertion that every random record lies inside its target interval. The strict failure event is the complement of the closed accuracy interval; bounding the larger non-strict Chebyshev event is still valid.
+
+```python
+import math,itertools,torch,flagquantum as fq
+from fractions import Fraction as F
+from dataclasses import replace
+from examples.foundations import accuracy_repetition as a,statistical_ensembles as e,uniform_reversible as u
+epsilon,delta,bias=F(1,4),F(1,5),F(0)
+n=a.mean_budget(epsilon,delta,bias);assert n==20
+c=fq.Circuit(1,dtype=torch.complex128).RY(0,theta=2*math.pi/3)
+r=fq.run(c,outputs=[fq.probabilities(name='p'),fq.samples(qubits=(0,),name='raw')],
+    shots=n,options=replace(e.OPTIONS,seed=61))
+e.close(r.measurement('p').value[0],torch.tensor([.25,.75],dtype=torch.float64))
+raw=r.measurement('raw').value;assert raw.shape==(1,20,1) and bool(((raw==0)|(raw==1)).all())
+estimate=F(int(raw.sum()),n);assert 0<=estimate<=1
+print('Accuracy 1/4, failure 1/5, zero bias: 20 shots; native probabilities and raw counts checked.')
+```
+
+```text
+Accuracy 1/4, failure 1/5, zero bias: 20 shots; native probabilities and raw counts checked.
+```
+
+The program checks the exact simulator probabilities and the raw record's shape/bit accounting. It deliberately does not assert that this particular estimate must be within ε of p. An occasional failure is permitted by a probabilistic guarantee.
+
+### 14.5.2 Reserve part of the accuracy for bias
+
+Assume a separate argument supplies a deterministic bound |q−p|≤β. This bound must come from the implementation/model contract, not be guessed from a favorable random record. The triangle inequality gives
+
+$$
+|\widehat q-p|\leq |\widehat q-q|+\beta.
+$$
+
+For 0≤β<ε, put t=ε−β>0. Exceeding the total accuracy ε requires a sampling deviation larger than t, so a sufficient shot count is
+
+$$
+\Pr\{|\widehat q-p|>\epsilon\}
+\leq\frac1{4Nt^2},
+\qquad
+N\geq\left\lceil\frac1{4\delta(\epsilon-\beta)^2}\right\rceil.
+$$
+
+Holding δ fixed, halving the available statistical radius t multiplies this sufficient budget by four before integer rounding. If β≥ε, this argument supplies no positive radius; the budget helper rejects that request. This does not prove that every such implementation must fail, but it does mean the stated bias bound cannot justify the proposed accuracy by this method.
+
+There is also a concrete failure mechanism. Suppose the actual offset is |q−p|=β>ε. Whenever an estimate is within ε of the ideal p, the reverse triangle inequality requires |q̂−q|≥β−ε. Therefore
+
+$$
+\Pr\{|\widehat q-p|\leq\epsilon\}
+\leq\frac1{4N(\beta-\epsilon)^2}\longrightarrow0.
+$$
+
+This proof uses the same variance bound and needs no appeal to an unstated limit theorem. More repetitions concentrate the estimate around the wrong mean. Discrete coverage need not decrease at every successive N; the upper bound describes the eventual obstruction. The code compares two specified sample sizes using exact binomial sums, not an unsupported monotonicity assertion.
+
+```python
+n=a.mean_budget(F(1,4),F(1,10),F(1,8));assert n==160
+_,estimate_biased=a.native_mean(F(5,8),n,mode='density_matrix')
+c64=a.target_coverage(F(3,4),F(5,8),64,F(1,32))
+c256=a.target_coverage(F(3,4),F(5,8),256,F(1,32))
+assert c256<c64
+print('Bias 1/8 leaves statistical radius 1/8: 160-shot conservative design.')
+print('At target 3/4 but actual 5/8, exact coverage at radius 1/32 drops from N=64 to N=256.')
+```
+
+```text
+Bias 1/8 leaves statistical radius 1/8: 160-shot conservative design.
+At target 3/4 but actual 5/8, exact coverage at radius 1/32 drops from N=64 to N=256.
+```
+
+This is why “increase shots until stable” does not validate calibration, data loading or the model. Stability around q is not a certificate that q equals p.
+
+### 14.5.3 Prove the majority variance bound at arbitrary confidence
+
+Now consider a decision procedure whose **actual** success probability s satisfies s≥1/2+h, for a certified h>0. Execute M independent fresh repetitions on the same allowed classical input, with M odd. Let A_i indicate that repetition i is correct. In the proof those indicators refer to correctness; the algorithm need not know which individual answers are correct.
+
+Majority is wrong only when \(\overline A=M^{-1}\sum_i A_i<1/2\). Since its mean is at least 1/2+h, this event requires a deviation of at least h. The same variance expansion yields
+
+$$
+\Pr\{\text{wrong majority}\}
+\leq\frac1{4Mh^2}.
+$$
+
+Choose the least odd integer at least 1/(4δh²) to obtain error at most δ. Section 14.3's constant-confidence budget is the special case δ=1/3. Here the explicit dependence on both h and δ matters: if h shrinks with input size, it is not a constant hidden in the resource count.
+
+For three bits, the majority bit is ab XOR ac XOR bc. A zero fourth qubit receives this bit through three CCX gates. We prepare three independent output bits of success probability 3/4, then validate the exact vote distribution and the raw vote relation. The comparison circuit prepares one bit and fans it out to the other two, preserving the same marginals while correlating all three records.
+
+```python
+# Three fresh answer qubits; fourth qubit receives their majority.
+c=fq.Circuit(4,dtype=torch.complex128)
+for j in (0,1,2):c.RY(j,theta=2*math.pi/3)
+c.CCX(0,1,3).CCX(0,2,3).CCX(1,2,3)
+r_vote=fq.run(c,outputs=[fq.probabilities(qubits=(3,),name='vote'),fq.samples(qubits=(0,1,2,3),name='raw')],
+    shots=17,options=replace(e.OPTIONS,seed=61))
+e.close(r_vote.measurement('vote').value[0],torch.tensor([5/32,27/32],dtype=torch.float64))
+v=torch.zeros(16,dtype=torch.complex128)
+for bits in itertools.product((0,1),repeat=3):
+    s=sum(bits);v[u.index(bits+(int(s>=2),))]=math.sqrt(.75)**s*math.sqrt(.25)**(3-s)
+e.close(r_vote.statevector()[0],v)
+bits=r_vote.measurement('raw').value;assert bits.shape==(1,17,4)
+assert bool((bits[0,:,3]==(bits[0,:,:3].sum(dim=1)>=2)).all())
+_,shared_error=a.native_vote(F(3,4),independent=False,mode='density_matrix')
+assert shared_error==F(1,4) and a.variance_budget(F(1,4),F(1,20))==81
+print('Three independent votes: error 5/32; shared source: error 1/4; variance-bound budget: 81.')
+```
+
+```text
+Three independent votes: error 5/32; shared source: error 1/4; variance-bound budget: 81.
+```
+
+For the shared source, every repetition agrees with the first; the error stays 1/4. More generally,
+
+$$
+\operatorname{Var}(\overline A)
+=\frac1{M^2}\left(\sum_i\operatorname{Var}(A_i)
++2\sum_{i<j}\operatorname{Cov}(A_i,A_j)\right).
+$$
+
+With identical copies A_i=A, this equals Var(A), not Var(A)/M. The ideal product preparation in the first circuit justifies the independent model. A single experimental record, or replaying a seed, does not establish hardware independence. Known classical inputs can be copied before independent circuit execution as explained in 14.3; this is not a license to clone unknown quantum inputs or reuse one random output as independent evidence.
+
+### 14.5.4 Prove an exponential majority bound
+
+The variance bound is sufficient but loose at small δ. We can obtain logarithmic dependence on 1/δ with a separate complete argument. Let E_i=1−A_i be the error bit and q_e=Pr(E_i=1)≤q₀=1/2−h. Assume first 0<h<1/2. A wrong odd majority has at least M/2 error bits. For any λ>0, apply Markov's inequality to the nonnegative variable exp(λ∑E_i):
+
+$$
+\begin{aligned}
+\Pr\{\text{wrong majority}\}
+&\leq e^{-\lambda M/2}\,\mathbb E\exp\!\left(\lambda\sum_iE_i\right)\\
+&=\left[e^{-\lambda/2}\bigl(1-q_e+q_e e^\lambda\bigr)\right]^M\\
+&\leq\left[e^{-\lambda/2}\bigl(1-q_0+q_0 e^\lambda\bigr)\right]^M.
+\end{aligned}
+$$
+
+The equality uses independence to factor the expectation into M one-bit expectations. The last inequality holds because e^λ−1>0, so that expectation increases with q_e. Choose λ=ln[(1−q₀)/q₀]>0. Then q₀e^λ=1−q₀, and the bracket is 2√[q₀(1−q₀)]. Consequently,
+
+$$
+\Pr\{\text{wrong majority}\}
+\leq (1-4h^2)^{M/2}
+\leq e^{-2Mh^2}.
+$$
+
+For completeness, ln(1−u)≤−u on 0≤u<1: the derivative of ln(1−u)+u is −u/(1−u)≤0 and its value at zero is zero. Apply this with u=4h² to obtain the final inequality. This one-line real-calculus bridge explains the exponential estimate rather than treating it as a numerical fit. At h=1/2 every trial succeeds with certainty, so majority error is zero and one repetition suffices; no infinite logarithm need be evaluated.
+
+For 0<h<1/2 it is sufficient to take odd
+
+$$
+M\geq\frac{\ln(1/\delta)}{2h^2}.
+$$
+
+For rational designs, the helper avoids a potentially ambiguous floating-point log/ceiling decision by using the stronger first bound: it selects the first odd M satisfying the **exact rational inequality**
+
+$$
+(1-4h^2)^M\leq\delta^2.
+$$
+
+This is a sufficient moment-bound budget, not the smallest M satisfying the true error target. At h=1/4 and δ=1/20, the variance budget is 81, the exact moment-bound budget is 21, and the simpler e-bound suffices with 25. For the particular IID Bernoulli source s=3/4, direct enumeration of the binomial law gives a smaller exact minimum of 9. Each statement names the guarantee it actually uses.
+
+For that fixed source, the exact error law is
+
+$$
+\Pr\{\text{wrong majority}\}
+=\sum_{j=0}^{(M-1)/2}\binom Mj s^j(1-s)^{M-j}.
+$$
+
+Indeed, each M-bit record with j successes has probability sʲ(1−s)ᴹ⁻ʲ, and exactly binomial(M,j) records have that count. These disjoint events give the sum. The code's exact minimum refers only to this fixed law; it is not an optimality theorem for quantum algorithms.
+
+```python
+h,delta=F(1,4),F(1,20)
+m=a.moment_budget(h,delta);assert m==21 and (1-4*h*h)**m<=delta**2
+assert a.majority_error(F(3,4),m)<=delta
+assert a.minimal_fixed_majority(F(3,4),delta)==9
+assert a.majority_error(F(3,4),7)>delta
+print('Exact moment-bound budget: 21; fixed p=3/4 exact binomial minimum: 9; 7 fails the target.')
+```
+
+```text
+Exact moment-bound budget: 21; fixed p=3/4 exact binomial minimum: 9; 7 fails the target.
+```
+
+The threshold M≤501 is a host exact-arithmetic teaching guard. It does not restrict the theorem or FlagQuantum. The bound improves confidence only under the declared independence and positive-gap assumptions.
+
+### 14.5.5 Translate implementation precision into probability error
+
+Sampling and majority cannot correct an unbudgeted change to the circuit. Here is a sufficient deterministic connection. Let ideal and implemented unitary chains be U=U_L…U₁ and V=V_L…V₁, with phase conventions fixed and
+
+$$
+\|V_j-U_j\|_{\mathrm{op}}\leq\eta_j.
+$$
+
+Insert and subtract successive hybrid products. The result is the telescoping identity
+
+$$
+V-U=\sum_{j=1}^L
+V_L\cdots V_{j+1}(V_j-U_j)U_{j-1}\cdots U_1.
+$$
+
+One can verify it by expanding each parenthesis: the negative term of one hybrid cancels the positive term of its neighbor, leaving V−U. Empty products at the endpoints mean identity. All other factors are unitary and have operator norm one; the triangle inequality gives ∥V−U∥_op≤∑η_j. If the normalized prepared input itself differs from its ideal input by at most η_prep in vector norm, add and subtract V acting on the ideal input to obtain
+
+$$
+\|\phi-\psi\|_2\leq\eta_{\mathrm{prep}}+\sum_j\eta_j,
+$$
+
+where ψ is the ideal final vector and φ the implemented final vector. For any measurement effect 0≤E≤I, expand the expectation difference as
+
+$$
+\begin{gathered}
+\langle\phi|E|\phi\rangle-\langle\psi|E|\psi\rangle\\
+=\langle\phi-\psi|E|\phi\rangle
++\langle\psi|E|\phi-\psi\rangle.
+\end{gathered}
+$$
+
+Cauchy–Schwarz, ∥E∥_op≤1 and normalized φ,ψ bound the magnitude by 2∥φ−ψ∥₂. Therefore a sufficient event-probability bias bound is
+
+$$
+\beta\leq2\left(\eta_{\mathrm{prep}}+\sum_j\eta_j\right).
+$$
+
+The expression can exceed one and then be uninformative; it is still an upper bound. It is not a numerical renormalization rule. A sampled residual, an unverified SVD norm or a framework tolerance is not automatically a rigorous certificate for the η_j. The statement assumes unitary implementations and a fixed measurement effect. General noise and readout-model errors require their own bounds.
+
+In the native illustration, exact H gates bracket a sequence of RZ rotations. An angle offset d_j radians gives
+
+$$
+\|R_Z(\theta_j+d_j)-R_Z(\theta_j)\|_{\mathrm{op}}
+=2|\sin(d_j/4)|\leq |d_j|/2.
+$$
+
+This follows directly from the two diagonal entries e^(±iθ/2). The sine inequality follows from sin x=∫₀ˣcos t dt and |cos t|≤1. We track the full matrix convention rather than reducing angles modulo 2π or aligning phases after execution. These RZ rotations commute, so their total angle also supplies an independent analytic reference.
+
+With a nearest-point angle grid of step Δ=2⁻ᵇ radians, |d_j|≤Δ/2. For L such rotations and no other errors, the sufficient bound becomes β≤LΔ/2. Thus choosing b with L2⁻ᵇ/2≤β_budget prices the required **fractional angle bits**. Integer/exponent storage, synthesis cost and device accuracy remain separate. For L=32 and β_budget=1/32, the least such b is 9.
+
+```python
+c=fq.Circuit(1,dtype=torch.complex128).H(0)
+c.RZ(0,theta=.4+.02).RZ(0,theta=.5-.01).H(0)
+r_precision=fq.run(c,outputs=[fq.probabilities(name='p')],options=e.OPTIONS)
+q_ideal=math.sin(.9/2)**2;q_actual=math.sin(.91/2)**2
+local_norms=2*abs(math.sin(.02/4))+2*abs(math.sin(-.01/4))
+assert abs(q_actual-q_ideal)<=2*local_norms
+e.close(r_precision.measurement('p').value[0],torch.tensor([1-q_actual,q_actual],dtype=torch.float64))
+e.close(r_precision.statevector()[0],torch.tensor([math.cos(.91/2),-1j*math.sin(.91/2)],dtype=torch.complex128))
+assert a.grid_bits(32,F(1,32))==9
+_,bad_precision=a.phase_chain((2*math.pi/3,),(-math.pi/3,),mode='density_matrix')
+assert abs(bad_precision['ideal']-.75)<1e-12 and abs(bad_precision['actual']-.25)<1e-12
+print('Native RZ chain obeys the analytic operator/event bound; 32-rotation grid budget: 9 fractional bits.')
+print('A persistent angle error changes ideal success 3/4 to actual 1/4; more shots do not repair it.')
+```
+
+```text
+Native RZ chain obeys the analytic operator/event bound; 32-rotation grid budget: 9 fractional bits.
+A persistent angle error changes ideal success 3/4 to actual 1/4; more shots do not repair it.
+```
+
+The small-offset circuit checks the analytic bound. The deliberately large offset changes ideal success 3/4 to actual success 1/4. This is an implementation-model discrepancy, not a random fluctuation to be removed by increasing shots. Floating-point execution of the chosen angles validates the example; it does not certify all devices or all quantized angle inputs.
+
+### 14.5.6 Budget the surviving gap before choosing repetitions
+
+Suppose the ideal decision procedure has success at least 1/2+γ and a separate argument bounds its success-probability change by β. Then actual success is at least 1/2+γ−β. To use either majority theorem, we need
+
+$$
+h=\gamma-\beta>0.
+$$
+
+Insert this **surviving** half-gap into the budget. Using γ while ignoring β can underestimate the repetitions. For γ=1/4 and β=1/8, the moment-bound budget at δ=1/20 increases from 21 to 93. If β≥γ, the helper refuses to manufacture a majority guarantee. It is not claiming that no better implementation could work; it is refusing a guarantee from insufficient assumptions.
+
+```python
+h=a.effective_gap(F(1,4),F(1,8));assert h==F(1,8)
+assert a.moment_budget(h,F(1,20))==93
+_,degraded=a.native_vote(F(5,8),mode='density_matrix')
+_,wrong=a.native_vote(F(1,4))
+assert degraded==F(81,256) and wrong==F(27,32)
+print('Bias halves the guaranteed gap: moment budget rises from 21 to 93.')
+print('Actual base success 5/8 gives three-vote error 81/256; base success 1/4 gives error 27/32.')
+```
+
+```text
+Bias halves the guaranteed gap: moment budget rises from 21 to 93.
+Actual base success 5/8 gives three-vote error 81/256; base success 1/4 gives error 27/32.
+```
+
+If actual base success falls below one half, majority can favor the wrong label: in the shown three-trial example its error grows from 3/4 to 27/32. The measured output bit must be related to correctness by the task's specification; relabeling a wrong circuit's most frequent outcome is not a general repair when the correct answer is unknown.
+
+If an implementation bound can itself fail with probability δ_impl, a combined guarantee needs a uniform statistical bound over every admitted implementation satisfying that bound. With such a contract, the failure events give δ_total≤δ_impl+δ_stat. This is not obtained by conditioning on a favorable observed record. Correlated calibration errors shared across trials are precisely why the implementation premise must be stated separately.
+
+### 14.5.7 Amplify numerical accuracy with independent blocks
+
+The direct mean's variance bound is proportional to 1/δ. That is a property of the selected bound, not a lower bound on estimation. We can combine the two proved tools to obtain logarithmic confidence dependence for numerical estimation as well.
+
+Reserve β<ε and let t=ε−β. Split the experiment into M independent blocks, each of fixed size
+
+$$
+n_0=\max\{1,\lceil t^{-2}\rceil\}.
+$$
+
+Each block mean has deviation greater than t from the actual q with probability at most 1/(4n₀t²)≤1/4. Call a block **good** when its mean lies in [q−t,q+t]. The good-block indicators are independent because the underlying trial groups are independent, and each has success probability at least 3/4.
+
+Take M odd and report the median of the M block means. If more than half the blocks are good, the median lies inside [q−t,q+t]: a median below the lower endpoint would require at least (M+1)/2 block means below it, and similarly for a median above the upper endpoint. Either case contradicts a good majority. Hence the probability that the median exceeds total accuracy ε around p is at most the bad-majority probability, because the triangle inequality adds only β.
+
+Apply the moment bound with h=1/4:
+
+$$
+\Pr\{|\operatorname{median}-p|>\epsilon\}
+\leq(3/4)^{M/2}\leq e^{-M/8}.
+$$
+
+An exact rational choice satisfying (3/4)^M≤δ² suffices. The total sample count is n₀M, growing as a sufficient order of (ε−β)⁻²[1+ln(1/δ)] in the small-accuracy regime. At ε=1/4, β=0, δ=1/20, our design uses 21 blocks of 16 samples, or 336 samples. The direct Chebyshev mean would use 80 samples at these particular constants. Better asymptotic dependence on δ does not guarantee smaller budgets at every finite parameter choice.
+
+```python
+t=F(1,4);n0=math.ceil(1/t**2);m=a.moment_budget(F(1,4),F(1,20))
+assert (n0,m,n0*m)==(16,21,336)
+r_blocks,median=a.median_blocks(F(3,4),n0,m,mode='density_matrix')
+assert r_blocks.measurement('raw').value.shape==(1,336,1) and 0<=median<=1
+print('Median of means: 21 independent blocks of 16 samples, 336 total; block accounting checked.')
+```
+
+```text
+Median of means: 21 independent blocks of 16 samples, 336 total; block accounting checked.
+```
+
+The median calculation is explicit host postprocessing of native records. All group sizes and the number of groups are fixed before observing them. The result is not a native confidence-interval endpoint, an adaptive stopping theorem or a certificate of hardware independence. Persistent bias remains after taking medians just as it does after taking means.
+
+### 14.5.8 Separate verified success, total failure and execution evidence
+
+A different repetition task is “obtain at least one **verifiably** successful candidate.” With independent attempts of success probability s>0 and a reliable success flag, R fixed attempts all fail with probability (1−s)^R. This follows by multiplying their failure probabilities; its complement is the probability of at least one success. A sufficient finite cap is the first R satisfying
+
+$$
+(1-s)^R\leq\delta.
+$$
+
+For s=1/4 and δ=1/20 this is R=11, even though s is below one half. The rule requires a verifier that tells which candidate succeeded. Without it, a collection containing a correct answer need not identify that answer, and an “any success” probability cannot replace a majority correctness guarantee. In the toy record the task defines output 1 itself as the success flag; this does not construct a verifier for an arbitrary computational problem.
+
+For K events, each with justified failure bound δ_j, the union bound gives
+
+$$
+\Pr\{\text{any failure}\}\leq\sum_{j=1}^K\delta_j.
+$$
+
+This follows from the pointwise inequality that the indicator of a union is at most the sum of its event indicators, then taking expectations. Independence between these K failure events is unnecessary; independence was needed **inside** the earlier repetition arguments. Allocate δ_j before running. In adaptive settings, a bound used for a subroutine needs to hold uniformly for its admitted inputs/history; selective reporting of the successful calls is not such a contract.
+
+```python
+r=a.verified_budget(F(1,4),F(1,20));assert r==11 and F(3,4)**r<=F(1,20)
+a.native_mean(F(1,4),r)
+assert F(3,4)**(r-1)>F(1,20)
+assert F(1,50)+F(2,25)==F(1,10)
+per_call=F(1,10)/3
+assert sum((per_call for _ in range(3)),F(0))==F(1,10)
+assert a.invalid_checks()==17
+print('Verified success needs 11 fixed attempts at p=1/4; a success flag is required to select a winner.')
+print('Three failure budgets of 1/30 sum to 1/10; 17 malformed contracts rejected before execution.')
+```
+
+```text
+Verified success needs 11 fixed attempts at p=1/4; a success flag is required to select a winner.
+Three failure budgets of 1/30 sum to 1/10; 17 malformed contracts rejected before execution.
+```
+
+The complete companion is [accuracy_repetition.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/accuracy_repetition.py). Run from the repository root in the pinned example environment:
+
+```bash
+python examples/foundations/accuracy_repetition.py
+python scripts/check_accuracy_repetition_prose.py
+```
+
+Expected output of the complete program:
+
+```text
+84 native CPU complex128 circuits: 36 raw-mean, 24 independent/shared-vote, 12 phase-chain and 12 median-block cases passed.
+Both modes: full deterministic probabilities/densities and raw-record accounting checked; no one-record confidence or majority-success assertion.
+At half-gap 1/4 and failure 1/20: variance budget 81, exact moment-bound budget 21, fixed-p=3/4 exact binomial minimum 9.
+Bias-aware mean budget 160; 32-rotation grid needs 9 fractional bits for event budget 1/32; verified-success budget 11.
+17 malformed contracts rejected; calibration, independence and rigorous bias certificates are assumptions, not inferred from samples.
+```
+
+The restored runtime is Python 3.12.14, FlagQuantum 0.3.1 and PyTorch 2.13.0, CPU complex128. Both statevector and density-matrix modes execute the declared preparations; deterministic probability/density comparisons use absolute tolerance 10⁻¹² and relative tolerance zero. Statevector mode additionally checks phase-fixed complex vectors for the vote and phase-chain cases. References use scalar product amplitudes, the explicit majority permutation and analytic RZ formulas, not native gate-list introspection. Exact budgets and finite binomial references use `Fraction`. No phase alignment, clipping, norm repair or interval certificate is introduced.
+
+Actual API calls are `Circuit.RY/H/RZ/CX/CCX`, `fq.run`, `fq.probabilities`, `fq.density_matrix` and `fq.samples`. A terminal `shots=N` request supplies N ideal sample records from the simulator's output distribution; it is not N separately timed hardware executions, resets or host calls. The execution ledger counts circuit invocations separately from statistical trials. Seed replay is a debugging facility and is not additional independent evidence. The hand-written mean, median, majority budgets, exact binomial analysis and angle-grid design are book-side code. No framework calibration certificate, native confidence theorem, hardware IID guarantee, noise model or physical runtime improvement is established by these tests.
+
+The native shot cap 10000, exact binomial/moment search cap 501, phase-chain length cap 8 and grid gate-count cap 10000 are teaching limits, not FlagQuantum scalability limits. Nonfinite aggregate angles, nonpositive gaps, accuracy exhausted by bias, even majority counts and malformed design inputs are rejected. The exact small median fixture sums finite block distributions; it is not a quantum execution. A random record or vote is never required to succeed as a deterministic test of its probability guarantee.
+
+**Understanding and transfer tasks**
+
+- **14.5-A — parameters and units.** Why is an algorithm's half-gap not the same as an estimator's accuracy? If the available statistical radius is halved, what happens to the direct variance budget? Does changing float precision automatically provide a bound on β?
+- **14.5-B — proof and assumptions.** Reproduce the exponential-moment factorization and the choice of λ. Identify exactly where independence is used. What replaces the mean variance if every repetition copies the same random bit?
+- **14.5-C — fresh execution.** Use new sources s=7/10 and 9/10, sample sizes 41 and 127, and both modes. Compare independent/shared three-vote circuits at s=7/10. Run a four-RZ chain with ideal angles (−.2,.3,.7,−.4) and offsets (.01,−.02,.005,.004). For a median design with t=1/5 and δ=1/50, compute block size and block count before collecting data. Compare an independent exact seven-bit record enumeration with the binomial reference.
+- **14.5-D — full guarantees.** For L=32 rotations and event-bias budget 1/32, derive the grid-bit requirement. If γ=1/4 and β=1/8, which gap belongs in the repetition bound? Why can an eleven-attempt “any success” calculation be inappropriate for unknown yes/no answers?
+
+<details markdown="1">
+<summary>Answers and verification guidance for 14.5-A–D</summary>
+
+**A.** γ is a margin above random guessing for a decision task; ε is a numerical deviation tolerance for a reported mean. Neither determines the other without a task-specific reduction. Halving t multiplies the direct sufficient variance budget by four before rounding. Floating-point format alone does not certify preparation, synthesis, calibration or readout errors; β needs its own argument.
+
+**B.** Markov bounds exp(λ∑E_i); independence factors its expectation into one-bit terms. Replacing q_e by q₀=1/2−h bounds each factor, and λ=ln[(1−q₀)/q₀] gives the bracket 2√[q₀(1−q₀)]. Shared copies have all covariances equal to Var(A), so Var(average)=Var(A), not Var(A)/M. Marginals alone are insufficient.
+
+**C.** The four-rotation ideal total is .4 radians and the implemented total is .399 radians. The median design has block size 25, moment-bound count 29 and total 725 samples. No one generated median is required to lie inside the target interval. The fresh exact seven-vote enumeration and three-block median fixture are classical references; the transfer has 16 native executions, including the new circuit parameters in both modes.
+
+**D.** Each rounded angle differs by at most Δ/2; each rotation has operator error at most Δ/4, so event bias is bounded by LΔ/2. The inequality 32×2⁻ᵇ/2≤1/32 gives b≥9. The surviving half-gap is 1/8, whose exact moment-bound count at δ=1/20 is 93. “At least one correct answer exists” does not tell the program which answer is correct without a verifier. The applicable majority bound instead depends on a justified success margin above 1/2.
+
+</details>
+
+The frozen source is Boyd and Vandenberghe, [*Convex Optimization*, §7.4](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf#page=388): §7.4.1 begins on printed page 374, and the exponential Markov formulation in §7.4.2 is on printed page 379. The author-hosted PDF was downloaded and PDF pages 388–389 and 393 were inspected in this pass; its SHA256 matches the frozen seventh-printing source record. Primary indexed page text was also checked. The section supplies its own full Bernoulli majority, bias, precision and block-median arguments. It does not import general convex optimization results as undeclared prerequisites. No third-party textbook text is included in the repository.
+
+The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.5.json) distinguishes author execution from independent mathematical/implementation review and reader trial. It remains a working draft. Continue, when drafted, with [14.6 Complete resource accounting](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-6).
+
+<!-- end-section-14.5 -->

@@ -1,0 +1,108 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-computational-models-complexity-and-quantum-advantage-5",
+  "ref": "14.5",
+  "date": "2026-11-02",
+  "state": "draft",
+  "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+  "depth": "F",
+  "requires": [
+    "sec-measurement-expectation-values-and-statistical-estimation-8",
+    "sec-computational-models-complexity-and-quantum-advantage-3"
+  ],
+  "result": "Independent repetition amplifies a bounded success probability",
+  "assumptions": [
+    "Fixed IID actual Bernoulli trials;success gap strictly above1/2 for majority.",
+    "Certified implementation probability bias;unitary chain and fixed measurement effect for operator-to-event bound.",
+    "Fixed sample/group counts;fresh independent groups and declared input preparation/access.",
+    "Mean accuracy closed interval;odd majority;all budgets separate from observed success."
+  ],
+  "verification_obligations": [
+    "Derive bias-aware mean variance budget and a persistent-bias coverage counterexample.",
+    "Derive arbitrary-confidence majority variance bound and covariance failure under copied records.",
+    "Prove exponential Markov factorization,optimized Bernoulli factor and gap/confidence scaling;handle perfect-success endpoint.",
+    "Distinguish exact rational sufficient moment budget from exact fixed-law binomial minimum.",
+    "Prove unitary telescoping,state/event bias bound and RZangle-grid precision requirement.",
+    "Insert surviving gap gamma-minus-bias;no unjustified guarantee if nonpositive.",
+    "Prove fixed independent-block median amplification and account for all samples.",
+    "Distinguish reliable verified-success task from majority and allocate failure probabilities by union bound."
+  ],
+  "formula_code_units": [
+    "accuracy parameters/native raw records",
+    "bias-aware mean",
+    "native three-vote/correlated contrast",
+    "moment and binomial budgets",
+    "native precision chain/grid",
+    "surviving gap",
+    "native fixed median blocks",
+    "verified success/failure allocation"
+  ],
+  "sources": [
+    {
+      "locator": "CVX:7.4",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+      "printed_pages": [
+        374,
+        375,
+        379
+      ],
+      "pdf_pages": [
+        388,
+        389,
+        393
+      ],
+      "sha256": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e",
+      "inspection": "Author-hosted PDF downloaded,exact pages text inspected and hash matched. Markov/Chebyshev/exponential Markov source;local Bernoulli/precision/median derivations fully supplied.No source text uploaded."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/accuracy_repetition.py",
+    "prose_checker": "scripts/check_accuracy_repetition_prose.py",
+    "evidence": "book/section-evidence/14.5",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 84,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 10,
+    "separate_transfer_circuits": 16,
+    "execution_ledger": {
+      "initial_complete": 84,
+      "initial_body": 10,
+      "final_body_plus_complete": 94,
+      "fresh_transfer": 16,
+      "total_author_section_native_runs": 204,
+      "source_api_probes": 0,
+      "prior_regressions": "6.8and14.3checks recorded separately"
+    },
+    "malformed_contracts": 17,
+    "tolerance": "Absolute1e-12/relative0 deterministic references;Fraction budgets/tails exact;no one-record interval or majority must-succeed assertions.No normalization/phase alignment/clipping/interval certificate.",
+    "native_boundary": "Actual RY/H/RZ/CX/CCX/run/probabilities/densities/samples in both modes.Classical means/median/design/grid/error certificates are not native framework theorems.No hardware IID/calibration/reset/optimal precision/compiler/timing claim.",
+    "script_sha256": "d0c11e18b1774034cb1168b3d779389f0af18af27cb157bc2152ce10e82e90e3"
+  },
+  "assessment": {
+    "tasks": [
+      "14.5A-D"
+    ],
+    "answers": "Accessible solutions;16fresh native executions plus independent exact7bit/3block references.Reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "84initial/10body/94final/16transfer passed;no unexpected scientific failure.Pure malformed-angle refinement preserved initial passing evidence."
+  },
+  "production": {
+    "next_draft": "14.6 Complete resource accounting",
+    "pdf": "Existing PDF edition unchanged",
+    "prerequisite_ci": "3cb2655 Verify40283597021success,all3jobs;archived before new body work.",
+    "formula_display": "Actual local IAB checked mean/variance, exponential Markov, unitary telescoping, event bias, independent-block median and expanded A-D answers; zero MathJax errors. No display repair needed.",
+    "website": "Fresh strict MkDocs build and 75-page rendered link/duplicate-ID checks passed; publication/deployment to be confirmed separately.",
+    "local_chapter_html_sha256": "30a2a7dc6d189a73ffac3d4aa18fcb2581c8364d54897aee241c4eb86f7d29a7"
+  }
+}

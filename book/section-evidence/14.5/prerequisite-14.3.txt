@@ -1,0 +1,2 @@
+Eight literal14.3units:10native circuits,all assertions and exact outputs passed.
+Complete14.3program:82native circuits,bounded-error/promise/majority checks and exact output passed.

@@ -1,0 +1,18 @@
+{
+  "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+  "bytes": 6881335,
+  "sha256": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e",
+  "pdf_pages": 714,
+  "inspected_pdf_pages": [
+    388,
+    389,
+    393
+  ],
+  "printed_pages": [
+    374,
+    375,
+    379
+  ],
+  "scope": "Markov/Chebyshev and exponential Markov formulations;local Bernoulli/bias/median proofs supplied;no source text uploaded.",
+  "frozen_sha256_match": true
+}
