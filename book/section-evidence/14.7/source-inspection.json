@@ -1,0 +1,11 @@
+{
+  "OQ3:2.4": {
+    "url": "https://arxiv.org/pdf/2104.14722v1",
+    "inspected": "PDF6 section2.4 and PDF7 Figure1;near-time program,compilation and global/local controllers;context PDF3 real-time vsnear-time.",
+    "scope": "Model reference,not proof of FlagQuantum support."
+  },
+  "ED:hybrid": {
+    "path": "docs/hybrid-computing.md",
+    "scope": "Complete eight editorial composable patterns read;pattern8 architecture can support1-7.Not exhaustive/standard/disjoint."
+  }
+}

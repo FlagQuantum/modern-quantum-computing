@@ -1,0 +1,10 @@
+{
+  "native_runs": 0,
+  "amplitude": 1e-160,
+  "positive_squared_magnitude": 1e-320,
+  "old_sqrt_square_normalization": 1.0000055664551362,
+  "old_unit_norm_residual": 5.566455136163384e-06,
+  "criterion": 1e-12,
+  "status": "old classical branch reference does not meet unit-norm criterion;not a native failure",
+  "replacement": "amp/abs(amp),with separately retained p and explicit positive-square-underflow rejection"
+}

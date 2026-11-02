@@ -69,3 +69,5 @@ Section14.4now has an author-verified P-depth access-model draft:eight checked f
 Section14.5now has an author-verified F-depth draft:complete variance/exponential majority,bias-aware precision and independent-block median proofs,eight checked units and84complete-program circuits. Next frozen target:14.6 Complete resource accounting. Independent review remains pending.
 
 Section14.6now supplies full typed cost,dependency-depth and conditional-history error composition proofs,eight checked units and52complete-program circuits. Next frozen target:14.7 Quantum-classical interaction patterns. Independent review remains pending.
+
+Section14.7now has an author-verified P-depth draft preserving all8editorial patterns,typed data/control and state-lifetime boundaries,with90complete-program native calls and38fresh transfer calls. Next frozen target:14.8 Classical baselines and advantage claims. Independent review remains pending.

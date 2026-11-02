@@ -1,6 +1,6 @@
 # 14. Computational Models, Complexity, and Quantum Advantage
 
-**Working drafts: sections 14.1–14.6 · Writing Baseline 1.0 · November 2, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
+**Working drafts: sections 14.1–14.7 · Writing Baseline 1.0 · November 2, 2026.** The B 02 writing queue reaches this chapter after Chapter 8; Chapters 9–13 retain their own later scheduled batches. Author checks are separate from independent mathematical/implementation review and reader trial, which remain pending.
 
 <span id="sec-computational-models-complexity-and-quantum-advantage-1"></span>
 ## 14.1 Problems, input length, and computational models
@@ -1985,3 +1985,364 @@ Three adaptive error-tree cases and exact additive/query/repetition/host-payload
 **Source and review status.** The frozen locator is Nielsen and Chuang, [§3.2.1, beginning on printed page 136](https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf); the publisher's contents was checked, not treated as access to the full chapter. As a directly inspected primary model reference, Watrous, [*Quantum Computational Complexity*, §III.1–III.2, PDF pages 7–8](https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf#page=7), defines a circuit-size convention and explains why a gate-cost model must constrain its allowed gates. Its combined size convention differs from our separate gate/width ledger; conventions must be declared rather than interchanged. All central additive, scheduling and error-composition proofs needed here are supplied locally. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.6.json) distinguishes author verification from independent mathematical/implementation review and reader trial. This remains a working draft. Continue, when drafted, with [14.7 Quantum-classical interaction patterns](../section-plans/03-algorithms.md#sec-hybrid-interaction-map).
 
 <!-- end-section-14.6 -->
+
+<span id="sec-hybrid-interaction-map"></span>
+## 14.7 Quantum-classical interaction patterns
+
+**Question.** What exactly passes between classical computation and a quantum experiment, and which decisions must occur while a quantum state remains available?
+
+The prerequisites are [5.1, composition and call order](ch-gates-reversible-computation-and-circuit-synthesis.md#sec-gates-reversible-computation-and-circuit-synthesis-1), [6.2, conditional states and ignored outcomes](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-2), and [14.1, input and execution contracts](#sec-computational-models-complexity-and-quantum-advantage-1). This **P-depth** section introduces a typed interaction model and the eight patterns of the [editorial hybrid map](../hybrid-computing.md). They are composable teaching categories, not an exhaustive, mutually exclusive or standardized taxonomy. Patterns 1–7 describe algorithm/data coupling; pattern 8 describes execution architecture that may support any of them. Later chapters supply the full learning, cutting, embedding and controller theories. The small identities below make the boundaries executable without claiming those general algorithms have already been implemented.
+
+A **host** prepares task descriptions, manages application data and processes returned results. A **controller** makes supported execution-time decisions close to the quantum operations. A **quantum executor** performs a specified preparation, evolution and measurement. These are roles, not necessarily three separate physical machines. In this section the host and executor both run on a CPU, and the executor is an ideal FlagQuantum simulator. No GPU or physical QPU is used.
+
+| Boundary | Exchanged object | State-lifetime obligation |
+| --- | --- | --- |
+| Host to a new experiment | Circuit, numerical parameters, basis, shot count and task/revision identifiers | Declare a fresh preparation |
+| Terminal experiment to host | Bits, counts or an explicitly labeled estimate | No retained measured-branch handle is supplied by this example |
+| Measurement to a local controller within one execution | Outcome or decoder/frame data, then a control decision | Preserve the remaining state and meet a supported timing contract |
+| Between application tasks | Typed results, dependencies and checkpoints | Do not infer coherent state sharing from job dependencies |
+
+The complete task needs a data schema **and** a control/state-lifetime schema. A real array of amplitudes is a classical simulator object; it is not a list of measured amplitudes or permission to clone an unknown state. An exact simulator expectation, a finite-shot statistic and a bit record are distinct data types even if all are stored as ordinary numbers.
+
+### 14.7.1 Pattern 1: a subroutine in a classical pipeline
+
+Here is the typed data flow of our terminal-sampling path. The return arrow contains classical bits, not a quantum-state continuation:
+
+```text
+HOST: Task(id, revision, theta, phi, basis, S)
+  | control: circuit + radian parameters + S
+  v
+CPU SIMULATOR: fresh |0>, gates, terminal sampling
+  | data: bits[1,S,1], declared basis and task identity
+  v
+HOST: validate -> statistic -> answer / next Task
+  | next call starts a new preparation
+```
+
+Let S be the positive integer shot count. Our task prepares the single-qubit state
+
+$$
+|\psi(\theta,\phi)\rangle
+=\cos(\theta/2)|0\rangle
++e^{i\phi}\sin(\theta/2)|1\rangle
+$$
+
+using RY(θ) then P(φ), with all angles in radians. For a Z-basis result b∈{0,1}, assign score s(b)=1−2b. The two Born probabilities give
+
+$$
+p_Z(1)=\sin^2(\theta/2),\qquad
+\mu_Z=\mathbb E[s(b)]=\cos\theta,\qquad
+\widehat\mu_Z=\frac1S\sum_{r=1}^{S}(1-2b_r).
+$$
+
+This finite mean is a host calculation on bits. Its expectation equals \(\mu_Z\) when each record has the declared marginal distribution, by distributing the finite sum; an independence assumption is needed for many uncertainty bounds, not for that equality alone. The task contract includes input parameters, the selected basis, S, a task identifier and a revision. The local packet validator rejects a result for another revision or another measurement setting before forming the mean. This validates a schema, not authenticity of a remote device.
+
+```python
+from dataclasses import replace
+from fractions import Fraction as F
+import math,torch,flagquantum as fq
+from examples.foundations import interaction_patterns as h,statistical_ensembles as e
+task=h.Task('pipeline',0,.7,.2,shots=19)
+c=fq.Circuit(1,dtype=torch.complex128).RY(0,theta=task.theta).P(0,theta=task.phi)
+out=fq.run(c,outputs=[fq.probabilities(name='p'),fq.samples(qubits=(0,),name='raw')],shots=task.shots,options=e.OPTIONS)
+e.close(out.measurement('p').value[0],torch.tensor([(1+math.cos(.7))/2,(1-math.cos(.7))/2],dtype=torch.float64))
+raw=out.measurement('raw').value;assert raw.shape==(1,19,1)
+packet=h.Packet(task,tuple(int(b)for b in raw[0,:,0]))
+mean=h.sample_mean(packet,task);assert -1<=mean<=1
+print('Pipeline: 19 terminal bits become a validated rational Z-score mean; exact probabilities remain simulator diagnostics.')
+```
+
+```text
+Pipeline: 19 terminal bits become a validated rational Z-score mean; exact probabilities remain simulator diagnostics.
+```
+
+The exact probabilities in that snippet validate an ideal reference. The returned `Packet` contains terminal bits with a CPU-simulator source label. The numerical expectation or full statevector is not silently inserted into the bit-estimator input. Hardware would require its own execution, measurement and statistical contract; replacing an exact diagnostic by a sampled estimate changes the evidence and often the required budget.
+
+### 14.7.2 Pattern 2: a variational outer loop
+
+An outer loop sends parameters to experiments, combines their observations into a classical objective, and constructs the next parameter task. It need not retain the previous quantum state. For a bounded introductory example, take the objective
+
+$$
+L(\theta)=(\mu_Z(\theta)-t)^2=(\cos\theta-t)^2,
+$$
+
+where t is a fixed dimensionless target. With t=0 and the finite candidate list {0,π/2,π}, the exact objective values are 1,0,1. A host can instead compute the plug-in values (\(\widehat{\mu}_Z\)−t)² from the actual bit records and select the lowest **observed** candidate. Squaring a noisy mean does not in general produce an unbiased objective estimate: at θ=π/2, t=0 and S=1, the score is ±1, so the plug-in squared loss is always 1 although the true loss is 0. Selecting an observed minimum also does not prove that the true objective decreased.
+
+```python
+rows,chosen=h.outer((0.,math.pi/2,math.pi),target=0.)
+assert all(rows[chosen]['sampled_loss']<=row['sampled_loss']for row in rows)
+assert abs(rows[1]['diagnostic_loss'])<1e-12
+assert abs(rows[0]['diagnostic_loss']-1)<1e-12 and abs(rows[2]['diagnostic_loss']-1)<1e-12
+print('Finite outer loop: three fresh preparations, sample-based candidate selection, separately checked analytic landscape; no convergence theorem inferred.')
+```
+
+```text
+Finite outer loop: three fresh preparations, sample-based candidate selection, separately checked analytic landscape; no convergence theorem inferred.
+```
+
+This executable performs one finite candidate-selection update, not a general optimizer. The candidate list is classical control data; the three preparations are distinct quantum experiments. Its exact landscape is a separately labeled simulator check. General VQE needs an explicit observable decomposition, estimator/derivative strategy, optimizer state, stopping rule and total experiment budget; those are developed in Chapters 23–26. Differentiating a simulated statevector is not a hardware measurement protocol, and this example does not invoke autograd or certify optimizer convergence.
+
+### 14.7.3 Pattern 3: hybrid learning, fixed features and kernels
+
+A quantum-derived feature can feed a classical prediction rule. In the one-feature example f(x)=\(\mu_Z\)(x), a classical affine head computes y=a f+b. A record-based feature \(\widehat{\mu}_Z\) gives a correspondingly record-based prediction. Shape and source type must be preserved across that boundary; naming a value a “quantum layer” does not provide gradients for a training scheme.
+
+A fixed kernel is a different interface: two data inputs x,x′ request one similarity estimate. Restrict φ=0 and define |φ(x)⟩=RY(x)|0⟩. Expanding the two real coordinates and using the angle-subtraction identity gives
+
+$$
+\begin{aligned}
+\langle\varphi(x')|\varphi(x)\rangle
+ &=\cos\!\left(\frac{x-x'}2\right),\\
+K(x,x')
+ &=\left|\langle\varphi(x')|\varphi(x)\rangle\right|^2
+ =\cos^2\!\left(\frac{x-x'}2\right).
+\end{aligned}
+$$
+
+The probability of zero after RY(x) followed by RY(−x′) is K: 5.1's call/matrix convention makes the net operation RY(−x′)RY(x). The input pair and resulting scalar can then be consumed by a classical predictor. The quantum experiment need not be rerun for every step of a classical fit when those fixed features/kernel entries have already been collected.
+
+```python
+x,y=.2,.8
+kblock=fq.Circuit(1,dtype=torch.complex128).RY(0,theta=x).RY(0,theta=-y)
+kresult=fq.run(kblock,outputs=[fq.probabilities(name='kernel')],options=e.OPTIONS)
+exact=math.cos((x-y)/2)**2
+e.close(kresult.measurement('kernel').value[0],torch.tensor([exact,1-exact],dtype=torch.float64))
+_,checked_kernel=h.kernel(x,y,mode='density_matrix');assert abs(checked_kernel-exact)<1e-12
+feature=torch.tensor([float(mean)],dtype=torch.float64)
+head=2*feature-.3;assert feature.shape==head.shape==(1,)
+print('Fixed feature shape (1,) and classical affine head checked; RY(x),RY(-y) kernel equals cos^2((x-y)/2) in both modes.')
+```
+
+```text
+Fixed feature shape (1,) and classical affine head checked; RY(x),RY(-y) kernel equals cos^2((x-y)/2) in both modes.
+```
+
+This checks a fixed feature and a fixed kernel, not training quality, held-out generalization or a learning advantage. A trainable circuit or trainable kernel adds an explicit parameter-update and derivative contract. A simulator derivative, a parameter-shift experiment and a finite-difference experiment have different sources, calls and statistical costs; they cannot be substituted merely because their output arrays share a shape. Chapter 27 develops these distinctions beyond this one-dimensional interface.
+
+### 14.7.4 Pattern 4: in-execution adaptive feedback
+
+For an execution-time feedback task, some quantum systems must remain live during a classical decision. A schematic local-control path is
+
+```text
+live joint state -> measure one part -> classical bit r
+       |                                  |
+       | retained unmeasured subsystem    | control V_r
+       +----------------------------------v
+                              continue same execution
+```
+
+The present terminal-only program does **not** execute that arrow. To make its required semantics concrete, prepare a control qubit and a target at zero, then apply CX. Write c=cos(θ/2) and d=\(e^{i\phi}\sin(\theta/2)\). The joint vector is c|00⟩+d|11⟩. If the control is ideally measured in Z, the unnormalized target branches, probabilities and normalized states are
+
+$$
+\begin{array}{c|c|c|c}
+r&\eta_r&p_r&\eta_r/\sqrt{p_r}\ (p_r>0)\\\hline
+0&c|0\rangle&|c|^2&(c/|c|)|0\rangle\\
+1&d|1\rangle&|d|^2&(d/|d|)|1\rangle
+\end{array}
+$$
+
+The correction Xʳ sends each nonzero target branch to the zero-state ray, retaining its branch coefficient's phase. A zero-probability branch has no normalized conditional state. If the record is ignored after that correction, the control/target ensemble contains |00⟩ and |10⟩ with weights |c|² and |d|²; it has no coherence between those alternatives. By contrast applying a second **coherent** CX, without measuring, gives (c|0⟩+d|1⟩)|0⟩. The target is zero in both constructions, but the full joint states differ when cd≠0. Thus a coherent conditional gate is not by itself evidence of a classical feedback execution.
+
+```python
+branches,ignored,coherent=h.feedback(math.pi/2,.4)
+assert all(abs(p-.5)<1e-12 for p,_ in branches)
+e.close(ignored,torch.diag(torch.tensor([.5,0,.5,0],dtype=torch.complex128)))
+assert abs(coherent[1].measurement('rho').value[0,0,2].abs().item()-.5)<1e-12
+try:h.require_retained_state('tested-terminal-path-with-no-state-handle')
+except ValueError:pass
+else:raise AssertionError('Terminal result was incorrectly treated as a retained branch handle')
+print('Two ideal branches correct the target to zero; their ignored joint ensemble differs from the coherent-CX reference.')
+print('Native execution here is terminal-only; conditional branches are explicit mathematical postprocessing, not a dynamic feedback endpoint.')
+```
+
+```text
+Two ideal branches correct the target to zero; their ignored joint ensemble differs from the coherent-CX reference.
+Native execution here is terminal-only; conditional branches are explicit mathematical postprocessing, not a dynamic feedback endpoint.
+```
+
+The two actual native calls prepare the pre-measurement and coherent-reference states. The conditional branches/corrected ignored ensemble are explicit mathematical postprocessing of the reference vector, as in 6.2; they are not native collapsed states kept alive for a subsequent Python callback. Our tested `Circuit`/terminal-request path does not supply such a measured-branch continuation contract, so the helper refuses that request. Source inspection and terminal sampling do not establish a framework-wide impossibility: a different dynamic-program/controller backend would need its own API and execution audit. No reset, hardware feedforward latency or retained-state handle is claimed here. Positive probabilities that underflow in the host branch arithmetic are rejected rather than treated as impossible outcomes. For a representable positive branch, the code computes its normalized phase as amp/abs(amp), mathematically equivalent to amp/√p but avoiding extra rounding from squaring and taking a square root. A pure-classical regression retains a positive subnormal squared magnitude at amp=10⁻¹⁶⁰; the older square-root path missed unit norm by more than 10⁻¹² and is preserved in the evidence. This repair is in the book reference, not a native API failure.
+
+### 14.7.5 Pattern 5: measurement-driven inference
+
+Inference uses a measurement design and classical estimator to learn a property or model. The design limits what can be identified. On the same preparation, X readout applies H before the terminal Z measurement; Y readout applies S† then H, where S†=diag(1,−i). Multiplying these matrices into the two coordinates above yields
+
+$$
+\mu_X=\sin\theta\cos\phi,\qquad
+\mu_Y=\sin\theta\sin\phi,\qquad
+\mu_Z=\cos\theta.
+$$
+
+For example, subtracting the two squared H-output magnitudes gives 2 Re(c* d)=sinθ cosφ. With S† first the corresponding difference is 2 Im(c* d)=sinθ sinφ, fixing the Y sign. These are setting-specific score means, not three simultaneous outcomes from one qubit preparation. Each setting needs its own preparations in this implementation.
+
+At θ=π/2, φ=0 and φ=π give the plus and minus states. Their Z distributions are both (1/2,1/2), so no amount of Z-only data can distinguish them by this distribution. X readout instead gives means +1 and −1. The unavailable information cannot be recovered merely by applying a more elaborate classical function to the same Z records.
+
+```python
+observed={}
+for sign,phi in (('plus',0.),('minus',math.pi)):
+ for basis in ('Z','X'):
+  t=h.Task(sign+basis,0,math.pi/2,phi,basis)
+  p,d=h.run_task(t);observed[sign+basis]=d['native_mu']
+  assert -1<=h.sample_mean(p,t)<=1
+assert abs(observed['plusZ']-observed['minusZ'])<1e-12
+assert abs(observed['plusX']-1)<1e-12 and abs(observed['minusX']+1)<1e-12
+print('Z-only records cannot identify plus versus minus; the X setting distinguishes their opposite means. Four preparation/settings checked.')
+```
+
+```text
+Z-only records cannot identify plus versus minus; the X setting distinguishes their opposite means. Four preparation/settings checked.
+```
+
+This is a measurement-identifiability example, not a general tomography, mitigation or classical-shadow implementation. The full vectors/native expectations used by the author are separate diagnostics. A physical inference workflow would specify the observation model, settings, shot budget, uncertainty and any fitted constraints or regularization. Exact simulator access must not be added as an undeclared inference measurement.
+
+### 14.7.6 Pattern 6: decomposition with classical reconstruction
+
+A decomposition method executes fragments/settings and classically combines their outputs. A declared identity is essential; “split a circuit” alone is not a reconstruction rule. For a bounded scalar example, compose RY(a) and RY(b) on |0⟩. Define \(z_a\)=cos a, \(x_a\)=sin a and similarly for b. Direct rotation multiplication or the cosine addition identity gives the exact Z mean
+
+$$
+y=\cos(a+b)=\(z_a\) z_b-\(x_a\) x_b.
+$$
+
+Four separate single-qubit means provide the right-hand side; a fifth, uncut RY(a)-then-RY(b) experiment checks the left-hand side. The reconstruction is a scalar with a signed term, not the preparation of a larger coherent state from classical numbers. All circuits here already use one qubit; no width advantage is claimed. This example supplies one temporal-composition identity, not a general circuit-cutting compiler or the full methods of Chapter 47.
+
+If every estimated component is in [−1,1] and within η of its exact value, a two-factor telescoping expansion gives |â b̂−ab|≤|â||b̂−b|+|b||â−a|≤2η. Applying this to the two products and adding gives |ŷ−y|≤4η. This deterministic error implication needs component error bounds; it does not infer them from a favorable sampled reconstruction.
+
+```python
+reconstructed,sampled=h.reconstruct(.4,.7)
+assert abs(reconstructed-math.cos(1.1))<1e-12 and -2<=sampled<=2
+eta=F(1,100);bound=4*eta;assert bound==F(1,25)
+print('Four fragment means reconstruct the fifth, uncut reference: cos(a)cos(b)-sin(a)sin(b)=cos(a+b).')
+print('Products/signs are classical; four uniform component errors of at most 1/100 give output error at most 1/25, without clipping.')
+```
+
+```text
+Four fragment means reconstruct the fifth, uncut reference: cos(a)cos(b)-sin(a)sin(b)=cos(a+b).
+Products/signs are classical; four uniform component errors of at most 1/100 give output error at most 1/25, without clipping.
+```
+
+The plug-in sampled reconstruction can lie outside [−1,1] even though the true observable mean cannot; it is not silently clipped. Products of random estimates need independence or a covariance analysis for unbiasedness/uncertainty claims. The common-seed diagnostic examples here do not establish such statistical guarantees. The tested claims are the exact reconstruction identity, packet accounting and the conditional 4η error bound. Signed weights, settings, correlations and the total sampling overhead become part of a full decomposition contract.
+
+### 14.7.7 Pattern 7: embedded and self-consistent solvers
+
+In a self-consistent workflow, a classical environment parameter changes a quantum subproblem, whose measured property changes the environment again. The inner solver may itself use pattern 2, so inner optimization and outer consistency are different loops. A small solvable illustration avoids pretending that a full embedding method has already been derived.
+
+Take a dimensionless environment variable v∈[−1,1] and fixed 0≤g<1. Define the two-level subproblem
+
+$$
+H(v)=-Z-gvX
+=\begin{pmatrix}-1&-gv\\-gv&1\end{pmatrix},
+\qquad v_{k+1}=\langle X\rangle_{v_k}.
+$$
+
+Its characteristic equation is λ²−[1+(gv)²]=0. Set θ(v)=arctan(gv). The normalized RY(θ(v))|0⟩ vector satisfies \(H(v)|\psi_v\rangle=-\sqrt{1+(gv)^2}|\psi_v\rangle\) by multiplying the two rows, so it is the lower-eigenvalue state. Thus the exact inner solution gives the explicit outer map
+
+$$
+v_{k+1}=F(v_k)
+=\frac{gv_k}{\sqrt{1+(gv_k)^2}}.
+$$
+
+A record-based update instead uses \(\widehat{\mu}_X\) from a fresh preparation. An exact native expectation update is useful for an ideal simulator reference, but must be labeled as such. The code records the old environment, the angle, the chosen source, new environment and observed step residual \(|v_{k+1}-v_k|\) for each iteration.
+
+```python
+sampled_trace=h.embedding(.5,.8,steps=2,source='samples')
+exact_trace=h.embedding(.5,.8,steps=2,source='exact-simulator',mode='density_matrix')
+v=.8
+for row in exact_trace:
+ expected=.5*v/math.sqrt(1+(.5*v)**2)
+ assert abs(row['new_v']-expected)<1e-12;v=expected
+assert all(row['source']=='samples'for row in sampled_trace)
+assert all(row['source']=='exact-simulator'for row in exact_trace)
+print('Two-step toy environment update checked for sampled and exact-simulator paths; analytic inner preparation is explicit, not a general embedded solver.')
+```
+
+```text
+Two-step toy environment update checked for sampled and exact-simulator paths; analytic inner preparation is explicit, not a general embedded solver.
+```
+
+The inner preparation is analytic book code, not a native ground-state solver. This is not DMET, a many-body embedding construction or a global physical accuracy certificate. We verify the stated 2×2 eigenvector and a finite update trace; we do not infer a general convergence theorem from two decreasing residuals. A small observed residual can coexist with model error, solver bias or sampling error. Real embedded applications need a declared effective model, environment update, nested stopping/error budgets and independent global references; Chapter 25 supplies those method-specific ingredients.
+
+### 14.7.8 Pattern 8: heterogeneous workflow architecture
+
+The application can represent the previous experiments and classical calculations as a task graph. An edge specifies which typed result an operation requires; an independent job may finish in another order, but a consumer cannot use a result from the wrong parameter revision. CPU orchestration, GPU numerical computation and QPU experiments are possible resource roles in such an architecture, not mandatory ingredients or interchangeable execution labels.
+
+In this CPU-only executable, the host accepts one packet per task/revision and checks parameters, basis, shot count and source label. Revisions distinguish changed requests; independent replicate tasks need distinct identifiers rather than reusing the same packet as extra observations. A retry policy must charge all attempted executions and decide which result is accepted. A label is not device authentication, and these schema checks cannot establish that a remote producer actually ran the claimed hardware.
+
+```python
+accepted=set();h.accept_once(packet,task,accepted)
+for bad_task in (replace(task,revision=1),replace(task,basis='X')):
+ try:h.checked(packet,bad_task)
+ except ValueError:pass
+ else:raise AssertionError('Stale/mismatched result accepted')
+try:h.accept_once(packet,task,accepted)
+except ValueError:pass
+else:raise AssertionError('Duplicate result counted twice')
+assert h.invalid_checks()==18 and len(h.PATTERNS)==8
+assert h.RUNS==19
+print('Task/revision/basis/shot schema checked; duplicate and stale results rejected; 18 malformed contracts rejected before further execution.')
+print('Body: 19 companion-native calls plus two explicit fq.run calls; only CPU simulation executed, with no GPU/QPU or hardware timing claim.')
+```
+
+```text
+Task/revision/basis/shot schema checked; duplicate and stale results rejected; 18 malformed contracts rejected before further execution.
+Body: 19 companion-native calls plus two explicit fq.run calls; only CPU simulation executed, with no GPU/QPU or hardware timing claim.
+```
+
+The complete program validates 36 actual packets in reverse arrival order after their serialized CPU executions. This exercises result matching, not an asynchronous runtime, a GPU job scheduler or coherent quantum networking. A terminal callback on the host does not gain a local-controller state-lifetime guarantee by being placed in a task graph.
+
+For disjoint **sequential** timing intervals, one host-driven task can be modeled as
+
+$$
+\begin{aligned}
+T_{\rm task}&=T_{\rm setup}+T_{\rm final}\\
+&\quad+\sum_{k=1}^{K}
+\bigl(T_{\rm host,k}+T_{\rm queue,k}\\
+&\hspace{6em}+T_{\rm transfer,k}+T_{\rm exec,k}\bigr).
+\end{aligned}
+$$
+
+Each term needs a common time unit and a non-overlapping boundary; execution time includes the stipulated local control/readout rather than counting it twice. Overlap requires dependency/schedule analysis, not adding overlapping durations or assuming all work overlaps. The resource distinctions in 14.6 apply: settings, repetitions, compilation, I/O, classical updates, state lifetimes and failure recovery remain visible. No physical timing values or speedup claim are supplied by this CPU run.
+
+**Implementation support and limits.** We inspected and actually used released FlagQuantum 0.3.1 `Circuit.RY/P/H/SDG/CX`, `run`, terminal `samples`, exact `probabilities`, `density_matrix` and `expectation(fq.Z(0))`. Both statevector and density-matrix modes were executed on CPU complex128 with Python 3.12.14 and Torch 2.13.0. Basis rotations turn the native post-analyzer Z expectation into the requested setting's score mean. Packet validation, candidate selection, classical head, kernel interpretation, branch analysis, fragment reconstruction, environment update and result matching are book-side computations. This path does not certify general dynamic feedforward, retained collapsed-state continuation, hardware reset/calibration, gradient training, automatic cutting/embedding, GPU/QPU execution or a complete workflow runtime.
+
+The full program is [interaction_patterns.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/interaction_patterns.py). Its 90 native calls cover both modes, three angles, two complex phases and all X/Y/Z settings; finite candidate scans, pair kernels, zero-probability branch boundaries and coherent references; signed-angle reconstructions and sampled/exact-labeled environment traces. The 21 body calls include two explicit `fq.run` calls. Deterministic scalar/full-state/density/expectation checks use atol=10⁻¹², rtol=0, without phase alignment, clipping or input repair. Samples are checked through their schemas and score ranges, not required to meet a confidence interval or improve a noisy objective. Source/parameter checks reject nonfinite inputs, positive branch underflow, stale/duplicate/diagnostic records, unsupported lifetime requests and malformed settings before additional native execution. Local guards are |angle|≤10 radians, 1≤S≤1000, at most five candidates and at most four outer-environment iterations; they are not framework capacity limits.
+
+From the repository root, run:
+
+```bash
+python examples/foundations/interaction_patterns.py
+python scripts/check_interaction_patterns_prose.py
+```
+
+Expected output of the complete program:
+
+```text
+90 native CPU complex128 circuits: 36 basis/feature, 6 outer-candidate, 4 kernel, 12 feedback-reference, 20 reconstruction and 12 embedded-loop executions passed.
+Both modes: full vector/density, scalar probability and native expectation references checked; samples used only through validated terminal records.
+Eight editorial patterns classified; sampled/exact-simulator data, new preparations/coherent references and task revisions remain distinct.
+36 out-of-order packets accepted once; 18 malformed/stale/diagnostic/unsupported-lifetime contracts rejected before further execution.
+No retained measured-state handle, dynamic feedback, GPU/QPU run, general cutting/embedding solver or learning-speedup claim is made.
+```
+
+**Check your understanding.** Which of the eight patterns can occur in the same workflow? Which object crosses each arrow: a circuit, a bit record, an estimate, a parameter update or a retained quantum system? Why does an ordinary host loop not prove in-execution feedback support?
+
+**Problems and transfer.**
+
+- **14.7-A — typed arrows.** Describe a workflow with a fixed quantum kernel followed by classical training. Which part uses pattern 3, which part may use pattern 8, and when would pattern 2 be added? State what derivatives are required only if the kernel itself becomes trainable.
+- **14.7-B — branch lifetime.** For θ=π/2 and φ=.6, write both normalized target branches, their Xʳ corrections, and the ignored joint ensemble. Compare its |00⟩⟨10| entry with the coherent-CX reference. Does serially submitting the corrected target state in a fresh job demonstrate retained-state feedback?
+- **14.7-C — new execution.** Use (θ,φ)=(−.6,.4),(.37,−.8),(1.3,.9), all three bases and both modes; then test kernel inputs (−.2,.9), feedback θ=.9,φ=−.3, reconstruction a=−.5,b=.9, and a two-step exact-simulator environment trace at g=.3,v₀=−.6. Verify scalar/full-state references and packet labels. Count actual native calls separately from host packet processing.
+- **14.7-D — reject invalid exchanges.** Give concrete examples of an exact diagnostic passed as a bit record, a stale basis/revision, duplicate result and unsupported retained-state request. If each of four fragment means has error at most .02, derive the stated reconstruction bound. Why is this conditional bound not a sampling confidence certificate? What costs are absent from a report containing only inner quantum gate counts?
+
+<details markdown="1">
+<summary>Answers and verification guidance for 14.7-A–D</summary>
+
+**A.** Fixed kernel experiments supply scalar pair similarities; the classical fit can reuse them without a new quantum call at every optimizer update. A heterogeneous task graph is pattern 8 and may schedule those independent experiments. Training circuit/kernel parameters adds a parameter-update interaction and a derivative/Jacobian or declared derivative-free contract. Simulator backpropagation and hardware derivative experiments have different operational sources and budgets.
+
+**B.** Branches have weights 1/2 and states |0⟩ and \(e^{i0.6}|1\rangle\). Xʳ gives |0⟩ and \(e^{i0.6}|0\rangle\). The ignored joint ensemble puts weight 1/2 on each of |00⟩ and |10⟩; its |00⟩⟨10| entry is zero. The coherent reference has entry \(e^{-i0.6}/2\). A fresh-job preparation of the known target is a simulation/reference or a different task, not evidence of preserving an unknown live state across a classical decision.
+
+**C.** There are 38 fresh native executions: 18 basis-setting cases, two kernels, four pre/coherent feedback references, ten reconstruction/reference calls and four environment updates. Processing their packets again is not an additional quantum execution or independent statistical evidence. The exact environment reference follows v↦.3v/√[1+(.3v)²]; the two modes must agree with that same finite trace. CPU simulator labels must remain explicit.
+
+**D.** The validator refuses source `statevector-diagnostic`, the wrong revision/basis, a second acceptance of one task/revision, and the tested terminal path's requested retained-branch continuation. The arithmetic implication is 4η=.08 if all four component errors are bounded by .02 and all component estimates lie in [−1,1]. It supplies no probability that those premises hold. Complete costs include preparation, basis/settings and shots, host computation/optimizer or solver iterations, transfer/queueing, compilation, records, retries, and any state-lifetime/controller requirements.
+
+</details>
+
+**Source and review status.** The eight patterns are the book's [original editorial specification](../hybrid-computing.md), preserved here rather than attributed to an external universal taxonomy. The frozen execution-model source is Cross et al., [*OpenQASM 3*, arXiv:2104.14722v1 §2.4, PDF page 6 and Figure 1 on PDF page 7](https://arxiv.org/pdf/2104.14722v1#page=6). Those exact pages were inspected, with the real-time/near-time distinction on PDF page 3 for context. They motivate separating program, compilation and controllers; they do not establish FlagQuantum feature support. Our local algebra and execution receipts support only the examples stated above. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/14.7.json) keeps author checks separate from independent mathematical/implementation review and reader trial. This remains a working draft. Continue, when drafted, with [14.8 Classical baselines and advantage claims](../section-plans/03-algorithms.md#sec-computational-models-complexity-and-quantum-advantage-7).
+
+<!-- end-section-14.7 -->

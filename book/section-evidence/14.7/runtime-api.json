@@ -1,0 +1,31 @@
+{
+  "python": "3.12.14 (main, Sep  1 2026, 14:09:38) [Clang 22.1.3 ]",
+  "flagquantum": "0.3.1",
+  "torch": "2.13.0",
+  "source_inspection": {
+    "Circuit": {
+      "signature": "(n_qubits: 'int | None' = None, *, n_wires: 'int | None' = None, nqubits: 'int | None' = None, bsz: 'int' = 1, device: 'torch.device | str | None' = None, dtype: 'torch.dtype | None' = None, inputs: 'torch.Tensor | None' = None, config: 'RuntimeConfig | None' = None) -> 'None'",
+      "source_sha256": "8d947d95219bf0cc91588238c5fe812bfbd7817a6c13d8346e4da30d49a4e4ed"
+    },
+    "run": {
+      "signature": "(program_or_plan: 'Circuit | CircuitIR | ExecutionPlan', *, options: 'ExecutionOptions | None' = None, outputs: 'OutputRequest | Sequence[OutputRequest] | None' = None, noise_model: 'NoiseModel | None' = None, compiler: 'str | None' = None, target: 'str | None' = None, target_qubits: 'Sequence[int] | None' = None, shots: 'int | None' = None, name: 'str | None' = None) -> 'ExecutionResult'",
+      "source_sha256": "a9b43ad881e7b3a32433a04dae54a0bf9978ca99bc5dbb815405ee1e85493b68"
+    },
+    "expectation": {
+      "signature": "(observable: 'Observable', *, name: 'str | None' = None) -> 'OutputRequest'",
+      "source_sha256": "3352ea2a2475e16e1e38dfed4b13d8a72257ddfddd391970c29bfe2f233d9ed8"
+    },
+    "samples": {
+      "signature": "(qubits: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED, *, name: 'str | None' = None, wires: 'Iterable[int] | int | Observable | None | Omitted' = OMITTED) -> 'OutputRequest'",
+      "source_sha256": "5b25fce1b312601b4a9db6d9a425cf9f1dc46864b89699aa8bf2b7fc99c32005"
+    },
+    "Circuit.initial_state": {
+      "signature": "(self) -> 'torch.Tensor'",
+      "source_sha256": "26b555ccc1944962df97523a0c8425c1a4a74d93437bd9e45d55d6fd42c7cf5d"
+    }
+  },
+  "Circuit_measure_reset_condition_names": [],
+  "root_dynamic_program_names": [],
+  "scope": "Only this terminal-output execution path is certified;no framework-wide dynamic capability theorem.",
+  "native_probe_runs": 0
+}

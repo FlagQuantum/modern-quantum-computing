@@ -1,0 +1,1 @@
+Eight literal units assembled:21native runs,all assertions and exact stdout passed.

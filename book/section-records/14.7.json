@@ -1,0 +1,104 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-hybrid-interaction-map",
+  "ref": "14.7",
+  "date": "2026-11-02",
+  "state": "draft",
+  "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+  "depth": "P",
+  "requires": [
+    "sec-gates-reversible-computation-and-circuit-synthesis-1",
+    "sec-measurement-expectation-values-and-statistical-estimation-2",
+    "sec-computational-models-complexity-and-quantum-advantage-1"
+  ],
+  "result": "Typed quantum-classical interaction contracts",
+  "assumptions": [
+    "Declared host/controller/executor boundary and quantum-state lifetime.",
+    "Eight patterns are original editorial composable taxonomy;not a universal partition.",
+    "CPU ideal terminal execution;exact simulator diagnostics are distinct from operational bit statistics."
+  ],
+  "verification_obligations": [
+    "Classify all8patterns and show typed data/control flows with explicit retained-state boundary.",
+    "Derive small pipeline score/finite candidate objective/feature/kernel identities.",
+    "Derive each measurement branch,correction and ignored versus coherent joint-state distinction.",
+    "Derive X/Y/Z setting means and Z-only inference ambiguity.",
+    "Supply bounded scalar decomposition identity and conditional4eta error implication;do not claim general cutting.",
+    "Supply analytic2x2inner model and source-labeled finite outer update;do not claim full embedding or convergence.",
+    "Validate task/revision/basis/shots/source and duplicate rejection;architecture not a hardware execution claim."
+  ],
+  "formula_code_units": [
+    "subroutine terminal pipeline",
+    "finite candidate outer loop",
+    "fixed feature/head/kernel",
+    "mathematical branches/coherent native reference",
+    "measurement identifiability",
+    "specific scalar reconstruction",
+    "toy analytic embedded update",
+    "typed workflow/result acceptance"
+  ],
+  "sources": [
+    {
+      "locator": "OQ3:2.4",
+      "url": "https://arxiv.org/pdf/2104.14722v1#page=6",
+      "scope": "PDF6execution model andPDF7Figure1,PDF3context inspected;not a FlagQuantum capability claim."
+    },
+    {
+      "locator": "ED:hybrid",
+      "path": "docs/hybrid-computing.md",
+      "scope": "Complete original8pattern map read;preserved without newtopics."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/interaction_patterns.py",
+    "prose_checker": "scripts/check_interaction_patterns_prose.py",
+    "evidence": "book/section-evidence/14.7",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128"
+    },
+    "complete_program_circuits_per_invocation": 90,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 21,
+    "separate_transfer_circuits": 38,
+    "execution_ledger": {
+      "initial_complete": 90,
+      "body_assembly": 21,
+      "first_body_plus_complete": 111,
+      "phase_refined_body_plus_complete": 111,
+      "fresh_transfer": 38,
+      "total_author_section_native_runs": 371,
+      "inspection_probes": 0,
+      "prior_regressions": "14.6and6.2prose/complete checks separate"
+    },
+    "malformed_contracts": 18,
+    "tolerance": "Absolute1e-12,relative0;full phase-fixed vectors/densities,scalar/trigonometric/basis and2x2eigen references;no norm repair,clipping/phase alignment/interval certificate.No sample-success/monotonic loss/independence assertion.",
+    "native_boundary": "Actual RY/P/H/SDG/CX/run/probabilities/density/expectation(Z)/terminal samples;only CPU simulator executed.Branches/candidate loop/kernel/reconstruction/environment/task schema are book code.No retained collapsed-state handle,dynamic/reset,hardware feedback,GPU/QPU/general cutting/embedding/learning claim.",
+    "script_sha256": "e39303a9a35e018d3de51be885426fce0a996c6805a46f10cbc8903c9546b25d"
+  },
+  "assessment": {
+    "tasks": [
+      "14.7A-D"
+    ],
+    "answers": "Accessible solutions;38fresh native calls and source/revision/branch failure boundaries.Reader trial pending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Initial90/21body/111firstchecker passed;final111and transfer38 verified separately. Initial16guards expanded18beforefirstchecker.No native scientific failure.",
+    "classical_reference_repair": "Positive subnormal amplitude1e-160 gives old amp/sqrt(rounded abs(amp)^2)unit-norm residual above1e-12;0native runs.Replaced with amp/abs(amp),retaining p separately and rejecting positive-square underflow.Original passing90source/output and pre-refinement111source/output retained.",
+    "production_repairs": "Prose inline underscores caused accidental emphasis;expanded answers showed unwrapped phase exponent markup despitezeroMathJaxerrors.InitialPNG/fragments retained.Explicit math delimiters repaired both;allPython/text blocks unchanged,no quantum rerun for typography."
+  },
+  "production": {
+    "next_draft": "14.8 Classical baselines and advantage claims",
+    "pdf": "Existing PDF edition unchanged",
+    "prerequisite_ci": "ca11ce3 Verify41401579505completed success,all3jobs;archived before drafting.",
+    "formula_display": "Actual IAB typed pipeline/controller flow,score/kernel,measurement branch array,toyHamiltonian/update and complete-time formula checked;expandedA-Danswers open with3phase math wrappers,zeroMathJaxerrors.Boundary table5rowsx3cells.Inline underscore emphasis and raw answer-phase markup failures retained and repaired;final actual browser confirms.",
+    "website": "Fresh strict build and75rendered-page local link/fragment/duplicate-ID checks passed;exact-head publication/deployment receipt checked separately.",
+    "local_chapter_html_sha256": "e36f02b429e784c4d2add14ee4d68765c4958191bd789178783646d35fb66336"
+  }
+}

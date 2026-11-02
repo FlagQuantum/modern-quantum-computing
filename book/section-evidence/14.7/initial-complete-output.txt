@@ -1,0 +1,5 @@
+90 native CPU complex128 circuits: 36 basis/feature, 6 outer-candidate, 4 kernel, 12 feedback-reference, 20 reconstruction and 12 embedded-loop executions passed.
+Both modes: full vector/density, scalar probability and native expectation references checked; samples used only through validated terminal records.
+Eight editorial patterns classified; sampled/exact-simulator data, new preparations/coherent references and task revisions remain distinct.
+36 out-of-order packets accepted once; 16 malformed/stale/diagnostic/unsupported-lifetime contracts rejected before further execution.
+No retained measured-state handle, dynamic feedback, GPU/QPU run, general cutting/embedding solver or learning-speedup claim is made.

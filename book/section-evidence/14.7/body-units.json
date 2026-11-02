@@ -1,0 +1,34 @@
+[
+  {
+    "code": "from dataclasses import replace\nfrom fractions import Fraction as F\nimport math,torch,flagquantum as fq\nfrom examples.foundations import interaction_patterns as h,statistical_ensembles as e\ntask=h.Task('pipeline',0,.7,.2,shots=19)\nc=fq.Circuit(1,dtype=torch.complex128).RY(0,theta=task.theta).P(0,theta=task.phi)\nout=fq.run(c,outputs=[fq.probabilities(name='p'),fq.samples(qubits=(0,),name='raw')],shots=task.shots,options=e.OPTIONS)\ne.close(out.measurement('p').value[0],torch.tensor([(1+math.cos(.7))/2,(1-math.cos(.7))/2],dtype=torch.float64))\nraw=out.measurement('raw').value;assert raw.shape==(1,19,1)\npacket=h.Packet(task,tuple(int(b)for b in raw[0,:,0]))\nmean=h.sample_mean(packet,task);assert -1<=mean<=1\nprint('Pipeline: 19 terminal bits become a validated rational Z-score mean; exact probabilities remain simulator diagnostics.')\n",
+    "output": "Pipeline: 19 terminal bits become a validated rational Z-score mean; exact probabilities remain simulator diagnostics.\n"
+  },
+  {
+    "code": "rows,chosen=h.outer((0.,math.pi/2,math.pi),target=0.)\nassert all(rows[chosen]['sampled_loss']<=row['sampled_loss']for row in rows)\nassert abs(rows[1]['diagnostic_loss'])<1e-12\nassert abs(rows[0]['diagnostic_loss']-1)<1e-12 and abs(rows[2]['diagnostic_loss']-1)<1e-12\nprint('Finite outer loop: three fresh preparations, sample-based candidate selection, separately checked analytic landscape; no convergence theorem inferred.')\n",
+    "output": "Finite outer loop: three fresh preparations, sample-based candidate selection, separately checked analytic landscape; no convergence theorem inferred.\n"
+  },
+  {
+    "code": "x,y=.2,.8\nkblock=fq.Circuit(1,dtype=torch.complex128).RY(0,theta=x).RY(0,theta=-y)\nkresult=fq.run(kblock,outputs=[fq.probabilities(name='kernel')],options=e.OPTIONS)\nexact=math.cos((x-y)/2)**2\ne.close(kresult.measurement('kernel').value[0],torch.tensor([exact,1-exact],dtype=torch.float64))\n_,checked_kernel=h.kernel(x,y,mode='density_matrix');assert abs(checked_kernel-exact)<1e-12\nfeature=torch.tensor([float(mean)],dtype=torch.float64)\nhead=2*feature-.3;assert feature.shape==head.shape==(1,)\nprint('Fixed feature shape (1,) and classical affine head checked; RY(x),RY(-y) kernel equals cos^2((x-y)/2) in both modes.')\n",
+    "output": "Fixed feature shape (1,) and classical affine head checked; RY(x),RY(-y) kernel equals cos^2((x-y)/2) in both modes.\n"
+  },
+  {
+    "code": "branches,ignored,coherent=h.feedback(math.pi/2,.4)\nassert all(abs(p-.5)<1e-12 for p,_ in branches)\ne.close(ignored,torch.diag(torch.tensor([.5,0,.5,0],dtype=torch.complex128)))\nassert abs(coherent[1].measurement('rho').value[0,0,2].abs().item()-.5)<1e-12\ntry:h.require_retained_state('tested-terminal-path-with-no-state-handle')\nexcept ValueError:pass\nelse:raise AssertionError('Terminal result was incorrectly treated as a retained branch handle')\nprint('Two ideal branches correct the target to zero; their ignored joint ensemble differs from the coherent-CX reference.')\nprint('Native execution here is terminal-only; conditional branches are explicit mathematical postprocessing, not a dynamic feedback endpoint.')\n",
+    "output": "Two ideal branches correct the target to zero; their ignored joint ensemble differs from the coherent-CX reference.\nNative execution here is terminal-only; conditional branches are explicit mathematical postprocessing, not a dynamic feedback endpoint.\n"
+  },
+  {
+    "code": "observed={}\nfor sign,phi in (('plus',0.),('minus',math.pi)):\n for basis in ('Z','X'):\n  t=h.Task(sign+basis,0,math.pi/2,phi,basis)\n  p,d=h.run_task(t);observed[sign+basis]=d['native_mu']\n  assert -1<=h.sample_mean(p,t)<=1\nassert abs(observed['plusZ']-observed['minusZ'])<1e-12\nassert abs(observed['plusX']-1)<1e-12 and abs(observed['minusX']+1)<1e-12\nprint('Z-only records cannot identify plus versus minus; the X setting distinguishes their opposite means. Four preparation/settings checked.')\n",
+    "output": "Z-only records cannot identify plus versus minus; the X setting distinguishes their opposite means. Four preparation/settings checked.\n"
+  },
+  {
+    "code": "reconstructed,sampled=h.reconstruct(.4,.7)\nassert abs(reconstructed-math.cos(1.1))<1e-12 and -2<=sampled<=2\neta=F(1,100);bound=4*eta;assert bound==F(1,25)\nprint('Four fragment means reconstruct the fifth, uncut reference: cos(a)cos(b)-sin(a)sin(b)=cos(a+b).')\nprint('Products/signs are classical; four uniform component errors of at most 1/100 give output error at most 1/25, without clipping.')\n",
+    "output": "Four fragment means reconstruct the fifth, uncut reference: cos(a)cos(b)-sin(a)sin(b)=cos(a+b).\nProducts/signs are classical; four uniform component errors of at most 1/100 give output error at most 1/25, without clipping.\n"
+  },
+  {
+    "code": "sampled_trace=h.embedding(.5,.8,steps=2,source='samples')\nexact_trace=h.embedding(.5,.8,steps=2,source='exact-simulator',mode='density_matrix')\nv=.8\nfor row in exact_trace:\n expected=.5*v/math.sqrt(1+(.5*v)**2)\n assert abs(row['new_v']-expected)<1e-12;v=expected\nassert all(row['source']=='samples'for row in sampled_trace)\nassert all(row['source']=='exact-simulator'for row in exact_trace)\nprint('Two-step toy environment update checked for sampled and exact-simulator paths; analytic inner preparation is explicit, not a general embedded solver.')\n",
+    "output": "Two-step toy environment update checked for sampled and exact-simulator paths; analytic inner preparation is explicit, not a general embedded solver.\n"
+  },
+  {
+    "code": "accepted=set();h.accept_once(packet,task,accepted)\nfor bad_task in (replace(task,revision=1),replace(task,basis='X')):\n try:h.checked(packet,bad_task)\n except ValueError:pass\n else:raise AssertionError('Stale/mismatched result accepted')\ntry:h.accept_once(packet,task,accepted)\nexcept ValueError:pass\nelse:raise AssertionError('Duplicate result counted twice')\nassert h.invalid_checks()==18 and len(h.PATTERNS)==8\nassert h.RUNS==19\nprint('Task/revision/basis/shot schema checked; duplicate and stale results rejected; 18 malformed contracts rejected before further execution.')\nprint('Body: 19 companion-native calls plus two explicit fq.run calls; only CPU simulation executed, with no GPU/QPU or hardware timing claim.')\n",
+    "output": "Task/revision/basis/shot schema checked; duplicate and stale results rejected; 18 malformed contracts rejected before further execution.\nBody: 19 companion-native calls plus two explicit fq.run calls; only CPU simulation executed, with no GPU/QPU or hardware timing claim.\n"
+  }
+]

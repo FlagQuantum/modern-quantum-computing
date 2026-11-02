@@ -160,6 +160,34 @@
       "source_locators": [
         "NC:3.2.1"
       ]
+    },
+    {
+      "sequence": 70,
+      "batch": "B02",
+      "section_id": "sec-hybrid-interaction-map",
+      "ref": "14.7",
+      "title": "Quantum-classical interaction patterns",
+      "depth": "P",
+      "requires": [
+        "sec-gates-reversible-computation-and-circuit-synthesis-1",
+        "sec-measurement-expectation-values-and-statistical-estimation-2",
+        "sec-computational-models-complexity-and-quantum-advantage-1"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "question": "Which classical values cross each boundary,and must a quantum state remain alive?",
+      "entry": "5.1composition;6.2branches/ignored outcomes;14.1input and execution contracts.",
+      "exit": "Classify eight editorial patterns with typed data/control and state-lifetime boundaries;separate records,statistics and simulator diagnostics.",
+      "worked_case": "Single-qubit RY/P terminal packets,finite candidate loop,kernel,basis inference,coherent/branch reference,scalar reconstruction and analytic inner-solver loop.",
+      "boundary": "Pdepth taxonomy with local algebraic examples;not general learning/cutting/embedding algorithms or dynamic/hardware support.",
+      "code_plan": "Actual RY/P/H/SDG/CX/run/probabilities/density/expectation/samples;explicit CPU terminal profile and host schemas.",
+      "independent_check": "Full scalar state/basis matrices,analytic trigonometric expressions,branch projectors and known2x2ground vector.",
+      "transfer_task": "Fresh signed angles/phase,bases,kernel,branch,reconstruction and outer environment parameter;reject stale/diagnostic/lifetime mismatch.",
+      "source_locators": [
+        "OQ3:2.4",
+        "ED:hybrid"
+      ]
     }
   ]
 }

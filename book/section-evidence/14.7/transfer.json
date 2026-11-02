@@ -1,0 +1,12 @@
+{
+  "native_runs": 38,
+  "basis_cases": 18,
+  "kernel_calls": 2,
+  "feedback_reference_calls": 4,
+  "reconstruction_calls": 10,
+  "environment_calls": 4,
+  "source": "CPU simulator,complex128,both modes",
+  "out_of_order_packets": 18,
+  "pure_subnormal_phase_check": "passed;no additional circuit",
+  "malformed_contracts": 18
+}

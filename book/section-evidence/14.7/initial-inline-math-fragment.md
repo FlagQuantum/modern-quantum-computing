@@ -1,0 +1,1 @@
+A record-based update instead uses μ̂_X from a fresh preparation. An exact native expectation update is useful for an ideal simulator reference, but must be labeled as such. The code records the old environment, the angle, the chosen source, new environment and observed step residual |v_{k+1}−v_k| for each iteration.

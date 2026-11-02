@@ -691,6 +691,16 @@
       "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
       "record": "book/section-records/14.6.json",
       "author_execution": "52complete/6initialbody/6binary64body/58checker/12initialtransfer/12archivedtransfer=146author native calls;12distinct fresh cases;independent review pending"
+    },
+    "sec-hybrid-interaction-map": {
+      "state": "draft",
+      "brief": "book/briefs/ch14.json",
+      "mathematical_review": "pending",
+      "implementation_review": "pending-independent-review",
+      "reader_review": "pending",
+      "body": "docs/chapters/ch-computational-models-complexity-and-quantum-advantage.md",
+      "record": "book/section-records/14.7.json",
+      "author_execution": "90initial/21body/111firstchecker/111phase-refinedchecker/38transfer=371actual native author calls;eight editorial patterns,typed records and explicit lifetime/source boundaries;independent review pending"
     }
   },
   "existing_pilots": [
