@@ -1,6 +1,6 @@
 # 44. Exact Simulation, Tensor Execution, and Numerical Reliability
 
-**Working drafts: sections 44.1–44.2 · Writing Baseline 1.0 · November 2, 2026.** The B03 execution bridge is drafted here before the algorithm laboratories. The global chapter number and Volume VII placement remain unchanged. Author validation is separate from independent mathematical/implementation review and reader trial, which remain pending.
+**Working drafts: sections 44.1–44.3 · Writing Baseline 1.0 · November 2, 2026.** The B03 execution bridge is drafted here before the algorithm laboratories. The global chapter number and Volume VII placement remain unchanged. Author validation is separate from independent mathematical/implementation review and reader trial, which remain pending.
 
 <span id="sec-exact-simulation-tensor-execution-and-numerical-reliability-1"></span>
 ## 44.1 Requested outputs and exact-simulation cost
@@ -620,6 +620,343 @@ Book kernel forms no full-register operator; dense validation and native full-de
 
 </details>
 
-**Sources and review status.** The frozen NC §2.1.7 tensor-product locator, beginning at printed page 71, was checked against the [publisher's contents](https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf); this is not a claim of full textbook access. The [QuEST v1 representation discussion](https://arxiv.org/pdf/1802.08032v1#page=2) was consulted narrowly for dense statevector representation and the distinction between array payload and execution overhead; its PDF hash is recorded without uploading the paper. All indexing, embedding, contraction and chronological proofs needed here are supplied locally. No uninspected historical performance or hardware claim is imported. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/44.2.json) keeps author validation separate from independent mathematical/implementation review, reader trial and formal acceptance. This remains a working draft. Continue, when drafted, with [44.3 Observables and measurement execution](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-3).
+**Sources and review status.** The frozen NC §2.1.7 tensor-product locator, beginning at printed page 71, was checked against the [publisher's contents](https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf); this is not a claim of full textbook access. The [QuEST v1 representation discussion](https://arxiv.org/pdf/1802.08032v1#page=2) was consulted narrowly for dense statevector representation and the distinction between array payload and execution overhead; its PDF hash is recorded without uploading the paper. All indexing, embedding, contraction and chronological proofs needed here are supplied locally. No uninspected historical performance or hardware claim is imported. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/44.2.json) keeps author validation separate from independent mathematical/implementation review, reader trial and formal acceptance. This remains a working draft. Continue with [44.3 Observables and measurement execution](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-3).
 
 <!-- end-section-44.2 -->
+
+<span id="sec-exact-simulation-tensor-execution-and-numerical-reliability-3"></span>
+## 44.3 Observables and measurement execution
+
+**Question.** Which calculations connect a simulated state to exact expectations, marginal probabilities, conditional branches and a finite record of measurement outcomes?
+
+The prerequisites are [44.2, local tensor execution](#sec-exact-simulation-tensor-execution-and-numerical-reliability-2), [6.2, conditional states](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-2) and [6.3, observables and expectations](ch-measurement-expectation-values-and-statistical-estimation.md#sec-measurement-expectation-values-and-statistical-estimation-3). This F-depth section derives the corresponding kernels and their requested-output costs. Assume a normalized pure simulated state and declared ideal projective readout semantics. Exact algebra, floating-point deterministic calculations and random records have separate meanings; no physical measurement-update endpoint or hardware IID certificate follows from a simulator result.
+
+### 44.3.1 Freeze a state, observable and record contract
+
+Let v be a normalized complex vector on n qubits, N=2ⁿ, with the q₀-first index convention from 44.2. All scores and angles here are dimensionless, with angles in radians. Our three-qubit preparation applies RY₀(π/2), P₀(π/2), RY₁(π/3), P₁(π/2), followed by CX(0,2) and CX(1,2). The target q₂ begins at zero, so its final bit is x₀ XOR x₁. Multiplying the two prepared qubit coefficients and retaining their phases gives
+
+$$
+|\psi\rangle=\sqrt{\tfrac38}|000\rangle
++i\sqrt{\tfrac18}|011\rangle
++i\sqrt{\tfrac38}|101\rangle
+-\sqrt{\tfrac18}|110\rangle.
+$$
+
+The squared moduli sum to 3/8+1/8+3/8+1/8=1. Choose R=Y₀X₂ and the real Pauli sum \(\mathcal H=0.7R-0.2Z_0+0.4Z_1\). The Y action is Y|0⟩=i|1⟩, Y|1⟩=−i|0⟩. Applying R pairs 000 with 101 and 011 with 110 with precisely the phases already present, so Rψ=ψ and ⟨R⟩=1. The q₀ probabilities are 1/2,1/2, giving ⟨Z₀⟩=0; the q₁ probabilities are 3/4,1/4, giving ⟨Z₁⟩=1/2. Hence ⟨𝓗⟩=9/10.
+
+One native call requests exact simulator expectations and probabilities together with a **single joint** terminal record in ordered columns Q=(q₂,q₀). A finite record is not the exact expectation tensor. For a Pauli sum, use `result.expectation(name)` to retrieve the coefficient-weighted logical aggregate. Its internal term results may share the requested name, so `result.measurement(name)` can be ambiguous for that sum. The initial raw-term selector failure and a rename-only attempt are retained; changing the name alone did not replace the required aggregation accessor. No native numerical defect is inferred from those two API-selection failures.
+
+```python
+import math,torch,flagquantum as fq
+from dataclasses import replace
+from fractions import Fraction as F
+from examples.foundations import measurement_execution as m
+angles=(math.pi/2,math.pi/2,math.pi/3,math.pi/2);Q=(2,0)
+c=fq.Circuit(3,dtype=m.D).RY(0,theta=angles[0]).P(0,theta=angles[1]).RY(1,theta=angles[2]).P(1,theta=angles[3]).CX(0,2).CX(1,2)
+R=fq.Y(0)@fq.X(2);observable=.7*R-.2*fq.Z(0)+.4*fq.Z(1)
+r=fq.run(c,outputs=[fq.probabilities(qubits=Q,name='p'),fq.expectation(R,name='r_mean'),fq.expectation(observable,name='hamiltonian_mean'),fq.samples(qubits=Q,name='raw')],shots=17,options=replace(m.e.OPTIONS,mode='statevector',seed=101))
+v=torch.zeros(8,dtype=m.D);v[0]=math.sqrt(3/8);v[3]=1j*math.sqrt(1/8);v[5]=1j*math.sqrt(3/8);v[6]=-math.sqrt(1/8)
+m.e.close(r.statevector()[0],v)
+m.e.close(r.expectation('r_mean')[0],torch.tensor(1.,dtype=torch.float64))
+m.e.close(r.expectation('hamiltonian_mean')[0],torch.tensor(.9,dtype=torch.float64))
+assert r.measurement('raw').value.shape==(1,17,2)
+print('Actual native parity preparation: R=Y0X2 has mean1; the weighted Pauli sum has mean9/10; aggregate retrieved with result.expectation(name).')
+```
+
+```text
+Actual native parity preparation: R=Y0X2 has mean1; the weighted Pauli sum has mean9/10; aggregate retrieved with result.expectation(name).
+```
+
+
+### 44.3.2 Contract an observable without forming a global matrix
+
+Let A be a d×d Hermitian matrix on ordered support Q of k qubits, d=2ᵏ, and h=N/d spectators. Hermitian means \(A_{ca}^*=A_{ac}\). Gather v as the d×h coefficient matrix W from 44.2. Substitute that section's embedded action into the quadratic form from 6.3:
+
+$$
+\begin{aligned}
+\mu_A&=\langle\psi|E_Q(A)|\psi\rangle
+=\sum_{b=0}^{h-1}\sum_{a,c=0}^{d-1}W_{ab}^*A_{ac}W_{cb}\\
+&=\sum_b W_{:,b}^\dagger A W_{:,b}.
+\end{aligned}
+$$
+
+The spectator identity removes cross terms with different spectator labels; it does not require the state to factorize. Conjugating the scalar and exchanging a,c uses Hermiticity to give \(\mu_A^*=\mu_A\), so the exact result is real. The implementation applies A locally and takes one inner product, or contracts each packed column, rather than materializing \(E_Q(A)\). In the example Q=(2,0), the local matrix for Y₀X₂ is X⊗Y because q₂ is the first local axis.
+
+A Pauli word offers another independent kernel. For P=P₀⊗⋯⊗Pₙ₋₁, let f have bit one at X or Y positions, let \(n_Y\) count the Y factors, and define
+
+$$
+P|x\rangle=\gamma_P(x)|x\mathbin\oplus f\rangle,\qquad
+\gamma_P(x)=i^{n_Y}(-1)^{\sum_{j:P_j\in\{Y,Z\}}x_j}.
+$$
+
+This follows by multiplying the single-qubit actions of I,X,Y,Z. Consequently
+
+$$
+\mu_P=\sum_x v_{i(x\oplus f)}^*\gamma_P(x)v_{i(x)}.
+$$
+
+The scalar reference compiles the flip/sign masks once, then gathers each paired coefficient with its phase. It preserves the Y sign and the conjugate; replacing amplitudes by probabilities would lose this interference information. Separate dense-Kronecker checks cover all 84 Pauli words on one through three qubits, including multiple Y factors. Real linearity gives ⟨ΣⱼcⱼPⱼ⟩=Σⱼcⱼ⟨Pⱼ⟩. This exact state contraction does not assume that noncommuting terms have simultaneous measurement outcomes.
+
+```python
+A=torch.kron(m.X,m.Y);W=m.t.pack(v,3,(2,0))
+mu=sum(torch.vdot(W[:,j],A@W[:,j])for j in range(W.shape[1]))
+m.e.close(mu,m.expectation(v,A,3,(2,0)))
+m.e.close(mu,torch.vdot(v,m.t.entry_matrix(A,3,(2,0))@v))
+assert abs(m.pauli(v,3,'YIX')-1)<1e-12
+assert abs(.7*m.pauli(v,3,'YIX')-.2*m.pauli(v,3,'ZII')+.4*m.pauli(v,3,'IZI')-.9)<1e-12
+print('Packed local contraction, dense quadratic form, Pauli flip/phase kernel and native aggregate agree; conjugation and Y signs retained.')
+```
+
+```text
+Packed local contraction, dense quadratic form, Pauli flip/phase kernel and native aggregate agree; conjugation and Y signs retained.
+```
+
+
+### 44.3.3 Sum probabilities over spectator coordinates
+
+Adopt computational-basis Born probabilities |vᵢ₍ₓ₎|². For ordered selected qubits Q=(a₀,…,aₘ₋₁), let y encode their bits in that order. Outcomes on unselected qubits are mutually exclusive, so
+
+$$
+p_Q(y)=\sum_{x:\,x_{a_j}=y_j\ \forall j}|v_{i(x)}|^2
+=\sum_{b=0}^{2^{n-m}-1}|W_{yb}|^2.
+$$
+
+Every full basis string belongs to exactly one selected label, proving nonnegativity and \(\sum_y p_Q(y)=\sum_x|v_{i(x)}|^2=1\). The output is 2ᵐ real numbers; it is not a smaller statevector. Summing complex amplitudes over spectators and then taking a squared modulus would add interference between distinguishable spectator outcomes and compute a different object.
+
+For Q=(2,0), the four nonzero strings in 44.3.1 produce labels 00,10,11,01, respectively, giving \(p_Q=(3,1,1,3)/8\). Ordered full readout Q=(0,2,1) instead places the weights at indices 0,3,6,5. This checks the output-label map even when a particular two-bit marginal happens to be symmetric under swapping its two columns.
+
+```python
+def marginal(v,n,Q):
+ m.state(v,n);W=m.t.pack(v,n,Q);sq=W.abs().square()
+ if bool(((W!=0)&(sq==0)).any()):raise FloatingPointError('Positive squared contribution underflow')
+ return sq.sum(1)
+p=marginal(v,3,Q);m.e.close(p,torch.tensor([3/8,1/8,1/8,3/8],dtype=torch.float64))
+m.e.close(p,r.measurement('p').value[0])
+ordered=marginal(v,3,(0,2,1))
+assert abs(ordered[5].item()-1/8)<1e-12 and abs(ordered[6].item()-3/8)<1e-12
+print('Ordered (q2,q0) marginal=(3,1,1,3)/8; full permuted mask(q0,q2,q1) places probabilities1/8 and3/8 at indices5 and6.')
+```
+
+```text
+Ordered (q2,q0) marginal=(3,1,1,3)/8; full permuted mask(q0,q2,q1) places probabilities1/8 and3/8 at indices5 and6.
+```
+
+
+### 44.3.4 Derive prefix conditionals and branch states
+
+For a prefix z=(z₀,…,zₗ₋₁) of the ordered Q record, let \(C_z\) contain full strings matching those first ℓ selected bits, and define the prefix projector \(\Pi_z\) as the diagonal mask of \(C_z\). Its weight is
+
+$$
+w(z)=\|\Pi_zv\|^2=\sum_{x\in C_z}|v_{i(x)}|^2.
+$$
+
+The empty prefix has weight one. Its two child events partition \(C_z\), so w(z)=w(z0)+w(z1). If w(z)>0, the ideal conditional state from 6.2 is \(v^{(z)}=\Pi_zv/\sqrt{w(z)}\). For the next bit b, the child projector satisfies \(\Pi_{zb}\Pi_z=\Pi_{zb}\). Therefore
+
+$$
+\Pr(b\mid z)=\|\Pi_{zb}v^{(z)}\|^2
+=\frac{w(zb)}{w(z)}.
+$$
+
+The quotient is nonnegative and its two values sum to one. Multiplying these conditional probabilities along a positive path telescopes:
+
+$$
+\prod_{\ell=0}^{m-1}
+\frac{w(y_0\ldots y_\ell)}{w(y_0\ldots y_{\ell-1})}
+=\frac{w(y)}{w(\varnothing)}=p_Q(y).
+$$
+
+A zero-weight prefix has no conditional state or conditional next-bit law; a sampler must never enter it. It must not invent equal probabilities there. In the worked example the first selected bit q₂ is fair, but q₀ conditioned on q₂=0 has law (3/4,1/4), while conditioned on q₂=1 it has (1/4,3/4). Multiplying two unconditional fair marginals would incorrectly give the uniform two-bit law. An exact Bell-law fixture (1/2,0,0,1/2) makes this error sharper: independent fair bits would create impossible 01 and 10 records.
+
+The branch helper returns `None` for an exactly absent event and retains the phase of each positive branch. It checks all prefix nodes against separately constructed diagonal projector matrices and scalar masks. These are classical reference calculations on the pre-readout simulated state. Native terminal records do not establish that a collapse was applied to the returned state, nor do these helpers implement a native mid-circuit measurement endpoint. Marginalizing a prefix of this fixed commuting readout gives \(p(y_{\rm rest})=\sum_{z:w(z)>0}w(z)p(y_{\rm rest}\mid z)\). This does not assert that a physical measurement left the original state unchanged. After an actual earlier measurement, a later observable B has ignored-record prediction \(\sum_{z:w(z)>0}w(z)\langle v^{(z)}|B|v^{(z)}\rangle\), which can differ from its original-state expectation; it is not an average of normalized branch vectors. The [zero-native-call check](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-evidence/44.3/ignored-prefix-check.py) includes the 6.2 example of Z readout on a plus state followed by X.
+
+```python
+p0,c0=m.branch(v,3,Q,(0,));p1,c1=m.branch(v,3,Q,(1,))
+assert abs(p0-.5)<1e-12 and abs(p1-.5)<1e-12
+m.e.close(m.probabilities(c0,3,(0,)),torch.tensor([.75,.25],dtype=torch.float64))
+m.e.close(m.probabilities(c1,3,(0,)),torch.tensor([.25,.75],dtype=torch.float64))
+assert m.check_prefixes(v,3,(0,2,1))==15
+zero,absent=m.branch(v,3,(0,2,1),(0,0,1));assert zero==0 and absent is None
+weight,phase=m.branch(v,3,(0,2,1),(1,1,0));target=torch.zeros(8,dtype=m.D);target[5]=1j;m.e.close(phase,target)
+print('Every full-mask prefix checked: 15 nodes; q0 conditional laws are(3/4,1/4)/(1/4,3/4), not its unconditional(1/2,1/2).')
+print('Impossible branch has no conditional vector; the selected positive branch retains its i phase. These are classical reference updates.')
+```
+
+```text
+Every full-mask prefix checked: 15 nodes; q0 conditional laws are(3/4,1/4)/(1/4,3/4), not its unconditional(1/2,1/2).
+Impossible branch has no conditional vector; the selected positive branch retains its i phase. These are classical reference updates.
+```
+
+
+### 44.3.5 Prove CDF and cached-prefix sampling
+
+Let p₀,…,p_K₋₁ be the selected joint law in binary label order, K=2ᵐ. Define \(F_{-1}=0\) and \(F_j=\sum_{i=0}^jp_i\). Given an ideal uniform u in [0,1), return the first j with Fⱼ>u. Outcome j occupies the half-open interval [Fⱼ₋₁,Fⱼ), whose length is pⱼ. These intervals are disjoint and cover [0,1), proving the sampled law. Zero probabilities have empty intervals and must be skipped; using the wrong inequality at an exact endpoint can select such a leaf in a finite implementation.
+
+The executable reference specializes to **declared exact rational laws**. Choose a common denominator D with integer masses aⱼ=Dpⱼ summing to D. A uniform integer rank r∈{0,…,D−1} is assigned to the first cumulative integer mass strictly greater than r. Exactly aⱼ ranks select j, proving the rational law without a statistical frequency test. The reference does not silently convert native floating probabilities into a certified exact rational law.
+
+Cache a binary tree of masses, with the two children extending a prefix by 0 or 1. At a node of mass M, let its left mass be M₀. A uniform residual rank r in {0,…,M−1} goes left if r<M₀; otherwise it goes right after subtracting M₀. The branch probabilities are M₀/M and (M−M₀)/M. Conditioned on either positive branch, translating the chosen interval makes its residual rank uniform on that child's range. Induction gives each leaf mass divided by D, the same joint law as the CDF. Zero-mass children have no ranks and are never chosen. This proof also explains the real-weight tree through the prefix ratios from 44.3.4.
+
+For the worked law the integer masses are (3,1,1,3), cumulative boundaries (3,4,5,8), and the eight ranks select labels (0,0,0,1,2,3,3,3). The tests enumerate every rank, not merely a pseudorandom sample. Python `randrange(D)` supplies reference ranks under its pseudorandom contract; seed replay is reproducibility, not independent statistical evidence or a hardware randomness certificate. No equality between its stream and FlagQuantum's native stream is requested.
+
+```python
+ps=(F(3,8),F(1,8),F(1,8),F(3,8));s=m.Sampler(ps)
+def prefix_at(s,rank):
+ node=1
+ while node<s.K:
+  left=s.mass[2*node]
+  if rank<left:node*=2
+  else:rank-=left;node=2*node+1
+ return node-s.K
+assert s.cdf==[3,4,5,8] and [prefix_at(s,k)for k in range(8)]==[0,0,0,1,2,3,3,3]
+assert m.exact_sampler_check(ps)==8
+zeros=m.Sampler((F(0),F(1,4),F(0),F(3,4)));assert zeros.at(0)==1 and zeros.at(1)==3
+assert s.draw(17,seed=31)==s.draw(17,seed=31,method='cdf')
+assert m.Sampler((F(1,2),F(0),F(0),F(1,2))).conditional((0,))==(F(1),F(0))
+print('Integer CDF/prefix samplers assign ranks0..7 to labels[0,0,0,1,2,3,3,3]; zero-width intervals skipped at exact boundaries.')
+print('Seed replay shares ranks and is not independent evidence; native random streams are not compared with these reference streams.')
+```
+
+```text
+Integer CDF/prefix samplers assign ranks0..7 to labels[0,0,0,1,2,3,3,3]; zero-width intervals skipped at exact boundaries.
+Seed replay shares ranks and is not independent evidence; native random streams are not compared with these reference streams.
+```
+
+
+### 44.3.6 Execute a declared measurement basis
+
+For a fixed unitary analyzer V followed by computational readout, the event probabilities are \(\|\Pi_yVv\|^2=v^\dagger V^\dagger\Pi_yVv\). Thus the original-state effects are V†Π_yV. This is a change of measurement context, not permission to sample an arbitrary observable from the unrotated computational record.
+
+To read R=Y₀X₂, call P₀(−π/2), H₀ and H₂. With S=diag(1,i), the analyzer is V=(HS†)₀H₂. Using HZH=X and SXS†=Y gives
+
+$$
+V^\dagger(Z_0Z_2)V
+=(SHZHS^\dagger)_0(HZH)_2=Y_0X_2.
+$$
+
+For recorded bits (b₂,b₀), the eigenvalue score is (−1)ᵇ⁰⁺ᵇ², computed as 1−2(b₂ XOR b₀). In the worked state, Y₀ alone or X₂ alone flips one parity-constrained bit and maps its support outside the original four strings, so both local expectations vanish; the product expectation is one. The commuting computational projectors (I+(−1)ᵇZ)/2 then give the following law, writing a=b₂ and b=b₀:
+
+$$
+p_{ab}=\tfrac14\left[1+(-1)^a\langle Z_2\rangle_{Vv}
++(-1)^b\langle Z_0\rangle_{Vv}
++(-1)^{a+b}\langle Z_2Z_0\rangle_{Vv}\right].
+$$
+
+Substituting (0,0,1) for these three means yields (1/2,0,0,1/2). The code checks the native rotated probability and exact ZZ expectation against these formulas, while computing a finite sample score separately. Floating arithmetic can leave tiny positive residues in ideally zero cells; no finite-record accuracy hit is demanded as a deterministic pass condition.
+
+The sum 𝓗 also contains Z₀, which does not commute with R. Its native exact expectation query is a sum of state contractions. Estimating that sum from a physical record would require a declared measurement scheme and appropriate contexts or a measurement of its spectral observable; the Y/X record alone is not an estimator of every term. No such hardware measurement protocol is implied here.
+
+```python
+for mode in ('statevector','density_matrix'):
+ analyzer,_=m.preparation(3,angles);analyzer.P(0,theta=-math.pi/2).H(0).H(2)
+ read=fq.run(analyzer,outputs=[fq.probabilities(qubits=Q,name='p'),fq.expectation(fq.Z(0)@fq.Z(2),name='zz_mean'),fq.samples(qubits=Q,name='raw'),fq.density_matrix(name='rho')],shots=17,options=replace(m.e.OPTIONS,mode=mode,seed=103))
+ B0=m.H@torch.diag(torch.tensor([1,-1j],dtype=m.D));w=m.t.apply(m.t.apply(v,B0,3,(0,)),m.H,3,(2,))
+ m.e.close(read.measurement('p').value[0],marginal(w,3,Q));m.e.close(read.measurement('p').value[0],torch.tensor([.5,0.,0.,.5],dtype=torch.float64))
+ m.e.close(read.expectation('zz_mean')[0],torch.tensor(1.,dtype=torch.float64))
+ m.e.close(read.measurement('rho').value[0],w[:,None]*w.conj()[None,:])
+ rows=read.measurement('raw').value[0].tolist();scores=[1-2*(row[0]^row[1])for row in rows];assert all(x in(-1,1)for x in scores)
+print('Actual P(-pi/2),H on q0 and H on q2 implement Y0/X2 readout; both modes match the rotated probability law and exact ZZ mean.')
+print('The finite raw score is computed separately; no required frequency hit and no returned-state collapse inferred.')
+```
+
+```text
+Actual P(-pi/2),H on q0 and H on q2 implement Y0/X2 readout; both modes match the rotated probability law and exact ZZ mean.
+The finite raw score is computed separately; no required frequency hit and no returned-state collapse inferred.
+```
+
+
+### 44.3.7 Charge setup, contraction and record output separately
+
+For a local dense A on k qubits, d=2ᵏ, the 44.2 apply-plus-inner-product scheme uses Nd+N complex products and N(d−1)+(N−1)=Nd−1 additions in the stated unoptimized arithmetic model. It stores the N-coefficient state and d² local matrix, plus working arrays. A generic full dense observable has d=N; its small scalar output does not make its contraction constant-cost.
+
+A Pauli word uses a coefficient permutation and phases in {1,−1,i,−i}. After O(n) mask preparation, the implemented loop visits N coefficients; O(N) fixed-word index operations per term assume the indices fit that word model. Arbitrary-size integer operations carry their own bit cost. L Pauli terms therefore admit O(LN) contractions in that declared fixed-word model, without a full N×N observable. This describes the reference scheme, not measured native operation counts or hardware time.
+
+For selected m-bit probabilities, packing and scanning N coefficients computes 2ᵐ outputs with N magnitude-squared contributions and N−2ᵐ within-row additions. The selected table needs 2ᵐ real slots; packed arrays may be views or copies. Building a CDF or a prefix tree from that table costs O(K), K=2ᵐ, in the unit arithmetic model. A complete binary tree has 2K−1 mass nodes. CDF binary search or cached tree descent uses O(log K)=O(m) comparisons per rank, giving O(K+Sm) reference sampling work after probabilities are available. The exact-rational implementation additionally performs denominator and integer-mass arithmetic; those bit costs and pseudorandom-rank generation are not free.
+
+Recomputing every conditional probability by scanning a full state for each bit and shot instead costs O(SmN) in a direct scheme. The cached terminal table avoids that work because the state, analyzer and record context are fixed. An adaptive basis change or a different later measurement generally needs a new conditional calculation; the cached table is not a universal instrument simulator.
+
+A packed S×m record contains Sm bits; this native int64 tensor occupies 8Sm bytes, before headers/serialization. The exact-mean scalar, probability table and raw record are distinct outputs. One native `run(...,shots=S)` invocation is not evidence that its CPU simulator evolved S separate states. Physical repeated preparations and simulator sampling costs must be specified independently. The validation harness deliberately builds dense prefix projectors and full density outputs for small systems; its memory is not advertised as the efficient kernel's working memory.
+
+```python
+N=8;d=4;K=4;shots=17
+assert N*d+N==40 and 8*K==32 and shots*2==34 and 8*shots*2==272
+assert len(s.mass)-1==2*K-1==7
+assert m.invalid_checks()==15 and m.RUNS==0
+print('Declared local matvec-plus-inner-product scheme:40 complex products; selected table32 bytes; 17 two-bit records34 logical bits/272 int64 bytes.')
+print('Seven cached tree nodes; 15 invalid contracts rejected, rare positive branch preserved, squared-norm underflow reported explicitly.')
+```
+
+```text
+Declared local matvec-plus-inner-product scheme:40 complex products; selected table32 bytes; 17 two-bit records34 logical bits/272 int64 bytes.
+Seven cached tree nodes; 15 invalid contracts rejected, rare positive branch preserved, squared-norm underflow reported explicitly.
+```
+
+
+### 44.3.8 Keep numerical and API boundaries reviewable
+
+This profile actually executes released FlagQuantum 0.3.1 `Circuit.RY/P/CX/H`, `run`, `probabilities`, `expectation`, `samples` and `density_matrix`, plus the statevector accessor in statevector mode and the logical `result.expectation(name)` aggregator. Native Observable `@` is used only for disjoint-qubit Pauli products and real scalars form sums. The exact-rational sampler, local contractions, masks, branch states and prefix checks are book-side Python/PyTorch. The returned simulator state/density is compared with the pre-readout state, rather than described as a selected collapsed branch. A separate X-only basis calibration checks the ordered sample labels exactly, including asymmetric bit patterns in both modes. This is a CPU software convention check, not physical detector calibration; it supplements the generic records' schema checks.
+
+Native tests use Python 3.12.14, Torch 2.13.0, CPU complex128, statevector and density-matrix modes, absolute tolerance 10⁻¹² and relative tolerance zero. “Exact” deterministic outputs refer to full-state formulas without an intentional stochastic/truncation approximation; roundoff remains and the tolerance is not an interval certificate. The code does not clip probabilities, repair input normalization, symmetrize a non-Hermitian observable or fit global phase. A required conditional-state normalization is the stated Lüders formula, not an input repair.
+
+Zero probability is not defined by a tolerance cutoff. A positive 10⁻²⁰ branch is retained with its phase. If a nonzero amplitude's square, or a nonzero projected branch's squared norm, underflows to zero, the reference raises explicitly instead of labeling the event impossible. Conditioning very small branches can amplify numerical error; full-state agreement does not certify uniformly accurate conditional directions on every rare branch. All prefix-reference comparisons here start from the same declared pre-readout simulated vector and test different projection/address calculations.
+
+We do not exercise a native collapse/reset API, general instrument composition, hardware calibration, adaptive measurement backend or an IID diagnostic. These restrictions describe this experiment, not a denial of broader framework capabilities. Guards n≤5 for these reference states, n=3…5 for the native preparation family, K≤32 outcomes, 128-bit common integer mass and D≤4096 for exhaustive rank checks bound the teaching program. They are not FlagQuantum capacity limits.
+
+```python
+checked,reference,permuted=m.native(3,(0,2,1),angles,mode='density_matrix',shots=17)
+m.e.close(permuted,ordered);assert m.RUNS==1
+cal=m.calibrate(3,(2,0),(1,0,0));assert cal.measurement('raw').value[0].tolist()==[[0,1]]*5
+assert m.RUNS==2
+assert r.measurement('raw').value[0].numel()==34
+print('Native full ordered-mask and deterministic X-only label checks agree; body total is five fq.run calls: three explicit calls plus two companion calls.')
+print('Exact expectation, conditional reference states and terminal samples remain distinct outputs; hardware,reset and IID certification are outside this profile.')
+```
+
+```text
+Native full ordered-mask and deterministic X-only label checks agree; body total is five fq.run calls: three explicit calls plus two companion calls.
+Exact expectation, conditional reference states and terminal samples remain distinct outputs; hardware,reset and IID certification are outside this profile.
+```
+
+
+The complete [measurement_execution.py](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/examples/foundations/measurement_execution.py) runs 48 native calls: three- and four-qubit preparations, three angle choices including deterministic computational inputs, two ordered masks, both execution modes and two analyzer contexts. Every prefix node, including zero-weight branches, is checked against dense diagonal projectors and scalar masks. Five exact rational laws cover 27 exhaustive integer ranks; fifteen invalid contracts and both squared-norm underflow routes are checked. The [evidence record](https://github.com/FlagQuantum/modern-quantum-computing/tree/main/book/section-evidence/44.3) also retains the two initial one-call selector failures, the corrected run, the 84 independent Pauli-word checks, twelve separate deterministic basis-label calibration calls and fresh five-qubit validation. Their runs are recorded separately, without turning repeated seeds or author checks into independent review.
+
+Run from the repository root:
+
+```bash
+python examples/foundations/measurement_execution.py
+python scripts/check_measurement_execution_prose.py
+```
+
+Expected output of the complete program:
+
+```text
+48 native CPU complex128 circuits: three- and four-qubit preparations,two ordered masks,both execution modes and computational/Y-X analyzer profiles.
+Exact Pauli/local contractions,marginals and every prefix branch agree with scalar/dense references; native terminal samples checked for schema,not frequency hits.
+Five exact rational laws,27 integer ranks: CDF and cached-prefix samplers reproduce every outcome mass,including zero leaves and boundary ranks.
+15 malformed contracts rejected; positive1e-20 branch retained and two squared-norm underflow routes explicitly rejected.
+Book conditional states and exact-rational samplers are separate from native terminal requests; no collapse/reset,hardware IID certificate or shared random-stream claim.
+```
+
+**Check your understanding.** Which outputs are deterministic state calculations, and which are random records? Why does multiplying unconditional qubit probabilities fail on correlated data? What is undefined at a zero-weight prefix? Why does an exact Pauli-sum expectation not specify a single physical measurement context?
+
+**Problems and transfer.**
+
+- **44.3-A — prefix law.** Derive every weight in the two-bit prefix tree for (3,1,1,3)/8 and list the eight integer ranks' labels. For the Bell law (1/2,0,0,1/2), derive the conditional next-bit laws and identify the false outcomes generated by two independent fair bits.
+- **44.3-B — rare versus absent.** For v=(1,i·10⁻¹⁰), interpreted under the stated floating normalization contract, compute the positive second-branch weight and normalized phase. Contrast amplitude i·10⁻²⁰⁰. For exact rational law (1−10⁻²⁰,10⁻²⁰), show how its last integer rank selects the rare event without enumerating 10²⁰ ranks. Does zero observed count prove that event impossible?
+- **44.3-C — fresh execution.** Use the five-qubit preparation with angles (−0.83,0.41,0.67,−0.49), masks (4,2,0), (0,3), (2,1,4,0), both modes and analyzer profiles, S=23. Compare all prefixes and exact observables against scalar/matrix references. Separately validate new rational laws (1,2,3,4,5,6,7,8)/36 and (0,1,0,2,0,0,1,0)/4 by every integer rank. Retain actual records without requiring an empirical mean hit.
+- **44.3-D — repair execution claims.** Diagnose a report that reads a multi-term Pauli aggregate through a raw measurement selector, multiplies unconditional marginals, drops every p<10⁻¹² branch, and says its two same-seed samplers are independent hardware evidence. State the requested-output cost when N=8,d=4,m=2,S=17, and identify what remains outside those arithmetic/payload counts.
+
+<details markdown="1">
+<summary>Answers and verification guidance for 44.3-A–D</summary>
+
+**A.** Root mass is 8; its children have masses 4 and 4. The four leaves have masses 3,1,1,3, so conditional second-bit laws are (3/4,1/4) and (1/4,3/4). The rank labels are 0,0,0,1,2,3,3,3. For the Bell law the conditionals are (1,0) and (0,1). Independent fair draws incorrectly assign probability 1/4 to each impossible label 01 and 10.
+
+**B.** The positive branch has squared norm approximately 10⁻²⁰ and its normalized vector is (0,i), including the retained phase. The second amplitude in the contrast is nonzero but its square underflows in the tested dtype; the reference reports the numerical failure. It does not define a zero-probability physical event. The rational law has D=10²⁰; rank D−1 selects its one-rank rare interval and D−2 selects the common outcome. This reference integer fits the declared mass guard, but exhaustive validation deliberately rejects such a huge rank sweep. A finite zero count is not a zero-probability proof.
+
+**C.** Twelve fresh native calls cover three masks, two modes and two analyzers. The two new rational fixtures require 36 and 4 ranks respectively. Their prefix and CDF assignments agree exactly, including empty intervals. The five-qubit native probability/expectation/density references and all prefix projections agree within the stated tolerance. Bit rows and ordering are checked; frequencies are observations, not forced matches. The exact-rational fixture law is separate from a claim that arbitrary floating simulator probabilities are rationally certified.
+
+**D.** `result.expectation(name)` performs the logical coefficient-weighted aggregation; raw lowered term results can be ambiguous. Joint probabilities require conditionals or a joint table; a numerical tolerance is not a pruning threshold for positive events. Replayed pseudorandom ranks are reproducibility, not independent evidence or device calibration. The stated local dense contraction plus inner product uses 40 complex products and 31 additions. The selected float64 table is 32 bytes, and 17 two-bit rows are 34 logical bits or 272 int64 bytes. State preparation/evolution, local matrix and work buffers, exact-integer setup, rank generation, serialization, physical repeated preparations and any hardware timing require their own accounting.
+
+</details>
+
+**Sources and review status.** NC §2.2.3 begins on printed page 84, confirmed against the [publisher's contents](https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf); no full-textbook access is claimed. The frozen [QuEST v1 representation source](https://arxiv.org/pdf/1802.08032v1#page=2) was consulted only for the dense simulated-state context, not as evidence of this runtime's sampler or hardware performance. All contraction, marginal, prefix and inverse-CDF proofs used here are supplied locally from the declared semantics. Source hashes and review scope are recorded without uploading third-party text. The [section record](https://github.com/FlagQuantum/modern-quantum-computing/blob/main/book/section-records/44.3.json) separates author validation, independent mathematical/implementation review, reader trial and acceptance. This remains a working draft. The next section in the frozen B03 queue is [44.6 Precision, stability, and normalization drift](../section-plans/06-simulation.md#sec-exact-simulation-tensor-execution-and-numerical-reliability-6); 44.4–44.5 retain their later scheduled prerequisites.
+
+<!-- end-section-44.3 -->

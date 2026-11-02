@@ -1,0 +1,112 @@
+{
+  "baseline": "writing-baseline-v1.0",
+  "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-3",
+  "ref": "44.3",
+  "date": "2026-11-02",
+  "state": "draft",
+  "body": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md",
+  "depth": "F",
+  "requires": [
+    "sec-exact-simulation-tensor-execution-and-numerical-reliability-2",
+    "sec-measurement-expectation-values-and-statistical-estimation-2",
+    "sec-measurement-expectation-values-and-statistical-estimation-3"
+  ],
+  "result": "Exact expectation,marginalization and sampling kernels",
+  "assumptions": [
+    "Normalized pure simulated state;declared idealprojective/terminalreadoutsemantics.",
+    "Fixedorderedmaskandbasis;conditionalstatesonlyonpositiveweightprefixes.",
+    "Idealuniform-rankproof;exactrationalreference sampler separatedfromgenericnativefloatingoutputs."
+  ],
+  "verification_obligations": [
+    "Derive localpacked Hermitiancontraction and Pauli flip/phase sum withconjugation.",
+    "Derive marginalnonnegativity/normalization,orderedprefixweights andpositivebranchconditionals.",
+    "Prove telescoping jointlaw,CDFinterval law andcachedtree rank induction;zeromass pathsneverchosen.",
+    "Count requested-output/contraction/precomputation/perrecordcost withword/bitmodel limits.",
+    "Compare allprefixes withscalar/denseprojectors andnative terminalprobabilities/basisanalyzers.",
+    "Check actualPaulisum logicalaggregation accessor andretaininitialrawselector failures.",
+    "Freshfive-qubitmasks/parameters,bothmodes/analyzers,newrationallaws/rare-eventandunderflowguards."
+  ],
+  "formula_code_units": [
+    "explicitnativeprep/exactmeanoutputs",
+    "local/Pauliobservablecontractions",
+    "literalorderedmarginalkernel",
+    "prefixconditionalstates",
+    "CDF/tree integer-rank sampler",
+    "explicitnativeY/Xanalyzer",
+    "requested-output/cachedsampling costs",
+    "fullorderednativecheck/APIboundaries"
+  ],
+  "sources": [
+    {
+      "locator": "NC:2.2.3",
+      "url": "https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf",
+      "scope": "Publishercontentsconfirmssectionstartprinted84;notfulltextbookaccess."
+    },
+    {
+      "locator": "QUEST:representation",
+      "url": "https://arxiv.org/pdf/1802.08032v1#page=2",
+      "scope": "Narrowdense-state representation context re-read;not evidence of native sampler internals orhardwareperformance."
+    }
+  ],
+  "code": {
+    "script": "examples/foundations/measurement_execution.py",
+    "prose_checker": "scripts/check_measurement_execution_prose.py",
+    "evidence": "book/section-evidence/44.3",
+    "environment": {
+      "python": "3.12.14",
+      "flagquantum": "0.3.1",
+      "torch": "2.13.0",
+      "device": "CPU",
+      "dtype": "complex128native;complex64/128arraychecks"
+    },
+    "complete_program_circuits_per_invocation": 48,
+    "body_fragments": 8,
+    "body_circuits_per_invocation": 5,
+    "separate_transfer_circuits": 12,
+    "execution_ledger": {
+      "initial_raw_selector_failure": 1,
+      "rename_only_selector_failure": 1,
+      "corrected_initial_complete_before_mask_optimization": 48,
+      "initial_body_assembly_before_label_calibration": 4,
+      "initial_body_plus_complete_checker_before_label_calibration": 52,
+      "fresh_five_qubit_transfer": 12,
+      "separate_exact_basis_label_calibration": 12,
+      "final_body_plus_complete_checker": 53,
+      "total_author_section_native_runs": 183,
+      "unique_zero_native_Pauli_word_cases": 84,
+      "zero_native_Pauli_word_entry_passes": 2,
+      "prior_regressions": "44.2and6.2/6.3prose/fullchecks separate"
+    },
+    "malformed_contracts": 15,
+    "tolerance": "Fullstate/probabilities/density/mean absolute1e-12,relative0;prefix masks useexactzeroonly and preservepositive1e-20branches.Positiveamplitude-square/normunderflowexplicitlyraises.No clipping,phasealignment,inputrepair orforcedfrequencyhit.ExactFractionranklawsseparatefromnativefloatoutputs.",
+    "native_boundary": "Actual CPUcomplex128RY/P/CX/H/run/probabilities/expectation/samples/density;result.expectation(name)aggregatesPaulisumterms.StatevectoraccessoronlySVmode.Bookbranch/CDFtree/scalarreferencesarenotnativecollapse/reset/hardwareIIDoradaptiveinstrumentAPIs.",
+    "script_sha256": "c972e96ca83ce20fc2afe26716de0ae5e84da31102265125c9e7c765d513912b",
+    "underflow_routes_rejected": 2,
+    "exact_rational_laws": 5,
+    "exhaustive_integer_ranks": 27,
+    "label_calibration_calls": 12
+  },
+  "assessment": {
+    "tasks": [
+      "44.3A-D"
+    ],
+    "answers": "Accessibleanswers;12freshnativefive-qubitcalls,40newrationalranks andexactrare-eventlast-rank boundary.Readertrialpending."
+  },
+  "review": {
+    "mathematical": "pending independent review",
+    "implementation": "author checks passed;independent review pending",
+    "reader": "pending",
+    "scientific_acceptance": "not accepted",
+    "author_checks": "Two initial one-call failures usedrawmeasurementselectorforamulti-termPaulisum;renamealoneinsufficient.Sourceinspectionidentifiedlogicalresult.expectation(name)aggregate.Corrected48passed.Initialsource/stdout retained.Pauli loopthencompiledflip/signmasks,84densechecks passed.Initial52-callchecker(4body+48complete)and12freshtransfer passed before labelcalibration.No native numericbug claimed;no statistically independentseedreplay claim. Initialchecker52passedbeforeexplicitlabelcalibrationcoverage.Finalchecker53=5body+48completepassed.TwelveadditionalX-onlylabelcalibrationcallsconfirmedexactone-hotlawsandallrawcolumnsinsixasymmetriccases,bothmodes.ScopeisCPUsoftwareconvention,notphysicalcalibration."
+  },
+  "production": {
+    "next_draft": "44.6 Precision,stability,andnormalizationdrift in frozenB03queue",
+    "pdf": "Existing PDF edition unchanged",
+    "prerequisite_ci": "42d7c81 Verify41424767241completed success,all3jobs;archived beforeintegration.",
+    "formula_display": "Actual refreshed localIAB:observable/Paulisign,marginal,prefix/conditional/telescoping andanalyzeridentitieschecked;70mathcontainersacrosschapter,zeroMathJaxerrors/unintendedemphasis.ExpandedA-Danswersopenandreadable;plainUnicodeformulasintheanswers.No unintendedrenderingfailure.NewX-onlybodycalibration53-callcheckerpassed;ignored-outcomeclarificationcheckedwithzeroextra nativecalls.",
+    "website": "Freshstrictbuild and76page renderedlink/fragment/duplicateIDchecks passed;exact-headdeploymentcheckedseparately.",
+    "ignored_record_scope": "Fixedcommutingbitmarginals use lawtotalprobability;actualprior measurement followedbydifferentobservable usesweightedbranchpredictions,notoriginalstateoraveragedvector.Zero-nativeplus/Z-then-Xcheckadded;existingPython/textblocks preserved.",
+    "workload_note": "Eight short units retain the F-depth proofs and explicit API/failure/calibration boundaries.No scope/prerequisite/volume change;pagebudgetremainsplanningenvelope,notanewPDFedition.",
+    "local_chapter_html_sha256": "207daea5886f70700ea72816c24eeb90bb49b04cd1e1687e9da7d2339b9c2db1"
+  }
+}

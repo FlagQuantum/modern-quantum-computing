@@ -1,0 +1,13 @@
+{
+  "answers": [
+    {
+      "math": 0,
+      "open": true,
+      "text": "\nAnswers and verification guidance for 44.3-A–D\nA. Root mass is 8; its children "
+    }
+  ],
+  "mathContainers": 70,
+  "mathErrors": 0,
+  "unexpectedEmphasis": 0,
+  "url": "http://127.0.0.1:8754/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability/#4434-derive-prefix-conditionals-and-branch-states"
+}

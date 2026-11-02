@@ -1,0 +1,1 @@
+12 native X-only basis-label calibration calls passed: six asymmetric declared masks/bit patterns,both modes; exact one-hot probabilities and every raw bit column agree.

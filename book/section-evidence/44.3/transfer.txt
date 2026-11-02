@@ -1,0 +1,2 @@
+12 fresh five-qubit native calls passed: three ordered masks,both modes and computational/Y-X analyzer profiles; all prefix references checked.
+Two fresh rational laws passed all40 ranks; rare exact last-rank event retained,huge exhaustive sweep rejected; no frequency-hit requirement.

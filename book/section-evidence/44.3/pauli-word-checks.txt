@@ -1,0 +1,1 @@
+84 zero-native scalar checks: every Pauli word through three qubits,including multipleY phases,matches dense Kronecker expectations.

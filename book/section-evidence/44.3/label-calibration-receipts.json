@@ -1,0 +1,562 @@
+[
+  {
+    "kind": "basis-label-calibration",
+    "n": 3,
+    "qubits": [
+      2,
+      0
+    ],
+    "basis_bits": [
+      1,
+      0,
+      0
+    ],
+    "mode": "statevector",
+    "shots": 5,
+    "expected_label": [
+      0,
+      1
+    ],
+    "raw_rows": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 3,
+    "qubits": [
+      2,
+      0
+    ],
+    "basis_bits": [
+      1,
+      0,
+      0
+    ],
+    "mode": "density_matrix",
+    "shots": 5,
+    "expected_label": [
+      0,
+      1
+    ],
+    "raw_rows": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 3,
+    "qubits": [
+      2,
+      0
+    ],
+    "basis_bits": [
+      0,
+      0,
+      1
+    ],
+    "mode": "statevector",
+    "shots": 5,
+    "expected_label": [
+      1,
+      0
+    ],
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 3,
+    "qubits": [
+      2,
+      0
+    ],
+    "basis_bits": [
+      0,
+      0,
+      1
+    ],
+    "mode": "density_matrix",
+    "shots": 5,
+    "expected_label": [
+      1,
+      0
+    ],
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 3,
+    "qubits": [
+      0,
+      2,
+      1
+    ],
+    "basis_bits": [
+      1,
+      1,
+      0
+    ],
+    "mode": "statevector",
+    "shots": 5,
+    "expected_label": [
+      1,
+      0,
+      1
+    ],
+    "raw_rows": [
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 3,
+    "qubits": [
+      0,
+      2,
+      1
+    ],
+    "basis_bits": [
+      1,
+      1,
+      0
+    ],
+    "mode": "density_matrix",
+    "shots": 5,
+    "expected_label": [
+      1,
+      0,
+      1
+    ],
+    "raw_rows": [
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 5,
+    "qubits": [
+      4,
+      2,
+      0
+    ],
+    "basis_bits": [
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mode": "statevector",
+    "shots": 5,
+    "expected_label": [
+      0,
+      0,
+      1
+    ],
+    "raw_rows": [
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 5,
+    "qubits": [
+      4,
+      2,
+      0
+    ],
+    "basis_bits": [
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mode": "density_matrix",
+    "shots": 5,
+    "expected_label": [
+      0,
+      0,
+      1
+    ],
+    "raw_rows": [
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 5,
+    "qubits": [
+      0,
+      3
+    ],
+    "basis_bits": [
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mode": "statevector",
+    "shots": 5,
+    "expected_label": [
+      1,
+      0
+    ],
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 5,
+    "qubits": [
+      0,
+      3
+    ],
+    "basis_bits": [
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mode": "density_matrix",
+    "shots": 5,
+    "expected_label": [
+      1,
+      0
+    ],
+    "raw_rows": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 5,
+    "qubits": [
+      2,
+      1,
+      4,
+      0
+    ],
+    "basis_bits": [
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mode": "statevector",
+    "shots": 5,
+    "expected_label": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "raw_rows": [
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ]
+  },
+  {
+    "kind": "basis-label-calibration",
+    "n": 5,
+    "qubits": [
+      2,
+      1,
+      4,
+      0
+    ],
+    "basis_bits": [
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mode": "density_matrix",
+    "shots": 5,
+    "expected_label": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "raw_rows": [
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ]
+  }
+]

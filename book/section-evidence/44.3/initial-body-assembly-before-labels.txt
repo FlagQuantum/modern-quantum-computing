@@ -1,0 +1,1 @@
+Eight literal body units assembled and executed; four actual native calls passed.

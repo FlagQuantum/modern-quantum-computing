@@ -1,0 +1,1 @@
+Zero native calls: fixed-basis marginal obeys total probability; ignored actual Z measurement on plus changes later X expectation from1 to0 under ideal branch semantics.

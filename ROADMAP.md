@@ -79,3 +79,5 @@ Section14.9now has an author-verified V-depth resource-audit laboratory:eight fo
 Section44.1now has an author-verified F-depth draft:dense state/density payload proofs,explicit-export bounds and scoped execution arithmetic;eight formula/code units,56complete-program calls and9freshtransfer calls.Next frozen target44.2.Independent review and readertrial remain pending.
 
 Section44.2now has an author-verified F-depth draft:coordinate/permutation/Kronecker equivalence,full local contraction proof and chronological minimalexecutor;eight units,58complete-native calls and8freshtransfer cases.Next frozen target44.3.Independent review remains pending.
+
+Section44.3now has an author-verified F-depth draft:exactobservable/marginal/prefixcontractions,CDF/treeproofs andterminalmeasurementexecution;eight units(5bodycalls),48complete-nativecalls,12freshtransfercalls and12separatebasislabelcalibrations.Next frozen target44.6;44.4-5retainlaterprerequisites.Independentreview remains pending.

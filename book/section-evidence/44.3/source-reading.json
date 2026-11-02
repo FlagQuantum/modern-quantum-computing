@@ -1,0 +1,16 @@
+{
+  "locators": [
+    {
+      "locator": "NC:2.2.3",
+      "url": "https://assets.cambridge.org/97811070/02173/toc/9781107002173_toc.pdf",
+      "scope": "Publishercontentsconfirmssectionstartprinted84;notfulltextbookaccess."
+    },
+    {
+      "locator": "QUEST:representation",
+      "url": "https://arxiv.org/pdf/1802.08032v1#page=2",
+      "scope": "Narrowdense-state representation context re-read;not evidence of native sampler internals orhardwareperformance."
+    }
+  ],
+  "quest_pdf_sha256": "58076dec8f4cb64ea658eee88e9b58d02c43b9d81a26bd1eb81af30b7e88d71e",
+  "note": "OnlypublishercontentsandnarrowQuESTrepresentationpassageconsulted;proofslocal.No paperoriginaluploaded."
+}

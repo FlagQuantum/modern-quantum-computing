@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/private/tmp/measurement_execution.py", line 186, in <module>
+    main()
+  File "/private/tmp/measurement_execution.py", line 172, in main
+    for analyzer in(False,True):native(n,Q,angles,mode,analyzer)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/measurement_execution.py", line 140, in native
+    if not analyzer:e.close(r.measurement('hamiltonian_mean').value[0],torch.tensor(muH,dtype=torch.float64))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/mqc-writing-venv/lib/python3.12/site-packages/flagquantum/runtime/result.py", line 286, in measurement
+    raise ExecutionError(
+flagquantum.errors.ExecutionError: measurement selector 'hamiltonian_mean' is ambiguous; use an index or unique metadata name

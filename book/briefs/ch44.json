@@ -53,6 +53,34 @@
         "NC:2.1.7",
         "QUEST:representation"
       ]
+    },
+    {
+      "sequence": 75,
+      "batch": "B03",
+      "section_id": "sec-exact-simulation-tensor-execution-and-numerical-reliability-3",
+      "ref": "44.3",
+      "title": "Observables and measurement execution",
+      "depth": "F",
+      "requires": [
+        "sec-exact-simulation-tensor-execution-and-numerical-reliability-2",
+        "sec-measurement-expectation-values-and-statistical-estimation-2",
+        "sec-measurement-expectation-values-and-statistical-estimation-3"
+      ],
+      "role": "batch target",
+      "state": "draft",
+      "planned_body_path": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md",
+      "question": "How do exact observable contractions,marginals,conditional branches and terminal sampling fit one execution contract?",
+      "entry": "44.2local vector executor;6.2conditional projective branches;6.3observables and expectations.",
+      "exit": "Complete marginal/prefix/contraction/sampler correctness proofs with output-specific cost accounting.",
+      "worked_case": "Three-qubit parity preparation with complex phases and exact weights3/8,1/8,3/8,1/8;ordered readout(2,0);Y0X2 andrealPaulisum.",
+      "boundary": "Normalized pure simulated states;bookclassicalbranches and exactrationalCDF/prefixreference.No nativecollapse/reset/IIDhardwarecertificate or generalizedinstrumentimplementation.",
+      "code_plan": "ActualRY/P/CX/H/run/probabilities/expectation/samples;nativeanalyzers;booklocal contraction,marginal/mask and integerCDFtree.",
+      "independent_check": "Scalar coordinate sums,densePauli matrices,exhaustive masks/prefixes and exactinteger rank enumeration for sampler laws.",
+      "transfer_task": "Freshfive-qubitangles/masks/analyzers,bothmodes;newrationalweights includingzero leaves andtinypositivebranch/underflowboundary.",
+      "source_locators": [
+        "NC:2.2.3",
+        "QUEST:representation"
+      ]
     }
   ]
 }

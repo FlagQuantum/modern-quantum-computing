@@ -1122,7 +1122,7 @@
         "sec-measurement-expectation-values-and-statistical-estimation-3"
       ],
       "role": "batch target",
-      "state": "not_started",
+      "state": "draft",
       "planned_body_path": "docs/chapters/ch-exact-simulation-tensor-execution-and-numerical-reliability.md"
     },
     {
